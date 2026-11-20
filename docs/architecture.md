@@ -115,3 +115,14 @@ and keyframes, set transforms and keys, and capture screenshots. It **cannot
 create layers or bones**, so rig construction uses our own menu script. MohoMCP
 is a candidate for automated read-back and visual checks in later phases. See
 [mohomcp-assessment.md](mohomcp-assessment.md).
+
+## 8. Live Models (Moho 14.5)
+
+Moho 14.5 Live Mode drives Smart Bones and actions from webcam face tracking
+and XInput gamepads. AutoRig will generate the Smart Bones and actions in Lua.
+No Lua API for *assigning* live inputs is known, so mappings will be either
+generated as UI assignment steps or injected into the saved `.moho`
+(zip + JSON) once its format is learned from sample files. Discovery tooling
+already exists: `src/autorig/data/templates/probe_moho.lua` (a read-only API
+probe) and `src/autorig/mohofile.py` (inspect and diff). See
+[live-models.md](live-models.md).

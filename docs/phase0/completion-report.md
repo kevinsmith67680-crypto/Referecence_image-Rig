@@ -61,7 +61,7 @@ FK for 25 random 12-bone hierarchies to 1e-9.
   are written to `phase0_moho_report.json` with a built-in JSON encoder.
 - **Error handling:** API errors are caught, recorded in the report, logged to
   the console and shown in an alert. They are never swallowed.
-- **API surface:** only the 58 allowlisted members, each with cited evidence.
+- **API surface:** only allowlisted members, each with cited evidence (58 at Phase 0 completion; the list later grew to 64 with read-only calls used only by the Live Models probe).
 
 **Verification tooling:** `autorig verify-report` (54 checks for this rig,
 covering status, document, bone layer, per-bone id, parent, `fPos`, `fAngle`,

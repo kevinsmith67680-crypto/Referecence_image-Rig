@@ -54,6 +54,7 @@ Abbreviations: **MS** mohoscripting.com, **SS/ST/MCP** repositories above,
 | `SetStartFrame(f)` | MS `/methods/mohodoc-setstartframe` |
 | `SetEndFrame(f)` | MS `/classes/mohodoc` method table ("Sets the document's end frame") |
 | `LayerByName(name)` | ST `msMatchSkeleton.lua`, `msFBFReorder.lua` |
+| `CountLayers()`, `Layer(i)` (top level, 0-based; used by the probe) | MCP `tools/document.lua` |
 | `SetDirty()` | SS; MCP |
 
 ### Layers
@@ -62,6 +63,8 @@ Abbreviations: **MS** mohoscripting.com, **SS/ST/MCP** repositories above,
 |---|---|
 | `MohoLayer:SetName/Name/LayerType` | ST; MCP |
 | `MohoLayer:SetLayerParentBone(id)` (-1 = none, -2 = flexi-binding) / `LayerParentBone()` | MS `/methods/moholayer-setlayerparentbone`, `/methods/moholayer-layerparentbone`; ST `msMatchSkeleton.lua` |
+| `MohoLayer:IsGroupType()` (probe) | MCP `tools/layer.lua` |
+| `MohoLayer:CountActions()`, `ActionName(i)`, `IsSmartBoneAction(name)` (probe, read-only) | MS `/classes/moholayer`, `/methods/moholayer-issmartboneaction`; ST `msPrintActions.lua` |
 | `MohoImageLayer:SetSourceImage(path)` | LMF answer by Lost Marble: cast with `LayerAsImage` first (snippet); MS `layerasimage` page mentions it |
 | `MohoGroupLayer:CountLayers()/Layer(i)` (0-based) | MCP `layer.getChildren`; ST `msRenameLayers.lua` |
 | `MohoBoneLayer:Skeleton()` | MCP; ST |
@@ -110,6 +113,21 @@ compares Moho's own `fMovedMatrix` output with the art's joint positions.
 | `MohoImageLayer:SourceImage()` | Getter not confirmed. The report records the path that was set. |
 | `MohoDoc:PrepUndo` | Exists (SimplSam), but undo of a multi-layer build is out of scope. Layers are created with `undoable=false`; to revert, close without saving. |
 | `debug.getinfo` (script location) | MohoMCP shows it works in Moho 14, but absolute paths are baked in instead, which is simpler and explicit. |
+
+## Evidence collected for Live Models (not yet allowlisted)
+
+These are recorded for LM-1. They will be allowlisted only together with a mock
+implementation and, ideally, a native experiment.
+
+| Member | Evidence | Note |
+|---|---|---|
+| `MohoLayer:ActivateAction(name)` | MS `/classes/moholayer` ("Activates an action for editing"); ST `msCopyAction.lua` | Community code activates `"junk"` and then deletes it, which implies it creates missing actions |
+| `MohoLayer:DeleteAction(name)` | ST `msCopyAction.lua` (commented-out code) | Weak |
+| `MohoLayer:InsertAction(name, frame, byReference)` | MS `/methods/moholayer-insertaction`; ST `msCopyAction.lua` | — |
+| `MohoLayer:CurrentAction()` | MS `/methods/moholayer-currentaction`; ST (commented code) | — |
+| `MohoDoc:SetCurrentDocAction(nil)` | ST `msCopyAction.lua` (v10+) | Returns to the mainline |
+| `AnimChannel:ActivateAction(name)` | MS `/methods/animchannel-activateaction` (v12, "creates action channel if not exist") | — |
+| Moho 14.5 additions: `ImageLayer:BeginFacialTracking/EndFacialTracking`, `AudioLayer:AnalyzePhonemes`, `ScriptInterface:Play` | MS 14.5 features page (excerpt) | **No live-input assignment API was found** |
 
 ## Open questions for native verification
 

@@ -44,6 +44,8 @@
     {"owner": "MohoDoc", "name": "SetStartFrame", "kind": "method", "signature": "SetStartFrame(frame)", "evidence": ["MS:/methods/mohodoc-setstartframe"]},
     {"owner": "MohoDoc", "name": "SetEndFrame", "kind": "method", "signature": "SetEndFrame(frame)", "evidence": ["MS:/classes/mohodoc (method table: 'Sets the document's end frame')"]},
     {"owner": "MohoDoc", "name": "LayerByName", "kind": "method", "signature": "LayerByName(name) -> MohoLayer|nil", "evidence": ["ST:menu/BasicExamples/msMatchSkeleton.lua", "ST:menu/Layer Effects/msFBFReorder.lua"]},
+    {"owner": "MohoDoc", "name": "CountLayers", "kind": "method", "signature": "CountLayers() -> int (top-level layers)", "evidence": ["MCP:tools/document.lua (getLayers)"]},
+    {"owner": "MohoDoc", "name": "Layer", "kind": "method", "signature": "Layer(index) -> MohoLayer (0-based, top level)", "evidence": ["MCP:tools/document.lua (getLayers)"]},
     {"owner": "MohoDoc", "name": "SetDirty", "kind": "method", "signature": "SetDirty()", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
 
     {"owner": "MohoLayer", "name": "SetName", "kind": "method", "signature": "SetName(name)", "evidence": ["ST:tool/msSetGroupType.lua", "MCP:tools/layer.lua"]},
@@ -51,6 +53,10 @@
     {"owner": "MohoLayer", "name": "LayerType", "kind": "method", "signature": "LayerType() -> int (MOHO.LT_*)", "evidence": ["MCP:tools/layer.lua", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
     {"owner": "MohoLayer", "name": "SetLayerParentBone", "kind": "method", "signature": "SetLayerParentBone(boneID)  (-1 = none, -2 = flexi-binding)", "evidence": ["MS:/methods/moholayer-setlayerparentbone", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
     {"owner": "MohoLayer", "name": "LayerParentBone", "kind": "method", "signature": "LayerParentBone() -> int", "evidence": ["MS:/methods/moholayer-layerparentbone", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
+    {"owner": "MohoLayer", "name": "IsGroupType", "kind": "method", "signature": "IsGroupType() -> bool", "evidence": ["MCP:tools/layer.lua (getProperties)"]},
+    {"owner": "MohoLayer", "name": "CountActions", "kind": "method", "signature": "CountActions() -> int", "evidence": ["MS:/classes/moholayer", "ST:menu/BasicExamples/msPrintActions.lua"]},
+    {"owner": "MohoLayer", "name": "ActionName", "kind": "method", "signature": "ActionName(index) -> string (0-based)", "evidence": ["MS:/classes/moholayer", "ST:menu/BasicExamples/msPrintActions.lua"]},
+    {"owner": "MohoLayer", "name": "IsSmartBoneAction", "kind": "method", "signature": "IsSmartBoneAction(name) -> bool", "evidence": ["MS:/methods/moholayer-issmartboneaction", "LMF:forum script skipping smart-bone actions via IsSmartBoneAction"]},
 
     {"owner": "MohoImageLayer", "name": "SetSourceImage", "kind": "method", "signature": "SetSourceImage(path)", "evidence": ["LMF:SetSourceImage thread (Lost Marble reply: moho:LayerAsImage(layer):SetSourceImage(path))", "MS:/methods/scriptinterface-layerasimage"]},
 

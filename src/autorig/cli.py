@@ -9,18 +9,22 @@ expected       Write the expected Moho-space rig values as JSON.
 preview        Render the Python simulation (contact sheet + GIF).
 verify-report  Check a report written by the Lua script inside Moho.
 build-example  Regenerate every committed artefact of an example.
+build-probe    Generate the read-only Moho API discovery script (Live Models research).
+moho-file      Inspect / grep / diff .moho and .mohoproj files.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
 from . import __version__
 from .artwork import generate_artwork
-from .lua_codegen import SCRIPT_FILENAME, write_lua
+from .lua_codegen import PROBE_REPORT_FILENAME, PROBE_SCRIPT_FILENAME, SCRIPT_FILENAME, render_probe, write_lua
+from .mohofile import MohoFileError, diff, grep, load_project, summarize
 from .preview import render_contact_sheet, render_gif
 from .report import expected_state, load_report, verify_report
 from .spec import SpecError, load_spec, missing_assets
@@ -115,6 +119,43 @@ def cmd_build_example(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_probe(args: argparse.Namespace) -> int:
+    report_dir = Path(args.report_dir).resolve()
+    if not report_dir.is_dir():
+        print(f"error: report directory does not exist: {report_dir}", file=sys.stderr)
+        return 1
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(render_probe(report_dir.as_posix()), encoding="utf-8")
+    print(f"wrote {out}")
+    print(f"  Moho will write the probe report to: {report_dir.as_posix()}/{PROBE_REPORT_FILENAME}")
+    return 0
+
+
+def cmd_moho_file(args: argparse.Namespace) -> int:
+    try:
+        if args.moho_command == "inspect":
+            project = load_project(args.path)
+            if args.grep:
+                hits = grep(project.data, args.grep)
+                for path, value in hits[: args.max]:
+                    print(f"{path} = {value}")
+                print(f"({len(hits)} matches{'; truncated' if len(hits) > args.max else ''})")
+            else:
+                print("\n".join(summarize(project)))
+            return 0
+        a, b = load_project(args.before), load_project(args.after)
+        ignore = re.compile(args.ignore, re.IGNORECASE) if args.ignore else None
+        changes = diff(a.data, b.data, ignore=ignore)
+        for c in changes[: args.max]:
+            print(c.format())
+        print(f"({len(changes)} changes{'; truncated' if len(changes) > args.max else ''})")
+        return 0
+    except (MohoFileError, OSError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="autorig", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -157,6 +198,25 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("build-example", help="regenerate all committed artefacts of an example")
     p.add_argument("spec")
     p.set_defaults(func=cmd_build_example)
+
+    p = sub.add_parser("build-probe", help="generate the read-only Moho API discovery script")
+    p.add_argument("--report-dir", required=True, help="existing directory on the Mac for the probe report")
+    p.add_argument("--out", required=True, help=f"output .lua path (file name must be {PROBE_SCRIPT_FILENAME})")
+    p.set_defaults(func=cmd_build_probe)
+
+    p = sub.add_parser("moho-file", help="inspect, grep or diff .moho/.mohoproj files")
+    msub = p.add_subparsers(dest="moho_command", required=True)
+    q = msub.add_parser("inspect", help="summarize a project, or grep its JSON")
+    q.add_argument("path")
+    q.add_argument("--grep", help="case-insensitive regex matched against JSON keys and string values")
+    q.add_argument("--max", type=int, default=200)
+    q.set_defaults(func=cmd_moho_file)
+    q = msub.add_parser("diff", help="structural JSON diff of two projects")
+    q.add_argument("before")
+    q.add_argument("after")
+    q.add_argument("--ignore", help="regex of JSON paths to skip (e.g. volatile timestamps)")
+    q.add_argument("--max", type=int, default=500)
+    q.set_defaults(func=cmd_moho_file)
     return parser
 
 

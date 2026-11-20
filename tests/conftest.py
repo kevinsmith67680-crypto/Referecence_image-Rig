@@ -82,7 +82,7 @@ def run_in_mock(lua_source: str, env_opts: dict[str, Any] | None = None,
     (defines the script table), then call Script:Run(moho)."""
     lua = new_lua()
     mock = load_mock(lua)
-    opts = lua.table_from(env_opts or {})
+    opts = lua.table_from(env_opts or {}, recursive=True)
     env = mock.new_env(opts)
     lua.execute(lua_source)
     script = lua.globals().AutoRig_Phase0_Build

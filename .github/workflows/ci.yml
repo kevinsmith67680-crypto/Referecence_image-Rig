@@ -28,3 +28,4 @@ jobs:
           mkdir -p "$RUNNER_TEMP/Fake Custom Content"
           PYTHON=python tools/macos/install_phase0.sh --custom-content "$RUNNER_TEMP/Fake Custom Content"
           test -f "$RUNNER_TEMP/Fake Custom Content/Scripts/Menu/AutoRig/AutoRig_Phase0_Build.lua"
+          test -f "$RUNNER_TEMP/Fake Custom Content/Scripts/Menu/AutoRig/AutoRig_Probe.lua"

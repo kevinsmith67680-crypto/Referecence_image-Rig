@@ -51,8 +51,8 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
-Expected: `173 passed, 2 skipped`. The 2 skipped tests are the native Moho
-tests, which you run in step 7.
+Expected: every test passes except **2 skipped**. The skipped ones are the native
+Moho tests, which you run in step 7.
 
 ## 3. Find Moho's Custom Content Folder
 
@@ -77,7 +77,9 @@ tools/macos/install_phase0.sh --custom-content "/path/to/Moho Custom Content Fol
 This validates the spec and art, generates
 `build/moho/AutoRig_Phase0_Build.lua` with the **absolute path of this
 checkout's art** baked in, and copies it to
-`<Custom Content>/Scripts/Menu/AutoRig/AutoRig_Phase0_Build.lua`.
+`<Custom Content>/Scripts/Menu/AutoRig/AutoRig_Phase0_Build.lua`. It also
+installs **AutoRig Probe**, a read-only discovery script for the Live Models
+research (`docs/live-models.md` §6). You don't need the probe for Phase 0.
 
 Alternative: run the script without `--custom-content`, then in Moho use
 **Scripts → Install Script…** (Moho manual, ch. 23 "Install Script") and pick

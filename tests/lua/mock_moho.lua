@@ -272,6 +272,20 @@ Layer = class("MohoLayer", {
 		st.parent_bone = id
 	end,
 	LayerParentBone = function(self) return S(self).parent_bone end,
+	IsGroupType = function(self) return S(self).children ~= nil end,
+	CountActions = function(self) return #(S(self).actions or {}) end,
+	ActionName = function(self, i)
+		local acts = S(self).actions or {}
+		check(is_int(i) and i >= 0 and i < #acts, "ActionName(i) out of range")
+		return acts[i + 1].name
+	end,
+	IsSmartBoneAction = function(self, name)
+		check(type(name) == "string", "IsSmartBoneAction expects an action name")
+		for _, a in ipairs(S(self).actions or {}) do
+			if a.name == name then return a.smart == true end
+		end
+		return false
+	end,
 })
 
 GroupLayer = class("MohoGroupLayer", {
@@ -342,6 +356,12 @@ local Doc = class("MohoDoc", {
 		return Layer.wrap(st)
 	end,
 	SetDirty = function(self) S(self).dirty = true end,
+	CountLayers = function(self) return #S(self).layers end,
+	Layer = function(self, i)
+		local st = S(self)
+		check(is_int(i) and i >= 0 and i < #st.layers, "MohoDoc:Layer(i) out of range")
+		return Layer.wrap(st.layers[i + 1])
+	end,
 })
 
 local ScriptInterface = class("ScriptInterface", {
@@ -442,7 +462,11 @@ function M.new_env(opts)
 		app_version = opts.app_version or "14.4-mock",
 	}
 	-- a fresh Moho document starts with one vector layer
-	table.insert(env.doc.layers, { name = "Layer 1", type = LT.LT_VECTOR, parent_bone = -1 })
+	local actions = {}
+	for i, a in ipairs(opts.actions or {}) do
+		actions[i] = { name = a.name, smart = a.smart == true }
+	end
+	table.insert(env.doc.layers, { name = "Layer 1", type = LT.LT_VECTOR, parent_bone = -1, actions = actions })
 	if opts.preexisting_layer then
 		table.insert(env.doc.layers, { name = opts.preexisting_layer, type = LT.LT_GROUP, parent_bone = -1, children = {} })
 	end

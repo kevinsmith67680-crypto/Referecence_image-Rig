@@ -9,7 +9,9 @@
 #   1. validates examples/phase0_test_character/rig_spec.json and its art
 #   2. generates build/moho/AutoRig_Phase0_Build.lua with the ABSOLUTE path of
 #      this checkout's example assets baked in (e.g. on your external SSD)
-#   3. with --custom-content: copies it to <folder>/Scripts/Menu/AutoRig/
+#   3. generates build/moho/AutoRig_Probe.lua (read-only Moho API discovery,
+#      Live Models research) reporting into research/moho-14.5/
+#   4. with --custom-content: copies both to <folder>/Scripts/Menu/AutoRig/
 #
 # It never writes inside /Applications (the signed Moho app bundle).
 # Compatible with the stock macOS bash 3.2.
@@ -18,6 +20,8 @@ set -euo pipefail
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 SPEC="$REPO/examples/phase0_test_character/rig_spec.json"
 OUT="$REPO/build/moho/AutoRig_Phase0_Build.lua"
+PROBE_OUT="$REPO/build/moho/AutoRig_Probe.lua"
+PROBE_REPORT_DIR="$REPO/research/moho-14.5"
 CUSTOM=""
 PYTHON="${PYTHON:-}"
 
@@ -72,14 +76,17 @@ fi
 echo "== Validating rig spec and assets"
 "$PYTHON" -m autorig validate "$SPEC"
 
-echo "== Generating Moho menu script"
+echo "== Generating Moho menu scripts"
 "$PYTHON" -m autorig build-lua "$SPEC" --out "$OUT"
+mkdir -p "$PROBE_REPORT_DIR"
+"$PYTHON" -m autorig build-probe --report-dir "$PROBE_REPORT_DIR" --out "$PROBE_OUT"
 
 if [ -z "$CUSTOM" ]; then
   echo
   echo "Generated: $OUT"
+  echo "           $PROBE_OUT"
   echo "Not installed (no --custom-content given). Either:"
-  echo "  a) In Moho: Scripts > Install Script... and pick the file above, or"
+  echo "  a) In Moho: Scripts > Install Script... and pick the files above, or"
   echo "  b) re-run with --custom-content \"<your Moho Custom Content Folder>\""
   exit 0
 fi
@@ -87,7 +94,9 @@ fi
 DEST_DIR="$CUSTOM/Scripts/Menu/AutoRig"
 mkdir -p "$DEST_DIR"
 cp -f "$OUT" "$DEST_DIR/AutoRig_Phase0_Build.lua"
+cp -f "$PROBE_OUT" "$DEST_DIR/AutoRig_Probe.lua"
 echo
 echo "Installed: $DEST_DIR/AutoRig_Phase0_Build.lua"
+echo "           $DEST_DIR/AutoRig_Probe.lua (read-only discovery, see docs/live-models.md)"
 echo "Next: restart Moho Pro 14 (or reload tools/scripts), create a NEW 1920x1080 document,"
 echo "      then run Scripts > AutoRig > AutoRig Phase 0: Build Test Rig"
