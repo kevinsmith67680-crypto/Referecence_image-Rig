@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+build/
+dist/
+
+# Machine-specific generated Moho scripts (contain absolute paths)
+build/moho/
+
+# Reports written by Moho on the local Mac
+examples/**/phase0_moho_report.json
+
+# macOS / external SSD noise
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Moho backup / autosave files
+*.moho.bak
+*.mohoproj.bak
+
+# Downloaded wheels
+*.whl

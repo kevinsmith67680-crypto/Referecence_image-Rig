@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autorig.studio/schemas/rig_spec-0.1.json",
+  "title": "AutoRig Studio rig specification (v0.1, Phase 0)",
+  "description": "Describes a cut-out character: art layers, a 2D bone hierarchy in canvas pixel coordinates, layer-to-bone bindings and a test animation. Pixel coordinates: origin top-left, +x right, +y down.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "character", "canvas", "moho", "bones", "parts", "animation"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "spec_version": {"const": "0.1.0"},
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "display_name"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "display_name": {"type": "string", "minLength": 1},
+        "description": {"type": "string"}
+      }
+    },
+    "canvas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width_px", "height_px"],
+      "properties": {
+        "width_px": {"type": "integer", "minimum": 16, "maximum": 16384},
+        "height_px": {"type": "integer", "minimum": 16, "maximum": 16384}
+      }
+    },
+    "moho": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bone_layer_name", "rest_frame", "start_frame", "end_frame", "report_filename"],
+      "properties": {
+        "bone_layer_name": {"type": "string", "minLength": 1, "maxLength": 128},
+        "rest_frame": {"const": 0},
+        "start_frame": {"type": "integer", "minimum": 1},
+        "end_frame": {"type": "integer", "minimum": 1},
+        "report_filename": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+\\.json$"}
+      }
+    },
+    "bones": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "parent", "base_px", "tip_px"],
+        "properties": {
+          "name": {"$ref": "#/$defs/identifier"},
+          "parent": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/identifier"}]},
+          "base_px": {"$ref": "#/$defs/point"},
+          "tip_px": {"$ref": "#/$defs/point"}
+        }
+      }
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "layer_name", "image", "bone", "z_index"],
+        "properties": {
+          "name": {"$ref": "#/$defs/identifier"},
+          "layer_name": {"type": "string", "minLength": 1, "maxLength": 128},
+          "image": {"$ref": "#/$defs/relpath"},
+          "vector_source": {"$ref": "#/$defs/relpath"},
+          "bone": {"$ref": "#/$defs/identifier"},
+          "z_index": {"type": "integer", "description": "Stacking order; higher draws in front."}
+        }
+      }
+    },
+    "animation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "tracks"],
+      "properties": {
+        "name": {"$ref": "#/$defs/identifier"},
+        "description": {"type": "string"},
+        "tracks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["bone", "channel", "keys"],
+            "properties": {
+              "bone": {"$ref": "#/$defs/identifier"},
+              "channel": {"enum": ["rotation_offset_deg"], "description": "Rotation added to the bone's rest (parent-relative) angle, degrees, counter-clockwise positive on screen."},
+              "keys": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["frame", "value"],
+                  "properties": {
+                    "frame": {"type": "integer", "minimum": 1},
+                    "value": {"type": "number", "minimum": -360, "maximum": 360}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+    "point": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "relpath": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.)[A-Za-z0-9_./-]+$"}
+  }
+}

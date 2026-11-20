@@ -1,0 +1,105 @@
+{
+  "allowlist_version": 1,
+  "purpose": "Every Moho Lua API member that AutoRig-generated scripts are permitted to use. The strict mock (tests/lua/mock_moho.lua) implements exactly this set and raises an error for anything else. Adding a member REQUIRES at least one evidence entry. See docs/moho-lua-api-evidence.md.",
+  "moho_target": "Moho Pro 14 (embedded Lua 5.4)",
+  "evidence_sources": {
+    "MS": {
+      "title": "mohoscripting.com - unofficial Moho scripting reference (read via web-search snippets; the site itself was not reachable from the cloud sandbox)",
+      "url": "https://mohoscripting.com/"
+    },
+    "SS": {
+      "title": "SimplSam/moho-make-bones, ss_make_bones.lua (targets AS11-MH13.5+)",
+      "url": "https://github.com/SimplSam/moho-make-bones/blob/master/ss_make_bones.lua"
+    },
+    "ST": {
+      "title": "Strider22/AnimeStudioScripts (community scripts)",
+      "url": "https://github.com/Strider22/AnimeStudioScripts"
+    },
+    "MCP": {
+      "title": "Kveto/MohoMCP moho-plugin (written for Moho 14 / Lua 5.4)",
+      "url": "https://github.com/Kveto/MohoMCP/tree/main/moho-plugin"
+    },
+    "LMF": {
+      "title": "Lost Marble Moho forum (read via web-search snippets)",
+      "url": "https://www.lostmarble.com/forum/"
+    }
+  },
+  "members": [
+    {"owner": "ScriptInterface", "name": "document", "kind": "field", "evidence": ["SS:ss_make_bones.lua (moho.document:PrepUndo)", "MCP:tools/document.lua"]},
+    {"owner": "ScriptInterface", "name": "CreateNewLayer", "kind": "method", "signature": "CreateNewLayer(layerType, undoable) -> MohoLayer", "evidence": ["MS:/methods/scriptinterface-createnewlayer", "ST:tool/msSetGroupType.lua (CreateNewLayer(MOHO.LT_BONE, true))"]},
+    {"owner": "ScriptInterface", "name": "PlaceLayerInGroup", "kind": "method", "signature": "PlaceLayerInGroup(child, group, top, isUndoable)", "evidence": ["MS:/classes/scriptinterface", "ST:tool/msSetGroupType.lua (PlaceLayerInGroup(layer, groupLayer, true, true))"]},
+    {"owner": "ScriptInterface", "name": "LayerAsBone", "kind": "method", "signature": "LayerAsBone(layer) -> MohoBoneLayer", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "ScriptInterface", "name": "LayerAsImage", "kind": "method", "signature": "LayerAsImage(layer) -> MohoImageLayer", "evidence": ["MS:/methods/scriptinterface-layerasimage (needed before SetSourceImage)", "ST:tool/msMakeHighQuality.lua", "LMF:SetSourceImage thread (Lost Marble: cast with LayerAsImage first)"]},
+    {"owner": "ScriptInterface", "name": "LayerAsGroup", "kind": "method", "signature": "LayerAsGroup(layer) -> MohoGroupLayer", "evidence": ["MCP:tools/layer.lua (getChildren)", "ST:menu/Layer Effects/msRenameLayers.lua"]},
+    {"owner": "ScriptInterface", "name": "SetCurFrame", "kind": "method", "signature": "SetCurFrame(frame)", "evidence": ["MCP:tools/document.lua (setFrame)"]},
+    {"owner": "ScriptInterface", "name": "SetSelLayer", "kind": "method", "signature": "SetSelLayer(layer)", "evidence": ["MCP:tools/layer.lua (selectLayer)", "ST:menu/Playpen/msActionToLayer.lua"]},
+    {"owner": "ScriptInterface", "name": "UpdateUI", "kind": "method", "signature": "UpdateUI()", "evidence": ["MCP:MohoMCP_Server.lua", "ST:tool/msLipSync.lua"]},
+    {"owner": "ScriptInterface", "name": "AppVersion", "kind": "method", "signature": "AppVersion() -> string", "evidence": ["SS:ss_make_bones.lua (moho:AppVersion():match(...))"]},
+
+    {"owner": "MohoDoc", "name": "Width", "kind": "method", "signature": "Width() -> int (pixel width of rendered output)", "evidence": ["MCP:tools/document.lua", "MS:/methods/mohodoc-height (sibling Height: pixel height of final rendered output)"]},
+    {"owner": "MohoDoc", "name": "Height", "kind": "method", "signature": "Height() -> int", "evidence": ["MS:/methods/mohodoc-height", "MCP:tools/document.lua"]},
+    {"owner": "MohoDoc", "name": "Fps", "kind": "method", "signature": "Fps() -> int", "evidence": ["MCP:tools/document.lua"]},
+    {"owner": "MohoDoc", "name": "StartFrame", "kind": "method", "signature": "StartFrame() -> int", "evidence": ["MS:/methods/mohodoc-startframe", "MCP:tools/document.lua"]},
+    {"owner": "MohoDoc", "name": "EndFrame", "kind": "method", "signature": "EndFrame() -> int", "evidence": ["MCP:tools/document.lua"]},
+    {"owner": "MohoDoc", "name": "SetStartFrame", "kind": "method", "signature": "SetStartFrame(frame)", "evidence": ["MS:/methods/mohodoc-setstartframe"]},
+    {"owner": "MohoDoc", "name": "SetEndFrame", "kind": "method", "signature": "SetEndFrame(frame)", "evidence": ["MS:/classes/mohodoc (method table: 'Sets the document's end frame')"]},
+    {"owner": "MohoDoc", "name": "LayerByName", "kind": "method", "signature": "LayerByName(name) -> MohoLayer|nil", "evidence": ["ST:menu/BasicExamples/msMatchSkeleton.lua", "ST:menu/Layer Effects/msFBFReorder.lua"]},
+    {"owner": "MohoDoc", "name": "SetDirty", "kind": "method", "signature": "SetDirty()", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+
+    {"owner": "MohoLayer", "name": "SetName", "kind": "method", "signature": "SetName(name)", "evidence": ["ST:tool/msSetGroupType.lua", "MCP:tools/layer.lua"]},
+    {"owner": "MohoLayer", "name": "Name", "kind": "method", "signature": "Name() -> string", "evidence": ["MCP:tools/layer.lua", "ST:tool/msSetGroupType.lua"]},
+    {"owner": "MohoLayer", "name": "LayerType", "kind": "method", "signature": "LayerType() -> int (MOHO.LT_*)", "evidence": ["MCP:tools/layer.lua", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
+    {"owner": "MohoLayer", "name": "SetLayerParentBone", "kind": "method", "signature": "SetLayerParentBone(boneID)  (-1 = none, -2 = flexi-binding)", "evidence": ["MS:/methods/moholayer-setlayerparentbone", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
+    {"owner": "MohoLayer", "name": "LayerParentBone", "kind": "method", "signature": "LayerParentBone() -> int", "evidence": ["MS:/methods/moholayer-layerparentbone", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
+
+    {"owner": "MohoImageLayer", "name": "SetSourceImage", "kind": "method", "signature": "SetSourceImage(path)", "evidence": ["LMF:SetSourceImage thread (Lost Marble reply: moho:LayerAsImage(layer):SetSourceImage(path))", "MS:/methods/scriptinterface-layerasimage"]},
+
+    {"owner": "MohoGroupLayer", "name": "CountLayers", "kind": "method", "signature": "CountLayers() -> int", "evidence": ["MCP:tools/layer.lua (getChildren)"]},
+    {"owner": "MohoGroupLayer", "name": "Layer", "kind": "method", "signature": "Layer(index) -> MohoLayer (0-based)", "evidence": ["MCP:tools/layer.lua (getChildren)", "ST:menu/Layer Effects/msRenameLayers.lua"]},
+
+    {"owner": "MohoBoneLayer", "name": "Skeleton", "kind": "method", "signature": "Skeleton() -> M_Skeleton", "evidence": ["MCP:tools/bone.lua", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
+
+    {"owner": "M_Skeleton", "name": "AddBone", "kind": "method", "signature": "AddBone(frame) -> M_Bone", "evidence": ["MS:/classes/m-skeleton", "SS:ss_make_bones.lua (skel:AddBone(frame0))"]},
+    {"owner": "M_Skeleton", "name": "BoneID", "kind": "method", "signature": "BoneID(bone) -> int", "evidence": ["SS:ss_make_bones.lua", "ST:menu/BasicExamples/msMatchSkeleton.lua"]},
+    {"owner": "M_Skeleton", "name": "Bone", "kind": "method", "signature": "Bone(id) -> M_Bone (0-based)", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Skeleton", "name": "CountBones", "kind": "method", "signature": "CountBones() -> int", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Skeleton", "name": "UpdateBoneMatrix", "kind": "method", "signature": "UpdateBoneMatrix(boneID)", "evidence": ["SS:ss_make_bones.lua (skel:UpdateBoneMatrix(newBoneID))"]},
+
+    {"owner": "M_Bone", "name": "SetName", "kind": "method", "signature": "SetName(name)", "evidence": ["SS:ss_make_bones.lua (newBone:SetName(...))"]},
+    {"owner": "M_Bone", "name": "Name", "kind": "method", "signature": "Name() -> string", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Bone", "name": "fParent", "kind": "field", "signature": "int parent bone id (-1 = root)", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Bone", "name": "fAnimParent", "kind": "field", "signature": "animated int channel of parent id", "evidence": ["SS:ss_make_bones.lua (newBone.fAnimParent:SetValue(frame0, id))"]},
+    {"owner": "M_Bone", "name": "fPos", "kind": "field", "signature": "LM_Vector2 rest position, in the PARENT bone's local frame (origin at parent base, +x along parent)", "evidence": ["SS:ss_make_bones.lua (chained child: fPos = (parentLength, 0))"]},
+    {"owner": "M_Bone", "name": "fAnimPos", "kind": "field", "signature": "AnimVec2 position channel", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Bone", "name": "fLength", "kind": "field", "signature": "number (world units)", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Bone", "name": "fAngle", "kind": "field", "signature": "number radians, relative to parent bone", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Bone", "name": "fAnimAngle", "kind": "field", "signature": "AnimVal angle channel (radians)", "evidence": ["SS:ss_make_bones.lua", "ST:tool/msLipSync.lua", "MCP:tools/bone.lua"]},
+    {"owner": "M_Bone", "name": "fMovedMatrix", "kind": "field", "signature": "LM_Transform bone-local -> layer space", "evidence": ["SS:ss_make_bones.lua (parentBone.fMovedMatrix:Transform(vec))"]},
+
+    {"owner": "AnimChannel", "name": "SetValue", "kind": "method", "signature": "SetValue(frame, value)", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "AnimChannel", "name": "GetValue", "kind": "method", "signature": "GetValue(frame) -> value", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "AnimChannel", "name": "CountKeys", "kind": "method", "signature": "CountKeys() -> int", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/animation.lua"]},
+    {"owner": "AnimChannel", "name": "GetKeyWhen", "kind": "method", "signature": "GetKeyWhen(index) -> frame (0-based index)", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/animation.lua"]},
+
+    {"owner": "LM_Vector2", "name": "new_local", "kind": "method", "signature": "LM.Vector2:new_local() -> LM_Vector2", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "LM_Vector2", "name": "Set", "kind": "method", "signature": "Set(x, y) | Set(vec)", "evidence": ["SS:ss_make_bones.lua"]},
+    {"owner": "LM_Vector2", "name": "x", "kind": "field", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+    {"owner": "LM_Vector2", "name": "y", "kind": "field", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
+
+    {"owner": "LM_Transform", "name": "Transform", "kind": "method", "signature": "Transform(vec)  (in place)", "evidence": ["SS:ss_make_bones.lua"]},
+
+    {"owner": "MOHO", "name": "LT_BONE", "kind": "constant", "evidence": ["MS:/modules/MOHO (LT_BONE = 4)", "ST:tool/msSetGroupType.lua"]},
+    {"owner": "MOHO", "name": "LT_IMAGE", "kind": "constant", "evidence": ["ST:menu/BasicExamples/ms2LayerType.lua", "MCP:tools/layer.lua"]},
+    {"owner": "MOHO", "name": "Localize", "kind": "function", "signature": "MOHO.Localize(\"/Scripts/OK=OK\") -> string", "evidence": ["MCP:MohoMCP_Server.lua"]},
+
+    {"owner": "LM.GUI", "name": "Alert", "kind": "function", "signature": "LM.GUI.Alert(type, msg1, msg2, msg3, button1, button2, button3)", "evidence": ["MCP:MohoMCP_Server.lua"]},
+    {"owner": "LM.GUI", "name": "ALERT_INFO", "kind": "constant", "evidence": ["MCP:MohoMCP_Server.lua"]},
+    {"owner": "LM.GUI", "name": "ALERT_WARNING", "kind": "constant", "evidence": ["MCP:MohoMCP_Server.lua"]}
+  ],
+  "deliberately_not_used": [
+    {"name": "ScriptInterface:FileSave / FileSaveAs / FileNew", "reason": "No documentation or working-code evidence found; the user saves the document manually."},
+    {"name": "AnimChannel:SetKeyInterp", "reason": "Conflicting evidence on the first argument (key index in MohoMCP vs frame in Strider22). Moho's default interpolation is used instead."},
+    {"name": "MohoImageLayer:SourceImage", "reason": "Getter not confirmed; the report records the path that was set instead."},
+    {"name": "MohoDoc:PrepUndo", "reason": "Confirmed to exist (SimplSam) but undo of multi-layer creation is out of scope; layers are created with undoable=false and the user reverts by closing without saving."}
+  ]
+}

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autorig-studio"
+version = "0.0.1"
+description = "AutoRig Studio: convert a cartoon character reference image into an editable Moho Pro 14 rig (Phase 0: rigging proof of concept)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=10.0",
+    "jsonschema>=4.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "lupa>=2.0",
+]
+
+[project.scripts]
+autorig = "autorig.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+autorig = ["data/*.json", "data/templates/*.lua"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "moho_native: requires Moho Pro 14 running on the user's Mac (NOT EXECUTED in cloud CI)",
+]
+addopts = "-ra"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <title>torso (AutoRig Phase 0 vector source)</title>
+  <g id="outline">
+    <rect x="834" y="449" width="252" height="372" rx="76" fill="#1f2a44"/>
+  </g>
+  <g id="fill">
+    <rect x="840" y="455" width="240" height="360" rx="70" fill="#3f7fd9"/>
+  </g>
+  <g id="details">
+    <circle cx="960" cy="550" r="9" fill="#ecf2fc"/>
+    <circle cx="960" cy="620" r="9" fill="#ecf2fc"/>
+    <circle cx="960" cy="690" r="9" fill="#ecf2fc"/>
+  </g>
+</svg>

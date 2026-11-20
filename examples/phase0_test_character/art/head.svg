@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <title>head (AutoRig Phase 0 vector source)</title>
+  <g id="outline">
+    <rect x="932" y="424" width="56" height="72" rx="16" fill="#1f2a44"/>
+    <circle cx="960" cy="337.5" r="131" fill="#1f2a44"/>
+  </g>
+  <g id="fill">
+    <rect x="938" y="430" width="44" height="60" rx="10" fill="#f2c9a0"/>
+    <circle cx="960" cy="337.5" r="125" fill="#f2c9a0"/>
+  </g>
+  <g id="details">
+    <path d="M 841.118 298.873 A 125 125 0 0 1 1078.882 298.873 Z" fill="#5c3c28"/>
+    <circle cx="915" cy="342.5" r="13" fill="#1f2a44"/>
+    <circle cx="1005" cy="342.5" r="13" fill="#1f2a44"/>
+    <circle cx="885" cy="382.5" r="16" fill="#e8968c"/>
+    <circle cx="1035" cy="382.5" r="16" fill="#e8968c"/>
+    <path d="M 1009.847 395.848 A 55 37.5 0 0 1 910.153 395.848" fill="none" stroke="#1f2a44" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

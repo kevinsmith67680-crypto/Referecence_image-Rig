@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <title>upper_arm (AutoRig Phase 0 vector source)</title>
+  <g id="outline">
+    <line x1="1060" y1="520" x2="1240" y2="610" stroke="#1f2a44" stroke-width="84" stroke-linecap="round"/>
+  </g>
+  <g id="fill">
+    <line x1="1060" y1="520" x2="1240" y2="610" stroke="#2f68bf" stroke-width="72" stroke-linecap="round"/>
+  </g>
+  <g id="details">
+  </g>
+</svg>
