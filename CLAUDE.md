@@ -15,6 +15,10 @@ faithful, editable **Moho Pro 14** character rig.
 - The user explicitly started **Phase 2** (reconstruction) on synthetic fixtures. It is implemented; verdict
   **PARTIAL** (`docs/phase2_report.md`; real-art run in `docs/real_artwork_test.md`): FLUX inpainting ran on real
   art but nothing is human-reviewed, eye-white inpainting failed, and Phase 1's body split is not rig-ready.
+- **Phase 2 natural-pose refinement** (user-requested) is done: anatomical skeleton, local skinned joints,
+  IK/balance solver, 12 presets (`docs/phase2_natural_pose_refinement.md`). 5 presets pass automatic checks
+  (still pending review), 7 are NEEDS_ARTWORK (armpit gussets, hand shapes, foreshortened thighs). Preview
+  renders only; Moho not run.
 - **Do not start Phase 3** (Moho import/rigging of the package) automatically. It also needs the blockers cleared and
   generated assets reviewed.
 
@@ -27,6 +31,9 @@ faithful, editable **Moho Pro 14** character rig.
   Inpainting adapters declare their mask convention (FLUX: white = inpaint; Ideogram: black = inpaint).
 - Official Replicate models cannot be version-pinned: keep the pin-by-verification check (refuse on drift).
 - Never present synthetic-fixture results as real-artwork evidence.
+- Natural posing: pixels move by a position-based home bone (not by layer); joints blend by angle
+  interpolation inside per-joint bands; the identity pose must stay bit-exact. Poses that need artwork the
+  reference lacks are labelled NEEDS_ARTWORK, never passed. Presets are anatomical (rest-pose independent).
 - Replicate inputs go inline as data URIs (the SAM 3 model rejected Files API URLs). Small crops are upscaled
   by an integer factor for the model and area-averaged back.
 
@@ -105,6 +112,7 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 # Phase 2
 .venv/bin/python -m autorig prepare <phase1_project> --out <package_dir> [--provider flux-fill-dev] [--synthetic-gt]
 .venv/bin/python -m autorig review <package_dir> --list | --approve ID | --reject ID | --set-pivot JOINT X Y | --approve-phase
+.venv/bin/python -m autorig pose-refine <package_dir> [--presets relaxed_standing,natural_squat]  # natural poses
 ```
 
 ## Layout
@@ -119,6 +127,7 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `src/autorig/synthetic.py` — synthetic ground-truth character (test fixture)
 - `examples/phase1_synthetic_character/` — synthetic fixture + its character_project + evaluation
 - `src/autorig/phase2/` — store (pixel preservation), occlusion, providers, reconstruct, facial, joints, pose, vector, review, pipeline
+- `src/autorig/phase2/` natural posing — skeleton, skinning (deformer), posing (solver + presets), pose_eval, natural (orchestration)
 - `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
 - `references/schoolboy/` — the user's character sheet, front-view crop, (assistant-estimated) landmarks and
   `tpose_front.jpg` (the T-pose reference, preferred for rigging)

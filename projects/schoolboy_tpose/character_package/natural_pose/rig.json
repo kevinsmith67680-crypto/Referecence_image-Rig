@@ -1,0 +1,991 @@
+{
+  "coordinate_system": "source pixels, origin top-left, +y down; angles deg, + = clockwise on screen",
+  "ground_y": 1401.0,
+  "midline_x": 542.2,
+  "bones": [
+    {
+      "name": "pelvis",
+      "parent": null,
+      "kind": "pelvis",
+      "side": null,
+      "head": [
+        542.2,
+        753.8
+      ],
+      "tail": [
+        541.6,
+        641.1
+      ],
+      "length_px": 112.7,
+      "rest_angle_deg": 179.7,
+      "half_thickness_px": 116.9,
+      "pivot_method": "midpoint of hips",
+      "blend_band_px": {
+        "into_parent": 58.5,
+        "into_child": 58.5
+      },
+      "radial_falloff_px": [
+        146.1,
+        245.5
+      ],
+      "limits_deg": {
+        "tilt": [
+          -14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "spine",
+      "parent": "pelvis",
+      "kind": "spine",
+      "side": null,
+      "head": [
+        541.6,
+        641.1
+      ],
+      "tail": [
+        541.1,
+        528.4
+      ],
+      "length_px": 112.7,
+      "rest_angle_deg": 179.7,
+      "half_thickness_px": 116.9,
+      "pivot_method": "0.33 of pelvis->neck base",
+      "blend_band_px": {
+        "into_parent": 105.2,
+        "into_child": 105.2
+      },
+      "radial_falloff_px": [
+        187.0,
+        280.6
+      ],
+      "limits_deg": {
+        "bend": [
+          -18,
+          18
+        ]
+      }
+    },
+    {
+      "name": "chest",
+      "parent": "spine",
+      "kind": "chest",
+      "side": null,
+      "head": [
+        541.1,
+        528.4
+      ],
+      "tail": [
+        540.5,
+        412.2
+      ],
+      "length_px": 116.1,
+      "rest_angle_deg": 179.7,
+      "half_thickness_px": 116.9,
+      "pivot_method": "0.66 of pelvis->neck base",
+      "blend_band_px": {
+        "into_parent": 93.5,
+        "into_child": 93.5
+      },
+      "radial_falloff_px": [
+        187.0,
+        280.6
+      ],
+      "limits_deg": {
+        "bend": [
+          -14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "neck",
+      "parent": "chest",
+      "kind": "neck",
+      "side": null,
+      "head": [
+        540.5,
+        412.2
+      ],
+      "tail": [
+        540.8,
+        322.6
+      ],
+      "length_px": 89.7,
+      "rest_angle_deg": -179.8,
+      "half_thickness_px": 38.0,
+      "pivot_method": "lower quarter of the neck layer",
+      "blend_band_px": {
+        "into_parent": 19.0,
+        "into_child": 22.8
+      },
+      "radial_falloff_px": [
+        47.5,
+        79.8
+      ],
+      "limits_deg": {
+        "bend": [
+          -20,
+          20
+        ]
+      }
+    },
+    {
+      "name": "head",
+      "parent": "neck",
+      "kind": "head",
+      "side": null,
+      "head": [
+        540.8,
+        322.6
+      ],
+      "tail": [
+        540.8,
+        21.0
+      ],
+      "length_px": 301.6,
+      "rest_angle_deg": -180.0,
+      "half_thickness_px": 179.0,
+      "pivot_method": "head/neck contact raised by 12% of head height",
+      "blend_band_px": {
+        "into_parent": 44.8,
+        "into_child": 53.7
+      },
+      "radial_falloff_px": [
+        223.8,
+        375.9
+      ],
+      "limits_deg": {
+        "bend": [
+          -28,
+          28
+        ]
+      }
+    },
+    {
+      "name": "clavicle_r",
+      "parent": "chest",
+      "kind": "clavicle",
+      "side": "r",
+      "head": [
+        501.3,
+        453.0
+      ],
+      "tail": [
+        406.0,
+        466.6
+      ],
+      "length_px": 96.3,
+      "rest_angle_deg": 81.9,
+      "half_thickness_px": 54.5,
+      "pivot_method": "30% from midline toward shoulder",
+      "blend_band_px": {
+        "into_parent": 21.8,
+        "into_child": 54.5
+      },
+      "radial_falloff_px": [
+        87.2,
+        141.7
+      ],
+      "limits_deg": {
+        "elevation": [
+          -10,
+          32
+        ]
+      }
+    },
+    {
+      "name": "upper_arm_r",
+      "parent": "clavicle_r",
+      "kind": "upper_arm",
+      "side": "r",
+      "head": [
+        406.0,
+        466.6
+      ],
+      "tail": [
+        277.2,
+        474.3
+      ],
+      "length_px": 129.0,
+      "rest_angle_deg": 86.6,
+      "half_thickness_px": 54.5,
+      "pivot_method": "armpit at 38 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+      "blend_band_px": {
+        "into_parent": 46.3,
+        "into_child": 54.5
+      },
+      "radial_falloff_px": [
+        68.1,
+        114.5
+      ],
+      "limits_deg": {
+        "abduction": [
+          -40,
+          178
+        ]
+      }
+    },
+    {
+      "name": "forearm_r",
+      "parent": "upper_arm_r",
+      "kind": "forearm",
+      "side": "r",
+      "head": [
+        277.2,
+        474.3
+      ],
+      "tail": [
+        157.8,
+        474.5
+      ],
+      "length_px": 119.4,
+      "rest_angle_deg": 89.9,
+      "half_thickness_px": 46.5,
+      "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+      "blend_band_px": {
+        "into_parent": 27.9,
+        "into_child": 27.9
+      },
+      "radial_falloff_px": [
+        58.1,
+        97.7
+      ],
+      "limits_deg": {
+        "flexion": [
+          -150,
+          150
+        ]
+      }
+    },
+    {
+      "name": "hand_r",
+      "parent": "forearm_r",
+      "kind": "hand",
+      "side": "r",
+      "head": [
+        157.8,
+        474.5
+      ],
+      "tail": [
+        86.2,
+        471.3
+      ],
+      "length_px": 71.6,
+      "rest_angle_deg": 92.5,
+      "half_thickness_px": 39.5,
+      "pivot_method": "phase1 wrist (arm/hand boundary), re-centred",
+      "blend_band_px": {
+        "into_parent": 11.8,
+        "into_child": 15.8
+      },
+      "radial_falloff_px": [
+        49.4,
+        83.0
+      ],
+      "limits_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      }
+    },
+    {
+      "name": "thigh_r",
+      "parent": "pelvis",
+      "kind": "thigh",
+      "side": "r",
+      "head": [
+        486.4,
+        753.6
+      ],
+      "tail": [
+        398.0,
+        1011.2
+      ],
+      "length_px": 272.4,
+      "rest_angle_deg": 19.0,
+      "half_thickness_px": 65.3,
+      "pivot_method": "phase1 hip",
+      "blend_band_px": {
+        "into_parent": 19.6,
+        "into_child": 45.7
+      },
+      "radial_falloff_px": [
+        81.6,
+        137.0
+      ],
+      "limits_deg": {
+        "abduction": [
+          -25,
+          75
+        ]
+      }
+    },
+    {
+      "name": "shin_r",
+      "parent": "thigh_r",
+      "kind": "shin",
+      "side": "r",
+      "head": [
+        398.0,
+        1011.2
+      ],
+      "tail": [
+        320.0,
+        1272.2
+      ],
+      "length_px": 272.4,
+      "rest_angle_deg": 16.6,
+      "half_thickness_px": 58.5,
+      "pivot_method": "midpoint of hip->ankle (straight leg)",
+      "blend_band_px": {
+        "into_parent": 32.2,
+        "into_child": 32.2
+      },
+      "radial_falloff_px": [
+        73.1,
+        122.9
+      ],
+      "limits_deg": {
+        "flexion": [
+          0,
+          140
+        ],
+        "valgus_max": 8
+      }
+    },
+    {
+      "name": "foot_r",
+      "parent": "shin_r",
+      "kind": "foot",
+      "side": "r",
+      "head": [
+        320.0,
+        1272.2
+      ],
+      "tail": [
+        294.5,
+        1339.5
+      ],
+      "length_px": 71.9,
+      "rest_angle_deg": 20.7,
+      "half_thickness_px": 53.3,
+      "pivot_method": "phase1 ankle (leg/foot contact)",
+      "blend_band_px": {
+        "into_parent": 13.3,
+        "into_child": 16.0
+      },
+      "radial_falloff_px": [
+        66.7,
+        112.0
+      ],
+      "limits_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      }
+    },
+    {
+      "name": "clavicle_l",
+      "parent": "chest",
+      "kind": "clavicle",
+      "side": "l",
+      "head": [
+        585.2,
+        455.7
+      ],
+      "tail": [
+        685.6,
+        468.5
+      ],
+      "length_px": 101.2,
+      "rest_angle_deg": -82.7,
+      "half_thickness_px": 51.5,
+      "pivot_method": "30% from midline toward shoulder",
+      "blend_band_px": {
+        "into_parent": 20.6,
+        "into_child": 51.5
+      },
+      "radial_falloff_px": [
+        82.4,
+        133.9
+      ],
+      "limits_deg": {
+        "elevation": [
+          -10,
+          32
+        ]
+      }
+    },
+    {
+      "name": "upper_arm_l",
+      "parent": "clavicle_l",
+      "kind": "upper_arm",
+      "side": "l",
+      "head": [
+        685.6,
+        468.5
+      ],
+      "tail": [
+        810.2,
+        474.8
+      ],
+      "length_px": 124.8,
+      "rest_angle_deg": -87.1,
+      "half_thickness_px": 51.5,
+      "pivot_method": "armpit at 29 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+      "blend_band_px": {
+        "into_parent": 43.8,
+        "into_child": 51.5
+      },
+      "radial_falloff_px": [
+        64.4,
+        108.2
+      ],
+      "limits_deg": {
+        "abduction": [
+          -40,
+          178
+        ]
+      }
+    },
+    {
+      "name": "forearm_l",
+      "parent": "upper_arm_l",
+      "kind": "forearm",
+      "side": "l",
+      "head": [
+        810.2,
+        474.8
+      ],
+      "tail": [
+        925.4,
+        474.7
+      ],
+      "length_px": 115.2,
+      "rest_angle_deg": -90.0,
+      "half_thickness_px": 47.0,
+      "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+      "blend_band_px": {
+        "into_parent": 28.2,
+        "into_child": 28.2
+      },
+      "radial_falloff_px": [
+        58.8,
+        98.7
+      ],
+      "limits_deg": {
+        "flexion": [
+          -150,
+          150
+        ]
+      }
+    },
+    {
+      "name": "hand_l",
+      "parent": "forearm_l",
+      "kind": "hand",
+      "side": "l",
+      "head": [
+        925.4,
+        474.7
+      ],
+      "tail": [
+        997.6,
+        472.2
+      ],
+      "length_px": 72.3,
+      "rest_angle_deg": -92.0,
+      "half_thickness_px": 39.0,
+      "pivot_method": "phase1 wrist (arm/hand boundary), re-centred",
+      "blend_band_px": {
+        "into_parent": 11.7,
+        "into_child": 15.6
+      },
+      "radial_falloff_px": [
+        48.8,
+        81.9
+      ],
+      "limits_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      }
+    },
+    {
+      "name": "thigh_l",
+      "parent": "pelvis",
+      "kind": "thigh",
+      "side": "l",
+      "head": [
+        597.9,
+        754.0
+      ],
+      "tail": [
+        681.5,
+        1012.8
+      ],
+      "length_px": 271.9,
+      "rest_angle_deg": -17.9,
+      "half_thickness_px": 66.1,
+      "pivot_method": "phase1 hip",
+      "blend_band_px": {
+        "into_parent": 19.8,
+        "into_child": 46.3
+      },
+      "radial_falloff_px": [
+        82.7,
+        138.9
+      ],
+      "limits_deg": {
+        "abduction": [
+          -25,
+          75
+        ]
+      }
+    },
+    {
+      "name": "shin_l",
+      "parent": "thigh_l",
+      "kind": "shin",
+      "side": "l",
+      "head": [
+        681.5,
+        1012.8
+      ],
+      "tail": [
+        762.2,
+        1272.5
+      ],
+      "length_px": 271.9,
+      "rest_angle_deg": -17.3,
+      "half_thickness_px": 60.5,
+      "pivot_method": "midpoint of hip->ankle (straight leg)",
+      "blend_band_px": {
+        "into_parent": 33.3,
+        "into_child": 33.3
+      },
+      "radial_falloff_px": [
+        75.6,
+        127.1
+      ],
+      "limits_deg": {
+        "flexion": [
+          0,
+          140
+        ],
+        "valgus_max": 8
+      }
+    },
+    {
+      "name": "foot_l",
+      "parent": "shin_l",
+      "kind": "foot",
+      "side": "l",
+      "head": [
+        762.2,
+        1272.5
+      ],
+      "tail": [
+        786.7,
+        1339.7
+      ],
+      "length_px": 71.5,
+      "rest_angle_deg": -20.0,
+      "half_thickness_px": 51.6,
+      "pivot_method": "phase1 ankle (leg/foot contact)",
+      "blend_band_px": {
+        "into_parent": 12.9,
+        "into_child": 15.5
+      },
+      "radial_falloff_px": [
+        64.5,
+        108.4
+      ],
+      "limits_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      }
+    }
+  ],
+  "zones": {
+    "clavicle_r": {
+      "sc_x": 501.3036292326903,
+      "fade_y0": 455.74620752583326,
+      "fade_y1": 510.24620752583326
+    },
+    "clavicle_l": {
+      "sc_x": 585.1836076143284,
+      "fade_y0": 458.2262930780135,
+      "fade_y1": 509.7262930780135
+    }
+  },
+  "notes": [],
+  "layer_bindings": {
+    "foot_r": {
+      "class": "leg_r",
+      "home_bones": [
+        "foot_r",
+        "shin_r"
+      ]
+    },
+    "shin_r": {
+      "class": "leg_r",
+      "home_bones": [
+        "foot_r",
+        "shin_r",
+        "thigh_r"
+      ]
+    },
+    "thigh_r": {
+      "class": "leg_r",
+      "home_bones": [
+        "foot_r",
+        "pelvis",
+        "shin_r",
+        "thigh_r"
+      ]
+    },
+    "foot_l": {
+      "class": "leg_l",
+      "home_bones": [
+        "foot_l",
+        "shin_l"
+      ]
+    },
+    "shin_l": {
+      "class": "leg_l",
+      "home_bones": [
+        "foot_l",
+        "shin_l",
+        "thigh_l"
+      ]
+    },
+    "thigh_l": {
+      "class": "leg_l",
+      "home_bones": [
+        "foot_l",
+        "pelvis",
+        "shin_l",
+        "thigh_l"
+      ]
+    },
+    "pelvis": {
+      "class": "pelvis",
+      "home_bones": [
+        "pelvis"
+      ]
+    },
+    "neck": {
+      "class": "neck",
+      "home_bones": [
+        "chest",
+        "neck"
+      ]
+    },
+    "torso": {
+      "class": "torso",
+      "home_bones": [
+        "chest",
+        "head",
+        "neck",
+        "pelvis",
+        "spine"
+      ]
+    },
+    "upper_arm_r": {
+      "class": "arm_r",
+      "home_bones": [
+        "chest",
+        "forearm_r",
+        "neck",
+        "spine",
+        "upper_arm_r"
+      ]
+    },
+    "forearm_r": {
+      "class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ]
+    },
+    "hand_r": {
+      "class": "arm_r",
+      "home_bones": [
+        "hand_r"
+      ]
+    },
+    "upper_arm_l": {
+      "class": "arm_l",
+      "home_bones": [
+        "chest",
+        "forearm_l",
+        "neck",
+        "spine",
+        "upper_arm_l"
+      ]
+    },
+    "forearm_l": {
+      "class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l",
+        "upper_arm_l"
+      ]
+    },
+    "hand_l": {
+      "class": "arm_l",
+      "home_bones": [
+        "hand_l"
+      ]
+    },
+    "head_base": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "nose": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "mouth": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "brow_r": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "brow_l": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "hair": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "eye_r_white": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "eye_r_iris": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "eye_l_white": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    },
+    "eye_l_iris": {
+      "class": "head",
+      "home_bones": [
+        "head"
+      ]
+    }
+  },
+  "corrections": {
+    "shoulder": {
+      "bones": [
+        "upper_arm_r",
+        "upper_arm_l"
+      ],
+      "method": "angle-interpolated blend band (local skinning)",
+      "blend_band_px": {
+        "into_parent": 46.3,
+        "into_child": 54.5
+      },
+      "radial_falloff_px": [
+        68.1,
+        114.5
+      ],
+      "limits_deg": {
+        "abduction": [
+          -40,
+          178
+        ]
+      },
+      "worst_torn_pairs_in_presets": 33,
+      "corrective_artwork_needed": [
+        "armpit gusset for abduction above ~120 deg (raised arms open the T-pose armpit corner)"
+      ],
+      "moho_mapping_proposed_unverified": {
+        "bitmap": "Smart Warp mesh over the joint, bound to the parent and child bones with the band widths above as influence falloff",
+        "vector": "points in the band bound to both bones (flexi-binding / bone strength)",
+        "corrective": "Smart Bone action on the child bone, keyed at the preset angles, for the corrective shapes listed"
+      }
+    },
+    "elbow": {
+      "bones": [
+        "forearm_r",
+        "forearm_l"
+      ],
+      "method": "angle-interpolated blend band (local skinning)",
+      "blend_band_px": {
+        "into_parent": 27.9,
+        "into_child": 27.9
+      },
+      "radial_falloff_px": [
+        58.1,
+        97.7
+      ],
+      "limits_deg": {
+        "flexion": [
+          -150,
+          150
+        ]
+      },
+      "worst_torn_pairs_in_presets": 10,
+      "corrective_artwork_needed": [],
+      "moho_mapping_proposed_unverified": {
+        "bitmap": "Smart Warp mesh over the joint, bound to the parent and child bones with the band widths above as influence falloff",
+        "vector": "points in the band bound to both bones (flexi-binding / bone strength)",
+        "corrective": "Smart Bone action on the child bone, keyed at the preset angles, for the corrective shapes listed"
+      }
+    },
+    "wrist": {
+      "bones": [
+        "hand_r",
+        "hand_l"
+      ],
+      "method": "angle-interpolated blend band (local skinning)",
+      "blend_band_px": {
+        "into_parent": 11.8,
+        "into_child": 15.8
+      },
+      "radial_falloff_px": [
+        49.4,
+        83.0
+      ],
+      "limits_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      },
+      "worst_torn_pairs_in_presets": 0,
+      "corrective_artwork_needed": [],
+      "moho_mapping_proposed_unverified": {
+        "bitmap": "Smart Warp mesh over the joint, bound to the parent and child bones with the band widths above as influence falloff",
+        "vector": "points in the band bound to both bones (flexi-binding / bone strength)",
+        "corrective": "Smart Bone action on the child bone, keyed at the preset angles, for the corrective shapes listed"
+      }
+    },
+    "hip": {
+      "bones": [
+        "thigh_r",
+        "thigh_l"
+      ],
+      "method": "angle-interpolated blend band (local skinning)",
+      "blend_band_px": {
+        "into_parent": 19.6,
+        "into_child": 45.7
+      },
+      "radial_falloff_px": [
+        81.6,
+        137.0
+      ],
+      "limits_deg": {
+        "abduction": [
+          -25,
+          75
+        ]
+      },
+      "worst_torn_pairs_in_presets": 8,
+      "corrective_artwork_needed": [
+        "crotch gusset when the knees spread wider than the reference (squat/sit)"
+      ],
+      "moho_mapping_proposed_unverified": {
+        "bitmap": "Smart Warp mesh over the joint, bound to the parent and child bones with the band widths above as influence falloff",
+        "vector": "points in the band bound to both bones (flexi-binding / bone strength)",
+        "corrective": "Smart Bone action on the child bone, keyed at the preset angles, for the corrective shapes listed"
+      }
+    },
+    "knee": {
+      "bones": [
+        "shin_r",
+        "shin_l"
+      ],
+      "method": "angle-interpolated blend band (local skinning)",
+      "blend_band_px": {
+        "into_parent": 32.2,
+        "into_child": 32.2
+      },
+      "radial_falloff_px": [
+        73.1,
+        122.9
+      ],
+      "limits_deg": {
+        "flexion": [
+          0,
+          140
+        ],
+        "valgus_max": 8
+      },
+      "worst_torn_pairs_in_presets": 10,
+      "corrective_artwork_needed": [],
+      "moho_mapping_proposed_unverified": {
+        "bitmap": "Smart Warp mesh over the joint, bound to the parent and child bones with the band widths above as influence falloff",
+        "vector": "points in the band bound to both bones (flexi-binding / bone strength)",
+        "corrective": "Smart Bone action on the child bone, keyed at the preset angles, for the corrective shapes listed"
+      }
+    },
+    "neck": {
+      "bones": [
+        "neck"
+      ],
+      "method": "angle-interpolated blend band (local skinning)",
+      "blend_band_px": {
+        "into_parent": 19.0,
+        "into_child": 22.8
+      },
+      "radial_falloff_px": [
+        47.5,
+        79.8
+      ],
+      "limits_deg": {
+        "bend": [
+          -20,
+          20
+        ]
+      },
+      "worst_torn_pairs_in_presets": 0,
+      "corrective_artwork_needed": [],
+      "moho_mapping_proposed_unverified": {
+        "bitmap": "Smart Warp mesh over the joint, bound to the parent and child bones with the band widths above as influence falloff",
+        "vector": "points in the band bound to both bones (flexi-binding / bone strength)",
+        "corrective": "Smart Bone action on the child bone, keyed at the preset angles, for the corrective shapes listed"
+      }
+    }
+  },
+  "facial_controls": "independent: facial layers ride the head bone rigidly; live facial controls (analysis/live_artwork_manifest.json) are not driven by the body solver",
+  "moho": {
+    "status": "proposed_unverified (Moho not run)",
+    "bones": "one Moho bone per entry in 'bones' (head/tail in source px -> convert with the Phase 0 pixel->Moho transform)",
+    "presets": "each preset = one Moho action keyed with 'local_rotation_deg' per bone; Smart Bones can drive the corrective actions in 'corrections'",
+    "live": "gamepad-triggered gestures map to preset actions; head tilt/rotation and facial controls stay separate actions"
+  }
+}

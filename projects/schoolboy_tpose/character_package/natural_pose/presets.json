@@ -1,0 +1,3475 @@
+{
+  "relaxed_standing": {
+    "title": "Relaxed standing",
+    "intent": "even weight, arms hanging with soft elbows and wrists",
+    "status": "OK_PENDING_REVIEW",
+    "confidence": 0.85,
+    "needs_artwork": [],
+    "defects": [
+      "165 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          541.0,
+          730.4
+        ],
+        "spine": [
+          540.4,
+          617.7
+        ],
+        "chest": [
+          539.9,
+          505.0
+        ],
+        "neck": [
+          539.3,
+          388.8
+        ],
+        "head": [
+          539.6,
+          299.1
+        ],
+        "clavicle_r": [
+          500.1,
+          429.6
+        ],
+        "upper_arm_r": [
+          404.8,
+          443.2
+        ],
+        "forearm_r": [
+          380.2,
+          569.9
+        ],
+        "hand_r": [
+          386.4,
+          689.1
+        ],
+        "thigh_r": [
+          485.2,
+          730.2
+        ],
+        "shin_r": [
+          446.5,
+          999.8
+        ],
+        "foot_r": [
+          447.4,
+          1272.2
+        ],
+        "clavicle_l": [
+          584.0,
+          432.2
+        ],
+        "upper_arm_l": [
+          684.4,
+          445.1
+        ],
+        "forearm_l": [
+          708.2,
+          567.6
+        ],
+        "hand_l": [
+          702.2,
+          682.6
+        ],
+        "thigh_l": [
+          596.7,
+          730.6
+        ],
+        "shin_l": [
+          628.6,
+          1000.7
+        ],
+        "foot_l": [
+          636.9,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 0.0,
+        "head_bend": 0.0,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 11.0,
+        "forearm_r_flexion": 14.0,
+        "hand_r_bend": 6.0,
+        "thigh_r_abduction": 8.16,
+        "shin_r_flexion": 8.34,
+        "foot_r_bend": 16.82,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 11.0,
+        "forearm_l_flexion": 14.0,
+        "hand_l_bend": 6.0,
+        "thigh_l_abduction": 6.74,
+        "shin_l_flexion": 5.0,
+        "foot_l_bend": -15.52
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 0.0,
+        "head": 0.0,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -75.59,
+        "forearm_r": -17.34,
+        "hand_r": -8.59,
+        "thigh_r": -10.79,
+        "shin_r": -6.03,
+        "foot_r": 16.82,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 76.14,
+        "forearm_l": 16.87,
+        "hand_l": 8.03,
+        "thigh_l": 11.15,
+        "shin_l": 4.37,
+        "foot_l": -15.52
+      },
+      "pelvis_shift_px": [
+        -1.2,
+        -23.4
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 5
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00107,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.2,
+          697.5
+        ],
+        "support_x": [
+          389.3,
+          693.6
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.32,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 0,
+        "visible_seam_pairs": 0,
+        "outline_break_pairs": 0,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 450,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hand_l",
+          "hand_r",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.01557,
+        "max_compressed_fraction": 0.09066,
+        "max_stretched_fraction": 0.0,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.79,
+        "blended_share": 0.21,
+        "generated_pixels_visible": 165,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "hands_at_sides": {
+    "title": "Standing, hands at sides",
+    "intent": "neutral attention stance, arms close to the body",
+    "status": "OK_PENDING_REVIEW",
+    "confidence": 0.85,
+    "needs_artwork": [],
+    "defects": [
+      "168 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          541.1,
+          728.8
+        ],
+        "spine": [
+          540.6,
+          616.1
+        ],
+        "chest": [
+          540.1,
+          503.4
+        ],
+        "neck": [
+          539.5,
+          387.2
+        ],
+        "head": [
+          539.8,
+          297.5
+        ],
+        "clavicle_r": [
+          500.3,
+          428.0
+        ],
+        "upper_arm_r": [
+          404.9,
+          441.6
+        ],
+        "forearm_r": [
+          393.7,
+          570.2
+        ],
+        "hand_r": [
+          393.7,
+          689.6
+        ],
+        "thigh_r": [
+          485.4,
+          728.6
+        ],
+        "shin_r": [
+          462.5,
+          1000.0
+        ],
+        "foot_r": [
+          472.5,
+          1272.2
+        ],
+        "clavicle_l": [
+          584.1,
+          430.6
+        ],
+        "upper_arm_l": [
+          684.5,
+          443.5
+        ],
+        "forearm_l": [
+          695.4,
+          567.8
+        ],
+        "hand_l": [
+          695.4,
+          683.0
+        ],
+        "thigh_l": [
+          596.9,
+          729.0
+        ],
+        "shin_l": [
+          611.5,
+          1000.5
+        ],
+        "foot_l": [
+          611.8,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 0.0,
+        "head_bend": 0.0,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 5.0,
+        "forearm_r_flexion": 5.0,
+        "hand_r_bend": 3.0,
+        "thigh_r_abduction": 4.82,
+        "shin_r_flexion": 6.92,
+        "foot_r_bend": 18.74,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 5.0,
+        "forearm_l_flexion": 5.0,
+        "hand_l_bend": 3.0,
+        "thigh_l_abduction": 3.08,
+        "shin_l_flexion": 3.0,
+        "foot_l_bend": -17.19
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 0.0,
+        "head": 0.0,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -81.59,
+        "forearm_r": -8.34,
+        "hand_r": -5.59,
+        "thigh_r": -14.13,
+        "shin_r": -4.61,
+        "foot_r": 18.74,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 82.14,
+        "forearm_l": 7.87,
+        "hand_l": 5.03,
+        "thigh_l": 14.82,
+        "shin_l": 2.37,
+        "foot_l": -17.19
+      },
+      "pelvis_shift_px": [
+        -1.0,
+        -25.0
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 3
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00067,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.2,
+          696.7
+        ],
+        "support_x": [
+          414.3,
+          668.5
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.33,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 0,
+        "visible_seam_pairs": 0,
+        "outline_break_pairs": 0,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 373,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hand_l",
+          "hand_r",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.02521,
+        "max_compressed_fraction": 0.10101,
+        "max_stretched_fraction": 0.00127,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.79,
+        "blended_share": 0.21,
+        "generated_pixels_visible": 168,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "pointing_speaking": {
+    "title": "Pointing while speaking",
+    "intent": "right arm reaches out to point, weight on the left leg",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.37,
+    "needs_artwork": [
+      "hand_r: index-finger pointing hand (only an open hand exists)",
+      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)"
+    ],
+    "defects": [
+      "visible seam at shoulder_r: 33 torn pixel pairs (33 on outlines)",
+      "172 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          616.3,
+          735.8
+        ],
+        "spine": [
+          609.9,
+          623.3
+        ],
+        "chest": [
+          603.4,
+          510.7
+        ],
+        "neck": [
+          601.7,
+          394.6
+        ],
+        "head": [
+          598.2,
+          305.0
+        ],
+        "clavicle_r": [
+          562.9,
+          435.8
+        ],
+        "upper_arm_r": [
+          466.7,
+          440.4
+        ],
+        "forearm_r": [
+          340.0,
+          415.7
+        ],
+        "hand_r": [
+          243.1,
+          346.0
+        ],
+        "thigh_r": [
+          560.6,
+          738.5
+        ],
+        "shin_r": [
+          497.5,
+          1003.5
+        ],
+        "foot_r": [
+          453.0,
+          1272.2
+        ],
+        "clavicle_l": [
+          646.8,
+          437.5
+        ],
+        "upper_arm_l": [
+          747.3,
+          449.4
+        ],
+        "forearm_l": [
+          771.1,
+          571.9
+        ],
+        "hand_l": [
+          765.1,
+          686.9
+        ],
+        "thigh_l": [
+          672.0,
+          733.1
+        ],
+        "shin_l": [
+          679.9,
+          1004.9
+        ],
+        "foot_l": [
+          631.3,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": -3.0,
+        "spine_bend": 0.0,
+        "chest_bend": 2.4,
+        "neck_bend": -1.76,
+        "head_bend": -2.64,
+        "clavicle_r_elevation": 6.0,
+        "upper_arm_r_abduction": 101.04,
+        "forearm_r_flexion": -24.68,
+        "hand_r_bend": -6.0,
+        "thigh_r_abduction": 13.4,
+        "shin_r_flexion": 4.0,
+        "foot_r_bend": 7.24,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 11.0,
+        "forearm_l_flexion": 14.0,
+        "hand_l_bend": 6.0,
+        "thigh_l_abduction": 1.68,
+        "shin_l_flexion": 11.97,
+        "foot_l_bend": -27.56
+      },
+      "local_rotation_deg": {
+        "pelvis": -3.0,
+        "spine": 0.0,
+        "chest": 2.4,
+        "neck": -1.76,
+        "head": -2.64,
+        "clavicle_r": 6.0,
+        "upper_arm_r": 9.05,
+        "forearm_r": 21.34,
+        "hand_r": 3.41,
+        "thigh_r": -2.55,
+        "shin_r": -1.69,
+        "foot_r": 7.24,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 76.74,
+        "forearm_l": 16.87,
+        "hand_l": 8.03,
+        "thigh_l": 19.22,
+        "shin_l": 11.34,
+        "foot_l": -27.56
+      },
+      "pelvis_shift_px": [
+        74.1,
+        -18.0
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 0.68,
+      "right": 0.32
+    },
+    "required_artwork_corrections": [
+      "hand_r: index-finger pointing hand (only an open hand exists)",
+      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
+      "visible seam at shoulder_r: 33 torn pixel pairs (33 on outlines)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00086,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          578.2,
+          678.1
+        ],
+        "support_x": [
+          394.8,
+          688.0
+        ],
+        "target_x": 578.5,
+        "balance_error_px": 0.29,
+        "weight_left": 0.68,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 32,
+        "visible_seam_pairs": 1,
+        "outline_break_pairs": 33,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 32,
+            "visible_seam": 1,
+            "outline_break": 33
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 174,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": false
+      },
+      "deformation": {
+        "layers_deformed": [
+          "brow_l",
+          "brow_r",
+          "eye_l_iris",
+          "eye_l_white",
+          "eye_r_iris",
+          "eye_r_white",
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hair",
+          "hand_l",
+          "hand_r",
+          "head_base",
+          "mouth",
+          "neck",
+          "nose",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.00934,
+        "max_compressed_fraction": 0.07625,
+        "max_stretched_fraction": 0.00389,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.6249,
+        "blended_share": 0.3751,
+        "generated_pixels_visible": 172,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "one_hand_shrug": {
+    "title": "One-handed shrug",
+    "intent": "right shoulder raised, forearm out, open palm",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.65,
+    "needs_artwork": [
+      "hand_r: palm-up hand (the open hand faces the viewer)"
+    ],
+    "defects": [
+      "123 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          546.8,
+          729.5
+        ],
+        "spine": [
+          546.3,
+          616.8
+        ],
+        "chest": [
+          545.8,
+          504.1
+        ],
+        "neck": [
+          545.2,
+          387.9
+        ],
+        "head": [
+          549.8,
+          298.3
+        ],
+        "clavicle_r": [
+          506.0,
+          428.7
+        ],
+        "upper_arm_r": [
+          410.6,
+          415.5
+        ],
+        "forearm_r": [
+          354.0,
+          531.5
+        ],
+        "hand_r": [
+          257.4,
+          461.3
+        ],
+        "thigh_r": [
+          491.1,
+          729.3
+        ],
+        "shin_r": [
+          460.3,
+          999.9
+        ],
+        "foot_r": [
+          453.0,
+          1272.2
+        ],
+        "clavicle_l": [
+          589.8,
+          431.3
+        ],
+        "upper_arm_l": [
+          690.8,
+          438.9
+        ],
+        "forearm_l": [
+          714.6,
+          561.4
+        ],
+        "hand_l": [
+          708.6,
+          676.4
+        ],
+        "thigh_l": [
+          602.6,
+          729.7
+        ],
+        "shin_l": [
+          626.4,
+          1000.6
+        ],
+        "foot_l": [
+          631.3,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 2.8,
+        "head_bend": 4.2,
+        "clavicle_r_elevation": 16.0,
+        "upper_arm_r_abduction": 26.0,
+        "forearm_r_flexion": -100.0,
+        "hand_r_bend": -12.0,
+        "thigh_r_abduction": 6.5,
+        "shin_r_flexion": 4.97,
+        "foot_r_bend": 15.11,
+        "clavicle_l_elevation": 3.0,
+        "upper_arm_l_abduction": 11.0,
+        "forearm_l_flexion": 14.0,
+        "hand_l_bend": 6.0,
+        "thigh_l_abduction": 5.03,
+        "shin_l_flexion": 4.0,
+        "foot_l_bend": -16.23
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 2.8,
+        "head": 4.2,
+        "clavicle_r": 16.0,
+        "upper_arm_r": -76.59,
+        "forearm_r": 96.66,
+        "hand_r": 9.41,
+        "thigh_r": -12.45,
+        "shin_r": -2.65,
+        "foot_r": 15.11,
+        "clavicle_l": -3.0,
+        "upper_arm_l": 79.14,
+        "forearm_l": 16.87,
+        "hand_l": 8.03,
+        "thigh_l": 12.86,
+        "shin_l": 3.37,
+        "foot_l": -16.23
+      },
+      "pelvis_shift_px": [
+        4.7,
+        -24.3
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [
+      "hand_r: palm-up hand (the open hand faces the viewer)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00107,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          541.7,
+          681.3
+        ],
+        "support_x": [
+          394.8,
+          688.0
+        ],
+        "target_x": 541.9,
+        "balance_error_px": 0.22,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 11,
+        "visible_seam_pairs": 7,
+        "outline_break_pairs": 18,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 6,
+            "visible_seam": 1,
+            "outline_break": 7
+          },
+          "shoulder_l": {
+            "exposed_gap": 5,
+            "visible_seam": 0,
+            "outline_break": 5
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 6,
+            "outline_break": 6
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 498,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "brow_l",
+          "brow_r",
+          "eye_l_iris",
+          "eye_l_white",
+          "eye_r_iris",
+          "eye_r_white",
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hair",
+          "hand_l",
+          "hand_r",
+          "head_base",
+          "mouth",
+          "neck",
+          "nose",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.03988,
+        "max_compressed_fraction": 0.13054,
+        "max_stretched_fraction": 0.01764,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.6827,
+        "blended_share": 0.3173,
+        "generated_pixels_visible": 123,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "both_hands_raised": {
+    "title": "Both hands raised",
+    "intent": "arms up, shoulders lifted, open palms",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.34,
+    "needs_artwork": [
+      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
+      "corrective shape at shoulder_l: armpit gusset (the existing artwork cannot cover this bend)"
+    ],
+    "defects": [
+      "visible seam at shoulder_r: 27 torn pixel pairs (27 on outlines)",
+      "visible seam at shoulder_l: 26 torn pixel pairs (26 on outlines)"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          541.2,
+          730.2
+        ],
+        "spine": [
+          540.7,
+          617.5
+        ],
+        "chest": [
+          540.2,
+          504.8
+        ],
+        "neck": [
+          539.6,
+          388.6
+        ],
+        "head": [
+          539.9,
+          298.9
+        ],
+        "clavicle_r": [
+          500.4,
+          429.4
+        ],
+        "upper_arm_r": [
+          406.9,
+          406.3
+        ],
+        "forearm_r": [
+          354.4,
+          288.4
+        ],
+        "hand_r": [
+          333.7,
+          170.9
+        ],
+        "thigh_r": [
+          485.5,
+          730.0
+        ],
+        "shin_r": [
+          448.3,
+          999.8
+        ],
+        "foot_r": [
+          447.4,
+          1272.2
+        ],
+        "clavicle_l": [
+          584.2,
+          432.0
+        ],
+        "upper_arm_l": [
+          682.1,
+          406.4
+        ],
+        "forearm_l": [
+          732.9,
+          292.4
+        ],
+        "hand_l": [
+          752.9,
+          178.9
+        ],
+        "thigh_l": [
+          597.0,
+          730.4
+        ],
+        "shin_l": [
+          626.4,
+          1000.7
+        ],
+        "foot_l": [
+          636.9,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 0.0,
+        "head_bend": 0.0,
+        "clavicle_r_elevation": 22.0,
+        "upper_arm_r_abduction": 156.0,
+        "forearm_r_flexion": -14.0,
+        "hand_r_bend": -0.0,
+        "thigh_r_abduction": 7.85,
+        "shin_r_flexion": 7.67,
+        "foot_r_bend": 16.46,
+        "clavicle_l_elevation": 22.0,
+        "upper_arm_l_abduction": 156.0,
+        "forearm_l_flexion": -14.0,
+        "hand_l_bend": 0.0,
+        "thigh_l_abduction": 6.22,
+        "shin_l_flexion": 4.0,
+        "foot_l_bend": -15.05
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 0.0,
+        "head": 0.0,
+        "clavicle_r": 22.0,
+        "upper_arm_r": 47.41,
+        "forearm_r": 10.66,
+        "hand_r": -2.59,
+        "thigh_r": -11.1,
+        "shin_r": -5.36,
+        "foot_r": 16.46,
+        "clavicle_l": -22.0,
+        "upper_arm_l": -46.86,
+        "forearm_l": -11.13,
+        "hand_l": 2.03,
+        "thigh_l": 11.68,
+        "shin_l": 3.37,
+        "foot_l": -15.05
+      },
+      "pelvis_shift_px": [
+        -0.9,
+        -23.6
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [
+      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
+      "corrective shape at shoulder_l: armpit gusset (the existing artwork cannot cover this bend)",
+      "visible seam at shoulder_r: 27 torn pixel pairs (27 on outlines)",
+      "visible seam at shoulder_l: 26 torn pixel pairs (26 on outlines)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00113,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.2,
+          626.5
+        ],
+        "support_x": [
+          389.3,
+          693.6
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.25,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 52,
+        "visible_seam_pairs": 1,
+        "outline_break_pairs": 53,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 26,
+            "visible_seam": 1,
+            "outline_break": 27
+          },
+          "shoulder_l": {
+            "exposed_gap": 26,
+            "visible_seam": 0,
+            "outline_break": 26
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 21206,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": false
+      },
+      "deformation": {
+        "layers_deformed": [
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hand_l",
+          "hand_r",
+          "neck",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.0,
+        "max_compressed_fraction": 0.01541,
+        "max_stretched_fraction": 0.01977,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.751,
+        "blended_share": 0.249,
+        "generated_pixels_visible": 0,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "arms_crossed": {
+    "title": "Arms crossed",
+    "intent": "forearms folded across the chest",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.09,
+    "needs_artwork": [
+      "crossed forearms with tucked hands: no suitable artwork, the open hands stay visible",
+      "corrective shape at elbow_l: elbow crease (the existing artwork cannot cover this bend)",
+      "corrective shape at elbow_r: elbow crease (the existing artwork cannot cover this bend)"
+    ],
+    "defects": [
+      "visible seam at elbow_l: 10 torn pixel pairs (10 on outlines)",
+      "visible seam at elbow_r: 10 torn pixel pairs (9 on outlines)",
+      "4 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          540.8,
+          729.5
+        ],
+        "spine": [
+          540.2,
+          616.8
+        ],
+        "chest": [
+          539.7,
+          504.1
+        ],
+        "neck": [
+          539.1,
+          388.0
+        ],
+        "head": [
+          539.4,
+          298.3
+        ],
+        "clavicle_r": [
+          499.9,
+          428.7
+        ],
+        "upper_arm_r": [
+          404.6,
+          442.3
+        ],
+        "forearm_r": [
+          395.6,
+          571.1
+        ],
+        "hand_r": [
+          501.0,
+          515.0
+        ],
+        "thigh_r": [
+          485.0,
+          729.3
+        ],
+        "shin_r": [
+          453.5,
+          999.9
+        ],
+        "foot_r": [
+          458.5,
+          1272.2
+        ],
+        "clavicle_l": [
+          583.8,
+          431.4
+        ],
+        "upper_arm_l": [
+          684.2,
+          444.2
+        ],
+        "forearm_l": [
+          692.9,
+          568.7
+        ],
+        "hand_l": [
+          591.2,
+          514.6
+        ],
+        "thigh_l": [
+          596.5,
+          729.7
+        ],
+        "shin_l": [
+          620.6,
+          1000.6
+        ],
+        "foot_l": [
+          625.8,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 0.0,
+        "head_bend": 0.0,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 4.0,
+        "forearm_r_flexion": 122.0,
+        "hand_r_bend": 10.0,
+        "thigh_r_abduction": 6.64,
+        "shin_r_flexion": 7.69,
+        "foot_r_bend": 17.69,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 4.0,
+        "forearm_l_flexion": 122.0,
+        "hand_l_bend": 10.0,
+        "thigh_l_abduction": 5.09,
+        "shin_l_flexion": 4.0,
+        "foot_l_bend": -16.18
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 0.0,
+        "head": 0.0,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -82.59,
+        "forearm_r": -125.34,
+        "hand_r": -12.59,
+        "thigh_r": -12.31,
+        "shin_r": -5.38,
+        "foot_r": 17.69,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 83.14,
+        "forearm_l": 124.87,
+        "hand_l": 12.03,
+        "thigh_l": 12.81,
+        "shin_l": 3.37,
+        "foot_l": -16.18
+      },
+      "pelvis_shift_px": [
+        -1.4,
+        -24.3
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [
+      "crossed forearms with tucked hands: no suitable artwork, the open hands stay visible",
+      "corrective shape at elbow_l: elbow crease (the existing artwork cannot cover this bend)",
+      "corrective shape at elbow_r: elbow crease (the existing artwork cannot cover this bend)",
+      "visible seam at elbow_l: 10 torn pixel pairs (10 on outlines)",
+      "visible seam at elbow_r: 10 torn pixel pairs (9 on outlines)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00073,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.1
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.3,
+          674.8
+        ],
+        "support_x": [
+          400.4,
+          682.5
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.4,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 0,
+        "visible_seam_pairs": 20,
+        "outline_break_pairs": 19,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 10,
+            "outline_break": 9
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 10,
+            "outline_break": 10
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 29,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hand_l",
+          "hand_r",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.0641,
+        "max_compressed_fraction": 0.1588,
+        "max_stretched_fraction": 0.03065,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.79,
+        "blended_share": 0.21,
+        "generated_pixels_visible": 4,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "casual_walk": {
+    "title": "Casual walking stance",
+    "intent": "weight on the left leg, right leg passing forward",
+    "status": "OK_PENDING_REVIEW",
+    "confidence": 0.85,
+    "needs_artwork": [],
+    "defects": [
+      "155 unreviewed generated pixels visible"
+    ],
+    "notes": "front view: the stride happens in depth; shown as weight shift, hip drop and a lifted foot",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          635.0,
+          739.2
+        ],
+        "spine": [
+          626.6,
+          626.8
+        ],
+        "chest": [
+          618.2,
+          514.4
+        ],
+        "neck": [
+          616.1,
+          398.3
+        ],
+        "head": [
+          615.6,
+          308.6
+        ],
+        "clavicle_r": [
+          577.4,
+          439.6
+        ],
+        "upper_arm_r": [
+          482.3,
+          454.6
+        ],
+        "forearm_r": [
+          464.3,
+          582.3
+        ],
+        "hand_r": [
+          497.2,
+          697.1
+        ],
+        "thigh_r": [
+          579.4,
+          742.9
+        ],
+        "shin_r": [
+          566.2,
+          995.9
+        ],
+        "foot_r": [
+          566.2,
+          1260.1
+        ],
+        "clavicle_l": [
+          661.3,
+          441.1
+        ],
+        "upper_arm_l": [
+          761.9,
+          452.5
+        ],
+        "forearm_l": [
+          781.4,
+          575.8
+        ],
+        "hand_l": [
+          781.4,
+          690.9
+        ],
+        "thigh_l": [
+          690.7,
+          735.5
+        ],
+        "shin_l": [
+          657.8,
+          1005.5
+        ],
+        "foot_l": [
+          606.3,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": -4.0,
+        "spine_bend": 0.0,
+        "chest_bend": 3.2,
+        "neck_bend": 0.32,
+        "head_bend": 0.48,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 8.0,
+        "forearm_r_flexion": 24.0,
+        "hand_r_bend": 6.0,
+        "thigh_r_abduction": 3.0,
+        "shin_r_flexion": 3.0,
+        "foot_r_bend": 16.64,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 9.0,
+        "forearm_l_flexion": 9.0,
+        "hand_l_bend": 4.0,
+        "thigh_l_abduction": -6.93,
+        "shin_l_flexion": 4.0,
+        "foot_l_bend": -28.2
+      },
+      "local_rotation_deg": {
+        "pelvis": -4.0,
+        "spine": 0.0,
+        "chest": 3.2,
+        "neck": 0.32,
+        "head": 0.48,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -77.79,
+        "forearm_r": -27.34,
+        "hand_r": -8.59,
+        "thigh_r": -11.95,
+        "shin_r": -0.69,
+        "foot_r": 16.64,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 78.94,
+        "forearm_l": 11.87,
+        "hand_l": 6.03,
+        "thigh_l": 28.83,
+        "shin_l": 3.37,
+        "foot_l": -28.2
+      },
+      "pelvis_shift_px": [
+        92.9,
+        -14.6
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 1.0,
+      "right": 0.0
+    },
+    "required_artwork_corrections": [],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00073,
+        "axially_scaled_bones": {
+          "thigh_r": 0.93,
+          "shin_r": 0.97
+        },
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": false,
+            "sole_y": 1389.0,
+            "sole_error_px": -12.0,
+            "ankle_target_error_px": 88.93
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          618.3,
+          702.8
+        ],
+        "support_x": [
+          574.0,
+          663.0
+        ],
+        "target_x": 618.5,
+        "balance_error_px": 0.15,
+        "weight_left": 1.0,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 0,
+        "visible_seam_pairs": 0,
+        "outline_break_pairs": 0,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 254,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "brow_l",
+          "brow_r",
+          "eye_l_iris",
+          "eye_l_white",
+          "eye_r_iris",
+          "eye_r_white",
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hair",
+          "hand_l",
+          "hand_r",
+          "head_base",
+          "mouth",
+          "neck",
+          "nose",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.0254,
+        "max_compressed_fraction": 0.09318,
+        "max_stretched_fraction": 0.00434,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.6273,
+        "blended_share": 0.3727,
+        "generated_pixels_visible": 155,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "running": {
+    "title": "Running stance",
+    "intent": "right knee driving forward, elbows bent, weight on the left leg",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.5,
+    "needs_artwork": [
+      "fists (only open hands exist)",
+      "foreshortened forward thigh (approximated by axial scaling 0.6)"
+    ],
+    "defects": [],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          618.9,
+          770.8
+        ],
+        "spine": [
+          608.6,
+          658.6
+        ],
+        "chest": [
+          598.2,
+          546.3
+        ],
+        "neck": [
+          595.6,
+          430.2
+        ],
+        "head": [
+          594.9,
+          340.5
+        ],
+        "clavicle_r": [
+          557.1,
+          471.7
+        ],
+        "upper_arm_r": [
+          462.0,
+          487.0
+        ],
+        "forearm_r": [
+          397.5,
+          598.7
+        ],
+        "hand_r": [
+          448.0,
+          706.9
+        ],
+        "thigh_r": [
+          563.4,
+          775.5
+        ],
+        "shin_r": [
+          549.1,
+          938.3
+        ],
+        "foot_r": [
+          553.9,
+          1210.6
+        ],
+        "clavicle_l": [
+          641.0,
+          472.8
+        ],
+        "upper_arm_l": [
+          741.6,
+          484.0
+        ],
+        "forearm_l": [
+          800.2,
+          594.1
+        ],
+        "hand_l": [
+          757.0,
+          700.9
+        ],
+        "thigh_l": [
+          674.5,
+          766.1
+        ],
+        "shin_l": [
+          722.6,
+          1033.8
+        ],
+        "foot_l": [
+          592.3,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": -5.0,
+        "spine_bend": 0.0,
+        "chest_bend": 4.0,
+        "neck_bend": 0.4,
+        "head_bend": 0.6,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 30.0,
+        "forearm_r_flexion": 55.0,
+        "hand_r_bend": 8.0,
+        "thigh_r_abduction": 5.0,
+        "shin_r_flexion": 6.0,
+        "foot_r_bend": 17.64,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 28.0,
+        "forearm_l_flexion": 50.0,
+        "hand_l_bend": 8.0,
+        "thigh_l_abduction": 10.2,
+        "shin_l_flexion": 38.84,
+        "foot_l_bend": -45.9
+      },
+      "local_rotation_deg": {
+        "pelvis": -5.0,
+        "spine": 0.0,
+        "chest": 4.0,
+        "neck": 0.4,
+        "head": 0.6,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -55.59,
+        "forearm_r": -58.34,
+        "hand_r": -10.59,
+        "thigh_r": -8.95,
+        "shin_r": -3.69,
+        "foot_r": 17.64,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 60.14,
+        "forearm_l": 52.87,
+        "hand_l": 10.03,
+        "thigh_l": 12.69,
+        "shin_l": 38.2,
+        "foot_l": -45.9
+      },
+      "pelvis_shift_px": [
+        76.8,
+        17.0
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "l"
+      ],
+      "knee_min_bend_deg": 14
+    },
+    "weight_distribution": {
+      "left": 1.0,
+      "right": 0.0
+    },
+    "required_artwork_corrections": [
+      "fists (only open hands exist)",
+      "foreshortened forward thigh (approximated by axial scaling 0.6)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00086,
+        "axially_scaled_bones": {
+          "thigh_r": 0.6
+        },
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": false,
+            "sole_y": 1339.0,
+            "sole_error_px": -62.0,
+            "ankle_target_error_px": 87.33
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          604.4,
+          715.2
+        ],
+        "support_x": [
+          560.1,
+          649.0
+        ],
+        "target_x": 604.6,
+        "balance_error_px": 0.13,
+        "weight_left": 1.0,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 0,
+        "visible_seam_pairs": 7,
+        "outline_break_pairs": 7,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 13004,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "brow_l",
+          "brow_r",
+          "eye_l_iris",
+          "eye_l_white",
+          "eye_r_iris",
+          "eye_r_white",
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hair",
+          "hand_l",
+          "hand_r",
+          "head_base",
+          "mouth",
+          "neck",
+          "nose",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.01618,
+        "max_compressed_fraction": 0.07328,
+        "max_stretched_fraction": 0.01368,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.6273,
+        "blended_share": 0.3727,
+        "generated_pixels_visible": 0,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "sitting": {
+    "title": "Sitting",
+    "intent": "seated on a low seat, knees apart, hands resting near the knees",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.05,
+    "needs_artwork": [
+      "seat/chair",
+      "foreshortened thighs for a front-on chair sit (shown as a wide-knee seat)",
+      "corrective shape at knee_r: knee crease (the existing artwork cannot cover this bend)",
+      "corrective shape at knee_l: knee crease (the existing artwork cannot cover this bend)"
+    ],
+    "defects": [
+      "visible seam at knee_r: 10 torn pixel pairs (10 on outlines)",
+      "visible seam at knee_l: 10 torn pixel pairs (10 on outlines)",
+      "strong stretch: 6.1% of a layer stretched > 2.2x"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          539.5,
+          953.4
+        ],
+        "spine": [
+          539.0,
+          840.7
+        ],
+        "chest": [
+          538.4,
+          728.0
+        ],
+        "neck": [
+          537.9,
+          611.9
+        ],
+        "head": [
+          538.1,
+          522.2
+        ],
+        "clavicle_r": [
+          498.6,
+          652.6
+        ],
+        "upper_arm_r": [
+          403.3,
+          666.3
+        ],
+        "forearm_r": [
+          355.0,
+          785.9
+        ],
+        "hand_r": [
+          407.3,
+          893.2
+        ],
+        "thigh_r": [
+          483.8,
+          953.2
+        ],
+        "shin_r": [
+          235.9,
+          1066.1
+        ],
+        "foot_r": [
+          414.0,
+          1272.2
+        ],
+        "clavicle_l": [
+          582.5,
+          655.3
+        ],
+        "upper_arm_l": [
+          682.9,
+          668.1
+        ],
+        "forearm_l": [
+          729.7,
+          783.8
+        ],
+        "hand_l": [
+          679.2,
+          887.4
+        ],
+        "thigh_l": [
+          595.2,
+          953.6
+        ],
+        "shin_l": [
+          844.1,
+          1063.3
+        ],
+        "foot_l": [
+          670.4,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 0.0,
+        "head_bend": 0.0,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 22.0,
+        "forearm_r_flexion": 48.0,
+        "hand_r_bend": 8.0,
+        "thigh_r_abduction": 65.52,
+        "shin_r_flexion": 106.35,
+        "foot_r_bend": 57.47,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 22.0,
+        "forearm_l_flexion": 48.0,
+        "hand_l_bend": 8.0,
+        "thigh_l_abduction": 66.22,
+        "shin_l_flexion": 105.93,
+        "foot_l_bend": -56.98
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 0.0,
+        "head": 0.0,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -64.59,
+        "forearm_r": -51.34,
+        "hand_r": -10.59,
+        "thigh_r": 46.56,
+        "shin_r": -104.03,
+        "foot_r": 57.47,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 65.14,
+        "forearm_l": 50.87,
+        "hand_l": 10.03,
+        "thigh_l": -48.32,
+        "shin_l": 105.3,
+        "foot_l": -56.98
+      },
+      "pelvis_shift_px": [
+        -2.7,
+        199.6
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 10
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [
+      "seat/chair",
+      "foreshortened thighs for a front-on chair sit (shown as a wide-knee seat)",
+      "corrective shape at knee_r: knee crease (the existing artwork cannot cover this bend)",
+      "corrective shape at knee_l: knee crease (the existing artwork cannot cover this bend)",
+      "visible seam at knee_r: 10 torn pixel pairs (10 on outlines)",
+      "visible seam at knee_l: 10 torn pixel pairs (10 on outlines)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00086,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.1,
+          857.4
+        ],
+        "support_x": [
+          355.8,
+          727.1
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.18,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 8,
+        "visible_seam_pairs": 47,
+        "outline_break_pairs": 55,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 8,
+            "visible_seam": 0,
+            "outline_break": 8
+          },
+          "hip_l": {
+            "exposed_gap": 8,
+            "visible_seam": 0,
+            "outline_break": 8
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 10,
+            "outline_break": 10
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 10,
+            "outline_break": 10
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 2763,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": false
+      },
+      "deformation": {
+        "layers_deformed": [
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hand_l",
+          "hand_r",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.05384,
+        "max_compressed_fraction": 0.09357,
+        "max_stretched_fraction": 0.06134,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": false
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.79,
+        "blended_share": 0.21,
+        "generated_pixels_visible": 0,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "natural_squat": {
+    "title": "Natural squat",
+    "intent": "pelvis lowered, knees tracking out over the feet, arms forward for balance",
+    "status": "OK_PENDING_REVIEW",
+    "confidence": 0.9,
+    "needs_artwork": [],
+    "defects": [],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          539.6,
+          864.1
+        ],
+        "spine": [
+          539.1,
+          751.4
+        ],
+        "chest": [
+          538.6,
+          638.7
+        ],
+        "neck": [
+          538.0,
+          522.6
+        ],
+        "head": [
+          538.3,
+          432.9
+        ],
+        "clavicle_r": [
+          498.8,
+          563.3
+        ],
+        "upper_arm_r": [
+          403.5,
+          577.0
+        ],
+        "forearm_r": [
+          342.9,
+          690.9
+        ],
+        "hand_r": [
+          402.6,
+          794.3
+        ],
+        "thigh_r": [
+          483.9,
+          863.9
+        ],
+        "shin_r": [
+          278.4,
+          1042.7
+        ],
+        "foot_r": [
+          425.1,
+          1272.2
+        ],
+        "clavicle_l": [
+          582.7,
+          566.0
+        ],
+        "upper_arm_l": [
+          683.1,
+          578.8
+        ],
+        "forearm_l": [
+          741.6,
+          689.0
+        ],
+        "hand_l": [
+          684.0,
+          788.8
+        ],
+        "thigh_l": [
+          595.4,
+          864.3
+        ],
+        "shin_l": [
+          802.1,
+          1041.1
+        ],
+        "foot_l": [
+          659.2,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -0.0,
+        "neck_bend": 0.0,
+        "head_bend": 0.0,
+        "clavicle_r_elevation": 0.0,
+        "upper_arm_r_abduction": 28.0,
+        "forearm_r_flexion": 58.0,
+        "hand_r_bend": 8.0,
+        "thigh_r_abduction": 48.98,
+        "shin_r_flexion": 81.57,
+        "foot_r_bend": 49.23,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 28.0,
+        "forearm_l_flexion": 58.0,
+        "hand_l_bend": 8.0,
+        "thigh_l_abduction": 49.46,
+        "shin_l_flexion": 81.15,
+        "foot_l_bend": -48.95
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -0.0,
+        "neck": 0.0,
+        "head": 0.0,
+        "clavicle_r": 0.0,
+        "upper_arm_r": -58.59,
+        "forearm_r": -61.34,
+        "hand_r": -10.59,
+        "thigh_r": 30.02,
+        "shin_r": -79.25,
+        "foot_r": 49.23,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 59.14,
+        "forearm_l": 60.87,
+        "hand_l": 10.03,
+        "thigh_l": -31.56,
+        "shin_l": 80.52,
+        "foot_l": -48.95
+      },
+      "pelvis_shift_px": [
+        -2.5,
+        110.3
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 8
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00042,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.1,
+          791.4
+        ],
+        "support_x": [
+          367.0,
+          715.9
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.18,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 0,
+        "visible_seam_pairs": 27,
+        "outline_break_pairs": 27,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 4,
+            "outline_break": 4
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 4,
+            "outline_break": 4
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 3778,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": false
+      },
+      "deformation": {
+        "layers_deformed": [
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hand_l",
+          "hand_r",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.03414,
+        "max_compressed_fraction": 0.08633,
+        "max_stretched_fraction": 0.02881,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.79,
+        "blended_share": 0.21,
+        "generated_pixels_visible": 0,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "head_tilt_compensated": {
+    "title": "Head tilt with torso compensation",
+    "intent": "head tilts to the left, shoulders answer",
+    "status": "OK_PENDING_REVIEW",
+    "confidence": 0.85,
+    "needs_artwork": [],
+    "defects": [
+      "200 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          536.3,
+          730.1
+        ],
+        "spine": [
+          535.8,
+          617.4
+        ],
+        "chest": [
+          535.2,
+          504.7
+        ],
+        "neck": [
+          528.6,
+          388.8
+        ],
+        "head": [
+          534.8,
+          299.3
+        ],
+        "clavicle_r": [
+          491.5,
+          431.5
+        ],
+        "upper_arm_r": [
+          396.0,
+          443.5
+        ],
+        "forearm_r": [
+          371.4,
+          570.2
+        ],
+        "hand_r": [
+          377.6,
+          689.4
+        ],
+        "thigh_r": [
+          480.6,
+          729.9
+        ],
+        "shin_r": [
+          444.6,
+          1000.0
+        ],
+        "foot_r": [
+          453.0,
+          1272.2
+        ],
+        "clavicle_l": [
+          575.5,
+          429.8
+        ],
+        "upper_arm_l": [
+          675.8,
+          442.7
+        ],
+        "forearm_l": [
+          699.6,
+          565.1
+        ],
+        "hand_l": [
+          693.6,
+          680.2
+        ],
+        "thigh_l": [
+          592.0,
+          730.3
+        ],
+        "shin_l": [
+          621.2,
+          1000.7
+        ],
+        "foot_l": [
+          631.3,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 0.0,
+        "spine_bend": 0.0,
+        "chest_bend": -3.0,
+        "neck_bend": 6.8,
+        "head_bend": 10.2,
+        "clavicle_r_elevation": 4.0,
+        "upper_arm_r_abduction": 11.0,
+        "forearm_r_flexion": 14.0,
+        "hand_r_bend": 6.0,
+        "thigh_r_abduction": 7.58,
+        "shin_r_flexion": 9.34,
+        "foot_r_bend": 18.4,
+        "clavicle_l_elevation": -3.0,
+        "upper_arm_l_abduction": 11.0,
+        "forearm_l_flexion": 14.0,
+        "hand_l_bend": 6.0,
+        "thigh_l_abduction": 6.15,
+        "shin_l_flexion": 4.0,
+        "foot_l_bend": -15.12
+      },
+      "local_rotation_deg": {
+        "pelvis": 0.0,
+        "spine": 0.0,
+        "chest": -3.0,
+        "neck": 6.8,
+        "head": 10.2,
+        "clavicle_r": 4.0,
+        "upper_arm_r": -76.59,
+        "forearm_r": -17.34,
+        "hand_r": -8.59,
+        "thigh_r": -11.37,
+        "shin_r": -7.02,
+        "foot_r": 18.4,
+        "clavicle_l": 3.0,
+        "upper_arm_l": 76.14,
+        "forearm_l": 16.87,
+        "hand_l": 8.03,
+        "thigh_l": 11.75,
+        "shin_l": 3.37,
+        "foot_l": -15.12
+      },
+      "pelvis_shift_px": [
+        -5.9,
+        -23.7
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 0.5,
+      "right": 0.5
+    },
+    "required_artwork_corrections": [],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00086,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          542.3,
+          697.8
+        ],
+        "support_x": [
+          394.8,
+          688.0
+        ],
+        "target_x": 541.9,
+        "balance_error_px": -0.34,
+        "weight_left": 0.5,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 5,
+        "visible_seam_pairs": 0,
+        "outline_break_pairs": 5,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "shoulder_l": {
+            "exposed_gap": 5,
+            "visible_seam": 0,
+            "outline_break": 5
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 521,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "brow_l",
+          "brow_r",
+          "eye_l_iris",
+          "eye_l_white",
+          "eye_r_iris",
+          "eye_r_white",
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hair",
+          "hand_l",
+          "hand_r",
+          "head_base",
+          "mouth",
+          "neck",
+          "nose",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.01746,
+        "max_compressed_fraction": 0.09237,
+        "max_stretched_fraction": 0.0,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.6216,
+        "blended_share": 0.3784,
+        "generated_pixels_visible": 200,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  },
+  "conversational_gesture": {
+    "title": "Conversational gesture",
+    "intent": "right forearm up and open, weight on the right leg",
+    "status": "NEEDS_ARTWORK",
+    "confidence": 0.57,
+    "needs_artwork": [
+      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)"
+    ],
+    "defects": [
+      "visible seam at shoulder_r: 9 torn pixel pairs (9 on outlines)",
+      "100 unreviewed generated pixels visible"
+    ],
+    "notes": "",
+    "targets": {
+      "joints_posed_px": {
+        "pelvis": [
+          501.2,
+          730.9
+        ],
+        "spine": [
+          506.6,
+          618.3
+        ],
+        "chest": [
+          512.0,
+          505.8
+        ],
+        "neck": [
+          512.6,
+          389.6
+        ],
+        "head": [
+          509.7,
+          300.0
+        ],
+        "clavicle_r": [
+          473.0,
+          430.0
+        ],
+        "upper_arm_r": [
+          376.7,
+          430.9
+        ],
+        "forearm_r": [
+          312.2,
+          542.6
+        ],
+        "hand_r": [
+          198.6,
+          505.7
+        ],
+        "thigh_r": [
+          445.6,
+          727.8
+        ],
+        "shin_r": [
+          439.8,
+          1000.1
+        ],
+        "foot_r": [
+          453.0,
+          1272.2
+        ],
+        "clavicle_l": [
+          556.8,
+          433.5
+        ],
+        "upper_arm_l": [
+          657.1,
+          447.4
+        ],
+        "forearm_l": [
+          680.9,
+          569.9
+        ],
+        "hand_l": [
+          674.9,
+          684.9
+        ],
+        "thigh_l": [
+          556.9,
+          734.1
+        ],
+        "shin_l": [
+          603.7,
+          1002.0
+        ],
+        "foot_l": [
+          631.3,
+          1272.5
+        ]
+      },
+      "anatomical_deg": {
+        "pelvis_tilt": 3.0,
+        "spine_bend": 0.0,
+        "chest_bend": -2.4,
+        "neck_bend": -2.64,
+        "head_bend": -3.96,
+        "clavicle_r_elevation": 7.0,
+        "upper_arm_r_abduction": 30.0,
+        "forearm_r_flexion": -78.0,
+        "hand_r_bend": -14.0,
+        "thigh_r_abduction": 1.22,
+        "shin_r_flexion": 4.0,
+        "foot_r_bend": 19.42,
+        "clavicle_l_elevation": 0.0,
+        "upper_arm_l_abduction": 11.0,
+        "forearm_l_flexion": 14.0,
+        "hand_l_bend": 6.0,
+        "thigh_l_abduction": 9.9,
+        "shin_l_flexion": 4.06,
+        "foot_l_bend": -11.42
+      },
+      "local_rotation_deg": {
+        "pelvis": 3.0,
+        "spine": 0.0,
+        "chest": -2.4,
+        "neck": -2.64,
+        "head": -3.96,
+        "clavicle_r": 7.0,
+        "upper_arm_r": -64.19,
+        "forearm_r": 74.66,
+        "hand_r": 11.41,
+        "thigh_r": -20.73,
+        "shin_r": -1.69,
+        "foot_r": 19.42,
+        "clavicle_l": -0.0,
+        "upper_arm_l": 75.54,
+        "forearm_l": 16.87,
+        "hand_l": 8.03,
+        "thigh_l": 5.0,
+        "shin_l": 3.42,
+        "foot_l": -11.42
+      },
+      "pelvis_shift_px": [
+        -40.9,
+        -22.9
+      ]
+    },
+    "constraints": {
+      "limits": "skeleton LIMITS",
+      "feet_planted": [
+        "r",
+        "l"
+      ],
+      "knee_min_bend_deg": 4.0
+    },
+    "weight_distribution": {
+      "left": 0.32,
+      "right": 0.68
+    },
+    "required_artwork_corrections": [
+      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
+      "visible seam at shoulder_r: 9 torn pixel pairs (9 on outlines)"
+    ],
+    "metrics": {
+      "joint_limits": {
+        "violations": [],
+        "pass": true
+      },
+      "bone_length": {
+        "max_relative_error": 0.00107,
+        "axially_scaled_bones": {},
+        "pass": 1.0
+      },
+      "ground_contact": {
+        "feet": {
+          "r": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          },
+          "l": {
+            "planted": true,
+            "sole_y": 1401.0,
+            "sole_error_px": 0.0,
+            "ankle_target_error_px": 0.0
+          }
+        },
+        "ground_y": 1401.0,
+        "pass": true
+      },
+      "centre_of_mass": {
+        "com": [
+          505.8,
+          686.0
+        ],
+        "support_x": [
+          394.8,
+          688.0
+        ],
+        "target_x": 505.3,
+        "balance_error_px": -0.47,
+        "weight_left": 0.32,
+        "inside_support": true,
+        "pass": 1.0
+      },
+      "seams": {
+        "exposed_gap_pairs": 8,
+        "visible_seam_pairs": 2,
+        "outline_break_pairs": 10,
+        "joints": {
+          "shoulder_r": {
+            "exposed_gap": 8,
+            "visible_seam": 1,
+            "outline_break": 9
+          },
+          "shoulder_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "elbow_r": {
+            "exposed_gap": 0,
+            "visible_seam": 1,
+            "outline_break": 1
+          },
+          "elbow_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "hip_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_r": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          },
+          "knee_l": {
+            "exposed_gap": 0,
+            "visible_seam": 0,
+            "outline_break": 0
+          }
+        },
+        "figure_pieces": 1,
+        "rest_figure_pieces": 1,
+        "negative_space_px": 803,
+        "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
+        "pass": true
+      },
+      "deformation": {
+        "layers_deformed": [
+          "brow_l",
+          "brow_r",
+          "eye_l_iris",
+          "eye_l_white",
+          "eye_r_iris",
+          "eye_r_white",
+          "foot_l",
+          "foot_r",
+          "forearm_l",
+          "forearm_r",
+          "hair",
+          "hand_l",
+          "hand_r",
+          "head_base",
+          "mouth",
+          "neck",
+          "nose",
+          "pelvis",
+          "shin_l",
+          "shin_r",
+          "thigh_l",
+          "thigh_r",
+          "torso",
+          "upper_arm_l",
+          "upper_arm_r"
+        ],
+        "max_folded_fraction": 0.01876,
+        "max_compressed_fraction": 0.10209,
+        "max_stretched_fraction": 0.00864,
+        "note": "folds are inner creases where the child is drawn over its parent",
+        "pass": true
+      },
+      "artwork_fidelity": {
+        "rigidly_moved_share": 0.6249,
+        "blended_share": 0.3751,
+        "generated_pixels_visible": 100,
+        "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
+      },
+      "limb_alignment": {
+        "joints_outside_artwork": [],
+        "pass": true
+      }
+    }
+  }
+}

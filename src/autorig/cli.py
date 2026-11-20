@@ -496,6 +496,11 @@ def build_parser() -> argparse.ArgumentParser:
     replicate_opts(p)
     p.set_defaults(func=cmd_prepare)
 
+    p = sub.add_parser("pose-refine", help="Phase 2 refinement: natural pose presets with skinned joints")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--presets", help="comma-separated preset names (default: all)")
+    p.set_defaults(func=cmd_pose_refine)
+
     p = sub.add_parser("review", help="approve/reject Phase 2 generated assets")
     p.add_argument("package")
     p.add_argument("--list", action="store_true")
@@ -512,6 +517,22 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", default="src/autorig/data/schemas")
     p.set_defaults(func=cmd_export_schemas)
     return parser
+
+
+def cmd_pose_refine(args: argparse.Namespace) -> int:
+    from .phase2.natural import refine_package
+    from .phase2.posing import PRESET_BY_NAME
+
+    presets = [PRESET_BY_NAME[n] for n in args.presets.split(",")] if args.presets else None
+    res = refine_package(args.package, presets=presets)
+    rep = res["report"]
+    print(f"wrote {res['out']}  (neutral pose exact: {rep['neutral_pose_exact']}, {rep['duration_s']} s)")
+    for name, v in rep["presets"].items():
+        print(f"  {name:24s} {v['status']:18s} confidence {v['confidence']:.2f}  defects {len(v['defects'])}")
+    print("  sequences: " + ", ".join(f"{k} foot drift {v['max_planted_foot_drift_px']} px"
+                                      for k, v in rep["sequences"].items()))
+    print("  preview renders only - not Moho; nothing human-reviewed")
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:
