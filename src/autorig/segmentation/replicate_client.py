@@ -191,6 +191,10 @@ class ReplicateClient:
     def create_prediction(self, version: str, inputs: dict[str, Any]) -> dict[str, Any]:
         return self._json("POST", "predictions", idempotent=False, json={"version": version, "input": inputs})
 
+    def create_model_prediction(self, owner: str, name: str, inputs: dict[str, Any]) -> dict[str, Any]:
+        """Official models (no public version list) run via the model endpoint."""
+        return self._json("POST", f"models/{owner}/{name}/predictions", idempotent=False, json={"input": inputs})
+
     def get_prediction(self, prediction_id: str) -> dict[str, Any]:
         return self._json("GET", f"predictions/{prediction_id}")
 

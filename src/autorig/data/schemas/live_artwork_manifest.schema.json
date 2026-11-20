@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.live_artwork_manifest-1.0.0",
+  "title": "AutoRig Studio live_artwork_manifest 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "controls",
+    "switch_drawing_slots",
+    "software_mappings"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.live_artwork_manifest"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "controls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "required_image_layers",
+          "required_switch_drawings",
+          "pivot_or_deformation_region",
+          "safe_range",
+          "artwork_readiness",
+          "missing_assets",
+          "user_approval_status"
+        ],
+        "properties": {
+          "artwork_readiness": {
+            "enum": [
+              "READY",
+              "REQUIRES_RECONSTRUCTION",
+              "REQUIRES_NEW_ARTWORK",
+              "UNSUPPORTED",
+              "NEEDS_REVIEW"
+            ]
+          },
+          "user_approval_status": {
+            "enum": [
+              "not_reviewed",
+              "approved",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "minProperties": 15
+    },
+    "switch_drawing_slots": {
+      "type": "array"
+    },
+    "software_mappings": {
+      "type": "string"
+    }
+  }
+}

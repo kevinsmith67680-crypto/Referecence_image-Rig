@@ -92,6 +92,13 @@ class SpendLedger:
                 f"${self.total_usd():.4f} (estimated), worst case for {n_predictions} more prediction(s) "
                 f"${need:.4f}. Raise AUTORIG_REPLICATE_BUDGET_USD deliberately if this is intended.")
 
+    def check_amount(self, usd: float, what: str = "this request") -> None:
+        """Refuse BEFORE a call whose worst-case cost would cross the ceiling."""
+        if self.total_usd() + usd > self.policy.ceiling_usd + 1e-12:
+            raise BudgetExceeded(
+                f"Replicate budget ceiling ${self.policy.ceiling_usd:.2f} would be exceeded by {what}: spent "
+                f"${self.total_usd():.4f} (estimated), worst case ${usd:.4f}.")
+
     def record(self, entry: LedgerEntry) -> None:
         self.entries.append(entry)
         self.path.parent.mkdir(parents=True, exist_ok=True)

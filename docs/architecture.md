@@ -152,3 +152,12 @@ reference.png ──► Sam3ReplicateProvider (pinned vufinder/sam3, cache, ledg
 * Bridge to Phase 0: `anatomy.json` joints and parent relations, together with `artwork/layers.json` (bone
   per layer, pivots and z-order), carry everything needed to emit a `rig_spec.json` in Phase 2. Not done yet.
 * Details and measured results: [phase1_report.md](phase1_report.md).
+
+## 10. Phase 2: reconstruction and animation-ready assets
+
+Phase 1 project (read-only) → `OcclusionAnalyzer` (linework cue + priors + shape models → graph, regions, z-order)
+→ `ArtworkStore` (A immutable originals / B generated extensions under them / C corrections / D working)
+→ reconstruction (deterministic flat fill → pluggable `ReconstructionProvider` for complex regions)
+→ joint preparation and pose previews (gap, contour and overlap diagnostics) → vector corrections → live artwork manifest
+→ QA reports → human review (`approvals.json`, `visual_review.html`) → Phase 2 character package.
+See [phase2_implementation_plan.md](phase2_implementation_plan.md) and [phase2_report.md](phase2_report.md).

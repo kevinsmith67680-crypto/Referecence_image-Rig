@@ -1,0 +1,1025 @@
+{
+  "schema": "autorig.artwork_manifest",
+  "schema_version": "1.0.0",
+  "contract_version": "2.0.0",
+  "coordinate_system": {
+    "width": 1000,
+    "height": 1500,
+    "origin": "top-left, +y down, source pixels",
+    "rule": "all bitmap, mask and vector assets share this canvas; no scaling/offsets"
+  },
+  "original_bitmap": {
+    "path": "source/original.png",
+    "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679"
+  },
+  "layers": [
+    {
+      "id": "thigh_r",
+      "category": "A_original",
+      "image": "artwork/original/thigh_r.png",
+      "z_index": 0,
+      "bone": "thigh_r",
+      "pivot": [
+        458.23,
+        994.2
+      ],
+      "pixel_sha256": "6d06ba433ead83aba68a43c7277135d81f642f78ac830b9101c4c31d1599f95c",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/thigh_r.png",
+        "phase1_file_sha256": "57361b6b565f7a5fc6ad2025a847e3ff5575441f18d57127acdb58f2380d521f",
+        "split": null
+      }
+    },
+    {
+      "id": "shin_r",
+      "category": "A_original",
+      "image": "artwork/original/shin_r.png",
+      "z_index": 1,
+      "bone": "shin_r",
+      "pivot": [
+        441.07,
+        1169.98
+      ],
+      "pixel_sha256": "7866ea4ec07e54806406e25b0e4d7c7736a305b43e564c640c329dd89eaa7865",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/shin_r.png",
+        "phase1_file_sha256": "4c6a790f643d954cf3556cf724366eae4841276be5c9378a605315b7747cbb4f",
+        "split": null
+      }
+    },
+    {
+      "id": "foot_r",
+      "category": "A_original",
+      "image": "artwork/original/foot_r.png",
+      "z_index": 2,
+      "bone": "foot_r",
+      "pivot": [
+        438.12,
+        1344.48
+      ],
+      "pixel_sha256": "7a44e341bfb741ff3dc3a3eec10685aa8d92b7296baffd5f5ca932ad509e57d4",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/foot_r.png",
+        "phase1_file_sha256": "5709f5ddd3e5897437c9861507b01e1447414ff7022d81e92779aaea9f4d9ccf",
+        "split": null
+      }
+    },
+    {
+      "id": "thigh_l",
+      "category": "A_original",
+      "image": "artwork/original/thigh_l.png",
+      "z_index": 3,
+      "bone": "thigh_l",
+      "pivot": [
+        542.77,
+        994.2
+      ],
+      "pixel_sha256": "02c4bcae49e0735c5d83e283ce551f916467190f96d55ea1f44c769479b54d81",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/thigh_l.png",
+        "phase1_file_sha256": "7dd5c199964a61f8ab1b8d988515eb2271d3e87bc21385e23820c877a0057c04",
+        "split": null
+      }
+    },
+    {
+      "id": "shin_l",
+      "category": "A_original",
+      "image": "artwork/original/shin_l.png",
+      "z_index": 4,
+      "bone": "shin_l",
+      "pivot": [
+        559.93,
+        1169.98
+      ],
+      "pixel_sha256": "ea2cd5e4b9d853f05be7873bfe401676861d93c70cfc17b9adcf47581ffab250",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/shin_l.png",
+        "phase1_file_sha256": "35b5b6efe911e70f9cfff835d1bd63b5ed9c9bb0f4051999395c1685bed33201",
+        "split": null
+      }
+    },
+    {
+      "id": "foot_l",
+      "category": "A_original",
+      "image": "artwork/original/foot_l.png",
+      "z_index": 5,
+      "bone": "foot_l",
+      "pivot": [
+        561.38,
+        1344.5
+      ],
+      "pixel_sha256": "1264b02c40125fae86781d75d7d45b97e5242b0c7504be6d0ae72fba73048d28",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/foot_l.png",
+        "phase1_file_sha256": "ea2bc1fb85fc624b82efd8628ee009b92a39af2929cb7b46ea9812a853a89d73",
+        "split": null
+      }
+    },
+    {
+      "id": "pelvis",
+      "category": "A_original",
+      "image": "artwork/original/pelvis.png",
+      "z_index": 6,
+      "bone": "body",
+      "pivot": null,
+      "pixel_sha256": "68f0382bef11b3d1808264464050f25dc09ca18a7b63a021a8a3e8090f4fb90f",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/pelvis.png",
+        "phase1_file_sha256": "4e8891142dc794befdd38fd8c19e782a3728227cde94642e4b5e9a7057435b48",
+        "split": null
+      }
+    },
+    {
+      "id": "neck",
+      "category": "A_original",
+      "image": "artwork/original/neck.png",
+      "z_index": 7,
+      "bone": "body",
+      "pivot": null,
+      "pixel_sha256": "e97e42bcb1c3614e65f4879a4eb261485f92c3088ab29125f452a1095d4961f0",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/neck.png",
+        "phase1_file_sha256": "32dd78c0af2e28a324e3f1ad0c255b15401ff37271e9f3221e0525e8e42bd60b",
+        "split": null
+      }
+    },
+    {
+      "id": "torso",
+      "category": "A_original",
+      "image": "artwork/original/torso.png",
+      "z_index": 8,
+      "bone": "body",
+      "pivot": null,
+      "pixel_sha256": "8869f17352100afc9542d3f60a09a36941ddc3858efa001fa4fa65ce46427a4f",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/torso.png",
+        "phase1_file_sha256": "416cf1fb83e615fff7406848f71934560dd0227510cedad3505cd6e763e42403",
+        "split": null
+      }
+    },
+    {
+      "id": "upper_arm_r",
+      "category": "A_original",
+      "image": "artwork/original/upper_arm_r.png",
+      "z_index": 9,
+      "bone": "upper_arm_r",
+      "pivot": [
+        366.02,
+        586.16
+      ],
+      "pixel_sha256": "d8786668d70e276adea5d93e0c0a675d8f5b0f380a99d16e1e9fb250966935c4",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/upper_arm_r.png",
+        "phase1_file_sha256": "0b78cd02b0e9de4760a0a7a6592db73ecc58b4d670c7e7f9f952520ad61c15fe",
+        "split": null
+      }
+    },
+    {
+      "id": "forearm_r",
+      "category": "A_original",
+      "image": "artwork/original/forearm_r.png",
+      "z_index": 10,
+      "bone": "forearm_r",
+      "pivot": [
+        343.85,
+        748.77
+      ],
+      "pixel_sha256": "a32e85fd3ad2bd4d57471b9aec254528cb3a8162dd3b04d863091efee0879cf3",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/forearm_r.png",
+        "phase1_file_sha256": "3ac80d991330a66a52c66990c883a8f6ec04432cf543c5117918d3ff9c11b7bc",
+        "split": null
+      }
+    },
+    {
+      "id": "hand_r",
+      "category": "A_original",
+      "image": "artwork/original/hand_r.png",
+      "z_index": 11,
+      "bone": "hand_r",
+      "pivot": [
+        300.31,
+        901.86
+      ],
+      "pixel_sha256": "9d3621231a035af6b07a57942028055cf939568a51a82127e6c1c3d36a77f1ba",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hand_r.png",
+        "phase1_file_sha256": "47652eb1a915036c0da85a63f8553404b6217ff4c200fda338957faed40705eb",
+        "split": null
+      }
+    },
+    {
+      "id": "upper_arm_l",
+      "category": "A_original",
+      "image": "artwork/original/upper_arm_l.png",
+      "z_index": 12,
+      "bone": "upper_arm_l",
+      "pivot": [
+        632.4,
+        587.43
+      ],
+      "pixel_sha256": "3c312b1aaef26d12d04de0f37e9e2cd2888f7782e401dc0203666f5abdb9553f",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/upper_arm_l.png",
+        "phase1_file_sha256": "efb5b4ba7aaf301dd548073f627820645a88e9c464a23dba71497f164ef9134c",
+        "split": null
+      }
+    },
+    {
+      "id": "forearm_l",
+      "category": "A_original",
+      "image": "artwork/original/forearm_l.png",
+      "z_index": 13,
+      "bone": "forearm_l",
+      "pivot": [
+        660.04,
+        746.62
+      ],
+      "pixel_sha256": "e444493d0f727d161afdd9cebba74fd871ff38d75d2c932fc639b6d24a02b517",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/forearm_l.png",
+        "phase1_file_sha256": "ba0beab861641eeec009ab008160e8e2839808bdedd1f68176c730e90706b24b",
+        "split": null
+      }
+    },
+    {
+      "id": "hand_l",
+      "category": "A_original",
+      "image": "artwork/original/hand_l.png",
+      "z_index": 14,
+      "bone": "hand_l",
+      "pivot": [
+        698.8,
+        901.95
+      ],
+      "pixel_sha256": "9479f6f343d9490b7f2afab13c2b22e07a5827acde71b9245cedbe67df1271f9",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hand_l.png",
+        "phase1_file_sha256": "1263cc6f4ef243a40815fcc7ae1f5857011a180bdec64e94715bf63850ae0f83",
+        "split": null
+      }
+    },
+    {
+      "id": "head_base",
+      "category": "A_original",
+      "image": "artwork/original/head_base.png",
+      "z_index": 15,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "daeade53ebe90416f829d0bd3d41cc57dfe41c3e3809a74d3ae723836c0bc66f",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/head_base.png",
+        "phase1_file_sha256": "71e7507fa81ea85b1c4d562d83c5985ef94080adc73972531eb38ca3dfc167df",
+        "split": null
+      }
+    },
+    {
+      "id": "nose",
+      "category": "A_original",
+      "image": "artwork/original/nose.png",
+      "z_index": 16,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "f5a115c53f3a1066ec4834d258feb9c7feac89c04be000b9403574ae9c0f1b6c",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/nose.png",
+        "phase1_file_sha256": "b5e7d5bc852d86c01c870e0b1420bf297ca2b87ec44171d83d00aabfb4fa2a7e",
+        "split": null
+      }
+    },
+    {
+      "id": "mouth",
+      "category": "A_original",
+      "image": "artwork/original/mouth.png",
+      "z_index": 17,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "a9efa92772af132caea0b20dc2e81a20429aa7c918f750ad84148f5ad7445387",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/mouth.png",
+        "phase1_file_sha256": "58d58374dbc134fc0b3de50971636f69b5cec6881431bf5ac82e4b0159e42bc7",
+        "split": null
+      }
+    },
+    {
+      "id": "eye_r_white",
+      "category": "A_original",
+      "image": "artwork/original/eye_r_white.png",
+      "z_index": 18,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "5b6920902e2037092a94c42163154ad5df3500e29ef48bf4725eee3ad0bccaf1",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_r.png",
+        "phase1_file_sha256": "b32817976d7ba206ddbb65b66a50974767f15807e32b12a544796ea106a29b39",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "eye_r_iris",
+      "category": "A_original",
+      "image": "artwork/original/eye_r_iris.png",
+      "z_index": 19,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "aba51df9c5741acf7a03b20eb9dea901b5ae3d92c59a51d0ef759683308e9c0a",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_r.png",
+        "phase1_file_sha256": "b32817976d7ba206ddbb65b66a50974767f15807e32b12a544796ea106a29b39",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "eye_l_white",
+      "category": "A_original",
+      "image": "artwork/original/eye_l_white.png",
+      "z_index": 20,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "7f9c80e101b076a8c95e75f59581cef62b0e509f05c64b5bd1060b728c11963a",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_l.png",
+        "phase1_file_sha256": "588a580e5a769aa2b13e3f03b7c43ebc2fe1b1a395a840e973852b173a667e61",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "eye_l_iris",
+      "category": "A_original",
+      "image": "artwork/original/eye_l_iris.png",
+      "z_index": 21,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "035a528dd3b8de194be145cd5e69e8215ccf6ca04f52fcac043d67a338b37876",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_l.png",
+        "phase1_file_sha256": "588a580e5a769aa2b13e3f03b7c43ebc2fe1b1a395a840e973852b173a667e61",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "brow_r",
+      "category": "A_original",
+      "image": "artwork/original/brow_r.png",
+      "z_index": 22,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "a9f1180cb64f70e384a5eb379071ca8b7f873f282e59816da6c6d16ea2079aaf",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/brow_r.png",
+        "phase1_file_sha256": "e48c4947abde21676bff13caabcbdbae140c158709a25b0b443e4b3b7c3e96ff",
+        "split": null
+      }
+    },
+    {
+      "id": "brow_l",
+      "category": "A_original",
+      "image": "artwork/original/brow_l.png",
+      "z_index": 23,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "f094c663153cec5d47d03d2a09d6a0b4f8aa1048f9fa488e2cbdd88554f41857",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/brow_l.png",
+        "phase1_file_sha256": "fa8ace889fd732c983263f30773b742282c4279b4bf10ee6ca97970a1bc63913",
+        "split": null
+      }
+    },
+    {
+      "id": "hair",
+      "category": "A_original",
+      "image": "artwork/original/hair.png",
+      "z_index": 24,
+      "bone": "head",
+      "pivot": [
+        499.56,
+        544.22
+      ],
+      "pixel_sha256": "06a312d1d8aa75628942cb075c7138c7acfaa0366ff381ed56ceb6ce899e8f06",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hair.png",
+        "phase1_file_sha256": "839e6b24f3987cefdef53dedeed686f518a6a5c5ce2aca2188035c27ba9eba2a",
+        "split": null
+      }
+    }
+  ],
+  "extensions": [
+    {
+      "id": "eye_l_white__01",
+      "component": "eye_l_white",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/eye_l_white__01.png",
+      "provenance_mask": "masks/provenance/eye_l_white__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 2321,
+      "region": "eye_l_white__under__eye_l_iris",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          255,
+          255,
+          255
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.964
+      }
+    },
+    {
+      "id": "eye_r_white__01",
+      "component": "eye_r_white",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/eye_r_white__01.png",
+      "provenance_mask": "masks/provenance/eye_r_white__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 2321,
+      "region": "eye_r_white__under__eye_r_iris",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          255,
+          255,
+          255
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.964
+      }
+    },
+    {
+      "id": "forearm_l__01",
+      "component": "forearm_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/forearm_l__01.png",
+      "provenance_mask": "masks/provenance/forearm_l__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 926,
+      "region": "forearm_l__under__hand_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "forearm_r__01",
+      "component": "forearm_r",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/forearm_r__01.png",
+      "provenance_mask": "masks/provenance/forearm_r__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 953,
+      "region": "forearm_r__under__hand_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "head_base__01",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__01.png",
+      "provenance_mask": "masks/provenance/head_base__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1613,
+      "region": "head_base__under__brow_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.944
+      }
+    },
+    {
+      "id": "head_base__02",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__02.png",
+      "provenance_mask": "masks/provenance/head_base__02.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1593,
+      "region": "head_base__under__brow_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.948
+      }
+    },
+    {
+      "id": "head_base__03",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__03.png",
+      "provenance_mask": "masks/provenance/head_base__03.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 7517,
+      "region": "head_base__under__eye_l_white",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.994
+      }
+    },
+    {
+      "id": "head_base__04",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__04.png",
+      "provenance_mask": "masks/provenance/head_base__04.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 7517,
+      "region": "head_base__under__eye_r_white",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.991
+      }
+    },
+    {
+      "id": "head_base__05",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__05.png",
+      "provenance_mask": "masks/provenance/head_base__05.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 37253,
+      "region": "head_base__under__hair",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": {
+          "rgb": [
+            35,
+            30,
+            45
+          ],
+          "width_px": 2.83,
+          "pixels": 1282,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.938
+      }
+    },
+    {
+      "id": "head_base__06",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__06.png",
+      "provenance_mask": "masks/provenance/head_base__06.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 852,
+      "region": "head_base__under__mouth",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "head_base__07",
+      "component": "head_base",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/head_base__07.png",
+      "provenance_mask": "masks/provenance/head_base__07.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1030,
+      "region": "head_base__under__nose",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "neck__01",
+      "component": "neck",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/neck__01.png",
+      "provenance_mask": "masks/provenance/neck__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 8812,
+      "region": "neck__under__head_base",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          232,
+          186,
+          150
+        ],
+        "outline": {
+          "rgb": [
+            35,
+            30,
+            45
+          ],
+          "width_px": 2.0,
+          "pixels": 271,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 2,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "neck__02",
+      "component": "neck",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/neck__02.png",
+      "provenance_mask": "masks/provenance/neck__02.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 5937,
+      "region": "neck__under__torso",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          232,
+          186,
+          150
+        ],
+        "outline": {
+          "rgb": [
+            35,
+            30,
+            45
+          ],
+          "width_px": 2.0,
+          "pixels": 418,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "thigh_l__01",
+      "component": "thigh_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_l__01.png",
+      "provenance_mask": "masks/provenance/thigh_l__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1709,
+      "region": "thigh_l__under__pelvis",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          46,
+          60,
+          112
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "thigh_l__02",
+      "component": "thigh_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_l__02.png",
+      "provenance_mask": "masks/provenance/thigh_l__02.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1482,
+      "region": "thigh_l__under__shin_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.98
+      }
+    },
+    {
+      "id": "thigh_r__01",
+      "component": "thigh_r",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_r__01.png",
+      "provenance_mask": "masks/provenance/thigh_r__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1678,
+      "region": "thigh_r__under__pelvis",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          46,
+          60,
+          112
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "thigh_r__02",
+      "component": "thigh_r",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_r__02.png",
+      "provenance_mask": "masks/provenance/thigh_r__02.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1482,
+      "region": "thigh_r__under__shin_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          247,
+          210,
+          175
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.996
+      }
+    },
+    {
+      "id": "torso__01",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__01.png",
+      "provenance_mask": "masks/provenance/torso__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 43,
+      "region": "torso__under__forearm_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          172,
+          202,
+          236
+        ],
+        "outline": {
+          "rgb": [
+            35,
+            29,
+            44
+          ],
+          "width_px": 4.0,
+          "pixels": 43,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.902
+      }
+    },
+    {
+      "id": "torso__02",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__02.png",
+      "provenance_mask": "masks/provenance/torso__02.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 41,
+      "region": "torso__under__forearm_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          172,
+          202,
+          236
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 2,
+        "colour_share": 0.891
+      }
+    },
+    {
+      "id": "torso__03",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__03.png",
+      "provenance_mask": "masks/provenance/torso__03.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 4163,
+      "region": "torso__under__upper_arm_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          172,
+          202,
+          236
+        ],
+        "outline": {
+          "rgb": [
+            35,
+            29,
+            44
+          ],
+          "width_px": 4.0,
+          "pixels": 766,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "torso__04",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__04.png",
+      "provenance_mask": "masks/provenance/torso__04.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 4209,
+      "region": "torso__under__upper_arm_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          172,
+          202,
+          236
+        ],
+        "outline": {
+          "rgb": [
+            35,
+            29,
+            44
+          ],
+          "width_px": 4.0,
+          "pixels": 774,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 1.0
+      }
+    }
+  ],
+  "corrections": [],
+  "vectors": [
+    {
+      "id": "joint_cap_shoulder_r",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_shoulder_r.svg",
+      "target": "torso",
+      "joint": "shoulder_r",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_hip_r",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_hip_r.svg",
+      "target": "torso",
+      "joint": "hip_r",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_shoulder_l",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_shoulder_l.svg",
+      "target": "torso",
+      "joint": "shoulder_l",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_hip_l",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_hip_l.svg",
+      "target": "torso",
+      "joint": "hip_l",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "eyelid_guide_r",
+      "kind": "facial_control_guide",
+      "path": "artwork/vector/eyelid_guide_r.svg",
+      "target": "eye_r",
+      "joint": null,
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "eyelid_guide_l",
+      "kind": "facial_control_guide",
+      "path": "artwork/vector/eyelid_guide_l.svg",
+      "target": "eye_l",
+      "joint": null,
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    }
+  ],
+  "masks": {
+    "source": "masks/source/",
+    "reconstruction": "masks/reconstruction/",
+    "provenance": "masks/provenance/"
+  }
+}

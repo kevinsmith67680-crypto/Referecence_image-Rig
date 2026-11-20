@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.occlusion-1.0.0",
+  "title": "AutoRig Studio occlusion 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "image",
+    "graph",
+    "regions",
+    "new_artwork_required",
+    "flags",
+    "overrides_applied"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.occlusion"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "image": {
+      "type": "object"
+    },
+    "graph": {
+      "type": "object",
+      "required": [
+        "nodes",
+        "edges",
+        "z_order_back_to_front"
+      ],
+      "properties": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "front",
+              "back",
+              "confidence",
+              "method",
+              "ambiguous",
+              "evidence"
+            ],
+            "properties": {
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "ambiguous": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "owner",
+          "occluded_by",
+          "mask",
+          "pixels",
+          "bbox_xyxy",
+          "exposed_by",
+          "method",
+          "confidence",
+          "ambiguous",
+          "strategy"
+        ],
+        "properties": {
+          "pixels": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "bbox_xyxy": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "strategy": {
+            "enum": [
+              "deterministic_flat_fill",
+              "generative",
+              "generative_required_no_provider",
+              "generative_required_region_too_large",
+              "generative_failed",
+              "not_needed_for_planned_motion",
+              "not_applicable",
+              "pending"
+            ]
+          }
+        }
+      }
+    },
+    "new_artwork_required": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "asset",
+          "reason"
+        ]
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overrides_applied": {
+      "type": "object"
+    }
+  }
+}

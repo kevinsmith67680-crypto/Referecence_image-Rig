@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.artwork_manifest-1.0.0",
+  "title": "AutoRig Studio artwork_manifest 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "contract_version",
+    "coordinate_system",
+    "original_bitmap",
+    "layers",
+    "extensions",
+    "corrections",
+    "vectors",
+    "masks"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.artwork_manifest"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "contract_version": {
+      "const": "2.0.0"
+    },
+    "coordinate_system": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "origin"
+      ]
+    },
+    "original_bitmap": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ]
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "image",
+          "z_index",
+          "bone",
+          "pivot",
+          "provenance"
+        ],
+        "properties": {
+          "category": {
+            "enum": [
+              "A_original"
+            ]
+          },
+          "pivot": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "component",
+          "category",
+          "image",
+          "provenance_mask",
+          "method",
+          "status",
+          "pixels",
+          "provenance"
+        ],
+        "properties": {
+          "category": {
+            "const": "B_generated"
+          },
+          "status": {
+            "enum": [
+              "pending_review",
+              "approved",
+              "rejected",
+              "superseded",
+              "alternative"
+            ]
+          }
+        }
+      }
+    },
+    "corrections": {
+      "type": "array"
+    },
+    "vectors": {
+      "type": "array"
+    },
+    "masks": {
+      "type": "object",
+      "required": [
+        "source",
+        "reconstruction",
+        "provenance"
+      ]
+    }
+  }
+}

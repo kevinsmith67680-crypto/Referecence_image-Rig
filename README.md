@@ -4,13 +4,18 @@ Turn a single cartoon character reference image into a faithful, **editable
 Moho Pro 14 rig**: separated art layers, a bone hierarchy, layer-to-bone
 bindings, ready to animate.
 
-> **Status: Phase 1 (AI character analysis and segmentation): PARTIAL.** The pipeline is implemented and
+> **Status: Phase 2 (reconstruction and animation-ready assets): PARTIAL.** It is implemented and tested on a synthetic
+> labelled character. Original pixels are provably untouched, and hidden regions are reconstructed, posed and QA-reported.
+> Generative inpainting is untested (no Replicate credit), and no real artwork has been processed. See
+> [docs/phase2_report.md](docs/phase2_report.md).
+>
+> **Phase 1 (AI character analysis and segmentation): PARTIAL.** The pipeline is implemented and
 > tested on a synthetic ground-truth character. Real SAM 3 inference is blocked by Replicate credit (HTTP 402),
 > and the real reference image is not yet in the repository. See [docs/phase1_report.md](docs/phase1_report.md).
 >
 > **Phase 0 (Moho rigging proof of concept): PARTIAL.**
 > Everything that can run without Moho is implemented and passes in the cloud
-> (253 tests across all phases). The native Moho run is **NOT EXECUTED** yet; it has to happen on
+> (282 tests across all phases). The native Moho run is **NOT EXECUTED** yet; it has to happen on
 > the Mac. See [the completion report](docs/phase0/completion-report.md).
 
 ![Phase 0 test character, simulated](examples/phase0_test_character/preview/contact_sheet.png)
@@ -60,6 +65,19 @@ previews and `metadata.json`. To try it without paid inference, use the syntheti
 
 *Synthetic test character (not a reference). Anatomical parts, joints and bones from the Phase 1 pipeline.*
 
+## Phase 2: reconstruct hidden artwork
+
+```bash
+.venv/bin/python -m autorig prepare character_projects/name --out character_packages/name
+.venv/bin/python -m autorig review character_packages/name --list
+```
+
+Open `character_packages/name/reports/visual_review.html` to inspect generated (magenta) regions and pose tests.
+
+![Phase 2 pose contact sheet](examples/phase2_synthetic_character/character_package/reports/pose_contact_sheet.png)
+
+*Synthetic test character posed by the standalone preview engine. Red = remaining gaps that the QA reports. This is not a Moho render.*
+
 ## Running it in Moho Pro 14 (Mac)
 
 Read **[docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md)**. In short:
@@ -85,6 +103,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/mohomcp-assessment.md](docs/mohomcp-assessment.md) | What MohoMCP can and cannot do for this project |
 | [docs/live-models.md](docs/live-models.md) | Moho 14.5 Live Models: findings, unknowns, design, discovery protocol |
 | [docs/phase1_report.md](docs/phase1_report.md) | Phase 1 results, Replicate usage and costs, accuracy, readiness, verdict |
+| [docs/phase2_implementation_plan.md](docs/phase2_implementation_plan.md) | Phase 2 architecture, model selection, risks, acceptance tests |
+| [docs/phase2_report.md](docs/phase2_report.md) | Phase 2 results: preservation, reconstruction vs GT, poses, readiness, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |
@@ -97,4 +117,5 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 0 | Moho rigging proof of concept (this repo) | Implemented; **awaiting local Moho verification** |
 | LM | Moho 14.5 Live Models: Smart Bones and actions mapped to webcam and gamepad inputs | LM-0 (research and discovery tools) done; LM-1 blocked on Phase 0 and the Mac discovery data |
 | 1 | AI character analysis: SAM 3 (Replicate) segmentation, anatomy, face, original-pixel layers, live-control contract | Implemented; **PARTIAL** (needs Replicate credit and the real reference image) |
+| 2 | Occlusion analysis, pixel-preserving reconstruction, joint preparation, pose QA, live artwork manifest, review workflow | Implemented; **PARTIAL** (inpainting untested; synthetic evidence only) |
 | 2+ | Joint/pivot estimation, hybrid bitmap/vector art, MohoMCP-driven verification | Not started |

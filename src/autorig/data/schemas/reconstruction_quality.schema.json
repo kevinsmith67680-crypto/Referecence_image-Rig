@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.reconstruction_quality-1.0.0",
+  "title": "AutoRig Studio reconstruction_quality 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "original_pixel_preservation",
+    "gaps",
+    "joint_seams",
+    "layer_alignment",
+    "reconstruction_size",
+    "provenance",
+    "flags_for_human_review",
+    "images"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.reconstruction_quality"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "original_pixel_preservation": {
+      "type": "object",
+      "required": [
+        "source_unchanged",
+        "originals_verified",
+        "neutral_originals_exact",
+        "generated_pixels_visible_in_neutral"
+      ]
+    },
+    "neutral_similarity": {
+      "type": "object"
+    },
+    "alpha_coverage": {
+      "type": "object"
+    },
+    "gaps": {
+      "type": "object"
+    },
+    "joint_seams": {
+      "type": "object"
+    },
+    "layer_alignment": {
+      "type": "object"
+    },
+    "reconstruction_size": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "outline_discontinuities": {
+      "type": "object"
+    },
+    "pose_stability": {
+      "type": "object"
+    },
+    "flags_for_human_review": {
+      "type": "array"
+    },
+    "images": {
+      "type": "object"
+    },
+    "synthetic_ground_truth": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

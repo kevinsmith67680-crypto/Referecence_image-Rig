@@ -18,6 +18,10 @@ synthetic-character  Render the ground-truth test character (fixture, not a refe
 replicate-check   Compare the live vufinder/sam3 schema with the pinned snapshot (no inference, free).
 replicate-smoke   One tiny budget-capped SAM 3 prediction to prove the integration end to end.
 eval-synthetic    Score a project of the synthetic character against its ground truth.
+
+Phase 2 (reconstruction & animation-ready assets):
+prepare           Phase 1 project -> Phase 2 character package (occlusion, reconstruction, joints, poses, QA).
+review            Inspect/apply human approval decisions for a Phase 2 package.
 export-schemas    Write the Phase 1 JSON Schemas.
 """
 
@@ -279,10 +283,106 @@ def cmd_eval_synthetic(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_prepare(args: argparse.Namespace) -> int:
+    from .phase1 import masks as M
+    from .phase2.pipeline import PackageError, Phase2Config, prepare_character
+    from .phase2.reconstruct import ReconstructionConfig
+    from .segmentation.budget import BudgetExceeded
+    from .segmentation.replicate_client import ReplicateError
+
+    overrides = json.loads(Path(args.overrides).read_text()) if args.overrides else {}
+    if "region_masks" in overrides:
+        overrides["region_masks"] = {k: M.load_mask(v) for k, v in overrides["region_masks"].items()}
+    provider = None
+    if args.provider != "none":
+        from .phase2.providers import ReplicateInpaintProvider
+        from .segmentation.budget import CostPolicy
+        from .segmentation.replicate_client import ReplicateClient
+
+        provider = ReplicateInpaintProvider(ReplicateClient(), args.cache_dir, adapter=args.provider,
+                                            policy=CostPolicy.from_env(ceiling_usd=args.budget_usd))
+        print(f"reconstruction provider: {provider.name} (UNTESTED model; ceiling ${provider.policy.ceiling_usd:.2f})")
+    cfg = Phase2Config(recon=ReconstructionConfig(n_candidates=args.candidates), sweep_step=args.sweep_step,
+                       overrides=overrides, overwrite=args.overwrite, synthetic_ground_truth=args.synthetic_gt)
+    try:
+        res = prepare_character(args.phase1_project, args.out, provider, cfg)
+    except (PackageError, BudgetExceeded, ReplicateError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    q = res["docs"]["reconstruction_quality"]
+    pres = q["original_pixel_preservation"]
+    print(f"wrote {res['root']}  (valid={res['valid']})")
+    print(f"  originals exact in neutral: {pres['neutral_originals_exact']}; generated pixels visible in neutral: "
+          f"{pres['generated_pixels_visible_in_neutral']}")
+    print(f"  generated pixels: {q['reconstruction_size']['generated_pixels_total']} (all pending review); "
+          f"flags for review: {len(q['flags_for_human_review'])}")
+    print(f"  review page: {res['root'] / 'reports' / 'visual_review.html'}")
+    return 0 if res["valid"] else 3
+
+
+def cmd_review(args: argparse.Namespace) -> int:
+    from .phase2 import review as R
+
+    root = Path(args.package)
+    path = root / "reports" / "approvals.json"
+    done = 0
+    for item in args.approve or []:
+        R.apply_decision(root, item, "approve"); done += 1
+    for item in args.reject or []:
+        R.apply_decision(root, item, "reject"); done += 1
+    for item in args.request_candidate or []:
+        R.apply_decision(root, item, "request_candidate"); done += 1
+    for comp in args.restore_original or []:
+        _restore(root, comp)
+        done += 1
+    if args.set_pivot:
+        joint, x, y = args.set_pivot
+        R.apply_decision(root, f"pivot:{joint}", "set_pivot", xy=[float(x), float(y)])
+        ov_path = root / "reports" / "overrides.json"
+        ov = json.loads(ov_path.read_text()) if ov_path.is_file() else {}
+        ov.setdefault("pivots", {})[joint] = [float(x), float(y)]
+        ov_path.write_text(json.dumps(ov, indent=2) + "\n")
+        print(f"pivot override saved to {ov_path}; re-run `autorig prepare ... --overrides {ov_path} --overwrite`")
+        done += 1
+    if args.import_decisions:
+        for d in json.loads(Path(args.import_decisions).read_text())["decisions"]:
+            R.apply_decision(root, d["item"], d["decision"]); done += 1
+    if args.approve_phase:
+        try:
+            print(R.approve_phase(root))
+        except ValueError as exc:
+            print(f"refused: {exc}", file=sys.stderr)
+            return 1
+    doc = json.loads(path.read_text())
+    counts = {}
+    for i in doc["items"]:
+        counts[i["status"]] = counts.get(i["status"], 0) + 1
+    print(f"{done} decision(s) applied; item status counts: {counts}")
+    if args.list:
+        for i in doc["items"]:
+            print(f"  {i['status']:<20} {i['type']:<24} {i['id']}")
+    return 0
+
+
+def _restore(root: Path, component: str) -> None:
+    from .phase2 import review as R
+
+    path = root / "reports" / "approvals.json"
+    doc = json.loads(path.read_text())
+    doc["items"].append({"id": component, "type": "restore_request", "status": "pending_review"})
+    path.write_text(json.dumps(doc, indent=2) + "\n")
+    R.apply_decision(root, component, "restore_original")
+
+
 def cmd_export_schemas(args: argparse.Namespace) -> int:
     from .phase1.schemas import export
+    from .phase2 import schemas as s2
 
     for p in export(args.out):
+        print(f"wrote {p}")
+    for name, schema in s2.SCHEMAS.items():
+        p = Path(args.out) / f"{name}.schema.json"
+        p.write_text(json.dumps(schema, indent=2) + "\n", encoding="utf-8")
         print(f"wrote {p}")
     return 0
 
@@ -382,6 +482,31 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("eval-synthetic", help="score a project of the synthetic character against ground truth")
     p.add_argument("project")
     p.set_defaults(func=cmd_eval_synthetic)
+
+    p = sub.add_parser("prepare", help="Phase 2: build an animation-ready character package")
+    p.add_argument("phase1_project")
+    p.add_argument("--out", required=True)
+    p.add_argument("--provider", default="none", choices=["none", "flux-fill-dev", "flux-fill-pro", "ideogram-v2"],
+                   help="generative inpainting for non-flat regions (UNTESTED; default: deterministic only)")
+    p.add_argument("--candidates", type=int, default=2)
+    p.add_argument("--sweep-step", type=int, default=30)
+    p.add_argument("--overrides", help="JSON with edges / exclude_regions / region_masks / pivots overrides")
+    p.add_argument("--synthetic-gt", action="store_true", help="score against the synthetic fixture's ground truth")
+    p.add_argument("--overwrite", action="store_true")
+    replicate_opts(p)
+    p.set_defaults(func=cmd_prepare)
+
+    p = sub.add_parser("review", help="approve/reject Phase 2 generated assets")
+    p.add_argument("package")
+    p.add_argument("--list", action="store_true")
+    p.add_argument("--approve", action="append")
+    p.add_argument("--reject", action="append")
+    p.add_argument("--request-candidate", action="append")
+    p.add_argument("--restore-original", action="append", metavar="COMPONENT")
+    p.add_argument("--set-pivot", nargs=3, metavar=("JOINT", "X", "Y"))
+    p.add_argument("--import-decisions", metavar="DECISIONS_JSON")
+    p.add_argument("--approve-phase", action="store_true")
+    p.set_defaults(func=cmd_review)
 
     p = sub.add_parser("export-schemas", help="write Phase 1 JSON Schemas")
     p.add_argument("--out", default="src/autorig/data/schemas")

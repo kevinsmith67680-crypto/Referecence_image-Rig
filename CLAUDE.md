@@ -11,8 +11,20 @@ faithful, editable **Moho Pro 14** character rig.
   limitation be carried forward. Phase 1 is implemented; verdict **PARTIAL** (`docs/phase1_report.md`).
   Blockers: Replicate credit (HTTP 402), the real schoolboy reference image (not in the repo),
   and Phase 0 native verification.
-- **Do not start Phase 2** (hidden-artwork reconstruction, facial rig generation, live tracking)
-  until those blockers clear and the real reference has been evaluated.
+- The user explicitly started **Phase 2** (reconstruction) on synthetic fixtures. It is implemented; verdict
+  **PARTIAL** (`docs/phase2_report.md`): cloud inpainting is untested (HTTP 402) and no real artwork has been processed.
+- **Do not start Phase 3** (Moho import/rigging of the package) automatically. It also needs the blockers cleared and
+  generated assets reviewed.
+
+## Phase 2 rules (reconstruction)
+
+- Original pixels are category A and immutable (`phase2/store.py`). Generated pixels go only on separate extension
+  layers *under* their original, inside a reconstruction mask, with a provenance mask. Never write generated pixels
+  into an original or mark them approved in code; only `autorig review` approves.
+- Deterministic flat fill first. Generative inpainting only for non-flat regions, through `ReconstructionProvider`.
+  Inpainting adapters declare their mask convention (FLUX: white = inpaint; Ideogram: black = inpaint).
+- Official Replicate models cannot be version-pinned: keep the pin-by-verification check (refuse on drift).
+- Never present synthetic-fixture results as real-artwork evidence.
 
 ## Live Models track (Moho 14.5)
 
@@ -86,6 +98,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig replicate-check            # free schema drift check
 .venv/bin/python -m autorig replicate-smoke <image>    # one tiny paid prediction (budget-capped)
 .venv/bin/python -m autorig eval-synthetic <project_dir>
+# Phase 2
+.venv/bin/python -m autorig prepare <phase1_project> --out <package_dir> [--provider flux-fill-dev] [--synthetic-gt]
+.venv/bin/python -m autorig review <package_dir> --list | --approve ID | --reject ID | --set-pivot JOINT X Y | --approve-phase
 ```
 
 ## Layout
@@ -99,6 +114,8 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `src/autorig/phase1/` — anatomy, face, partition, readiness, live controls, compositor, schemas, project writer
 - `src/autorig/synthetic.py` — synthetic ground-truth character (test fixture)
 - `examples/phase1_synthetic_character/` — synthetic fixture + its character_project + evaluation
+- `src/autorig/phase2/` — store (pixel preservation), occlusion, providers, reconstruct, facial, joints, pose, vector, review, pipeline
+- `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
 - `tests/lua/mock_moho.lua` — strict mock of the allowlisted Moho API (Lua 5.4 via `lupa`)
 - `examples/phase0_test_character/` — spec, art layers, reference script, previews, expected values
 - `tools/macos/install_phase0.sh` — generates a machine-specific script and installs it

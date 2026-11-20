@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.character_package-1.0.0",
+  "title": "AutoRig Studio character_package 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "phase",
+    "source",
+    "phase1_project",
+    "providers",
+    "cost",
+    "verification",
+    "evidence_level",
+    "outputs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.character_package"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "phase": {
+      "const": 2
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sha256",
+        "byte_identical_copy"
+      ]
+    },
+    "phase1_project": {
+      "type": "object"
+    },
+    "providers": {
+      "type": "object"
+    },
+    "cost": {
+      "type": "object"
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "store_problems",
+        "source_unchanged"
+      ]
+    },
+    "evidence_level": {
+      "type": "object",
+      "required": [
+        "real_reference_evaluated",
+        "generative_inpainting_tested"
+      ]
+    },
+    "schema_validation": {
+      "type": "object"
+    },
+    "outputs": {
+      "type": "array"
+    },
+    "warnings": {
+      "type": "array"
+    }
+  }
+}
