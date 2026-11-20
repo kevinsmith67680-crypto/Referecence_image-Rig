@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.hybrid_artwork-1.0.0",
+  "title": "AutoRig Studio hybrid_artwork 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "contract_version",
+    "coordinate_system",
+    "original_bitmap",
+    "layers",
+    "masks",
+    "generated_artwork",
+    "vector_corrections",
+    "categories"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.hybrid_artwork"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "coordinate_system": {
+      "type": "object",
+      "required": [
+        "units",
+        "origin",
+        "width",
+        "height"
+      ]
+    },
+    "original_bitmap": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256",
+        "role"
+      ],
+      "properties": {
+        "role": {
+          "const": "reference_only_never_modified"
+        }
+      }
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "role",
+          "image",
+          "mask",
+          "bbox_xyxy",
+          "z_index",
+          "pixels",
+          "pivot",
+          "bone",
+          "provenance",
+          "transform",
+          "facial_control_dependencies",
+          "vector_replacement",
+          "status"
+        ],
+        "properties": {
+          "kind": {
+            "const": "extracted_original_pixels"
+          },
+          "role": {
+            "enum": [
+              "body_part",
+              "facial_feature",
+              "head_base"
+            ]
+          },
+          "z_index": {
+            "type": "integer"
+          },
+          "pixels": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "bbox_xyxy": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 4,
+                "maxItems": 4
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pivot": {
+            "type": "object",
+            "required": [
+              "position",
+              "status",
+              "source"
+            ],
+            "properties": {
+              "position": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "enum": [
+                  "proposed",
+                  "missing"
+                ]
+              }
+            }
+          },
+          "bone": {
+            "type": "object",
+            "required": [
+              "name",
+              "parent_bone"
+            ]
+          },
+          "transform": {
+            "type": "object",
+            "required": [
+              "scale",
+              "offset"
+            ],
+            "properties": {
+              "scale": {
+                "const": 1.0
+              },
+              "offset": {
+                "const": [
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          "vector_replacement": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "extracted",
+              "empty"
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "masks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "kind",
+          "pixels"
+        ]
+      }
+    },
+    "generated_artwork": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "replaces_or_extends",
+          "provenance",
+          "approved"
+        ]
+      }
+    },
+    "vector_corrections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "path",
+          "target_layer",
+          "editable_in_moho"
+        ]
+      }
+    },
+    "categories": {
+      "type": "object"
+    }
+  }
+}

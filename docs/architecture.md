@@ -126,3 +126,29 @@ generated as UI assignment steps or injected into the saved `.moho`
 already exists: `src/autorig/data/templates/probe_moho.lua` (a read-only API
 probe) and `src/autorig/mohofile.py` (inspect and diff). See
 [live-models.md](live-models.md).
+
+## 9. Phase 1: character analysis and segmentation
+
+```
+reference.png ──► Sam3ReplicateProvider (pinned vufinder/sam3, cache, ledger, ceiling)
+                  │  body concepts (person, hair, head, face, neck, shirt, sleeve, arm, hand, shorts/pants, leg, shoe)
+                  ▼
+        collect_instances (score/size/duplicate gates) ──► CharacterAnatomyAnalyzer (pluggable PoseEstimators)
+                  │                                              │ 20 joints + confidence/reliable/flags/occlusion
+                  ▼                                              ▼
+        head crop ×upscale ──► facial concepts ──► analyze_face (quality gates, intensity pupils, landmarks)
+                  │                                              │
+                  ▼                                              ▼
+        anatomical partition (thick bone segments within visible regions) ──► original-pixel layers
+                  │
+                  ▼
+        compositor (fidelity vs independent foreground) · readiness · LiveControlSpec · hybrid contract
+                  ▼
+        character_project/  (all JSON schema-validated; metadata with SHA-256 of every output)
+```
+
+* Coordinates: everything stays in the original image's pixel space; layers are full-canvas and unscaled,
+  the same convention as Phase 0's art layers. Phase 2 can map joints to Moho units with `autorig.geometry`.
+* Bridge to Phase 0: `anatomy.json` joints and parent relations, together with `artwork/layers.json` (bone
+  per layer, pivots and z-order), carry everything needed to emit a `rig_spec.json` in Phase 2. Not done yet.
+* Details and measured results: [phase1_report.md](phase1_report.md).

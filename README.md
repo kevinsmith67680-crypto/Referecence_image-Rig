@@ -4,9 +4,13 @@ Turn a single cartoon character reference image into a faithful, **editable
 Moho Pro 14 rig**: separated art layers, a bone hierarchy, layer-to-bone
 bindings, ready to animate.
 
-> **Status: Phase 0 (Moho rigging proof of concept): PARTIAL.**
+> **Status: Phase 1 (AI character analysis and segmentation): PARTIAL.** The pipeline is implemented and
+> tested on a synthetic ground-truth character. Real SAM 3 inference is blocked by Replicate credit (HTTP 402),
+> and the real reference image is not yet in the repository. See [docs/phase1_report.md](docs/phase1_report.md).
+>
+> **Phase 0 (Moho rigging proof of concept): PARTIAL.**
 > Everything that can run without Moho is implemented and passes in the cloud
-> (189 tests, Live Models tooling included). The native Moho run is **NOT EXECUTED** yet; it has to happen on
+> (253 tests across all phases). The native Moho run is **NOT EXECUTED** yet; it has to happen on
 > the Mac. See [the completion report](docs/phase0/completion-report.md).
 
 ![Phase 0 test character, simulated](examples/phase0_test_character/preview/contact_sheet.png)
@@ -41,6 +45,21 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
+## Phase 1: analyse a reference image
+
+```bash
+export REPLICATE_API_TOKEN=...   # never commit it
+.venv/bin/python -m autorig analyze path/to/reference.png --out character_projects/name --budget-usd 1.00
+```
+
+This writes `character_project/`: source copy, `analysis/*.json`, masks, original-pixel layers,
+previews and `metadata.json`. To try it without paid inference, use the synthetic ground-truth character:
+`--provider fixture` on `examples/phase1_synthetic_character/synthetic_fixture.png`.
+
+![Phase 1 synthetic character segmentation](examples/phase1_synthetic_character/character_project/previews/segmentation.png)
+
+*Synthetic test character (not a reference). Anatomical parts, joints and bones from the Phase 1 pipeline.*
+
 ## Running it in Moho Pro 14 (Mac)
 
 Read **[docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md)**. In short:
@@ -65,6 +84,7 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/moho-lua-api-evidence.md](docs/moho-lua-api-evidence.md) | Every Moho API member used, with evidence and open questions |
 | [docs/mohomcp-assessment.md](docs/mohomcp-assessment.md) | What MohoMCP can and cannot do for this project |
 | [docs/live-models.md](docs/live-models.md) | Moho 14.5 Live Models: findings, unknowns, design, discovery protocol |
+| [docs/phase1_report.md](docs/phase1_report.md) | Phase 1 results, Replicate usage and costs, accuracy, readiness, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |
@@ -76,5 +96,5 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 |---|---|---|
 | 0 | Moho rigging proof of concept (this repo) | Implemented; **awaiting local Moho verification** |
 | LM | Moho 14.5 Live Models: Smart Bones and actions mapped to webcam and gamepad inputs | LM-0 (research and discovery tools) done; LM-1 blocked on Phase 0 and the Mac discovery data |
-| 1 | SAM 3 segmentation (Replicate) of a reference image into part layers | Blocked on Phase 0 |
+| 1 | AI character analysis: SAM 3 (Replicate) segmentation, anatomy, face, original-pixel layers, live-control contract | Implemented; **PARTIAL** (needs Replicate credit and the real reference image) |
 | 2+ | Joint/pivot estimation, hybrid bitmap/vector art, MohoMCP-driven verification | Not started |

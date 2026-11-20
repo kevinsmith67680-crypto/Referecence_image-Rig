@@ -1,0 +1,163 @@
+{
+  "model": "vufinder/sam3",
+  "fetched_at": "2026-11-20",
+  "source": "GET https://api.replicate.com/v1/models/vufinder/sam3 and /versions",
+  "model_description": "Segment Anything Model 3 - unified foundation model for promptable segmentation in images.",
+  "github_url": "https://github.com/facebookresearch/sam3",
+  "license_url": "https://github.com/facebookresearch/sam3/blob/main/LICENSE",
+  "latest_version": "1bf97763d5dfd3a1584adca913a8ef4b43c684fca97e04e39e4c50a3a5e09650",
+  "verified_output_example": {
+    "version": "e6b684bc76855b99c4be8c930ce48ab0fa89330140ae82f41f62c883e340ab76",
+    "prediction_id": "r1wdvm6p3srga0cyps1vb0345r",
+    "predict_time_s": 8.969522924,
+    "finding": "Per-prompt JSON {masks:[N][1][H][W] 0/1, boxes:[N][4] pixel xyxy, scores:[N]}; masks at input resolution (1024x1024 example, square so H/W order unproven)"
+  },
+  "versions": [
+    {
+      "id": "1bf97763d5dfd3a1584adca913a8ef4b43c684fca97e04e39e4c50a3a5e09650",
+      "created_at": "2026-06-12T09:42:35.790060Z",
+      "cog_version": "0.16.12",
+      "input": {
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "Input image, accepts JPG, JPEG, PNG, WEBP files."
+        },
+        "prompts": {
+          "type": "array",
+          "description": "List of per concept JSON strings that represent prompt objects, that contain: text (string), positive_boxes (list of lists of four floats), negative_boxes (list of lists of four floats), positive_points (list of lists of two floats),  negative_points (list of lists of two floats). At least one of text, positive_boxes or positive_points must be provided.All coordinates are normalized to the range [0, 1]. Boxes are in the format of: center_x, center_y, width, height."
+        },
+        "visualize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return prediction results as per prompt PNG file."
+        },
+        "concat_input": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to concatenate the input prompts to output JSON files under `input` key."
+        },
+        "offset_masks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the masks as cut-outs along with the mask offset (x, y) of the upper left corner in the original image pixel space."
+        },
+        "split_output": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to split the output JSON files into separate files per prompt."
+        },
+        "backbone_output": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the backbone output as a PT file."
+        },
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.5,
+          "maximum": 0.99,
+          "minimum": 0.01,
+          "description": "Confidence threshold for the model"
+        }
+      },
+      "required": [
+        "image",
+        "prompts"
+      ],
+      "output_properties": [
+        "backbone_outputs",
+        "results",
+        "visualizations"
+      ]
+    },
+    {
+      "id": "861f5a2e7dbfd8a3d02b3304936565432bd8ec9fc7b456b62c1364aead63ab8f",
+      "created_at": "2026-06-12T05:43:28.485492Z",
+      "cog_version": "0.16.12",
+      "input": {
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "Input image, accepts JPG, JPEG, PNG, WEBP files."
+        },
+        "prompts": {
+          "type": "array",
+          "description": "List of per concept JSON strings that represent prompt objects, that contain: text (string), positive_boxes (list of lists of four floats), negative_boxes (list of lists of four floats), positive_points (list of lists of two floats),  negative_points (list of lists of two floats). At least one of text, positive_boxes or positive_points must be provided.All coordinates are normalized to the range [0, 1]. Boxes are in the format of: center_x, center_y, width, height."
+        },
+        "visualize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return prediction results as per prompt PNG file."
+        },
+        "offset_masks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the masks as cut-outs along with the mask offset (x, y) of the upper left corner in the original image pixel space."
+        },
+        "backbone_output": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the backbone output as a PT file."
+        },
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.5,
+          "maximum": 0.99,
+          "minimum": 0.01,
+          "description": "Confidence threshold for the model"
+        }
+      },
+      "required": [
+        "image",
+        "prompts"
+      ],
+      "output_properties": [
+        "backbone_outputs",
+        "results",
+        "visualizations"
+      ]
+    },
+    {
+      "id": "e6b684bc76855b99c4be8c930ce48ab0fa89330140ae82f41f62c883e340ab76",
+      "created_at": "2026-06-11T10:38:11.441205Z",
+      "cog_version": "0.16.12",
+      "input": {
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "Input image, accepts JPG, JPEG, PNG, WEBP files."
+        },
+        "prompts": {
+          "type": "array",
+          "description": "List of per concept JSON strings that represent prompt objects, that contain: text (string), positive_boxes (list of lists of four floats), negative_boxes (list of lists of four floats), positive_points (list of lists of two floats),  negative_points (list of lists of two floats). At least one of text, positive_boxes or positive_points must be provided.All coordinates are normalized to the range [0, 1]. Boxes are in the format of: center_x, center_y, width, height."
+        },
+        "visualize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return prediction results as per prompt PNG file."
+        },
+        "backbone_output": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to return the backbone output as a PT file."
+        },
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.5,
+          "maximum": 0.99,
+          "minimum": 0.01,
+          "description": "Confidence threshold for the model"
+        }
+      },
+      "required": [
+        "image",
+        "prompts"
+      ],
+      "output_properties": [
+        "backbone_outputs",
+        "results",
+        "visualizations"
+      ]
+    }
+  ]
+}

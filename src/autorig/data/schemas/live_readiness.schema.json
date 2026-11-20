@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.live_readiness-1.0.0",
+  "title": "AutoRig Studio live_readiness 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "capabilities",
+    "summary",
+    "policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.live_readiness"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "blinking",
+        "eyebrow_movement",
+        "mouth_opening",
+        "lip_sync",
+        "eye_direction",
+        "head_tilting",
+        "head_turning",
+        "facial_expressions"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status",
+          "reasons",
+          "required_artwork"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "READY",
+              "REQUIRES_RECONSTRUCTION",
+              "REQUIRES_NEW_ARTWORK",
+              "UNSUPPORTED",
+              "NEEDS_REVIEW"
+            ]
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object"
+    },
+    "policy": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.face-1.0.0",
+  "title": "AutoRig Studio face 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "image",
+    "head_bbox_xyxy",
+    "features",
+    "landmarks",
+    "eye_centers",
+    "eyebrow_positions",
+    "mouth",
+    "jaw_pivot",
+    "visibility",
+    "segmentation_confidence",
+    "missing_artwork"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.face"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "image": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "coordinate_system",
+        "source_sha256"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "coordinate_system": {
+          "const": "pixels; origin top-left; +x right; +y down"
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "head_bbox_xyxy": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "midline_x": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "label",
+          "method",
+          "score",
+          "pixels",
+          "bbox_xyxy",
+          "centroid",
+          "mask"
+        ],
+        "properties": {
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "pixels": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "centroid": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "rejected_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "reason"
+        ]
+      }
+    },
+    "landmarks": {
+      "type": "object"
+    },
+    "eye_centers": {
+      "type": "object"
+    },
+    "eyebrow_positions": {
+      "type": "object"
+    },
+    "mouth": {
+      "type": "object"
+    },
+    "jaw_pivot": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "visibility": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "segmentation_confidence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "missing_artwork": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artwork",
+          "needed_for",
+          "reason"
+        ]
+      }
+    },
+    "segmentation": {
+      "type": "object"
+    }
+  }
+}

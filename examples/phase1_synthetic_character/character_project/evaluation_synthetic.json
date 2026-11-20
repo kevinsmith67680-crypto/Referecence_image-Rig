@@ -1,0 +1,183 @@
+{
+  "note": "synthetic ground-truth evaluation - validates the pipeline, not the user's reference character",
+  "provider": "fixture",
+  "image_height_px": 1500,
+  "joints": {
+    "pelvis": {
+      "error_px": 4.23,
+      "reliable": false,
+      "method": "midpoint_of_hips"
+    },
+    "torso": {
+      "error_px": 0.3,
+      "reliable": true,
+      "method": "torso_region_centroid"
+    },
+    "neck": {
+      "error_px": 4.24,
+      "reliable": true,
+      "method": "contact:head/neck|clothing"
+    },
+    "head": {
+      "error_px": 0.5,
+      "reliable": true,
+      "method": "head_and_hair_bbox_center"
+    },
+    "shoulder_r": {
+      "error_px": 23.49,
+      "reliable": false,
+      "method": "march_through_upper_clothing_to_exit_minus_local_halfwidth"
+    },
+    "elbow_r": {
+      "error_px": 25.35,
+      "reliable": false,
+      "method": "straight_limb_midpoint"
+    },
+    "wrist_r": {
+      "error_px": 3.57,
+      "reliable": true,
+      "method": "contact:arm/hand"
+    },
+    "hand_r": {
+      "error_px": 0.38,
+      "reliable": true,
+      "method": "hand_centroid"
+    },
+    "shoulder_l": {
+      "error_px": 21.47,
+      "reliable": false,
+      "method": "march_through_upper_clothing_to_exit_minus_local_halfwidth"
+    },
+    "elbow_l": {
+      "error_px": 25.41,
+      "reliable": false,
+      "method": "straight_limb_midpoint"
+    },
+    "wrist_l": {
+      "error_px": 3.15,
+      "reliable": true,
+      "method": "contact:arm/hand"
+    },
+    "hand_l": {
+      "error_px": 0.38,
+      "reliable": true,
+      "method": "hand_centroid"
+    },
+    "hip_r": {
+      "error_px": 13.88,
+      "reliable": false,
+      "method": "midpoint_of_lower_clothing_span_along_limb_axis"
+    },
+    "knee_r": {
+      "error_px": 1.07,
+      "reliable": false,
+      "method": "straight_limb_midpoint"
+    },
+    "ankle_r": {
+      "error_px": 4.86,
+      "reliable": true,
+      "method": "contact:leg/foot"
+    },
+    "foot_r": {
+      "error_px": 0.38,
+      "reliable": true,
+      "method": "foot_centroid"
+    },
+    "hip_l": {
+      "error_px": 12.93,
+      "reliable": false,
+      "method": "midpoint_of_lower_clothing_span_along_limb_axis"
+    },
+    "knee_l": {
+      "error_px": 0.07,
+      "reliable": false,
+      "method": "straight_limb_midpoint"
+    },
+    "ankle_l": {
+      "error_px": 4.71,
+      "reliable": true,
+      "method": "contact:leg/foot"
+    },
+    "foot_l": {
+      "error_px": 0.38,
+      "reliable": true,
+      "method": "foot_centroid"
+    }
+  },
+  "joint_error_px": {
+    "median": 3.9,
+    "max": 25.41,
+    "max_reliable": 4.86,
+    "missing": [],
+    "unreliable": [
+      "pelvis",
+      "shoulder_r",
+      "elbow_r",
+      "shoulder_l",
+      "elbow_l",
+      "hip_r",
+      "knee_r",
+      "hip_l",
+      "knee_l"
+    ]
+  },
+  "body_part_iou": {
+    "thigh_r": 0.7818,
+    "shin_r": 0.8196,
+    "foot_r": 0.9884,
+    "thigh_l": 0.7752,
+    "shin_l": 0.8194,
+    "foot_l": 0.9884,
+    "pelvis": 0.8894,
+    "neck": 0.9829,
+    "torso": 0.9987,
+    "upper_arm_r": 0.9592,
+    "forearm_r": 0.9313,
+    "hand_r": 0.9884,
+    "upper_arm_l": 0.9611,
+    "forearm_l": 0.9347,
+    "hand_l": 0.9884,
+    "head": 0.9972,
+    "hair": 0.9941
+  },
+  "body_part_iou_mean": 0.9293,
+  "facial_mask_iou": {
+    "ear_r": 1.0,
+    "ear_l": 1.0,
+    "head_base": null,
+    "nose": 1.0,
+    "mouth": 1.0,
+    "eye_r": 1.0,
+    "iris_r": 1.0,
+    "pupil_r": 1.0,
+    "eye_l": 1.0,
+    "iris_l": 1.0,
+    "pupil_l": 1.0,
+    "brow_r": 1.0,
+    "brow_l": 1.0,
+    "hair": null
+  },
+  "facial_landmark_error_px": {
+    "eye_center_r": 0.39,
+    "eye_center_l": 0.39,
+    "pupil_center_r": 1.6,
+    "pupil_center_l": 1.6,
+    "brow_center_r": 0.75,
+    "brow_center_l": 0.34,
+    "mouth_corner_r": 0.45,
+    "mouth_corner_l": 1.4,
+    "mouth_center": 9.23,
+    "nose_tip": 0.4,
+    "chin": 18.44,
+    "ear_center_r": 0.01,
+    "ear_center_l": 0.0
+  },
+  "fidelity": {
+    "coverage_ratio": 1.0,
+    "overlap_pixels": 0,
+    "max_abs_error_inside_layers": 0.0,
+    "psnr_foreground_db": null,
+    "ssim_gray_foreground_bbox": 0.9999,
+    "linework_retained_ratio": 1.0
+  }
+}

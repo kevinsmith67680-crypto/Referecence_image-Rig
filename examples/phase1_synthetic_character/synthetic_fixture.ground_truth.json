@@ -1,0 +1,144 @@
+{
+  "note": "SYNTHETIC test fixture with exact ground truth - not a user reference",
+  "size": [
+    1000,
+    1500
+  ],
+  "joints": {
+    "head": [
+      500,
+      330
+    ],
+    "neck": [
+      500,
+      540
+    ],
+    "torso": [
+      500,
+      720
+    ],
+    "pelvis": [
+      500,
+      990
+    ],
+    "shoulder_r": [
+      385,
+      600
+    ],
+    "shoulder_l": [
+      615,
+      600
+    ],
+    "elbow_r": [
+      330,
+      770
+    ],
+    "elbow_l": [
+      670,
+      770
+    ],
+    "wrist_r": [
+      302,
+      905
+    ],
+    "wrist_l": [
+      698,
+      905
+    ],
+    "hand_r": [
+      292,
+      952
+    ],
+    "hand_l": [
+      708,
+      952
+    ],
+    "hip_r": [
+      445,
+      990
+    ],
+    "hip_l": [
+      555,
+      990
+    ],
+    "knee_r": [
+      440,
+      1170
+    ],
+    "knee_l": [
+      560,
+      1170
+    ],
+    "ankle_r": [
+      440,
+      1340
+    ],
+    "ankle_l": [
+      560,
+      1340
+    ],
+    "foot_r": [
+      425,
+      1385
+    ],
+    "foot_l": [
+      575,
+      1385
+    ]
+  },
+  "landmarks": {
+    "eye_center_r": [
+      425.0,
+      335.0
+    ],
+    "eye_center_l": [
+      575.0,
+      335.0
+    ],
+    "pupil_center_r": [
+      432.0,
+      342.0
+    ],
+    "pupil_center_l": [
+      568.0,
+      342.0
+    ],
+    "brow_center_r": [
+      417.0,
+      263.0
+    ],
+    "brow_center_l": [
+      583.0,
+      263.0
+    ],
+    "mouth_corner_r": [
+      445.621532777801,
+      466.23509350657275
+    ],
+    "mouth_corner_l": [
+      554.378467222199,
+      466.23509350657275
+    ],
+    "mouth_center": [
+      500.0,
+      485.0
+    ],
+    "nose_tip": [
+      500.0,
+      405.0
+    ],
+    "chin": [
+      500.0,
+      545.0
+    ],
+    "ear_center_r": [
+      271.9751068644707,
+      346.3029922051798
+    ],
+    "ear_center_l": [
+      727.4639356622267,
+      346.39306358381504
+    ]
+  },
+  "side_convention": "character's left (_l) on the image right"
+}

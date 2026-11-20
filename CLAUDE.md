@@ -7,9 +7,12 @@ faithful, editable **Moho Pro 14** character rig.
 
 - **Phase 0 (Moho rigging proof of concept) is implemented but NOT locally
   verified.** Its cloud verdict is PARTIAL; see `docs/phase0/completion-report.md`.
-- **Do not start Phase 1 (SAM 3 segmentation via Replicate) until the user
-  reports that the native Moho checks in `docs/phase0/manual-verification.md`
-  passed on their Mac.** If asked to start SAM 3 work earlier, point to this gate.
+- The user explicitly started **Phase 1** while Phase 0 was still unverified, asking that the
+  limitation be carried forward. Phase 1 is implemented; verdict **PARTIAL** (`docs/phase1_report.md`).
+  Blockers: Replicate credit (HTTP 402), the real schoolboy reference image (not in the repo),
+  and Phase 0 native verification.
+- **Do not start Phase 2** (hidden-artwork reconstruction, facial rig generation, live tracking)
+  until those blockers clear and the real reference has been evaluated.
 
 ## Live Models track (Moho 14.5)
 
@@ -21,6 +24,21 @@ faithful, editable **Moho Pro 14** character rig.
 - No Lua API for assigning live inputs is known. Input identifiers, `.mohoproj` keys and
   API names must come from discovered evidence (probe reports, saved sample files,
   screenshots). **Never invent them.**
+
+## Phase 1 rules (segmentation and analysis)
+
+- Replicate token: from `REPLICATE_API_TOKEN` only; never print, log or commit it. In the cloud sandbox,
+  the network proxy injects the real credential, so set `REPLICATE_API_TOKEN=proxy-injected` for commands.
+- Model `vufinder/sam3` pinned at `1bf97763…` (snapshot in `src/autorig/data/replicate/`); run
+  `python -m autorig replicate-check` (free) before changing versions. Dense output mode only.
+- Paid inference only through `Sam3ReplicateProvider` (cache + ledger + ceiling; default $1.00 cumulative,
+  `AUTORIG_REPLICATE_BUDGET_USD`). Check the budget before any run; never raise it silently.
+- Never substitute an unrelated illustration for the user's reference. The synthetic character
+  (`autorig.synthetic`) is a GT test fixture only.
+- Artwork layers are original pixels, full-canvas and unscaled. Never invent hidden artwork; list it as
+  missing. Readiness is READY only when the artwork exists. SHOWTIME mappings stay `proposed_unverified`
+  until verified in Moho.
+- `.autorig_cache/` (predictions, ledger) is local and git-ignored.
 
 ## Environment facts
 
@@ -63,6 +81,11 @@ python3.12 -m venv .venv && .venv/bin/pip install -e '.[dev]'
 AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv/bin/python -m pytest -m moho_native -v
 .venv/bin/python -m autorig build-probe --report-dir research/moho-14.5 --out build/moho/AutoRig_Probe.lua
 .venv/bin/python -m autorig moho-file diff research/moho-14.5/L0_baseline.moho research/moho-14.5/L1_camera.moho
+# Phase 1
+.venv/bin/python -m autorig analyze <image> --out <project_dir> [--provider fixture] [--budget-usd 1.00]
+.venv/bin/python -m autorig replicate-check            # free schema drift check
+.venv/bin/python -m autorig replicate-smoke <image>    # one tiny paid prediction (budget-capped)
+.venv/bin/python -m autorig eval-synthetic <project_dir>
 ```
 
 ## Layout
@@ -72,6 +95,10 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `src/autorig/data/templates/probe_moho.lua` — read-only Moho API discovery script (Live Models)
 - `src/autorig/mohofile.py` — `.moho`/`.mohoproj` reader, JSON grep and structural diff
 - `research/moho-14.5/` — discovery data from the user's Moho 14.5 (committed on purpose)
+- `src/autorig/segmentation/` — Replicate client, SAM 3 provider, budget ledger, fixture provider
+- `src/autorig/phase1/` — anatomy, face, partition, readiness, live controls, compositor, schemas, project writer
+- `src/autorig/synthetic.py` — synthetic ground-truth character (test fixture)
+- `examples/phase1_synthetic_character/` — synthetic fixture + its character_project + evaluation
 - `tests/lua/mock_moho.lua` — strict mock of the allowlisted Moho API (Lua 5.4 via `lupa`)
 - `examples/phase0_test_character/` — spec, art layers, reference script, previews, expected values
 - `tools/macos/install_phase0.sh` — generates a machine-specific script and installs it

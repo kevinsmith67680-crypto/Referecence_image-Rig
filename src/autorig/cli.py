@@ -11,6 +11,14 @@ verify-report  Check a report written by the Lua script inside Moho.
 build-example  Regenerate every committed artefact of an example.
 build-probe    Generate the read-only Moho API discovery script (Live Models research).
 moho-file      Inspect / grep / diff .moho and .mohoproj files.
+
+Phase 1 (character analysis):
+analyze           Reference image -> character_project/ (masks, layers, analysis, previews).
+synthetic-character  Render the ground-truth test character (fixture, not a reference).
+replicate-check   Compare the live vufinder/sam3 schema with the pinned snapshot (no inference, free).
+replicate-smoke   One tiny budget-capped SAM 3 prediction to prove the integration end to end.
+eval-synthetic    Score a project of the synthetic character against its ground truth.
+export-schemas    Write the Phase 1 JSON Schemas.
 """
 
 from __future__ import annotations
@@ -156,6 +164,129 @@ def cmd_moho_file(args: argparse.Namespace) -> int:
         return 1
 
 
+def _provider(args):
+    if args.provider == "fixture":
+        from .segmentation.sam3 import FixtureSegmentationProvider
+        from .synthetic import concept_masks, render
+
+        print("provider: fixture (synthetic ground-truth masks; only valid for the synthetic test character)")
+        return FixtureSegmentationProvider(concept_masks(render()))
+    from .segmentation.budget import CostPolicy
+    from .segmentation.replicate_client import ReplicateClient
+    from .segmentation.sam3 import PINNED_VERSION, Sam3ReplicateProvider
+
+    policy = CostPolicy.from_env(ceiling_usd=args.budget_usd)
+    prov = Sam3ReplicateProvider(ReplicateClient(), args.cache_dir, version=args.version or PINNED_VERSION,
+                                 policy=policy)
+    print(f"provider: replicate vufinder/sam3@{prov.version[:12]} | ceiling ${policy.ceiling_usd:.2f} | "
+          f"spent so far ${prov.ledger.total_usd():.4f} (estimated)")
+    return prov
+
+
+def cmd_analyze(args: argparse.Namespace) -> int:
+    from .phase1.project import AnalysisConfig, ProjectExistsError, analyze_character
+    from .segmentation.budget import BudgetExceeded
+    from .segmentation.replicate_client import ReplicateError
+
+    cfg = AnalysisConfig(character_id=args.character_id, manual_landmarks=args.manual_landmarks,
+                         overwrite=args.overwrite, min_score=args.min_score)
+    try:
+        res = analyze_character(args.image, args.out, _provider(args), cfg)
+    except (ProjectExistsError, BudgetExceeded, ReplicateError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    m = res.metadata
+    f = m["fidelity"]
+    print(f"wrote {res.root}")
+    print(f"  schemas: {'all valid' if res.valid else res.schema_errors}")
+    print(f"  coverage {f['coverage_ratio']}, overlaps {f['overlap_pixels']}, max error inside layers "
+          f"{f['max_abs_error_inside_layers']}, linework retained {f['linework_retained_ratio']}")
+    print(f"  estimated cost this run: ${m['cost']['this_run_estimated_usd']:.4f}")
+    for w in m["warnings"]:
+        print(f"  warning: {w}")
+    return 0 if res.valid else 3
+
+
+def cmd_synthetic(args: argparse.Namespace) -> int:
+    from .synthetic import render
+
+    ch = render()
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    ch.image.save(out)
+    gt = {"note": "SYNTHETIC test fixture with exact ground truth - not a user reference",
+          "size": list(ch.size), "joints": ch.joints, "landmarks": ch.landmarks,
+          "side_convention": "character's left (_l) on the image right"}
+    gt_path = out.with_suffix(".ground_truth.json")
+    gt_path.write_text(json.dumps(gt, indent=2) + "\n", encoding="utf-8")
+    print(f"wrote {out}\nwrote {gt_path}")
+    return 0
+
+
+def cmd_replicate_check(args: argparse.Namespace) -> int:
+    from .segmentation.replicate_client import ReplicateClient, ReplicateError
+    from .segmentation.sam3 import MODEL, PINNED_VERSION, load_version_snapshot
+
+    snap = load_version_snapshot()
+    owner, name = MODEL.split("/")
+    try:
+        with ReplicateClient() as c:
+            live = {v["id"]: sorted(v["openapi_schema"]["components"]["schemas"]["Input"]["properties"])
+                    for v in c.list_versions(owner, name)}
+    except ReplicateError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    known = {v["id"]: sorted(v["input"]) for v in snap["versions"]}
+    print(f"pinned: {PINNED_VERSION}")
+    ok = True
+    for vid, inputs in live.items():
+        state = "unchanged" if known.get(vid) == inputs else ("NEW VERSION" if vid not in known else "SCHEMA CHANGED")
+        ok &= state == "unchanged"
+        print(f"  {vid[:12]} {state}: {inputs}")
+    if PINNED_VERSION not in live:
+        print("  PINNED VERSION NO LONGER LISTED")
+        ok = False
+    return 0 if ok else 4
+
+
+def cmd_replicate_smoke(args: argparse.Namespace) -> int:
+    """Smallest possible paid check: one prediction, one text prompt, under a hard ceiling."""
+    from .segmentation.budget import BudgetExceeded, CostPolicy
+    from .segmentation.replicate_client import ReplicateClient, ReplicateError
+    from .segmentation.sam3 import Sam3ReplicateProvider
+    from .segmentation.types import Prompt
+
+    prov = Sam3ReplicateProvider(ReplicateClient(), args.cache_dir, policy=CostPolicy.from_env(ceiling_usd=args.budget_usd))
+    try:
+        run = prov.segment(args.image, [Prompt(text=args.text, label=args.text)])
+    except (BudgetExceeded, ReplicateError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    inst = run.results[0].instances
+    print(f"prediction {run.provenance.get('prediction_id')} cache_hit={run.provenance.get('cache_hit')} "
+          f"predict_time={run.provenance.get('predict_time_s')}s est=${run.provenance.get('estimated_usd', 0):.4f}")
+    print(f"'{args.text}': {len(inst)} instance(s) {[round(i.score, 3) for i in inst]} areas {[i.area for i in inst]}")
+    print(f"ledger total ${prov.ledger.total_usd():.4f} of ${prov.policy.ceiling_usd:.2f}")
+    return 0
+
+
+def cmd_eval_synthetic(args: argparse.Namespace) -> int:
+    from .phase1.evaluate import evaluate_synthetic
+
+    r = evaluate_synthetic(args.project)
+    print(json.dumps({k: r[k] for k in ("provider", "joint_error_px", "body_part_iou_mean", "fidelity")}, indent=2))
+    print(f"wrote {Path(args.project) / 'evaluation_synthetic.json'}")
+    return 0
+
+
+def cmd_export_schemas(args: argparse.Namespace) -> int:
+    from .phase1.schemas import export
+
+    for p in export(args.out):
+        print(f"wrote {p}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="autorig", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -217,6 +348,44 @@ def build_parser() -> argparse.ArgumentParser:
     q.add_argument("--ignore", help="regex of JSON paths to skip (e.g. volatile timestamps)")
     q.add_argument("--max", type=int, default=500)
     q.set_defaults(func=cmd_moho_file)
+
+    def replicate_opts(p):
+        p.add_argument("--cache-dir", default=".autorig_cache/replicate", help="prediction cache + spend ledger")
+        p.add_argument("--budget-usd", type=float, default=None,
+                       help="cumulative spending ceiling (default: AUTORIG_REPLICATE_BUDGET_USD or $1.00)")
+
+    p = sub.add_parser("analyze", help="Phase 1: analyse a reference image into a character project")
+    p.add_argument("image")
+    p.add_argument("--out", required=True)
+    p.add_argument("--provider", choices=["replicate", "fixture"], default="replicate")
+    p.add_argument("--version", help="override the pinned vufinder/sam3 version (must be in the snapshot)")
+    p.add_argument("--character-id", default="character")
+    p.add_argument("--manual-landmarks", help="JSON {\"joints\": {name: [x, y]}} overriding estimated joints")
+    p.add_argument("--min-score", type=float, default=0.5)
+    p.add_argument("--overwrite", action="store_true", help="replace an existing AutoRig project at --out")
+    replicate_opts(p)
+    p.set_defaults(func=cmd_analyze)
+
+    p = sub.add_parser("synthetic-character", help="render the synthetic ground-truth test character")
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cmd_synthetic)
+
+    p = sub.add_parser("replicate-check", help="compare live vufinder/sam3 versions with the pinned snapshot")
+    p.set_defaults(func=cmd_replicate_check)
+
+    p = sub.add_parser("replicate-smoke", help="one tiny budget-capped SAM 3 prediction")
+    p.add_argument("image")
+    p.add_argument("--text", default="hand")
+    replicate_opts(p)
+    p.set_defaults(func=cmd_replicate_smoke)
+
+    p = sub.add_parser("eval-synthetic", help="score a project of the synthetic character against ground truth")
+    p.add_argument("project")
+    p.set_defaults(func=cmd_eval_synthetic)
+
+    p = sub.add_parser("export-schemas", help="write Phase 1 JSON Schemas")
+    p.add_argument("--out", default="src/autorig/data/schemas")
+    p.set_defaults(func=cmd_export_schemas)
     return parser
 
 

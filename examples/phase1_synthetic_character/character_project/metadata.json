@@ -1,0 +1,726 @@
+{
+  "schema": "autorig.character_project",
+  "schema_version": "1.0.0",
+  "autorig_version": "0.0.1",
+  "created_at": "2026-11-20T19:11:12Z",
+  "git_commit": "b773afb29988e7c5ce4bb13c54342e87aa651491",
+  "character_id": "synthetic_fixture",
+  "source": {
+    "original_name": "synthetic_fixture.png",
+    "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
+    "width": 1000,
+    "height": 1500,
+    "mode": "RGB",
+    "format": "PNG",
+    "project_path": "source/original.png",
+    "byte_identical_copy": true
+  },
+  "source_unchanged_after_processing": true,
+  "pipeline": {
+    "steps": [
+      {
+        "step": "body_segmentation",
+        "provider": "fixture",
+        "accepted": {
+          "arm": 2,
+          "face": 1,
+          "foot": 2,
+          "hair": 1,
+          "hand": 2,
+          "head": 1,
+          "leg": 2,
+          "lower_clothing": 1,
+          "neck": 1,
+          "person": 1,
+          "sleeve": 2,
+          "upper_clothing": 1
+        },
+        "rejected": 0
+      },
+      {
+        "step": "anatomy",
+        "estimators": [
+          "mask_geometry"
+        ],
+        "unreliable_joints": [
+          "pelvis",
+          "shoulder_r",
+          "elbow_r",
+          "shoulder_l",
+          "elbow_l",
+          "hip_r",
+          "knee_r",
+          "hip_l",
+          "knee_l"
+        ]
+      },
+      {
+        "step": "face",
+        "accepted_features": [
+          "brow_l",
+          "brow_r",
+          "ear_l",
+          "ear_r",
+          "eye_l",
+          "eye_r",
+          "iris_l",
+          "iris_r",
+          "mouth",
+          "nose",
+          "pupil_l",
+          "pupil_r"
+        ],
+        "rejected": 0
+      },
+      {
+        "step": "fringe_absorption",
+        "pixels": 2398,
+        "max_distance_px": 2.0,
+        "note": "anti-aliased edge pixels kept opaque with original colours; no matting yet"
+      }
+    ],
+    "config": {
+      "min_score": 0.5,
+      "confidence_threshold": 0.5,
+      "face_upscale_target": 1024,
+      "body_prompts": [
+        [
+          "person",
+          "person"
+        ],
+        [
+          "hair",
+          "hair"
+        ],
+        [
+          "head",
+          "head"
+        ],
+        [
+          "face",
+          "face"
+        ],
+        [
+          "neck",
+          "neck"
+        ],
+        [
+          "upper_clothing",
+          "shirt"
+        ],
+        [
+          "sleeve",
+          "sleeve"
+        ],
+        [
+          "arm",
+          "arm"
+        ],
+        [
+          "hand",
+          "hand"
+        ],
+        [
+          "lower_clothing",
+          "shorts"
+        ],
+        [
+          "lower_clothing",
+          "pants"
+        ],
+        [
+          "leg",
+          "leg"
+        ],
+        [
+          "foot",
+          "shoe"
+        ]
+      ],
+      "face_prompts": [
+        [
+          "face",
+          "face"
+        ],
+        [
+          "hair",
+          "hair"
+        ],
+        [
+          "eye",
+          "eye"
+        ],
+        [
+          "eyebrow",
+          "eyebrow"
+        ],
+        [
+          "pupil",
+          "pupil"
+        ],
+        [
+          "iris",
+          "iris"
+        ],
+        [
+          "nose",
+          "nose"
+        ],
+        [
+          "mouth",
+          "mouth"
+        ],
+        [
+          "ear",
+          "ear"
+        ]
+      ],
+      "manual_landmarks": null,
+      "character_id": "synthetic_fixture",
+      "overwrite": true
+    },
+    "duration_s": 5.44
+  },
+  "segmentation_runs": [
+    {
+      "provider": "fixture",
+      "model": "fixture",
+      "version": "n/a",
+      "estimated_usd": 0.0,
+      "cache_hit": false,
+      "created_at": "2026-11-20T19:11:07Z",
+      "image_sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
+      "image_size": [
+        1000,
+        1500
+      ],
+      "prompts": [
+        {
+          "label": "person",
+          "text": "person"
+        },
+        {
+          "label": "hair",
+          "text": "hair"
+        },
+        {
+          "label": "head",
+          "text": "head"
+        },
+        {
+          "label": "face",
+          "text": "face"
+        },
+        {
+          "label": "neck",
+          "text": "neck"
+        },
+        {
+          "label": "upper_clothing",
+          "text": "shirt"
+        },
+        {
+          "label": "sleeve",
+          "text": "sleeve"
+        },
+        {
+          "label": "arm",
+          "text": "arm"
+        },
+        {
+          "label": "hand",
+          "text": "hand"
+        },
+        {
+          "label": "lower_clothing",
+          "text": "shorts"
+        },
+        {
+          "label": "lower_clothing",
+          "text": "pants"
+        },
+        {
+          "label": "leg",
+          "text": "leg"
+        },
+        {
+          "label": "foot",
+          "text": "shoe"
+        }
+      ],
+      "instances_per_prompt": {
+        "person": 1,
+        "hair": 1,
+        "head": 1,
+        "face": 1,
+        "neck": 1,
+        "upper_clothing": 1,
+        "sleeve": 2,
+        "arm": 2,
+        "hand": 2,
+        "lower_clothing": 0,
+        "leg": 2,
+        "foot": 2
+      }
+    },
+    {
+      "provider": "fixture",
+      "model": "fixture",
+      "version": "n/a",
+      "estimated_usd": 0.0,
+      "cache_hit": false,
+      "created_at": "2026-11-20T19:11:08Z",
+      "region": {
+        "box_xyxy": [
+          183.68,
+          48.68,
+          817.32,
+          611.32
+        ],
+        "method": "fixture_full_image"
+      },
+      "image_sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
+      "image_size": [
+        1000,
+        1500
+      ],
+      "prompts": [
+        {
+          "label": "face",
+          "text": "face"
+        },
+        {
+          "label": "hair",
+          "text": "hair"
+        },
+        {
+          "label": "eye",
+          "text": "eye"
+        },
+        {
+          "label": "eyebrow",
+          "text": "eyebrow"
+        },
+        {
+          "label": "pupil",
+          "text": "pupil"
+        },
+        {
+          "label": "iris",
+          "text": "iris"
+        },
+        {
+          "label": "nose",
+          "text": "nose"
+        },
+        {
+          "label": "mouth",
+          "text": "mouth"
+        },
+        {
+          "label": "ear",
+          "text": "ear"
+        }
+      ],
+      "instances_per_prompt": {
+        "face": 1,
+        "hair": 1,
+        "eye": 2,
+        "eyebrow": 2,
+        "pupil": 2,
+        "iris": 2,
+        "nose": 1,
+        "mouth": 1,
+        "ear": 2
+      }
+    }
+  ],
+  "cost": {
+    "this_run_estimated_usd": 0.0,
+    "ledger_total_estimated_usd": null,
+    "basis": "no paid inference (fixture)"
+  },
+  "fidelity": {
+    "foreground_pixels": 415501,
+    "layer_union_pixels": 415501,
+    "covered_foreground_pixels": 415501,
+    "coverage_ratio": 1.0,
+    "uncovered_foreground_pixels": 0,
+    "layer_pixels_outside_foreground": 0,
+    "overlap_pixels": 0,
+    "pixels_differing_inside_layers": 0,
+    "max_abs_error_inside_layers": 0.0,
+    "mean_abs_error_foreground": 0.0,
+    "max_abs_error_foreground": 0.0,
+    "psnr_foreground_db": null,
+    "ssim_gray_foreground_bbox": 0.9999,
+    "linework_pixels": 39408,
+    "linework_retained_ratio": 1.0,
+    "alpha_preserved_inside_layers": null,
+    "note": "Pixels are copied, never resampled: inside the layers the error must be exactly 0. Foreground errors come from uncovered pixels. Metrics are diagnostics, not proof of quality.",
+    "foreground_estimate": {
+      "method": "background_colour_heuristic",
+      "background_rgb": [
+        236,
+        240,
+        246
+      ],
+      "threshold": 24,
+      "note": "heuristic; unreliable on busy or gradient backgrounds"
+    },
+    "unassigned_character_pixels": 0
+  },
+  "outputs": [
+    {
+      "path": "analysis/anatomy.json",
+      "sha256": "35eec14ad64573ff5852e47ab76c6c730fd8967f3ab240872d45e99b76d73fe0",
+      "bytes": 23274
+    },
+    {
+      "path": "analysis/face.json",
+      "sha256": "2854bb13595fc8a69bfbafeca1c18c9466558e07f24d82ff5a83ab89cec9e402",
+      "bytes": 15237
+    },
+    {
+      "path": "analysis/live_controls.json",
+      "sha256": "56e197f7598d6847fe7a9a3690b9315138d7e7af8ed63bc8e30a73cd6f7df4f8",
+      "bytes": 14445
+    },
+    {
+      "path": "analysis/live_readiness.json",
+      "sha256": "e59fff796b73cc0b8a2c0e466e8ad360c376b6aa1d11a572377a653d25b29990",
+      "bytes": 2937
+    },
+    {
+      "path": "analysis/live_readiness.md",
+      "sha256": "26ae33ecdda047231b6ebb1919a3883a2c82d3e6ca655257085eb6ca8a6edde7",
+      "bytes": 1868
+    },
+    {
+      "path": "artwork/bitmap/brow_l.png",
+      "sha256": "fa8ace889fd732c983263f30773b742282c4279b4bf10ee6ca97970a1bc63913",
+      "bytes": 6751
+    },
+    {
+      "path": "artwork/bitmap/brow_r.png",
+      "sha256": "e48c4947abde21676bff13caabcbdbae140c158709a25b0b443e4b3b7c3e96ff",
+      "bytes": 6751
+    },
+    {
+      "path": "artwork/bitmap/eye_l.png",
+      "sha256": "588a580e5a769aa2b13e3f03b7c43ebc2fe1b1a395a840e973852b173a667e61",
+      "bytes": 16510
+    },
+    {
+      "path": "artwork/bitmap/eye_r.png",
+      "sha256": "b32817976d7ba206ddbb65b66a50974767f15807e32b12a544796ea106a29b39",
+      "bytes": 16506
+    },
+    {
+      "path": "artwork/bitmap/foot_l.png",
+      "sha256": "ea2bc1fb85fc624b82efd8628ee009b92a39af2929cb7b46ea9812a853a89d73",
+      "bytes": 9771
+    },
+    {
+      "path": "artwork/bitmap/foot_r.png",
+      "sha256": "5709f5ddd3e5897437c9861507b01e1447414ff7022d81e92779aaea9f4d9ccf",
+      "bytes": 9785
+    },
+    {
+      "path": "artwork/bitmap/forearm_l.png",
+      "sha256": "ba0beab861641eeec009ab008160e8e2839808bdedd1f68176c730e90706b24b",
+      "bytes": 14085
+    },
+    {
+      "path": "artwork/bitmap/forearm_r.png",
+      "sha256": "3ac80d991330a66a52c66990c883a8f6ec04432cf543c5117918d3ff9c11b7bc",
+      "bytes": 13862
+    },
+    {
+      "path": "artwork/bitmap/hair.png",
+      "sha256": "839e6b24f3987cefdef53dedeed686f518a6a5c5ce2aca2188035c27ba9eba2a",
+      "bytes": 15470
+    },
+    {
+      "path": "artwork/bitmap/hand_l.png",
+      "sha256": "1263cc6f4ef243a40815fcc7ae1f5857011a180bdec64e94715bf63850ae0f83",
+      "bytes": 12669
+    },
+    {
+      "path": "artwork/bitmap/hand_r.png",
+      "sha256": "47652eb1a915036c0da85a63f8553404b6217ff4c200fda338957faed40705eb",
+      "bytes": 12713
+    },
+    {
+      "path": "artwork/bitmap/head_base.png",
+      "sha256": "71e7507fa81ea85b1c4d562d83c5985ef94080adc73972531eb38ca3dfc167df",
+      "bytes": 36740
+    },
+    {
+      "path": "artwork/bitmap/mouth.png",
+      "sha256": "58d58374dbc134fc0b3de50971636f69b5cec6881431bf5ac82e4b0159e42bc7",
+      "bytes": 7332
+    },
+    {
+      "path": "artwork/bitmap/neck.png",
+      "sha256": "32dd78c0af2e28a324e3f1ad0c255b15401ff37271e9f3221e0525e8e42bd60b",
+      "bytes": 6352
+    },
+    {
+      "path": "artwork/bitmap/nose.png",
+      "sha256": "b5e7d5bc852d86c01c870e0b1420bf297ca2b87ec44171d83d00aabfb4fa2a7e",
+      "bytes": 8110
+    },
+    {
+      "path": "artwork/bitmap/pelvis.png",
+      "sha256": "4e8891142dc794befdd38fd8c19e782a3728227cde94642e4b5e9a7057435b48",
+      "bytes": 7842
+    },
+    {
+      "path": "artwork/bitmap/shin_l.png",
+      "sha256": "35b5b6efe911e70f9cfff835d1bd63b5ed9c9bb0f4051999395c1685bed33201",
+      "bytes": 8050
+    },
+    {
+      "path": "artwork/bitmap/shin_r.png",
+      "sha256": "4c6a790f643d954cf3556cf724366eae4841276be5c9378a605315b7747cbb4f",
+      "bytes": 8050
+    },
+    {
+      "path": "artwork/bitmap/thigh_l.png",
+      "sha256": "7dd5c199964a61f8ab1b8d988515eb2271d3e87bc21385e23820c877a0057c04",
+      "bytes": 11763
+    },
+    {
+      "path": "artwork/bitmap/thigh_r.png",
+      "sha256": "57361b6b565f7a5fc6ad2025a847e3ff5575441f18d57127acdb58f2380d521f",
+      "bytes": 11748
+    },
+    {
+      "path": "artwork/bitmap/torso.png",
+      "sha256": "416cf1fb83e615fff7406848f71934560dd0227510cedad3505cd6e763e42403",
+      "bytes": 15731
+    },
+    {
+      "path": "artwork/bitmap/upper_arm_l.png",
+      "sha256": "efb5b4ba7aaf301dd548073f627820645a88e9c464a23dba71497f164ef9134c",
+      "bytes": 16579
+    },
+    {
+      "path": "artwork/bitmap/upper_arm_r.png",
+      "sha256": "0b78cd02b0e9de4760a0a7a6592db73ecc58b4d670c7e7f9f952520ad61c15fe",
+      "bytes": 16148
+    },
+    {
+      "path": "artwork/layers.json",
+      "sha256": "ee5977837f4e6cf6109ce1abba7e1f88f355d6b82b94c49ca0e08653ec90f632",
+      "bytes": 30650
+    },
+    {
+      "path": "artwork/vector/README.md",
+      "sha256": "b9074bf39cf42ff008a0c757633689fb45e8f4c0ab69372b75e4028c018cf48c",
+      "bytes": 273
+    },
+    {
+      "path": "masks/body/foot_l.png",
+      "sha256": "882a764ed13edd8ce86dc55f7ae21ef957580570febf934e87d0865656278042",
+      "bytes": 1838
+    },
+    {
+      "path": "masks/body/foot_r.png",
+      "sha256": "d977b10117ff1ce16b6cad6c9c85fceeb3d53e2dc8acf4646047c52016cad587",
+      "bytes": 1843
+    },
+    {
+      "path": "masks/body/forearm_l.png",
+      "sha256": "1762b37157d6db991dc6d27f30a900c57bb48c54fb8bb2b692368ae1308245b7",
+      "bytes": 2062
+    },
+    {
+      "path": "masks/body/forearm_r.png",
+      "sha256": "8ade317fbe69e7beb2db0c15f1bded59cbc7a7b7614ae4749b363b3dee9e5391",
+      "bytes": 2072
+    },
+    {
+      "path": "masks/body/hair.png",
+      "sha256": "24ca3e729db546c82f391d25a97004a5005bca1d376f3102d0dcc6339add6888",
+      "bytes": 2209
+    },
+    {
+      "path": "masks/body/hand_l.png",
+      "sha256": "83bee8c8d817f602ce69643b944302fe4d02cd7b4ea064b2f579b017b79620a4",
+      "bytes": 1869
+    },
+    {
+      "path": "masks/body/hand_r.png",
+      "sha256": "fcac65903785537560a58a53f618b1aa6ad0b38b390f996846175c060c352b37",
+      "bytes": 1860
+    },
+    {
+      "path": "masks/body/head.png",
+      "sha256": "6f44c0389599395fecbc191a7f7b076527cbca43e64eb6a11c005d72736c4d83",
+      "bytes": 2686
+    },
+    {
+      "path": "masks/body/neck.png",
+      "sha256": "cd9c5bef9abe7115d0471d68204d86d0d966eb0f139e495f4cc11434a404838c",
+      "bytes": 1588
+    },
+    {
+      "path": "masks/body/pelvis.png",
+      "sha256": "49d0896a48455c9f2e4468de76f58a295f4cc8a2284e69559c61d172176e0150",
+      "bytes": 1979
+    },
+    {
+      "path": "masks/body/shin_l.png",
+      "sha256": "3b815ea4217ac9c0c08ed2cf7d4544fb08340f8d099021b4e366367ecfbd2c82",
+      "bytes": 1850
+    },
+    {
+      "path": "masks/body/shin_r.png",
+      "sha256": "966e6c21bc87fa7dd9bf3d901fef12400eb4be0b1fc2f44b157fd99508dfe6b7",
+      "bytes": 1861
+    },
+    {
+      "path": "masks/body/thigh_l.png",
+      "sha256": "6cdaa7e031a8cd81563c25f9ad5711d87499c53a5688de6ce8520ca9b6d38aeb",
+      "bytes": 1884
+    },
+    {
+      "path": "masks/body/thigh_r.png",
+      "sha256": "c153f498a67371388e388b07cc6fd7403d4e699b0f3449470dea1e3f124e6661",
+      "bytes": 1907
+    },
+    {
+      "path": "masks/body/torso.png",
+      "sha256": "97e7533b6dc83357a80615c9564a0c93b78a709d768159bff79b5119475ccfb5",
+      "bytes": 2343
+    },
+    {
+      "path": "masks/body/upper_arm_l.png",
+      "sha256": "83b0384736dc449785eadd7d664e22a9173cc578e5014d91e746428432792d37",
+      "bytes": 2121
+    },
+    {
+      "path": "masks/body/upper_arm_r.png",
+      "sha256": "de35174f3440fd5e2e5afb9e1e898fe1c67576f94954884cb7d50ffe93329e23",
+      "bytes": 2123
+    },
+    {
+      "path": "masks/face/brow_l.png",
+      "sha256": "9ae0000cce596320cf4e0db32987308d36986b151704b32c134c3940c215a0b7",
+      "bytes": 1663
+    },
+    {
+      "path": "masks/face/brow_r.png",
+      "sha256": "9252dbfd2d9a12d8da59b8eb8b444d7335b75c91bd41ede9942dbe2cb9a61ee6",
+      "bytes": 1660
+    },
+    {
+      "path": "masks/face/ear_l.png",
+      "sha256": "c99a7f901c151599481bd018313d80469017bec345536ff8c05395e43d6152c4",
+      "bytes": 1858
+    },
+    {
+      "path": "masks/face/ear_r.png",
+      "sha256": "4342f367e4531fa3e717df21635b8890c596149505937e6802761839e4aa08db",
+      "bytes": 1847
+    },
+    {
+      "path": "masks/face/eye_l.png",
+      "sha256": "03c3ad69064d895d5069b0ffa82d00d2a2e18e37f60786604ff49a3ee42f047d",
+      "bytes": 1928
+    },
+    {
+      "path": "masks/face/eye_r.png",
+      "sha256": "eb5a14703819d050970423ad87daef9d85711fed157e4068ebbb0379655be049",
+      "bytes": 1926
+    },
+    {
+      "path": "masks/face/head_base.png",
+      "sha256": "4e413cd39fb537914f4296388e525c3920071fb816962b2eb34d647f12ced21e",
+      "bytes": 3583
+    },
+    {
+      "path": "masks/face/iris_l.png",
+      "sha256": "6349e99b39d2cf34b4a60903bf31b8a9690d191581b66f467e3a995dec011927",
+      "bytes": 1731
+    },
+    {
+      "path": "masks/face/iris_r.png",
+      "sha256": "8f05248de33decc14a46b974fb7ac31a7c763f818ae72f161b85fc93360fd071",
+      "bytes": 1730
+    },
+    {
+      "path": "masks/face/mouth.png",
+      "sha256": "1fdac1d66456dc525e254d0c765219bc52b1632220aed42fdb6a4038fc3e9750",
+      "bytes": 1717
+    },
+    {
+      "path": "masks/face/nose.png",
+      "sha256": "eeed7d905c72c09cfb1c42076136d7832055e8349ee2af8142c89cd5342621a9",
+      "bytes": 1662
+    },
+    {
+      "path": "masks/face/pupil_l.png",
+      "sha256": "a6acf5a4d62f752a220ee14fb0d92993520f8b6530b2e03c31c09b4346dd47f5",
+      "bytes": 1641
+    },
+    {
+      "path": "masks/face/pupil_r.png",
+      "sha256": "a9710ebe469619f89a81dcd37068eecc96dda6156ed028c200090773032fe6ab",
+      "bytes": 1639
+    },
+    {
+      "path": "previews/difference.png",
+      "sha256": "71ba39d1132b8058f746fa7784eccf85475e8522fbdcf801d82eefe950570cdd",
+      "bytes": 73813
+    },
+    {
+      "path": "previews/facial_segmentation.png",
+      "sha256": "207e7913f2f5679e78ccea6e27b754d306e96db143d246915177b59bf00c36b4",
+      "bytes": 224670
+    },
+    {
+      "path": "previews/layers.png",
+      "sha256": "c1698579f530958f8d75bcda9a6c6901f871650a866202af5725565d63e62f36",
+      "bytes": 133818
+    },
+    {
+      "path": "previews/original.png",
+      "sha256": "b1938e2136eb873ae21856752cb57cb09b4ee3c1be64932b218af8aaca37e457",
+      "bytes": 127972
+    },
+    {
+      "path": "previews/reconstructed.png",
+      "sha256": "e823b71406e162e6714d4a51bdf4db49c98a80795739116857456318949d5e93",
+      "bytes": 119704
+    },
+    {
+      "path": "previews/segmentation.png",
+      "sha256": "9cae43f2113a5224673a0e7d2ed4b998f0088f632bb46dd99ab2f9610135a710",
+      "bytes": 115184
+    },
+    {
+      "path": "source/original.png",
+      "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
+      "bytes": 115119
+    }
+  ],
+  "schema_validation": {
+    "anatomy": "ok",
+    "face": "ok",
+    "live_readiness": "ok",
+    "live_controls": "ok",
+    "hybrid_artwork": "ok",
+    "character_project": "ok"
+  },
+  "warnings": [],
+  "limitations": [
+    "Joint positions are approximate; unreliable ones are flagged and need manual review.",
+    "No hidden artwork was reconstructed or invented (Phase 1 scope).",
+    "Moho SHOWTIME input mappings are proposals only; none is verified.",
+    "Edge pixels are kept opaque with their original (background-blended) colours; placing a layer on a different background can show a faint halo until alpha matting is added.",
+    "Phase 0 Moho integration has not been verified inside Moho."
+  ]
+}

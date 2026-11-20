@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.character_project-1.0.0",
+  "title": "AutoRig Studio character_project 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "autorig_version",
+    "created_at",
+    "source",
+    "source_unchanged_after_processing",
+    "pipeline",
+    "segmentation_runs",
+    "cost",
+    "fidelity",
+    "outputs",
+    "warnings",
+    "limitations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.character_project"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "autorig_version": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sha256",
+        "width",
+        "height",
+        "project_path",
+        "byte_identical_copy"
+      ]
+    },
+    "source_unchanged_after_processing": {
+      "type": "boolean"
+    },
+    "pipeline": {
+      "type": "object",
+      "required": [
+        "steps",
+        "config"
+      ]
+    },
+    "segmentation_runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "provider",
+          "model",
+          "version"
+        ]
+      }
+    },
+    "cost": {
+      "type": "object",
+      "required": [
+        "this_run_estimated_usd",
+        "basis"
+      ]
+    },
+    "fidelity": {
+      "type": "object",
+      "required": [
+        "coverage_ratio",
+        "overlap_pixels",
+        "max_abs_error_inside_layers"
+      ]
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ]
+      }
+    },
+    "schema_validation": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
