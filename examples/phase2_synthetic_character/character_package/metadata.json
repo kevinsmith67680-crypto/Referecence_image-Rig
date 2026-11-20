@@ -3,7 +3,7 @@
   "schema_version": "1.0.0",
   "phase": 2,
   "autorig_version": "0.0.1",
-  "created_at": "2026-11-20T19:54:50Z",
+  "created_at": "2026-11-20T20:59:02Z",
   "source": {
     "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
     "byte_identical_copy": true,
@@ -28,6 +28,7 @@
       "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
       "negative_prompt": "photorealistic, texture, gradient, noise, new objects, text",
       "force_generative": [],
+      "inpaint_min_side": 512,
       "reconstruct_unexposed": false
     },
     "sweep_step": 30,
@@ -323,8 +324,8 @@
     },
     {
       "path": "artwork/store.json",
-      "sha256": "7ac7c439c8d97080c06f73d5acbad1ba1ee841d7ba673d177a2550a33cc4fb05",
-      "bytes": 34510
+      "sha256": "6ae3d0338a8564956feaebd3b9eaf3d1c7b669e80b4ff409693fd3de83834620",
+      "bytes": 34521
     },
     {
       "path": "artwork/vector/eyelid_guide_l.svg",
@@ -967,6 +968,6 @@
       "bytes": 115119
     }
   ],
-  "duration_s": 100.6,
+  "duration_s": 105.5,
   "warnings": []
 }

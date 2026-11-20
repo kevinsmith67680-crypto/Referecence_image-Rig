@@ -10,7 +10,7 @@ import pytest
 from PIL import Image
 
 from autorig.phase1 import masks as M
-from autorig.phase2.occlusion import OcclusionAnalyzer, resolve_z_order
+from autorig.phase2.occlusion import OcclusionAnalyzer, resolve_z_order, trim_regions_to_cover
 from autorig.phase2.providers import (ADAPTERS, CandidateRejected, FixtureReconstructionProvider, ModelDriftError,
                                       ReconstructionRequest, ReplicateInpaintProvider, encode_mask)
 from autorig.phase2.reconstruct import ReconstructionConfig, ReconstructionEngine
@@ -132,6 +132,42 @@ def test_engine_filters_generative_output(tmp_path):
     assert st.verify() == []
 
 
+@pytest.mark.parametrize("exc, expected", [(BudgetExceeded("ceiling"), "generative_skipped_budget"),
+                                           (ReplicatePredictionError("nsfw", {}), "generative_failed")])
+def test_engine_records_paid_failures_and_continues(tmp_path, exc, expected):
+    src, comps = _scene()
+    st = ArtworkStore(tmp_path, W, H)
+    for c, m in comps.items():
+        st.add_original(c, np.where(m[..., None], src, 0).astype(np.uint8), {})
+    region = Region("torso__under__upper_arm_r", "torso", ["upper_arm_r"], box(30, 15, 40, 35) & ~comps["torso"],
+                    "shoulder_r", ["shoulder_r"], "test", 0.8, False)
+
+    def boom(req, k):
+        raise exc
+
+    cfg = ReconstructionConfig(force_generative={region.id}, context_px=4, max_crop=64)
+    eng = ReconstructionEngine(st, src, comps, {"torso": None}, np.zeros((H, W), bool),
+                               FixtureReconstructionProvider(boom), cfg)
+    res = eng.run([region])[0]
+    assert res["strategy"] == expected and res["extensions"] == [] and not st.extensions
+
+
+def test_engine_stops_on_model_drift(tmp_path):
+    src, comps = _scene()
+    st = ArtworkStore(tmp_path, W, H)
+    region = Region("torso__under__upper_arm_r", "torso", ["upper_arm_r"], box(30, 15, 40, 35) & ~comps["torso"],
+                    "shoulder_r", ["shoulder_r"], "test", 0.8, False)
+
+    def drift(req, k):
+        raise ModelDriftError("changed")
+
+    cfg = ReconstructionConfig(force_generative={region.id}, context_px=4, max_crop=64)
+    eng = ReconstructionEngine(st, src, comps, {"torso": None}, np.zeros((H, W), bool),
+                               FixtureReconstructionProvider(drift), cfg)
+    with pytest.raises(ModelDriftError):
+        eng.run([region])
+
+
 def test_candidate_size_mismatch_rejected():
     req = ReconstructionRequest("r", np.zeros((32, 32, 4), np.uint8), np.ones((32, 32), bool), "p")
     prov = FixtureReconstructionProvider(lambda r, k: np.zeros((30, 32, 4), np.uint8))
@@ -179,11 +215,11 @@ class FakeInpaint:
         return httpx.Response(404)
 
 
-def provider(tmp_path, fake, adapter="flux-fill-dev", ceiling=1.0):
+def provider(tmp_path, fake, adapter="flux-fill-dev", ceiling=1.0, **kw):
     client = ReplicateClient("fake-token-not-a-secret", transport=httpx.MockTransport(fake), sleep=lambda s: None,
                              backoff_seconds=0)
     return ReplicateInpaintProvider(client, tmp_path, adapter=adapter, policy=CostPolicy(ceiling_usd=ceiling),
-                                    poll_seconds=0)
+                                    poll_seconds=0, **kw)
 
 
 def req(n=2, neg=None):
@@ -198,10 +234,17 @@ def test_inpaint_candidates_seeds_cache_and_cost(tmp_path):
     cands = prov.reconstruct(req(n=2))
     assert len(cands) == 2 and [c.seed for c in cands] == [7, 8]
     assert fake.created[0]["num_outputs"] == 2 and fake.created[0]["megapixels"] == "match_input"
+    assert fake.created[0]["image"].startswith("data:image/png;base64,") and not fake.uploads  # inline by default
     assert prov.ledger.total_usd() == pytest.approx(2 * 0.05)
     n = len(fake.requests)
     again = prov.reconstruct(req(n=2))
     assert len(fake.requests) == n and np.array_equal(again[0].rgba, cands[0].rgba)  # cache hit, free
+
+
+def test_upload_transport_still_supported(tmp_path):
+    fake = FakeInpaint("flux-fill-dev")
+    provider(tmp_path, fake, image_transport="upload").reconstruct(req(n=1))
+    assert len(fake.uploads) == 2 and fake.created[0]["image"].startswith("https://api.replicate.com/v1/files/")
 
 
 def test_mask_conventions_differ_per_model(tmp_path):
@@ -255,3 +298,48 @@ def test_crop_constraints_enforced(tmp_path):
     bad = ReconstructionRequest("r", np.zeros((50, 64, 4), np.uint8), np.ones((50, 64), bool), "p")
     with pytest.raises(ValueError, match="multiple of 32"):
         provider(tmp_path, FakeInpaint("flux-fill-dev")).reconstruct(bad)
+
+
+def test_regions_trimmed_to_final_z_order_cover():
+    sh = (20, 20)
+    hand, forearm, other = np.zeros(sh, bool), np.zeros(sh, bool), np.zeros(sh, bool)
+    forearm[0:10, :] = True
+    other[10:12, 0:5] = True
+    region = np.zeros(sh, bool)
+    region[5:15, 0:10] = True  # claims hand pixels under the forearm AND under 'other' AND uncovered ones
+    r = Region("hand__under__forearm", "hand", ["forearm"], region.copy(), "wrist", ["wrist"], "t", 0.5, True)
+    kept, notes = trim_regions_to_cover([r], ["hand", "forearm", "other"], {"hand": hand, "forearm": forearm,
+                                                                          "other": other})
+    assert kept == [r] and np.array_equal(r.mask, region & (forearm | other)) and r.notes and not notes
+    # an ambiguous edge the z-order did not enforce: the occluder is BEHIND the owner -> region dropped
+    r2 = Region("hand__under__forearm", "hand", ["forearm"], region.copy(), "wrist", ["wrist"], "t", 0.5, True)
+    kept, notes = trim_regions_to_cover([r2], ["forearm", "other", "hand"], {"hand": hand, "forearm": forearm,
+                                                                           "other": other})
+    assert kept == [] and "dropped" in notes[0]
+
+
+def test_small_crops_upscaled_for_the_model_and_averaged_back(tmp_path):
+    src, comps = _scene()
+    st = ArtworkStore(tmp_path, W, H)
+    for c, m in comps.items():
+        st.add_original(c, np.where(m[..., None], src, 0).astype(np.uint8), {})
+    region_mask = box(30, 15, 40, 35) & ~comps["torso"]
+    region = Region("torso__under__upper_arm_r", "torso", ["upper_arm_r"], region_mask, "shoulder_r",
+                    ["shoulder_r"], "test", 0.8, False)
+    seen = []
+
+    def checker(req, k):  # a 2x2 checkerboard per source pixel averages back to flat grey
+        seen.append(req.mask.shape)
+        yy, xx = np.indices(req.mask.shape)
+        v = np.where((yy + xx) % 2 == 0, 100, 200).astype(np.uint8)
+        return np.dstack([v, v, v, np.full_like(v, 255)])
+
+    cfg = ReconstructionConfig(force_generative={region.id}, n_candidates=1, context_px=4, max_crop=64,
+                               inpaint_min_side=64)
+    eng = ReconstructionEngine(st, src, comps, {"torso": None}, np.zeros((H, W), bool),
+                               FixtureReconstructionProvider(checker), cfg)
+    res = eng.run([region])[0]
+    assert res["model_input_scale"] == 2 and all(max(sh) >= 64 for sh in seen)
+    ext = st.extension_rgba(st.extensions[0])
+    assert ext.shape[:2] == (H, W) and set(np.unique(ext[region_mask][:, 0])) == {150}
+    assert st.extensions[0].provenance["model_input_scale"] == 2 and st.verify() == []

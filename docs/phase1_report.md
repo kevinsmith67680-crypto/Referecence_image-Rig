@@ -1,5 +1,9 @@
 # Phase 1 report: AI character analysis, segmentation and live-puppeteering preparation
 
+> **Update 2026-11-20:** Replicate credit and the user's reference image are now available. The first real-artwork
+> run of Phases 1 and 2 (real SAM 3 and FLUX Fill inpainting, $0.51) is documented in
+> [real_artwork_test.md](real_artwork_test.md). The verdict stays PARTIAL; the reasons are listed there.
+
 | | |
 |---|---|
 | **Verdict** | **PARTIAL** |

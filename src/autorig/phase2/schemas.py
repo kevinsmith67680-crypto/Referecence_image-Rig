@@ -24,7 +24,7 @@ REGION = {"type": "object",
                        "confidence", "ambiguous", "strategy"],
           "properties": {"pixels": {"type": "integer", "minimum": 1}, "confidence": CONF, "bbox_xyxy": BBOX,
                          "strategy": {"enum": ["deterministic_flat_fill", "generative", "generative_required_no_provider",
-                                               "generative_required_region_too_large", "generative_failed",
+                                               "generative_required_region_too_large", "generative_failed", "generative_skipped_budget",
                                                "not_needed_for_planned_motion", "not_applicable", "pending"]}}}
 OCCLUSION = doc("occlusion", {
     "image": {"type": "object"},

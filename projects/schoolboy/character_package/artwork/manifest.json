@@ -1,0 +1,1058 @@
+{
+  "schema": "autorig.artwork_manifest",
+  "schema_version": "1.0.0",
+  "contract_version": "2.0.0",
+  "coordinate_system": {
+    "width": 213,
+    "height": 615,
+    "origin": "top-left, +y down, source pixels",
+    "rule": "all bitmap, mask and vector assets share this canvas; no scaling/offsets"
+  },
+  "original_bitmap": {
+    "path": "source/original.png",
+    "sha256": "7bf1e9a084105fafc22373e239ab06366f62268f1f980af9c9807c2a5dc0f34e"
+  },
+  "layers": [
+    {
+      "id": "thigh_r",
+      "category": "A_original",
+      "image": "artwork/original/thigh_r.png",
+      "z_index": 0,
+      "bone": "thigh_r",
+      "pivot": [
+        88.0,
+        375.0
+      ],
+      "pixel_sha256": "e4f5ada1aa7dfa47d9f254f090f6d95a235ecd06557d5ed2a1789cc84b4214cd",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/thigh_r.png",
+        "phase1_file_sha256": "dafb3266b69e39602a3817338bd9ada7e30af397238d6f076ff8b1c6ab419b8d",
+        "split": null
+      }
+    },
+    {
+      "id": "thigh_l",
+      "category": "A_original",
+      "image": "artwork/original/thigh_l.png",
+      "z_index": 1,
+      "bone": "thigh_l",
+      "pivot": [
+        148.0,
+        375.0
+      ],
+      "pixel_sha256": "3bec344a0e6627a64661b3efb148cd14faa435f0c13ad8e7240554a6ded656a5",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/thigh_l.png",
+        "phase1_file_sha256": "ad73e6ed63d61ad873b8ef3dd4204e7c77da72ed5c2846ae3d16ae4707fc29ce",
+        "split": null
+      }
+    },
+    {
+      "id": "shin_l",
+      "category": "A_original",
+      "image": "artwork/original/shin_l.png",
+      "z_index": 2,
+      "bone": "shin_l",
+      "pivot": [
+        150.0,
+        460.0
+      ],
+      "pixel_sha256": "83cc2fb4d3588702b9ca8acdaa34b118cf970a05338ef8b1477bba8e9fd8937f",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/shin_l.png",
+        "phase1_file_sha256": "8be67120ab652ce2594c36566ec605c90ff79a54ea53471c525420a4b721ff94",
+        "split": null
+      }
+    },
+    {
+      "id": "shin_r",
+      "category": "A_original",
+      "image": "artwork/original/shin_r.png",
+      "z_index": 3,
+      "bone": "shin_r",
+      "pivot": [
+        82.0,
+        460.0
+      ],
+      "pixel_sha256": "c0ed4757d6019ff3f974999c1b54bb1769136e342ee84ecc700cbe0c12504ca1",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/shin_r.png",
+        "phase1_file_sha256": "e97bfe31b7ad6246b7f69a0f33dfb93e30396638b1ad0bffd09073e9f0ffb7d8",
+        "split": null
+      }
+    },
+    {
+      "id": "foot_r",
+      "category": "A_original",
+      "image": "artwork/original/foot_r.png",
+      "z_index": 4,
+      "bone": "foot_r",
+      "pivot": [
+        75.0,
+        553.0
+      ],
+      "pixel_sha256": "6c784025af7be0b0be149ae634b7fa678f06abf00fe01c99d9f99b56546f0493",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/foot_r.png",
+        "phase1_file_sha256": "28fe137933e9fece875f8d18068007628d2dc31eb79a8ec375293f12b8dd3d03",
+        "split": null
+      }
+    },
+    {
+      "id": "foot_l",
+      "category": "A_original",
+      "image": "artwork/original/foot_l.png",
+      "z_index": 5,
+      "bone": "foot_l",
+      "pivot": [
+        154.0,
+        555.0
+      ],
+      "pixel_sha256": "bdfb1b8b9135939af3f5e70195ef449d87fc1b275308a685effbb7cd1f186947",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/foot_l.png",
+        "phase1_file_sha256": "c9bb9cceea98bea07be8ef7d25833f528d9f54e53f8cdc258c6e4bed7b7b8b33",
+        "split": null
+      }
+    },
+    {
+      "id": "pelvis",
+      "category": "A_original",
+      "image": "artwork/original/pelvis.png",
+      "z_index": 6,
+      "bone": "body",
+      "pivot": null,
+      "pixel_sha256": "4bea9f418e76cb56b29dcd60db8d7caeb8d045a38181768cfaa1573ba7984bb5",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/pelvis.png",
+        "phase1_file_sha256": "49dad0bcb79e5c6566ba89623b26ad55003a96599412b57eb6855a8fc6eddef8",
+        "split": null
+      }
+    },
+    {
+      "id": "neck",
+      "category": "A_original",
+      "image": "artwork/original/neck.png",
+      "z_index": 7,
+      "bone": "body",
+      "pivot": null,
+      "pixel_sha256": "081132f43ee1a2a1a45912fa5d7d0d871f78371153ba0c6d8f5793e2772c1ce2",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/neck.png",
+        "phase1_file_sha256": "0c1c48b7a0c24f30e64eb2b33cd7777bcbaa0937798f1f76772209a23210c3a0",
+        "split": null
+      }
+    },
+    {
+      "id": "torso",
+      "category": "A_original",
+      "image": "artwork/original/torso.png",
+      "z_index": 8,
+      "bone": "body",
+      "pivot": null,
+      "pixel_sha256": "b675bbadf7b0326dc732fd5bed3b15a80c1f8772558f193d6fae4ee5c9048d1a",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/torso.png",
+        "phase1_file_sha256": "3071db5a50dddb9d5a8ea004cfe92971d9c938391fb3fc5f6173eddf0f298580",
+        "split": null
+      }
+    },
+    {
+      "id": "upper_arm_r",
+      "category": "A_original",
+      "image": "artwork/original/upper_arm_r.png",
+      "z_index": 9,
+      "bone": "upper_arm_r",
+      "pivot": [
+        48.22,
+        217.72
+      ],
+      "pixel_sha256": "367309a35e6e058c4323239bf8110afe9ab1a61d438e4b9ccfd0f9ad48629e6c",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/upper_arm_r.png",
+        "phase1_file_sha256": "bdb9ae48c3fa713fcf449e920b28bcf1f825387fbf5f418756246e27177c90b3",
+        "split": null
+      }
+    },
+    {
+      "id": "forearm_r",
+      "category": "A_original",
+      "image": "artwork/original/forearm_r.png",
+      "z_index": 10,
+      "bone": "forearm_r",
+      "pivot": [
+        38.0,
+        292.0
+      ],
+      "pixel_sha256": "783b53b90c8d9c9cb744a5478f4c9f92a11e8d0aabc9a8b1bb168dc41ed34d34",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/forearm_r.png",
+        "phase1_file_sha256": "a8bdbf60afef4b1d2547833fba584a576f1af5de99a62cb6b1bda58e82763742",
+        "split": null
+      }
+    },
+    {
+      "id": "hand_r",
+      "category": "A_original",
+      "image": "artwork/original/hand_r.png",
+      "z_index": 11,
+      "bone": "hand_r",
+      "pivot": [
+        45.0,
+        372.0
+      ],
+      "pixel_sha256": "559613f5c651c3a2c9f50c393f50261380dae6f431c8f0cb4b5db3287c0b96a7",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hand_r.png",
+        "phase1_file_sha256": "fed016cc971946da6a63451d138efd3d7b3f1eede2bca8e452201cb544e6436d",
+        "split": null
+      }
+    },
+    {
+      "id": "upper_arm_l",
+      "category": "A_original",
+      "image": "artwork/original/upper_arm_l.png",
+      "z_index": 12,
+      "bone": "upper_arm_l",
+      "pivot": [
+        184.0,
+        215.19
+      ],
+      "pixel_sha256": "e345b8e93dfa3d52d8ae0f4106e223d33367ce4711d3f3fb0ec993eba512e6f1",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/upper_arm_l.png",
+        "phase1_file_sha256": "93609f80fe95b81f7d65f4188920f92a5d1e3a37d6a9ecd51f0b5c249519f99e",
+        "split": null
+      }
+    },
+    {
+      "id": "forearm_l",
+      "category": "A_original",
+      "image": "artwork/original/forearm_l.png",
+      "z_index": 13,
+      "bone": "forearm_l",
+      "pivot": [
+        190.0,
+        292.0
+      ],
+      "pixel_sha256": "1bdc06824065173c8ed3b0905141301d29303abf67f039363c7a4997e32bc67a",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/forearm_l.png",
+        "phase1_file_sha256": "a72ed731f774db017c7c629589247093edcd23b282b572c23ae24473919a8f4a",
+        "split": null
+      }
+    },
+    {
+      "id": "hand_l",
+      "category": "A_original",
+      "image": "artwork/original/hand_l.png",
+      "z_index": 14,
+      "bone": "hand_l",
+      "pivot": [
+        190.0,
+        372.0
+      ],
+      "pixel_sha256": "44bceeaf44cb774ead804b6928134e23bbdb75680adf34bc4740ef84a8620a03",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hand_l.png",
+        "phase1_file_sha256": "4980c06424ad4cf03bbb4dd765eb33997b11dece2ebfd2c971a7a950974c780d",
+        "split": null
+      }
+    },
+    {
+      "id": "head_base",
+      "category": "A_original",
+      "image": "artwork/original/head_base.png",
+      "z_index": 15,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "4f1418629d7c48bbfb08a8203c014194e5075077c79b47722bddca339f7d1de8",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/head_base.png",
+        "phase1_file_sha256": "d6faa4c23784ab39a8e5de6fb3121f0af4dcbbd8b7bc66e1f68cfe862ca508e3",
+        "split": null
+      }
+    },
+    {
+      "id": "nose",
+      "category": "A_original",
+      "image": "artwork/original/nose.png",
+      "z_index": 16,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "b70aed02d1a3a823359bf6e5d185bd16d9b676b81c14b0c88fc7554be9f94925",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/nose.png",
+        "phase1_file_sha256": "b09df38ea797eff468876114392fa77f862945124ca425139b04937e76d0a642",
+        "split": null
+      }
+    },
+    {
+      "id": "mouth",
+      "category": "A_original",
+      "image": "artwork/original/mouth.png",
+      "z_index": 17,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "586ffa4fa92c0cb77d48fda071ba0e3245b09a819043a694ac6d59c8960153b5",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/mouth.png",
+        "phase1_file_sha256": "9ed90736176959dfcfa5ac6e2089c81c563d5017a0cfb98717f7ea16fde1cfc7",
+        "split": null
+      }
+    },
+    {
+      "id": "eye_r_white",
+      "category": "A_original",
+      "image": "artwork/original/eye_r_white.png",
+      "z_index": 18,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "3fb5917267f1dd22e46f9cb25c429bc86ca6aa92fdcbfd084b0272914b022a64",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_r.png",
+        "phase1_file_sha256": "1644b896f315e42d3b01a2853131c94614328f590d26ff282c149e79e2b3e48f",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "eye_r_iris",
+      "category": "A_original",
+      "image": "artwork/original/eye_r_iris.png",
+      "z_index": 19,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "83c01437f3718f7a3719a35c207811c71679819cad9b88027cf848f69fb479b6",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_r.png",
+        "phase1_file_sha256": "1644b896f315e42d3b01a2853131c94614328f590d26ff282c149e79e2b3e48f",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "eye_l_white",
+      "category": "A_original",
+      "image": "artwork/original/eye_l_white.png",
+      "z_index": 20,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "bf787f36564489640e9440a20e105955161387390d4c1883eb4eafc8a21cf3a3",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_l.png",
+        "phase1_file_sha256": "b9f89a040828ae5ca247798b617d15770728b3be63b033d416ad8e8c23bfe7c1",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "eye_l_iris",
+      "category": "A_original",
+      "image": "artwork/original/eye_l_iris.png",
+      "z_index": 21,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "1b2140e213bd6a7820e8cec16ced38eaef8a736f0ec60f66b891801adfc24a35",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_l.png",
+        "phase1_file_sha256": "b9f89a040828ae5ca247798b617d15770728b3be63b033d416ad8e8c23bfe7c1",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    {
+      "id": "brow_r",
+      "category": "A_original",
+      "image": "artwork/original/brow_r.png",
+      "z_index": 22,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "f02b00de8ddaaa80064cb79bd31892532e8a67fb67962f6df862421c4c5548a8",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/brow_r.png",
+        "phase1_file_sha256": "249b1c40e9516ad54b2d4e827381c218f6d54201870eac92178591f2ead2311e",
+        "split": null
+      }
+    },
+    {
+      "id": "brow_l",
+      "category": "A_original",
+      "image": "artwork/original/brow_l.png",
+      "z_index": 23,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "b2db1084d8731586d09009f5de8364ca5999d0279197cd407563cce17222d45b",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/brow_l.png",
+        "phase1_file_sha256": "e79e46a6e5cdb79ec57d908886a5e66994ba2433ce29009387161c7627ef2fdf",
+        "split": null
+      }
+    },
+    {
+      "id": "hair",
+      "category": "A_original",
+      "image": "artwork/original/hair.png",
+      "z_index": 24,
+      "bone": "head",
+      "pivot": [
+        116.06,
+        162.54
+      ],
+      "pixel_sha256": "bad00feed8d52814603ebbe440e20631d051daae4f08e8ac63f41cdfe7f02f45",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hair.png",
+        "phase1_file_sha256": "2e309af996f935a572d9f3dab6df70b654c6259fd3a097e4aacd4f1528ace427",
+        "split": null
+      }
+    }
+  ],
+  "extensions": [
+    {
+      "id": "eye_l_white__01",
+      "component": "eye_l_white",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/eye_l_white__01.png",
+      "provenance_mask": "masks/provenance/eye_l_white__01.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "pending_review",
+      "pixels": 61,
+      "region": "eye_l_white__under__eye_l_iris",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1234,
+        "prediction_id": "v2wkgebs4nrnc0d1zaxbbmt8d0",
+        "cache_key": "3c21c33f48b2d0a4a7f52c4b9757efa598eecc710c90a6f5ef16e1ac8a391660",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 0,
+        "crop_xyxy": [
+          53,
+          48,
+          213,
+          208
+        ],
+        "pixels_changed_outside_mask_discarded": 25515,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "eye_l_white__02",
+      "component": "eye_l_white",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/eye_l_white__02.png",
+      "provenance_mask": "masks/provenance/eye_l_white__02.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "alternative",
+      "pixels": 61,
+      "region": "eye_l_white__under__eye_l_iris",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1235,
+        "prediction_id": "v2wkgebs4nrnc0d1zaxbbmt8d0",
+        "cache_key": "3c21c33f48b2d0a4a7f52c4b9757efa598eecc710c90a6f5ef16e1ac8a391660",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 1,
+        "crop_xyxy": [
+          53,
+          48,
+          213,
+          208
+        ],
+        "pixels_changed_outside_mask_discarded": 25486,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "eye_r_white__01",
+      "component": "eye_r_white",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/eye_r_white__01.png",
+      "provenance_mask": "masks/provenance/eye_r_white__01.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "pending_review",
+      "pixels": 69,
+      "region": "eye_r_white__under__eye_r_iris",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1234,
+        "prediction_id": "djmksqxbvdrne0d1zax87zgh10",
+        "cache_key": "876be706070cc5424a670bbe011eacf9eeb94f5765af263b9480e5b2d6d87c85",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 0,
+        "crop_xyxy": [
+          33,
+          47,
+          193,
+          207
+        ],
+        "pixels_changed_outside_mask_discarded": 25508,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "eye_r_white__02",
+      "component": "eye_r_white",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/eye_r_white__02.png",
+      "provenance_mask": "masks/provenance/eye_r_white__02.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "alternative",
+      "pixels": 69,
+      "region": "eye_r_white__under__eye_r_iris",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1235,
+        "prediction_id": "djmksqxbvdrne0d1zax87zgh10",
+        "cache_key": "876be706070cc5424a670bbe011eacf9eeb94f5765af263b9480e5b2d6d87c85",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 1,
+        "crop_xyxy": [
+          33,
+          47,
+          193,
+          207
+        ],
+        "pixels_changed_outside_mask_discarded": 25447,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "forearm_l__01",
+      "component": "forearm_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/forearm_l__01.png",
+      "provenance_mask": "masks/provenance/forearm_l__01.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "pending_review",
+      "pixels": 556,
+      "region": "forearm_l__under__hand_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1234,
+        "prediction_id": "j6tma8pnr5rnc0d1zax9pfff6w",
+        "cache_key": "57445a5afde0109ab5c4fc0b0fd339fe7a81c9a68bff9441895a064a630c8fed",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 0,
+        "crop_xyxy": [
+          53,
+          303,
+          213,
+          463
+        ],
+        "pixels_changed_outside_mask_discarded": 24885,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "forearm_l__02",
+      "component": "forearm_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/forearm_l__02.png",
+      "provenance_mask": "masks/provenance/forearm_l__02.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "alternative",
+      "pixels": 556,
+      "region": "forearm_l__under__hand_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1235,
+        "prediction_id": "j6tma8pnr5rnc0d1zax9pfff6w",
+        "cache_key": "57445a5afde0109ab5c4fc0b0fd339fe7a81c9a68bff9441895a064a630c8fed",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 1,
+        "crop_xyxy": [
+          53,
+          303,
+          213,
+          463
+        ],
+        "pixels_changed_outside_mask_discarded": 24920,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "shin_l__01",
+      "component": "shin_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/shin_l__01.png",
+      "provenance_mask": "masks/provenance/shin_l__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 464,
+      "region": "shin_l__under__foot_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          52,
+          43,
+          42
+        ],
+        "outline": {
+          "rgb": [
+            4,
+            2,
+            2
+          ],
+          "width_px": 2.0,
+          "pixels": 85,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.929
+      }
+    },
+    {
+      "id": "thigh_l__01",
+      "component": "thigh_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_l__01.png",
+      "provenance_mask": "masks/provenance/thigh_l__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 681,
+      "region": "thigh_l__under__pelvis",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          45,
+          37,
+          37
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.831
+      }
+    },
+    {
+      "id": "thigh_l__02",
+      "component": "thigh_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_l__02.png",
+      "provenance_mask": "masks/provenance/thigh_l__02.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 866,
+      "region": "thigh_l__under__shin_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          46,
+          37,
+          38
+        ],
+        "outline": {
+          "rgb": [
+            4,
+            1,
+            1
+          ],
+          "width_px": 2.0,
+          "pixels": 129,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "thigh_r__01",
+      "component": "thigh_r",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/thigh_r__01.png",
+      "provenance_mask": "masks/provenance/thigh_r__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 950,
+      "region": "thigh_r__under__pelvis",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          50,
+          41,
+          41
+        ],
+        "outline": {
+          "rgb": [
+            4,
+            1,
+            1
+          ],
+          "width_px": 2.0,
+          "pixels": 181,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.981
+      }
+    },
+    {
+      "id": "torso__01",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__01.png",
+      "provenance_mask": "masks/provenance/torso__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 62,
+      "region": "torso__under__forearm_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          42,
+          38,
+          45
+        ],
+        "outline": {
+          "rgb": [
+            4,
+            1,
+            2
+          ],
+          "width_px": 2.0,
+          "pixels": 51,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      }
+    },
+    {
+      "id": "torso__02",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__02.png",
+      "provenance_mask": "masks/provenance/torso__02.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "pending_review",
+      "pixels": 1017,
+      "region": "torso__under__upper_arm_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1234,
+        "prediction_id": "a2jrryr1fsrne0d1zaxvdqhgz4",
+        "cache_key": "f80cb918b5055b00a366ddc8f9e0c67c0310d21797eafccb429cb6651b4014cc",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 0,
+        "crop_xyxy": [
+          53,
+          128,
+          213,
+          384
+        ],
+        "pixels_changed_outside_mask_discarded": 39912,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 2,
+        "model_input_size": [
+          320,
+          512
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "torso__03",
+      "component": "torso",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/torso__03.png",
+      "provenance_mask": "masks/provenance/torso__03.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "alternative",
+      "pixels": 1017,
+      "region": "torso__under__upper_arm_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1235,
+        "prediction_id": "a2jrryr1fsrne0d1zaxvdqhgz4",
+        "cache_key": "f80cb918b5055b00a366ddc8f9e0c67c0310d21797eafccb429cb6651b4014cc",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 1,
+        "crop_xyxy": [
+          53,
+          128,
+          213,
+          384
+        ],
+        "pixels_changed_outside_mask_discarded": 39931,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 2,
+        "model_input_size": [
+          320,
+          512
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "upper_arm_l__01",
+      "component": "upper_arm_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/upper_arm_l__01.png",
+      "provenance_mask": "masks/provenance/upper_arm_l__01.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "pending_review",
+      "pixels": 443,
+      "region": "upper_arm_l__under__forearm_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1234,
+        "prediction_id": "sbjnz71by9rn80d1zaxrz418nr",
+        "cache_key": "a8bed10cce1e580df8613150ee9014a3507b11c258f21b4c949f73abffcc41b9",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 0,
+        "crop_xyxy": [
+          53,
+          229,
+          213,
+          389
+        ],
+        "pixels_changed_outside_mask_discarded": 24949,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "upper_arm_l__02",
+      "component": "upper_arm_l",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/upper_arm_l__02.png",
+      "provenance_mask": "masks/provenance/upper_arm_l__02.png",
+      "method": "generative:replicate:black-forest-labs/flux-fill-dev",
+      "status": "alternative",
+      "pixels": 443,
+      "region": "upper_arm_l__under__forearm_l",
+      "drawn": "under its original component",
+      "provenance": {
+        "provider": "replicate:black-forest-labs/flux-fill-dev",
+        "version": "a053f84125613d83e65328a289e14eb6639e10725c243e8fb0c24128e5573f4c",
+        "seed": 1235,
+        "prediction_id": "sbjnz71by9rn80d1zaxrz418nr",
+        "cache_key": "a8bed10cce1e580df8613150ee9014a3507b11c258f21b4c949f73abffcc41b9",
+        "mask_convention": "white=inpaint",
+        "candidate_index": 1,
+        "crop_xyxy": [
+          53,
+          229,
+          213,
+          389
+        ],
+        "pixels_changed_outside_mask_discarded": 24874,
+        "prompt": "flat 2D cartoon illustration, continue the existing artwork exactly, same flat colours, same dark outline thickness, no texture, no new details",
+        "model_input_scale": 4,
+        "model_input_size": [
+          640,
+          640
+        ],
+        "negative_prompt": null
+      }
+    },
+    {
+      "id": "upper_arm_r__01",
+      "component": "upper_arm_r",
+      "category": "B_generated",
+      "image": "artwork/reconstructed/upper_arm_r__01.png",
+      "provenance_mask": "masks/provenance/upper_arm_r__01.png",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 412,
+      "region": "upper_arm_r__under__forearm_r",
+      "drawn": "under its original component",
+      "provenance": {
+        "fill_rgb": [
+          38,
+          34,
+          44
+        ],
+        "outline": {
+          "rgb": [
+            3,
+            1,
+            3
+          ],
+          "width_px": 2.0,
+          "pixels": 84,
+          "follows": "expected-shape boundary"
+        },
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.868
+      }
+    }
+  ],
+  "corrections": [],
+  "vectors": [
+    {
+      "id": "joint_cap_neck",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_neck.svg",
+      "target": "torso",
+      "joint": "neck",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_shoulder_r",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_shoulder_r.svg",
+      "target": "torso",
+      "joint": "shoulder_r",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_elbow_r",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_elbow_r.svg",
+      "target": "upper_arm_r",
+      "joint": "elbow_r",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_hip_r",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_hip_r.svg",
+      "target": "torso",
+      "joint": "hip_r",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_shoulder_l",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_shoulder_l.svg",
+      "target": "torso",
+      "joint": "shoulder_l",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_hip_l",
+      "kind": "vector_correction",
+      "path": "artwork/vector/joint_cap_hip_l.svg",
+      "target": "torso",
+      "joint": "hip_l",
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "eyelid_guide_r",
+      "kind": "facial_control_guide",
+      "path": "artwork/vector/eyelid_guide_r.svg",
+      "target": "eye_r",
+      "joint": null,
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    },
+    {
+      "id": "eyelid_guide_l",
+      "kind": "facial_control_guide",
+      "path": "artwork/vector/eyelid_guide_l.svg",
+      "target": "eye_l",
+      "joint": null,
+      "category": "generated_vector",
+      "exact_reconstruction": false,
+      "editable_in_moho": true,
+      "status": "pending_review"
+    }
+  ],
+  "masks": {
+    "source": "masks/source/",
+    "reconstruction": "masks/reconstruction/",
+    "provenance": "masks/provenance/"
+  }
+}

@@ -213,7 +213,8 @@ def analyze_character(image_path: str | Path, out_dir: str | Path, provider, con
         face_run, face_labeled, face_rej = None, {}, []
         warnings.append("no head region found: facial analysis skipped")
     face = analyze_face(source.rgba, ctx.head_region, parts["hair"], face_labeled, min_score=cfg.min_score)
-    face.rejected = face_rej + face.rejected
+    # instance-level rejections use 'prompt_label'; the face schema requires 'label' on every entry
+    face.rejected = [{"label": r.get("prompt_label"), **r} for r in face_rej] + face.rejected
     steps.append({"step": "face", "accepted_features": sorted(face.features), "rejected": len(face.rejected)})
 
     # 4. layer partition: head -> head_base + facial feature layers

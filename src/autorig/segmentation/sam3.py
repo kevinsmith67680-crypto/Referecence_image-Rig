@@ -80,13 +80,16 @@ class Sam3ReplicateProvider:
 
     def __init__(self, client: ReplicateClient | None, cache_dir: str | Path, *,
                  version: str = PINNED_VERSION, policy: CostPolicy | None = None,
-                 image_transport: str = "upload", poll_seconds: float = 1.5, timeout_seconds: float = 900.0):
+                 image_transport: str = "data_uri", poll_seconds: float = 1.5, timeout_seconds: float = 900.0):
         self.client = client
         self.version = version
         self.inputs_schema = version_inputs(version)
         self.cache_dir = Path(cache_dir)
         self.policy = policy or CostPolicy.from_env()
         self.ledger = SpendLedger(self.cache_dir / "ledger.json", self.policy)
+        # data_uri is the default: with a Files API URL (``upload``) the pinned version failed with
+        # "No valid image files found in the input!" (prediction r6224qjz5xrmw0d1zasr6xeyf0, 2026-11-20),
+        # while the same request as a data URI succeeded (vz86mzz9exrmt0d1zasvexpfqw).
         if image_transport not in ("upload", "data_uri"):
             raise ValueError("image_transport must be 'upload' or 'data_uri'")
         self.image_transport = image_transport

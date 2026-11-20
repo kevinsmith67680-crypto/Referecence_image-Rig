@@ -1,0 +1,470 @@
+{
+  "schema": "autorig.reconstruction_quality",
+  "schema_version": "1.0.0",
+  "original_pixel_preservation": {
+    "source_unchanged": true,
+    "originals_verified": true,
+    "neutral_originals_exact": true,
+    "generated_pixels_visible_in_neutral": 0,
+    "rule": "generated pixels are drawn under their own original and behind occluders"
+  },
+  "neutral_similarity": {
+    "ssim_gray": 1.0,
+    "note": "similarity is not proof of animation quality"
+  },
+  "alpha_coverage": {
+    "original_union_pixels": 75997,
+    "phase1_coverage_ratio": 0.96673
+  },
+  "gaps": {
+    "per_pose": {
+      "neutral": {
+        "originals_only": 0,
+        "with_extensions": 0
+      },
+      "arm_45": {
+        "originals_only": 85,
+        "with_extensions": 85
+      },
+      "arm_90": {
+        "originals_only": 115,
+        "with_extensions": 115
+      },
+      "left_arm_90": {
+        "originals_only": 115,
+        "with_extensions": 115
+      },
+      "elbows_bent": {
+        "originals_only": 1233,
+        "with_extensions": 862
+      },
+      "walking": {
+        "originals_only": 368,
+        "with_extensions": 256
+      },
+      "sitting": {
+        "originals_only": 577,
+        "with_extensions": 163
+      },
+      "head_tilt_left": {
+        "originals_only": 30,
+        "with_extensions": 30
+      },
+      "head_tilt_right": {
+        "originals_only": 26,
+        "with_extensions": 26
+      }
+    }
+  },
+  "joint_seams": {
+    "neck": {
+      "max_gap_with_extensions": 41,
+      "max_gap_originals_only": 41,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "shoulder_r": {
+      "max_gap_with_extensions": 115,
+      "max_gap_originals_only": 115,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "elbow_r": {
+      "max_gap_with_extensions": 280,
+      "max_gap_originals_only": 505,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "wrist_r": {
+      "max_gap_with_extensions": 99,
+      "max_gap_originals_only": 99,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "hip_r": {
+      "max_gap_with_extensions": 133,
+      "max_gap_originals_only": 183,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 15
+      },
+      "status": "needs_review"
+    },
+    "knee_r": {
+      "max_gap_with_extensions": 0,
+      "max_gap_originals_only": 0,
+      "safe_range_deg": {
+        "original_only": 60,
+        "with_extensions": 60
+      },
+      "status": "prepared_pending_review"
+    },
+    "ankle_r": {
+      "max_gap_with_extensions": 10,
+      "max_gap_originals_only": 10,
+      "safe_range_deg": {
+        "original_only": 30,
+        "with_extensions": 30
+      },
+      "status": "prepared_pending_review"
+    },
+    "shoulder_l": {
+      "max_gap_with_extensions": 127,
+      "max_gap_originals_only": 127,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "elbow_l": {
+      "max_gap_with_extensions": 658,
+      "max_gap_originals_only": 910,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "wrist_l": {
+      "max_gap_with_extensions": 74,
+      "max_gap_originals_only": 164,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "hip_l": {
+      "max_gap_with_extensions": 84,
+      "max_gap_originals_only": 365,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "status": "needs_review"
+    },
+    "knee_l": {
+      "max_gap_with_extensions": 0,
+      "max_gap_originals_only": 304,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 60
+      },
+      "status": "prepared_pending_review"
+    },
+    "ankle_l": {
+      "max_gap_with_extensions": 11,
+      "max_gap_originals_only": 115,
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 30
+      },
+      "status": "prepared_pending_review"
+    }
+  },
+  "layer_alignment": {
+    "canvas": [
+      213,
+      615
+    ],
+    "all_layers_full_canvas": true,
+    "offsets": "none (identity transform for every layer)"
+  },
+  "reconstruction_size": {
+    "generated_pixels_total": 7727,
+    "by_component": {
+      "eye_l_white": 122,
+      "eye_r_white": 138,
+      "forearm_l": 1112,
+      "shin_l": 464,
+      "thigh_l": 1547,
+      "thigh_r": 950,
+      "torso": 2096,
+      "upper_arm_l": 886,
+      "upper_arm_r": 412
+    },
+    "regions": {
+      "eye_l_white__under__eye_l_iris": {
+        "pixels": 61,
+        "strategy": "generative"
+      },
+      "eye_r_white__under__eye_r_iris": {
+        "pixels": 69,
+        "strategy": "generative"
+      },
+      "shin_l__under__foot_l": {
+        "pixels": 464,
+        "strategy": "deterministic_flat_fill"
+      },
+      "forearm_l__under__hand_l": {
+        "pixels": 556,
+        "strategy": "generative"
+      },
+      "pelvis__under__forearm_l": {
+        "pixels": 7,
+        "strategy": "not_needed_for_planned_motion"
+      },
+      "thigh_l__under__forearm_l": {
+        "pixels": 5,
+        "strategy": "not_needed_for_planned_motion"
+      },
+      "upper_arm_l__under__forearm_l": {
+        "pixels": 443,
+        "strategy": "generative"
+      },
+      "pelvis__under__forearm_r": {
+        "pixels": 9,
+        "strategy": "not_needed_for_planned_motion"
+      },
+      "torso__under__forearm_r": {
+        "pixels": 62,
+        "strategy": "deterministic_flat_fill"
+      },
+      "upper_arm_r__under__forearm_r": {
+        "pixels": 412,
+        "strategy": "deterministic_flat_fill"
+      },
+      "torso__under__hair": {
+        "pixels": 3905,
+        "strategy": "not_needed_for_planned_motion"
+      },
+      "torso__under__head_base": {
+        "pixels": 6362,
+        "strategy": "not_needed_for_planned_motion"
+      },
+      "thigh_l__under__pelvis": {
+        "pixels": 681,
+        "strategy": "deterministic_flat_fill"
+      },
+      "thigh_r__under__pelvis": {
+        "pixels": 950,
+        "strategy": "deterministic_flat_fill"
+      },
+      "pelvis__under__torso": {
+        "pixels": 719,
+        "strategy": "not_needed_for_planned_motion"
+      },
+      "thigh_l__under__shin_l": {
+        "pixels": 866,
+        "strategy": "deterministic_flat_fill"
+      },
+      "torso__under__upper_arm_l": {
+        "pixels": 1017,
+        "strategy": "generative"
+      }
+    }
+  },
+  "provenance": {
+    "extensions": 16,
+    "every_generated_pixel_has_provenance_mask": true,
+    "methods": [
+      "deterministic_flat_fill",
+      "generative:replicate:black-forest-labs/flux-fill-dev"
+    ]
+  },
+  "outline_discontinuities": {
+    "dark_contour_pieces_per_pose_joint": {
+      "neutral": {},
+      "arm_45": {
+        "shoulder_r": 1
+      },
+      "arm_90": {
+        "shoulder_r": 1
+      },
+      "left_arm_90": {
+        "shoulder_l": 2
+      },
+      "elbows_bent": {
+        "elbow_r": 1,
+        "elbow_l": 1
+      },
+      "walking": {
+        "hip_r": 1,
+        "knee_r": 1,
+        "hip_l": 1,
+        "knee_l": 1,
+        "shoulder_r": 1,
+        "shoulder_l": 1
+      },
+      "sitting": {
+        "hip_r": 1,
+        "knee_r": 1,
+        "hip_l": 1,
+        "knee_l": 1
+      },
+      "head_tilt_left": {
+        "neck": 2
+      },
+      "head_tilt_right": {
+        "neck": 1
+      }
+    }
+  },
+  "pose_stability": {
+    "poses": 9,
+    "worst_pose_gap_with_extensions": 862
+  },
+  "flags_for_human_review": [
+    {
+      "item": "edge brow_l>eye_l_iris",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge brow_r>eye_r_iris",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge eye_l_white>head_base",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge eye_r_white>head_base",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge thigh_r>foot_r",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge forearm_l>thigh_l",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge torso>forearm_l",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "edge forearm_l>upper_arm_l",
+      "why": "ambiguous (prior, conf 0.55)"
+    },
+    {
+      "item": "edge forearm_r>hand_r",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "edge forearm_r>thigh_r",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge forearm_r>upper_arm_r",
+      "why": "ambiguous (prior, conf 0.55)"
+    },
+    {
+      "item": "edge pelvis>hand_r",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "edge thigh_r>hand_r",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "edge neck>head_base",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "edge neck>torso",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "edge torso>pelvis",
+      "why": "ambiguous (prior, conf 0.55)"
+    },
+    {
+      "item": "edge shin_r>thigh_r",
+      "why": "ambiguous (prior, conf 0.5)"
+    },
+    {
+      "item": "edge thigh_l>thigh_r",
+      "why": "ambiguous (phase1_z_order_fallback, conf 0.3)"
+    },
+    {
+      "item": "edge torso>upper_arm_r",
+      "why": "ambiguous (linework_conflicts_prior, conf 0.5)"
+    },
+    {
+      "item": "region upper_arm_l__under__forearm_l",
+      "why": "low-confidence shape model (tapered_capsule(r=8.1->17.5), 0.55)"
+    },
+    {
+      "item": "region upper_arm_r__under__forearm_r",
+      "why": "low-confidence shape model (tapered_capsule(r=16.0->16.5), 0.55)"
+    },
+    {
+      "item": "component eye_l_white",
+      "why": "generated pixels = 64% of original"
+    },
+    {
+      "item": "component eye_r_white",
+      "why": "generated pixels = 64% of original"
+    },
+    {
+      "item": "component forearm_l",
+      "why": "generated pixels = 29% of original"
+    },
+    {
+      "item": "joint neck",
+      "why": "gaps up to 41 px remain within \u00b120 deg even with extensions"
+    },
+    {
+      "item": "joint shoulder_r",
+      "why": "pivot unreliable in Phase 1 (limb_proximal_extreme_inset_by_radius): verify before binding"
+    },
+    {
+      "item": "joint shoulder_r",
+      "why": "gaps up to 115 px remain within \u00b190 deg even with extensions"
+    },
+    {
+      "item": "joint elbow_r",
+      "why": "gaps up to 280 px remain within \u00b190 deg even with extensions"
+    },
+    {
+      "item": "joint wrist_r",
+      "why": "gaps up to 99 px remain within \u00b130 deg even with extensions"
+    },
+    {
+      "item": "joint hip_r",
+      "why": "gaps up to 133 px remain within \u00b145 deg even with extensions"
+    },
+    {
+      "item": "joint shoulder_l",
+      "why": "pivot unreliable in Phase 1 (limb_proximal_extreme_inset_by_radius): verify before binding"
+    },
+    {
+      "item": "joint shoulder_l",
+      "why": "gaps up to 127 px remain within \u00b190 deg even with extensions"
+    },
+    {
+      "item": "joint elbow_l",
+      "why": "gaps up to 658 px remain within \u00b190 deg even with extensions"
+    },
+    {
+      "item": "joint wrist_l",
+      "why": "gaps up to 74 px remain within \u00b130 deg even with extensions"
+    },
+    {
+      "item": "joint hip_l",
+      "why": "gaps up to 84 px remain within \u00b145 deg even with extensions"
+    }
+  ],
+  "images": {
+    "comparison": "reports/comparison.png",
+    "alpha_overlay": "reports/alpha_overlay.png",
+    "difference": "reports/difference.png",
+    "joint_closeups": "reports/joint_closeups.png",
+    "pose_contact_sheet": "reports/pose_contact_sheet.png",
+    "change_maps": "reports/change_maps/"
+  }
+}

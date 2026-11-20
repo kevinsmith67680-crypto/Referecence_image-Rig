@@ -20,11 +20,14 @@ from dataclasses import dataclass, field
 from typing import Any
 
 import numpy as np
+from PIL import Image
 from scipy import ndimage
 
 from ..phase1 import masks as M
+from ..segmentation.budget import BudgetExceeded
+from ..segmentation.replicate_client import ReplicateError
 from .occlusion import Region, kind
-from .providers import CandidateRejected, ReconstructionProvider, ReconstructionRequest
+from .providers import CandidateRejected, ModelDriftError, ReconstructionProvider, ReconstructionRequest
 from .store import ArtworkStore
 
 SKIP_OWNER_KINDS = {"feature", "hair", "eye_iris"}
@@ -42,6 +45,9 @@ class ReconstructionConfig:
                    "same dark outline thickness, no texture, no new details")
     negative_prompt: str | None = "photorealistic, texture, gradient, noise, new objects, text"
     force_generative: set[str] = field(default_factory=set)
+    # small crops are upscaled by an integer factor for the model (FLUX-class models need a few hundred
+    # pixels to work with) and the candidates are area-averaged back to source pixels
+    inpaint_min_side: int = 512
     reconstruct_unexposed: bool = False
 
 
@@ -168,26 +174,42 @@ class ReconstructionEngine:
         x0, y0, x1, y1 = box
         crop = self.rgba[y0:y1, x0:x1].copy()
         cmask = r.mask[y0:y1, x0:x1]
-        req = ReconstructionRequest(r.id, crop, cmask, self.cfg.prompt,
+        ch, cw = cmask.shape
+        s = max(1, min(-(-self.cfg.inpaint_min_side // max(ch, cw)), self.cfg.max_crop // max(ch, cw)))
+        send_img, send_mask = crop, cmask
+        if s > 1:  # integer factor keeps the size multiple; nearest-neighbour keeps the mask binary
+            send_img = np.asarray(Image.fromarray(crop, "RGBA").resize((cw * s, ch * s), Image.Resampling.LANCZOS))
+            send_mask = np.repeat(np.repeat(cmask, s, axis=0), s, axis=1)
+        req = ReconstructionRequest(r.id, send_img, send_mask, self.cfg.prompt,
                                     self.cfg.negative_prompt if getattr(self.provider, "adapter", None) is None
                                     or self.provider.adapter.supports_negative_prompt else None,
                                     self.cfg.n_candidates, self.cfg.seed)
         try:
             cands = self.provider.reconstruct(req)
-        except (CandidateRejected, ValueError) as exc:
+        except ModelDriftError:  # a changed model must stop the run, never be skipped per region
+            raise
+        except BudgetExceeded as exc:  # stop paying, keep going: the region is recorded, not faked
+            r.strategy = "generative_skipped_budget"
+            return {"strategy": r.strategy, "extensions": [], "error": str(exc), "colour_share": round(share, 3)}
+        except (CandidateRejected, ValueError, ReplicateError) as exc:
             r.strategy = "generative_failed"
-            return {"strategy": r.strategy, "extensions": [], "error": str(exc)}
+            return {"strategy": r.strategy, "extensions": [], "error": str(exc), "colour_share": round(share, 3)}
         ids = []
         for k, c in enumerate(cands):
+            cand = c.rgba
+            if s > 1:  # exact area average of each s x s block back to one source pixel
+                cand = np.asarray(Image.fromarray(cand, "RGBA").resize((cw, ch), Image.Resampling.BOX))
             full = np.zeros_like(self.rgba)
-            full[y0:y1, x0:x1] = c.rgba
-            changed_outside = int(((c.rgba[..., :3] != crop[..., :3]).any(axis=2) & ~cmask).sum())
+            full[y0:y1, x0:x1] = cand
+            changed_outside = int(((cand[..., :3] != crop[..., :3]).any(axis=2) & ~cmask).sum())
             e = self.store.add_extension(
                 r.owner, full, r.mask, method=f"generative:{self.provider.name}", region_id=r.id,
                 status="pending_review" if k == 0 else "alternative",
                 provenance={**c.provenance, "candidate_index": k, "seed": c.seed, "crop_xyxy": list(box),
                             "pixels_changed_outside_mask_discarded": changed_outside, "prompt": req.prompt,
+                            "model_input_scale": s, "model_input_size": [cw * s, ch * s],
                             "negative_prompt": req.negative_prompt})
             ids.append(e.id)
         r.strategy = "generative"
-        return {"strategy": r.strategy, "extensions": ids, "candidates": len(cands), "crop_xyxy": list(box)}
+        return {"strategy": r.strategy, "extensions": ids, "candidates": len(cands), "crop_xyxy": list(box),
+                "model_input_scale": s}

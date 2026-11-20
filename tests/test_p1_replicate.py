@@ -211,6 +211,8 @@ def test_inputs_respect_pinned_version_schema(tmp_path):
     provider(tmp_path, fake).segment(make_image(tmp_path), [Prompt(text="red")])
     assert set(fake.last_input) <= set(version_inputs(PINNED_VERSION))
     assert fake.last_input["offset_masks"] is False and fake.last_input["split_output"] is True
+    # the live model rejected Files API URLs; images go inline as data URIs by default
+    assert fake.last_input["image"].startswith("data:image/png;base64,")
 
 
 def test_older_version_never_receives_unknown_fields(tmp_path):

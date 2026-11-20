@@ -1,0 +1,16 @@
+{
+  "note": "Manual joint landmarks for front_view.png (pixels, origin top-left). Estimated by the assistant from a gridded zoom of the image, NOT by the user: verify or correct before relying on them. Supplied because SAM 3 returned one 'leg' instance (right leg inside the trousers missing) and the mask-geometry estimator placed elbows at the cuffs and wrists mid-hand.",
+  "joints": {
+    "pelvis": [118, 372],
+    "hip_r": [88, 375],
+    "knee_r": [82, 460],
+    "ankle_r": [75, 553],
+    "hip_l": [148, 375],
+    "knee_l": [150, 460],
+    "ankle_l": [154, 555],
+    "elbow_r": [38, 292],
+    "wrist_r": [45, 372],
+    "elbow_l": [190, 292],
+    "wrist_l": [190, 372]
+  }
+}

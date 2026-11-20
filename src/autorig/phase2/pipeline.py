@@ -19,7 +19,7 @@ from ..phase1 import masks as M
 from ..phase1.compositor import _ssim_gray
 from ..phase1.source import sha256_file
 from . import facial, joints as J, review, schemas
-from .occlusion import OcclusionAnalyzer, resolve_z_order
+from .occlusion import trim_regions_to_cover, OcclusionAnalyzer, resolve_z_order
 from .pose import POSES, RIG, PoseEngine, bone_of, diagnostic_image
 from .reconstruct import ReconstructionConfig, ReconstructionEngine, outline_props
 from .store import ArtworkStore
@@ -86,6 +86,11 @@ def prepare_character(phase1_dir: str | Path, out_dir: str | Path, provider=None
 
     # A: immutable originals (eyes split pixel-exactly into white + iris)
     rgba = {l["id"]: np.asarray(Image.open(p1 / l["image"]).convert("RGBA")) for l in layers1}
+    empty = sorted(c for c, a in rgba.items() if not (a[..., 3] > 0).any())
+    for c in empty:  # a part Phase 1 could not find has nothing to preserve, occlude or pose
+        del rgba[c]
+        warnings.append(f"Phase 1 layer '{c}' is empty (part not found); it is excluded from Phase 2 and needs "
+                        "manual landmarks or artwork")
     face_masks = {p.stem: M.load_mask(p) for p in (p1 / "masks" / "face").glob("*.png")}
     rgba, notes = facial.split_eyes(rgba, face_masks)
     warnings += notes
@@ -107,6 +112,8 @@ def prepare_character(phase1_dir: str | Path, out_dir: str | Path, provider=None
     regions = oa.regions(edges)
     order, dropped = resolve_z_order(list(comps), edges, z1)
     expected = {c: oa.expected_shape(c)[0] for c in comps}
+    regions, notes = trim_regions_to_cover(regions, order, {c: a[..., 3] == 255 for c, a in rgba.items()})
+    warnings += notes
 
     # reconstruction
     engine = ReconstructionEngine(store, src, comps, expected, oa.dark, provider, cfg.recon)
@@ -143,7 +150,7 @@ def prepare_character(phase1_dir: str | Path, out_dir: str | Path, provider=None
     radius = {}
     for b, (pivot, _, cs) in RIG.items():
         c = next((x for x in cs if x in comps), None)
-        if c is None:
+        if c is None or not comps[c].any():
             continue
         dt = ndimage.distance_transform_edt(comps[c])
         radius[b] = float(np.clip(np.percentile(dt[comps[c]], 90), 8, 90))
@@ -290,7 +297,7 @@ def _quality(root, src, store, originals, composed, order, comps, recon, regions
     for r in regions:
         if r.strategy in ("deterministic_flat_fill", "generative") and (r.confidence < 0.6 or r.ambiguous):
             flags.append({"item": f"region {r.id}", "why": f"low-confidence shape model ({r.method}, {r.confidence})"})
-        if r.strategy.startswith("generative_required"):
+        if r.strategy.startswith("generative_") and r.strategy != "generative":
             flags.append({"item": f"region {r.id}", "why": r.strategy})
     for c, n in gen_by.items():
         if n > 0.25 * store.originals[c]["pixels"]:

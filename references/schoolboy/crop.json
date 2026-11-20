@@ -1,0 +1,18 @@
+{
+  "source": "character_sheet.jpg",
+  "source_sha256": "6312156c150b7e35ead0e9ca2e80363f9624aef58db77c5d91eb9c54b8b2d53e",
+  "source_size": [
+    1448,
+    1086
+  ],
+  "crop_xyxy": [
+    0,
+    0,
+    213,
+    615
+  ],
+  "view": "front",
+  "resampling": "none (pixel-exact crop of the JPEG decode, saved as PNG)",
+  "front_view_sha256": "7bf1e9a084105fafc22373e239ab06366f62268f1f980af9c9807c2a5dc0f34e",
+  "note": "Character sheet supplied by the user. The front view is the Phase 1/2 input; other views, expressions, mouth shapes, eye/brow sets and puppet parts on the sheet are real artwork, not used yet."
+}

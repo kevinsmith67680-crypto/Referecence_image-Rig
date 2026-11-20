@@ -9,10 +9,11 @@ faithful, editable **Moho Pro 14** character rig.
   verified.** Its cloud verdict is PARTIAL; see `docs/phase0/completion-report.md`.
 - The user explicitly started **Phase 1** while Phase 0 was still unverified, asking that the
   limitation be carried forward. Phase 1 is implemented; verdict **PARTIAL** (`docs/phase1_report.md`).
-  Blockers: Replicate credit (HTTP 402), the real schoolboy reference image (not in the repo),
-  and Phase 0 native verification.
+  Replicate credit and the user's reference (`references/schoolboy/`) arrived 2026-11-20; the first real-artwork
+  run is in `docs/real_artwork_test.md`. Remaining: Phase 0 native verification and real-art body partition quality.
 - The user explicitly started **Phase 2** (reconstruction) on synthetic fixtures. It is implemented; verdict
-  **PARTIAL** (`docs/phase2_report.md`): cloud inpainting is untested (HTTP 402) and no real artwork has been processed.
+  **PARTIAL** (`docs/phase2_report.md`; real-art run in `docs/real_artwork_test.md`): FLUX inpainting ran on real
+  art but nothing is human-reviewed, eye-white inpainting failed, and Phase 1's body split is not rig-ready.
 - **Do not start Phase 3** (Moho import/rigging of the package) automatically. It also needs the blockers cleared and
   generated assets reviewed.
 
@@ -25,6 +26,8 @@ faithful, editable **Moho Pro 14** character rig.
   Inpainting adapters declare their mask convention (FLUX: white = inpaint; Ideogram: black = inpaint).
 - Official Replicate models cannot be version-pinned: keep the pin-by-verification check (refuse on drift).
 - Never present synthetic-fixture results as real-artwork evidence.
+- Replicate inputs go inline as data URIs (the SAM 3 model rejected Files API URLs). Small crops are upscaled
+  by an integer factor for the model and area-averaged back.
 
 ## Live Models track (Moho 14.5)
 
@@ -116,6 +119,8 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `examples/phase1_synthetic_character/` — synthetic fixture + its character_project + evaluation
 - `src/autorig/phase2/` — store (pixel preservation), occlusion, providers, reconstruct, facial, joints, pose, vector, review, pipeline
 - `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
+- `references/schoolboy/` — the user's character sheet, front-view crop and (assistant-estimated) landmarks
+- `projects/schoolboy/` — snapshot of the first real-art Phase 1 project and Phase 2 package (unreviewed)
 - `tests/lua/mock_moho.lua` — strict mock of the allowlisted Moho API (Lua 5.4 via `lupa`)
 - `examples/phase0_test_character/` — spec, art layers, reference script, previews, expected values
 - `tools/macos/install_phase0.sh` — generates a machine-specific script and installs it

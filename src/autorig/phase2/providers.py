@@ -16,6 +16,7 @@ before a paid call. NONE has been inference-tested (account has no credit).
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import io
 import json
@@ -159,7 +160,7 @@ def _png_bytes(img: Image.Image) -> bytes:
 class ReplicateInpaintProvider:
     def __init__(self, client: ReplicateClient, cache_dir: str | Path, adapter: str = "flux-fill-dev",
                  policy: CostPolicy | None = None, poll_seconds: float = 2.0, timeout_seconds: float = 900.0,
-                 flatten_rgb=(127, 127, 127)):
+                 flatten_rgb=(127, 127, 127), image_transport: str = "data_uri"):
         self.client = client
         self.adapter = ADAPTERS[adapter]
         self.name = f"replicate:{self.adapter.owner}/{self.adapter.name}"
@@ -168,7 +169,17 @@ class ReplicateInpaintProvider:
         self.ledger = SpendLedger(self.cache_dir / "ledger.json", self.policy)
         self.poll_seconds, self.timeout_seconds = poll_seconds, timeout_seconds
         self.flatten_rgb = flatten_rgb
+        # Inputs go inline as PNG data URIs by default (crops are <= 1440 px). The Files API path is kept
+        # as an option; it was rejected by the SAM 3 model in live use, so it is not the default here either.
+        if image_transport not in ("upload", "data_uri"):
+            raise ValueError("image_transport must be 'upload' or 'data_uri'")
+        self.image_transport = image_transport
         self._verified = False
+
+    def _ref(self, path: Path) -> str:
+        if self.image_transport == "data_uri":
+            return "data:image/png;base64," + base64.b64encode(path.read_bytes()).decode()
+        return self.client.upload_file(path)["urls"]["get"]
 
     def verify_pin(self) -> None:
         a = self.adapter
@@ -206,8 +217,8 @@ class ReplicateInpaintProvider:
             edir.mkdir(parents=True, exist_ok=True)
             (edir / "image.png").write_bytes(_png_bytes(image))
             (edir / "mask.png").write_bytes(_png_bytes(mask))
-            img_url = self.client.upload_file(edir / "image.png")["urls"]["get"]
-            mask_url = self.client.upload_file(edir / "mask.png")["urls"]["get"]
+            img_url = self._ref(edir / "image.png")
+            mask_url = self._ref(edir / "mask.png")
             files, k = [], 0
             while k < req.n_candidates:
                 n = min(a.max_outputs_per_call, req.n_candidates - k)

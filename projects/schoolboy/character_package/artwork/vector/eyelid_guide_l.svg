@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="213" height="615" viewBox="0 0 213 615">
+  <title>eyelid guide l</title>
+  <desc>GENERATED correction/guide - not original artwork, not an exact reconstruction. Pending review.</desc>
+  <polyline id="upper_eyelid_l" points="128.5,118.0 132.2,113.0 135.8,112.0 139.5,111.0 143.2,111.0 146.8,111.0 150.5,111.0" fill="none" stroke="#00a0ff" stroke-width="2"/>
+  <polyline id="lower_eyelid_l" points="128.5,118.0 132.2,122.0 135.8,123.0 139.5,123.0 143.2,123.0 146.8,121.0 150.5,118.0" fill="none" stroke="#00a0ff" stroke-width="2"/>
+</svg>

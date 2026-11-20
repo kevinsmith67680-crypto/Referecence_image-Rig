@@ -390,3 +390,27 @@ def resolve_z_order(components: list[str], edges: list[dict[str, Any]], fallback
             return order, dropped
         weakest = use.pop()  # least confident remaining edge
         dropped.append(weakest)
+
+
+def trim_regions_to_cover(regions: list[Region], order: list[str], opaque: dict[str, np.ndarray]
+                          ) -> tuple[list[Region], list[str]]:
+    """A hidden region is only hidden if layers ABOVE its owner in the final z-order cover it with
+    fully opaque original pixels. Weak or ambiguous edges may not be enforced by the z-order, so each
+    region is trimmed to that cover and dropped when nothing is left. Generated pixels (always inside
+    a region, under the owner) then cannot show in the neutral pose."""
+    zpos = {c: i for i, c in enumerate(order)}
+    kept, notes = [], []
+    for r in regions:
+        cover = np.zeros_like(r.mask)
+        for c in order[zpos[r.owner] + 1:]:
+            cover |= opaque[c]
+        lost = int((r.mask & ~cover).sum())
+        if lost:
+            r.mask = r.mask & cover
+            r.notes.append(f"{lost} px removed: not covered by a layer above '{r.owner}' in the final z-order")
+        if r.mask.any():
+            kept.append(r)
+        else:
+            notes.append(f"region {r.id} dropped: the final z-order puts '{r.owner}' in front of its occluders "
+                         f"({', '.join(r.occluded_by)}); check that relation in review")
+    return kept, notes
