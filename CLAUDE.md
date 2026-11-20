@@ -16,9 +16,10 @@ faithful, editable **Moho Pro 14** character rig.
   **PARTIAL** (`docs/phase2_report.md`; real-art run in `docs/real_artwork_test.md`): FLUX inpainting ran on real
   art but nothing is human-reviewed, eye-white inpainting failed, and Phase 1's body split is not rig-ready.
 - **Phase 2 natural-pose refinement** (user-requested) is done: anatomical skeleton, local skinned joints,
-  IK/balance solver, 12 presets (`docs/phase2_natural_pose_refinement.md`). 5 presets pass automatic checks
-  (still pending review), 7 are NEEDS_ARTWORK (armpit gussets, hand shapes, foreshortened thighs). Preview
-  renders only; Moho not run.
+  IK/balance solver, 12 presets (`docs/phase2_natural_pose_refinement.md`). Corrective artwork (sheet hands,
+  pointing hand, palm-up approximation, per-pose armpit gussets) is registered as `corrective:*` review items,
+  pending review. Statuses: 5 OK_PENDING_REVIEW, 4 NEEDS_REVIEW, 3 NEEDS_ARTWORK. Preview renders only; Moho
+  not run. Corrective artwork is never approved in code.
 - **Do not start Phase 3** (Moho import/rigging of the package) automatically. It also needs the blockers cleared and
   generated assets reviewed.
 
@@ -112,7 +113,7 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 # Phase 2
 .venv/bin/python -m autorig prepare <phase1_project> --out <package_dir> [--provider flux-fill-dev] [--synthetic-gt]
 .venv/bin/python -m autorig review <package_dir> --list | --approve ID | --reject ID | --set-pivot JOINT X Y | --approve-phase
-.venv/bin/python -m autorig pose-refine <package_dir> [--presets relaxed_standing,natural_squat]  # natural poses
+.venv/bin/python -m autorig pose-refine <package_dir> [--presets ...] [--hand-sources references/schoolboy/hand_sources.json]
 ```
 
 ## Layout
@@ -127,7 +128,7 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `src/autorig/synthetic.py` — synthetic ground-truth character (test fixture)
 - `examples/phase1_synthetic_character/` — synthetic fixture + its character_project + evaluation
 - `src/autorig/phase2/` — store (pixel preservation), occlusion, providers, reconstruct, facial, joints, pose, vector, review, pipeline
-- `src/autorig/phase2/` natural posing — skeleton, skinning (deformer), posing (solver + presets), pose_eval, natural (orchestration)
+- `src/autorig/phase2/` natural posing — skeleton, skinning (deformer), posing (solver + presets), pose_eval, natural (orchestration), corrective (hand variants, armpit gussets)
 - `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
 - `references/schoolboy/` — the user's character sheet, front-view crop, (assistant-estimated) landmarks and
   `tpose_front.jpg` (the T-pose reference, preferred for rigging)

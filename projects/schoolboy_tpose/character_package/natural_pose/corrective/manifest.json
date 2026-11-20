@@ -1,0 +1,633 @@
+{
+  "assets": [
+    {
+      "id": "hand__fist",
+      "type": "hand_variant",
+      "category": "R_reference_derived",
+      "source": {
+        "sheet": "character_sheet.jpg",
+        "crop_xyxy": [
+          381,
+          955,
+          436,
+          1023
+        ]
+      },
+      "scale_to_reference": 1.823,
+      "mirrored_for": [
+        "l"
+      ],
+      "status": "pending_review"
+    },
+    {
+      "id": "hand__thumbs_up",
+      "type": "hand_variant",
+      "category": "R_reference_derived",
+      "source": {
+        "sheet": "character_sheet.jpg",
+        "crop_xyxy": [
+          446,
+          935,
+          493,
+          1018
+        ]
+      },
+      "scale_to_reference": 1.823,
+      "mirrored_for": [
+        "l"
+      ],
+      "status": "pending_review"
+    },
+    {
+      "id": "hand__point",
+      "type": "hand_variant",
+      "category": "R_composed_from_reference",
+      "source": {
+        "sheet": "character_sheet.jpg",
+        "crop_xyxy": [
+          381,
+          955,
+          436,
+          1023
+        ],
+        "construction": "sheet fist + the index finger cut from the sheet's open hand (both the user's drawings)"
+      },
+      "scale_to_reference": 1.823,
+      "mirrored_for": [
+        "l"
+      ],
+      "status": "pending_review"
+    },
+    {
+      "id": "hand__palm_up",
+      "type": "hand_variant",
+      "category": "C_approximation",
+      "source": {
+        "from": "reference hand layers",
+        "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+      },
+      "status": "pending_review"
+    },
+    {
+      "id": "gusset__pointing_speaking__r",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "pointing_speaking",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/pointing_speaking__r.svg",
+      "shoulder_abduction_deg": 101.04,
+      "side": "r",
+      "pixels": 335,
+      "torn_pairs": 33,
+      "fill_rgb": [
+        33,
+        30,
+        37
+      ],
+      "outline_rgb": [
+        1,
+        1,
+        1
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          518.0,
+          390.0
+        ],
+        [
+          467.0,
+          508.0
+        ],
+        [
+          465.0,
+          506.0
+        ],
+        [
+          460.0,
+          499.0
+        ],
+        [
+          458.0,
+          496.0
+        ],
+        [
+          458.0,
+          495.0
+        ],
+        [
+          475.0,
+          394.0
+        ],
+        [
+          481.0,
+          386.0
+        ],
+        [
+          482.0,
+          385.0
+        ],
+        [
+          486.0,
+          385.0
+        ],
+        [
+          510.0,
+          387.0
+        ],
+        [
+          516.0,
+          388.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          452.3,
+          411.6
+        ],
+        [
+          412.7,
+          533.9
+        ],
+        [
+          410.5,
+          532.1
+        ],
+        [
+          404.9,
+          525.6
+        ],
+        [
+          402.6,
+          522.8
+        ],
+        [
+          402.5,
+          521.8
+        ],
+        [
+          409.9,
+          419.7
+        ],
+        [
+          415.1,
+          411.1
+        ],
+        [
+          416.0,
+          410.1
+        ],
+        [
+          420.0,
+          409.7
+        ],
+        [
+          444.1,
+          409.4
+        ],
+        [
+          450.2,
+          409.8
+        ]
+      ]
+    },
+    {
+      "id": "gusset__one_hand_shrug__r",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "one_hand_shrug",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/one_hand_shrug__r.svg",
+      "shoulder_abduction_deg": 26.0,
+      "side": "r",
+      "pixels": 85,
+      "torn_pairs": 7,
+      "fill_rgb": [
+        63,
+        54,
+        66
+      ],
+      "outline_rgb": [
+        2,
+        1,
+        2
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          431.0,
+          467.0
+        ],
+        [
+          448.0,
+          380.0
+        ],
+        [
+          460.0,
+          371.0
+        ],
+        [
+          462.0,
+          371.0
+        ],
+        [
+          467.0,
+          374.0
+        ],
+        [
+          468.0,
+          375.0
+        ],
+        [
+          442.0,
+          486.0
+        ],
+        [
+          441.0,
+          487.0
+        ],
+        [
+          439.0,
+          485.0
+        ],
+        [
+          435.0,
+          479.0
+        ],
+        [
+          431.0,
+          469.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          439.8,
+          510.5
+        ],
+        [
+          432.2,
+          422.2
+        ],
+        [
+          441.2,
+          410.2
+        ],
+        [
+          443.1,
+          409.7
+        ],
+        [
+          448.8,
+          411.2
+        ],
+        [
+          450.0,
+          411.9
+        ],
+        [
+          455.6,
+          525.7
+        ],
+        [
+          454.9,
+          527.0
+        ],
+        [
+          452.4,
+          525.6
+        ],
+        [
+          447.0,
+          520.9
+        ],
+        [
+          440.3,
+          512.4
+        ]
+      ]
+    },
+    {
+      "id": "gusset__both_hands_raised__r",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "both_hands_raised",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/both_hands_raised__r.svg",
+      "shoulder_abduction_deg": 156.0,
+      "side": "r",
+      "pixels": 1066,
+      "torn_pairs": 27,
+      "fill_rgb": [
+        21,
+        20,
+        25
+      ],
+      "outline_rgb": [
+        2,
+        2,
+        2
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          469.0,
+          373.0
+        ],
+        [
+          389.0,
+          495.0
+        ],
+        [
+          388.0,
+          494.0
+        ],
+        [
+          386.0,
+          490.0
+        ],
+        [
+          380.0,
+          475.0
+        ],
+        [
+          369.0,
+          447.0
+        ],
+        [
+          404.0,
+          412.0
+        ],
+        [
+          467.0,
+          371.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          451.1,
+          412.5
+        ],
+        [
+          422.6,
+          555.6
+        ],
+        [
+          421.3,
+          555.0
+        ],
+        [
+          418.0,
+          552.0
+        ],
+        [
+          406.8,
+          540.4
+        ],
+        [
+          386.1,
+          518.5
+        ],
+        [
+          405.4,
+          473.0
+        ],
+        [
+          448.5,
+          411.4
+        ]
+      ]
+    },
+    {
+      "id": "gusset__both_hands_raised__l",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "both_hands_raised",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/both_hands_raised__l.svg",
+      "shoulder_abduction_deg": 156.0,
+      "side": "l",
+      "pixels": 1000,
+      "torn_pairs": 26,
+      "fill_rgb": [
+        36,
+        33,
+        41
+      ],
+      "outline_rgb": [
+        3,
+        2,
+        3
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          701.0,
+          491.0
+        ],
+        [
+          616.0,
+          373.0
+        ],
+        [
+          618.0,
+          371.0
+        ],
+        [
+          620.0,
+          370.0
+        ],
+        [
+          685.0,
+          410.0
+        ],
+        [
+          689.0,
+          414.0
+        ],
+        [
+          717.0,
+          447.0
+        ],
+        [
+          717.0,
+          448.0
+        ],
+        [
+          712.0,
+          462.0
+        ],
+        [
+          703.0,
+          487.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          671.3,
+          554.1
+        ],
+        [
+          636.7,
+          412.8
+        ],
+        [
+          639.3,
+          411.7
+        ],
+        [
+          641.6,
+          411.5
+        ],
+        [
+          686.9,
+          473.0
+        ],
+        [
+          689.1,
+          478.2
+        ],
+        [
+          702.7,
+          519.3
+        ],
+        [
+          702.3,
+          520.2
+        ],
+        [
+          692.4,
+          531.3
+        ],
+        [
+          674.7,
+          551.1
+        ]
+      ]
+    },
+    {
+      "id": "gusset__conversational_gesture__r",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "conversational_gesture",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/conversational_gesture__r.svg",
+      "shoulder_abduction_deg": 30.0,
+      "side": "r",
+      "pixels": 64,
+      "torn_pairs": 9,
+      "fill_rgb": [
+        24,
+        21,
+        26
+      ],
+      "outline_rgb": [
+        1,
+        1,
+        2
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          431.0,
+          384.0
+        ],
+        [
+          404.0,
+          488.0
+        ],
+        [
+          398.0,
+          482.0
+        ],
+        [
+          396.0,
+          472.0
+        ],
+        [
+          416.0,
+          387.0
+        ],
+        [
+          421.0,
+          380.0
+        ],
+        [
+          422.0,
+          379.0
+        ],
+        [
+          428.0,
+          381.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          453.6,
+          413.0
+        ],
+        [
+          440.6,
+          519.6
+        ],
+        [
+          433.9,
+          514.5
+        ],
+        [
+          430.6,
+          504.8
+        ],
+        [
+          439.1,
+          417.9
+        ],
+        [
+          443.2,
+          410.3
+        ],
+        [
+          444.0,
+          409.2
+        ],
+        [
+          450.2,
+          410.4
+        ]
+      ]
+    }
+  ],
+  "hand_sources": {
+    "note": "Hand drawings on the user's character sheet ('Rigging / Puppet Parts' panel), pointing up with the wrist at the bottom; drawn as right hands (thumb on the image right with the palm toward the viewer). Boxes are sheet pixels [x0, y0, x1, y1]. index_finger_box is in the cut-out 'open' drawing's pixels (finger next to the thumb).",
+    "sheet": "character_sheet.jpg",
+    "hands": {
+      "open": [
+        262,
+        930,
+        319,
+        1023
+      ],
+      "fist": [
+        381,
+        955,
+        436,
+        1023
+      ],
+      "thumbs_up": [
+        446,
+        935,
+        493,
+        1018
+      ]
+    },
+    "scale_from": "open",
+    "drawn_as": "r",
+    "index_finger_box": [
+      35,
+      4,
+      48,
+      47
+    ]
+  },
+  "review": "autorig review <package> --approve corrective:<id>",
+  "rule": "generated/constructed artwork is never approved in code"
+}

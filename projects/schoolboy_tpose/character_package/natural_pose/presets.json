@@ -560,15 +560,13 @@
   "pointing_speaking": {
     "title": "Pointing while speaking",
     "intent": "right arm reaches out to point, weight on the left leg",
-    "status": "NEEDS_ARTWORK",
-    "confidence": 0.37,
-    "needs_artwork": [
-      "hand_r: index-finger pointing hand (only an open hand exists)",
-      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)"
-    ],
+    "status": "NEEDS_REVIEW",
+    "confidence": 0.69,
+    "needs_artwork": [],
     "defects": [
-      "visible seam at shoulder_r: 33 torn pixel pairs (33 on outlines)",
-      "172 unreviewed generated pixels visible"
+      "172 unreviewed generated pixels visible",
+      "corrective artwork pending review: hand__point (for: hand_r: index-finger pointing hand (only an open hand exists))",
+      "corrective artwork pending review: gusset__pointing_speaking__r"
     ],
     "notes": "",
     "targets": {
@@ -709,11 +707,7 @@
       "left": 0.68,
       "right": 0.32
     },
-    "required_artwork_corrections": [
-      "hand_r: index-finger pointing hand (only an open hand exists)",
-      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
-      "visible seam at shoulder_r: 33 torn pixel pairs (33 on outlines)"
-    ],
+    "required_artwork_corrections": [],
     "metrics": {
       "joint_limits": {
         "violations": [],
@@ -758,14 +752,14 @@
         "pass": 1.0
       },
       "seams": {
-        "exposed_gap_pairs": 32,
+        "exposed_gap_pairs": 0,
         "visible_seam_pairs": 1,
-        "outline_break_pairs": 33,
+        "outline_break_pairs": 1,
         "joints": {
           "shoulder_r": {
-            "exposed_gap": 32,
+            "exposed_gap": 0,
             "visible_seam": 1,
-            "outline_break": 33
+            "outline_break": 1
           },
           "shoulder_l": {
             "exposed_gap": 0,
@@ -805,9 +799,9 @@
         },
         "figure_pieces": 1,
         "rest_figure_pieces": 1,
-        "negative_space_px": 174,
+        "negative_space_px": 92,
         "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
-        "pass": false
+        "pass": true
       },
       "deformation": {
         "layers_deformed": [
@@ -820,10 +814,10 @@
           "foot_l",
           "foot_r",
           "forearm_l",
-          "forearm_r",
+          "forearm_r__trim",
           "hair",
           "hand_l",
-          "hand_r",
+          "hand_r__point",
           "head_base",
           "mouth",
           "neck",
@@ -844,8 +838,8 @@
         "pass": true
       },
       "artwork_fidelity": {
-        "rigidly_moved_share": 0.6249,
-        "blended_share": 0.3751,
+        "rigidly_moved_share": 0.6215,
+        "blended_share": 0.3785,
         "generated_pixels_visible": 172,
         "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
       },
@@ -858,13 +852,13 @@
   "one_hand_shrug": {
     "title": "One-handed shrug",
     "intent": "right shoulder raised, forearm out, open palm",
-    "status": "NEEDS_ARTWORK",
-    "confidence": 0.65,
-    "needs_artwork": [
-      "hand_r: palm-up hand (the open hand faces the viewer)"
-    ],
+    "status": "NEEDS_REVIEW",
+    "confidence": 0.69,
+    "needs_artwork": [],
     "defects": [
-      "123 unreviewed generated pixels visible"
+      "123 unreviewed generated pixels visible",
+      "corrective artwork pending review: hand__palm_up (for: hand_r: palm-up hand (the open hand faces the viewer))",
+      "corrective artwork pending review: gusset__one_hand_shrug__r"
     ],
     "notes": "",
     "targets": {
@@ -1005,9 +999,7 @@
       "left": 0.5,
       "right": 0.5
     },
-    "required_artwork_corrections": [
-      "hand_r: palm-up hand (the open hand faces the viewer)"
-    ],
+    "required_artwork_corrections": [],
     "metrics": {
       "joint_limits": {
         "violations": [],
@@ -1052,14 +1044,14 @@
         "pass": 1.0
       },
       "seams": {
-        "exposed_gap_pairs": 11,
+        "exposed_gap_pairs": 5,
         "visible_seam_pairs": 7,
-        "outline_break_pairs": 18,
+        "outline_break_pairs": 12,
         "joints": {
           "shoulder_r": {
-            "exposed_gap": 6,
+            "exposed_gap": 0,
             "visible_seam": 1,
-            "outline_break": 7
+            "outline_break": 1
           },
           "shoulder_l": {
             "exposed_gap": 5,
@@ -1099,7 +1091,7 @@
         },
         "figure_pieces": 1,
         "rest_figure_pieces": 1,
-        "negative_space_px": 498,
+        "negative_space_px": 492,
         "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
         "pass": true
       },
@@ -1114,10 +1106,10 @@
           "foot_l",
           "foot_r",
           "forearm_l",
-          "forearm_r",
+          "forearm_r__trim",
           "hair",
           "hand_l",
-          "hand_r",
+          "hand_r__palm_up",
           "head_base",
           "mouth",
           "neck",
@@ -1138,8 +1130,8 @@
         "pass": true
       },
       "artwork_fidelity": {
-        "rigidly_moved_share": 0.6827,
-        "blended_share": 0.3173,
+        "rigidly_moved_share": 0.6786,
+        "blended_share": 0.3214,
         "generated_pixels_visible": 123,
         "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
       },
@@ -1152,15 +1144,12 @@
   "both_hands_raised": {
     "title": "Both hands raised",
     "intent": "arms up, shoulders lifted, open palms",
-    "status": "NEEDS_ARTWORK",
-    "confidence": 0.34,
-    "needs_artwork": [
-      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
-      "corrective shape at shoulder_l: armpit gusset (the existing artwork cannot cover this bend)"
-    ],
+    "status": "NEEDS_REVIEW",
+    "confidence": 0.74,
+    "needs_artwork": [],
     "defects": [
-      "visible seam at shoulder_r: 27 torn pixel pairs (27 on outlines)",
-      "visible seam at shoulder_l: 26 torn pixel pairs (26 on outlines)"
+      "corrective artwork pending review: gusset__both_hands_raised__r",
+      "corrective artwork pending review: gusset__both_hands_raised__l"
     ],
     "notes": "",
     "targets": {
@@ -1301,12 +1290,7 @@
       "left": 0.5,
       "right": 0.5
     },
-    "required_artwork_corrections": [
-      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
-      "corrective shape at shoulder_l: armpit gusset (the existing artwork cannot cover this bend)",
-      "visible seam at shoulder_r: 27 torn pixel pairs (27 on outlines)",
-      "visible seam at shoulder_l: 26 torn pixel pairs (26 on outlines)"
-    ],
+    "required_artwork_corrections": [],
     "metrics": {
       "joint_limits": {
         "violations": [],
@@ -1351,19 +1335,19 @@
         "pass": 1.0
       },
       "seams": {
-        "exposed_gap_pairs": 52,
+        "exposed_gap_pairs": 0,
         "visible_seam_pairs": 1,
-        "outline_break_pairs": 53,
+        "outline_break_pairs": 1,
         "joints": {
           "shoulder_r": {
-            "exposed_gap": 26,
+            "exposed_gap": 0,
             "visible_seam": 1,
-            "outline_break": 27
+            "outline_break": 1
           },
           "shoulder_l": {
-            "exposed_gap": 26,
+            "exposed_gap": 0,
             "visible_seam": 0,
-            "outline_break": 26
+            "outline_break": 0
           },
           "elbow_r": {
             "exposed_gap": 0,
@@ -1398,9 +1382,9 @@
         },
         "figure_pieces": 1,
         "rest_figure_pieces": 1,
-        "negative_space_px": 21206,
+        "negative_space_px": 21173,
         "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
-        "pass": false
+        "pass": true
       },
       "deformation": {
         "layers_deformed": [
@@ -2025,12 +2009,13 @@
     "title": "Running stance",
     "intent": "right knee driving forward, elbows bent, weight on the left leg",
     "status": "NEEDS_ARTWORK",
-    "confidence": 0.5,
+    "confidence": 0.62,
     "needs_artwork": [
-      "fists (only open hands exist)",
       "foreshortened forward thigh (approximated by axial scaling 0.6)"
     ],
-    "defects": [],
+    "defects": [
+      "corrective artwork pending review: hand__fist (for: fists (only open hands exist))"
+    ],
     "notes": "",
     "targets": {
       "joints_posed_px": {
@@ -2170,7 +2155,6 @@
       "right": 0.0
     },
     "required_artwork_corrections": [
-      "fists (only open hands exist)",
       "foreshortened forward thigh (approximated by axial scaling 0.6)"
     ],
     "metrics": {
@@ -2266,7 +2250,7 @@
         },
         "figure_pieces": 1,
         "rest_figure_pieces": 1,
-        "negative_space_px": 13004,
+        "negative_space_px": 13030,
         "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
         "pass": true
       },
@@ -2280,11 +2264,11 @@
           "eye_r_white",
           "foot_l",
           "foot_r",
-          "forearm_l",
-          "forearm_r",
+          "forearm_l__trim",
+          "forearm_r__trim",
           "hair",
-          "hand_l",
-          "hand_r",
+          "hand_l__fist",
+          "hand_r__fist",
           "head_base",
           "mouth",
           "neck",
@@ -2305,8 +2289,8 @@
         "pass": true
       },
       "artwork_fidelity": {
-        "rigidly_moved_share": 0.6273,
-        "blended_share": 0.3727,
+        "rigidly_moved_share": 0.6183,
+        "blended_share": 0.3817,
         "generated_pixels_visible": 0,
         "note": "blended pixels are original pixels resampled inside joint bands; generated pixels are unreviewed Phase 2 extensions"
       },
@@ -3179,14 +3163,12 @@
   "conversational_gesture": {
     "title": "Conversational gesture",
     "intent": "right forearm up and open, weight on the right leg",
-    "status": "NEEDS_ARTWORK",
-    "confidence": 0.57,
-    "needs_artwork": [
-      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)"
-    ],
+    "status": "NEEDS_REVIEW",
+    "confidence": 0.77,
+    "needs_artwork": [],
     "defects": [
-      "visible seam at shoulder_r: 9 torn pixel pairs (9 on outlines)",
-      "100 unreviewed generated pixels visible"
+      "100 unreviewed generated pixels visible",
+      "corrective artwork pending review: gusset__conversational_gesture__r"
     ],
     "notes": "",
     "targets": {
@@ -3327,10 +3309,7 @@
       "left": 0.32,
       "right": 0.68
     },
-    "required_artwork_corrections": [
-      "corrective shape at shoulder_r: armpit gusset (the existing artwork cannot cover this bend)",
-      "visible seam at shoulder_r: 9 torn pixel pairs (9 on outlines)"
-    ],
+    "required_artwork_corrections": [],
     "metrics": {
       "joint_limits": {
         "violations": [],
@@ -3375,14 +3354,14 @@
         "pass": 1.0
       },
       "seams": {
-        "exposed_gap_pairs": 8,
+        "exposed_gap_pairs": 0,
         "visible_seam_pairs": 2,
-        "outline_break_pairs": 10,
+        "outline_break_pairs": 2,
         "joints": {
           "shoulder_r": {
-            "exposed_gap": 8,
+            "exposed_gap": 0,
             "visible_seam": 1,
-            "outline_break": 9
+            "outline_break": 1
           },
           "shoulder_l": {
             "exposed_gap": 0,
@@ -3422,7 +3401,7 @@
         },
         "figure_pieces": 1,
         "rest_figure_pieces": 1,
-        "negative_space_px": 803,
+        "negative_space_px": 785,
         "note": "pairs are rest-adjacent pixels 2 px apart torn > 5 px; negative space between limbs and body is information, not a defect",
         "pass": true
       },

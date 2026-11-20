@@ -52,6 +52,8 @@ class Preset:
     feet: dict[str, dict[str, Any]] = field(default_factory=dict)  # side -> lift (frac leg), dx (frac hip sep)
     scale: dict[str, float] = field(default_factory=dict)  # bone -> axial scale (foreshortening, flagged)
     front: list[str] = field(default_factory=list)  # layers composited last
+    hands: dict[str, str] = field(default_factory=dict)  # side -> hand switch drawing (corrective artwork)
+    resolved_by: dict[str, str] = field(default_factory=dict)  # needs_artwork item -> hand drawing providing it
     arms_behind_head: bool = True
     needs_artwork: list[str] = field(default_factory=list)
     notes: str = ""
@@ -69,12 +71,14 @@ PRESETS: list[Preset] = [
            stance=1.25, knee_min_bend=3, arms={s: {"abduction": 5.0, "flexion": 5.0, "wrist": 3.0} for s in SIDES}),
     Preset("pointing_speaking", "Pointing while speaking", "right arm reaches out to point, weight on the left leg",
            weight_left=0.68, pelvis_tilt=-3.0, head=-5.0, clavicle={"r": 6.0},
-           arms={"r": {"reach": (0.9, 0.38), "elbow": "down", "wrist": -6.0}, "l": RELAXED},
-           needs_artwork=["hand_r: index-finger pointing hand (only an open hand exists)"]),
+           arms={"r": {"reach": (0.9, 0.38), "elbow": "down", "wrist": -6.0}, "l": RELAXED}, hands={"r": "point"},
+           needs_artwork=["hand_r: index-finger pointing hand (only an open hand exists)"],
+           resolved_by={"hand_r: index-finger pointing hand (only an open hand exists)": "point"}),
     Preset("one_hand_shrug", "One-handed shrug", "right shoulder raised, forearm out, open palm",
            head=7.0, clavicle={"r": 16.0, "l": 3.0},
-           arms={"r": {"abduction": 26.0, "flexion": -100.0, "wrist": -12.0}, "l": RELAXED},
-           needs_artwork=["hand_r: palm-up hand (the open hand faces the viewer)"]),
+           arms={"r": {"abduction": 26.0, "flexion": -100.0, "wrist": -12.0}, "l": RELAXED}, hands={"r": "palm_up"},
+           needs_artwork=["hand_r: palm-up hand (the open hand faces the viewer)"],
+           resolved_by={"hand_r: palm-up hand (the open hand faces the viewer)": "palm_up"}),
     Preset("both_hands_raised", "Both hands raised", "arms up, shoulders lifted, open palms",
            stance=1.7, clavicle={"r": 22.0, "l": 22.0},
            arms={s: {"abduction": 156.0, "flexion": -14.0, "wrist": 0.0} for s in SIDES}),
@@ -94,8 +98,10 @@ PRESETS: list[Preset] = [
            feet={"r": {"planted": False, "fk": {"thigh_abd": 5.0, "knee_flex": 6.0, "thigh_scale": 0.6}}},
            arms={"r": {"abduction": 30.0, "flexion": 55.0, "wrist": 8.0},
                  "l": {"abduction": 28.0, "flexion": 50.0, "wrist": 8.0}},
+           hands={"r": "fist", "l": "fist"},
            needs_artwork=["fists (only open hands exist)",
-                          "foreshortened forward thigh (approximated by axial scaling 0.6)"]),
+                          "foreshortened forward thigh (approximated by axial scaling 0.6)"],
+           resolved_by={"fists (only open hands exist)": "fist"}),
     Preset("sitting", "Sitting", "seated on a low seat, knees apart, hands resting near the knees",
            pelvis_drop=0.40, stance=2.3, knee_min_bend=10,
            arms={s: {"abduction": 22.0, "flexion": 48.0, "wrist": 8.0} for s in SIDES},

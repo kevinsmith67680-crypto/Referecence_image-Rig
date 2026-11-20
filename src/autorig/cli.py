@@ -499,6 +499,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("pose-refine", help="Phase 2 refinement: natural pose presets with skinned joints")
     p.add_argument("package", help="Phase 2 character package")
     p.add_argument("--presets", help="comma-separated preset names (default: all)")
+    p.add_argument("--hand-sources", help="JSON naming hand drawings on the user's sheet (corrective hand variants)")
     p.set_defaults(func=cmd_pose_refine)
 
     p = sub.add_parser("review", help="approve/reject Phase 2 generated assets")
@@ -524,7 +525,7 @@ def cmd_pose_refine(args: argparse.Namespace) -> int:
     from .phase2.posing import PRESET_BY_NAME
 
     presets = [PRESET_BY_NAME[n] for n in args.presets.split(",")] if args.presets else None
-    res = refine_package(args.package, presets=presets)
+    res = refine_package(args.package, presets=presets, hand_sources=args.hand_sources)
     rep = res["report"]
     print(f"wrote {res['out']}  (neutral pose exact: {rep['neutral_pose_exact']}, {rep['duration_s']} s)")
     for name, v in rep["presets"].items():

@@ -1,0 +1,32 @@
+{
+  "note": "Hand drawings on the user's character sheet ('Rigging / Puppet Parts' panel), pointing up with the wrist at the bottom; drawn as right hands (thumb on the image right with the palm toward the viewer). Boxes are sheet pixels [x0, y0, x1, y1]. index_finger_box is in the cut-out 'open' drawing's pixels (finger next to the thumb).",
+  "sheet": "character_sheet.jpg",
+  "hands": {
+    "open": [
+      262,
+      930,
+      319,
+      1023
+    ],
+    "fist": [
+      381,
+      955,
+      436,
+      1023
+    ],
+    "thumbs_up": [
+      446,
+      935,
+      493,
+      1018
+    ]
+  },
+  "scale_from": "open",
+  "drawn_as": "r",
+  "index_finger_box": [
+    35,
+    4,
+    48,
+    47
+  ]
+}

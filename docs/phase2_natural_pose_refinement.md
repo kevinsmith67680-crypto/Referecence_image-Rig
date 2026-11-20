@@ -1,6 +1,13 @@
 # Phase 2 refinement: natural posing and joint deformation
 
 **Result: posing is visibly better; not ready for Phase 3.**
+
+> **Update (corrective artwork, section 10):** the armpit gussets and hand drawings now exist, pending
+> review. The statuses now stand at:
+> * 5 OK_PENDING_REVIEW;
+> * 4 NEEDS_REVIEW (pointing, shrug, both hands raised, gesture), which use corrective artwork awaiting
+>   approval;
+> * 3 NEEDS_ARTWORK (arms crossed, running's foreshortened thigh, sitting).
 * Natural poses of the real T-pose character now look clean.
 * 5 of 12 presets pass every automatic check, but they still need human review.
 * 7 presets are labelled **NEEDS_ARTWORK**, because they need hand shapes or corrective shapes that do
@@ -172,4 +179,49 @@ not production-quality evidence: it was rendered outside Moho on a single real c
 
 ## 9. Test run
 
-Full suite: `python -m pytest`: **317 passed, 2 skipped** (the native Moho tests, NOT EXECUTED).
+Full suite: `python -m pytest`: **317 passed, 2 skipped** (the native Moho tests, NOT EXECUTED); after the corrective-artwork follow-up, **322 passed, 2 skipped** (31 natural-pose tests).
+
+
+## 10. Corrective artwork (follow-up)
+
+Created on request, for the armpit and the hands. Every item is **pending review**:
+* it is registered in `reports/approvals.json` as `corrective:<id>`;
+* it is decided with `autorig review <package> --approve|--reject corrective:<id>`;
+* phase approval stays blocked until then.
+
+Files are in `natural_pose/corrective/`, recorded in its `manifest.json`. Command:
+`autorig pose-refine <package> --hand-sources references/schoolboy/hand_sources.json`.
+
+| Asset | Source | Category | Used by |
+|---|---|---|---|
+| Fist (r and l) | the user's sheet, "Puppet Parts" fist, cut from the background and scaled 1.815x to the reference hand; the left is mirrored | R reference-derived | running |
+| Thumbs-up (r and l) | the user's sheet | R reference-derived | available as a switch drawing |
+| Pointing hand (r and l) | the sheet's fist with the **index finger cut from the sheet's open hand** (widened 1.25x to match the fist), placed behind the top knuckle | R composed from reference | pointing while speaking |
+| Palm-up hand (r and l) | the reference's own open hand, foreshortened to 50% across its axis (palm seen edge-on) | C approximation | one-handed shrug |
+| Armpit gussets | per pose: only the pixels the raised arm tore open, as segments between the posed positions of rest-adjacent pixels; drawn behind all art in the neighbouring jacket colour, with the jacket outline (4 px) where it meets the background | C corrective shape | both hands raised, pointing, gesture, shrug |
+
+![sheet hands](../projects/schoolboy_tpose/character_package/natural_pose/corrective/hands/sheet_hands_preview.png)
+
+![armpit gusset before and after](../projects/schoolboy_tpose/character_package/natural_pose/corrective/armpit/before_after_both_hands_raised.png)
+
+Effect on the T-pose character (torn pairs at the shoulders, before -> after):
+* both hands raised 53 -> 1;
+* pointing 33 -> 1;
+* gesture 10 -> 2.
+
+When a hand is swapped, a trimmed forearm (`forearm_<side>__trim`) removes original-hand fragments that
+Phase 1 left in the forearm layer, while keeping the cuff. Without the trim they float loose, and the
+pointing pose split into 3 pieces.
+
+Gusset polygons are exported as SVG, with points in the clavicle bone's rest frame (`manifest.json`). In
+Moho they would become a corrective vector shape driven by a Smart Bone on the shoulder, keyed at the
+recorded abduction angle. This mapping is proposed, not verified.
+
+Honest limits:
+* The sheet hands are small (about 55x70 px), so at 1.8x their outlines are softer and grainier than the
+  reference hand.
+* The palm-up hand is an approximation: it reads as an edge-on open hand, not a drawn palm-up hand.
+* The pointing fingertip softens after rotation.
+* A faint light dash remains at the top of each shoulder in the raised-arm poses. It is a fold artefact,
+  present with or without gussets.
+* None of this artwork is approved. Arms crossed, sitting and running's thigh still need new drawings.

@@ -73,6 +73,7 @@ def smoothstep(e0: float, e1: float, x: np.ndarray) -> np.ndarray:
 
 
 def layer_class(cid: str) -> str:
+    cid = cid.split("__")[0]  # switch variants (e.g. hand_r__fist) behave like their base layer
     if cid in HEAD_LAYERS or cid.startswith(("eye_", "brow_", "ear_")):
         return "head"
     if cid in ("neck", "torso", "pelvis"):

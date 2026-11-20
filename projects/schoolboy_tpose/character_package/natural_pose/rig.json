@@ -805,6 +805,75 @@
       "home_bones": [
         "head"
       ]
+    },
+    "hand_r__fist": {
+      "class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ]
+    },
+    "hand_l__fist": {
+      "class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l"
+      ]
+    },
+    "hand_r__thumbs_up": {
+      "class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ]
+    },
+    "hand_l__thumbs_up": {
+      "class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l"
+      ]
+    },
+    "hand_r__point": {
+      "class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ]
+    },
+    "hand_l__point": {
+      "class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l"
+      ]
+    },
+    "forearm_r__trim": {
+      "class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ]
+    },
+    "forearm_l__trim": {
+      "class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l",
+        "upper_arm_l"
+      ]
+    },
+    "hand_r__palm_up": {
+      "class": "arm_r",
+      "home_bones": [
+        "hand_r"
+      ]
+    },
+    "hand_l__palm_up": {
+      "class": "arm_l",
+      "home_bones": [
+        "hand_l"
+      ]
     }
   },
   "corrections": {
@@ -828,7 +897,7 @@
           178
         ]
       },
-      "worst_torn_pairs_in_presets": 33,
+      "worst_torn_pairs_in_presets": 5,
       "corrective_artwork_needed": [
         "armpit gusset for abduction above ~120 deg (raised arms open the T-pose armpit corner)"
       ],

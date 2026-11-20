@@ -17,6 +17,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from . import pose as legacy
+from . import corrective as C
 from .pose_eval import closeups, diagnostic, evaluate, gap_mask, on_bg
 from .posing import PRESETS, Preset, PoseSolver, wrap
 from .skeleton import LIMITS, SIDES, build_skeleton, layer_class
@@ -44,15 +45,22 @@ def load(pkg: Path) -> dict[str, Any]:
             "order": [c for c in order if c in layers], "W": W, "H": H}
 
 
-def natural_order(order: list[str], pr: Preset) -> list[str]:
+def natural_order(order: list[str], pr: Preset, available: set[str] | None = None) -> list[str]:
     """Adaptive layering: legs, then pelvis/neck/torso, arms in front of the body (behind the head unless
-    the preset says otherwise), then the head group; preset 'front' layers last."""
+    the preset says otherwise), then the head group; preset 'front' layers last. Hand switch drawings
+    named by the preset replace the reference hand when they are ``available``."""
     legs = [c for c in order if layer_class(c).startswith("leg")]
     body = [c for c in order if c in ("pelvis", "neck", "torso")]
     head = [c for c in order if layer_class(c) == "head"]
     arms = [c for s in SIDES for c in (f"upper_arm_{s}", f"forearm_{s}", f"hand_{s}") if c in order]
     rest = [c for c in order if c not in legs + body + head + arms]
     out = legs + body + rest + (arms + head if pr.arms_behind_head else head + arms)
+    for s, name in pr.hands.items():
+        v = f"hand_{s}__{name}"
+        if available and v in available and f"hand_{s}" in out:
+            out[out.index(f"hand_{s}")] = v
+            if f"forearm_{s}__trim" in available and f"forearm_{s}" in out:  # drop original-hand bits
+                out[out.index(f"forearm_{s}")] = f"forearm_{s}__trim"
     for f in pr.front:
         if f in out:
             out.remove(f)
@@ -147,15 +155,24 @@ def correction_presets(sk, results: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
-def refine_package(pkg_dir: str | Path, presets: list[Preset] | None = None, pad: int = 160) -> dict[str, Any]:
+def refine_package(pkg_dir: str | Path, presets: list[Preset] | None = None, pad: int = 160,
+                   hand_sources: str | Path | None = None, gussets: bool = True) -> dict[str, Any]:
     t0 = time.time()
     pkg = Path(pkg_dir)
     out = pkg / OUT
-    for sub in ("poses", "legacy", "closeups"):
+    for sub in ("poses", "legacy", "closeups", "corrective/hands", "corrective/armpit"):
         (out / sub).mkdir(parents=True, exist_ok=True)
     data = load(pkg)
     sk = build_skeleton(data["joints"], {c: a[..., 3] > 0 for c, a in data["layers"].items()})
-    dfm = Deformer(sk, data["layers"], data["generated"], reference=data["source"])
+    sources = json.loads(Path(hand_sources).read_text()) if hand_sources else None
+    variants, cor_records, drawings = C.build_hand_variants(sk, data["layers"], sources,
+                                                            Path(hand_sources).parent if hand_sources else pkg)
+    for name, art in drawings.items():
+        Image.fromarray(art, "RGBA").save(out / "corrective" / "hands" / f"{name}.png", optimize=True)
+    for vid, lay in variants.items():
+        Image.fromarray(lay, "RGBA").save(out / "corrective" / "hands" / f"{vid}.png", optimize=True)
+    dfm = Deformer(sk, {**data["layers"], **variants}, data["generated"], reference=data["source"],
+                   variants=set(variants))
     solver = PoseSolver(sk, dfm)
     presets = presets or PRESETS
     # neutral: identity pose must reproduce the original pixels exactly
@@ -169,13 +186,30 @@ def refine_package(pkg_dir: str | Path, presets: list[Preset] | None = None, pad
     rest_pieces = int((np.bincount(lab.ravel())[1:] >= 40).sum()) if n else 1
     lum = data["source"][..., :3].astype(np.float32) @ np.array([0.299, 0.587, 0.114], np.float32)
     dark = (lum < 80) & union
-    results, renders = {}, {}
+    results, renders, gusset_records = {}, {}, []
     for pr in presets:
         pose, info = solver.solve(pr)
-        r = dfm.render(pose, natural_order(data["order"], pr), pad=pad)
+        order = natural_order(data["order"], pr, set(variants))
+        r = dfm.render(pose, order, pad=pad)
         old = legacy_render(data, solver, pose, pad)
         tears = dfm.tears(pose, r, dark)
-        ev = evaluate(sk, solver, pose, info, r, pr, tears, rest_pieces)
+        used = [f"hand__{n}" for s, n in pr.hands.items() if f"hand_{s}__{n}" in order]
+        resolved = {item: f"hand__{n}" for item, n in pr.resolved_by.items() if f"hand__{n}" in used}
+        pending = [u for u in used if u not in resolved.values()]
+        if gussets:
+            for g in C.armpit_gussets(r, tears, sk, info, dfm, pose):
+                gid = f"gusset__{pr.name}__{g['side']}"
+                (out / "corrective" / "armpit" / f"{pr.name}__{g['side']}.svg").write_text(
+                    C.gusset_svg(g, data["W"], data["H"]), encoding="utf-8")
+                gusset_records.append({"id": gid, "type": "armpit_gusset", "category": "C_corrective_shape",
+                                       "preset": pr.name, "status": "pending_review",
+                                       "file": f"{OUT}/corrective/armpit/{pr.name}__{g['side']}.svg",
+                                       "shoulder_abduction_deg": solver.anatomical(pose)[f"upper_arm_{g['side']}_abduction"],
+                                       **g})
+                pending.append(gid)
+            if any(p.startswith("gusset__") for p in pending):
+                tears = dfm.tears(pose, r, dark)  # re-measure after the corrective fill
+        ev = evaluate(sk, solver, pose, info, r, pr, tears, rest_pieces, resolved, pending)
         renders[pr.name] = (r, old, info, tears)
         Image.fromarray(r["image"], "RGBA").save(out / "poses" / f"{pr.name}.png", optimize=True)
         on_bg(old).save(out / "legacy" / f"{pr.name}.jpg", quality=90)
@@ -238,6 +272,8 @@ def refine_package(pkg_dir: str | Path, presets: list[Preset] | None = None, pad
                          "live": "gamepad-triggered gestures map to preset actions; head tilt/rotation and facial "
                                  "controls stay separate actions"}})
     (out / "rig.json").write_text(json.dumps(rig, indent=2), encoding="utf-8")
+    manifest = register_corrective(pkg, cor_records + gusset_records, sources)
+    (out / "corrective" / "manifest.json").write_text(json.dumps(manifest, indent=2, default=float), encoding="utf-8")
     (out / "presets.json").write_text(json.dumps(results, indent=2, default=float), encoding="utf-8")
     report = {"package": pkg.name, "neutral_pose_exact": neutral_exact, "sequences": seq,
               "status_counts": {s: sum(1 for v in results.values() if v["status"] == s)
@@ -248,3 +284,25 @@ def refine_package(pkg_dir: str | Path, presets: list[Preset] | None = None, pad
               "evidence": "rendered by the standalone preview deformer; NOT Moho; nothing human-reviewed"}
     (out / "report.json").write_text(json.dumps(report, indent=2, default=float), encoding="utf-8")
     return {"report": report, "results": results, "skeleton": sk, "out": out}
+
+
+def register_corrective(pkg: Path, records: list[dict[str, Any]], sources: dict[str, Any] | None) -> dict[str, Any]:
+    """Add the corrective assets to the package's review items (reports/approvals.json) as pending review,
+    so `autorig review --approve <id>` decides them and phase approval stays blocked until it does. An item
+    already reviewed keeps its decision only while its artwork is unchanged (same fingerprint)."""
+    import hashlib
+    path = pkg / "reports" / "approvals.json"
+    doc = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {"items": [], "decisions": []}
+    prior = {i["id"]: i for i in doc.get("items", [])}
+    items = []
+    for r in records:
+        fp = hashlib.sha256(json.dumps({k: v for k, v in r.items() if k != "status"}, sort_keys=True,
+                                       default=float).encode()).hexdigest()
+        old = prior.get(f"corrective:{r['id']}")
+        status = old["status"] if old and old.get("fingerprint") == fp else "pending_review"
+        items.append({"id": f"corrective:{r['id']}", "type": "corrective_artwork", "category": r["category"],
+                      "status": status, "fingerprint": fp, "preset": r.get("preset"), "detail": r.get("source")})
+    doc["items"] = [i for i in doc.get("items", []) if not i["id"].startswith("corrective:")] + items
+    path.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
+    return {"assets": records, "hand_sources": sources, "review": "autorig review <package> --approve corrective:<id>",
+            "rule": "generated/constructed artwork is never approved in code"}

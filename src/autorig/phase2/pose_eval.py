@@ -21,7 +21,11 @@ def union_alpha(render: dict[str, Any]) -> np.ndarray:
 
 
 def evaluate(sk: Skeleton, solver, pose, info: dict[str, Any], render: dict[str, Any], preset,
-             tears: dict[str, list] | None = None, rest_pieces: int = 1) -> dict[str, Any]:
+             tears: dict[str, list] | None = None, rest_pieces: int = 1, resolved: dict[str, str] | None = None,
+             pending_corrective: list[str] | None = None) -> dict[str, Any]:
+    """``resolved``: needs_artwork items now covered by corrective artwork (item -> asset id); they leave the
+    NEEDS_ARTWORK list but the pose stays NEEDS_REVIEW until that artwork is approved.
+    ``pending_corrective``: corrective assets used by this pose that still await review."""
     pad = render["pad"]
     alpha = union_alpha(render)
     m: dict[str, Any] = {}
@@ -76,7 +80,7 @@ def evaluate(sk: Skeleton, solver, pose, info: dict[str, Any], render: dict[str,
             x, y = info["joints_posed"][b.name]
             R2 = (1.8 * b.h) ** 2
             cnt = {k: sum(1 for (tx, ty) in v if (tx - x - pad) ** 2 + (ty - y - pad) ** 2 <= R2)
-                   for k, v in tears.items()}
+                   for k, v in tears.items() if k in ("exposed_gap", "visible_seam", "outline_break")}
             seams[f"{grp}_{s_}"] = cnt
     lab, n = ndimage.label(alpha)
     sizes = np.bincount(lab.ravel())[1:] if n else np.array([])
@@ -134,7 +138,12 @@ def evaluate(sk: Skeleton, solver, pose, info: dict[str, Any], render: dict[str,
     for n in info["ik_notes"]:
         defects.append(f"IK: {n}")
     # status and confidence (never 1.0: nothing here has been reviewed by a person or run in Moho)
-    needs_art = list(preset.needs_artwork) + corrective
+    resolved = resolved or {}
+    needs_art = [n for n in preset.needs_artwork if n not in resolved] + corrective
+    for item, asset in resolved.items():
+        defects.append(f"corrective artwork pending review: {asset} (for: {item})")
+    for asset in pending_corrective or []:
+        defects.append(f"corrective artwork pending review: {asset}")
     conf = 0.9 - 0.2 * len(needs_art) - 0.08 * len([d for d in defects if "unreviewed" not in d])
     conf -= 0.05 if m["artwork_fidelity"]["generated_pixels_visible"] else 0.0
     status = STATUS_ARTWORK if needs_art else (STATUS_REVIEW if [d for d in defects if "unreviewed" not in d]

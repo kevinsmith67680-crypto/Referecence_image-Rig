@@ -229,3 +229,100 @@ def test_committed_refinement_outputs_are_present_and_consistent():
         assert im.width >= 2000 and im.height >= 3000
     for p in PRESETS:
         assert (out / "poses" / f"{p.name}.png").is_file() and (out / "closeups" / f"{p.name}.jpg").is_file()
+
+
+# --- corrective artwork: hands from the user's sheet, armpit gussets ----------------------------------------
+
+SHEET_SOURCES = Path(__file__).resolve().parents[1] / "references" / "schoolboy" / "hand_sources.json"
+
+
+def test_sheet_hand_cut_out_is_clean_and_unaltered():
+    from autorig.phase2.corrective import cut_out
+    src = json.loads(SHEET_SOURCES.read_text())
+    sheet = np.asarray(Image.open(SHEET_SOURCES.parent / src["sheet"]).convert("RGB"))
+    fist = cut_out(sheet, src["hands"]["fist"])
+    a = fist[..., 3]
+    assert a[0, 0] == 0 and a[-1, -1] == 0  # background removed
+    from scipy import ndimage
+    assert ndimage.label(a > 0)[1] == 1  # one piece: no JPEG specks
+    x0, y0, x1, y1 = src["hands"]["fist"]
+    inner = (a == 255)
+    crop = sheet[y0 - 4:y1 + 4, x0 - 4:x1 + 4]
+    assert np.array_equal(fist[..., :3][inner], crop[inner])  # opaque pixels are the sheet's own pixels
+
+
+def test_pointing_hand_is_composed_from_the_users_drawings():
+    from autorig.phase2.corrective import cut_out, pointing_from_fist
+    src = json.loads(SHEET_SOURCES.read_text())
+    sheet = np.asarray(Image.open(SHEET_SOURCES.parent / src["sheet"]).convert("RGB"))
+    fist, op = cut_out(sheet, src["hands"]["fist"]), cut_out(sheet, src["hands"]["open"])
+    x0, y0, x1, y1 = src["index_finger_box"]
+    pt = pointing_from_fist(fist, op[y0:y1, x0:x1].copy())
+    extra = pt.shape[0] - fist.shape[0]
+    assert extra > 10  # a finger rises above the fist
+    on = fist[..., 3] == 255  # the fist is pasted on top, unchanged
+    assert np.array_equal(pt[extra:, :fist.shape[1]][on], fist[on])
+
+
+def test_hand_variants_attach_at_the_rest_wrist(rig):
+    from autorig.phase2.corrective import build_hand_variants
+    data, sk, _, _ = rig
+    var, rec, _ = build_hand_variants(sk, data["layers"], json.loads(SHEET_SOURCES.read_text()), SHEET_SOURCES.parent)
+    assert {"hand_r__fist", "hand_l__fist", "hand_r__point", "hand_r__palm_up", "forearm_r__trim"} <= set(var)
+    for s in SIDES:
+        wr = sk.bone(f"hand_{s}").head
+        a = var[f"hand_{s}__fist"][..., 3] > 127
+        ys, xs = np.nonzero(a)
+        assert np.hypot(xs - wr[0], ys - wr[1]).min() < 6  # the drawing's wrist sits on the wrist joint
+        d = (xs - wr[0]) * sk.bone(f"hand_{s}").u[0] + (ys - wr[1]) * sk.bone(f"hand_{s}").u[1]
+        assert np.median(d) > 0  # and extends outward along the hand bone
+    assert all(r["status"] == "pending_review" for r in rec)
+    assert {r["category"] for r in rec} >= {"R_reference_derived", "R_composed_from_reference", "C_approximation"}
+
+
+def test_armpit_gusset_fills_only_the_torn_notch():
+    from autorig.phase2.corrective import armpit_gussets
+    sk, layers = _limb_scene()
+    img = np.zeros((300, 400, 4), np.uint8)
+    img[100:200, 100:300] = (42, 39, 48, 255)
+    img[130:170, 180:220] = 0  # a notch the pose tore open
+    before = img.copy()
+    render = {"image": img, "pad": 0}
+    segs = [[x, 130, x, 170] for x in range(182, 220, 2)]
+
+    class _D:
+        def world(self, b, pose):
+            return np.eye(3)
+
+    bones = [Bone("pelvis", None, "pelvis", None, np.array([0.0, 0]), np.array([0.0, 1]), 20, "t"),
+             Bone("clavicle_r", "pelvis", "clavicle", "r", np.array([150.0, 150]), np.array([200.0, 150]), 30, "t"),
+             Bone("upper_arm_r", "clavicle_r", "upper_arm", "r", np.array([200.0, 150]), np.array([300.0, 150]), 30, "t"),
+             Bone("clavicle_l", "pelvis", "clavicle", "l", np.array([150.0, 150]), np.array([100.0, 150]), 30, "t"),
+             Bone("upper_arm_l", "clavicle_l", "upper_arm", "l", np.array([100.0, 150]), np.array([0.0, 150]), 30, "t")]
+    sk2 = Skeleton(bones, 299, 150, [])
+    info = {"joints_posed": {b.name: list(b.head) for b in bones}}
+    rec = armpit_gussets(render, {"segments": segs}, sk2, info, _D(), None)
+    assert len(rec) == 1 and rec[0]["side"] == "r" and rec[0]["torn_pairs"] == len(segs)
+    was_opaque = before[..., 3] == 255
+    assert np.array_equal(render["image"][was_opaque], before[was_opaque])  # existing art untouched
+    filled = (render["image"][..., 3] == 255) & ~was_opaque
+    ys, xs = np.nonzero(filled)
+    assert 178 <= xs.min() and xs.max() <= 222 and 128 <= ys.min() and ys.max() <= 172  # only the torn notch
+
+
+def test_committed_corrective_artwork_is_registered_for_review():
+    out = TPOSE / "natural_pose"
+    man = json.loads((out / "corrective" / "manifest.json").read_text())
+    ids = {a["id"] for a in man["assets"]}
+    assert {"hand__fist", "hand__point", "hand__palm_up", "hand__thumbs_up"} <= ids
+    assert any(i.startswith("gusset__both_hands_raised") for i in ids)
+    appr = json.loads((TPOSE / "reports" / "approvals.json").read_text())
+    cor = [i for i in appr["items"] if i["id"].startswith("corrective:")]
+    assert cor and all(i["status"] == "pending_review" for i in cor)  # never approved in code
+    presets = json.loads((out / "presets.json").read_text())
+    for n in ("pointing_speaking", "one_hand_shrug", "both_hands_raised"):
+        assert presets[n]["status"] == "NEEDS_REVIEW", (n, presets[n]["status"])  # artwork exists, unreviewed
+        assert any("corrective artwork pending review" in d for d in presets[n]["defects"])
+    assert presets["running"]["status"] == "NEEDS_ARTWORK"  # the foreshortened thigh is still missing
+    seams = presets["both_hands_raised"]["metrics"]["seams"]
+    assert seams["exposed_gap_pairs"] + seams["visible_seam_pairs"] <= 8  # gussets closed the armpits

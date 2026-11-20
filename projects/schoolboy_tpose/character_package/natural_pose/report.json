@@ -24,8 +24,8 @@
   },
   "status_counts": {
     "OK_PENDING_REVIEW": 5,
-    "NEEDS_REVIEW": 0,
-    "NEEDS_ARTWORK": 7
+    "NEEDS_REVIEW": 4,
+    "NEEDS_ARTWORK": 3
   },
   "presets": {
     "relaxed_standing": {
@@ -43,26 +43,29 @@
       ]
     },
     "pointing_speaking": {
-      "status": "NEEDS_ARTWORK",
-      "confidence": 0.37,
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.69,
       "defects": [
-        "visible seam at shoulder_r: 33 torn pixel pairs (33 on outlines)",
-        "172 unreviewed generated pixels visible"
+        "172 unreviewed generated pixels visible",
+        "corrective artwork pending review: hand__point (for: hand_r: index-finger pointing hand (only an open hand exists))",
+        "corrective artwork pending review: gusset__pointing_speaking__r"
       ]
     },
     "one_hand_shrug": {
-      "status": "NEEDS_ARTWORK",
-      "confidence": 0.65,
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.69,
       "defects": [
-        "123 unreviewed generated pixels visible"
+        "123 unreviewed generated pixels visible",
+        "corrective artwork pending review: hand__palm_up (for: hand_r: palm-up hand (the open hand faces the viewer))",
+        "corrective artwork pending review: gusset__one_hand_shrug__r"
       ]
     },
     "both_hands_raised": {
-      "status": "NEEDS_ARTWORK",
-      "confidence": 0.34,
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.74,
       "defects": [
-        "visible seam at shoulder_r: 27 torn pixel pairs (27 on outlines)",
-        "visible seam at shoulder_l: 26 torn pixel pairs (26 on outlines)"
+        "corrective artwork pending review: gusset__both_hands_raised__r",
+        "corrective artwork pending review: gusset__both_hands_raised__l"
       ]
     },
     "arms_crossed": {
@@ -83,8 +86,10 @@
     },
     "running": {
       "status": "NEEDS_ARTWORK",
-      "confidence": 0.5,
-      "defects": []
+      "confidence": 0.62,
+      "defects": [
+        "corrective artwork pending review: hand__fist (for: fists (only open hands exist))"
+      ]
     },
     "sitting": {
       "status": "NEEDS_ARTWORK",
@@ -108,14 +113,14 @@
       ]
     },
     "conversational_gesture": {
-      "status": "NEEDS_ARTWORK",
-      "confidence": 0.57,
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.77,
       "defects": [
-        "visible seam at shoulder_r: 9 torn pixel pairs (9 on outlines)",
-        "100 unreviewed generated pixels visible"
+        "100 unreviewed generated pixels visible",
+        "corrective artwork pending review: gusset__conversational_gesture__r"
       ]
     }
   },
-  "duration_s": 64.1,
+  "duration_s": 67.5,
   "evidence": "rendered by the standalone preview deformer; NOT Moho; nothing human-reviewed"
 }

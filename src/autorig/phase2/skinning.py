@@ -51,7 +51,7 @@ def _rot(theta_deg: float, pivot) -> np.ndarray:
 
 class Deformer:
     def __init__(self, sk: Skeleton, layers: dict[str, np.ndarray], generated: dict[str, np.ndarray] | None = None,
-                 margin: int = 6, reference: np.ndarray | None = None):
+                 margin: int = 6, reference: np.ndarray | None = None, variants: set[str] | None = None):
         """``layers``: full-canvas RGBA rest layers (original pixels, generated extensions underneath).
         ``generated``: per-layer boolean masks of generated (unreviewed) pixels, for provenance tracking."""
         self.sk = sk
@@ -62,7 +62,8 @@ class Deformer:
         # layer, coloured with that neighbour's original pixels. Resampling otherwise leaves both layers
         # half-transparent along their shared cut and the background shows through as a hairline. The
         # ring duplicates pixels that are already there, so the neutral pose is unchanged.
-        opaque = {c: a[..., 3] == 255 for c, a in layers.items()}
+        self.variants = set(variants or ())
+        opaque = {c: a[..., 3] == 255 for c, a in layers.items() if c not in self.variants}
         orig_alpha = {c: a[..., 3] > 0 for c, a in layers.items()}
         if reference is not None:  # the visible source pixels (never a hidden generated extension)
             rest = reference.astype(np.float32) / 255.0
@@ -75,6 +76,8 @@ class Deformer:
         for m in opaque.values():
             anyop |= m
         for cid, rgba in list(layers.items()):
+            if cid in self.variants:  # switch drawings replace a layer; no bleed from the rest pose
+                continue
             alpha0 = rgba[..., 3] > 0
             ring = ndimage.binary_dilation(alpha0) & ~alpha0 & anyop
             if ring.any():
@@ -388,7 +391,7 @@ class Deformer:
                 q = self.forward(cid, np.stack([gx[sel], gy[sel]], 1).astype(np.float64), pose)
                 PX[sel], PY[sel] = q[:, 0], q[:, 1]
         pad, top, alpha = render["pad"], render["top"], render["image"][..., 3]
-        out = {"exposed_gap": [], "visible_seam": [], "outline_break": []}
+        out = {"exposed_gap": [], "visible_seam": [], "outline_break": [], "segments": []}
         for sl_a, sl_b in (((slice(None), slice(None, -1)), (slice(None), slice(1, None))),
                            ((slice(None, -1), slice(None)), (slice(1, None), slice(None)))):
             ax_, ay_, bx_, by_ = PX[sl_a], PY[sl_a], PX[sl_b], PY[sl_b]
@@ -406,6 +409,9 @@ class Deformer:
             seam = inb & ~gap & ((top[my, mx] == la) | (top[my, mx] == lb)) & (la != lb)
             for k, m_ in (("exposed_gap", gap), ("visible_seam", seam)):
                 out[k] += list(zip(mx[m_].tolist(), my[m_].tolist()))
+            g_ = gap | seam  # posed end points of each visible torn pair (what a corrective fill must bridge)
+            out["segments"] += np.stack([ax_[t][g_] + pad, ay_[t][g_] + pad, bx_[t][g_] + pad,
+                                         by_[t][g_] + pad], 1).tolist()
             if dark is not None:
                 rx, ry = gx[sl_a][t], gy[sl_a][t]
                 brk = (gap | seam) & dark[ry, rx]
@@ -416,6 +422,8 @@ class Deformer:
         """Mass proxy per home bone: opaque rest pixel count and its centroid (all layers)."""
         acc: dict[int, list] = {}
         for cid, inf in self.info.items():
+            if cid in self.variants:
+                continue
             x0, y0 = inf["origin"]
             ay, ax = np.nonzero(inf["alpha"])
             hb = inf["home"][ay, ax]

@@ -515,6 +515,115 @@
       "type": "missing_switch_drawing",
       "status": "missing",
       "description": "head pitched down"
+    },
+    {
+      "id": "corrective:hand__fist",
+      "type": "corrective_artwork",
+      "category": "R_reference_derived",
+      "status": "pending_review",
+      "fingerprint": "97265a36e372581c14e606d321d9b0153d1d8f7e26db59a7157f1670ef3adbad",
+      "preset": null,
+      "detail": {
+        "sheet": "character_sheet.jpg",
+        "crop_xyxy": [
+          381,
+          955,
+          436,
+          1023
+        ]
+      }
+    },
+    {
+      "id": "corrective:hand__thumbs_up",
+      "type": "corrective_artwork",
+      "category": "R_reference_derived",
+      "status": "pending_review",
+      "fingerprint": "09559d63ca82fe3260aa4be36226cef78dfb6751c2293a81a3a258d71be7021c",
+      "preset": null,
+      "detail": {
+        "sheet": "character_sheet.jpg",
+        "crop_xyxy": [
+          446,
+          935,
+          493,
+          1018
+        ]
+      }
+    },
+    {
+      "id": "corrective:hand__point",
+      "type": "corrective_artwork",
+      "category": "R_composed_from_reference",
+      "status": "pending_review",
+      "fingerprint": "33054cafd09736e911dbd3128c0fd55e77f42044ba456157ad348a5ca581943a",
+      "preset": null,
+      "detail": {
+        "sheet": "character_sheet.jpg",
+        "crop_xyxy": [
+          381,
+          955,
+          436,
+          1023
+        ],
+        "construction": "sheet fist + the index finger cut from the sheet's open hand (both the user's drawings)"
+      }
+    },
+    {
+      "id": "corrective:hand__palm_up",
+      "type": "corrective_artwork",
+      "category": "C_approximation",
+      "status": "pending_review",
+      "fingerprint": "b95da4be6e3cfaca45e5b0b9f73dcd02454bdebc0e75b05fa6eac26dba7850ab",
+      "preset": null,
+      "detail": {
+        "from": "reference hand layers",
+        "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+      }
+    },
+    {
+      "id": "corrective:gusset__pointing_speaking__r",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "1f4168d5763ad86848f0a545b4e3eb1257036d9c285ea5159841775d564e0f3e",
+      "preset": "pointing_speaking",
+      "detail": null
+    },
+    {
+      "id": "corrective:gusset__one_hand_shrug__r",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "28f11d8a026fcd7051fb83a8f668295211624a24a0f3e5e5e0733307006fff96",
+      "preset": "one_hand_shrug",
+      "detail": null
+    },
+    {
+      "id": "corrective:gusset__both_hands_raised__r",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "a1070a829881ac36476d7cdf398d37a27b22bc6d2871cf9529d775b315a59b89",
+      "preset": "both_hands_raised",
+      "detail": null
+    },
+    {
+      "id": "corrective:gusset__both_hands_raised__l",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "e46e652b3951e3dc8e3422b4b304f03eca06069aff3fc4506e3b2bf93a8590f1",
+      "preset": "both_hands_raised",
+      "detail": null
+    },
+    {
+      "id": "corrective:gusset__conversational_gesture__r",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "983c6adfcae9e6130ba5df88ccbc5d854fa1a8dd454ec5bd7c5d28505a75afa5",
+      "preset": "conversational_gesture",
+      "detail": null
     }
   ],
   "decisions": [],
