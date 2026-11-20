@@ -136,10 +136,13 @@ Pose gaps in pixels, originals only → with extensions:
 | arm_90 | 3140 | 1497 |
 | left_arm_90 | 2924 | 1209 |
 | elbows_bent | 1245 | 1245 |
-| walking | 3497 | 3061 |
-| sitting | 1934 | 460 |
+| walking | 3695 | 3234 |
+| sitting | 2299 | 786 |
 | head_tilt_left | 165 | 4 |
 | head_tilt_right | 173 | 12 |
+
+*Walking and sitting were re-measured after the hip estimator fix (hip error vs ground truth 13 px → 4 px);
+the hip pivots moved, so the legs rotate around different points.*
 
 Safe ranges with extensions (gaps ≤ 25 px) are recorded per joint:
 * neck ±20°, wrists ±30°, knees ±60°;

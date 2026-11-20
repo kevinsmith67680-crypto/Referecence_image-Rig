@@ -10,7 +10,8 @@
   },
   "original_bitmap": {
     "path": "source/original.png",
-    "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679"
+    "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
+    "png_decode": "source/original.png"
   },
   "layers": [
     {
@@ -20,13 +21,13 @@
       "z_index": 0,
       "bone": "thigh_r",
       "pivot": [
-        458.23,
+        444.03,
         994.2
       ],
-      "pixel_sha256": "6d06ba433ead83aba68a43c7277135d81f642f78ac830b9101c4c31d1599f95c",
+      "pixel_sha256": "aa66d883dce0165fa36044b5cd28b9b71466e176c13f36b620174a0d47d48fd9",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/thigh_r.png",
-        "phase1_file_sha256": "57361b6b565f7a5fc6ad2025a847e3ff5575441f18d57127acdb58f2380d521f",
+        "phase1_file_sha256": "0540c360344efbc297f9a7d4bab3d8450beebd3e9b682476d3adb9ceb25afb98",
         "split": null
       }
     },
@@ -40,10 +41,10 @@
         441.07,
         1169.98
       ],
-      "pixel_sha256": "7866ea4ec07e54806406e25b0e4d7c7736a305b43e564c640c329dd89eaa7865",
+      "pixel_sha256": "82ce9dae81fb70d78528ea0c5e7c278b4e61ea2c8f124ae725592e48e81aa540",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/shin_r.png",
-        "phase1_file_sha256": "4c6a790f643d954cf3556cf724366eae4841276be5c9378a605315b7747cbb4f",
+        "phase1_file_sha256": "e273f5b86ced06752a478e9ab6a117be7249fcc2d816ec82096b5baa7fac8e5d",
         "split": null
       }
     },
@@ -71,13 +72,13 @@
       "z_index": 3,
       "bone": "thigh_l",
       "pivot": [
-        542.77,
+        556.97,
         994.2
       ],
-      "pixel_sha256": "02c4bcae49e0735c5d83e283ce551f916467190f96d55ea1f44c769479b54d81",
+      "pixel_sha256": "90a767425c848a7f633a1db4a5d0630df80e4e31509207aed11cc55cfa340c27",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/thigh_l.png",
-        "phase1_file_sha256": "7dd5c199964a61f8ab1b8d988515eb2271d3e87bc21385e23820c877a0057c04",
+        "phase1_file_sha256": "02fc6626cb77b82c59890a2155122c8b9a7132f57c8843af708cefcc9721edf0",
         "split": null
       }
     },
@@ -91,10 +92,10 @@
         559.93,
         1169.98
       ],
-      "pixel_sha256": "ea2cd5e4b9d853f05be7873bfe401676861d93c70cfc17b9adcf47581ffab250",
+      "pixel_sha256": "7048ffbc87cace9860ee82f459a44eb3a2d3f0befe08362bc678f1da41d99230",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/shin_l.png",
-        "phase1_file_sha256": "35b5b6efe911e70f9cfff835d1bd63b5ed9c9bb0f4051999395c1685bed33201",
+        "phase1_file_sha256": "4eea7de0beacb1a32a308036a3a30751f15d58936867b0e7af85e571a417f520",
         "split": null
       }
     },
@@ -122,10 +123,10 @@
       "z_index": 6,
       "bone": "body",
       "pivot": null,
-      "pixel_sha256": "68f0382bef11b3d1808264464050f25dc09ca18a7b63a021a8a3e8090f4fb90f",
+      "pixel_sha256": "298ef288bc3a5a9e84d653ec5f14e788728acc149936db3ef9d7d09128a42bfb",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/pelvis.png",
-        "phase1_file_sha256": "4e8891142dc794befdd38fd8c19e782a3728227cde94642e4b5e9a7057435b48",
+        "phase1_file_sha256": "08773aa054519190d838c8eeaf3c316e11cbc576f196ba5ab480dc15a99be292",
         "split": null
       }
     },
@@ -752,7 +753,7 @@
       "provenance_mask": "masks/provenance/thigh_l__01.png",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1709,
+      "pixels": 1749,
       "region": "thigh_l__under__pelvis",
       "drawn": "under its original component",
       "provenance": {
@@ -774,7 +775,7 @@
       "provenance_mask": "masks/provenance/thigh_l__02.png",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1482,
+      "pixels": 1496,
       "region": "thigh_l__under__shin_l",
       "drawn": "under its original component",
       "provenance": {
@@ -785,7 +786,7 @@
         ],
         "outline": null,
         "outline_pieces_dropped_without_visible_entry": 1,
-        "colour_share": 0.98
+        "colour_share": 0.986
       }
     },
     {
@@ -796,7 +797,7 @@
       "provenance_mask": "masks/provenance/thigh_r__01.png",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1678,
+      "pixels": 1720,
       "region": "thigh_r__under__pelvis",
       "drawn": "under its original component",
       "provenance": {
@@ -818,7 +819,7 @@
       "provenance_mask": "masks/provenance/thigh_r__02.png",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1482,
+      "pixels": 1497,
       "region": "thigh_r__under__shin_r",
       "drawn": "under its original component",
       "provenance": {

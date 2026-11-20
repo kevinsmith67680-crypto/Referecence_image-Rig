@@ -1,0 +1,1137 @@
+{
+  "schema": "autorig.joint_preparation",
+  "schema_version": "1.0.0",
+  "joints": {
+    "neck": {
+      "pivot": [
+        540.8,
+        365.51
+      ],
+      "pivot_reliable": true,
+      "pivot_method": "contact:head/neck|clothing",
+      "bone": "head",
+      "parent_components": [
+        "torso",
+        "pelvis",
+        "neck"
+      ],
+      "child_components": [
+        "head_base",
+        "hair",
+        "nose",
+        "mouth",
+        "brow_r",
+        "brow_l",
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris"
+      ],
+      "overlap_padding_px": 44.8,
+      "front_back": [
+        {
+          "front": "hair",
+          "back": "torso",
+          "confidence": 0.896,
+          "ambiguous": false
+        },
+        {
+          "front": "head_base",
+          "back": "neck",
+          "confidence": 0.9,
+          "ambiguous": false
+        },
+        {
+          "front": "head_base",
+          "back": "torso",
+          "confidence": 0.673,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "pelvis",
+        "neck",
+        "torso",
+        "head_base",
+        "nose",
+        "mouth",
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris",
+        "brow_r",
+        "brow_l",
+        "hair"
+      ],
+      "rotation_safe_extensions": [
+        "neck__01",
+        "neck__02",
+        "torso__01"
+      ],
+      "range_tested_deg": [
+        -20,
+        20
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -20,
+          "gaps_original_only": 400,
+          "gaps_with_extensions": 149,
+          "dark_contour_pieces": 4,
+          "overlap_pixels": 3938
+        },
+        {
+          "angle_deg": 10,
+          "gaps_original_only": 260,
+          "gaps_with_extensions": 132,
+          "dark_contour_pieces": 4,
+          "overlap_pixels": 3967
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "rigid_layer_attachment",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "gaps up to 149 px remain within \u00b120 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "shoulder_r": {
+      "pivot": [
+        390.2,
+        474.63
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "limb_proximal_extreme_inset_by_radius",
+      "bone": "upper_arm_r",
+      "parent_components": [
+        "torso",
+        "pelvis",
+        "neck"
+      ],
+      "child_components": [
+        "upper_arm_r",
+        "forearm_r",
+        "hand_r"
+      ],
+      "overlap_padding_px": 65.8,
+      "front_back": [
+        {
+          "front": "torso",
+          "back": "upper_arm_r",
+          "confidence": 0.5,
+          "ambiguous": true
+        }
+      ],
+      "draw_order_back_to_front": [
+        "pelvis",
+        "neck",
+        "upper_arm_r",
+        "torso",
+        "forearm_r",
+        "hand_r"
+      ],
+      "rotation_safe_extensions": [
+        "neck__01",
+        "neck__02",
+        "torso__01",
+        "upper_arm_r__01"
+      ],
+      "range_tested_deg": [
+        -90,
+        90
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -90,
+          "gaps_original_only": 1172,
+          "gaps_with_extensions": 1172,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 0
+        },
+        {
+          "angle_deg": -60,
+          "gaps_original_only": 1053,
+          "gaps_with_extensions": 1053,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 0
+        },
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 516,
+          "gaps_with_extensions": 516,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 0
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 125,
+          "gaps_with_extensions": 125,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 0
+        },
+        {
+          "angle_deg": 60,
+          "gaps_original_only": 376,
+          "gaps_with_extensions": 376,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 0
+        },
+        {
+          "angle_deg": 90,
+          "gaps_original_only": 390,
+          "gaps_with_extensions": 390,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 0
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (limb_proximal_extreme_inset_by_radius): verify before binding",
+        "gaps up to 1172 px remain within \u00b190 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "elbow_r": {
+      "pivot": [
+        274.8,
+        475.12
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "straight_limb_midpoint",
+      "bone": "forearm_r",
+      "parent_components": [
+        "upper_arm_r"
+      ],
+      "child_components": [
+        "forearm_r",
+        "hand_r"
+      ],
+      "overlap_padding_px": 57.6,
+      "front_back": [
+        {
+          "front": "forearm_r",
+          "back": "upper_arm_r",
+          "confidence": 0.55,
+          "ambiguous": true
+        }
+      ],
+      "draw_order_back_to_front": [
+        "upper_arm_r",
+        "forearm_r",
+        "hand_r"
+      ],
+      "rotation_safe_extensions": [
+        "forearm_r__01",
+        "upper_arm_r__01"
+      ],
+      "range_tested_deg": [
+        -90,
+        90
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -90,
+          "gaps_original_only": 780,
+          "gaps_with_extensions": 0,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2927
+        },
+        {
+          "angle_deg": -60,
+          "gaps_original_only": 517,
+          "gaps_with_extensions": 2,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2325
+        },
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 259,
+          "gaps_with_extensions": 2,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1913
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 269,
+          "gaps_with_extensions": 1,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1890
+        },
+        {
+          "angle_deg": 60,
+          "gaps_original_only": 535,
+          "gaps_with_extensions": 1,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2263
+        },
+        {
+          "angle_deg": 90,
+          "gaps_original_only": 811,
+          "gaps_with_extensions": 0,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2815
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 90
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_deformable_mesh (bend smoothing; Smart Bone/mesh in a later phase)"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding"
+      ],
+      "status": "needs_review"
+    },
+    "wrist_r": {
+      "pivot": [
+        158.24,
+        466.97
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "contact:arm/hand",
+      "bone": "hand_r",
+      "parent_components": [
+        "forearm_r"
+      ],
+      "child_components": [
+        "hand_r"
+      ],
+      "overlap_padding_px": 41.6,
+      "front_back": [
+        {
+          "front": "hand_r",
+          "back": "forearm_r",
+          "confidence": 0.84,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "forearm_r",
+        "hand_r"
+      ],
+      "rotation_safe_extensions": [
+        "forearm_r__01"
+      ],
+      "range_tested_deg": [
+        -30,
+        30
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 480,
+          "gaps_with_extensions": 182,
+          "dark_contour_pieces": 2,
+          "overlap_pixels": 1342
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 330,
+          "gaps_with_extensions": 44,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1068
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "rigid_layer_attachment",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (contact:arm/hand): verify before binding",
+        "gaps up to 182 px remain within \u00b130 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "hip_r": {
+      "pivot": [
+        486.42,
+        753.61
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
+      "bone": "thigh_r",
+      "parent_components": [
+        "torso",
+        "pelvis",
+        "neck"
+      ],
+      "child_components": [
+        "thigh_r",
+        "shin_r",
+        "foot_r"
+      ],
+      "overlap_padding_px": 84.5,
+      "front_back": [
+        {
+          "front": "pelvis",
+          "back": "thigh_r",
+          "confidence": 0.7,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "thigh_r",
+        "shin_r",
+        "foot_r",
+        "pelvis",
+        "neck",
+        "torso"
+      ],
+      "rotation_safe_extensions": [
+        "neck__01",
+        "neck__02",
+        "thigh_r__01",
+        "thigh_r__02",
+        "torso__01"
+      ],
+      "range_tested_deg": [
+        -45,
+        45
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -45,
+          "gaps_original_only": 647,
+          "gaps_with_extensions": 235,
+          "dark_contour_pieces": 3,
+          "overlap_pixels": 2979
+        },
+        {
+          "angle_deg": -15,
+          "gaps_original_only": 374,
+          "gaps_with_extensions": 236,
+          "dark_contour_pieces": 2,
+          "overlap_pixels": 1882
+        },
+        {
+          "angle_deg": 15,
+          "gaps_original_only": 428,
+          "gaps_with_extensions": 288,
+          "dark_contour_pieces": 2,
+          "overlap_pixels": 2168
+        },
+        {
+          "angle_deg": 45,
+          "gaps_original_only": 994,
+          "gaps_with_extensions": 576,
+          "dark_contour_pieces": 2,
+          "overlap_pixels": 3730
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 576 px remain within \u00b145 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "knee_r": {
+      "pivot": [
+        401.23,
+        1009.84
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "straight_limb_midpoint",
+      "bone": "shin_r",
+      "parent_components": [
+        "thigh_r"
+      ],
+      "child_components": [
+        "shin_r",
+        "foot_r"
+      ],
+      "overlap_padding_px": 79.5,
+      "front_back": [
+        {
+          "front": "foot_r",
+          "back": "thigh_r",
+          "confidence": 0.8,
+          "ambiguous": false
+        },
+        {
+          "front": "shin_r",
+          "back": "thigh_r",
+          "confidence": 0.958,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "thigh_r",
+        "shin_r",
+        "foot_r"
+      ],
+      "rotation_safe_extensions": [
+        "shin_r__01",
+        "thigh_r__01",
+        "thigh_r__02"
+      ],
+      "range_tested_deg": [
+        -60,
+        60
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -60,
+          "gaps_original_only": 590,
+          "gaps_with_extensions": 10,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2985
+        },
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 295,
+          "gaps_with_extensions": 5,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2276
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 287,
+          "gaps_with_extensions": 6,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2369
+        },
+        {
+          "angle_deg": 60,
+          "gaps_original_only": 572,
+          "gaps_with_extensions": 8,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3216
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 60
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_deformable_mesh (bend smoothing; Smart Bone/mesh in a later phase)"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding"
+      ],
+      "status": "needs_review"
+    },
+    "ankle_r": {
+      "pivot": [
+        319.96,
+        1272.21
+      ],
+      "pivot_reliable": true,
+      "pivot_method": "contact:leg/foot",
+      "bone": "foot_r",
+      "parent_components": [
+        "shin_r"
+      ],
+      "child_components": [
+        "foot_r"
+      ],
+      "overlap_padding_px": 70.2,
+      "front_back": [
+        {
+          "front": "foot_r",
+          "back": "shin_r",
+          "confidence": 0.8,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "shin_r",
+        "foot_r"
+      ],
+      "rotation_safe_extensions": [
+        "shin_r__01"
+      ],
+      "range_tested_deg": [
+        -30,
+        30
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 303,
+          "gaps_with_extensions": 51,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2173
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 293,
+          "gaps_with_extensions": 56,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2077
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "rigid_layer_attachment",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "gaps up to 56 px remain within \u00b130 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "shoulder_l": {
+      "pivot": [
+        692.49,
+        461.41
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "limb_proximal_extreme_inset_by_radius",
+      "bone": "upper_arm_l",
+      "parent_components": [
+        "torso",
+        "pelvis",
+        "neck"
+      ],
+      "child_components": [
+        "upper_arm_l",
+        "forearm_l",
+        "hand_l"
+      ],
+      "overlap_padding_px": 66.1,
+      "front_back": [
+        {
+          "front": "upper_arm_l",
+          "back": "torso",
+          "confidence": 0.75,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "pelvis",
+        "neck",
+        "torso",
+        "upper_arm_l",
+        "forearm_l",
+        "hand_l"
+      ],
+      "rotation_safe_extensions": [
+        "neck__01",
+        "neck__02",
+        "torso__01",
+        "upper_arm_l__01"
+      ],
+      "range_tested_deg": [
+        -90,
+        90
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -90,
+          "gaps_original_only": 1290,
+          "gaps_with_extensions": 2,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2235
+        },
+        {
+          "angle_deg": -60,
+          "gaps_original_only": 1139,
+          "gaps_with_extensions": 133,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2517
+        },
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 642,
+          "gaps_with_extensions": 234,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3115
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 269,
+          "gaps_with_extensions": 140,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3394
+        },
+        {
+          "angle_deg": 60,
+          "gaps_original_only": 363,
+          "gaps_with_extensions": 136,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3296
+        },
+        {
+          "angle_deg": 90,
+          "gaps_original_only": 348,
+          "gaps_with_extensions": 135,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3310
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (limb_proximal_extreme_inset_by_radius): verify before binding",
+        "gaps up to 234 px remain within \u00b190 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "elbow_l": {
+      "pivot": [
+        809.22,
+        475.69
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "straight_limb_midpoint",
+      "bone": "forearm_l",
+      "parent_components": [
+        "upper_arm_l"
+      ],
+      "child_components": [
+        "forearm_l",
+        "hand_l"
+      ],
+      "overlap_padding_px": 58.0,
+      "front_back": [
+        {
+          "front": "forearm_l",
+          "back": "upper_arm_l",
+          "confidence": 0.55,
+          "ambiguous": true
+        }
+      ],
+      "draw_order_back_to_front": [
+        "upper_arm_l",
+        "forearm_l",
+        "hand_l"
+      ],
+      "rotation_safe_extensions": [
+        "forearm_l__01",
+        "upper_arm_l__01"
+      ],
+      "range_tested_deg": [
+        -90,
+        90
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -90,
+          "gaps_original_only": 784,
+          "gaps_with_extensions": 5,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2788
+        },
+        {
+          "angle_deg": -60,
+          "gaps_original_only": 520,
+          "gaps_with_extensions": 2,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2218
+        },
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 260,
+          "gaps_with_extensions": 1,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1821
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 264,
+          "gaps_with_extensions": 0,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1813
+        },
+        {
+          "angle_deg": 60,
+          "gaps_original_only": 531,
+          "gaps_with_extensions": 2,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2214
+        },
+        {
+          "angle_deg": 90,
+          "gaps_original_only": 784,
+          "gaps_with_extensions": 1,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2829
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 90
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_deformable_mesh (bend smoothing; Smart Bone/mesh in a later phase)"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding"
+      ],
+      "status": "needs_review"
+    },
+    "wrist_l": {
+      "pivot": [
+        925.37,
+        474.74
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "contact:arm/hand",
+      "bone": "hand_l",
+      "parent_components": [
+        "forearm_l"
+      ],
+      "child_components": [
+        "hand_l"
+      ],
+      "overlap_padding_px": 40.3,
+      "front_back": [
+        {
+          "front": "hand_l",
+          "back": "forearm_l",
+          "confidence": 0.864,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "forearm_l",
+        "hand_l"
+      ],
+      "rotation_safe_extensions": [
+        "forearm_l__01"
+      ],
+      "range_tested_deg": [
+        -30,
+        30
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 339,
+          "gaps_with_extensions": 27,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1188
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 358,
+          "gaps_with_extensions": 55,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1256
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "rigid_layer_attachment",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (contact:arm/hand): verify before binding",
+        "gaps up to 55 px remain within \u00b130 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "hip_l": {
+      "pivot": [
+        597.9,
+        754.01
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
+      "bone": "thigh_l",
+      "parent_components": [
+        "torso",
+        "pelvis",
+        "neck"
+      ],
+      "child_components": [
+        "thigh_l",
+        "shin_l",
+        "foot_l"
+      ],
+      "overlap_padding_px": 85.9,
+      "front_back": [
+        {
+          "front": "pelvis",
+          "back": "thigh_l",
+          "confidence": 0.8,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "thigh_l",
+        "shin_l",
+        "foot_l",
+        "pelvis",
+        "neck",
+        "torso"
+      ],
+      "rotation_safe_extensions": [
+        "neck__01",
+        "neck__02",
+        "thigh_l__01",
+        "thigh_l__02",
+        "torso__01"
+      ],
+      "range_tested_deg": [
+        -45,
+        45
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -45,
+          "gaps_original_only": 851,
+          "gaps_with_extensions": 434,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3810
+        },
+        {
+          "angle_deg": -15,
+          "gaps_original_only": 400,
+          "gaps_with_extensions": 261,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2155
+        },
+        {
+          "angle_deg": 15,
+          "gaps_original_only": 339,
+          "gaps_with_extensions": 204,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 1821
+        },
+        {
+          "angle_deg": 45,
+          "gaps_original_only": 601,
+          "gaps_with_extensions": 208,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2785
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 434 px remain within \u00b145 deg even with extensions"
+      ],
+      "status": "needs_review"
+    },
+    "knee_l": {
+      "pivot": [
+        682.24,
+        1012.8
+      ],
+      "pivot_reliable": false,
+      "pivot_method": "straight_limb_midpoint",
+      "bone": "shin_l",
+      "parent_components": [
+        "thigh_l"
+      ],
+      "child_components": [
+        "shin_l",
+        "foot_l"
+      ],
+      "overlap_padding_px": 81.0,
+      "front_back": [
+        {
+          "front": "foot_l",
+          "back": "thigh_l",
+          "confidence": 0.802,
+          "ambiguous": false
+        },
+        {
+          "front": "shin_l",
+          "back": "thigh_l",
+          "confidence": 0.978,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "thigh_l",
+        "shin_l",
+        "foot_l"
+      ],
+      "rotation_safe_extensions": [
+        "shin_l__01",
+        "thigh_l__01",
+        "thigh_l__02"
+      ],
+      "range_tested_deg": [
+        -60,
+        60
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -60,
+          "gaps_original_only": 585,
+          "gaps_with_extensions": 8,
+          "dark_contour_pieces": 3,
+          "overlap_pixels": 3199
+        },
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 301,
+          "gaps_with_extensions": 11,
+          "dark_contour_pieces": 3,
+          "overlap_pixels": 2335
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 289,
+          "gaps_with_extensions": 6,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2424
+        },
+        {
+          "angle_deg": 60,
+          "gaps_original_only": 567,
+          "gaps_with_extensions": 6,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 3247
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 60
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "layer_overlap_joint",
+        "planned_deformable_mesh (bend smoothing; Smart Bone/mesh in a later phase)"
+      ],
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding"
+      ],
+      "status": "needs_review"
+    },
+    "ankle_l": {
+      "pivot": [
+        762.2,
+        1272.49
+      ],
+      "pivot_reliable": true,
+      "pivot_method": "contact:leg/foot",
+      "bone": "foot_l",
+      "parent_components": [
+        "shin_l"
+      ],
+      "child_components": [
+        "foot_l"
+      ],
+      "overlap_padding_px": 70.2,
+      "front_back": [
+        {
+          "front": "foot_l",
+          "back": "shin_l",
+          "confidence": 0.7,
+          "ambiguous": false
+        }
+      ],
+      "draw_order_back_to_front": [
+        "shin_l",
+        "foot_l"
+      ],
+      "rotation_safe_extensions": [
+        "shin_l__01"
+      ],
+      "range_tested_deg": [
+        -30,
+        30
+      ],
+      "step_deg": 30,
+      "sweep": [
+        {
+          "angle_deg": -30,
+          "gaps_original_only": 320,
+          "gaps_with_extensions": 72,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2023
+        },
+        {
+          "angle_deg": 30,
+          "gaps_original_only": 330,
+          "gaps_with_extensions": 81,
+          "dark_contour_pieces": 1,
+          "overlap_pixels": 2140
+        }
+      ],
+      "safe_range_deg": {
+        "original_only": 0,
+        "with_extensions": 0
+      },
+      "gap_tolerance_px": 25,
+      "recommended_binding": [
+        "rigid_layer_attachment",
+        "planned_vector_correction"
+      ],
+      "issues": [
+        "gaps up to 81 px remain within \u00b130 deg even with extensions"
+      ],
+      "status": "needs_review"
+    }
+  },
+  "notes": [
+    "Rigid 2D rotation tests only; native Moho bindings are not created in Phase 2.",
+    "Pivots come from Phase 1; unreliable ones are marked needs_review."
+  ]
+}

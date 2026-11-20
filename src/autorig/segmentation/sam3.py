@@ -16,6 +16,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import mimetypes
 import re
 import time
 from importlib import resources
@@ -195,7 +196,12 @@ class Sam3ReplicateProvider:
     def _image_reference(self, image_path: Path) -> str:
         if self.image_transport == "data_uri":
             data = base64.b64encode(image_path.read_bytes()).decode()
-            return f"data:image/{image_path.suffix.lstrip('.').lower() or 'png'};base64,{data}"
+            # the MIME type must be a real one ('image/jpeg', not 'image/jpg'): the model rejected
+            # data:image/jpg (prediction e24d7qzps1rmy0d1zbnsdf5sz4) as "No valid image files"
+            mime = mimetypes.guess_type(image_path.name)[0] or "image/png"
+            if not mime.startswith("image/"):
+                raise ValueError(f"not an image file: {image_path.name}")
+            return f"data:{mime};base64,{data}"
         return self.client.upload_file(image_path)["urls"]["get"]
 
     def _record(self, pred: dict[str, Any], key: str) -> None:

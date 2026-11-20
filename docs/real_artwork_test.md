@@ -1,4 +1,8 @@
-# First real-artwork test (Phases 1 and 2), 2026-11-20
+# Real-artwork tests (Phases 1 and 2), 2026-11-20
+
+Two runs on the user's character. Run 2, the T-pose reference, supersedes run 1 for rigging.
+
+# Run 1: front view cropped from the character sheet
 
 This is the first run of the pipeline on the user's own character art, with real SAM 3 segmentation and real
 FLUX Fill inpainting. Every number below comes from this run. Nothing was reviewed or approved by a human
@@ -107,3 +111,87 @@ control READY: 9 need new artwork, 4 need reconstruction and 2 need review.
 4. Use the rest of the character sheet. It already contains **real** artwork for many items listed as "requires
    new artwork": blink and eye sets, the mouth shapes A/E/I/O/U and others, 3/4, side and back views, and
    separated hands. Extracting them beats generating them.
+
+
+# Run 2: T-pose reference
+
+`references/schoolboy/tpose_front.jpg` was supplied by the user: 1086×1448 JPEG, arms out, legs apart, no
+backpack. It has about 12× the pixels of run 1's crop, and no limb overlaps the body.
+
+```bash
+python -m autorig analyze references/schoolboy/tpose_front.jpg --out projects/schoolboy_tpose/character_project
+python -m autorig prepare projects/schoolboy_tpose/character_project --out projects/schoolboy_tpose/character_package \
+  --provider flux-fill-dev --candidates 1
+```
+
+No manual landmarks: every joint is automatic.
+
+## Bugs found and fixed
+
+1. **JPEG data URI.** The MIME type was built from the extension (`image/jpg`), and the model rejected it. The
+   real type (`image/jpeg`) is now used.
+2. **Phase 2 rejected every non-PNG source.** It checked the PNG decode against the JPEG's hash. Now it verifies
+   the byte-identical original, checks that the PNG decode is pixel-exact, and copies both.
+3. **Wrists at the hand centre.** SAM's "arm" mask includes the hand, so the arm/hand contact was the whole
+   hand. The estimator now uses the boundary of the arm minus the hand, ignores the 1–2 px mask fringe, and
+   bridges the shirt cuff between them.
+4. **Knees high on the thigh.** The leg's centre-line curls at the crotch and read as a "weak bend". A weak bend
+   now counts only in the middle 30–70% of the limb.
+5. **Hips converging at the crotch.** With spread legs, the trace up through the trousers ran inward. The height
+   is kept, and x now comes from the straight middle of the leg's centre-line. On the synthetic ground truth,
+   hip error improved from 13.9/12.9 px to 4.3/4.6 px. Mean body-part IoU moved 0.929 → 0.922 (test
+   threshold 0.88).
+6. **Pose contact sheet tiles were 30% of the source size** (64 px wide for run 1). They now scale to about
+   480 px tall.
+
+## Results
+
+| | |
+|---|---|
+| Phase 1 | Coverage 99.2%, all 17 parts populated, face complete (eyes, pupils, brows, nose, mouth, ears), layers pixel-exact. Joints: wrists at the cuffs, elbows mid-arm, hips at the thigh tops, knees mid-leg. Remaining: no `torso` joint ("upper_clothing" not found: the vocabulary says "shirt"); linework retained 93.9%. |
+| Phase 2 | Neutral exact, **0 generated pixels visible in neutral**. 18 hidden regions: 7 flat fill (now including the eye whites), 8 generative, 3 not needed. |
+| Cost | SAM 3 $0.0107 (including one failed call, $0.0004) + FLUX Fill dev 8 images $0.40 (price unverified). Ledger total **$0.916 of $1.00**. One candidate per region was used to stay under the ceiling. |
+
+Pose gaps (originals only → with extensions, px):
+
+| Pose | Originals only | With extensions |
+|---|---|---|
+| neutral | 0 | 0 |
+| arm_45 | 274 | 274 |
+| arm_90 | 390 | 390 |
+| left_arm_90 | 1290 | 2 |
+| elbows_bent | 1223 | 4 |
+| walking | 1306 | 872 |
+| sitting | 2514 | 915 |
+| head_tilt_left | 331 | 153 |
+| head_tilt_right | 327 | 129 |
+
+The poses rotate joints relative to the rest pose, which is now a T-pose.
+
+Inpainting, judged by eye (nothing approved):
+
+| Region | Result |
+|---|---|
+| forearm under each hand | skin-coloured wrist: plausible |
+| shin_l under foot_l | trouser fabric: plausible |
+| torso under upper_arm_l | jacket fabric: plausible |
+| neck under torso | shirt collar and tie redrawn: hidden in neutral, odd content for a neck layer |
+| **neck under head_base** | **wrong**: drew nostrils, a mouth line and a goatee into the neck (the region reaches up under the face) |
+| **thigh_l / thigh_r under pelvis** | **wrong details**: copied a faint crest and a jacket button onto the trousers |
+
+Visual pose check:
+* neutral, elbows bent, sitting and left arm raised look clean;
+* raising the right arm shows a dark wedge of jacket shoulder at the armpit;
+* walking shows small tears at the crotch;
+* head tilts leave specks at the chin.
+
+## Remaining issues and next steps (not started)
+
+1. Region-specific inpainting prompts: "plain skin neck, no facial features" and "plain dark trouser fabric, no
+   buttons". Also shorten the neck shape so it does not reach up under the face.
+2. No `torso__under__upper_arm_r` region (the left exists), so the right shoulder gap stays at 274/390 px.
+   Check that occlusion edge.
+3. Add "blazer/jacket" to the clothing vocabulary (torso joint) and trim the jacket shoulder from the upper-arm
+   layers.
+4. Human review in `visual_review.html`, then Phase 0 native verification. Both are needed before any Moho
+   import (Phase 3, not started).

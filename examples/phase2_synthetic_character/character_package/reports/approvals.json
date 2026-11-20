@@ -190,7 +190,7 @@
       "component": "thigh_l",
       "method": "deterministic_flat_fill",
       "region": "thigh_l__under__pelvis",
-      "pixels": 1709,
+      "pixels": 1749,
       "status": "pending_review",
       "images": {
         "extension": "artwork/reconstructed/thigh_l__01.png",
@@ -204,7 +204,7 @@
       "component": "thigh_l",
       "method": "deterministic_flat_fill",
       "region": "thigh_l__under__shin_l",
-      "pixels": 1482,
+      "pixels": 1496,
       "status": "pending_review",
       "images": {
         "extension": "artwork/reconstructed/thigh_l__02.png",
@@ -218,7 +218,7 @@
       "component": "thigh_r",
       "method": "deterministic_flat_fill",
       "region": "thigh_r__under__pelvis",
-      "pixels": 1678,
+      "pixels": 1720,
       "status": "pending_review",
       "images": {
         "extension": "artwork/reconstructed/thigh_r__01.png",
@@ -232,7 +232,7 @@
       "component": "thigh_r",
       "method": "deterministic_flat_fill",
       "region": "thigh_r__under__shin_r",
-      "pixels": 1482,
+      "pixels": 1497,
       "status": "pending_review",
       "images": {
         "extension": "artwork/reconstructed/thigh_r__02.png",
@@ -388,13 +388,13 @@
       "id": "pivot:hip_r",
       "type": "joint_pivot",
       "pivot": [
-        458.23,
+        444.03,
         994.2
       ],
       "status": "needs_review",
       "issues": [
-        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis): verify before binding",
-        "gaps up to 471 px remain within \u00b145 deg even with extensions"
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 444 px remain within \u00b145 deg even with extensions"
       ]
     },
     {
@@ -461,13 +461,13 @@
       "id": "pivot:hip_l",
       "type": "joint_pivot",
       "pivot": [
-        542.77,
+        556.97,
         994.2
       ],
       "status": "needs_review",
       "issues": [
-        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis): verify before binding",
-        "gaps up to 484 px remain within \u00b145 deg even with extensions"
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 448 px remain within \u00b145 deg even with extensions"
       ]
     },
     {

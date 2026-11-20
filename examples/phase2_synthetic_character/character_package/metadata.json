@@ -3,15 +3,16 @@
   "schema_version": "1.0.0",
   "phase": 2,
   "autorig_version": "0.0.1",
-  "created_at": "2026-11-20T20:59:02Z",
+  "created_at": "2026-11-20T22:05:47Z",
   "source": {
     "sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
     "byte_identical_copy": true,
-    "path": "source/original.png"
+    "path": "source/original.png",
+    "png_decode_path": "source/original.png"
   },
   "phase1_project": {
     "path_name": "character_project",
-    "metadata_sha256": "68d8b2d7552ca4d5c65fda83a5bd99e0aba238bf529ce623237f90266c7b19f0",
+    "metadata_sha256": "18aaecdc95164c479e5b0917df99d98850120f1c7c994910b32704defb7c5b0e",
     "segmentation_provider": "fixture"
   },
   "providers": {
@@ -59,18 +60,18 @@
   "outputs": [
     {
       "path": "analysis/anatomy.json",
-      "sha256": "35eec14ad64573ff5852e47ab76c6c730fd8967f3ab240872d45e99b76d73fe0",
-      "bytes": 23274
+      "sha256": "37fdb4e63f53e337573894e68afc35bc2ca9753dabd7d5d8bb52d33f3fdbd9af",
+      "bytes": 23350
     },
     {
       "path": "analysis/face.json",
-      "sha256": "2854bb13595fc8a69bfbafeca1c18c9466558e07f24d82ff5a83ab89cec9e402",
+      "sha256": "44f6211c6ea7cf4b86f393a67d0cb36fad845d538b03418620d93c03e8a20183",
       "bytes": 15237
     },
     {
       "path": "analysis/joint_preparation.json",
-      "sha256": "2839ae1a1ce121215128a83c0d2455722b2f75cc0805675f7fc10273bbcf8243",
-      "bytes": 27394
+      "sha256": "f04b878975a65bf7f7c4ff6ba4de4c136139ec254df00c024ecaefb7903def35",
+      "bytes": 27470
     },
     {
       "path": "analysis/live_artwork_manifest.json",
@@ -84,13 +85,13 @@
     },
     {
       "path": "analysis/occlusion.json",
-      "sha256": "faad62219d2bf6f00d903b023ec86a93c34f1c305c55330659d262f2d3ac7793",
-      "bytes": 32097
+      "sha256": "5f4b105eee9ca311ffd5f75fc779456cc8c15a177d3cbd853eb1f745ad1dec63",
+      "bytes": 32098
     },
     {
       "path": "artwork/manifest.json",
-      "sha256": "85d4e18bec38b5169b9fbccb6ff80af3a498d44dd2620beeba46cc8a3b0fc114",
-      "bytes": 29910
+      "sha256": "da4442dece985815079d05dae8fe1a330088c7cbea30217a1dbfb680274196a5",
+      "bytes": 29952
     },
     {
       "path": "artwork/original/brow_l.png",
@@ -179,27 +180,27 @@
     },
     {
       "path": "artwork/original/pelvis.png",
-      "sha256": "4e8891142dc794befdd38fd8c19e782a3728227cde94642e4b5e9a7057435b48",
-      "bytes": 7842
+      "sha256": "08773aa054519190d838c8eeaf3c316e11cbc576f196ba5ab480dc15a99be292",
+      "bytes": 7876
     },
     {
       "path": "artwork/original/shin_l.png",
-      "sha256": "35b5b6efe911e70f9cfff835d1bd63b5ed9c9bb0f4051999395c1685bed33201",
+      "sha256": "4eea7de0beacb1a32a308036a3a30751f15d58936867b0e7af85e571a417f520",
       "bytes": 8050
     },
     {
       "path": "artwork/original/shin_r.png",
-      "sha256": "4c6a790f643d954cf3556cf724366eae4841276be5c9378a605315b7747cbb4f",
-      "bytes": 8050
+      "sha256": "e273f5b86ced06752a478e9ab6a117be7249fcc2d816ec82096b5baa7fac8e5d",
+      "bytes": 8042
     },
     {
       "path": "artwork/original/thigh_l.png",
-      "sha256": "7dd5c199964a61f8ab1b8d988515eb2271d3e87bc21385e23820c877a0057c04",
-      "bytes": 11763
+      "sha256": "02fc6626cb77b82c59890a2155122c8b9a7132f57c8843af708cefcc9721edf0",
+      "bytes": 11748
     },
     {
       "path": "artwork/original/thigh_r.png",
-      "sha256": "57361b6b565f7a5fc6ad2025a847e3ff5575441f18d57127acdb58f2380d521f",
+      "sha256": "0540c360344efbc297f9a7d4bab3d8450beebd3e9b682476d3adb9ceb25afb98",
       "bytes": 11748
     },
     {
@@ -284,23 +285,23 @@
     },
     {
       "path": "artwork/reconstructed/thigh_l__01.png",
-      "sha256": "dd0e0c5b9b73f0719d5c8c14aa68dd440d6843b756ea7a5c22759ab442d2f363",
-      "bytes": 6144
+      "sha256": "55559ffc22b510a650cff1bced7d0be025e76fc2d124d890682bd6ee38a0579a",
+      "bytes": 6134
     },
     {
       "path": "artwork/reconstructed/thigh_l__02.png",
-      "sha256": "fddbe59d4d1b0425cf26b81aa96fcfc79da0b61d6b6ff2948cac83d6aa4ef480",
-      "bytes": 6066
+      "sha256": "ff890bf09e84e33531b05c2998071d5764f435632069b8c9f65b258f175a7256",
+      "bytes": 6065
     },
     {
       "path": "artwork/reconstructed/thigh_r__01.png",
-      "sha256": "ef1a7576adf94ad9c9105ee40a7fdb94e3e132289342371fa072d187256a10a0",
-      "bytes": 6144
+      "sha256": "3256d79d2f9e660544027a55b202ccc6aa2498d7764e3ad584b43d140633b999",
+      "bytes": 6134
     },
     {
       "path": "artwork/reconstructed/thigh_r__02.png",
-      "sha256": "a02df9897cc00ab654e9f8b05581858a4eb7695ee1b2b033ff88211d73a008ce",
-      "bytes": 6067
+      "sha256": "582566bcd34f6d08585a9832d7207aef30cc108f90692aef6a467651a98d34a4",
+      "bytes": 6066
     },
     {
       "path": "artwork/reconstructed/torso__01.png",
@@ -324,8 +325,8 @@
     },
     {
       "path": "artwork/store.json",
-      "sha256": "6ae3d0338a8564956feaebd3b9eaf3d1c7b669e80b4ff409693fd3de83834620",
-      "bytes": 34521
+      "sha256": "1fbb97aa53c2ef115d307b73c1322b1b36eaf278696c59e1b1920f5f9612b27e",
+      "bytes": 34515
     },
     {
       "path": "artwork/vector/eyelid_guide_l.svg",
@@ -339,12 +340,12 @@
     },
     {
       "path": "artwork/vector/joint_cap_hip_l.svg",
-      "sha256": "e59c5ba4e074bcf0977239a29d35076ea8dd255aebdf1b2bcaeda122abc890e4",
+      "sha256": "cc6b95c86d750ec0fdf8d5433fa283a1ab5cc4a773482c5a588bff9677172913",
       "bytes": 414
     },
     {
       "path": "artwork/vector/joint_cap_hip_r.svg",
-      "sha256": "8ab0c49ce6dff6a0b9b7b946293ac4945db4e913933d659d9f924d3961e0ce48",
+      "sha256": "0ba9ccd1b9c78646b511caff6573e38e0a77daa0ccf3f55d277af8907d0c25d6",
       "bytes": 414
     },
     {
@@ -424,23 +425,23 @@
     },
     {
       "path": "masks/provenance/thigh_l__01.png",
-      "sha256": "43f0b2dea2997ca541650db85fc400a11a6ca4c35d4f38da4fd4d302cae855f7",
-      "bytes": 1728
+      "sha256": "1ab3c852183ec8b7d6d74bef2d0f5f3968eb941e2f6162bfeedf353c4c73977e",
+      "bytes": 1720
     },
     {
       "path": "masks/provenance/thigh_l__02.png",
-      "sha256": "be7e9d6fe34e3eeee3ba88d0984941138bbd8417c7ba59f746b7943baca0a3ef",
-      "bytes": 1659
+      "sha256": "b9dca20394797c7956e092f1086e33016c2b7c18c4288375aa7a5c74fc4e25cf",
+      "bytes": 1658
     },
     {
       "path": "masks/provenance/thigh_r__01.png",
-      "sha256": "928c0b80f2fba58d3169000c302091e5eecb346a660a0532e2341e3ece1e0386",
-      "bytes": 1734
+      "sha256": "de49c2a0283a6254b271fd6cd476bdc863660763a477bd94e821f48e8ddc33ae",
+      "bytes": 1718
     },
     {
       "path": "masks/provenance/thigh_r__02.png",
-      "sha256": "f034d0d78ee93255cef0105d370eec449f5290bcefed44c82c23d801a8fcb211",
-      "bytes": 1658
+      "sha256": "f86f3a11ed35b46e91550dc2facec482b17ecb921260d9580ee5eec9a6d60f13",
+      "bytes": 1654
     },
     {
       "path": "masks/provenance/torso__01.png",
@@ -544,23 +545,23 @@
     },
     {
       "path": "masks/reconstruction/thigh_l__under__pelvis.png",
-      "sha256": "43f0b2dea2997ca541650db85fc400a11a6ca4c35d4f38da4fd4d302cae855f7",
-      "bytes": 1728
+      "sha256": "1ab3c852183ec8b7d6d74bef2d0f5f3968eb941e2f6162bfeedf353c4c73977e",
+      "bytes": 1720
     },
     {
       "path": "masks/reconstruction/thigh_l__under__shin_l.png",
-      "sha256": "be7e9d6fe34e3eeee3ba88d0984941138bbd8417c7ba59f746b7943baca0a3ef",
-      "bytes": 1659
+      "sha256": "b9dca20394797c7956e092f1086e33016c2b7c18c4288375aa7a5c74fc4e25cf",
+      "bytes": 1658
     },
     {
       "path": "masks/reconstruction/thigh_r__under__pelvis.png",
-      "sha256": "928c0b80f2fba58d3169000c302091e5eecb346a660a0532e2341e3ece1e0386",
-      "bytes": 1734
+      "sha256": "de49c2a0283a6254b271fd6cd476bdc863660763a477bd94e821f48e8ddc33ae",
+      "bytes": 1718
     },
     {
       "path": "masks/reconstruction/thigh_r__under__shin_r.png",
-      "sha256": "f034d0d78ee93255cef0105d370eec449f5290bcefed44c82c23d801a8fcb211",
-      "bytes": 1658
+      "sha256": "f86f3a11ed35b46e91550dc2facec482b17ecb921260d9580ee5eec9a6d60f13",
+      "bytes": 1654
     },
     {
       "path": "masks/reconstruction/torso__under__forearm_l.png",
@@ -639,28 +640,28 @@
     },
     {
       "path": "masks/source/body/pelvis.png",
-      "sha256": "49d0896a48455c9f2e4468de76f58a295f4cc8a2284e69559c61d172176e0150",
-      "bytes": 1979
+      "sha256": "9f70c60856abaf91cfbd7b9791712a8b58a0d162bd85d32b84c5806267909c7a",
+      "bytes": 2014
     },
     {
       "path": "masks/source/body/shin_l.png",
-      "sha256": "3b815ea4217ac9c0c08ed2cf7d4544fb08340f8d099021b4e366367ecfbd2c82",
-      "bytes": 1850
+      "sha256": "636729057aee60fb0c474b3a44157f99cbd23b057804dfbf79e05658c4d27028",
+      "bytes": 1846
     },
     {
       "path": "masks/source/body/shin_r.png",
-      "sha256": "966e6c21bc87fa7dd9bf3d901fef12400eb4be0b1fc2f44b157fd99508dfe6b7",
-      "bytes": 1861
+      "sha256": "38df08594fc55e866273a4d07c2ffa332fb4a572484f66e428d16cbca2d59cd2",
+      "bytes": 1855
     },
     {
       "path": "masks/source/body/thigh_l.png",
-      "sha256": "6cdaa7e031a8cd81563c25f9ad5711d87499c53a5688de6ce8520ca9b6d38aeb",
-      "bytes": 1884
+      "sha256": "56cf8fa747ac19f9ce52900001b12dbb37faabd2c44f2bdfd6aa676df1f4d720",
+      "bytes": 1883
     },
     {
       "path": "masks/source/body/thigh_r.png",
-      "sha256": "c153f498a67371388e388b07cc6fd7403d4e699b0f3449470dea1e3f124e6661",
-      "bytes": 1907
+      "sha256": "e20543d74a5b63d321ed70f6d44d4ebc71d47d9b68c47ecd7989f138eb938e82",
+      "bytes": 1878
     },
     {
       "path": "masks/source/body/torso.png",
@@ -824,23 +825,23 @@
     },
     {
       "path": "previews/diagnostics/sitting.png",
-      "sha256": "6c6dbd3b8180040989f85dc864fb95dc326f294ec4efd7bfd323b0530e02061b",
-      "bytes": 160520
+      "sha256": "50cc3693e4f47a054c4c2ea43b919d97785148acacfae763ef26ed8995797d6b",
+      "bytes": 160820
     },
     {
       "path": "previews/diagnostics/sitting__originals_only.png",
-      "sha256": "c50c20d374255bfd3694770eca978d52c49199c596dc93fe5ba43c45a84a48c0",
-      "bytes": 160914
+      "sha256": "c6a8ac98e5d80bdf9f8cbe84de85dc7e513921cf57166917c8886eae7466cb42",
+      "bytes": 161225
     },
     {
       "path": "previews/diagnostics/walking.png",
-      "sha256": "836dd3cb1246e62fe90795e38d4287b2de63d7bb6e475a781fc55c96707e54d6",
-      "bytes": 176027
+      "sha256": "89c8d11218d1805705deaa7217f54c3736eea628e249f24c3439659e16264a1d",
+      "bytes": 176264
     },
     {
       "path": "previews/diagnostics/walking__originals_only.png",
-      "sha256": "c163601c17d62a5cf6e9f19282de74c19d26f855a0a89c1a2611bc2acb5cfb57",
-      "bytes": 176984
+      "sha256": "0b0c9cfd4cd598f2007aa8a2988281f90847c8d44c6977be46a0efb53bfc008f",
+      "bytes": 177332
     },
     {
       "path": "previews/elbows_bent.png",
@@ -869,23 +870,23 @@
     },
     {
       "path": "previews/sitting.png",
-      "sha256": "a0705874de0b464a459bd42935ab81b09a2755c73a48d0107907e1bb8233df0e",
-      "bytes": 172971
+      "sha256": "16e92963e46ce9cfc814b57f30cbc25b38a47c8f7448af14d90810f8d45cd374",
+      "bytes": 173888
     },
     {
       "path": "previews/walking.png",
-      "sha256": "0cf89109476dd7596a7c4566b82df4514d3b67756362807451feb08bd6dbf107",
-      "bytes": 195590
+      "sha256": "c1004911eb270c84832bbac0de0caa5972fe85077038a486fd1357edc73bb0dc",
+      "bytes": 196103
     },
     {
       "path": "reports/alpha_overlay.png",
-      "sha256": "785ce20916301896eb754a3e3cc3a6bdba8d68f1c7ebf9287d8824b2afef6c4e",
-      "bytes": 12853
+      "sha256": "30f3b7fb7adbb253c7e97955ba5fde27dbc1d3f4722780da3312e50acb751374",
+      "bytes": 12778
     },
     {
       "path": "reports/approvals.json",
-      "sha256": "bbf7d6a7d4541ac30f75e06672d8929a515bd49cf7d2cdf757ebce7ce72b5541",
-      "bytes": 18309
+      "sha256": "0adad41b0feb843536558f02b8645c6f220890130275ae5309636582b3de713d",
+      "bytes": 18347
     },
     {
       "path": "reports/change_maps/eye_l_white.png",
@@ -919,13 +920,13 @@
     },
     {
       "path": "reports/change_maps/thigh_l.png",
-      "sha256": "b578aaaddcf372cb9d9393df6b3168500d6fb1b3cbe54c1481e136d1beb54d4f",
-      "bytes": 6964
+      "sha256": "91ca2baf8863e2dbf6539db7feae2b6eb281dcd4f858741881486d1209ac397d",
+      "bytes": 6939
     },
     {
       "path": "reports/change_maps/thigh_r.png",
-      "sha256": "0801a87a06c89127bc2143f47de71ab83f82e981f5605eb77d369fd7e4b5b058",
-      "bytes": 7023
+      "sha256": "bc1c31edcc5527e18cc75851db1f3399f404bef34474ff00c52b277795937b8b",
+      "bytes": 6972
     },
     {
       "path": "reports/change_maps/torso.png",
@@ -934,8 +935,8 @@
     },
     {
       "path": "reports/comparison.png",
-      "sha256": "03ea2ec99ded64f81df85f4c062a93d072f6c648cc2fff9154a07746598fa551",
-      "bytes": 117531
+      "sha256": "6951c94f55a041217f6fb1b145f3f9bc9e5968db245300b3dcd996c2122ad1ad",
+      "bytes": 117617
     },
     {
       "path": "reports/difference.png",
@@ -944,22 +945,22 @@
     },
     {
       "path": "reports/joint_closeups.png",
-      "sha256": "aca8482e8d63af8acc52253dca40c4e41a59d167f4f76917711ea3d640aa4c9e",
-      "bytes": 169790
+      "sha256": "a8cf3cee9a13e4f98447b54fd63845e7c56cd630ad736d76b9d90c26a2349ea8",
+      "bytes": 172296
     },
     {
       "path": "reports/pose_contact_sheet.png",
-      "sha256": "9413fb9cf1792310294cb3360c27f3ff91316bd30aa60ce0864dae55947dada9",
-      "bytes": 180621
+      "sha256": "90811cc2856e27b5f5fdee1556a531366052f1bf24355b820167c6c3a7528a61",
+      "bytes": 221557
     },
     {
       "path": "reports/reconstruction_quality.json",
-      "sha256": "8eb9a074bd93c475ab1945dc05a6d893b5ae1a68ee512376e6523bf456e06bc7",
-      "bytes": 19479
+      "sha256": "3cf7e84ba3ae2006d94c03cfd83e12efb05ff21f0b7c12523e6be8eae21e27ac",
+      "bytes": 19517
     },
     {
       "path": "reports/visual_review.html",
-      "sha256": "7a5ffcba51a9482e761924d3270978971112b30148ac41b3bd46842a4378b9b3",
+      "sha256": "1b6ef989bf5cb1b38138f2d35ab5053d578a18a567d72efe9c5c6e3f72572ab1",
       "bytes": 29560
     },
     {
@@ -968,6 +969,6 @@
       "bytes": 115119
     }
   ],
-  "duration_s": 105.5,
+  "duration_s": 100.0,
   "warnings": []
 }

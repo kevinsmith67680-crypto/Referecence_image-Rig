@@ -197,3 +197,36 @@ def test_reproducible(pkg, tmp_path):
     assert ea == eb
     for e in a.extensions:
         assert np.array_equal(a.extension_rgba(e), b.extension_rgba(next(x for x in b.extensions if x.id == e.id)))
+
+
+def _jpeg_phase1_copy(tmp_path):
+    """The synthetic Phase 1 project re-expressed with a JPEG source, as `analyze` writes it for a .jpg:
+    byte-identical source/original.jpg plus a pixel-exact PNG decode."""
+    p1 = tmp_path / "p1_jpeg"
+    shutil.copytree(P1, p1)
+    Image.open(p1 / "source" / "original.png").convert("RGB").save(p1 / "source" / "original.jpg", "JPEG", quality=92)
+    Image.open(p1 / "source" / "original.jpg").convert("RGBA").save(p1 / "source" / "original.png")
+    meta = json.loads((p1 / "metadata.json").read_text())
+    meta["source"].update(sha256=sha256_file(p1 / "source" / "original.jpg"), project_path="source/original.jpg",
+                          png_decode_path="source/original.png", format="JPEG")
+    (p1 / "metadata.json").write_text(json.dumps(meta))
+    return p1
+
+
+def test_jpeg_source_verified_and_copied(tmp_path):
+    p1 = _jpeg_phase1_copy(tmp_path)
+    res = prepare_character(p1, tmp_path / "pkg", None, Phase2Config(sweep_step=90))
+    src = res["docs"]["character_package"]["source"] if "character_package" in res["docs"] else \
+        json.loads((res["root"] / "metadata.json").read_text())["source"]
+    assert src["path"] == "source/original.jpg" and src["byte_identical_copy"] is True
+    assert (res["root"] / "source" / "original.jpg").read_bytes() == (p1 / "source" / "original.jpg").read_bytes()
+
+
+def test_jpeg_source_tampering_refused(tmp_path):
+    p1 = _jpeg_phase1_copy(tmp_path)
+    Image.open(p1 / "source" / "original.png").rotate(1).save(p1 / "source" / "original.png")
+    with pytest.raises(PackageError, match="pixel-exact decode"):
+        prepare_character(p1, tmp_path / "a", None, Phase2Config(sweep_step=90))
+    (p1 / "source" / "original.jpg").write_bytes(b"not the original")
+    with pytest.raises(PackageError, match="SHA-256"):
+        prepare_character(p1, tmp_path / "b", None, Phase2Config(sweep_step=90))

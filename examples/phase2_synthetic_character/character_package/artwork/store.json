@@ -24,8 +24,8 @@
     },
     "shin_r": {
       "path": "artwork/original/shin_r.png",
-      "pixel_sha256": "7866ea4ec07e54806406e25b0e4d7c7736a305b43e564c640c329dd89eaa7865",
-      "pixels": 15287,
+      "pixel_sha256": "82ce9dae81fb70d78528ea0c5e7c278b4e61ea2c8f124ae725592e48e81aa540",
+      "pixels": 15326,
       "bbox_xyxy": [
         394,
         1170,
@@ -35,24 +35,24 @@
       "category": "A_original",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/shin_r.png",
-        "phase1_file_sha256": "4c6a790f643d954cf3556cf724366eae4841276be5c9378a605315b7747cbb4f",
+        "phase1_file_sha256": "e273f5b86ced06752a478e9ab6a117be7249fcc2d816ec82096b5baa7fac8e5d",
         "split": null
       }
     },
     "thigh_r": {
       "path": "artwork/original/thigh_r.png",
-      "pixel_sha256": "6d06ba433ead83aba68a43c7277135d81f642f78ac830b9101c4c31d1599f95c",
-      "pixels": 18722,
+      "pixel_sha256": "aa66d883dce0165fa36044b5cd28b9b71466e176c13f36b620174a0d47d48fd9",
+      "pixels": 17698,
       "bbox_xyxy": [
         367,
-        986,
+        993,
         501,
-        1173
+        1171
       ],
       "category": "A_original",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/thigh_r.png",
-        "phase1_file_sha256": "57361b6b565f7a5fc6ad2025a847e3ff5575441f18d57127acdb58f2380d521f",
+        "phase1_file_sha256": "0540c360344efbc297f9a7d4bab3d8450beebd3e9b682476d3adb9ceb25afb98",
         "split": null
       }
     },
@@ -75,8 +75,8 @@
     },
     "shin_l": {
       "path": "artwork/original/shin_l.png",
-      "pixel_sha256": "ea2cd5e4b9d853f05be7873bfe401676861d93c70cfc17b9adcf47581ffab250",
-      "pixels": 15289,
+      "pixel_sha256": "7048ffbc87cace9860ee82f459a44eb3a2d3f0befe08362bc678f1da41d99230",
+      "pixels": 15325,
       "bbox_xyxy": [
         514,
         1170,
@@ -86,41 +86,41 @@
       "category": "A_original",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/shin_l.png",
-        "phase1_file_sha256": "35b5b6efe911e70f9cfff835d1bd63b5ed9c9bb0f4051999395c1685bed33201",
+        "phase1_file_sha256": "4eea7de0beacb1a32a308036a3a30751f15d58936867b0e7af85e571a417f520",
         "split": null
       }
     },
     "thigh_l": {
       "path": "artwork/original/thigh_l.png",
-      "pixel_sha256": "02c4bcae49e0735c5d83e283ce551f916467190f96d55ea1f44c769479b54d81",
-      "pixels": 18617,
+      "pixel_sha256": "90a767425c848a7f633a1db4a5d0630df80e4e31509207aed11cc55cfa340c27",
+      "pixels": 17603,
       "bbox_xyxy": [
         501,
-        986,
+        993,
         634,
-        1173
+        1171
       ],
       "category": "A_original",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/thigh_l.png",
-        "phase1_file_sha256": "7dd5c199964a61f8ab1b8d988515eb2271d3e87bc21385e23820c877a0057c04",
+        "phase1_file_sha256": "02fc6626cb77b82c59890a2155122c8b9a7132f57c8843af708cefcc9721edf0",
         "split": null
       }
     },
     "pelvis": {
       "path": "artwork/original/pelvis.png",
-      "pixel_sha256": "68f0382bef11b3d1808264464050f25dc09ca18a7b63a021a8a3e8090f4fb90f",
-      "pixels": 24524,
+      "pixel_sha256": "298ef288bc3a5a9e84d653ec5f14e788728acc149936db3ef9d7d09128a42bfb",
+      "pixels": 26487,
       "bbox_xyxy": [
         367,
         887,
         634,
-        1039
+        1050
       ],
       "category": "A_original",
       "provenance": {
         "from_phase1_layer": "artwork/bitmap/pelvis.png",
-        "phase1_file_sha256": "4e8891142dc794befdd38fd8c19e782a3728227cde94642e4b5e9a7057435b48",
+        "phase1_file_sha256": "08773aa054519190d838c8eeaf3c316e11cbc576f196ba5ab480dc15a99be292",
         "split": null
       }
     },
@@ -453,7 +453,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.964
       },
-      "created_at": 1795208244.1172855
+      "created_at": 1795212253.9831436
     },
     {
       "id": "eye_r_white__01",
@@ -476,7 +476,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.964
       },
-      "created_at": 1795208244.3924139
+      "created_at": 1795212254.2307076
     },
     {
       "id": "forearm_l__01",
@@ -499,7 +499,7 @@
         "outline_pieces_dropped_without_visible_entry": 1,
         "colour_share": 1.0
       },
-      "created_at": 1795208244.6988404
+      "created_at": 1795212254.478139
     },
     {
       "id": "forearm_r__01",
@@ -522,7 +522,7 @@
         "outline_pieces_dropped_without_visible_entry": 1,
         "colour_share": 1.0
       },
-      "created_at": 1795208244.9844987
+      "created_at": 1795212254.7211156
     },
     {
       "id": "head_base__01",
@@ -545,7 +545,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.944
       },
-      "created_at": 1795208245.2770698
+      "created_at": 1795212254.9646606
     },
     {
       "id": "head_base__02",
@@ -568,7 +568,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.948
       },
-      "created_at": 1795208245.5668032
+      "created_at": 1795212255.2250595
     },
     {
       "id": "head_base__03",
@@ -591,7 +591,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.994
       },
-      "created_at": 1795208245.9323387
+      "created_at": 1795212255.495511
     },
     {
       "id": "head_base__04",
@@ -614,7 +614,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.991
       },
-      "created_at": 1795208246.3009598
+      "created_at": 1795212255.7526228
     },
     {
       "id": "head_base__05",
@@ -646,7 +646,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.938
       },
-      "created_at": 1795208246.596273
+      "created_at": 1795212256.0494263
     },
     {
       "id": "head_base__06",
@@ -669,7 +669,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 1.0
       },
-      "created_at": 1795208246.894498
+      "created_at": 1795212256.301219
     },
     {
       "id": "head_base__07",
@@ -692,7 +692,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 1.0
       },
-      "created_at": 1795208247.2593899
+      "created_at": 1795212256.5622697
     },
     {
       "id": "neck__01",
@@ -724,7 +724,7 @@
         "outline_pieces_dropped_without_visible_entry": 2,
         "colour_share": 1.0
       },
-      "created_at": 1795208247.5778573
+      "created_at": 1795212256.8462858
     },
     {
       "id": "neck__02",
@@ -756,7 +756,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 1.0
       },
-      "created_at": 1795208247.8414867
+      "created_at": 1795212257.1465216
     },
     {
       "id": "thigh_l__01",
@@ -766,7 +766,7 @@
       "region_id": "thigh_l__under__pelvis",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1709,
+      "pixels": 1749,
       "discarded_outside_region": 0,
       "discarded_on_original": 0,
       "provenance": {
@@ -779,7 +779,7 @@
         "outline_pieces_dropped_without_visible_entry": 1,
         "colour_share": 1.0
       },
-      "created_at": 1795208248.2493823
+      "created_at": 1795212257.494949
     },
     {
       "id": "thigh_l__02",
@@ -789,7 +789,7 @@
       "region_id": "thigh_l__under__shin_l",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1482,
+      "pixels": 1496,
       "discarded_outside_region": 0,
       "discarded_on_original": 0,
       "provenance": {
@@ -800,9 +800,9 @@
         ],
         "outline": null,
         "outline_pieces_dropped_without_visible_entry": 1,
-        "colour_share": 0.98
+        "colour_share": 0.986
       },
-      "created_at": 1795208248.6309092
+      "created_at": 1795212257.7383168
     },
     {
       "id": "thigh_r__01",
@@ -812,7 +812,7 @@
       "region_id": "thigh_r__under__pelvis",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1678,
+      "pixels": 1720,
       "discarded_outside_region": 0,
       "discarded_on_original": 0,
       "provenance": {
@@ -825,7 +825,7 @@
         "outline_pieces_dropped_without_visible_entry": 1,
         "colour_share": 1.0
       },
-      "created_at": 1795208248.9258878
+      "created_at": 1795212257.986457
     },
     {
       "id": "thigh_r__02",
@@ -835,7 +835,7 @@
       "region_id": "thigh_r__under__shin_r",
       "method": "deterministic_flat_fill",
       "status": "pending_review",
-      "pixels": 1482,
+      "pixels": 1497,
       "discarded_outside_region": 0,
       "discarded_on_original": 0,
       "provenance": {
@@ -848,7 +848,7 @@
         "outline_pieces_dropped_without_visible_entry": 1,
         "colour_share": 0.996
       },
-      "created_at": 1795208249.194065
+      "created_at": 1795212258.2248638
     },
     {
       "id": "torso__01",
@@ -880,7 +880,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 0.902
       },
-      "created_at": 1795208249.496048
+      "created_at": 1795212258.4633918
     },
     {
       "id": "torso__02",
@@ -903,7 +903,7 @@
         "outline_pieces_dropped_without_visible_entry": 2,
         "colour_share": 0.891
       },
-      "created_at": 1795208249.7733538
+      "created_at": 1795212258.722471
     },
     {
       "id": "torso__03",
@@ -935,7 +935,7 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 1.0
       },
-      "created_at": 1795208250.0875251
+      "created_at": 1795212258.9904945
     },
     {
       "id": "torso__04",
@@ -967,278 +967,278 @@
         "outline_pieces_dropped_without_visible_entry": 0,
         "colour_share": 1.0
       },
-      "created_at": 1795208250.495224
+      "created_at": 1795212259.2512124
     }
   ],
   "history": [
     {
       "action": "add_original",
-      "at": 1795208237.2708387,
+      "at": 1795212248.1507783,
       "component": "foot_r"
     },
     {
       "action": "add_original",
-      "at": 1795208237.3108275,
+      "at": 1795212248.1910496,
       "component": "shin_r"
     },
     {
       "action": "add_original",
-      "at": 1795208237.355889,
+      "at": 1795212248.2332644,
       "component": "thigh_r"
     },
     {
       "action": "add_original",
-      "at": 1795208237.396711,
+      "at": 1795212248.2751887,
       "component": "foot_l"
     },
     {
       "action": "add_original",
-      "at": 1795208237.4369414,
+      "at": 1795212248.3137517,
       "component": "shin_l"
     },
     {
       "action": "add_original",
-      "at": 1795208237.4797862,
+      "at": 1795212248.3727875,
       "component": "thigh_l"
     },
     {
       "action": "add_original",
-      "at": 1795208237.5188608,
+      "at": 1795212248.412754,
       "component": "pelvis"
     },
     {
       "action": "add_original",
-      "at": 1795208237.5529668,
+      "at": 1795212248.4489865,
       "component": "neck"
     },
     {
       "action": "add_original",
-      "at": 1795208237.6093624,
+      "at": 1795212248.5056357,
       "component": "torso"
     },
     {
       "action": "add_original",
-      "at": 1795208237.6625168,
+      "at": 1795212248.553511,
       "component": "upper_arm_r"
     },
     {
       "action": "add_original",
-      "at": 1795208237.7066333,
+      "at": 1795212248.595496,
       "component": "forearm_r"
     },
     {
       "action": "add_original",
-      "at": 1795208237.7543018,
+      "at": 1795212248.63567,
       "component": "hand_r"
     },
     {
       "action": "add_original",
-      "at": 1795208237.800616,
+      "at": 1795212248.6800299,
       "component": "upper_arm_l"
     },
     {
       "action": "add_original",
-      "at": 1795208237.8433912,
+      "at": 1795212248.7224965,
       "component": "forearm_l"
     },
     {
       "action": "add_original",
-      "at": 1795208237.8830194,
+      "at": 1795212248.76047,
       "component": "hand_l"
     },
     {
       "action": "add_original",
-      "at": 1795208237.9487529,
+      "at": 1795212248.8446925,
       "component": "head_base"
     },
     {
       "action": "add_original",
-      "at": 1795208237.987361,
+      "at": 1795212248.9110632,
       "component": "nose"
     },
     {
       "action": "add_original",
-      "at": 1795208238.024086,
+      "at": 1795212248.9587593,
       "component": "mouth"
     },
     {
       "action": "add_original",
-      "at": 1795208238.0624235,
+      "at": 1795212248.995401,
       "component": "brow_r"
     },
     {
       "action": "add_original",
-      "at": 1795208238.1001265,
+      "at": 1795212249.0290453,
       "component": "brow_l"
     },
     {
       "action": "add_original",
-      "at": 1795208238.1471674,
+      "at": 1795212249.072772,
       "component": "hair"
     },
     {
       "action": "add_original",
-      "at": 1795208238.190117,
+      "at": 1795212249.112726,
       "component": "eye_r_white"
     },
     {
       "action": "add_original",
-      "at": 1795208238.2287946,
+      "at": 1795212249.150759,
       "component": "eye_r_iris"
     },
     {
       "action": "add_original",
-      "at": 1795208238.275387,
+      "at": 1795212249.1922853,
       "component": "eye_l_white"
     },
     {
       "action": "add_original",
-      "at": 1795208238.3168359,
+      "at": 1795212249.230522,
       "component": "eye_l_iris"
     },
     {
       "action": "add_extension",
-      "at": 1795208244.1172926,
+      "at": 1795212253.9831655,
       "component": "eye_l_white",
       "extension": "eye_l_white__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208244.3924196,
+      "at": 1795212254.2307148,
       "component": "eye_r_white",
       "extension": "eye_r_white__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208244.6988447,
+      "at": 1795212254.4781518,
       "component": "forearm_l",
       "extension": "forearm_l__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208244.9845037,
+      "at": 1795212254.7211208,
       "component": "forearm_r",
       "extension": "forearm_r__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208245.2770753,
+      "at": 1795212254.9646668,
       "component": "head_base",
       "extension": "head_base__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208245.5668092,
+      "at": 1795212255.2250648,
       "component": "head_base",
       "extension": "head_base__02",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208245.9323578,
+      "at": 1795212255.495516,
       "component": "head_base",
       "extension": "head_base__03",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208246.300964,
+      "at": 1795212255.7526276,
       "component": "head_base",
       "extension": "head_base__04",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208246.596308,
+      "at": 1795212256.0494318,
       "component": "head_base",
       "extension": "head_base__05",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208246.8945038,
+      "at": 1795212256.3012235,
       "component": "head_base",
       "extension": "head_base__06",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208247.2593958,
+      "at": 1795212256.5623043,
       "component": "head_base",
       "extension": "head_base__07",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208247.5778625,
+      "at": 1795212256.8462908,
       "component": "neck",
       "extension": "neck__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208247.8414912,
+      "at": 1795212257.1465259,
       "component": "neck",
       "extension": "neck__02",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208248.2493875,
+      "at": 1795212257.4949543,
       "component": "thigh_l",
       "extension": "thigh_l__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208248.6309144,
+      "at": 1795212257.738322,
       "component": "thigh_l",
       "extension": "thigh_l__02",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208248.9258926,
+      "at": 1795212257.9864614,
       "component": "thigh_r",
       "extension": "thigh_r__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208249.1940708,
+      "at": 1795212258.2248683,
       "component": "thigh_r",
       "extension": "thigh_r__02",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208249.496053,
+      "at": 1795212258.463396,
       "component": "torso",
       "extension": "torso__01",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208249.7733583,
+      "at": 1795212258.7224956,
       "component": "torso",
       "extension": "torso__02",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208250.0875297,
+      "at": 1795212258.990498,
       "component": "torso",
       "extension": "torso__03",
       "method": "deterministic_flat_fill"
     },
     {
       "action": "add_extension",
-      "at": 1795208250.4952512,
+      "at": 1795212259.2512176,
       "component": "torso",
       "extension": "torso__04",
       "method": "deterministic_flat_fill"

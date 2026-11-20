@@ -242,7 +242,7 @@
     "hip_r": {
       "name": "hip_r",
       "confidence": 0.475,
-      "method": "midpoint_of_lower_clothing_span_along_limb_axis",
+      "method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
       "flags": [
         "hip_r hidden under lower_clothing: position extrapolated, always needs review"
       ],
@@ -255,7 +255,7 @@
       ],
       "visible": false,
       "position": [
-        458.23,
+        444.03,
         994.2
       ],
       "reliable": false,
@@ -318,7 +318,7 @@
     "hip_l": {
       "name": "hip_l",
       "confidence": 0.475,
-      "method": "midpoint_of_lower_clothing_span_along_limb_axis",
+      "method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
       "flags": [
         "hip_l hidden under lower_clothing: position extrapolated, always needs review"
       ],
@@ -331,7 +331,7 @@
       ],
       "visible": false,
       "position": [
-        542.77,
+        556.97,
         994.2
       ],
       "reliable": false,
@@ -403,13 +403,13 @@
       "name": "pelvis:hip_r",
       "from": "pelvis",
       "to": "hip_r",
-      "length_px": 42.27
+      "length_px": 56.47
     },
     {
       "name": "pelvis:hip_l",
       "from": "pelvis",
       "to": "hip_l",
-      "length_px": 42.27
+      "length_px": 56.47
     },
     {
       "name": "upper_arm_r",
@@ -439,7 +439,7 @@
       "name": "thigh_r",
       "from": "hip_r",
       "to": "knee_r",
-      "length_px": 176.62
+      "length_px": 175.81
     },
     {
       "name": "shin_r",
@@ -451,7 +451,7 @@
       "name": "thigh_l",
       "from": "hip_l",
       "to": "knee_l",
-      "length_px": 176.62
+      "length_px": 175.81
     },
     {
       "name": "shin_l",
@@ -556,12 +556,12 @@
       }
     },
     "pelvis": {
-      "pixels": 24524,
+      "pixels": 26487,
       "bbox_xyxy": [
         367,
         887,
         634,
-        1039
+        1050
       ],
       "empty": false,
       "method": "nearest_bone_segment_within_region",
@@ -723,24 +723,24 @@
       }
     },
     "thigh_r": {
-      "pixels": 18722,
+      "pixels": 17698,
       "bbox_xyxy": [
         367,
-        986,
+        993,
         501,
-        1173
+        1171
       ],
       "empty": false,
       "method": "nearest_bone_segment_within_region",
       "joint_confidence": 0.38,
       "truncated_by_image_border": false,
       "clothing_coverage": {
-        "lower_clothing": 0.503
+        "lower_clothing": 0.476
       },
       "mask": "masks/body/thigh_r.png",
       "pivot": {
         "position": [
-          458.23,
+          444.03,
           994.2
         ],
         "joint": "hip_r",
@@ -748,7 +748,7 @@
       }
     },
     "shin_r": {
-      "pixels": 15287,
+      "pixels": 15326,
       "bbox_xyxy": [
         394,
         1170,
@@ -794,24 +794,24 @@
       }
     },
     "thigh_l": {
-      "pixels": 18617,
+      "pixels": 17603,
       "bbox_xyxy": [
         501,
-        986,
+        993,
         634,
-        1173
+        1171
       ],
       "empty": false,
       "method": "nearest_bone_segment_within_region",
       "joint_confidence": 0.38,
       "truncated_by_image_border": false,
       "clothing_coverage": {
-        "lower_clothing": 0.499
+        "lower_clothing": 0.472
       },
       "mask": "masks/body/thigh_l.png",
       "pivot": {
         "position": [
-          542.77,
+          556.97,
           994.2
         ],
         "joint": "hip_l",
@@ -819,7 +819,7 @@
       }
     },
     "shin_l": {
-      "pixels": 15289,
+      "pixels": 15325,
       "bbox_xyxy": [
         514,
         1170,
@@ -872,9 +872,9 @@
       "upper_arm_l": 0.174
     },
     "lower_clothing": {
-      "pelvis": 0.568,
-      "thigh_r": 0.218,
-      "thigh_l": 0.214
+      "pelvis": 0.614,
+      "thigh_r": 0.195,
+      "thigh_l": 0.192
     }
   },
   "unassigned_pixels": 0,
@@ -960,7 +960,7 @@
       {
         "joint": "hip_r",
         "severity": "warning",
-        "issue": "unreliable (confidence 0.47, midpoint_of_lower_clothing_span_along_limb_axis)"
+        "issue": "unreliable (confidence 0.47, midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline)"
       },
       {
         "joint": "knee_r",
@@ -970,7 +970,7 @@
       {
         "joint": "hip_l",
         "severity": "warning",
-        "issue": "unreliable (confidence 0.47, midpoint_of_lower_clothing_span_along_limb_axis)"
+        "issue": "unreliable (confidence 0.47, midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline)"
       },
       {
         "joint": "knee_l",
@@ -1011,7 +1011,7 @@
       "version": "n/a",
       "estimated_usd": 0.0,
       "cache_hit": false,
-      "created_at": "2026-11-20T19:11:07Z",
+      "created_at": "2026-11-20T22:03:48Z",
       "provider": "fixture",
       "image_sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
       "image_size": [

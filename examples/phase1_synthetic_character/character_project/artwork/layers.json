@@ -74,7 +74,7 @@
         1360
       ],
       "z_index": 1,
-      "pixels": 15287,
+      "pixels": 15326,
       "pivot": {
         "position": [
           441.07,
@@ -115,15 +115,15 @@
       "mask": "masks/body/thigh_r.png",
       "bbox_xyxy": [
         367,
-        986,
+        993,
         501,
-        1173
+        1171
       ],
       "z_index": 2,
-      "pixels": 18722,
+      "pixels": 17698,
       "pivot": {
         "position": [
-          458.23,
+          444.03,
           994.2
         ],
         "status": "proposed",
@@ -212,7 +212,7 @@
         1360
       ],
       "z_index": 4,
-      "pixels": 15289,
+      "pixels": 15325,
       "pivot": {
         "position": [
           559.93,
@@ -253,15 +253,15 @@
       "mask": "masks/body/thigh_l.png",
       "bbox_xyxy": [
         501,
-        986,
+        993,
         634,
-        1173
+        1171
       ],
       "z_index": 5,
-      "pixels": 18617,
+      "pixels": 17603,
       "pivot": {
         "position": [
-          542.77,
+          556.97,
           994.2
         ],
         "status": "proposed",
@@ -301,10 +301,10 @@
         367,
         887,
         634,
-        1039
+        1050
       ],
       "z_index": 6,
-      "pixels": 24524,
+      "pixels": 26487,
       "pivot": {
         "position": [
           500.5,
@@ -1134,7 +1134,7 @@
       "id": "body/pelvis",
       "path": "masks/body/pelvis.png",
       "kind": "anatomical_part",
-      "pixels": 24524
+      "pixels": 26487
     },
     {
       "id": "body/upper_arm_r",
@@ -1176,13 +1176,13 @@
       "id": "body/thigh_r",
       "path": "masks/body/thigh_r.png",
       "kind": "anatomical_part",
-      "pixels": 18722
+      "pixels": 17698
     },
     {
       "id": "body/shin_r",
       "path": "masks/body/shin_r.png",
       "kind": "anatomical_part",
-      "pixels": 15287
+      "pixels": 15326
     },
     {
       "id": "body/foot_r",
@@ -1194,13 +1194,13 @@
       "id": "body/thigh_l",
       "path": "masks/body/thigh_l.png",
       "kind": "anatomical_part",
-      "pixels": 18617
+      "pixels": 17603
     },
     {
       "id": "body/shin_l",
       "path": "masks/body/shin_l.png",
       "kind": "anatomical_part",
-      "pixels": 15289
+      "pixels": 15325
     },
     {
       "id": "body/foot_l",

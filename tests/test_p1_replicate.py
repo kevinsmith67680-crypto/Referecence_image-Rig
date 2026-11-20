@@ -302,3 +302,12 @@ def test_mask_shape_mismatch_is_an_error_not_a_guess(tmp_path):
 def test_parse_rejects_malformed_outputs(bad, needle):
     with pytest.raises(SegmentationFormatError, match=needle):
         parse_sam3_prompt_json(bad, 3, 2, 0)
+
+
+def test_data_uri_uses_real_mime_type_for_jpeg(tmp_path):
+    fake = FakeReplicate()
+    png = make_image(tmp_path)
+    jpg = tmp_path / "ref.jpg"
+    Image.open(png).convert("RGB").save(jpg, "JPEG")
+    provider(tmp_path, fake).segment(jpg, [Prompt(text="red")])
+    assert fake.last_input["image"].startswith("data:image/jpeg;base64,")  # never 'image/jpg'

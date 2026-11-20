@@ -424,9 +424,24 @@ class MaskGeometryPoseEstimator:
         fragmented = len(big) > 1
         if fragmented:
             score *= 0.6  # the limb mask is broken: every joint derived from it is less trustworthy
-        # distal joint (wrist/ankle): contact with hand/foot (small gaps tolerated)
-        if dist_lm is not None and M.area(M.contact_zone(limb_lm.mask, dist_lm.mask, tol)) >= 3:
-            dxy = M.centroid(M.contact_zone(limb_lm.mask, dist_lm.mask, tol))
+        # distal joint (wrist/ankle): contact with hand/foot (small gaps tolerated). SAM's "arm" often
+        # INCLUDES the hand: then the overlap is the whole hand, so use the boundary of limb-minus-hand
+        limb_c, reach, split = limb_lm.mask, tol, False
+        if dist_lm is not None and M.area(limb_lm.mask & dist_lm.mask) > 0.2 * M.area(dist_lm.mask):
+            # subtract a slightly grown hand/foot (the limb mask is often 1-2 px wider around the
+            # fingers) and keep the main piece, so no thin ring around the hand pulls the joint inward
+            rest = limb_lm.mask & ~M.dilate(dist_lm.mask, 2)
+            if M.area(rest):
+                limb_c, split = M.largest_component(rest), True
+                # a cuff or band between them may leave a gap: bridge it when it is small
+                gap = float(ndimage.distance_transform_edt(~dist_lm.mask)[limb_c].min())
+                if gap <= 3 * tol:
+                    reach = max(tol, int(np.ceil(gap)) + 2)
+        if dist_lm is not None and M.area(M.contact_zone(limb_c, dist_lm.mask, reach)) >= 3:
+            zone = M.contact_zone(limb_c, dist_lm.mask, reach)
+            if split:  # both sides of the boundary, so the joint sits in the middle of any gap
+                zone = zone | M.contact_zone(dist_lm.mask, limb_c, reach)
+            dxy = M.centroid(zone)
             J[dist_n] = JointEstimate(dist_n, *dxy, min(score, dist_lm.score) * 0.95, f"contact:{limb}/{distal}",
                                       sources=[limb, distal])
             hint = dxy
@@ -467,6 +482,14 @@ class MaskGeometryPoseEstimator:
             else:
                 prox = ((exit_pt[0] + P[0]) / 2, (exit_pt[1] + P[1]) / 2)
                 method, factor = f"midpoint_of_{covering}_span_along_limb_axis", 0.5
+                # The path's proximal end curls toward the crotch, so for spread legs the march runs
+                # inward and both hips converge. Keep that height, take x from the straight middle
+                # of the leg's medial line (identical for vertical legs).
+                line = _axis_line(axis, 0.25, 0.6)
+                if line is not None and abs(line[1][1]) > 0.5:
+                    (cx, cy), (vx, vy) = line
+                    prox = (cx + (prox[1] - cy) / vy * vx, prox[1])
+                    method += "+x_from_leg_midline"
             flags.append(f"{prox_n} hidden under {covering}: position extrapolated, always needs review")
             sources = [limb, covering]
         else:
@@ -492,7 +515,7 @@ class MaskGeometryPoseEstimator:
         if bend is not None and bend[1] >= 30.0:
             J[mid_n] = JointEstimate(mid_n, *bend[0], score * 0.75, "medial_path_bend", sources=[limb],
                                      flags=[f"bend {bend[1]:.0f} deg"])
-        elif bend is not None and bend[1] >= 15.0:
+        elif bend is not None and bend[1] >= 15.0 and 0.3 <= _path_fraction(axis, bend[0]) <= 0.7:
             J[mid_n] = JointEstimate(mid_n, *bend[0], score * 0.45, "medial_path_weak_bend", sources=[limb],
                                      flags=[f"weak bend {bend[1]:.0f} deg: position uncertain; verify"])
         else:
@@ -501,6 +524,28 @@ class MaskGeometryPoseEstimator:
             J[mid_n] = JointEstimate(mid_n, *snap, score * 0.4, "straight_limb_midpoint",
                                      flags=["limb is nearly straight (no bend >= 15 deg): middle joint position "
                                             "is ambiguous; verify or provide a manual landmark"], sources=[limb])
+
+
+def _path_fraction(axis: LimbAxis, xy) -> float:
+    """Position of the path point nearest ``xy`` as a fraction of the path length (0 = proximal)."""
+    pts = np.asarray(axis.path, dtype=float)
+    seg = np.r_[0.0, np.cumsum(np.hypot(*np.diff(pts, axis=0).T))]
+    k = int(np.argmin(np.hypot(pts[:, 0] - xy[0], pts[:, 1] - xy[1])))
+    return float(seg[k] / (seg[-1] or 1.0))
+
+
+def _axis_line(axis: LimbAxis, lo: float, hi: float):
+    """PCA line through the medial path between fractions ``lo`` and ``hi`` of its length.
+    Returns (centre, unit direction) or None."""
+    pts = np.asarray(axis.path, dtype=float)
+    seg = np.r_[0.0, np.cumsum(np.hypot(*np.diff(pts, axis=0).T))]
+    total = seg[-1]
+    sel = pts[(seg >= lo * total) & (seg <= hi * total)]
+    if total <= 0 or len(sel) < 3:
+        return None
+    c = sel.mean(axis=0)
+    _, _, vt = np.linalg.svd(sel - c, full_matrices=False)
+    return (float(c[0]), float(c[1])), (float(vt[0][0]), float(vt[0][1]))
 
 
 def _path_bend(axis: LimbAxis) -> tuple[tuple[float, float], float] | None:

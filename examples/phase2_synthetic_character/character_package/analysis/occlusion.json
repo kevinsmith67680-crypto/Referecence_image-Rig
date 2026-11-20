@@ -13,11 +13,11 @@
         "bone": "foot_r"
       },
       "shin_r": {
-        "pixels": 15287,
+        "pixels": 15326,
         "bone": "shin_r"
       },
       "thigh_r": {
-        "pixels": 18722,
+        "pixels": 17698,
         "bone": "thigh_r"
       },
       "foot_l": {
@@ -25,15 +25,15 @@
         "bone": "foot_l"
       },
       "shin_l": {
-        "pixels": 15289,
+        "pixels": 15325,
         "bone": "shin_l"
       },
       "thigh_l": {
-        "pixels": 18617,
+        "pixels": 17603,
         "bone": "thigh_l"
       },
       "pelvis": {
-        "pixels": 24524,
+        "pixels": 26487,
         "bone": "body"
       },
       "neck": {
@@ -486,10 +486,10 @@
         "ambiguous": false,
         "joint": "hip_l",
         "evidence": {
-          "contact_pixels": 1652,
+          "contact_pixels": 1617,
           "line_pixels": {
-            "pelvis": 825,
-            "thigh_l": 815
+            "pelvis": 807,
+            "thigh_l": 798
           }
         },
         "consistent_with_phase1_z_order": true
@@ -502,10 +502,10 @@
         "ambiguous": false,
         "joint": "hip_r",
         "evidence": {
-          "contact_pixels": 1664,
+          "contact_pixels": 1629,
           "line_pixels": {
-            "pelvis": 837,
-            "thigh_r": 827
+            "pelvis": 819,
+            "thigh_r": 810
           }
         },
         "consistent_with_phase1_z_order": true
@@ -536,7 +536,7 @@
         "evidence": {
           "contact_pixels": 1115,
           "line_pixels": {
-            "shin_l": 98,
+            "shin_l": 100,
             "thigh_l": 104
           }
         },
@@ -550,10 +550,10 @@
         "ambiguous": true,
         "joint": "knee_r",
         "evidence": {
-          "contact_pixels": 1112,
+          "contact_pixels": 1114,
           "line_pixels": {
             "shin_r": 101,
-            "thigh_r": 101
+            "thigh_r": 102
           }
         },
         "consistent_with_phase1_z_order": false
@@ -566,10 +566,10 @@
         "ambiguous": true,
         "joint": null,
         "evidence": {
-          "contact_pixels": 396,
+          "contact_pixels": 264,
           "line_pixels": {
-            "thigh_l": 192,
-            "thigh_r": 192
+            "thigh_l": 126,
+            "thigh_r": 126
           }
         },
         "consistent_with_phase1_z_order": true
@@ -1126,11 +1126,11 @@
         "pelvis"
       ],
       "mask": "masks/reconstruction/thigh_l__under__pelvis.png",
-      "pixels": 1709,
+      "pixels": 1749,
       "bbox_xyxy": [
-        514,
+        528,
         965,
-        572,
+        586,
         1023
       ],
       "joint": "hip_l",
@@ -1150,11 +1150,11 @@
         "pelvis"
       ],
       "mask": "masks/reconstruction/thigh_r__under__pelvis.png",
-      "pixels": 1678,
+      "pixels": 1720,
       "bbox_xyxy": [
-        429,
+        415,
         965,
-        487,
+        473,
         1022
       ],
       "joint": "hip_r",
@@ -1199,7 +1199,7 @@
         "shin_l"
       ],
       "mask": "masks/reconstruction/thigh_l__under__shin_l.png",
-      "pixels": 1482,
+      "pixels": 1496,
       "bbox_xyxy": [
         528,
         1170,
@@ -1225,7 +1225,7 @@
         "shin_r"
       ],
       "mask": "masks/reconstruction/thigh_r__under__shin_r.png",
-      "pixels": 1482,
+      "pixels": 1497,
       "bbox_xyxy": [
         410,
         1170,

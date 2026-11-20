@@ -10,7 +10,8 @@ faithful, editable **Moho Pro 14** character rig.
 - The user explicitly started **Phase 1** while Phase 0 was still unverified, asking that the
   limitation be carried forward. Phase 1 is implemented; verdict **PARTIAL** (`docs/phase1_report.md`).
   Replicate credit and the user's reference (`references/schoolboy/`) arrived 2026-11-20; the first real-artwork
-  run is in `docs/real_artwork_test.md`. Remaining: Phase 0 native verification and real-art body partition quality.
+  runs are in `docs/real_artwork_test.md` (run 2, T-pose, is the current one). Remaining: Phase 0 native
+  verification, region-specific inpainting prompts, and human review of generated pixels.
 - The user explicitly started **Phase 2** (reconstruction) on synthetic fixtures. It is implemented; verdict
   **PARTIAL** (`docs/phase2_report.md`; real-art run in `docs/real_artwork_test.md`): FLUX inpainting ran on real
   art but nothing is human-reviewed, eye-white inpainting failed, and Phase 1's body split is not rig-ready.
@@ -119,8 +120,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `examples/phase1_synthetic_character/` — synthetic fixture + its character_project + evaluation
 - `src/autorig/phase2/` — store (pixel preservation), occlusion, providers, reconstruct, facial, joints, pose, vector, review, pipeline
 - `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
-- `references/schoolboy/` — the user's character sheet, front-view crop and (assistant-estimated) landmarks
-- `projects/schoolboy/` — snapshot of the first real-art Phase 1 project and Phase 2 package (unreviewed)
+- `references/schoolboy/` — the user's character sheet, front-view crop, (assistant-estimated) landmarks and
+  `tpose_front.jpg` (the T-pose reference, preferred for rigging)
+- `projects/schoolboy/`, `projects/schoolboy_tpose/` — snapshots of the real-art runs 1 and 2 (unreviewed)
 - `tests/lua/mock_moho.lua` — strict mock of the allowlisted Moho API (Lua 5.4 via `lupa`)
 - `examples/phase0_test_character/` — spec, art layers, reference script, previews, expected values
 - `tools/macos/install_phase0.sh` — generates a machine-specific script and installs it

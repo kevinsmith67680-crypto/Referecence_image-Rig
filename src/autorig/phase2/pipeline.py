@@ -65,12 +65,21 @@ def prepare_character(phase1_dir: str | Path, out_dir: str | Path, provider=None
     t0 = time.time()
     meta1 = json.loads((p1 / "metadata.json").read_text())
     src_sha = meta1["source"]["sha256"]
-    if sha256_file(p1 / "source" / "original.png") != src_sha:
-        raise PackageError("Phase 1 source/original.png does not match its recorded SHA-256")
+    # the byte-identical original (PNG, JPEG, ...) carries the recorded hash; a non-PNG source also has a
+    # lossless PNG decode (source/original.png) that must hold exactly the same pixels
+    src_rel = meta1["source"].get("project_path", "source/original.png")
+    if sha256_file(p1 / src_rel) != src_sha:
+        raise PackageError(f"Phase 1 {src_rel} does not match its recorded SHA-256")
+    if src_rel != "source/original.png":
+        with Image.open(p1 / src_rel) as a, Image.open(p1 / "source" / "original.png") as b:
+            if not np.array_equal(np.asarray(a.convert("RGBA")), np.asarray(b.convert("RGBA"))):
+                raise PackageError(f"Phase 1 source/original.png is not a pixel-exact decode of {src_rel}")
     _prepare(root, cfg.overwrite)
     warnings: list[str] = []
     (root / "source").mkdir()
     shutil.copyfile(p1 / "source" / "original.png", root / "source" / "original.png")
+    if src_rel != "source/original.png":
+        shutil.copyfile(p1 / src_rel, root / src_rel)
     for name in ("anatomy.json", "face.json", "live_controls.json"):
         (root / "analysis").mkdir(exist_ok=True)
         shutil.copyfile(p1 / "analysis" / name, root / "analysis" / name)
@@ -214,7 +223,7 @@ def prepare_character(phase1_dir: str | Path, out_dir: str | Path, provider=None
     art = {"schema": "autorig.artwork_manifest", "schema_version": schemas.V, "contract_version": "2.0.0",
            "coordinate_system": {"width": W, "height": H, "origin": "top-left, +y down, source pixels",
                                  "rule": "all bitmap, mask and vector assets share this canvas; no scaling/offsets"},
-           "original_bitmap": {"path": "source/original.png", "sha256": src_sha},
+           "original_bitmap": {"path": src_rel, "sha256": src_sha, "png_decode": "source/original.png"},
            "layers": [{"id": c, "category": "A_original", "image": store.originals[c]["path"], "z_index": zidx[c],
                        "bone": bone_of(c), "pivot": (lambda pv: list(pv) if pv else None)(
                            pivots.get(RIG[bone_of(c)][0]) if bone_of(c) and RIG[bone_of(c)][0] else None),
@@ -234,13 +243,14 @@ def prepare_character(phase1_dir: str | Path, out_dir: str | Path, provider=None
             "live_artwork_manifest": live_doc, "artwork_manifest": art, "reconstruction_quality": q_doc}
     errors = {k: schemas.validate(k, v) for k, v in docs.items()}
     problems = store.verify()
-    src_ok = sha256_file(root / "source" / "original.png") == src_sha
+    src_ok = sha256_file(root / src_rel) == src_sha
     outputs = [{"path": p.relative_to(root).as_posix(), "sha256": sha256_file(p), "bytes": p.stat().st_size}
                for p in sorted(root.rglob("*")) if p.is_file() and p.name != "metadata.json"]
     led = getattr(provider, "ledger", None)
     meta = {"schema": MARKER, "schema_version": schemas.V, "phase": 2, "autorig_version": __version__,
             "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "source": {"sha256": src_sha, "byte_identical_copy": src_ok, "path": "source/original.png"},
+            "source": {"sha256": src_sha, "byte_identical_copy": src_ok, "path": src_rel,
+                       "png_decode_path": "source/original.png"},
             "phase1_project": {"path_name": p1.name, "metadata_sha256": sha256_file(p1 / "metadata.json"),
                                "segmentation_provider": meta1["segmentation_runs"][0]["provider"]},
             "providers": {"reconstruction": getattr(provider, "name", None) or "deterministic only (no generative provider)",
@@ -353,14 +363,16 @@ def _quality(root, src, store, originals, composed, order, comps, recon, regions
         js.paste(t, ((i % cols) * 330, (i // cols) * 180))
     js.save(rep / "joint_closeups.png", optimize=True)
     names = list(poses)
-    pw, ph = int(W * 0.3), int(H * 0.3)
+    k = min(1.0, 480 / H)  # tiles about 480 px tall whatever the source size (small sources stay legible)
+    pw, ph = max(1, int(W * k)), max(1, int(H * k))
     ps = Image.new("RGB", (pw * 5, ph * ((len(names) + 4) // 5)), "white")
     for i, n in enumerate(names):
         im = Image.open(root / "previews" / "diagnostics" / f"{n}.png").resize((pw, ph))
         ps.paste(im, ((i % 5) * pw, (i // 5) * ph))
     ps.save(rep / "pose_contact_sheet.png", optimize=True)
     quality = {
-        "original_pixel_preservation": {"source_unchanged": sha256_file(root / "source" / "original.png") ==
+        "original_pixel_preservation": {"source_unchanged": sha256_file(
+                                            root / meta1["source"].get("project_path", "source/original.png")) ==
                                         meta1["source"]["sha256"], "originals_verified": not store.verify(),
                                         "neutral_originals_exact": exact,
                                         "generated_pixels_visible_in_neutral": vis_gen,

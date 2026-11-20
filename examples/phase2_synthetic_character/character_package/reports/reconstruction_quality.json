@@ -39,12 +39,12 @@
         "with_extensions": 1245
       },
       "walking": {
-        "originals_only": 3497,
-        "with_extensions": 3061
+        "originals_only": 3695,
+        "with_extensions": 3234
       },
       "sitting": {
-        "originals_only": 1934,
-        "with_extensions": 460
+        "originals_only": 2299,
+        "with_extensions": 786
       },
       "head_tilt_left": {
         "originals_only": 165,
@@ -94,8 +94,8 @@
       "status": "prepared_pending_review"
     },
     "hip_r": {
-      "max_gap_with_extensions": 471,
-      "max_gap_originals_only": 809,
+      "max_gap_with_extensions": 444,
+      "max_gap_originals_only": 869,
       "safe_range_deg": {
         "original_only": 0,
         "with_extensions": 0
@@ -104,7 +104,7 @@
     },
     "knee_r": {
       "max_gap_with_extensions": 2,
-      "max_gap_originals_only": 522,
+      "max_gap_originals_only": 523,
       "safe_range_deg": {
         "original_only": 0,
         "with_extensions": 60
@@ -148,8 +148,8 @@
       "status": "prepared_pending_review"
     },
     "hip_l": {
-      "max_gap_with_extensions": 484,
-      "max_gap_originals_only": 822,
+      "max_gap_with_extensions": 448,
+      "max_gap_originals_only": 838,
       "safe_range_deg": {
         "original_only": 0,
         "with_extensions": 0
@@ -184,7 +184,7 @@
     "offsets": "none (identity transform for every layer)"
   },
   "reconstruction_size": {
-    "generated_pixels_total": 93452,
+    "generated_pixels_total": 93563,
     "by_component": {
       "eye_l_white": 2321,
       "eye_r_white": 2321,
@@ -192,8 +192,8 @@
       "forearm_r": 953,
       "head_base": 57375,
       "neck": 14749,
-      "thigh_l": 3191,
-      "thigh_r": 3160,
+      "thigh_l": 3245,
+      "thigh_r": 3217,
       "torso": 8456
     },
     "regions": {
@@ -274,11 +274,11 @@
         "strategy": "deterministic_flat_fill"
       },
       "thigh_l__under__pelvis": {
-        "pixels": 1709,
+        "pixels": 1749,
         "strategy": "deterministic_flat_fill"
       },
       "thigh_r__under__pelvis": {
-        "pixels": 1678,
+        "pixels": 1720,
         "strategy": "deterministic_flat_fill"
       },
       "pelvis__under__torso": {
@@ -286,11 +286,11 @@
         "strategy": "not_needed_for_planned_motion"
       },
       "thigh_l__under__shin_l": {
-        "pixels": 1482,
+        "pixels": 1496,
         "strategy": "deterministic_flat_fill"
       },
       "thigh_r__under__shin_r": {
-        "pixels": 1482,
+        "pixels": 1497,
         "strategy": "deterministic_flat_fill"
       },
       "torso__under__upper_arm_l": {
@@ -350,7 +350,7 @@
   },
   "pose_stability": {
     "poses": 9,
-    "worst_pose_gap_with_extensions": 3061
+    "worst_pose_gap_with_extensions": 3234
   },
   "flags_for_human_review": [
     {
@@ -479,11 +479,11 @@
     },
     {
       "item": "joint hip_r",
-      "why": "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis): verify before binding"
+      "why": "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding"
     },
     {
       "item": "joint hip_r",
-      "why": "gaps up to 471 px remain within \u00b145 deg even with extensions"
+      "why": "gaps up to 444 px remain within \u00b145 deg even with extensions"
     },
     {
       "item": "joint knee_r",
@@ -511,11 +511,11 @@
     },
     {
       "item": "joint hip_l",
-      "why": "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis): verify before binding"
+      "why": "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding"
     },
     {
       "item": "joint hip_l",
-      "why": "gaps up to 484 px remain within \u00b145 deg even with extensions"
+      "why": "gaps up to 448 px remain within \u00b145 deg even with extensions"
     },
     {
       "item": "joint knee_l",
@@ -635,28 +635,28 @@
         "pixels_colour_error_gt_32": 615
       },
       "thigh_l__under__pelvis": {
-        "generated_pixels": 1709,
+        "generated_pixels": 1749,
         "precision": 1.0,
         "recall_within_region": 1.0,
         "mean_colour_error": 0.0,
         "pixels_colour_error_gt_32": 0
       },
       "thigh_r__under__pelvis": {
-        "generated_pixels": 1678,
+        "generated_pixels": 1720,
         "precision": 1.0,
         "recall_within_region": 1.0,
         "mean_colour_error": 0.0,
         "pixels_colour_error_gt_32": 0
       },
       "thigh_l__under__shin_l": {
-        "generated_pixels": 1482,
+        "generated_pixels": 1496,
         "precision": 1.0,
         "recall_within_region": 1.0,
         "mean_colour_error": 0.0,
         "pixels_colour_error_gt_32": 0
       },
       "thigh_r__under__shin_r": {
-        "generated_pixels": 1482,
+        "generated_pixels": 1497,
         "precision": 1.0,
         "recall_within_region": 1.0,
         "mean_colour_error": 0.0,
@@ -678,9 +678,9 @@
       }
     },
     "overall": {
-      "precision": 0.9165,
+      "precision": 0.9166,
       "recall_within_regions": 1.0,
-      "mean_colour_error": 8.94
+      "mean_colour_error": 8.93
     }
   },
   "images": {

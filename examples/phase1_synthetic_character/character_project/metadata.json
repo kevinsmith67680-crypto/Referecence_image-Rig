@@ -2,8 +2,8 @@
   "schema": "autorig.character_project",
   "schema_version": "1.0.0",
   "autorig_version": "0.0.1",
-  "created_at": "2026-11-20T19:11:12Z",
-  "git_commit": "b773afb29988e7c5ce4bb13c54342e87aa651491",
+  "created_at": "2026-11-20T22:03:53Z",
+  "git_commit": "1b7f5692b83d7b9e44876a9bf65c423bcd81de64",
   "character_id": "synthetic_fixture",
   "source": {
     "original_name": "synthetic_fixture.png",
@@ -179,7 +179,7 @@
       "character_id": "synthetic_fixture",
       "overwrite": true
     },
-    "duration_s": 5.44
+    "duration_s": 5.51
   },
   "segmentation_runs": [
     {
@@ -188,7 +188,7 @@
       "version": "n/a",
       "estimated_usd": 0.0,
       "cache_hit": false,
-      "created_at": "2026-11-20T19:11:07Z",
+      "created_at": "2026-11-20T22:03:48Z",
       "image_sha256": "8aaad119da620a73e89195e8e57ba890c2388c4feb0c43da7dcce9be97963679",
       "image_size": [
         1000,
@@ -269,7 +269,7 @@
       "version": "n/a",
       "estimated_usd": 0.0,
       "cache_hit": false,
-      "created_at": "2026-11-20T19:11:08Z",
+      "created_at": "2026-11-20T22:03:50Z",
       "region": {
         "box_xyxy": [
           183.68,
@@ -373,12 +373,12 @@
   "outputs": [
     {
       "path": "analysis/anatomy.json",
-      "sha256": "35eec14ad64573ff5852e47ab76c6c730fd8967f3ab240872d45e99b76d73fe0",
-      "bytes": 23274
+      "sha256": "37fdb4e63f53e337573894e68afc35bc2ca9753dabd7d5d8bb52d33f3fdbd9af",
+      "bytes": 23350
     },
     {
       "path": "analysis/face.json",
-      "sha256": "2854bb13595fc8a69bfbafeca1c18c9466558e07f24d82ff5a83ab89cec9e402",
+      "sha256": "44f6211c6ea7cf4b86f393a67d0cb36fad845d538b03418620d93c03e8a20183",
       "bytes": 15237
     },
     {
@@ -473,27 +473,27 @@
     },
     {
       "path": "artwork/bitmap/pelvis.png",
-      "sha256": "4e8891142dc794befdd38fd8c19e782a3728227cde94642e4b5e9a7057435b48",
-      "bytes": 7842
+      "sha256": "08773aa054519190d838c8eeaf3c316e11cbc576f196ba5ab480dc15a99be292",
+      "bytes": 7876
     },
     {
       "path": "artwork/bitmap/shin_l.png",
-      "sha256": "35b5b6efe911e70f9cfff835d1bd63b5ed9c9bb0f4051999395c1685bed33201",
+      "sha256": "4eea7de0beacb1a32a308036a3a30751f15d58936867b0e7af85e571a417f520",
       "bytes": 8050
     },
     {
       "path": "artwork/bitmap/shin_r.png",
-      "sha256": "4c6a790f643d954cf3556cf724366eae4841276be5c9378a605315b7747cbb4f",
-      "bytes": 8050
+      "sha256": "e273f5b86ced06752a478e9ab6a117be7249fcc2d816ec82096b5baa7fac8e5d",
+      "bytes": 8042
     },
     {
       "path": "artwork/bitmap/thigh_l.png",
-      "sha256": "7dd5c199964a61f8ab1b8d988515eb2271d3e87bc21385e23820c877a0057c04",
-      "bytes": 11763
+      "sha256": "02fc6626cb77b82c59890a2155122c8b9a7132f57c8843af708cefcc9721edf0",
+      "bytes": 11748
     },
     {
       "path": "artwork/bitmap/thigh_r.png",
-      "sha256": "57361b6b565f7a5fc6ad2025a847e3ff5575441f18d57127acdb58f2380d521f",
+      "sha256": "0540c360344efbc297f9a7d4bab3d8450beebd3e9b682476d3adb9ceb25afb98",
       "bytes": 11748
     },
     {
@@ -513,7 +513,7 @@
     },
     {
       "path": "artwork/layers.json",
-      "sha256": "ee5977837f4e6cf6109ce1abba7e1f88f355d6b82b94c49ca0e08653ec90f632",
+      "sha256": "bffe795111d570f3d8c4b8a0bb46b066e1d27be9d56fab4d7187d70ab07bdae3",
       "bytes": 30650
     },
     {
@@ -568,28 +568,28 @@
     },
     {
       "path": "masks/body/pelvis.png",
-      "sha256": "49d0896a48455c9f2e4468de76f58a295f4cc8a2284e69559c61d172176e0150",
-      "bytes": 1979
+      "sha256": "9f70c60856abaf91cfbd7b9791712a8b58a0d162bd85d32b84c5806267909c7a",
+      "bytes": 2014
     },
     {
       "path": "masks/body/shin_l.png",
-      "sha256": "3b815ea4217ac9c0c08ed2cf7d4544fb08340f8d099021b4e366367ecfbd2c82",
-      "bytes": 1850
+      "sha256": "636729057aee60fb0c474b3a44157f99cbd23b057804dfbf79e05658c4d27028",
+      "bytes": 1846
     },
     {
       "path": "masks/body/shin_r.png",
-      "sha256": "966e6c21bc87fa7dd9bf3d901fef12400eb4be0b1fc2f44b157fd99508dfe6b7",
-      "bytes": 1861
+      "sha256": "38df08594fc55e866273a4d07c2ffa332fb4a572484f66e428d16cbca2d59cd2",
+      "bytes": 1855
     },
     {
       "path": "masks/body/thigh_l.png",
-      "sha256": "6cdaa7e031a8cd81563c25f9ad5711d87499c53a5688de6ce8520ca9b6d38aeb",
-      "bytes": 1884
+      "sha256": "56cf8fa747ac19f9ce52900001b12dbb37faabd2c44f2bdfd6aa676df1f4d720",
+      "bytes": 1883
     },
     {
       "path": "masks/body/thigh_r.png",
-      "sha256": "c153f498a67371388e388b07cc6fd7403d4e699b0f3449470dea1e3f124e6661",
-      "bytes": 1907
+      "sha256": "e20543d74a5b63d321ed70f6d44d4ebc71d47d9b68c47ecd7989f138eb938e82",
+      "bytes": 1878
     },
     {
       "path": "masks/body/torso.png",
@@ -683,8 +683,8 @@
     },
     {
       "path": "previews/layers.png",
-      "sha256": "c1698579f530958f8d75bcda9a6c6901f871650a866202af5725565d63e62f36",
-      "bytes": 133818
+      "sha256": "b44513c8b8d0abb355cb76d8949dd89db82713a41b91b7bbc237eafd0118658a",
+      "bytes": 133303
     },
     {
       "path": "previews/original.png",
@@ -698,8 +698,8 @@
     },
     {
       "path": "previews/segmentation.png",
-      "sha256": "9cae43f2113a5224673a0e7d2ed4b998f0088f632bb46dd99ab2f9610135a710",
-      "bytes": 115184
+      "sha256": "ac42abfbc80bc6702702300eca57095442d33c0ff700e866040c5c0489ed4788",
+      "bytes": 114872
     },
     {
       "path": "source/original.png",

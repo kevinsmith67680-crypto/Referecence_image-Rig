@@ -372,11 +372,11 @@
     },
     "hip_r": {
       "pivot": [
-        458.23,
+        444.03,
         994.2
       ],
       "pivot_reliable": false,
-      "pivot_method": "midpoint_of_lower_clothing_span_along_limb_axis",
+      "pivot_method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
       "bone": "thigh_r",
       "parent_components": [
         "torso",
@@ -388,7 +388,7 @@
         "shin_r",
         "foot_r"
       ],
-      "overlap_padding_px": 62.5,
+      "overlap_padding_px": 61.1,
       "front_back": [
         {
           "front": "pelvis",
@@ -423,31 +423,31 @@
       "sweep": [
         {
           "angle_deg": -45,
-          "gaps_original_only": 809,
-          "gaps_with_extensions": 471,
+          "gaps_original_only": 767,
+          "gaps_with_extensions": 440,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2897
+          "overlap_pixels": 2883
         },
         {
           "angle_deg": -15,
-          "gaps_original_only": 454,
-          "gaps_with_extensions": 341,
+          "gaps_original_only": 409,
+          "gaps_with_extensions": 299,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2073
+          "overlap_pixels": 2106
         },
         {
           "angle_deg": 15,
-          "gaps_original_only": 322,
-          "gaps_with_extensions": 162,
+          "gaps_original_only": 438,
+          "gaps_with_extensions": 264,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2019
+          "overlap_pixels": 2022
         },
         {
           "angle_deg": 45,
-          "gaps_original_only": 646,
-          "gaps_with_extensions": 262,
+          "gaps_original_only": 869,
+          "gaps_with_extensions": 444,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2791
+          "overlap_pixels": 2758
         }
       ],
       "safe_range_deg": {
@@ -460,8 +460,8 @@
         "planned_vector_correction"
       ],
       "issues": [
-        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis): verify before binding",
-        "gaps up to 471 px remain within \u00b145 deg even with extensions"
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 444 px remain within \u00b145 deg even with extensions"
       ],
       "status": "needs_review"
     },
@@ -509,28 +509,28 @@
           "gaps_original_only": 501,
           "gaps_with_extensions": 1,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 2138
+          "overlap_pixels": 2152
         },
         {
           "angle_deg": -30,
           "gaps_original_only": 253,
           "gaps_with_extensions": 2,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 1781
+          "overlap_pixels": 1795
         },
         {
           "angle_deg": 30,
           "gaps_original_only": 264,
-          "gaps_with_extensions": 1,
+          "gaps_with_extensions": 0,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 1805
+          "overlap_pixels": 1819
         },
         {
           "angle_deg": 60,
-          "gaps_original_only": 522,
+          "gaps_original_only": 523,
           "gaps_with_extensions": 0,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 2168
+          "overlap_pixels": 2182
         }
       ],
       "safe_range_deg": {
@@ -884,11 +884,11 @@
     },
     "hip_l": {
       "pivot": [
-        542.77,
+        556.97,
         994.2
       ],
       "pivot_reliable": false,
-      "pivot_method": "midpoint_of_lower_clothing_span_along_limb_axis",
+      "pivot_method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
       "bone": "thigh_l",
       "parent_components": [
         "torso",
@@ -900,7 +900,7 @@
         "shin_l",
         "foot_l"
       ],
-      "overlap_padding_px": 62.4,
+      "overlap_padding_px": 61.0,
       "front_back": [
         {
           "front": "pelvis",
@@ -935,31 +935,31 @@
       "sweep": [
         {
           "angle_deg": -45,
-          "gaps_original_only": 640,
-          "gaps_with_extensions": 244,
+          "gaps_original_only": 838,
+          "gaps_with_extensions": 415,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2851
+          "overlap_pixels": 2815
         },
         {
           "angle_deg": -15,
-          "gaps_original_only": 311,
-          "gaps_with_extensions": 145,
+          "gaps_original_only": 431,
+          "gaps_with_extensions": 253,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2060
+          "overlap_pixels": 2059
         },
         {
           "angle_deg": 15,
-          "gaps_original_only": 464,
-          "gaps_with_extensions": 350,
+          "gaps_original_only": 414,
+          "gaps_with_extensions": 303,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2090
+          "overlap_pixels": 2120
         },
         {
           "angle_deg": 45,
-          "gaps_original_only": 822,
-          "gaps_with_extensions": 484,
+          "gaps_original_only": 776,
+          "gaps_with_extensions": 448,
           "dark_contour_pieces": 1,
-          "overlap_pixels": 2876
+          "overlap_pixels": 2877
         }
       ],
       "safe_range_deg": {
@@ -972,8 +972,8 @@
         "planned_vector_correction"
       ],
       "issues": [
-        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis): verify before binding",
-        "gaps up to 484 px remain within \u00b145 deg even with extensions"
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 448 px remain within \u00b145 deg even with extensions"
       ],
       "status": "needs_review"
     },
@@ -1021,28 +1021,28 @@
           "gaps_original_only": 523,
           "gaps_with_extensions": 0,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 2158
+          "overlap_pixels": 2172
         },
         {
           "angle_deg": -30,
           "gaps_original_only": 265,
-          "gaps_with_extensions": 2,
+          "gaps_with_extensions": 1,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 1795
+          "overlap_pixels": 1808
         },
         {
           "angle_deg": 30,
           "gaps_original_only": 254,
           "gaps_with_extensions": 3,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 1790
+          "overlap_pixels": 1804
         },
         {
           "angle_deg": 60,
           "gaps_original_only": 500,
           "gaps_with_extensions": 0,
           "dark_contour_pieces": 2,
-          "overlap_pixels": 2149
+          "overlap_pixels": 2162
         }
       ],
       "safe_range_deg": {

@@ -1,0 +1,557 @@
+{
+  "schema": "autorig.live_controls",
+  "schema_version": "1.0.0",
+  "spec_version": "1.0.0",
+  "status": "contract only - no tracking or rig implemented in Phase 1",
+  "controls": [
+    {
+      "id": "head_yaw",
+      "description": "Turn head left/right (-1 = character's right, +1 = character's left).",
+      "value_range": [
+        -1,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "head",
+        "hair",
+        "ear_r",
+        "ear_l"
+      ],
+      "capability": "head_turning",
+      "missing_artwork": [
+        "three_quarter_and_profile_head_views"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "head_pitch",
+      "description": "Nod head down/up.",
+      "value_range": [
+        -1,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "head",
+        "hair"
+      ],
+      "capability": "head_turning",
+      "missing_artwork": [
+        "three_quarter_and_profile_head_views"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "head_roll",
+      "description": "Tilt head sideways.",
+      "value_range": [
+        -1,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "bone_rotation",
+      "artwork_dependencies": [
+        "head",
+        "hair",
+        "neck"
+      ],
+      "capability": "head_tilting",
+      "missing_artwork": [
+        "neck_extension_under_chin",
+        "back_of_hair_and_hidden_head_outline"
+      ],
+      "readiness": "REQUIRES_RECONSTRUCTION",
+      "confidence": 0.5
+    },
+    {
+      "id": "eye_blink_left",
+      "description": "0 = open, 1 = closed.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "eye_l"
+      ],
+      "capability": "blinking",
+      "missing_artwork": [
+        "closed_eye_r",
+        "closed_eye_l"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "eye_blink_right",
+      "description": "0 = open, 1 = closed.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "eye_r"
+      ],
+      "capability": "blinking",
+      "missing_artwork": [
+        "closed_eye_r",
+        "closed_eye_l"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "eye_look_x",
+      "description": "Gaze horizontally.",
+      "value_range": [
+        -1,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "pupil_r",
+        "pupil_l",
+        "eye_r",
+        "eye_l"
+      ],
+      "capability": "eye_direction",
+      "missing_artwork": [
+        "sclera_fill_r",
+        "sclera_fill_l"
+      ],
+      "readiness": "REQUIRES_RECONSTRUCTION",
+      "confidence": 0.5
+    },
+    {
+      "id": "eye_look_y",
+      "description": "Gaze vertically.",
+      "value_range": [
+        -1,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "pupil_r",
+        "pupil_l",
+        "eye_r",
+        "eye_l"
+      ],
+      "capability": "eye_direction",
+      "missing_artwork": [
+        "sclera_fill_r",
+        "sclera_fill_l"
+      ],
+      "readiness": "REQUIRES_RECONSTRUCTION",
+      "confidence": 0.5
+    },
+    {
+      "id": "brow_raise_left",
+      "description": "Raise left brow.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "brow_l"
+      ],
+      "capability": "eyebrow_movement",
+      "missing_artwork": [
+        "skin_under_brow_r",
+        "skin_under_brow_l"
+      ],
+      "readiness": "REQUIRES_RECONSTRUCTION",
+      "confidence": 0.5
+    },
+    {
+      "id": "brow_raise_right",
+      "description": "Raise right brow.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "brow_r"
+      ],
+      "capability": "eyebrow_movement",
+      "missing_artwork": [
+        "skin_under_brow_r",
+        "skin_under_brow_l"
+      ],
+      "readiness": "REQUIRES_RECONSTRUCTION",
+      "confidence": 0.5
+    },
+    {
+      "id": "brow_frown",
+      "description": "Knit brows.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "brow_r",
+        "brow_l"
+      ],
+      "capability": "eyebrow_movement",
+      "missing_artwork": [
+        "skin_under_brow_r",
+        "skin_under_brow_l"
+      ],
+      "readiness": "REQUIRES_RECONSTRUCTION",
+      "confidence": 0.5
+    },
+    {
+      "id": "jaw_open",
+      "description": "0 = closed, 1 = fully open.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "mouth",
+        "head"
+      ],
+      "capability": "mouth_opening",
+      "missing_artwork": [
+        "open_mouth_with_interior",
+        "skin_under_mouth"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "mouth_width",
+      "description": "Narrow (-1) to wide (+1).",
+      "value_range": [
+        -1,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "mouth"
+      ],
+      "capability": "lip_sync",
+      "missing_artwork": [
+        "phoneme_mouth_set"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "mouth_pucker",
+      "description": "Pucker/purse lips.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "mouth"
+      ],
+      "capability": "lip_sync",
+      "missing_artwork": [
+        "phoneme_mouth_set"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "smile_left",
+      "description": "Raise left mouth corner.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "smile_right",
+      "description": "Raise right mouth corner.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "smart_bone",
+      "artwork_dependencies": [
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "expression_neutral",
+      "description": "Weight of the neutral (reference) expression.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 1,
+      "animation_target_type": "action",
+      "artwork_dependencies": [
+        "head",
+        "brow_r",
+        "brow_l",
+        "eye_r",
+        "eye_l",
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "expression_angry",
+      "description": "Angry expression weight / trigger.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "action",
+      "artwork_dependencies": [
+        "brow_r",
+        "brow_l",
+        "eye_r",
+        "eye_l",
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "expression_sad",
+      "description": "Sad expression weight / trigger.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "action",
+      "artwork_dependencies": [
+        "brow_r",
+        "brow_l",
+        "eye_r",
+        "eye_l",
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "expression_surprised",
+      "description": "Surprised expression weight / trigger.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "action",
+      "artwork_dependencies": [
+        "brow_r",
+        "brow_l",
+        "eye_r",
+        "eye_l",
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    },
+    {
+      "id": "expression_happy",
+      "description": "Happy expression weight / trigger.",
+      "value_range": [
+        0,
+        1
+      ],
+      "neutral": 0,
+      "animation_target_type": "action",
+      "artwork_dependencies": [
+        "brow_r",
+        "brow_l",
+        "eye_r",
+        "eye_l",
+        "mouth"
+      ],
+      "capability": "facial_expressions",
+      "missing_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "readiness": "REQUIRES_NEW_ARTWORK",
+      "confidence": 0.5
+    }
+  ],
+  "moho_showtime": {
+    "target_version": "Moho Pro 14.5 (SHOWTIME)",
+    "verified_mappings": [],
+    "verification_status": "NOT VERIFIED - Moho 14.5 input identifiers, ranges and storage are unknown until the native discovery protocol (docs/live-models.md, D0-D6) is run",
+    "proposed_mappings": [
+      {
+        "control": "head_yaw",
+        "device": "camera",
+        "showtime_input_label": "head turning",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "head_roll",
+        "device": "camera",
+        "showtime_input_label": "head tilting",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "eye_blink_left",
+        "device": "camera",
+        "showtime_input_label": "blinking",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "eye_blink_right",
+        "device": "camera",
+        "showtime_input_label": "blinking",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "jaw_open",
+        "device": "camera",
+        "showtime_input_label": "mouth closing",
+        "moho_target": "smart_bone (inverted: 'closing' -> open = 1 - value?)",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "mouth_pucker",
+        "device": "camera",
+        "showtime_input_label": "lip pursing",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "expression_happy",
+        "device": "gamepad",
+        "showtime_input_label": "a button (Select Input)",
+        "moho_target": "action",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "expression_angry",
+        "device": "gamepad",
+        "showtime_input_label": "a button (Select Input)",
+        "moho_target": "action",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "expression_sad",
+        "device": "gamepad",
+        "showtime_input_label": "a button (Select Input)",
+        "moho_target": "action",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "expression_surprised",
+        "device": "gamepad",
+        "showtime_input_label": "a button (Select Input)",
+        "moho_target": "action",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "eye_look_x",
+        "device": "gamepad",
+        "showtime_input_label": "a thumbstick axis (if sticks can drive Smart Bones)",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      },
+      {
+        "control": "eye_look_y",
+        "device": "gamepad",
+        "showtime_input_label": "a thumbstick axis (if sticks can drive Smart Bones)",
+        "moho_target": "smart_bone",
+        "status": "proposed_unverified"
+      }
+    ],
+    "evidence": [
+      {
+        "source": "Lost Marble, 'Moho 14.5 SHOWTIME' announcement (Oct 2026)",
+        "url": "https://moho.lostmarble.com/blogs/news/moho-14-5-showtime-design-rig-and-animate-characters-live-all-the-power-of-moho-now-live",
+        "claim": "create a Smart Bone and assign it to any of the camera inputs; inputs include head turning, head tilting, blinking, mouth closing, lip pursing and many more"
+      },
+      {
+        "source": "Moho 14.5 press release",
+        "url": "https://www.openpr.com/news/4664782/moho-14-5-showtime-adds-real-time-character-and-vtuber",
+        "claim": "any XInput gamepad; buttons and thumbsticks; assigned with 'Select Input'"
+      }
+    ]
+  },
+  "adapter_design": {
+    "summary": "Live input -> normalise to the control's value_range -> response curve -> rig target",
+    "stages": [
+      {
+        "stage": "input",
+        "detail": "Moho 14.5 Live Mode camera/gamepad input (identifier from discovery)"
+      },
+      {
+        "stage": "normalise",
+        "detail": "map the input's native range onto value_range; clamp"
+      },
+      {
+        "stage": "curve",
+        "detail": "deadzone, gain, smoothing, optional inversion (e.g. 'mouth closing')"
+      },
+      {
+        "stage": "target",
+        "detail": "smart_bone: control angle = lerp(min_deg, max_deg, value); action: trigger/weight by value; bone_rotation: degrees"
+      }
+    ],
+    "implementation_status": "design only - requires verified Moho input identifiers (LM-1)"
+  }
+}

@@ -1,0 +1,809 @@
+{
+  "schema": "autorig.face",
+  "schema_version": "1.0.0",
+  "image": {
+    "width": 1086,
+    "height": 1448,
+    "coordinate_system": "pixels; origin top-left; +x right; +y down",
+    "source_sha256": "46453da1785d61037fd568227f0361e3dac05f8edb74679789d4a039091d36a2"
+  },
+  "head_bbox_xyxy": [
+    380,
+    22,
+    695,
+    379
+  ],
+  "midline_x": 542.37,
+  "features": {
+    "eye_r": {
+      "label": "eye",
+      "method": "segmentation",
+      "score": 0.9375,
+      "pixels": 1375,
+      "bbox_xyxy": [
+        471,
+        248,
+        525,
+        280
+      ],
+      "centroid": [
+        497.57,
+        262.89
+      ],
+      "mask": "masks/face/eye_r.png",
+      "provenance": {
+        "prompt_label": "eye",
+        "prompt_text": "eye",
+        "prompt_index": 2,
+        "instance_index": 1,
+        "score": 0.9375
+      }
+    },
+    "eye_l": {
+      "label": "eye",
+      "method": "segmentation",
+      "score": 0.9336,
+      "pixels": 1335,
+      "bbox_xyxy": [
+        563,
+        248,
+        616,
+        280
+      ],
+      "centroid": [
+        588.5,
+        263.07
+      ],
+      "mask": "masks/face/eye_l.png",
+      "provenance": {
+        "prompt_label": "eye",
+        "prompt_text": "eye",
+        "prompt_index": 2,
+        "instance_index": 0,
+        "score": 0.9336
+      }
+    },
+    "brow_r": {
+      "label": "eyebrow",
+      "method": "segmentation",
+      "score": 0.8984,
+      "pixels": 1006,
+      "bbox_xyxy": [
+        462,
+        222,
+        534,
+        255
+      ],
+      "centroid": [
+        500.52,
+        237.61
+      ],
+      "mask": "masks/face/brow_r.png",
+      "provenance": {
+        "prompt_label": "eyebrow",
+        "prompt_text": "eyebrow",
+        "prompt_index": 3,
+        "instance_index": 1,
+        "score": 0.8984
+      }
+    },
+    "brow_l": {
+      "label": "eyebrow",
+      "method": "segmentation",
+      "score": 0.8945,
+      "pixels": 997,
+      "bbox_xyxy": [
+        554,
+        222,
+        626,
+        255
+      ],
+      "centroid": [
+        586.6,
+        237.89
+      ],
+      "mask": "masks/face/brow_l.png",
+      "provenance": {
+        "prompt_label": "eyebrow",
+        "prompt_text": "eyebrow",
+        "prompt_index": 3,
+        "instance_index": 0,
+        "score": 0.8945
+      }
+    },
+    "pupil_r": {
+      "label": "pupil",
+      "method": "segmentation",
+      "score": 0.8828,
+      "pixels": 370,
+      "bbox_xyxy": [
+        495,
+        248,
+        517,
+        269
+      ],
+      "centroid": [
+        505.55,
+        258.22
+      ],
+      "mask": "masks/face/pupil_r.png",
+      "provenance": {
+        "prompt_label": "pupil",
+        "prompt_text": "pupil",
+        "prompt_index": 4,
+        "instance_index": 0,
+        "score": 0.8828
+      }
+    },
+    "pupil_l": {
+      "label": "pupil",
+      "method": "segmentation",
+      "score": 0.8789,
+      "pixels": 359,
+      "bbox_xyxy": [
+        570,
+        249,
+        592,
+        270
+      ],
+      "centroid": [
+        580.77,
+        258.63
+      ],
+      "mask": "masks/face/pupil_l.png",
+      "provenance": {
+        "prompt_label": "pupil",
+        "prompt_text": "pupil",
+        "prompt_index": 4,
+        "instance_index": 1,
+        "score": 0.8789
+      }
+    },
+    "ear_l": {
+      "label": "ear",
+      "method": "segmentation",
+      "score": 0.9375,
+      "pixels": 1869,
+      "bbox_xyxy": [
+        621,
+        253,
+        662,
+        320
+      ],
+      "centroid": [
+        641.78,
+        286.03
+      ],
+      "mask": "masks/face/ear_l.png",
+      "provenance": {
+        "prompt_label": "ear",
+        "prompt_text": "ear",
+        "prompt_index": 8,
+        "instance_index": 0,
+        "score": 0.9375
+      }
+    },
+    "ear_r": {
+      "label": "ear",
+      "method": "segmentation",
+      "score": 0.9336,
+      "pixels": 1978,
+      "bbox_xyxy": [
+        422,
+        254,
+        464,
+        320
+      ],
+      "centroid": [
+        442.07,
+        286.3
+      ],
+      "mask": "masks/face/ear_r.png",
+      "provenance": {
+        "prompt_label": "ear",
+        "prompt_text": "ear",
+        "prompt_index": 8,
+        "instance_index": 1,
+        "score": 0.9336
+      }
+    },
+    "nose": {
+      "label": "nose",
+      "method": "segmentation",
+      "score": 0.8984,
+      "pixels": 542,
+      "bbox_xyxy": [
+        528,
+        287,
+        561,
+        308
+      ],
+      "centroid": [
+        544.19,
+        296.79
+      ],
+      "mask": "masks/face/nose.png",
+      "provenance": {
+        "prompt_label": "nose",
+        "prompt_text": "nose",
+        "prompt_index": 6,
+        "instance_index": 0,
+        "score": 0.8984
+      }
+    },
+    "mouth": {
+      "label": "mouth",
+      "method": "segmentation",
+      "score": 0.7891,
+      "pixels": 164,
+      "bbox_xyxy": [
+        519,
+        325,
+        567,
+        333
+      ],
+      "centroid": [
+        542.45,
+        327.79
+      ],
+      "mask": "masks/face/mouth.png",
+      "provenance": {
+        "prompt_label": "mouth",
+        "prompt_text": "mouth",
+        "prompt_index": 7,
+        "instance_index": 0,
+        "score": 0.7891
+      }
+    }
+  },
+  "rejected_candidates": [],
+  "landmarks": {
+    "eye_center_r": [
+      497.57,
+      262.89
+    ],
+    "eyelid_lines_r": {
+      "upper": [
+        [
+          471.5,
+          251.0
+        ],
+        [
+          480.2,
+          249.0
+        ],
+        [
+          488.8,
+          249.0
+        ],
+        [
+          497.5,
+          248.0
+        ],
+        [
+          506.2,
+          248.0
+        ],
+        [
+          514.8,
+          252.0
+        ],
+        [
+          523.5,
+          264.0
+        ]
+      ],
+      "lower": [
+        [
+          471.5,
+          261.0
+        ],
+        [
+          480.2,
+          273.0
+        ],
+        [
+          488.8,
+          278.0
+        ],
+        [
+          497.5,
+          279.0
+        ],
+        [
+          506.2,
+          279.0
+        ],
+        [
+          514.8,
+          276.0
+        ],
+        [
+          523.5,
+          265.0
+        ]
+      ],
+      "status": "inferred_from_visible_eye_outline (no separate eyelid artwork)"
+    },
+    "pupil_center_r": [
+      505.55,
+      258.22
+    ],
+    "brow_center_r": [
+      500.52,
+      237.61
+    ],
+    "brow_inner_r": [
+      533.0,
+      245.5
+    ],
+    "brow_outer_r": [
+      462.0,
+      234.5
+    ],
+    "ear_center_r": [
+      442.07,
+      286.3
+    ],
+    "eye_center_l": [
+      588.5,
+      263.07
+    ],
+    "eyelid_lines_l": {
+      "upper": [
+        [
+          563.5,
+          260.0
+        ],
+        [
+          572.0,
+          253.0
+        ],
+        [
+          580.5,
+          248.0
+        ],
+        [
+          589.0,
+          248.0
+        ],
+        [
+          597.5,
+          248.0
+        ],
+        [
+          606.0,
+          249.0
+        ],
+        [
+          614.5,
+          252.0
+        ]
+      ],
+      "lower": [
+        [
+          563.5,
+          270.0
+        ],
+        [
+          572.0,
+          276.0
+        ],
+        [
+          580.5,
+          279.0
+        ],
+        [
+          589.0,
+          279.0
+        ],
+        [
+          597.5,
+          277.0
+        ],
+        [
+          606.0,
+          273.0
+        ],
+        [
+          614.5,
+          257.0
+        ]
+      ],
+      "status": "inferred_from_visible_eye_outline (no separate eyelid artwork)"
+    },
+    "pupil_center_l": [
+      580.77,
+      258.63
+    ],
+    "brow_center_l": [
+      586.6,
+      237.89
+    ],
+    "brow_inner_l": [
+      554.0,
+      246.0
+    ],
+    "brow_outer_l": [
+      625.0,
+      234.5
+    ],
+    "ear_center_l": [
+      641.78,
+      286.03
+    ],
+    "mouth_center": [
+      542.45,
+      327.79
+    ],
+    "mouth_corner_r": [
+      519.0,
+      331.0
+    ],
+    "mouth_corner_l": [
+      566.0,
+      331.0
+    ],
+    "mouth_state": "closed_line",
+    "nose_tip": [
+      544.19,
+      296.79
+    ],
+    "chin": [
+      539.0,
+      378.0
+    ],
+    "jaw_pivot": {
+      "position": [
+        542.3663499537544,
+        286.1658028306016
+      ],
+      "method": "ear_line_at_midline",
+      "status": "approximate"
+    }
+  },
+  "eye_centers": {
+    "r": [
+      497.57,
+      262.89
+    ],
+    "l": [
+      588.5,
+      263.07
+    ]
+  },
+  "eyebrow_positions": {
+    "r": {
+      "center": [
+        500.52,
+        237.61
+      ],
+      "inner": [
+        533.0,
+        245.5
+      ],
+      "outer": [
+        462.0,
+        234.5
+      ]
+    },
+    "l": {
+      "center": [
+        586.6,
+        237.89
+      ],
+      "inner": [
+        554.0,
+        246.0
+      ],
+      "outer": [
+        625.0,
+        234.5
+      ]
+    }
+  },
+  "mouth": {
+    "mouth_center": [
+      542.45,
+      327.79
+    ],
+    "mouth_corner_r": [
+      519.0,
+      331.0
+    ],
+    "mouth_corner_l": [
+      566.0,
+      331.0
+    ],
+    "mouth_state": "closed_line"
+  },
+  "jaw_pivot": {
+    "position": [
+      542.3663499537544,
+      286.1658028306016
+    ],
+    "method": "ear_line_at_midline",
+    "status": "approximate"
+  },
+  "visibility": {
+    "head_silhouette": {
+      "status": "visible"
+    },
+    "hair": {
+      "status": "visible"
+    },
+    "brow_r": {
+      "status": "visible",
+      "confidence": 0.898
+    },
+    "eye_r": {
+      "status": "visible",
+      "confidence": 0.938
+    },
+    "ear_r": {
+      "status": "visible",
+      "confidence": 0.934
+    },
+    "upper_eyelid_r": {
+      "status": "outline_only_not_separable"
+    },
+    "lower_eyelid_r": {
+      "status": "outline_only_not_separable"
+    },
+    "iris_r": {
+      "status": "not_detected"
+    },
+    "pupil_r": {
+      "status": "visible"
+    },
+    "brow_l": {
+      "status": "visible",
+      "confidence": 0.895
+    },
+    "eye_l": {
+      "status": "visible",
+      "confidence": 0.934
+    },
+    "ear_l": {
+      "status": "visible",
+      "confidence": 0.938
+    },
+    "upper_eyelid_l": {
+      "status": "outline_only_not_separable"
+    },
+    "lower_eyelid_l": {
+      "status": "outline_only_not_separable"
+    },
+    "iris_l": {
+      "status": "not_detected"
+    },
+    "pupil_l": {
+      "status": "visible"
+    },
+    "nose": {
+      "status": "visible"
+    },
+    "upper_lip": {
+      "status": "not_separable"
+    },
+    "lower_lip": {
+      "status": "not_separable"
+    },
+    "mouth_interior": {
+      "status": "not_visible_mouth_closed"
+    },
+    "chin": {
+      "status": "estimated_from_head_outline"
+    },
+    "jaw_region": {
+      "status": "estimated_pivot_only"
+    }
+  },
+  "segmentation_confidence": {
+    "eye_r": 0.9375,
+    "eye_l": 0.9336,
+    "brow_r": 0.8984,
+    "brow_l": 0.8945,
+    "pupil_r": 0.8828,
+    "pupil_l": 0.8789,
+    "ear_l": 0.9375,
+    "ear_r": 0.9336,
+    "nose": 0.8984,
+    "mouth": 0.7891
+  },
+  "missing_artwork": [
+    {
+      "artwork": "closed_eye_r",
+      "needed_for": [
+        "blinking"
+      ],
+      "reason": "reference shows the eye open only"
+    },
+    {
+      "artwork": "sclera_fill_r",
+      "needed_for": [
+        "eye_direction"
+      ],
+      "reason": "pixels under the pupil/iris are hidden; moving the pupil reveals them"
+    },
+    {
+      "artwork": "skin_under_brow_r",
+      "needed_for": [
+        "eyebrow_movement"
+      ],
+      "reason": "moving the brow reveals unpainted skin"
+    },
+    {
+      "artwork": "closed_eye_l",
+      "needed_for": [
+        "blinking"
+      ],
+      "reason": "reference shows the eye open only"
+    },
+    {
+      "artwork": "sclera_fill_l",
+      "needed_for": [
+        "eye_direction"
+      ],
+      "reason": "pixels under the pupil/iris are hidden; moving the pupil reveals them"
+    },
+    {
+      "artwork": "skin_under_brow_l",
+      "needed_for": [
+        "eyebrow_movement"
+      ],
+      "reason": "moving the brow reveals unpainted skin"
+    },
+    {
+      "artwork": "open_mouth_with_interior",
+      "needed_for": [
+        "mouth_opening",
+        "lip_sync"
+      ],
+      "reason": "reference mouth is a closed line"
+    },
+    {
+      "artwork": "phoneme_mouth_set",
+      "needed_for": [
+        "lip_sync"
+      ],
+      "reason": "only one (neutral) mouth shape exists"
+    },
+    {
+      "artwork": "skin_under_mouth",
+      "needed_for": [
+        "mouth_opening"
+      ],
+      "reason": "changing mouth shape reveals unpainted skin"
+    },
+    {
+      "artwork": "three_quarter_and_profile_head_views",
+      "needed_for": [
+        "head_turning"
+      ],
+      "reason": "single front view only"
+    },
+    {
+      "artwork": "back_of_hair_and_hidden_head_outline",
+      "needed_for": [
+        "head_turning",
+        "head_tilting"
+      ],
+      "reason": "hidden by the front view"
+    },
+    {
+      "artwork": "neck_extension_under_chin",
+      "needed_for": [
+        "head_tilting"
+      ],
+      "reason": "neck pixels under the head are hidden"
+    },
+    {
+      "artwork": "expression_variants (brows, eyes, mouth)",
+      "needed_for": [
+        "facial_expressions"
+      ],
+      "reason": "only the neutral expression exists"
+    }
+  ],
+  "notes": [],
+  "segmentation": {
+    "model": "vufinder/sam3",
+    "version": "1bf97763d5dfd3a1584adca913a8ef4b43c684fca97e04e39e4c50a3a5e09650",
+    "prediction_id": "mt4nx84acnrmw0d1zbp9tjknxm",
+    "status": "succeeded",
+    "predict_time_s": 3.4963991119999998,
+    "estimated_usd": 0.0034089891341999995,
+    "cost_basis": "assumed Nvidia L40S $0.000975/s (replicate.com/pricing); hardware not exposed by API",
+    "params": {
+      "prompts": [
+        "{\"text\": \"face\"}",
+        "{\"text\": \"hair\"}",
+        "{\"text\": \"eye\"}",
+        "{\"text\": \"eyebrow\"}",
+        "{\"text\": \"pupil\"}",
+        "{\"text\": \"iris\"}",
+        "{\"text\": \"nose\"}",
+        "{\"text\": \"mouth\"}",
+        "{\"text\": \"ear\"}"
+      ],
+      "confidence_threshold": 0.5,
+      "visualize": false,
+      "backbone_output": false,
+      "offset_masks": false,
+      "split_output": true,
+      "concat_input": false
+    },
+    "cache_key": "033c04d06fe814b4ca5194d4e8b00a204a274d7f9c4846dcd540b2c1b4d480a2",
+    "parser": "sam3-dense-v1",
+    "created_at": "2026-11-20T21:46:08.357Z",
+    "completed_at": "2026-11-20T21:46:11.915807851Z",
+    "cache_hit": true,
+    "region": {
+      "box_xyxy": [
+        337,
+        0,
+        738,
+        422
+      ],
+      "upscale": 2.4265,
+      "crop_image": "analysis/face_crop.png",
+      "method": "crop_upscale_segment_downscale (masks area-resampled back to source pixels)"
+    },
+    "provider": "replicate:vufinder/sam3",
+    "image_sha256": "46453da1785d61037fd568227f0361e3dac05f8edb74679789d4a039091d36a2",
+    "image_size": [
+      1086,
+      1448
+    ],
+    "prompts": [
+      {
+        "label": "face",
+        "text": "face"
+      },
+      {
+        "label": "hair",
+        "text": "hair"
+      },
+      {
+        "label": "eye",
+        "text": "eye"
+      },
+      {
+        "label": "eyebrow",
+        "text": "eyebrow"
+      },
+      {
+        "label": "pupil",
+        "text": "pupil"
+      },
+      {
+        "label": "iris",
+        "text": "iris"
+      },
+      {
+        "label": "nose",
+        "text": "nose"
+      },
+      {
+        "label": "mouth",
+        "text": "mouth"
+      },
+      {
+        "label": "ear",
+        "text": "ear"
+      }
+    ],
+    "instances_per_prompt": {
+      "face": 1,
+      "hair": 1,
+      "eye": 2,
+      "eyebrow": 2,
+      "pupil": 2,
+      "iris": 0,
+      "nose": 1,
+      "mouth": 1,
+      "ear": 2
+    }
+  }
+}
