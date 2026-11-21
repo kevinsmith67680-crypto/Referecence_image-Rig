@@ -1,0 +1,399 @@
+"""MotionPlanner: intended action -> PoseIntent.
+
+Static presets are written as intent: foot placement from the character's own track widths, weight split,
+hand targets or arm shape, torso and head intent. Gaits (walk, run) are driven by a normalised phase in
+[0, 1). The phase decides contact, passing, flight and recovery for each foot, the pelvis path (lateral sway,
+roll, vertical oscillation) and the opposing arm swing. Nothing is a free per-bone rotation.
+
+Front-view gait: the reference is a front view, so stride length and knee drive happen *toward the viewer*
+and cannot be drawn without foreshortened artwork. The supported front-view gait uses in-plane motion only:
+weight shift, pelvis roll, vertical oscillation (flight), foot lift through a limited lateral knee bend, and
+arm swing as elbow flexion. A deeper knee drive is reported as NEEDS_ARTWORK, never faked by scaling.
+"""
+
+from __future__ import annotations
+
+import math
+from dataclasses import dataclass, field
+from typing import Any, Callable
+
+import numpy as np
+
+from ..phase2.skeleton import SIDES
+from .intent import ArmIntent, LegIntent, PoseIntent
+from .profile import CharacterProfile
+
+LAT = {"r": -1.0, "l": 1.0}  # image x direction of the character's side
+
+
+@dataclass
+class Requirement:
+    asset: str  # e.g. "hand:point", "corrective:gusset", "art:thigh_knee_up"
+    why: str
+    optional: bool = False
+
+    def to_json(self) -> dict[str, Any]:
+        return {"asset": self.asset, "why": self.why, "optional": self.optional}
+
+
+@dataclass
+class PresetSpec:
+    name: str
+    title: str
+    intent: str
+    kind: str  # "static" | "gait"
+    build: Callable[..., PoseIntent]
+    ik: str
+    balance: str
+    torso: str
+    garment: str
+    requires: list[Requirement] = field(default_factory=list)
+    view: str = "front"
+    depth_motion: bool = False  # True: the action happens toward the viewer (sagittal) -> needs artwork
+    fallback: str | None = None
+    legacy: str | None = None  # Phase 2 preset name this replaces
+
+    def to_json(self) -> dict[str, Any]:
+        return {"name": self.name, "title": self.title, "intent": self.intent, "kind": self.kind,
+                "ik_constraints": self.ik, "balance": self.balance, "torso_compensation": self.torso,
+                "garment_corrections": self.garment, "required_artwork": [r.to_json() for r in self.requires],
+                "supported_view": self.view, "depth_motion": self.depth_motion, "fallback": self.fallback}
+
+
+# -- helpers -------------------------------------------------------------------------------------------------
+def _feet(p: CharacterProfile, sep: float, dx: float = 0.0, weight_left: float = 0.5, **leg) -> dict[str, LegIntent]:
+    """Planted feet on the ground line. In a weight shift the unweighted (relaxed) leg may bend further."""
+    out = {}
+    for s in SIDES:
+        kw = dict(leg)
+        w = weight_left if s == "l" else 1.0 - weight_left
+        if w < 0.45 and "knee_max" not in kw:
+            kw["knee_max"] = p.front_knee["swing"]
+        out[s] = LegIntent(True, (p.midline_x + dx + LAT[s] * sep / 2, p.ankle_y[s]), **kw)
+    return out
+
+
+def _arms(**kw) -> dict[str, ArmIntent]:
+    return {s: ArmIntent(**kw) for s in SIDES}
+
+
+def smooth_step01(u: float) -> float:
+    u = min(max(u, 0.0), 1.0)
+    return u * u * (3.0 - 2.0 * u)
+
+
+def smooth_pulse(u: float) -> float:
+    """0 at u=0 and u=1, 1 at u=0.5; zero slope at both ends (C1 joins with stance)."""
+    return math.sin(math.pi * min(max(u, 0.0), 1.0)) ** 2
+
+
+# -- static presets ------------------------------------------------------------------------------------------
+def relaxed(p, **_):
+    return PoseIntent("relaxed_standing", "Relaxed standing", "even weight, arms hanging with soft elbows",
+                      legs=_feet(p, p.stance_natural, knee_min=4.0),
+                      arms=_arms(abduction=9.0, flexion=14.0, wrist=6.0), clavicle={"r": -2.0, "l": -2.0})
+
+
+def hands_at_sides(p, **_):
+    return PoseIntent("hands_at_sides", "Hands at sides", "attention stance, arms close to the body",
+                      legs=_feet(p, p.track_min + 0.15 * p.hip_sep, knee_min=3.0),
+                      arms=_arms(abduction=4.0, flexion=5.0, wrist=3.0), clavicle={"r": -3.0, "l": -3.0})
+
+
+def hands_on_hips(p, **_):
+    arms = {}
+    for s in SIDES:  # wrist on the side of the waist, a little above the hip line: the elbow must come out
+        tgt = (p.midline_x + LAT[s] * (p.waist_half - 0.1 * p.hip_sep), p.waist_y - 0.35 * (p.hip_y - p.waist_y))
+        arms[s] = ArmIntent(target=tgt, elbow="out", hand_dir=LAT[s] * 20.0, hand=["fist", "open"])
+    return PoseIntent("hands_on_hips", "Hands on hips", "wrists on the hips, elbows out, chest open",
+                      legs=_feet(p, p.stance_natural + 0.2 * p.hip_sep, knee_min=4.0), arms=arms,
+                      clavicle={"r": 2.0, "l": 2.0}, spine=0.0)
+
+
+def pointing(p, **_):
+    return PoseIntent("pointing_speaking", "Pointing", "right arm points to the side, weight on the left leg",
+                      legs=_feet(p, p.stance_natural, weight_left=0.6, knee_min=4.0), weight_left=0.6, pelvis_roll=-3.0,
+                      head=-5.0,
+                      arms={"r": ArmIntent(reach=(0.92, 0.32), elbow="down", wrist=-4.0, hand=["point", "open"]),
+                            "l": ArmIntent(abduction=10.0, flexion=16.0, wrist=6.0)},
+                      clavicle={"r": 4.0, "l": -2.0})
+
+
+def conversational(p, **_):
+    return PoseIntent("conversational_gesture", "Conversational gesture",
+                      "right forearm raised with an open palm, weight on the right leg",
+                      legs=_feet(p, p.stance_natural, weight_left=0.36, knee_min=4.0), weight_left=0.36, pelvis_roll=3.0,
+                      head=-6.0,
+                      arms={"r": ArmIntent(abduction=26.0, flexion=-74.0, wrist=-12.0),
+                            "l": ArmIntent(abduction=10.0, flexion=16.0, wrist=6.0)},
+                      clavicle={"r": 5.0, "l": -2.0})
+
+
+def shrug(p, **_):
+    return PoseIntent("one_hand_shrug", "Shrugging", "both shoulders raised, forearms out, palms open",
+                      legs=_feet(p, p.stance_natural, knee_min=4.0), head=6.0,
+                      arms=_arms(abduction=20.0, flexion=-88.0, wrist=-10.0, hand=["palm_up", "open"]),
+                      clavicle={"r": 16.0, "l": 14.0}, scapulohumeral=False)
+
+
+def arm_raise(p, **_):
+    return PoseIntent("both_hands_raised", "Arm raise", "both arms raised, open palms, shoulders follow",
+                      legs=_feet(p, p.stance_natural, knee_min=4.0),
+                      arms=_arms(abduction=158.0, flexion=-12.0, wrist=0.0), clavicle={"r": 4.0, "l": 4.0})
+
+
+def head_tilt(p, **_):
+    return PoseIntent("head_tilt_compensated", "Head tilt", "head tilts to the left, shoulders answer slightly",
+                      legs=_feet(p, p.stance_natural, knee_min=4.0), head=14.0, chest=-3.0,
+                      arms=_arms(abduction=9.0, flexion=14.0, wrist=6.0), clavicle={"l": -3.0, "r": 4.0})
+
+
+def squat(p, **_):
+    L = (p.leg("r") + p.leg("l")) / 2
+    return PoseIntent("natural_squat", "Squatting", "pelvis lowered, knees tracking out over the feet",
+                      legs=_feet(p, p.stance_natural * 1.55, knee_min=4.0, knee_max=p.front_knee["squat"]),
+                      pelvis_dy=0.20 * L, arms=_arms(abduction=24.0, flexion=62.0, wrist=8.0),
+                      clavicle={"r": 2.0, "l": 2.0})
+
+
+def sitting(p, **_):
+    L = (p.leg("r") + p.leg("l")) / 2
+    return PoseIntent("sitting", "Sitting", "seated on a low seat; front-view approximation (wide knees)",
+                      legs=_feet(p, p.stance_natural * 2.0, knee_min=4.0, knee_max=p.front_knee["squat"] + 15),
+                      pelvis_dy=0.33 * L, arms=_arms(abduction=20.0, flexion=50.0, wrist=8.0),
+                      notes=["front-view approximation: thighs pointing at the viewer need foreshortened drawings"])
+
+
+def side_lean(p, direction: float = 1.0, **_):
+    """Lateral lean (in-plane): the supported alternative to leaning toward or away from the viewer."""
+    return PoseIntent("side_lean", "Side lean", "torso bends sideways; head stays near upright",
+                      legs=_feet(p, p.stance_natural, knee_min=4.0), spine=-8.0 * direction, chest=-6.0 * direction,
+                      head=4.0 * direction, weight_left=0.5 - 0.15 * direction,
+                      arms={"r": ArmIntent(abduction=9.0 + 6 * direction, flexion=12.0),
+                            "l": ArmIntent(abduction=9.0 - 6 * direction, flexion=12.0)})
+
+
+def lean_forward(p, **_):
+    it = side_lean(p, 1.0)
+    it.name, it.title = "leaning_forward", "Leaning forward"
+    it.intent = "torso leans toward the viewer (needs 3/4 or foreshortened torso art); shown: lateral-lean fallback"
+    it.notes.append("rendered fallback: side lean (in-plane); the requested lean is toward the viewer")
+    return it
+
+
+def lean_backward(p, **_):
+    it = side_lean(p, -1.0)
+    it.name, it.title = "leaning_backward", "Leaning backward"
+    it.intent = "torso leans away from the viewer (needs 3/4 or foreshortened torso art); shown: lateral-lean fallback"
+    it.notes.append("rendered fallback: side lean (in-plane); the requested lean is away from the viewer")
+    return it
+
+
+# -- gaits ---------------------------------------------------------------------------------------------------
+GAIT = {
+    # duty: stance share per foot; bob: flight rise / leg; sway: lateral pelvis / track; lift: swing lift / leg
+    "run": {"duty": 0.30, "bob": 0.05, "compress": 0.004, "sway": 0.16, "roll": -5.0, "lift": 0.10,
+            "flex": 50.0, "flex_amp": 20.0, "abd": 16.0, "abd_amp": 6.0, "clav": 3.0, "chest_counter": 0.6,
+            "hem_lag": 2.5, "head_lag": 1.2},
+    "walk": {"duty": 0.60, "bob": 0.0, "compress": 0.0, "sway": 0.30, "roll": -2.0, "lift": 0.02,
+             "flex": 16.0, "flex_amp": 12.0, "abd": 9.0, "abd_amp": 2.5, "clav": 1.0, "chest_counter": 0.8,
+             "hem_lag": 1.5, "head_lag": 0.6},
+}
+
+
+def gait_params(kind: str, speed: float = 1.0, exaggeration: float = 1.0) -> dict[str, float]:
+    g = dict(GAIT[kind])
+    s = float(np.clip(speed, 0.5, 1.6))
+    e = float(np.clip(exaggeration, 0.0, 1.6))
+    if kind == "run":
+        g["duty"] = float(np.clip(g["duty"] - 0.08 * (s - 1), 0.22, 0.42))
+    else:
+        g["duty"] = float(np.clip(g["duty"] - 0.05 * (s - 1), 0.52, 0.68))
+    amp = e * (0.75 + 0.25 * s)
+    for k in ("bob", "compress", "sway", "roll", "lift", "flex_amp", "abd_amp", "clav", "hem_lag", "head_lag"):
+        g[k] *= amp
+    g["speed"], g["exaggeration"] = s, e
+    return g
+
+
+# Run arm styles. A front view cannot draw the forearm pointing toward the viewer, so the pump is shown in-plane:
+# with fists the forearm folds up toward the chest (reads as a sprint arm); with open hands that reads as
+# clutching, so the approved open-hand style keeps the hands low, swinging beside the hips.
+ARM_STYLE = {"fist": {"flex": 80.0, "flex_amp": 38.0, "abd": 20.0, "abd_amp": 6.0, "wrist": 8.0},
+             "open": {"flex": 24.0, "flex_amp": 16.0, "abd": 12.0, "abd_amp": 5.0, "wrist": 14.0}}
+
+
+def gait(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exaggeration: float = 1.0,
+         travel: float = 0.0, cycles: float = 0.0, arm_style: str = "fist") -> PoseIntent:
+    """One frame of a front-view gait. ``phase`` in [0, 1): right-foot contact at 0, left-foot contact at 0.5.
+    ``travel``: root advance per cycle along image x (px); 0 = in place. Planted feet stay fixed in world space."""
+    g = gait_params(kind, speed, exaggeration)
+    d = g["duty"]
+    L = (p.leg("r") + p.leg("l")) / 2
+    track = p.track_run if kind == "run" else p.track_walk
+    ph = phase % 1.0
+    t = cycles + phase  # unwrapped (for moving cycles)
+    legs, contact, chan = {}, {}, {}
+    if kind == "walk":
+        knee_cap = p.front_knee["walk_swing"]
+    else:
+        knee_cap = p.front_knee["swing_max"] if g["exaggeration"] > 1.0 else p.front_knee["swing"]
+    ds = max(0.0, d - 0.5)  # double-support window (walk); < 0 means flight (run)
+    w_half = ph % 0.5
+    for s, off in (("r", 0.0), ("l", 0.5)):
+        psi = (ph - off) % 1.0
+        base_x = p.midline_x + LAT[s] * track / 2
+        k = math.floor(t - off)  # index of the current step cycle for this foot
+        land = off + k  # unwrapped time of the last landing of this foot
+        x0, x1 = base_x + travel * land, base_x + travel * (land + 1.0)
+        if psi < d:
+            # load ramps in over the double support after landing and out over the one before toe-off
+            load = 1.0 if ds <= 0 else smooth_step01(psi / ds) * (1.0 - smooth_step01((psi - (d - ds)) / ds))
+            legs[s] = LegIntent(True, (x0, p.ankle_y[s]), knee_max=p.front_knee["stance"], knee_min=3.0,
+                                load=load, ground=(x0, p.ankle_y[s]))
+            contact[s], lift = True, 0.0
+        else:
+            u = (psi - d) / (1.0 - d)
+            lift = g["lift"] * L * smooth_pulse(u)
+            x = x0 + (x1 - x0) * (0.5 - 0.5 * math.cos(math.pi * u)) + LAT[s] * 0.05 * track * smooth_pulse(u)
+            load = 0.0
+            if ds <= 0:  # run: during flight, height authority passes from the leaving leg to the landing leg
+                fl = (w_half - d) / (0.5 - d) if w_half >= d else None
+                if fl is not None:
+                    load = (1.0 - smooth_step01(fl)) if u < 0.5 else smooth_step01(fl)
+            legs[s] = LegIntent(False, (x, p.ankle_y[s] - lift), foot_follow=0.35, knee_max=knee_cap, knee_min=3.0,
+                                load=load, ground=(x0 if u < 0.5 else x1, p.ankle_y[s]),
+                                hang_knee=3.0 + (knee_cap - 3.0) * smooth_pulse(u),
+                                clearance=3.0 * smooth_pulse(u) + 0.15 * lift)
+            contact[s] = False
+        chan[f"lift_{s}"] = lift
+        chan[f"load_{s}"] = load
+        chan[f"leg_forward_{s}"] = math.cos(2 * math.pi * (ph - off))  # +1 at this foot's contact (leg in front)
+    # pelvis path. Negative roll = the swing-side hip lifts. A real gait drops the swing hip and clears the foot
+    # with sagittal knee flexion, which a front view cannot draw; the hip hitch is the front-view substitute.
+    dx = -g["sway"] * track * math.cos(2 * math.pi * (ph - d / 2))
+    roll = g["roll"] * math.cos(2 * math.pi * (ph - d / 2))
+    w = w_half
+    if w < d:  # stance of one foot: slight compression
+        dy = g["compress"] * L * smooth_pulse(w / d)
+    else:  # flight (run) or double support (walk: bob 0)
+        dy = -g["bob"] * L * smooth_pulse((w - d) / (0.5 - d))
+    arms, clav = {}, {}
+    if kind == "run":
+        a = ARM_STYLE[arm_style]
+        amp = g["exaggeration"] * (0.75 + 0.25 * g["speed"])
+        g["flex"], g["flex_amp"], g["abd"], g["abd_amp"] = a["flex"], a["flex_amp"] * amp, a["abd"], a["abd_amp"] * amp
+    for s in SIDES:
+        fwd = -chan[f"leg_forward_{s}"]  # opposition: this arm is forward when this leg is back
+        chan[f"arm_forward_{s}"] = fwd
+        arms[s] = ArmIntent(abduction=g["abd"] - g["abd_amp"] * fwd, flexion=g["flex"] + g["flex_amp"] * fwd,
+                            wrist=ARM_STYLE[arm_style]["wrist"] if kind == "run" else 6.0,
+                            hand=(["fist", "open"] if arm_style == "fist" else ["open"]) if kind == "run" else ["open"])
+        clav[s] = g["clav"] * max(fwd, 0.0)
+    hem_lag = g["hem_lag"] * math.sin(2 * math.pi * (ph - d / 2))  # roll velocity (derivative of cos) -> lag
+    head = g["head_lag"] * math.sin(2 * math.pi * (ph - d / 2))
+    planted = [s for s in SIDES if contact[s]]
+    standing = {s: (p.midline_x + LAT[s] * track / 2, p.ankle_y[s]) for s in SIDES}
+    phase_name = ("contact" if min((ph % 0.5), 0.5 - (ph % 0.5)) < 0.03 else
+                  "passing" if planted and abs((ph % 0.5) - d / 2) < 0.06 else
+                  "stance" if planted else "flight" if kind == "run" else "double support")
+    it = PoseIntent(f"{'running' if kind == 'run' else 'casual_walk'}", "Running" if kind == "run" else "Walking",
+                    f"front-view {kind} cycle, phase {ph:.3f} ({phase_name})", legs=legs, arms=arms,
+                    pelvis_dx=dx + travel * t, pelvis_dy=dy, pelvis_roll=roll, chest_counter=g["chest_counter"],
+                    head=head, clavicle=clav, balance="dynamic", standing_feet=standing,
+                    garment={"hem_lag_deg": hem_lag}, phase=ph, contact=contact,
+                    channels={**chan, "duty": d, "pelvis_dy": dy, "pelvis_dx": dx, "roll": roll,
+                              "phase_name": phase_name})
+    chan["arm_style"] = arm_style if kind == "run" else "walk"
+    it.notes.append(f"{kind}: duty {d:.2f}, speed {g['speed']:.2f}, exaggeration {g['exaggeration']:.2f}; "
+                    "stride and knee drive toward the viewer are not drawn (front view)")
+    return it
+
+
+def run_frame(p, phase: float = 0.25, speed: float = 1.0, exaggeration: float = 1.0, travel: float = 0.0,
+              arm_style: str = "fist", **_):
+    return gait(p, "run", phase, speed, exaggeration, travel, arm_style=arm_style)
+
+
+def walk_frame(p, phase: float = 0.25, speed: float = 1.0, exaggeration: float = 1.0, travel: float = 0.0, **_):
+    return gait(p, "walk", phase, speed, exaggeration, travel)
+
+
+HAND = "hand drawing from the character sheet (pending review until approved)"
+GARMENT_STD = "rotation-dependent shoulder/elbow/hip/knee bands; blazer hem follows the pelvis, not the thighs"
+LIBRARY: list[PresetSpec] = [
+    PresetSpec("relaxed_standing", "Relaxed standing", "even weight, arms hanging with soft elbows", "static",
+               relaxed, "legs: IK to planted feet (knee lateral, soft)", "static: CoM over both feet",
+               "chest counter-rolls the pelvis", GARMENT_STD),
+    PresetSpec("hands_at_sides", "Hands at sides", "attention stance", "static", hands_at_sides,
+               "legs: IK to planted feet", "static: CoM over both feet", "none", GARMENT_STD),
+    PresetSpec("hands_on_hips", "Hands on hips", "wrists on the hips, elbows out", "static", hands_on_hips,
+               "arms: IK wrists to hip targets, elbows out; legs: IK", "static", "clavicles slightly raised",
+               GARMENT_STD, [Requirement("hand:fist", "a knuckles-on-hip hand; " + HAND, optional=True)]),
+    PresetSpec("pointing_speaking", "Pointing", "right arm points to the side", "static", pointing,
+               "right arm: IK reach target (elbow down); legs: IK", "static: 60 % weight on the left foot",
+               "pelvis roll, chest counter-roll, head turns toward the point", GARMENT_STD,
+               [Requirement("hand:point", "index-finger pointing hand; " + HAND)], fallback="conversational_gesture",
+               legacy="pointing_speaking"),
+    PresetSpec("conversational_gesture", "Conversational gesture", "forearm raised with an open palm", "static",
+               conversational, "arms: FK shape; legs: IK", "static: 64 % weight on the right foot",
+               "pelvis roll, chest counter-roll", GARMENT_STD),
+    PresetSpec("one_hand_shrug", "Shrugging", "shoulders up, forearms out, palms open", "static", shrug,
+               "arms: FK; clavicles elevated", "static", "clavicle elevation", GARMENT_STD,
+               [Requirement("hand:palm_up", "palm-up hands; " + HAND, optional=True)], legacy="one_hand_shrug"),
+    PresetSpec("casual_walk", "Walking", "front-view walk cycle (phase-driven)", "gait", walk_frame,
+               "stance legs: IK to world-locked feet; swing legs: IK to the lifted foot path",
+               "dynamic: lateral sway over the stance foot", "pelvis roll, chest counter-roll, head stabilised",
+               GARMENT_STD + "; hem lag", legacy="casual_walk"),
+    PresetSpec("running", "Running", "front-view run cycle (phase-driven)", "gait", run_frame,
+               "stance legs: IK to world-locked feet; swing legs: IK, knee <= front-view limit",
+               "dynamic: CoM between the feet, flight phases", "pelvis roll and bob, chest counter-roll",
+               GARMENT_STD + "; hem lag",
+               [Requirement("hand:fist", "clenched running fists; " + HAND, optional=True),
+                Requirement("art:thigh_knee_up", "foreshortened knee-up thighs for a full knee drive", optional=True),
+                Requirement("art:shin_tucked", "tucked shins with visible soles for the recovery phase", optional=True)],
+               legacy="running"),
+    PresetSpec("sitting", "Sitting", "seated", "static", sitting, "legs: IK, knees out", "static",
+               "none", GARMENT_STD,
+               [Requirement("art:thigh_foreshortened", "thighs pointing at the viewer (front-view sitting)"),
+                Requirement("art:seat", "a seat or chair")], depth_motion=True, fallback="natural_squat"),
+    PresetSpec("natural_squat", "Squatting", "pelvis lowered, knees tracking out", "static", squat,
+               "legs: IK, knees lateral up to the squat limit", "static: CoM over both feet",
+               "none", GARMENT_STD + "; trouser knee folds"),
+    PresetSpec("leaning_forward", "Leaning forward", "torso toward the viewer", "static", lean_forward,
+               "spine/chest bend", "static", "head counter-tilt", GARMENT_STD,
+               [Requirement("art:torso_lean_forward", "3/4 or foreshortened torso leaning toward the viewer")],
+               depth_motion=True, fallback="side_lean"),
+    PresetSpec("leaning_backward", "Leaning backward", "torso away from the viewer", "static", lean_backward,
+               "spine/chest bend", "static", "head counter-tilt", GARMENT_STD,
+               [Requirement("art:torso_lean_back", "3/4 or foreshortened torso leaning away from the viewer")],
+               depth_motion=True, fallback="side_lean"),
+    PresetSpec("both_hands_raised", "Arm raise", "both arms raised", "static", arm_raise,
+               "arms: FK; clavicles follow abduction (scapulohumeral rhythm)", "static", "clavicle elevation",
+               GARMENT_STD, [Requirement("corrective:gusset", "armpit gussets if the armpit corner tears",
+                                         optional=True)], legacy="both_hands_raised"),
+    PresetSpec("head_tilt_compensated", "Head tilt", "head tilt with shoulder answer", "static", head_tilt,
+               "neck/head share the tilt", "static", "chest counter-tilt", GARMENT_STD + "; neck band",
+               legacy="head_tilt_compensated"),
+    PresetSpec("side_lean", "Side lean", "lateral torso lean (in-plane)", "static", side_lean,
+               "spine/chest bend sideways", "static: pelvis shifts against the lean", "head counter-tilt",
+               GARMENT_STD),
+]
+SPEC_BY_NAME = {s.name: s for s in LIBRARY}
+
+
+class MotionPlanner:
+    def __init__(self, profile: CharacterProfile):
+        self.p = profile
+
+    def plan(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
+             travel: float = 0.0, arm_style: str = "fist") -> PoseIntent:
+        spec = SPEC_BY_NAME[name]
+        if spec.kind == "gait":
+            return spec.build(self.p, phase=0.25 if phase is None else phase, speed=speed,
+                              exaggeration=exaggeration, travel=travel, arm_style=arm_style)
+        return spec.build(self.p)
+
+    def cycle(self, name: str, n: int = 8, speed: float = 1.0, exaggeration: float = 1.0,
+              travel: float = 0.0) -> list[PoseIntent]:
+        return [self.plan(name, i / n, speed, exaggeration, travel) for i in range(n)]

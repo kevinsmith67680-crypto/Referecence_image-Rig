@@ -92,6 +92,12 @@ export interface CanvasProps {
   selectedVector: string | null; onSelectVector: (v: string | null) => void;
   overlays: Overlays; mask: MaskSettings; compare: CompareSettings; pose: any | null; face: any | null;
   onOp: (op: Record<string, unknown>) => void; onCursor: (p: Pt) => void; fitSignal: number;
+  skel?: any | null; showBefore?: boolean;
+}
+
+function DiagImg({ src, pad }: { src: string; pad: number }) {
+  const img = useImg(src);
+  return img ? <KImage image={img} x={-pad} y={-pad} listening={false} /> : null;
 }
 
 export default function CanvasView(p: CanvasProps) {
@@ -128,7 +134,8 @@ export default function CanvasView(p: CanvasProps) {
     api.maskUrl(p.selectedLayer, pix) : null, "rgba(0,200,255,1)");
   const baseTint = useTinted(p.overlays.baseMask && p.selectedLayer && p.mode === "artwork" ?
     api.maskUrl(p.selectedLayer, pix, true) : null, "rgba(255,0,200,1)");
-  const poseImg = useImg(p.mode === "pose" && p.pose ? p.pose.image : null);
+  const poseImg = useImg(p.mode === "pose" && p.pose ? (p.showBefore && p.pose.before ? p.pose.before : p.pose.image) : null);
+  const sk = p.skel ?? p.pose;  // skeleton-only draft while scrubbing, else the rendered pose
   const boundImg = useImg(p.mode === "pose" && p.pose?.boundaries && p.overlays.boundaries ? p.pose.boundaries : null);
   const source = useImg(api.sourceUrl());
   const neutral = useImg(p.mode === "compare" ? api.compareUrl("neutral", rev) : null);
@@ -214,6 +221,8 @@ export default function CanvasView(p: CanvasProps) {
           {p.mode === "artwork" && order.map((l) => <LayerImg key={l.id} id={l.id} rev={`${pix}-${l.edge_feather ?? 0}`} opacity={l.opacity} />)}
           {p.mode === "pose" && poseImg && <KImage image={poseImg} x={-pad} y={-pad} />}
           {p.mode === "pose" && boundImg && <KImage image={boundImg} x={-pad} y={-pad} opacity={0.9} />}
+          {p.mode === "pose" && p.pose?.diagnostics && !p.showBefore && Object.entries(p.pose.diagnostics).map(([k, src]: any) => (
+            <DiagImg key={k} src={src} pad={pad} />))}
           {p.mode === "compare" && source && <KImage image={source} opacity={p.compare.kind === "diff" ? 0.3 : 1} />}
           {p.mode === "compare" && neutral && p.compare.kind === "split" && (
             <Group clipFunc={(ctx) => ctx.rect(0, 0, W * p.compare.split, H)}><KImage image={neutral} /></Group>)}
@@ -250,9 +259,9 @@ export default function CanvasView(p: CanvasProps) {
           {(p.mode === "artwork") && p.overlays.bones && bones.map(([n, b]) => (
             <Line key={n} points={[...bh(n), ...bt(n)]} stroke={sideColor(b.side)} strokeWidth={(n === p.selectedBone ? 4 : 2) * k}
               opacity={0.9} listening={false} />))}
-          {p.mode === "pose" && p.pose && p.overlays.bones && Object.entries(p.pose.joints_posed).map(([n, h]: any) => (
-            <Line key={n} points={[...h, ...p.pose.bone_tails_posed[n]]} stroke={sideColor(st.bones[n]?.side ?? null)} strokeWidth={2 * k} listening={false} />))}
-          {p.mode === "pose" && p.pose && p.overlays.joints && Object.entries(p.pose.joints_posed).map(([n, h]: any) => (
+          {p.mode === "pose" && sk && p.overlays.bones && !p.showBefore && Object.entries(sk.joints_posed).map(([n, h]: any) => (
+            <Line key={n} points={[...h, ...sk.bone_tails_posed[n]]} stroke={sideColor(st.bones[n]?.side ?? null)} strokeWidth={(p.skel ? 4 : 2) * k} listening={false} />))}
+          {p.mode === "pose" && sk && p.overlays.joints && !p.showBefore && Object.entries(sk.joints_posed).map(([n, h]: any) => (
             <Circle key={n} x={h[0]} y={h[1]} radius={(n === p.selectedBone ? 7 : 5) * k} fill={n === p.selectedBone ? "#ff6b6b" : "#1c7ed6"} stroke="#fff" strokeWidth={1.5 * k}
               onClick={() => p.onSelectBone(n)} />))}
           {p.mode === "pose" && p.pose && p.overlays.tears && (p.pose.tear_points ?? []).map((t: number[], i: number) => (

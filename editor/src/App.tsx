@@ -3,7 +3,7 @@ import { api, Payload } from "./api";
 import { focusRect, Pt, View } from "./geometry";
 import CanvasView, { CompareSettings, MaskSettings, Mode, Overlays, Tool } from "./components/CanvasView";
 import LayersPanel from "./components/LayersPanel";
-import { ComparePanel, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
+import { ComparePanel, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, Motion, Perf, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
 
 const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "Face", "Live", "Compare", "Export"] as const;
 type Tab = (typeof TABS)[number];
@@ -32,6 +32,11 @@ export default function App() {
   const [overrides, setOverrides] = useState<Record<string, number>>({});
   const [poseRes, setPoseRes] = useState<any>(null);
   const [poseBusy, setPoseBusy] = useState(false);
+  const [motion, setMotion] = useState<Motion>({ phase: 0.25, speed: 1, exaggeration: 1, allowPending: false,
+    diagnostics: [], before: false, showBefore: false, liveTilt: 0 });
+  const [playing, setPlaying] = useState(false);
+  const [skel, setSkel] = useState<any>(null);
+  const [perf, setPerf] = useState<Perf>({ fps: 0, latencyMs: 0, solveMs: 0, frames: 0 });
   const [face, setFace] = useState<any>(null);
   const [live, setLive] = useState<any>(null);
   const [metrics, setMetrics] = useState<any>(null);
@@ -73,15 +78,41 @@ export default function App() {
     if (tab === "Joints") setTool("joint");
     if (tab === "Vectors") setTool("vector");
   }, [tab, rev]);
+  const poseBody = (extra: Record<string, unknown> = {}) => ({ preset, overrides, boundaries: overlays.boundaries,
+    phase: motion.phase, speed: motion.speed, exaggeration: motion.exaggeration, allow_pending: motion.allowPending,
+    diagnostics: motion.diagnostics, before: motion.before, live_head: motion.liveTilt ? { tilt: motion.liveTilt } : null, ...extra });
   useEffect(() => {
-    if (mode !== "pose" || !payload) return;
+    if (mode !== "pose" || !payload || playing) return;
     const seq = ++poseSeq.current;
     setPoseBusy(true);
-    const t = setTimeout(() => api.pose(preset, overrides, overlays.boundaries).then((r) => {
-      if (seq === poseSeq.current) { setPoseRes(r); setPoseBusy(false); }
+    const t0 = performance.now();
+    const t = setTimeout(() => api.pose(poseBody()).then((r) => {
+      if (seq === poseSeq.current) { setPoseRes({ ...r, roundtrip_ms: Math.round(performance.now() - t0 - 350) }); setPoseBusy(false); setSkel(null); }
     }).catch((e) => { setError(String(e.message ?? e)); setPoseBusy(false); }), 350);
     return () => clearTimeout(t);
-  }, [mode, preset, overrides, rev, overlays.boundaries]);
+  }, [mode, preset, overrides, rev, overlays.boundaries, motion, playing]);
+  // interactive scrubbing: skeleton-only solves (milliseconds) as fast as the server answers; artwork after release
+  useEffect(() => {
+    if (!playing || mode !== "pose") return;
+    let alive = true, ph = motion.phase, last = performance.now(), frames = 0, t1 = last, lat = 0, solve = 0;
+    const step = async () => {
+      while (alive) {
+        const now = performance.now();
+        ph = (ph + (now - last) / 1000 * 1.25 * motion.speed) % 1;  // ~1.25 cycles per second at speed 1
+        last = now;
+        const r = await api.pose(poseBody({ phase: ph, skeleton_only: true, diagnostics: [], before: false }));
+        const done = performance.now();
+        lat = done - now; solve = r.timing_ms?.solve ?? 0; frames++;
+        if (!alive) break;
+        setSkel(r);
+        if (done - t1 > 500) { setPerf({ fps: Math.round(frames * 1000 / (done - t1)), latencyMs: Math.round(lat), solveMs: solve, frames }); frames = 0; t1 = done; }
+        await new Promise((res) => requestAnimationFrame(() => res(null)));
+      }
+      setMotion((m) => ({ ...m, phase: Math.round(ph * 1000) / 1000 }));
+    };
+    step();
+    return () => { alive = false; };
+  }, [playing]);
   useEffect(() => { const t = setTimeout(() => api.gates().then(setGates).catch(() => {}), 1500); return () => clearTimeout(t); }, [rev]);
 
   if (!payload) return <div className="loading">{error ? `Cannot reach the editor backend: ${error}` : "Loading character project…"}</div>;
@@ -126,7 +157,7 @@ export default function App() {
           <CanvasView payload={payload} rev={rev} mode={mode} tool={tool} view={view} setView={setView} fitSignal={fit}
             selectedLayer={selLayer} onSelectLayer={setSelLayer} selectedBone={selBone} onSelectBone={setSelBone}
             selectedVector={selVec} onSelectVector={setSelVec} overlays={overlays} mask={mask} compare={cmp}
-            pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} />
+            pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} skel={playing ? skel : null} showBefore={motion.showBefore && motion.before} />
           <div className="modebar">
             {(["artwork", "pose", "compare"] as Mode[]).map((m) => <button key={m} className={mode === m ? "on" : ""} onClick={() => setTab(m === "pose" ? "Pose" : m === "compare" ? "Compare" : "Properties")}>{m}</button>)}
           </div>
@@ -139,7 +170,10 @@ export default function App() {
             {tab === "Joints" && <JointsPanel payload={payload} bone={selBone} onSelect={setSelBone} onOp={onOp} />}
             {tab === "Vectors" && <VectorsPanel payload={payload} sel={selVec} onSelect={setSelVec} bone={selBone} onOp={onOp} />}
             {tab === "Pose" && <PosePanel payload={payload} preset={preset} setPreset={setPreset} overrides={overrides} setOverrides={setOverrides}
-              result={poseRes} busy={poseBusy} bone={selBone} onSelectBone={setSelBone} overlays={overlays} setOverlays={setOverlays} onOp={onOp} />}
+              result={poseRes} busy={poseBusy} bone={selBone} onSelectBone={setSelBone} overlays={overlays} setOverlays={setOverlays} onOp={onOp}
+              motion={motion} setMotion={setMotion} playing={playing} setPlaying={setPlaying} perf={perf}
+              onCloseup={(n) => { const pos = (skel ?? poseRes)?.joints_posed?.[n]; const box = document.querySelector("[data-testid=canvas]") as HTMLElement;
+                if (pos && box) setView(focusRect([pos[0] - 110, pos[1] - 110, pos[0] + 110, pos[1] + 110], box.clientWidth, box.clientHeight)); }} />}
             {tab === "Face" && <FacePanel face={face} overlays={overlays} setOverlays={setOverlays} onOp={onOp} />}
             {tab === "Live" && <LivePanel live={live} />}
             {tab === "Compare" && <ComparePanel cmp={cmp} setCmp={setCmp} metrics={metrics} payload={payload} onOp={onOp} />}

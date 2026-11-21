@@ -120,7 +120,15 @@ def quality_gates(proj: EditorProject, art: ArtworkModel, exported: dict[str, An
     presets = json.loads((proj.pkg / "natural_pose" / "presets.json").read_text()) if \
         (proj.pkg / "natural_pose" / "presets.json").is_file() else {}
     accepted = {d.get("preset") for d in st["defects"].values() if d.get("status") in ("resolved", "accepted")}
-    open_defects = [n for n, v in presets.items() if v["status"] != "OK_PENDING_REVIEW" and n not in accepted]
+    motion = proj.pkg / "natural_pose" / "motion" / "results.json"
+    if motion.is_file():  # Phase 3.1 evidence supersedes the Phase 2 preset statuses
+        mres = json.loads(motion.read_text())["presets"]
+        open_defects = sorted({k.split("@")[0] for k, v in mres.items()
+                               if (v["feasibility"]["status"] in ("NEEDS_ARTWORK", "UNSUPPORTED")
+                                   or not v["quality"]["numerical"]["all_pass"])
+                               and k.split("@")[0] not in accepted and "preview" not in k})
+    else:
+        open_defects = [n for n, v in presets.items() if v["status"] != "OK_PENDING_REVIEW" and n not in accepted]
     open_defects += [k for k, d in st["defects"].items() if d.get("status") == "unresolved"]
     g(10, "unresolved deformation defects reported", "NEEDS_REVIEW" if open_defects else "PASS",
       f"open: {open_defects}" if open_defects else "none")
@@ -139,6 +147,16 @@ def quality_gates(proj: EditorProject, art: ArtworkModel, exported: dict[str, An
     worst = max((LEVELS.index(x["level"]) for x in gates), default=0)
     return {"gates": gates, "overall": LEVELS[worst], "production_ready": worst <= 1, "fidelity": fid,
             "rejected_generated_excluded": sorted(rej)}
+
+
+def _motion_json(pkg: Path, name: str) -> dict[str, Any] | None:
+    """Phase 3.1 garment model / motion profile (Smart Bone-ready correction metadata), if generated."""
+    f = Path(pkg) / "natural_pose" / "motion" / name
+    if not f.is_file():
+        return None
+    d = json.loads(f.read_text())
+    d["status"] = "proposed_unverified (preview renderer only; Moho not run)"
+    return d
 
 
 def _clear_previous_export(out: Path) -> None:
@@ -223,7 +241,9 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
                         "joint_corrections": st["corrections"]["joints"], "armpit_gussets_enabled": st["corrections"]["gussets"],
                         "corrective_artwork": corrective.get("assets", []), "defects": st["defects"],
                         "moho_translation": "proposed_unverified: bands -> bone influence / Smart Warp falloff; "
-                                            "corrective shapes -> Smart Bone actions (Phase 4)"},
+                                            "corrective shapes -> Smart Bone actions (Phase 4)",
+                        "garments": _motion_json(proj.pkg, "garments.json"),
+                        "motion_profile": _motion_json(proj.pkg, "profile.json")},
         "facial": face, "live": live,
         "provenance": {"mask_corrections": len(st["mask_ops"]), "reassigned_px": validation["reassigned_px"],
                        "unassigned_px": validation["unassigned_px"],

@@ -164,12 +164,27 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
 
     @app.get("/api/presets")
     def presets():
-        return PoseService.presets()
+        return PoseService.motion_presets()
+
+    def b64(arr) -> str:
+        return "data:image/png;base64," + base64.b64encode(png_bytes(arr)).decode()
 
     @app.post("/api/pose")
     def pose(body: dict = Body(...)):
         with S.lock:
             st = S.project.state()
+            if body.get("preset", "relaxed_standing") != "rest":
+                try:
+                    r = S.pose.motion(st, S.masks(), rejected_ids(st), body)
+                except PoseError as exc:
+                    raise HTTPException(400, str(exc))
+                if "image" in r:
+                    r["image"] = b64(r["image"])
+                if "before" in r:
+                    r["before"] = b64(r["before"])
+                if "diagnostics" in r:
+                    r["diagnostics"] = {k: b64(v) for k, v in r["diagnostics"].items()}
+                return JSONResponse(jsonable(r))
             try:
                 r = S.pose.render(st, S.masks(), rejected_ids(st), body.get("preset", "relaxed_standing"),
                                   body.get("overrides", {}), boundaries=bool(body.get("boundaries")))

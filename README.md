@@ -4,7 +4,12 @@ Turn a single cartoon character reference image into a faithful, **editable
 Moho Pro 14 rig**: separated art layers, a bone hierarchy, layer-to-bone
 bindings, ready to animate.
 
-> **Status: Phase 3 (interactive artwork editor and Moho-ready asset package): PARTIAL.** A browser editor
+> **Status: Phase 3.1 (natural motion and clothing deformation): PARTIAL.** Posing is now split into a motion planner,
+> an anatomical solver (IK, foot contact, balance, no bone scaling), a garment-aware deformation engine and
+> measurable checks, with a phase-driven front-view walk and run. Nothing is visually approved yet, and Moho has not
+> run. See [docs/phase3_1_natural_motion_report.md](docs/phase3_1_natural_motion_report.md).
+>
+> **Phase 3 (interactive artwork editor and Moho-ready asset package): PARTIAL.** A browser editor
 > (React + Konva on a FastAPI backend) corrects layers, masks, pivots and vector shapes on the user's real character,
 > previews natural poses and exports a validated asset package. It was tested in a real (headless) browser. Nothing
 > generated has been reviewed by a person yet, so the package is not production-ready. See
@@ -131,6 +136,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase2_natural_pose_refinement.md](docs/phase2_natural_pose_refinement.md) | Natural posing: root causes, skinned joints, IK/balance, presets, before/after |
 | [docs/phase3_implementation_plan.md](docs/phase3_implementation_plan.md) | Phase 3 audit, components, canvas library comparison, rules, acceptance criteria |
 | [docs/phase3_report.md](docs/phase3_report.md) | Phase 3 results: editor, tests, screenshots, fidelity, poses, export gates, verdict |
+| [docs/phase3_1_motion_audit.md](docs/phase3_1_motion_audit.md) | Root-cause audit of the Phase 3 poses (confirmed defects vs hypotheses) |
+| [docs/phase3_1_natural_motion_report.md](docs/phase3_1_natural_motion_report.md) | Phase 3.1 results: architecture, gait, garments, checks, before/after, performance, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |
@@ -146,4 +153,5 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 2 | Occlusion analysis, pixel-preserving reconstruction, joint preparation, pose QA, live artwork manifest, review workflow | Implemented; **PARTIAL** (inpainting untested; synthetic evidence only) |
 | 2+ | Natural posing (skinned joints, IK/balance, presets), corrective hands and gussets | Done on real art; pending review |
 | 3 | Interactive editor (layers, masks, pivots, vectors, pose preview, comparison, readiness) and Moho-ready asset package | Implemented; **PARTIAL** (reviews pending; Moho not run) |
+| 3.1 | Natural motion: planner/solver split, front-view gait cycles, garment deformation, feasibility and quality checks | Implemented; **PARTIAL** (visual review pending; Moho not run) |
 | 4 | Native Moho import and rig of the exported package | Not started (needs Phase 0 verification, reviews, missing artwork) |

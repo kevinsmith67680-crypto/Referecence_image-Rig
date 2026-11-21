@@ -508,6 +508,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--port", type=int, default=8765)
     p.set_defaults(func=cmd_editor)
 
+    p = sub.add_parser("motion", help="Phase 3.1: natural-motion evidence (presets, gait cycles, close-ups)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", help="output directory (default <package>/natural_pose/motion)")
+    p.set_defaults(func=cmd_motion)
+
+    p = sub.add_parser("motion-bench", help="Phase 3.1: measure solve and render times on this machine")
+    p.add_argument("package")
+    p.add_argument("--frames", type=int, default=120)
+    p.add_argument("--renders", type=int, default=5)
+    p.set_defaults(func=cmd_motion_bench)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -559,6 +570,42 @@ def cmd_editor(args: argparse.Namespace) -> int:
     print(f"AutoRig editor: http://{args.host}:{args.port}/   package: {args.package}")
     print("edits are saved to <package>/editor/ (the package's original artwork is never modified)")
     uvicorn.run(app, host=args.host, port=args.port, log_level="warning")
+    return 0
+
+
+def cmd_motion(args: argparse.Namespace) -> int:
+    from .motion.pipeline import motion_report
+
+    r = motion_report(args.package, args.out)
+    for k, c in r["cycles"].items():
+        print(f"  cycle {k}: {c['numerical']['passed']}/{c['numerical']['total']} checks, "
+              f"pelvis range {c['pelvis_vertical_range_px']} px, airborne samples {c['airborne_samples']}")
+    return 0
+
+
+def cmd_motion_bench(args: argparse.Namespace) -> int:
+    import time
+
+    from .motion.pipeline import engine_for_package
+
+    t0 = time.perf_counter()
+    eng, vis = engine_for_package(args.package)
+    print(f"engine build: {time.perf_counter() - t0:.2f} s")
+    solve = []
+    for i in range(args.frames):
+        t = time.perf_counter()
+        eng.pose("running", (i / args.frames) % 1.0, visible=vis, skeleton_only=True)
+        solve.append(time.perf_counter() - t)
+    s = sorted(solve)
+    print(f"skeleton solve ({args.frames} run phases): median {1000 * s[len(s) // 2]:.2f} ms, "
+          f"p95 {1000 * s[int(0.95 * len(s))]:.2f} ms -> {1 / max(s[len(s) // 2], 1e-9):.0f} solves/s")
+    ren = []
+    for i in range(args.renders):
+        t = time.perf_counter()
+        eng.pose("running", i / max(args.renders, 1), visible=vis)
+        ren.append(time.perf_counter() - t)
+    r = sorted(ren)
+    print(f"full artwork render ({args.renders} frames): median {r[len(r) // 2]:.2f} s, max {r[-1]:.2f} s")
     return 0
 
 

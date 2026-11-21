@@ -52,8 +52,7 @@ export const api = {
   redo: () => post("/api/redo").then((r) => j<Payload>(r)),
   saveVersion: (label: string) => post("/api/versions", { label }).then((r) => j<any>(r)),
   restoreVersion: (n: number) => post(`/api/versions/${n}/restore`).then((r) => j<Payload>(r)),
-  pose: (preset: string, overrides: Record<string, number>, boundaries = false) =>
-    post("/api/pose", { preset, overrides, boundaries }).then((r) => j<any>(r)),
+  pose: (body: Record<string, unknown>) => post("/api/pose", body).then((r) => j<any>(r)),
   presets: () => fetch("/api/presets").then((r) => j<any[]>(r)),
   face: () => fetch("/api/face").then((r) => j<any>(r)),
   live: () => fetch("/api/live").then((r) => j<any>(r)),

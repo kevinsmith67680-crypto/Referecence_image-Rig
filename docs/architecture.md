@@ -174,3 +174,19 @@ FastAPI (`autorig editor`) serves the API and the React + TypeScript + react-kon
 browser holds view state only; every edit is an operation persisted by the backend. Masks move source pixels
 between layers, so the neutral pose stays identical to the reference; gaps and z-order regressions are reported.
 See [phase3_implementation_plan.md](phase3_implementation_plan.md) and [phase3_report.md](phase3_report.md).
+
+## 12. Phase 3.1: natural motion
+
+`src/autorig/motion/` replaces the single preset solver with four separate stages:
+* `MotionPlanner` produces a `PoseIntent`: foot and hand targets, contacts, the gait phase, and torso, head and
+  garment intent.
+* `SkeletalPoseSolver` handles FK, two-bone IK, character limits, pelvis height from loaded feet, balance and
+  clavicle rhythm, and never scales a bone.
+* `ArtworkDeformationEngine` is the Phase 2 skinning deformer on a garment-aware skeleton: the blazer hem hangs from
+  the pelvis, trousers attach softly, bands widen with joint rotation, the hem lags, and layering rules apply.
+* `PoseFeasibilityEvaluator` and `PoseQualityEvaluator` report supported / needs-artwork status and measured checks
+  with documented thresholds.
+
+Gaits are phase-driven front-view cycles. The editor's Pose tab uses the engine: skeleton-only solves for scrubbing
+and playback, and full renders after release. `autorig motion` writes the evidence set to
+`<package>/natural_pose/motion/`. See [phase3_1_natural_motion_report.md](phase3_1_natural_motion_report.md).

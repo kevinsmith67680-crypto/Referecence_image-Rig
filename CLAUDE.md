@@ -24,6 +24,10 @@ faithful, editable **Moho Pro 14** character rig.
   It is implemented; verdict **PARTIAL** (`docs/phase3_report.md`): editor tested in headless Chromium on the real
   T-pose package (Playwright, screenshots in `docs/phase3/screenshots/`), export validated with 0 errors but
   `production_ready: false` (25 approvals pending, facial/corrective artwork missing, Moho not run).
+- The user explicitly started **Phase 3.1** (natural motion, anatomical rigging, clothing deformation). It is
+  implemented; verdict **PARTIAL** (`docs/phase3_1_natural_motion_report.md`, audit in `docs/phase3_1_motion_audit.md`):
+  planner/solver/garment engine/evaluators in `src/autorig/motion/`, editor Pose tab uses it, evidence in
+  `projects/schoolboy_tpose/character_package/natural_pose/motion/`. Visual quality is not approved by anyone.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -55,6 +59,21 @@ faithful, editable **Moho Pro 14** character rig.
 - Export replaces only an earlier AutoRig export or an empty directory; the API writes only inside
   `<package>/editor/exports/`.
 - After changing `editor/src`, rebuild and commit `editor/dist` (`cd editor && npm run build`).
+
+## Phase 3.1 rules (motion)
+
+- Keep the four stages separate: `planner.MotionPlanner` (intent: targets, contacts, gait phase) ->
+  `solver.SkeletalPoseSolver` (FK/IK, limits, pelvis from contact, balance) -> `garments.ArtworkDeformationEngine`
+  (garment regions, rotation-dependent bands, hem lag, layering) -> `quality`/`feasibility` evaluators.
+- Never scale a bone (no axial foreshortening). Depth motion on front-view art (knee drive, sagittal lean, sitting)
+  is NEEDS_ARTWORK with a named asset and a fallback, never a distorted approximation.
+- Pending-review artwork is never approved: feasibility treats it as missing; it may only be *previewed*
+  (`allow_pending`). Run arms use the approved open-hand style unless fists are approved.
+- Gaits are phase-driven (0..1, right contact at 0). Swing knees follow a schedule (no IK snap); pelvis height comes
+  from loaded feet. Cycle checks (loop closure, continuity spikes, foot sliding, penetration, coordination) must pass.
+- Quality thresholds live in `motion/quality.py` `THRESHOLDS` and must be documented in the Phase 3.1 report. Visual
+  quality is never scored automatically (`artistic_review_required` is always true).
+- `autorig motion <package>` regenerates the committed evidence (contact sheets, cycles, close-ups, results.json).
 
 ## Live Models track (Moho 14.5)
 
@@ -132,6 +151,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig prepare <phase1_project> --out <package_dir> [--provider flux-fill-dev] [--synthetic-gt]
 .venv/bin/python -m autorig review <package_dir> --list | --approve ID | --reject ID | --set-pivot JOINT X Y | --approve-phase
 .venv/bin/python -m autorig pose-refine <package_dir> [--presets ...] [--hand-sources references/schoolboy/hand_sources.json]
+# Phase 3.1
+.venv/bin/python -m autorig motion <package_dir> [--out <dir>]     # natural-motion evidence (about 2-3 min)
+.venv/bin/python -m autorig motion-bench <package_dir>             # measure solve/render times on this machine
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -155,6 +177,8 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
 - `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
 - `src/autorig/editor/` — Phase 3 backend: project (op log), artwork (masks, fidelity, comparison), posesvc, vectors,
   readiness, export (quality gates), server (FastAPI)
+- `src/autorig/motion/` — Phase 3.1: profile, intent, planner (presets + front-view gaits), solver, garments
+  (garment model + deformation engine), feasibility, quality, pipeline (MotionEngine, evidence CLI)
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright
 - `projects/schoolboy_tpose/moho_asset_package/` — validated Phase 3 export of the unedited real package (not
   production-ready); `docs/phase3/screenshots/` — real-browser screenshots from the e2e test

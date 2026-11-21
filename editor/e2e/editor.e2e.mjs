@@ -70,7 +70,7 @@ const rev = async (page) => (await page.textContent("[data-testid=revision]")).s
 async function waitPose(page) {
   await page.waitForFunction(() => {
     const t = document.querySelector("[data-testid=pose-panel]")?.textContent ?? "";
-    return t.includes("confidence") && !t.includes("rendering");
+    return /checks|confidence/.test(t) && !t.includes("rendering");
   }, null, { timeout: 90000 });
   await sleep(600);
 }
@@ -220,10 +220,11 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.screenshot({ path: path.join(SHOTS, "07_pose_arms_raised.png") });
     await page.selectOption("[data-testid=preset]", "relaxed_standing");
     await waitPose(page);
+    await page.click("text=Direct rotations (manual)");
     await page.locator("[data-testid=rot-head]").fill("14");
     await waitPose(page);
     const poseText = await page.textContent("[data-testid=pose-panel]");
-    assert.match(poseText, /OK_PENDING_REVIEW|NEEDS_REVIEW|NEEDS_ARTWORK/);
+    assert.match(poseText, /SUPPORTED_WITH_CORRECTIONS|SUPPORTED|NEEDS_ARTWORK/);
     await page.selectOption("[data-testid=corr-joint]", "upper_arm_r");
     r0 = await rev(page);
     await page.click("[data-testid=corr-save-pose]");
@@ -237,6 +238,45 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.check("[data-testid=boundaries]");
     await waitPose(page);
     await page.screenshot({ path: path.join(SHOTS, "08_pose_joint_correction.png") });
+
+    // 6b. Phase 3.1 motion: gait phase, playback (measured fps), diagnostics, before/after, pending preview, close-up
+    await page.selectOption("[data-testid=preset]", "running");
+    await page.waitForSelector("[data-testid=gait-controls]");
+    await page.locator("[data-testid=gait-phase]").fill("0.375");
+    await waitPose(page);
+    assert.match(await page.textContent("[data-testid=feasibility]"), /SUPPORTED_WITH_CORRECTIONS/);
+    await page.screenshot({ path: path.join(SHOTS, "14_run_cycle_flight.png") });
+    for (const d of ["skeleton", "contacts", "com", "garments"]) await page.check(`[data-testid=diag-${d}]`);
+    await waitPose(page);
+    await page.screenshot({ path: path.join(SHOTS, "15_run_diagnostics.png") });
+    for (const d of ["skeleton", "contacts", "com", "garments"]) await page.uncheck(`[data-testid=diag-${d}]`);
+    await page.click("[data-testid=gait-play]");
+    await sleep(4000);
+    const perfText = await page.textContent("[data-testid=perf]");
+    await page.screenshot({ path: path.join(SHOTS, "16_run_playback_skeleton.png") });
+    await page.click("[data-testid=gait-play]");
+    const fps = +(perfText.match(/(\d+) fps/) || [0, 0])[1];
+    assert.ok(fps > 0, `playback measured: ${perfText}`);
+    console.log(`# skeleton playback in headless Chromium (cloud CPU): ${perfText}`);
+    await waitPose(page);
+    await page.check("[data-testid=allow-pending]");
+    await waitPose(page);
+    assert.match(await page.textContent("[data-testid=feasibility]"), /NEEDS_ARTWORK[\s\S]*hand:fist \(pending_review\)/);
+    await page.screenshot({ path: path.join(SHOTS, "17_run_fists_pending_preview.png") });
+    await page.uncheck("[data-testid=allow-pending]");
+    await page.check("[data-testid=before-after]");
+    await waitPose(page);
+    await page.check("[data-testid=show-before]");
+    await sleep(800);
+    await page.screenshot({ path: path.join(SHOTS, "18_run_phase3_before.png") });
+    await page.uncheck("[data-testid=before-after]");
+    await waitPose(page);
+    await page.click("[data-testid=close-shin_l]");
+    await sleep(800);
+    await page.screenshot({ path: path.join(SHOTS, "19_closeup_knee.png") });
+    await page.keyboard.press("f");
+    await page.selectOption("[data-testid=preset]", "relaxed_standing");
+    await waitPose(page);
 
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");

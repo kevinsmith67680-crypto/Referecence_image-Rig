@@ -1,0 +1,133 @@
+{
+ "view": "front",
+ "midline_x": 542.16,
+ "ground_y": 1401.0,
+ "hip_sep": 111.5,
+ "thigh": {
+  "r": 272.345956459794,
+  "l": 271.96764513449017
+ },
+ "shin": {
+  "r": 272.40594707164524,
+  "l": 271.9495909171404
+ },
+ "upper_arm": {
+  "r": 129.02995776175393,
+  "l": 124.75916799979072
+ },
+ "forearm": {
+  "r": 119.40016750407008,
+  "l": 115.20004340276954
+ },
+ "shoe": {
+  "r": {
+   "medial": 54.0,
+   "lateral": 113.0,
+   "width": 167.0,
+   "sole_drop": 128.79999999999995
+  },
+  "l": {
+   "medial": 57.200000000000045,
+   "lateral": 113.79999999999995,
+   "width": 171.0,
+   "sole_drop": 128.5
+  }
+ },
+ "track_min": 117.20000000000005,
+ "stance_natural": 161.80000000000004,
+ "track_run": 145.07500000000005,
+ "track_walk": 150.65000000000003,
+ "ankle_y": {
+  "r": 1272.2,
+  "l": 1272.5
+ },
+ "hip_y": 753.8,
+ "waist_y": 697.45,
+ "waist_half": 134.0,
+ "front_knee": {
+  "stance": 10.0,
+  "swing": 18.0,
+  "swing_max": 28.0,
+  "walk_swing": 12.0,
+  "squat": 75.0
+ },
+ "limits": {
+  "pelvis": {
+   "tilt": [
+    -14,
+    14
+   ]
+  },
+  "spine": {
+   "bend": [
+    -18,
+    18
+   ]
+  },
+  "chest": {
+   "bend": [
+    -14,
+    14
+   ]
+  },
+  "neck": {
+   "bend": [
+    -20,
+    20
+   ]
+  },
+  "head": {
+   "bend": [
+    -28,
+    28
+   ]
+  },
+  "clavicle": {
+   "elevation": [
+    -10,
+    32
+   ]
+  },
+  "upper_arm": {
+   "abduction": [
+    -40,
+    178
+   ]
+  },
+  "forearm": {
+   "flexion": [
+    -150,
+    150
+   ]
+  },
+  "hand": {
+   "bend": [
+    -60,
+    60
+   ]
+  },
+  "thigh": {
+   "abduction": [
+    -25,
+    75
+   ]
+  },
+  "shin": {
+   "flexion": [
+    0,
+    140
+   ],
+   "valgus_max": 8
+  },
+  "foot": {
+   "bend": [
+    -60,
+    60
+   ]
+  }
+ },
+ "notes": [
+  "track_min = medial shoe extents (54 + 57) + 6 px gap: narrower ankle spacing makes the shoes overlap (legs read as crossing)"
+ ],
+ "units": "source px; angles deg (image space, + = clockwise on screen)"
+}

@@ -152,9 +152,20 @@ export function VectorsPanel({ payload, sel, onSelect, bone, onOp }: { payload: 
 const POSE_BONES = ["head", "neck", "chest", "spine", "pelvis", "clavicle_r", "clavicle_l", "upper_arm_r", "upper_arm_l",
   "forearm_r", "forearm_l", "hand_r", "hand_l", "thigh_r", "thigh_l", "shin_r", "shin_l", "foot_r", "foot_l"];
 
-export function PosePanel({ payload, preset, setPreset, overrides, setOverrides, result, busy, bone, onSelectBone, overlays, setOverlays, onOp }: {
+export interface Motion { phase: number; speed: number; exaggeration: number; allowPending: boolean; diagnostics: string[];
+  before: boolean; showBefore: boolean; liveTilt: number }
+export interface Perf { fps: number; latencyMs: number; solveMs: number; frames: number }
+const DIAG = [["skeleton", "anatomical skeleton"], ["garments", "garment regions + control points"], ["boundaries", "mesh / part boundaries"],
+  ["weights", "deformation weights"], ["overlaps", "joint overlap regions"], ["contacts", "foot contacts"], ["com", "centre of mass"],
+  ["provenance", "generated pixels"], ["missing", "missing artwork"], ["correctives", "corrective influence"]];
+const CLOSE = [["upper_arm_r", "shoulder R"], ["upper_arm_l", "shoulder L"], ["forearm_r", "elbow R"], ["forearm_l", "elbow L"],
+  ["pelvis", "hips / hem"], ["shin_r", "knee R"], ["shin_l", "knee L"], ["foot_r", "shoe R"], ["foot_l", "shoe L"]];
+
+export function PosePanel({ payload, preset, setPreset, overrides, setOverrides, result, busy, bone, onSelectBone, overlays, setOverlays, onOp,
+  motion, setMotion, playing, setPlaying, perf, onCloseup }: {
   payload: Payload; preset: string; setPreset: (p: string) => void; overrides: Record<string, number>; setOverrides: (o: Record<string, number>) => void;
-  result: any; busy: boolean; bone: string | null; onSelectBone: (b: string) => void; overlays: Overlays; setOverlays: (o: Overlays) => void; onOp: OnOp }) {
+  result: any; busy: boolean; bone: string | null; onSelectBone: (b: string) => void; overlays: Overlays; setOverlays: (o: Overlays) => void; onOp: OnOp;
+  motion: Motion; setMotion: (m: Motion) => void; playing: boolean; setPlaying: (p: boolean) => void; perf: Perf; onCloseup: (bone: string) => void }) {
   const [presets, setPresets] = useState<any[]>([]);
   useEffect(() => { api.presets().then(setPresets); }, []);
   const corr = bone ? payload.state.corrections.joints[bone] : null;
@@ -162,26 +173,62 @@ export function PosePanel({ payload, preset, setPreset, overrides, setOverrides,
   const [bandLocal, setBandLocal] = useState<number[]>(band);
   useEffect(() => setBandLocal(band), [bone, preset, payload.project.revision]);
   const seams = result?.metrics?.seams?.joints ?? {};
+  const kind = presets.find((p) => p.name === preset)?.kind;
+  const f = result?.feasibility;
+  const set = (k: Partial<Motion>) => setMotion({ ...motion, ...k });
   return (
     <div className="form" data-testid="pose-panel">
-      <label>Natural pose preset <select value={preset} onChange={(e) => { setPreset(e.target.value); setOverrides({}); }} data-testid="preset">
-        {presets.map((p) => <option key={p.name} value={p.name}>{p.title}</option>)}</select></label>
-      <div className="muted">Presets use the Phase 2 solver (IK, limits, balance, torso compensation). Sliders add direct rotations (degrees, clockwise on screen).</div>
+      <label>Pose <select value={preset} onChange={(e) => { setPlaying(false); setPreset(e.target.value); setOverrides({}); }} data-testid="preset">
+        {presets.map((p) => <option key={p.name} value={p.name}>{p.title}{p.kind === "gait" ? " (cycle)" : ""}</option>)}</select></label>
+      <div className="muted">Motion planner → skeletal solver (IK, contacts, balance) → garment-aware deformation → checks. Sliders below add direct rotations.</div>
+      {kind === "gait" && <div className="box" data-testid="gait-controls">
+        <label>Phase {motion.phase.toFixed(3)} {result?.phase_name ? `(${(playing ? "" : result.phase_name)})` : ""}
+          <input type="range" min={0} max={0.999} step={0.001} value={motion.phase} data-testid="gait-phase"
+            onChange={(e) => set({ phase: +e.target.value })} /></label>
+        <label>Speed {motion.speed.toFixed(2)} <input type="range" min={0.5} max={1.6} step={0.05} value={motion.speed} data-testid="gait-speed"
+          onChange={(e) => set({ speed: +e.target.value })} /></label>
+        <label>Exaggeration {motion.exaggeration.toFixed(2)} <input type="range" min={0} max={1.6} step={0.05} value={motion.exaggeration}
+          data-testid="gait-exaggeration" onChange={(e) => set({ exaggeration: +e.target.value })} /></label>
+        <div className="row gap"><button onClick={() => setPlaying(!playing)} data-testid="gait-play">{playing ? "■ Stop" : "▶ Play cycle (skeleton)"}</button>
+          <span className="small" data-testid="perf">{playing || perf.frames ? `${perf.fps} fps · latency ${perf.latencyMs} ms · solve ${perf.solveMs} ms` : ""}</span></div>
+      </div>}
+      <div className="row gap wrap">
+        <label className="check"><input type="checkbox" checked={motion.allowPending} onChange={(e) => set({ allowPending: e.target.checked })} data-testid="allow-pending" /> preview pending artwork</label>
+        <label className="check"><input type="checkbox" checked={motion.before} onChange={(e) => set({ before: e.target.checked, showBefore: false })} data-testid="before-after" /> compare with Phase 3</label>
+        {motion.before && <label className="check"><input type="checkbox" checked={motion.showBefore} onChange={(e) => set({ showBefore: e.target.checked })} data-testid="show-before" /> show Phase 3 render</label>}
+      </div>
+      <label>Live head tilt (puppeteering channel) {motion.liveTilt}° <input type="range" min={-20} max={20} step={1} value={motion.liveTilt}
+        onChange={(e) => set({ liveTilt: +e.target.value })} data-testid="live-tilt" /></label>
+      <div className="kv" data-testid="pose-status"><b>Status</b> {busy ? "rendering…" : result ? <>{badge(result.status)} {result.confidence}
+        {result.timing_ms && <span className="muted small"> · solve {result.timing_ms.solve} ms · render {result.timing_ms.render_and_tears ?? "-"} ms · round trip {result.roundtrip_ms ?? "-"} ms</span>}</> : "-"}</div>
+      {f && <div className="box" data-testid="feasibility">
+        <b>Feasibility</b> {badge(f.status)}
+        {f.missing?.map((m: any) => <div key={m.asset} className="err-box">missing: {m.asset} ({m.state}) — {m.why}</div>)}
+        {f.alternative && <div className="row gap">Supported alternative: <button onClick={() => setPreset(f.alternative)} data-testid="use-alternative">{f.alternative}</button></div>}
+        {f.reason && <div className="muted small">{f.reason}</div>}
+        {result?.hands && Object.entries(result.hands).filter(([, h]: any) => h.note).map(([s, h]: any) => <div key={s} className="warn-box">hand {s}: {h.note}</div>)}
+        {f.corrections?.length ? <div className="muted small">corrections: {f.corrections.join(", ")}</div> : null}
+      </div>}
+      {result?.quality && <details data-testid="quality"><summary>Automated checks {result.quality.numerical.passed}/{result.quality.numerical.total} · visual quality not scored (review required)</summary>
+        <table><tbody>{result.quality.checks.map((c: any) => <tr key={c.check}><td>{c.pass ? "✓" : "✗"}</td><td>{c.check}</td><td>{c.value}</td><td className="muted">≤ {c.threshold}</td></tr>)}</tbody></table>
+        {result.quality.review_items.map((d: string) => <div key={d} className="warn-box">{d}</div>)}
+      </details>}
+      <b>Diagnostics</b>
+      <div className="row gap wrap">{DIAG.map(([k, label]) => <label key={k} className="check small"><input type="checkbox" data-testid={`diag-${k}`}
+        checked={motion.diagnostics.includes(k)} onChange={(e) => set({ diagnostics: e.target.checked ? [...motion.diagnostics, k] : motion.diagnostics.filter((x) => x !== k) })} />{label}</label>)}
+        <label className="check small"><input type="checkbox" checked={overlays.tears} onChange={(e) => setOverlays({ ...overlays, tears: e.target.checked })} /> seam markers</label>
+        <label className="check small"><input type="checkbox" checked={overlays.boundaries} onChange={(e) => setOverlays({ ...overlays, boundaries: e.target.checked })} data-testid="boundaries" /> part boundaries</label>
+        <label className="check small"><input type="checkbox" checked={payload.state.corrections.gussets} onChange={(e) => onOp({ type: "correction.gussets", enabled: e.target.checked })} /> armpit gussets</label></div>
+      <div className="row gap wrap">Close-up: {CLOSE.map(([b, l]) => <button key={b} className="small" onClick={() => onCloseup(b)} data-testid={`close-${b}`}>{l}</button>)}</div>
+      <details><summary>Direct rotations (manual)</summary>
       <div className="sliders">{POSE_BONES.filter((b) => payload.state.bones[b]).map((b) => (
         <label key={b} className="slider">{b} <input type="range" min={-120} max={120} step={1} value={overrides[b] ?? 0} data-testid={`rot-${b}`}
           onChange={(e) => setOverrides({ ...overrides, [b]: +e.target.value })} /> <span>{overrides[b] ?? 0}°</span></label>))}</div>
-      <button onClick={() => setOverrides({})}>Reset rotations</button>
-      <div className="kv"><b>Status</b> {busy ? "rendering…" : result ? <>{badge(result.status)} confidence {result.confidence}</> : "-"}</div>
+      <button onClick={() => setOverrides({})}>Reset rotations</button></details>
       {result && <>
         {result.violations?.map((v: string) => <div key={v} className="err-box">constraint: {v}</div>)}
-        {result.defects?.map((d: string) => <div key={d} className="warn-box">{d}</div>)}
-        {result.needs_artwork?.map((d: string) => <div key={d} className="err-box">NEEDS_ARTWORK: {d}</div>)}
+        {result.defects?.slice(0, 6).map((d: string) => <div key={d} className="warn-box">{d}</div>)}
       </>}
-      <div className="row gap">
-        <label className="check"><input type="checkbox" checked={overlays.tears} onChange={(e) => setOverlays({ ...overlays, tears: e.target.checked })} /> seam markers</label>
-        <label className="check"><input type="checkbox" checked={overlays.boundaries} onChange={(e) => setOverlays({ ...overlays, boundaries: e.target.checked })} data-testid="boundaries" /> part boundaries</label>
-        <label className="check"><input type="checkbox" checked={payload.state.corrections.gussets} onChange={(e) => onOp({ type: "correction.gussets", enabled: e.target.checked })} /> armpit gussets</label>
-      </div>
       <b>Joint deformation correction</b>
       <select value={bone ?? ""} onChange={(e) => onSelectBone(e.target.value)} data-testid="corr-joint">
         <option value="">(select a joint)</option>{Object.keys(payload.state.bones).map((n) => <option key={n} value={n}>{n}{seams[n.replace("upper_arm", "shoulder").replace("forearm", "elbow").replace("thigh", "hip").replace("shin", "knee")] ? " ⚠" : ""}</option>)}</select>

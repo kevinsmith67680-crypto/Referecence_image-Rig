@@ -243,6 +243,79 @@ class PoseService:
             out["boundaries"] = ov
         return out
 
+    # -- Phase 3.1 motion engine (planner -> solver -> garment deformation -> evaluation) -------------------
+    def motion_engine(self, st: dict[str, Any], masks: dict[str, np.ndarray], rejected: set[str]):
+        from ..motion.pipeline import MotionEngine
+        from ..motion.profile import load_overrides
+
+        appr = {k: v for k, v in st["approvals"].items() if k.startswith("corrective:")}
+        key = "motion:" + _digest([st["mask_ops"], st["bones"], st["corrections"], sorted(rejected), appr,
+                                   [(L["id"], L["visible"]) for L in st["layers"]]])
+        if key in self._cache:
+            return self._cache[key]
+        sk = self.skeleton(st, masks, None)
+        layers = {c: self.art.layer_rgba(c, masks, rejected) for c in masks}
+        gen = {c: self.art.generated_mask(c, masks, rejected) for c in masks}
+        cids = [k.split(":", 1)[1] for k in st["approvals"] if k.startswith("corrective:gusset")]
+        eng = MotionEngine(sk, layers, gen, self.art.source, self.variants, st["approvals"], "front",
+                           load_overrides(self.pkg), cids)
+        for k in [k for k in self._cache if k.startswith("motion:")]:
+            self._cache.pop(k)
+        self._cache[key] = eng
+        return eng
+
+    def motion(self, st: dict[str, Any], masks: dict[str, np.ndarray], rejected: set[str], body: dict[str, Any]
+               ) -> dict[str, Any]:
+        from ..motion.planner import SPEC_BY_NAME
+
+        name = body.get("preset", "relaxed_standing")
+        if name not in SPEC_BY_NAME:
+            raise PoseError(f"unknown preset {name}")
+        eng = self.motion_engine(st, masks, rejected)
+        visible = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+        overrides = {k: float(v) for k, v in (body.get("overrides") or {}).items()}
+        unknown = [b for b in overrides if b not in eng.sk.idx]
+        if unknown:
+            raise PoseError(f"unknown bones in overrides: {unknown}")
+        r = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
+                     0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
+                     skeleton_only=bool(body.get("skeleton_only")))
+        s = r["solve"]
+        out = {"name": name, "title": r["title"], "kind": r["kind"], "phase": r["phase"], "pad": r["pad"],
+               "joints_posed": s["joints_posed"], "bone_tails_posed": s["bone_tails_posed"], "contact": s["contact"],
+               "com": [round(float(v), 2) for v in s["com"]], "support": s["support"],
+               "feasibility": r["feasibility"], "hands": r["hands"], "corrections": r["corrections"],
+               "timing_ms": r["timing_ms"], "phase_name": r["intent"].channels.get("phase_name"),
+               "violations": s["violations"], "clamps": s["clamps"], "spec": r["spec"],
+               "local_rotation_deg": {b.name: round(float(r["pose"].theta[i]), 2) for i, b in enumerate(eng.sk.bones)}}
+        if body.get("skeleton_only"):
+            return out
+        q = r["quality"]
+        out.update({"image": r["image"], "quality": {k: q[k] for k in ("checks", "numerical", "warnings",
+                                                                       "review_items", "visual_quality")},
+                    "status": r["feasibility"]["status"],
+                    "confidence": f"{q['numerical']['passed']}/{q['numerical']['total']} checks",
+                    "defects": q["warnings"] + q["review_items"],
+                    "needs_artwork": [f"{m['asset']} ({m['state']})" for m in r["feasibility"]["missing"]],
+                    "tear_points": r["tears"]["exposed_gap"] + r["tears"]["visible_seam"],
+                    "order": r["order"], "gussets": [{k: g[k] for k in ("side", "pixels")} for g in r["gussets"]]})
+        kinds = [k for k in body.get("diagnostics") or [] if k]
+        if kinds:
+            out["diagnostics"] = eng.diagnostics(r, kinds)
+        if body.get("before"):
+            b = eng.legacy(name, r["pad"])
+            if b is not None:
+                out["before"] = b["image"]
+        return out
+
+    @staticmethod
+    def motion_presets() -> list[dict[str, Any]]:
+        from ..motion.planner import LIBRARY
+
+        return [{"name": "rest", "title": "Reference pose (manual rotations)", "kind": "manual"}] + \
+               [{"name": s.name, "title": s.title, "intent": s.intent, "kind": s.kind,
+                 "depth_motion": s.depth_motion, "fallback": s.fallback} for s in LIBRARY]
+
     @staticmethod
     def presets() -> list[dict[str, Any]]:
         return [{"name": "rest", "title": "Reference pose (manual rotations)"}] + \
