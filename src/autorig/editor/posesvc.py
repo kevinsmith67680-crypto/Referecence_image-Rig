@@ -265,6 +265,7 @@ class PoseService:
         w_key = _digest([w_ops])
         if eng is not None and getattr(eng, "_hand_key", None) == hand_key:
             self._sync_weights(eng, w_ops, w_key)
+            self.sync_correctives(eng)
             return eng
         sk = eng.sk if eng is not None else self.skeleton(st, masks, None)
         layers = eng.layers if eng is not None else {c: self.art.layer_rgba(c, masks, rejected) for c in masks}
@@ -275,20 +276,122 @@ class PoseService:
             gen = {c: self.art.generated_mask(c, masks, rejected) for c in masks}
             from ..garmentrig.structure import load_config  # noqa: PLC0415
 
+            from ..garmentrig.correctives import CorrectiveArtworkStore  # noqa: PLC0415
+
             eng = MotionEngine(sk, layers, gen, self.art.source, self.variants, st["approvals"], "front",
                                load_overrides(self.pkg), cids, corrective_manifest(self.pkg), hs,
-                               "structured", load_config(self.pkg), w_ops)
+                               "structured", load_config(self.pkg), w_ops, CorrectiveArtworkStore(self.pkg))
             eng._weights_key = w_key
             for k in [k for k in self._cache if k.startswith("motion:")]:
                 self._cache.pop(k)
             self._cache[base_key] = eng
         eng._hand_key = hand_key
         self._sync_weights(eng, w_ops, w_key)
+        self.sync_correctives(eng)
         from ..motion.handselect import NaturalHandSelectionEngine, load_rules  # noqa: PLC0415
 
         eng.hand_select = NaturalHandSelectionEngine.for_character(
             load_rules(self.pkg), (st.get("hand_selection") or {}).get("weights"))
         return eng
+
+    # -- Phase 3.4 Correctives tab ------------------------------------------------------------------------
+    def correctives(self, st: dict[str, Any]) -> dict[str, Any]:
+        """Assets (latest versions, all versions listed), approval state, requirements, settings, quality summary."""
+        from ..garmentrig.correctives import CorrectiveArtworkStore, approval_state  # noqa: PLC0415
+
+        store = CorrectiveArtworkStore(self.pkg)
+        appr = st["approvals"]
+        latest = {a.asset_id: a for a in store.latest()}
+        versions: dict[str, list[dict[str, Any]]] = {}
+        for rec in store.index["assets"]:
+            versions.setdefault(rec["asset_id"], []).append(
+                {"version": rec["version"], "provenance": rec["provenance"], "created": rec.get("created"),
+                 "state": (appr.get(f"corrective:{rec['asset_id']}@v{rec['version']}") or {}).get("status",
+                                                                                                 "pending_review")})
+        assets = []
+        for a in latest.values():
+            imgs = [{"key": "main", "file": a.file}] if a.file else []
+            imgs += [{"key": k["key_id"], "file": k.get("file"), "values": k.get("values")} for k in a.keys
+                     if k.get("file")]
+            assets.append({"asset_id": a.asset_id, "version": a.version, "category": a.category,
+                           "body_part": a.body_part, "side": a.side, "method": a.method, "provenance": a.provenance,
+                           "approval_key": a.approval_key, "state": approval_state(appr, a),
+                           "activation": a.activation, "drivers": a.drivers, "placement": a.placement,
+                           "procedural": bool(a.params.get("procedural")), "images": imgs,
+                           "replaceable": bool(a.file) and not a.params.get("procedural")
+                                          and a.placement.get("mode") != "derived_layers",
+                           "moho": a.moho, "requirement_id": a.requirement_id, "versions": versions.get(a.asset_id, [])})
+        def _load(rel):
+            f = self.pkg / rel
+            return json.loads(f.read_text()) if f.is_file() else None
+        q = _load("reports/corrective_quality.json") or {}
+        return {"assets": sorted(assets, key=lambda x: (x["category"], x["asset_id"])),
+                "requirements": (_load("analysis/corrective_requirements.json") or {}).get("requirements", []),
+                "settings": (st.get("correctives") or {}).get("settings", {}),
+                "mode": (st.get("correctives") or {}).get("mode", "auto"),
+                "quality": {k: {"status": v["status"], "title": v.get("title")}
+                            for k, v in ((q.get("results") or {}).get("poses") or {}).items()},
+                "store_ok": not store.verify(),
+                "note": "Generated corrective artwork is pending review until you approve it. Nothing is approved "
+                        "automatically; you can keep editing without accepting any of it."}
+
+    def corrective_image(self, rel: str) -> np.ndarray:
+        from ..garmentrig.correctives import CorrectiveArtworkStore  # noqa: PLC0415
+
+        store = CorrectiveArtworkStore(self.pkg)
+        known = {r for a in store.index["assets"] for r in a.get("sha256", {})}
+        if rel not in known:
+            raise PoseError(f"unknown corrective image {rel!r}")
+        return store.image(rel)
+
+    def corrective_generate(self, st, masks, rejected) -> dict[str, Any]:
+        from ..garmentrig.correctives import CorrectiveArtworkStore, generate_all  # noqa: PLC0415
+
+        eng = self.motion_engine(st, masks, rejected)
+        vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+        log: list[str] = []
+        made = generate_all(eng, CorrectiveArtworkStore(self.pkg), vis, log.append)
+        self.sync_correctives(eng)
+        return {"created": [{"asset_id": a.asset_id, "version": a.version, "approval_key": a.approval_key}
+                            for a in made], "log": log}
+
+    def corrective_replace(self, st, masks, rejected, asset_id: str, rgba: np.ndarray, note: str = "") -> dict[str, Any]:
+        """Manual artwork: the user's drawing replaces an image asset as a new version (ARTIST_EDITED, pending
+        review). Same placement, attachment and activation; the drawing must have the asset's canvas size."""
+        import copy as _c  # noqa: PLC0415
+
+        from ..garmentrig.correctives import CorrectiveArtworkStore  # noqa: PLC0415
+
+        store = CorrectiveArtworkStore(self.pkg)
+        cur = next((a for a in store.latest() if a.asset_id == asset_id), None)
+        if cur is None:
+            raise PoseError(f"unknown corrective asset {asset_id!r}")
+        if not cur.file or cur.params.get("procedural") or cur.placement.get("mode") == "derived_layers":
+            raise PoseError(f"{asset_id} is procedural (its shape follows the pose): edit its settings instead")
+        old = store.image(cur.file)
+        if rgba.ndim != 3 or rgba.shape[2] != 4 or rgba.shape[:2] != old.shape[:2]:
+            raise PoseError(f"the drawing must be RGBA {old.shape[1]}x{old.shape[0]} (the asset's canvas)")
+        if not (rgba[..., 3] > 0).any():
+            raise PoseError("the drawing is empty")
+        new = _c.deepcopy(cur)
+        new.provenance = "ARTIST_EDITED"
+        new.method = f"{cur.method} + artist drawing"
+        new.params = {**cur.params, "replaces_version": cur.version, "note": note[:200]}
+        new.source_refs = list(cur.source_refs) + [f"artist drawing (editor upload) replacing v{cur.version}"]
+        new.sha256 = {}
+        a = store.add(new, {"main": rgba.astype(np.uint8)})
+        eng = self.motion_engine(st, masks, rejected)
+        self.sync_correctives(eng)
+        return {"asset_id": a.asset_id, "version": a.version, "approval_key": a.approval_key,
+                "provenance": a.provenance}
+
+    def sync_correctives(self, eng) -> None:
+        """Re-read the corrective store when its index changed (generation, replacement drawing)."""
+        f = self.pkg / "analysis" / "corrective_assets.json"
+        rev = hashlib.sha256(f.read_bytes()).hexdigest()[:12] if f.is_file() else None
+        if eng.correctives is not None and getattr(eng, "_corrective_rev", None) != rev:
+            eng.correctives.reload()
+            eng._corrective_rev = rev
 
     @staticmethod
     def _sync_weights(eng, ops, key) -> None:
@@ -325,13 +428,19 @@ class PoseService:
             else:
                 hand_layers = {hp["side"]: v.layer}
         hsel = st.get("hand_selection") or {}
+        cst = st.get("correctives") or {}
+        cmode = body.get("corrective_mode") or cst.get("mode", "auto")
+        if cmode not in ("auto", "all", "off") and not str(cmode).startswith("only:"):
+            raise PoseError(f"unknown corrective_mode {cmode!r}")
+        csettings = cst.get("settings") or {}
         actions = {**(hsel.get("actions") or {}), **(body.get("hand_actions") or {})}
         targets = {**(hsel.get("targets") or {}), **(body.get("hand_targets") or {})}
         r = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
                      0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
                      skeleton_only=bool(body.get("skeleton_only")), fluid=bool(body.get("fluid", True)),
                      ik=ik, switches=switches, switch_time=body.get("switch_time"), hand_layers=hand_layers,
-                     hand_actions={k: v for k, v in actions.items() if v}, hand_targets={k: v for k, v in targets.items() if v})
+                     hand_actions={k: v for k, v in actions.items() if v}, hand_targets={k: v for k, v in targets.items() if v},
+                     corrective_mode=cmode, corrective_settings=csettings)
         s = r["solve"]
         out = {"name": name, "title": r["title"], "kind": r["kind"], "phase": r["phase"], "pad": r["pad"],
                "joints_posed": s["joints_posed"], "bone_tails_posed": s["bone_tails_posed"], "contact": s["contact"],
@@ -342,6 +451,7 @@ class PoseService:
                "local_rotation_deg": {b.name: round(float(r["pose"].theta[i]), 2) for i, b in enumerate(eng.sk.bones)},
                "ik": self.ik_report(eng, r, ik), "switches": r["switches"],
                "correction_switches": [c for c in r["correction_switches"] if c["on"]], "hand_preview_note": preview_note,
+               "correctives": r.get("correctives", []), "corrective_mode": cmode,
                "hand_selection": {"decisions": {s: {k: d.get(k) for k in ("action", "rule", "chosen", "cid", "score",
                                                                           "reason", "held", "ranking", "aim_applied",
                                                                           "missing_preferred", "overridden_by")}
@@ -365,6 +475,16 @@ class PoseService:
             b = eng.legacy(name, r["pad"])
             if b is not None:
                 out["before"] = b["image"]
+        if body.get("corrective_compare"):  # the same pose without corrective artwork (before/after)
+            b = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
+                         0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
+                         fluid=bool(body.get("fluid", True)), ik=ik, switches=switches,
+                         switch_time=body.get("switch_time"), hand_layers=hand_layers,
+                         hand_actions={k: v for k, v in actions.items() if v},
+                         hand_targets={k: v for k, v in targets.items() if v}, evaluate_garments=False,
+                         corrective_mode="off")
+            out["corrective_before"] = b["image"]
+        out["corrective_px"] = int(r["render"].get("corrective_px", 0))
         return out
 
     @staticmethod

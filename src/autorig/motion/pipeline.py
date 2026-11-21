@@ -70,7 +70,7 @@ class MotionEngine:
                  profile_overrides: dict[str, Any] | None = None, corrective_ids: list[str] | None = None,
                  corrective_manifest: dict[str, Any] | None = None, hand_store: dict[str, Any] | None = None,
                  garment_mode: str = "structured", garment_config: dict[str, Any] | None = None,
-                 weight_ops: list[dict[str, Any]] | None = None):
+                 weight_ops: list[dict[str, Any]] | None = None, corrective_store: Any = None):
         """``hand_store``: {"layers": derived rest layers of stored hand drawings, "candidates": their records,
         "use": the user's active-candidate choices} (``handstore.derive_layers``; built by the editor).
 
@@ -144,6 +144,11 @@ class MotionEngine:
         self._offset_layers: dict[tuple, str] = {}
         self._view, self._corrective_ids, self._corrective_manifest = view, corrective_ids, corrective_manifest
         self.hand_select = NaturalHandSelectionEngine()  # engine_for_package loads the character's rules
+        self.correctives = None  # Phase 3.4 corrective artwork runtime (structured mode, store given)
+        if garment_mode == "structured":
+            from ..garmentrig.correctives import CorrectiveRuntime
+
+            self.correctives = CorrectiveRuntime(self, corrective_store)
         self.build_s = round(time.time() - t0, 3)
 
     def set_hand_store(self, hand_store: dict[str, Any] | None, approvals: dict[str, Any]) -> dict[str, Any]:
@@ -527,9 +532,16 @@ class MotionEngine:
              hand_layers: dict[str, str] | None = None, hand_actions: dict[str, str | None] | None = None,
              hand_targets: dict[str, Any] | None = None, hand_state: dict[str, Any] | None = None,
              hand_time: float | None = None, hand_beat: int | None = None, hand_aim: bool = True,
-             previous_wrists: dict[str, Any] | None = None, evaluate_garments: bool = True) -> dict[str, Any]:
+             previous_wrists: dict[str, Any] | None = None, evaluate_garments: bool = True,
+             corrective_mode: str = "auto", corrective_overrides: dict[str, Any] | None = None,
+             _preview_assets: list[Any] | None = None,
+             corrective_settings: dict[str, Any] | None = None) -> dict[str, Any]:
         """Processing order: intent -> contact/IK targets -> skeletal solve -> hand selection (+ wrist aim) ->
         correction selection -> garment deformation -> switch resolution -> composition -> evaluation.
+
+        ``corrective_mode`` (Phase 3.4 corrective artwork): "auto" draws approved assets (pending ones only with
+        ``allow_pending``), "all" previews every asset that is not rejected, "off" draws none.
+        ``corrective_overrides``: asset id -> weight (0..1) or False (artist override of the pose-space weight).
 
         Hand selection: ``hand_actions`` (side -> action; default from the preset), ``hand_targets`` (side ->
         [x, y]: pointing/gripping targets; a gripping target also moves that arm's IK target so the grip centre
@@ -598,7 +610,33 @@ class MotionEngine:
                 pivot = self.sk.bone(f"hand_{s}").head
                 order[order.index(base)] = self._offset_layer(base, pivot, off)
         t1 = time.perf_counter()
-        r = self.dfm.render_with(pose, order, corr, pad)
+        cplan = {"pieces": [], "fills": [], "report": []}
+        if self.correctives is not None:
+            cplan = self.correctives.plan(readings, pose, self.approvals, allow_pending, corrective_mode,
+                                          corrective_overrides, _preview_assets, corrective_settings)
+        creport = cplan["report"]
+        swapped: dict[str, np.ndarray] = {}
+        if self.correctives is not None:  # edge decontamination: derived layers swapped in for this render only
+            dec_ov = dict(corrective_overrides or {})
+            for a_id, sv in (corrective_settings or {}).items():
+                if sv.get("enabled") is False:
+                    dec_ov[a_id] = False
+            dst = self.correctives.decont_state(self.approvals, allow_pending, corrective_mode, dec_ov)
+            if dst is not None:
+                creport.append(dst)
+                if dst["shown"]:
+                    for c, pre in self.correctives.decont_pre().items():
+                        if c in self.dfm.info:
+                            swapped[c] = self.dfm.info[c]["pre"]
+                            self.dfm.info[c]["pre"] = pre
+        res["correctives"] = creport
+        self.dfm.correctives, self.dfm.gap_fills = cplan["pieces"], cplan["fills"]
+        try:
+            r = self.dfm.render_with(pose, order, corr, pad)
+        finally:
+            self.dfm.correctives, self.dfm.gap_fills = [], []
+            for c, pre in swapped.items():
+                self.dfm.info[c]["pre"] = pre
         tears = self.dfm.tears_with(pose, r, corr, self.dark)
         t_render = time.perf_counter() - t1
         gussets, gusset_need = [], False
@@ -606,7 +644,7 @@ class MotionEngine:
                      if np.hypot(x - pad - info["joints_posed"][f"upper_arm_{s}"][0],
                                  y - pad - info["joints_posed"][f"upper_arm_{s}"][1])
                      <= 2.2 * self.sk.bone(f"upper_arm_{s}").h)
-        if armpit >= 6:
+        if armpit >= 6 and not any(c["shown"] and c["category"] == "armpits" for c in creport):
             gusset_need = True
             states = [self.inventory.correctives.get(f"gusset__{name}__{s}", "missing") for s in SIDES]
             if all(st == "approved" for st in states if st != "missing") and any(st != "missing" for st in states) \
@@ -615,6 +653,13 @@ class MotionEngine:
                 if gussets:
                     tears = self.dfm.tears_with(pose, r, corr, self.dark)
         feas = self._feasibility(spec, it, hands, corr, solver_notes, csw, gusset_need, exaggeration)
+        if self.correctives is not None and self.correctives.assets:  # Phase 3.4 assets answering earlier names
+            from ..garmentrig.correctives import answered_by  # noqa: PLC0415
+
+            for entry in feas["missing"] + feas.get("optional_assets", []):
+                ans = answered_by(str(entry.get("asset", "")), self.correctives.assets, self.approvals)
+                if ans:
+                    entry["answered_by"] = ans
         pending = [f"hand {s}: {h['drawing']}" for s, h in hands.items() if h["pending_review"]]
         if gussets and any(self.inventory.correctives.get(f"gusset__{name}__{g['side']}") != "approved"
                            for g in gussets):
@@ -881,9 +926,11 @@ def engine_for_package(pkg, view: str = "front", garment_mode: str = "structured
     hs = engine_input(pkg, st.get("hand_store"), sk, layers, ps.variants, st["approvals"], art.source)
     from ..garmentrig.structure import load_config
 
+    from ..garmentrig.correctives import CorrectiveArtworkStore
+
     eng = MotionEngine(sk, layers, gen, art.source, ps.variants, st["approvals"], view, load_overrides(pkg), cids,
                        corrective_manifest(pkg), hs, garment_mode, load_config(pkg),
-                       (st.get("garment_weights") or {}).get("ops"))
+                       (st.get("garment_weights") or {}).get("ops"), CorrectiveArtworkStore(pkg))
     eng.hand_select = NaturalHandSelectionEngine.for_character(load_rules(pkg), (st.get("hand_selection") or {}).get("weights"))
     vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in m]
     del json

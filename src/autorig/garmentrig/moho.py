@@ -59,3 +59,32 @@ def matrix_json() -> dict[str, Any]:
             "notes": ["Moho did not run in this phase; nothing here is verified in Moho",
                       "no Moho Lua API names are introduced; a native exporter is Phase 4",
                       "per-vertex weights are not assumed to import into Moho"]}
+
+
+# -- Phase 3.4: corrective artwork library ------------------------------------------------------------------------
+CORRECTIVE_CLASSES = {
+    "direct": "imports as an ordinary image layer bound to one bone (no behaviour needed)",
+    "conversion": "needs a native construct to reproduce the activation (e.g. a Smart Bone action showing the layer)",
+    "switch_approximation": "keyed drawings in a switch layer; Moho picks one key, AutoRig blends two",
+    "baked": "AutoRig computes the shape per pose; Moho would get baked key drawings (approximation)",
+    "manual": "cannot be reproduced; an artist rebuilds it in Moho",
+}
+
+
+def corrective_matrix(assets) -> dict[str, Any]:
+    """How each corrective asset could reach Moho. Every mapping is ``proposed_unverified``: Moho was not run and no
+    exporter exists. Verified and proposed mappings are kept in separate lists; the verified list is empty."""
+    rows = []
+    for a in assets:
+        m = dict(a.moho or {})
+        cls = m.get("class", "manual")
+        rows.append({"asset_id": a.asset_id, "version": a.version, "category": a.category, "class": cls,
+                     "class_meaning": CORRECTIVE_CLASSES.get(cls, ""), "mapping": m.get("mapping", ""),
+                     "autorig_runtime": {"procedural": bool(a.params.get("procedural")),
+                                         "placement": a.placement.get("mode"), "activation": a.activation.get("kind")},
+                     "status": "proposed_unverified"})
+    return {"schema": "autorig.moho_corrective_compatibility", "version": "1.0.0", "classes": CORRECTIVE_CLASSES,
+            "verified": [], "proposed": rows,
+            "notes": ["Moho was not run in Phase 3.4: no mapping is verified.",
+                      "No Moho Lua API members are used or invented; no .moho file and no exporter are produced.",
+                      "Smart Bone actions and switch layers are named as the likely native constructs only."]}

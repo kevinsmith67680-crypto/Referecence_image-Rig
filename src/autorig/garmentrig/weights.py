@@ -52,6 +52,7 @@ class WeightMesh:
     touched: np.ndarray | None = None  # (gh, gw) int: number of user ops that changed the vertex
     cum: dict[int, np.ndarray] = field(default_factory=dict)  # bone index -> (gh, gw) subtree influence
     dom: np.ndarray | None = None  # (gh, gw) skeleton index of the dominant bone
+    _stencil_cache: Any = field(default=None, repr=False, compare=False)  # (points, bilinear stencil)
 
     @property
     def shape(self) -> tuple[int, int]:
@@ -80,8 +81,21 @@ class WeightMesh:
         g = self.cum.get(int(b))
         if g is None:
             return np.zeros(len(pts), np.float32)
-        gy, gx = self.grid_coords(pts)
-        return _bilinear(g, gy, gx)
+        # Phase 3.4 performance: one render asks for every bone's influence on the same points; the bilinear
+        # stencil is computed once per points array (same arithmetic as ``_bilinear``: results are identical)
+        st = self._stencil_cache
+        if st is None or st[0] is not pts:
+            gy, gx = self.grid_coords(pts)
+            gh, gw = g.shape
+            gy = np.clip(gy, 0, gh - 1.000001)
+            gx = np.clip(gx, 0, gw - 1.000001)
+            y0, x0 = gy.astype(np.int64), gx.astype(np.int64)
+            fy, fx = (gy - y0).astype(np.float32), (gx - x0).astype(np.float32)
+            y1, x1 = np.minimum(y0 + 1, gh - 1), np.minimum(x0 + 1, gw - 1)
+            st = (pts, (y0, x0, y1, x1, fy, fx, 1 - fy, 1 - fx))
+            self._stencil_cache = st
+        y0, x0, y1, x1, fy, fx, ify, ifx = st[1]
+        return (g[y0, x0] * ifx + g[y0, x1] * fx) * ify + (g[y1, x0] * ifx + g[y1, x1] * fx) * fy
 
     def lag_at(self, pts: np.ndarray) -> np.ndarray:
         gy, gx = self.grid_coords(pts)
@@ -255,10 +269,16 @@ class WeightSet:
             clav[s] = stp * vf
             rule[f"clavicle_{s}"] = clav[s]
 
+        # the collar follows the neck only partly, over a wide band: a +-6 px neck band across a ~160 px collar
+        # sheared the collar points at every small neck rotation (Phase 3.4 baseline D7)
+        t_cn = tr("collar_neck", sk.s(I["neck"], pts), max(sk.bone("neck").h, 12.0)) * float(
+            cfg.get("collar_neck_share", 0.5))
+        rule["collar_neck"] = t_cn
+
         def body_w(sel: np.ndarray, clav_share: float = 1.0, allow_neck: bool = False) -> np.ndarray:
             v = body[:, sel].copy()
             if allow_neck:
-                nk = t_nk[sel] * v[I["chest"]]
+                nk = t_cn[sel] * v[I["chest"]]
                 v[I["neck"]] += nk
                 v[I["chest"]] -= nk
             for s in SIDES:

@@ -29,11 +29,13 @@ const SHOTS = process.env.AUTORIG_SHOTS || path.join(repo, "docs/phase3/screensh
 const SHOTS32 = process.env.AUTORIG_SHOTS_P32 || path.join(repo, "docs/phase3_2/screenshots");
 const SHOTSHR = process.env.AUTORIG_SHOTS_HR || path.join(repo, "docs/hand_replacement/screenshots");
 const SHOTS33 = process.env.AUTORIG_SHOTS_P33 || path.join(repo, "docs/phase3_3/screenshots");
+const SHOTS34 = process.env.AUTORIG_SHOTS_P34 || path.join(repo, "docs/phase3_4/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
 mkdirSync(SHOTS32, { recursive: true });
 mkdirSync(SHOTS33, { recursive: true });
+mkdirSync(SHOTS34, { recursive: true });
 
 const sha = (f) => createHash("sha256").update(readFileSync(f)).digest("hex");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -545,6 +547,55 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     assert.ok(gi.pivots.some((p) => p.joint === "shoulder_l" && p.aligned));
     await page.reload();
     await page.waitForSelector("[data-testid=layers-panel]");
+
+    // 6g. Phase 3.4 corrective artwork: everything pending review, before/after in a raised-arm pose, approve one
+    // asset (user action), a per-asset setting, undo, persistence after a reload
+    const ci = await api("/api/correctives");
+    assert.ok(ci.assets.length >= 9, `corrective assets in the package: ${ci.assets.length}`);
+    assert.ok(ci.assets.every((a) => a.state === "pending_review"), "nothing is approved automatically");
+    await page.click("[data-testid=tab-Pose]");
+    await page.selectOption("[data-testid=preset]", "both_hands_raised");
+    await page.click("[data-testid=tab-Correctives]");
+    await page.waitForSelector("[data-testid=correctives-table]", { timeout: 60000 });
+    r0 = await rev(page);
+    await page.selectOption("[data-testid=correctives-mode]", "all");
+    await waitRev(page, r0);
+    await page.click("[data-testid=correctives-preview]");
+    await page.waitForSelector("[data-testid=correctives-compare]", { timeout: 180000 });
+    assert.match(await page.textContent("[data-testid=correctives-active]"), /armpit_gusset_r/);
+    await page.waitForFunction(() => /ready/.test(document.querySelector("[data-testid=correctives-canvas]")?.textContent ?? ""),
+      null, { timeout: 180000 });
+    assert.match(await page.textContent("[data-testid=correctives-canvas]"), /armpit_gusset/, "the canvas pose previews the gussets");
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: path.join(SHOTS34, "01_correctives_both_raised_before_after.png") });
+    await page.click("[data-testid=corrective-armpit_gusset_r]");
+    await page.waitForSelector("[data-testid=corrective-detail]");
+    await page.screenshot({ path: path.join(SHOTS34, "02_corrective_detail_pending.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=corrective-approve]");
+    await waitRev(page, r0);
+    const key = ci.assets.find((a) => a.asset_id === "armpit_gusset_r").approval_key;
+    assert.equal((await api("/api/project")).state.approvals[key].status, "approved");
+    r0 = await rev(page);
+    await page.click("[data-testid=corrective-enabled]");
+    await waitRev(page, r0);
+    assert.equal((await api("/api/project")).state.correctives.settings.armpit_gusset_r.enabled, false);
+    r0 = await rev(page);
+    await page.click("[data-testid=undo]");
+    await waitRev(page, r0);
+    assert.notEqual((await api("/api/project")).state.correctives.settings.armpit_gusset_r?.enabled, false, "undo restores the setting");
+    await page.reload();
+    await page.waitForSelector("[data-testid=layers-panel]");
+    await page.click("[data-testid=tab-Correctives]");
+    await page.waitForSelector("[data-testid=correctives-table]", { timeout: 60000 });
+    assert.match(await page.textContent("[data-testid=corrective-state-armpit_gusset_r]"), /approved/, "approval persists");
+    await page.waitForFunction(() => /ready/.test(document.querySelector("[data-testid=correctives-canvas]")?.textContent ?? ""),
+      null, { timeout: 180000 });
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: path.join(SHOTS34, "03_correctives_after_reload.png") });
+    r0 = await rev(page);
+    await page.selectOption("[data-testid=correctives-mode]", "auto");
+    await waitRev(page, r0);
 
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");

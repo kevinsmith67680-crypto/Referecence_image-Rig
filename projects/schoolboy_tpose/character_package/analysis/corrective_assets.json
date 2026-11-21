@@ -1,0 +1,1263 @@
+{
+ "schema": "autorig.corrective_assets",
+ "version": "1.0.0",
+ "assets": [
+  {
+   "asset_id": "shoe_top_r",
+   "category": "shoes",
+   "body_part": "shoe_r",
+   "side": "r",
+   "method": "ShoeTopRecovery",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "foot_r",
+   "placement": {
+    "mode": "before",
+    "layer": "foot_r"
+   },
+   "drivers": [
+    "ankle_r"
+   ],
+   "activation": {
+    "kind": "always"
+   },
+   "keys": [],
+   "file": "artwork/correctives/shoes/shoe_top_r@v1.png",
+   "origin": [
+    260.0,
+    1209.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "pose": "any (static extension)"
+   },
+   "compatible_layers": [
+    "foot_r"
+   ],
+   "params": {
+    "depth_px": 56,
+    "columns": 110,
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     6,
+     5,
+     5
+    ]
+   },
+   "source_refs": [
+    "layer:foot_r (visible top band)",
+    "layer:shin_r (hiding region)"
+   ],
+   "requirement_id": "REQ-shoe_top_r",
+   "priority": 1,
+   "exclusive_group": null,
+   "moho": {
+    "class": "direct",
+    "mapping": "extra image layer bound to the foot bone, under the trouser",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:10:53Z",
+   "sha256": {
+    "artwork/correctives/shoes/shoe_top_r@v1.png": "191f86907dc207c07fbff4653f56272c5a1a2740d660f939a2a5cea0778d418d"
+   }
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "category": "elbows",
+   "body_part": "elbow_r",
+   "side": "r",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "upper_arm_r",
+   "placement": {
+    "mode": "after_patches",
+    "group": "arm_r"
+   },
+   "drivers": [
+    "elbow_r"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "elbow_r",
+    "lo": 50.0,
+    "hi": 90.0
+   },
+   "keys": [],
+   "file": "artwork/correctives/elbows/elbow_cap_r@v1.png",
+   "origin": [
+    227.0,
+    424.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "elbow_r": ">= 90.0 deg (eased from 50.0)"
+   },
+   "compatible_layers": [
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "params": {
+    "radius_px": 46.5,
+    "centre": [
+     277.2,
+     474.3
+    ],
+    "fill_rgb": [
+     43,
+     39,
+     49
+    ],
+    "outline_width_px": 2.5,
+    "outline_rgb": [
+     8,
+     7,
+     8
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   },
+   "source_refs": [
+    "layer:upper_arm_r (fabric colour and outline near the joint)",
+    "layer:forearm_r (fabric colour and outline near the joint)"
+   ],
+   "requirement_id": "REQ-elbow_cap_r",
+   "priority": 2,
+   "exclusive_group": null,
+   "moho": {
+    "class": "conversion",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:10:54Z",
+   "sha256": {
+    "artwork/correctives/elbows/elbow_cap_r@v1.png": "3fc8d8f79cfd511fe00c03156bf6351b776b37ae8beb32cad22443b4034de296"
+   }
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "category": "knees",
+   "body_part": "knee_r",
+   "side": "r",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "thigh_r",
+   "placement": {
+    "mode": "after_patches",
+    "group": "leg_r"
+   },
+   "drivers": [
+    "knee_r"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "knee_r",
+    "lo": 20.0,
+    "hi": 60.0
+   },
+   "keys": [],
+   "file": "artwork/correctives/knees/knee_cap_r@v1.png",
+   "origin": [
+    336.0,
+    949.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "knee_r": ">= 60.0 deg (eased from 20.0)"
+   },
+   "compatible_layers": [
+    "thigh_r",
+    "shin_r"
+   ],
+   "params": {
+    "radius_px": 58.5,
+    "centre": [
+     398.0,
+     1011.2
+    ],
+    "fill_rgb": [
+     47,
+     39,
+     37
+    ],
+    "outline_width_px": 5.0,
+    "outline_rgb": [
+     6,
+     5,
+     5
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   },
+   "source_refs": [
+    "layer:thigh_r (fabric colour and outline near the joint)",
+    "layer:shin_r (fabric colour and outline near the joint)"
+   ],
+   "requirement_id": "REQ-knee_cap_r",
+   "priority": 2,
+   "exclusive_group": null,
+   "moho": {
+    "class": "conversion",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:10:54Z",
+   "sha256": {
+    "artwork/correctives/knees/knee_cap_r@v1.png": "b5355e0ac220d36055562d2d7830cf3ec213f1795b6c66033e1508e235169d92"
+   }
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "category": "armpits",
+   "body_part": "armpit_r",
+   "side": "r",
+   "method": "ArmpitCorrectionGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "chest",
+   "placement": {
+    "mode": "gap_fill_beneath"
+   },
+   "drivers": [
+    "abduction_r",
+    "clavicle_r",
+    "torso_bend"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "abduction_r",
+    "lo": 80.0,
+    "hi": 95.0
+   },
+   "keys": [
+    {
+     "key_id": "abd115",
+     "values": {
+      "abduction_r": 115.0
+     },
+     "origin": [
+      531.0,
+      597.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       180.55116012181145
+      ],
+      [
+       0.0,
+       1.0,
+       136.1006777861246
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 1142,
+     "curve": {
+      "T": [
+       585.0,
+       656.0
+      ],
+      "S": [
+       533.0,
+       629.0
+      ],
+      "C": [
+       559.0,
+       642.5
+      ],
+      "convex": true,
+      "chord_px": 58.6,
+      "px": 1142
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd115@v1.png"
+    },
+    {
+     "key_id": "abd130",
+     "values": {
+      "abduction_r": 130.0
+     },
+     "origin": [
+      515.0,
+      574.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       178.27550200560887
+      ],
+      [
+       0.0,
+       1.0,
+       135.91381913541215
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 2295,
+     "curve": {
+      "T": [
+       581.0,
+       655.0
+      ],
+      "S": [
+       517.0,
+       604.0
+      ],
+      "C": [
+       549.0,
+       629.5
+      ],
+      "convex": true,
+      "chord_px": 81.8,
+      "px": 2295
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd130@v1.png"
+    },
+    {
+     "key_id": "abd145",
+     "values": {
+      "abduction_r": 145.0
+     },
+     "origin": [
+      505.0,
+      558.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       174.6920253983883
+      ],
+      [
+       0.0,
+       1.0,
+       135.63903780432486
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 3607,
+     "curve": {
+      "T": [
+       577.0,
+       655.0
+      ],
+      "S": [
+       507.0,
+       576.0
+      ],
+      "C": [
+       524.0,
+       605.5
+      ],
+      "convex": true,
+      "chord_px": 105.6,
+      "px": 3607
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd145@v1.png"
+    },
+    {
+     "key_id": "abd160",
+     "values": {
+      "abduction_r": 160.0
+     },
+     "origin": [
+      499.0,
+      543.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       170.06183777638057
+      ],
+      [
+       0.0,
+       1.0,
+       135.31920029053435
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 5032,
+     "curve": {
+      "T": [
+       571.0,
+       654.0
+      ],
+      "S": [
+       501.0,
+       545.0
+      ],
+      "C": [
+       522.5,
+       621.6
+      ],
+      "convex": true,
+      "chord_px": 129.5,
+      "px": 5032
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd160@v1.png"
+    },
+    {
+     "key_id": "abd175",
+     "values": {
+      "abduction_r": 175.0
+     },
+     "origin": [
+      496.0,
+      512.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       164.70631006304643
+      ],
+      [
+       0.0,
+       1.0,
+       135.29904887960186
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 6407,
+     "curve": {
+      "T": [
+       571.0,
+       655.0
+      ],
+      "S": [
+       501.0,
+       514.0
+      ],
+      "C": [
+       503.0,
+       545.2
+      ],
+      "convex": true,
+      "chord_px": 157.4,
+      "px": 6407
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd175@v1.png"
+    }
+   ],
+   "file": null,
+   "origin": [
+    0.0,
+    0.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "abduction_r": ">= 95 deg (eased from 80); shape follows the gap"
+   },
+   "compatible_layers": [
+    "torso",
+    "upper_arm_r"
+   ],
+   "params": {
+    "fill_rgb": [
+     44,
+     40,
+     49
+    ],
+    "outline_rgb": [
+     11,
+     9,
+     11
+    ],
+    "outline_width_px": 2.0,
+    "shade_min": 0.72,
+    "max_bulge": 0.45,
+    "parts": [
+     "sleeve_upper_r",
+     "sleeve_cap_r"
+    ],
+    "anchor_bone": "upper_arm_r",
+    "radius_h": 4.0,
+    "procedural": true,
+    "keys_deg": [
+     115.0,
+     130.0,
+     145.0,
+     160.0,
+     175.0
+    ]
+   },
+   "source_refs": [
+    "renderer: stretch-limit clipped sleeve pixels (the gap)",
+    "layer:upper_arm_r (blazer fabric colour)",
+    "layers torso + upper_arm (outline colour and width)"
+   ],
+   "requirement_id": "REQ-armpit_r",
+   "priority": 1,
+   "exclusive_group": "armpit_r",
+   "moho": {
+    "class": "baked",
+    "mapping": "bake the key previews into a switch layer bound to the chest, selected by a Smart Bone action on the shoulder angle",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:11:05Z",
+   "sha256": {
+    "artwork/correctives/armpits/armpit_gusset_r__abd115@v1.png": "417cd51d60cdf38e6d717c682c78ff29847d1359b63a2f7b14283cb673f7ef56",
+    "artwork/correctives/armpits/armpit_gusset_r__abd130@v1.png": "8e30c15efa6cac5efceb102668c765c2165789bb494e2712c1df4e6bdb22a4ac",
+    "artwork/correctives/armpits/armpit_gusset_r__abd145@v1.png": "abc44c759cd6532275f2afcb49954f9e1d59312417075ca32552930136339e63",
+    "artwork/correctives/armpits/armpit_gusset_r__abd160@v1.png": "ea3d74947e931bf9a1b1247f1018fe0de80365eac20d0fca9dbd9f868e2cc31b",
+    "artwork/correctives/armpits/armpit_gusset_r__abd175@v1.png": "d3a25cc4debec6aece10098e97529cceb494ce2dc0f255e7dfb5a38e356bfe0f"
+   }
+  },
+  {
+   "asset_id": "shoe_top_l",
+   "category": "shoes",
+   "body_part": "shoe_l",
+   "side": "l",
+   "method": "ShoeTopRecovery",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "foot_l",
+   "placement": {
+    "mode": "before",
+    "layer": "foot_l"
+   },
+   "drivers": [
+    "ankle_l"
+   ],
+   "activation": {
+    "kind": "always"
+   },
+   "keys": [],
+   "file": "artwork/correctives/shoes/shoe_top_l@v1.png",
+   "origin": [
+    708.0,
+    1209.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "pose": "any (static extension)"
+   },
+   "compatible_layers": [
+    "foot_l"
+   ],
+   "params": {
+    "depth_px": 56,
+    "columns": 113,
+    "outline_width_px": 5.0,
+    "outline_rgb": [
+     6,
+     5,
+     5
+    ]
+   },
+   "source_refs": [
+    "layer:foot_l (visible top band)",
+    "layer:shin_l (hiding region)"
+   ],
+   "requirement_id": "REQ-shoe_top_l",
+   "priority": 1,
+   "exclusive_group": null,
+   "moho": {
+    "class": "direct",
+    "mapping": "extra image layer bound to the foot bone, under the trouser",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:11:06Z",
+   "sha256": {
+    "artwork/correctives/shoes/shoe_top_l@v1.png": "6de0932214e734b87b29df753989357b7d11b3807d62384127407c7eec732734"
+   }
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "category": "elbows",
+   "body_part": "elbow_l",
+   "side": "l",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "upper_arm_l",
+   "placement": {
+    "mode": "after_patches",
+    "group": "arm_l"
+   },
+   "drivers": [
+    "elbow_l"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "elbow_l",
+    "lo": 50.0,
+    "hi": 90.0
+   },
+   "keys": [],
+   "file": "artwork/correctives/elbows/elbow_cap_l@v1.png",
+   "origin": [
+    760.0,
+    424.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "elbow_l": ">= 90.0 deg (eased from 50.0)"
+   },
+   "compatible_layers": [
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "params": {
+    "radius_px": 47.0,
+    "centre": [
+     810.2,
+     474.8
+    ],
+    "fill_rgb": [
+     41,
+     38,
+     47
+    ],
+    "outline_width_px": 3.0,
+    "outline_rgb": [
+     7,
+     6,
+     7
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   },
+   "source_refs": [
+    "layer:upper_arm_l (fabric colour and outline near the joint)",
+    "layer:forearm_l (fabric colour and outline near the joint)"
+   ],
+   "requirement_id": "REQ-elbow_cap_l",
+   "priority": 2,
+   "exclusive_group": null,
+   "moho": {
+    "class": "conversion",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:11:06Z",
+   "sha256": {
+    "artwork/correctives/elbows/elbow_cap_l@v1.png": "da9b4177c29531e216c20092671868f2844b47529285292b703218ab737458cf"
+   }
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "category": "knees",
+   "body_part": "knee_l",
+   "side": "l",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "thigh_l",
+   "placement": {
+    "mode": "after_patches",
+    "group": "leg_l"
+   },
+   "drivers": [
+    "knee_l"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "knee_l",
+    "lo": 20.0,
+    "hi": 60.0
+   },
+   "keys": [],
+   "file": "artwork/correctives/knees/knee_cap_l@v1.png",
+   "origin": [
+    618.0,
+    949.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "knee_l": ">= 60.0 deg (eased from 20.0)"
+   },
+   "compatible_layers": [
+    "thigh_l",
+    "shin_l"
+   ],
+   "params": {
+    "radius_px": 60.0,
+    "centre": [
+     681.5,
+     1012.8
+    ],
+    "fill_rgb": [
+     48,
+     40,
+     38
+    ],
+    "outline_width_px": 6.0,
+    "outline_rgb": [
+     6,
+     5,
+     5
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   },
+   "source_refs": [
+    "layer:thigh_l (fabric colour and outline near the joint)",
+    "layer:shin_l (fabric colour and outline near the joint)"
+   ],
+   "requirement_id": "REQ-knee_cap_l",
+   "priority": 2,
+   "exclusive_group": null,
+   "moho": {
+    "class": "conversion",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:11:06Z",
+   "sha256": {
+    "artwork/correctives/knees/knee_cap_l@v1.png": "326d6fd947d73f4aba10d9ddc4cb8cc983b79ec407f52ba6019b748949083d0d"
+   }
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "category": "armpits",
+   "body_part": "armpit_l",
+   "side": "l",
+   "method": "ArmpitCorrectionGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "chest",
+   "placement": {
+    "mode": "gap_fill_beneath"
+   },
+   "drivers": [
+    "abduction_l",
+    "clavicle_l",
+    "torso_bend"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "abduction_l",
+    "lo": 80.0,
+    "hi": 95.0
+   },
+   "keys": [
+    {
+     "key_id": "abd115",
+     "values": {
+      "abduction_l": 115.0
+     },
+     "origin": [
+      822.0,
+      600.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       136.3547562395333
+      ],
+      [
+       0.0,
+       1.0,
+       137.10949868729347
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 1014,
+     "curve": {
+      "T": [
+       824.0,
+       657.0
+      ],
+      "S": [
+       872.0,
+       631.0
+      ],
+      "C": [
+       828.2,
+       655.7
+      ],
+      "convex": true,
+      "chord_px": 54.6,
+      "px": 1014
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd115@v1.png"
+    },
+    {
+     "key_id": "abd130",
+     "values": {
+      "abduction_l": 130.0
+     },
+     "origin": [
+      826.0,
+      577.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       138.60297184764264
+      ],
+      [
+       0.0,
+       1.0,
+       136.91153090214073
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 2089,
+     "curve": {
+      "T": [
+       828.0,
+       656.0
+      ],
+      "S": [
+       888.0,
+       605.0
+      ],
+      "C": [
+       836.3,
+       654.6
+      ],
+      "convex": true,
+      "chord_px": 78.7,
+      "px": 2089
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd130@v1.png"
+    },
+    {
+     "key_id": "abd145",
+     "values": {
+      "abduction_l": 145.0
+     },
+     "origin": [
+      827.0,
+      560.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       142.1724472679639
+      ],
+      [
+       0.0,
+       1.0,
+       136.6165281721054
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 3385,
+     "curve": {
+      "T": [
+       833.0,
+       655.0
+      ],
+      "S": [
+       898.0,
+       578.0
+      ],
+      "C": [
+       852.1,
+       652.6
+      ],
+      "convex": true,
+      "chord_px": 100.8,
+      "px": 3385
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd145@v1.png"
+    },
+    {
+     "key_id": "abd160",
+     "values": {
+      "abduction_l": 160.0
+     },
+     "origin": [
+      827.0,
+      544.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       146.84946849456924
+      ],
+      [
+       0.0,
+       1.0,
+       136.26579791946585
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 4734,
+     "curve": {
+      "T": [
+       839.0,
+       654.0
+      ],
+      "S": [
+       904.0,
+       546.0
+      ],
+      "C": [
+       871.3,
+       650.0
+      ],
+      "convex": true,
+      "chord_px": 126.1,
+      "px": 4734
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd160@v1.png"
+    },
+    {
+     "key_id": "abd175",
+     "values": {
+      "abduction_l": 175.0
+     },
+     "origin": [
+      829.0,
+      518.0
+     ],
+     "bind_matrix": [
+      [
+       1.0,
+       0.0,
+       152.2929873287623
+      ],
+      [
+       0.0,
+       1.0,
+       135.9086379159627
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "gap_fill_px": 5997,
+     "curve": {
+      "T": [
+       904.0,
+       520.0
+      ],
+      "S": [
+       836.0,
+       656.0
+      ],
+      "C": [
+       901.1,
+       593.8
+      ],
+      "convex": true,
+      "chord_px": 152.1,
+      "px": 5997
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd175@v1.png"
+    }
+   ],
+   "file": null,
+   "origin": [
+    0.0,
+    0.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "abduction_l": ">= 95 deg (eased from 80); shape follows the gap"
+   },
+   "compatible_layers": [
+    "torso",
+    "upper_arm_l"
+   ],
+   "params": {
+    "fill_rgb": [
+     42,
+     38,
+     47
+    ],
+    "outline_rgb": [
+     13,
+     11,
+     13
+    ],
+    "outline_width_px": 2.0,
+    "shade_min": 0.72,
+    "max_bulge": 0.45,
+    "parts": [
+     "sleeve_upper_l",
+     "sleeve_cap_l"
+    ],
+    "anchor_bone": "upper_arm_l",
+    "radius_h": 4.0,
+    "procedural": true,
+    "keys_deg": [
+     115.0,
+     130.0,
+     145.0,
+     160.0,
+     175.0
+    ]
+   },
+   "source_refs": [
+    "renderer: stretch-limit clipped sleeve pixels (the gap)",
+    "layer:upper_arm_l (blazer fabric colour)",
+    "layers torso + upper_arm (outline colour and width)"
+   ],
+   "requirement_id": "REQ-armpit_l",
+   "priority": 1,
+   "exclusive_group": "armpit_l",
+   "moho": {
+    "class": "baked",
+    "mapping": "bake the key previews into a switch layer bound to the chest, selected by a Smart Bone action on the shoulder angle",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:11:18Z",
+   "sha256": {
+    "artwork/correctives/armpits/armpit_gusset_l__abd115@v1.png": "8b348b782292a9676e4d5c65b8ed5a260f9211bd37106c9957626645952d83ce",
+    "artwork/correctives/armpits/armpit_gusset_l__abd130@v1.png": "7fd6f86757a25a7d24b5275f5a06916477c0f09a3e47f1dd58d6e00d65af98ba",
+    "artwork/correctives/armpits/armpit_gusset_l__abd145@v1.png": "2a1d4577a6de2d2068c9f3956d0cff435edb43c103a9f0185350168af120bf0d",
+    "artwork/correctives/armpits/armpit_gusset_l__abd160@v1.png": "9746ee7f9faf263fb88afe527b58b024616ff55e8cd02928cf3e0ba3f9a95938",
+    "artwork/correctives/armpits/armpit_gusset_l__abd175@v1.png": "4b38c50e2bd2978be275da2a45f3a66119f316731033e2c4c79b414a0810d9b6"
+   }
+  },
+  {
+   "asset_id": "edge_decontamination",
+   "category": "edges",
+   "body_part": "all layer edges",
+   "side": null,
+   "method": "EdgeDecontamination",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "pelvis",
+   "placement": {
+    "mode": "derived_layers"
+   },
+   "drivers": [],
+   "activation": {
+    "kind": "always"
+   },
+   "keys": [],
+   "file": null,
+   "origin": [
+    0.0,
+    0.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {},
+   "compatible_layers": [],
+   "params": {
+    "changed_px": 6983,
+    "skipped_over_other_layer_px": 378,
+    "background_rgb": [
+     248,
+     247,
+     247
+    ],
+    "width": 2,
+    "strength": 1.0
+   },
+   "source_refs": [
+    "all layers: silhouette pixels next to the paper background"
+   ],
+   "requirement_id": "REQ-edge_fringe",
+   "priority": 2,
+   "exclusive_group": null,
+   "moho": {
+    "class": "direct",
+    "mapping": "export the decontaminated derived layers (alpha edges)",
+    "status": "proposed_unverified"
+   },
+   "version": 1,
+   "character": "front",
+   "created": "2026-11-21T23:11:19Z",
+   "sha256": {}
+  }
+ ]
+}

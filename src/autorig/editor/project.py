@@ -27,9 +27,9 @@ from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
 from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 5  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
-# hand selection settings (sleeve-free hand replacement); 5: garment weight edits (Phase 3.3). Older projects
-# migrate unchanged
+VERSION = 6  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
+# hand selection settings (sleeve-free hand replacement); 5: garment weight edits (Phase 3.3); 6: corrective
+# artwork settings (Phase 3.4). Older projects migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -142,7 +142,55 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "mask_ops": [], "corrections": {"gussets": True, "joints": {}}, "defects": {}, "approvals": approvals,
             "pose": {"preset": "relaxed_standing", "overrides": {}},
             "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state(),
-            "hand_selection": default_selection_state(), "garment_weights": {"ops": []}}
+            "hand_selection": default_selection_state(), "garment_weights": {"ops": []},
+            "correctives": default_corrective_state()}
+
+
+def default_corrective_state() -> dict[str, Any]:
+    """Phase 3.4 Correctives tab: preview mode and per-asset settings (enabled, blend strength, activation range).
+    Approvals are ``approval.set`` on ``corrective:<asset>@v<N>``; nothing here approves anything."""
+    return {"mode": "auto", "settings": {}}
+
+
+CORRECTIVE_MODES = ("auto", "all", "off")
+
+
+def _apply_correctives(st: dict[str, Any], op: dict[str, Any]) -> None:
+    C = st.setdefault("correctives", default_corrective_state())
+    t = op["type"]
+    if t == "correctives.mode":
+        if op.get("mode") not in CORRECTIVE_MODES:
+            raise OpError(f"mode must be one of {CORRECTIVE_MODES}")
+        C["mode"] = op["mode"]
+    elif t == "correctives.set":
+        a = op.get("asset")
+        if not isinstance(a, str) or not a:
+            raise OpError("correctives.set needs an asset id")
+        cur = dict(C["settings"].get(a, {}))
+        if "enabled" in op:
+            cur["enabled"] = bool(op["enabled"])
+        if "strength" in op:
+            v = float(op["strength"])
+            if not 0.0 <= v <= 1.0:
+                raise OpError("strength must be in [0, 1]")
+            cur["strength"] = v
+        for k in ("lo", "hi"):
+            if k in op:
+                v = float(op[k])
+                if not -360.0 <= v <= 360.0:
+                    raise OpError(f"{k} must be an angle in degrees")
+                cur[k] = v
+        if "lo" in cur and "hi" in cur and cur["lo"] >= cur["hi"]:
+            raise OpError("activation range: lo must be below hi")
+        C["settings"][a] = cur
+    elif t == "correctives.reset":
+        a = op.get("asset")
+        if a in (None, "*"):
+            C["settings"] = {}
+        else:
+            C["settings"].pop(a, None)
+    else:
+        raise OpError(f"unknown operation type {t!r}")
 
 
 WEIGHT_OPS = ("weights.paint", "weights.erase", "weights.smooth", "weights.normalise", "weights.lock",
@@ -407,6 +455,8 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
         _apply_weights(st, op)
     elif t.startswith("handselect."):
         _apply_handselect(st, op)
+    elif t.startswith("correctives."):
+        _apply_correctives(st, op)
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
     else:
@@ -528,7 +578,13 @@ def _v3_to_v4(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {3})}
 
 
-MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5}  # from_version -> fn
+def _v5_to_v6(data: dict[str, Any]) -> dict[str, Any]:
+    """Corrective artwork (Phase 3.4): the base state gains ``correctives`` (mode + per-asset settings); earlier ops
+    replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {5})}
+
+
+MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5, 5: _v5_to_v6}  # from -> fn
 
 
 def _apply_handselect(st: dict[str, Any], op: dict[str, Any]) -> None:

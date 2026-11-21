@@ -272,3 +272,39 @@ engine in place (`MotionEngine.set_hand_store`). See [hand_pose_store_integratio
   `proposed_unverified`). Editor: Weights tab (`WeightsPanel.tsx`), `/api/garments*`. Export: `garment_rig.json`,
   `garment_weights.npz`. See [phase3_3_clothing_deformation_report.md](phase3_3_clothing_deformation_report.md).
 
+## 17. Phase 3.4: corrective artwork
+
+`src/autorig/garmentrig/correctives.py` holds the main pieces.
+
+**Store.** `CorrectiveArtworkStore` is append-only:
+- versioned PNGs in `<package>/artwork/correctives/<category>/`;
+- an index with hashes and provenance in `analysis/corrective_assets.json`;
+- requirements in `analysis/corrective_requirements.json`;
+- pose-space keys in `analysis/pose_space_correctives.json`;
+- the quality report in `reports/corrective_quality.json`.
+
+**Generators.** They build everything from the character's own pixels and call no AI model:
+- `ShoeTopRecovery`: the shoe top hidden under the hem, drawn beneath the foot layer;
+- `JointCapGenerator`: elbow and knee caps, composited over the empty pixels and the limb's own joint patch, beneath everything else, and styled at render time;
+- `ArmpitCorrectionGenerator`: a procedural recipe that runs `armpit_fill` on the renderer's stretch-clipped gap, composited beneath everything drawn, with an outer curve tangent to the torso side and the sleeve underside; baked key previews are kept for review and Moho;
+- `EdgeDecontamination`: derived layers only. Silhouette pixels lighter than the outline inside them become outline colour with alpha, solved so that over the paper they reproduce the source.
+
+**Activation and planning.**
+- `PoseSpaceCorrectionEngine` handles eased ramps, normalised RBF keys, exclusive groups, artist overrides, extrapolation flags and a zero weight in the neutral pose.
+- `CorrectiveRuntime` turns its output into renderer pieces, gap fills and the derived-layer swap.
+- `CorrectiveArtworkPlanner` writes requirement records; it never invents artwork.
+
+**Rendering.** `StructuredDeformer` draws each corrective beneath every original pixel. The prevented overlap is counted; the leakage itself is measured by diffing renders with correctives off and on.
+
+**Structural fixes** in `deform.py` and `structure.py`:
+- The upper-sleeve segment starts on a curved armhole line, cross-faded with the arm angle.
+- The shin segment starts at the knee band end.
+- Jaw/ear fragments left in the torso layer are relabelled `head` and drawn rigidly with the head, cut from the patch.
+- The collar and lapels no longer take the clavicle shrug.
+
+**Evaluation.** `evaluate.py` adds a local-deviation significance check, defect categories and `review_required`. `corrective_evidence.py` (`autorig corrective-evidence`) adds `CorrectiveQualityEvaluator`, which tracks classes A–G, plus the combined-pose sequences and popping checks.
+
+**Editor.** The Correctives tab (`CorrectivesPanel.tsx`) uses `/api/correctives*` and the project ops `correctives.mode|set|reset` (schema v6). Approvals are `approval.set` on `corrective:<id>@v<N>`.
+
+See [phase3_4_corrective_artwork_report.md](phase3_4_corrective_artwork_report.md).
+

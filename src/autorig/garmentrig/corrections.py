@@ -174,6 +174,8 @@ def pose_readings(spec, it, readings: dict[str, float], pose=None, sk=None) -> d
                 out[f"clavicle_{s}"] = sg * float(pose.theta[sk.idx[f"clavicle_{s}"]])
             if f"foot_{s}" in sk.idx:
                 out[f"ankle_{s}"] = abs(float(((pose.theta[sk.idx[f"foot_{s}"]] + 180) % 360) - 180))
+        # frontal torso bend (spine + chest, deg; + = toward the character's right side as drawn)
+        out["torso_bend"] = float(sum(pose.theta[sk.idx[b]] for b in ("spine", "chest") if b in sk.idx))
     name = getattr(spec, "name", "")
     out["torso_lean_sagittal"] = 1.0 if name in ("leaning_forward", "leaning_backward") else 0.0
     out["sitting"] = 1.0 if name == "sitting" else 0.0

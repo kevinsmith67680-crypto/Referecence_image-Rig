@@ -182,6 +182,8 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
                     r["image"] = b64(r["image"])
                 if "before" in r:
                     r["before"] = b64(r["before"])
+                if "corrective_before" in r:
+                    r["corrective_before"] = b64(r["corrective_before"])
                 if "diagnostics" in r:
                     r["diagnostics"] = {k: b64(v) for k, v in r["diagnostics"].items()}
                 return JSONResponse(jsonable(r))
@@ -366,6 +368,48 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
         with S.lock:
             st = S.project.state()
             return png(S.pose.garment_compare(st, S.masks(), rejected_ids(st), preset))
+
+    # -- Phase 3.4 Correctives tab ------------------------------------------------------------------------
+    @app.get("/api/correctives")
+    def correctives_info():
+        with S.lock:
+            return jsonable(S.pose.correctives(S.project.state()))
+
+    @app.get("/api/correctives/image")
+    def corrective_image(path: str):
+        with S.lock:
+            try:
+                return png(S.pose.corrective_image(path))
+            except PoseError as exc:
+                raise HTTPException(404, str(exc))
+
+    @app.post("/api/correctives/generate")
+    def correctives_generate():
+        with S.lock:
+            st = S.project.state()
+            return jsonable(S.pose.corrective_generate(st, S.masks(), rejected_ids(st)))
+
+    @app.post("/api/correctives/replace")
+    def correctives_replace(body: dict = Body(...)):
+        import io  # noqa: PLC0415
+
+        import numpy as np  # noqa: PLC0415
+        from PIL import Image  # noqa: PLC0415
+
+        data = str(body.get("png", ""))
+        if data.startswith("data:"):
+            data = data.split(",", 1)[1]
+        try:
+            rgba = np.asarray(Image.open(io.BytesIO(base64.b64decode(data))).convert("RGBA"))
+        except Exception as exc:  # noqa: BLE001
+            raise HTTPException(400, f"not a PNG image: {exc}")
+        with S.lock:
+            st = S.project.state()
+            try:
+                return jsonable(S.pose.corrective_replace(st, S.masks(), rejected_ids(st), str(body.get("asset")),
+                                                          rgba, str(body.get("note", ""))))
+            except PoseError as exc:
+                raise HTTPException(400, str(exc))
 
     @app.get("/api/handstore")
     def handstore_info():

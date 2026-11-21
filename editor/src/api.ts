@@ -70,6 +70,10 @@ export const api = {
   liveAction: (body: Record<string, unknown>) => post("/api/live/action", body).then((r) => j<any>(r)),
   handstore: () => fetch("/api/handstore").then((r) => j<any>(r)),
   garments: () => fetch("/api/garments").then((r) => j<any>(r)),
+  correctives: () => fetch("/api/correctives").then((r) => j<any>(r)),
+  correctivesGenerate: () => post("/api/correctives/generate").then((r) => j<any>(r)),
+  correctivesReplace: (asset: string, png: string, note: string) => post("/api/correctives/replace", { asset, png, note }).then(async (r) => ({ ok: r.ok, body: await r.json() })),
+  correctiveImageUrl: (path: string, rev: string) => `/api/correctives/image?path=${encodeURIComponent(path)}&rev=${rev}`,
   garmentOverlayUrl: (kind: string, layer: string | null, bone: string | null, rev: string) =>
     `/api/garments/overlay.png?kind=${kind}${layer ? `&layer=${encodeURIComponent(layer)}` : ""}${bone ? `&bone=${encodeURIComponent(bone)}` : ""}&rev=${rev}`,
   garmentExplain: (layer: string, x: number, y: number) => post("/api/garments/explain", { layer, x, y }).then((r) => j<any>(r)),

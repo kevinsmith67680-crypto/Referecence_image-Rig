@@ -49,7 +49,19 @@ faithful, editable **Moho Pro 14** character rig.
   distortion evaluator, editor Weights tab; evidence in `projects/schoolboy_tpose/character_package/natural_pose/garments/`.
   Not reviewed by a person; gussets, deep elbow/knee, seated, 3/4 torso, raised-shoulder collar and the shoe top under
   the hem are missing drawings.
-- **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
+- The user explicitly started **Phase 3.4** (corrective artwork, pose-space correction, visual quality recovery).
+  It is implemented; verdict **PARTIAL** (`docs/phase3_4_corrective_artwork_report.md`, baseline in
+  `docs/phase3_4_baseline_audit.md`). Generated assets:
+  - armpit gussets;
+  - shoe tops;
+  - elbow and knee caps;
+  - edge decontamination.
+
+  They are geometric, built from the character's own pixels, stored in
+  `projects/schoolboy_tpose/character_package/artwork/correctives/`, and all **pending review**. Evidence is in
+  `natural_pose/correctives/`. Still NEEDS_ARTWORK: the deep elbow, the pointing hand (pending), sitting and
+  leaning forward. Optional drawings: squat knee folds, running knee drive, raised-shoulder collar.
+- **Do not start Phase 3.5 or Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
 ## Phase 2 rules (reconstruction)
@@ -138,6 +150,34 @@ faithful, editable **Moho Pro 14** character rig.
   `evaluate.THRESHOLDS` (documented in the report); no global score; never claims visual quality.
 - Moho: `garmentrig/moho.py` matrix is `proposed_unverified`; per-vertex weights are not assumed to import; no exporter.
 - `autorig garment-evidence <package>` regenerates `natural_pose/garments/` (~3 min).
+
+## Phase 3.4 rules (corrective artwork)
+
+- Corrective assets live in the append-only `CorrectiveArtworkStore` (`garmentrig/correctives.py`):
+  - versioned PNGs in `<package>/artwork/correctives/<category>/`;
+  - the index with hashes and provenance in `analysis/corrective_assets.json`.
+
+  Never overwrite or approve them in code. Approval is `approval.set` on `corrective:<id>@v<N>`, one per version.
+  Provenance values: GEOMETRIC_CORRECTION, AI_GENERATED, ARTIST_EDITED, then APPROVED or REJECTED. Pending assets are
+  only previewed (`allow_pending`, or `corrective_mode="all"`).
+- A corrective never covers an original pixel:
+  - Every corrective piece is composited *beneath* original pixels.
+  - Joint caps may only go over empty pixels and their own limb's joint patch.
+  - Gap fills go beneath everything.
+  - `CorrectiveQualityEvaluator` checks it by diffing renders with correctives off and on (`protected_violation_px`
+    must be 0).
+  - The identity pose stays bit-exact with correctives off.
+- Generators build artwork from the character's own pixels: geometry, sampled colours, the measured outline. They
+  never call an AI model; AI inpainting would need explicit review. Missing view-specific drawings stay
+  NEEDS_ARTWORK (the planner records them and never invents them).
+- Edge decontamination: derived layers only. Only silhouette pixels lighter than the outline inside them change.
+  Edge pixels with another layer beneath them at rest are skipped. Composited over the paper it reproduces the source.
+- Geometry metrics (gaps, clipped pixels) are measured with the decontamination off: its edges are semi-transparent by
+  design. Fringes are measured separately (`light_specks`).
+- `PoseSpaceCorrectionEngine`: neutral pose weight 0, eased ramps, normalised RBF keys, exclusive groups, artist
+  overrides, extrapolation flagged. The user's per-asset settings are `correctives.set|mode|reset` ops (schema v6).
+- `autorig corrective-evidence <package>` regenerates `natural_pose/correctives/` and the analysis/report JSON
+  (~10 min); `--regenerate` adds new asset versions.
 
 ## Hand Pose Store rules
 
@@ -271,6 +311,8 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 # Phase 3.3 garment rig
 .venv/bin/python -m autorig garment-evidence <package_dir>         # before/after, close-ups, sweeps, reports (~3 min)
 .venv/bin/python -m autorig garment-weights <package_dir> [--explain LAYER X Y] [--export prefix]
+# Phase 3.4 corrective artwork
+.venv/bin/python -m autorig corrective-evidence <package_dir> [--regenerate] [--quick]  # assets (pending) + evidence (~10 min)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -303,6 +345,10 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   `references/schoolboy/hand_pack_v2/` — the user's sleeve-free sheet, inspection record, extracted sprites, pack zip
 - `src/autorig/garmentrig/` — Phase 3.3: structure (parts, classes, pivots), weights (meshes, ops, explain), deform
   (StructuredDeformer), corrections, evaluate, evidence, moho (compatibility matrix); `editor/src/components/WeightsPanel.tsx`
+- `src/autorig/garmentrig/correctives.py` — Phase 3.4: CorrectiveArtworkStore, generators (armpit gusset, shoe top,
+  joint caps, edge decontamination), PoseSpaceCorrectionEngine, CorrectiveRuntime, planner;
+  `garmentrig/corrective_evidence.py` (CorrectiveQualityEvaluator, sequences, benchmark);
+  `editor/src/components/CorrectivesPanel.tsx`
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

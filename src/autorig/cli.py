@@ -571,6 +571,14 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--export", help="write the weight meshes (npz) and the garment structure (json) to this prefix")
     p.set_defaults(func=cmd_garment_weights)
 
+    p = sub.add_parser("corrective-evidence",
+                       help="Phase 3.4: generate corrective artwork (pending review) and its evidence and reports")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", help="output directory (default <package>/natural_pose/correctives)")
+    p.add_argument("--regenerate", action="store_true", help="run the generators again (new asset versions)")
+    p.add_argument("--quick", action="store_true", help="a few poses only (smoke run)")
+    p.set_defaults(func=cmd_corrective_evidence)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -729,6 +737,16 @@ def cmd_garment_evidence(args: argparse.Namespace) -> int:
     res = garment_evidence(args.package, args.out, progress=print)
     print(f"garment evidence: {len(res['tests'])} tests, mean pose {res['performance']['pose_wall_s_mean']} s; "
           "visual review required")
+    return 0
+
+
+def cmd_corrective_evidence(args: argparse.Namespace) -> int:
+    from .garmentrig.corrective_evidence import corrective_evidence
+
+    rep = corrective_evidence(args.package, args.out, regenerate=args.regenerate, quick=args.quick, progress=print)
+    st = {k: v["status"] for k, v in rep["results"]["poses"].items()}
+    print(json.dumps({"poses": st, "benchmark": rep["results"]["benchmark"]}, indent=1))
+    print("All correctives are pending review: approve them in the editor (Correctives tab). Moho was not run.")
     return 0
 
 

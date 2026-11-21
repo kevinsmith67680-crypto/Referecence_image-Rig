@@ -46,6 +46,26 @@ THRESHOLDS: dict[str, Any] = {
 }
 
 
+LOCAL_DEVIATION = (1.5, 3.0)  # px: deviation from a local rigid motion of over-limit regions (LIMITED parts)
+CHECK_CATEGORY = {"exposed_gaps": "geometric", "visible_seams": "compositing", "outline_breaks": "compositing",
+                  "generated_visible_px": "artistic_review", "clipped_patch_px": "missing_artwork",
+                  "fringe_px": "compositing"}
+
+
+def _local_deviation(P: np.ndarray, Q: np.ndarray, sel: np.ndarray, radius: float = 8.0, n: int = 40) -> float:
+    """Largest deviation (px) of the drawn positions from the best rigid motion of a neighbourhood (radius px)
+    around over-limit samples (at most ``n`` probes)."""
+    idx = np.nonzero(sel)[0]
+    if len(idx) > n:
+        idx = idx[np.linspace(0, len(idx) - 1, n).astype(int)]
+    worst = 0.0
+    for i in idx:
+        m = np.hypot(P[:, 0] - P[i, 0], P[:, 1] - P[i, 1]) <= radius
+        if m.sum() >= 6:
+            worst = max(worst, _procrustes(P[m], Q[m])[1])
+    return worst
+
+
 def _grade(v: float, lim: tuple[float, float]) -> str:
     return "PASS" if v <= lim[0] else "WARNING" if v <= lim[1] else "FAIL"
 
@@ -113,7 +133,7 @@ class GarmentDistortionEvaluator:
             qx = dfm.smooth_forward(cid, pts + [1.0, 0.0], pose)
             qy = dfm.smooth_forward(cid, pts + [0.0, 1.0], pose)
             for o in inf.get("overlays", []):
-                m = dfm._mask_at(inf, o["mask"], pts) > 0.5
+                m = dfm._mask_at(inf, dfm.overlay_mask(o, pose), pts) > 0.5
                 if o["kind"] == "fit" and "core" in o:
                     m &= dfm._mask_at(inf, o["core"].astype(np.float32), pts) > 0.5
                 if m.any():
@@ -130,7 +150,7 @@ class GarmentDistortionEvaluator:
             cover = np.zeros(len(pts), bool)
             cov_id = np.full(len(pts), -1, np.int32)
             for oi, o in enumerate(inf.get("overlays", [])):
-                m = dfm._mask_at(inf, o["mask"], pts) > 0.5
+                m = dfm._mask_at(inf, dfm.overlay_mask(o, pose), pts) > 0.5
                 if o["kind"] == "fit" and "core" in o:
                     m &= dfm._mask_at(inf, o["core"].astype(np.float32), pts) > 0.5
                 cover |= m
@@ -179,6 +199,7 @@ class GarmentDistortionEvaluator:
                 keep = np.linspace(0, n - 1, self.max_samples * 4).astype(int)
                 D = {k: v[keep] for k, v in D.items()}
             checks: dict[str, Any] = {}
+            categories: dict[str, list[str]] = {}
             status = "PASS"
             th = THRESHOLDS.get(part.cls, {})
             vis = D["vis"]
@@ -199,6 +220,18 @@ class GarmentDistortionEvaluator:
                 sc = abs(float(np.sqrt(max(np.mean(np.abs(D["det"])), 1e-9))) - 1.0)
                 checks["stretch_p99"] = (round(sp, 4), _grade(sp, th["stretch_p99"]))
                 checks["compression_p01"] = (round(cp, 4), _grade(cp, th["compression_p01"]))
+                # visual significance of over-limit local stretch: the deviation from a rigid motion over a 16 px
+                # neighbourhood. A steep but tiny shear (Phase 3.4 baseline D7: collar points next to the
+                # clavicle pivots) moves pixels by < 1.5 px and is recorded, not failed.
+                over = v & ((D["smax"] - 1.0 > th["stretch_p99"][0]) | (1.0 - D["smin"] > th["compression_p01"][0]))
+                dev = _local_deviation(D["P"], D["Q"], over) if over.any() else 0.0
+                checks["local_deviation_px"] = (round(dev, 3), _grade(dev, LOCAL_DEVIATION))
+                if dev <= LOCAL_DEVIATION[0]:
+                    for k in ("stretch_p99", "compression_p01"):
+                        val, g = checks[k]
+                        if g == "FAIL":
+                            checks[k] = (val, "WARNING")
+                            categories.setdefault("visually_insignificant", []).append(k)
                 checks["inverted_fraction"] = (round(inv, 5), _grade(inv, th["inverted_fraction"]))
                 checks["residual_rms_px"] = (round(rms, 3), _grade(rms, th["residual_rms_px"]))
                 checks["scale"] = (round(sc, 4), _grade(sc, th["scale"]))
@@ -243,10 +276,17 @@ class GarmentDistortionEvaluator:
                 status = "NEEDS_ARTWORK"
             elif req:
                 status = "NEEDS_ARTWORK"
+            for k, (_, g) in checks.items():
+                if g == "PASS" or k in categories.get("visually_insignificant", []):
+                    continue
+                categories.setdefault(CHECK_CATEGORY.get(k, "geometric"), []).append(k)
+            if missing:
+                categories.setdefault("missing_artwork", []).extend(missing)
             parts_out[part.name] = {"class": part.cls, "garment": part.garment, "status": status,
                                     "checks": {k: {"value": v, "grade": g} for k, (v, g) in checks.items()},
                                     "samples": int(len(D["P"])), "visible_fraction": round(float(vis.mean()), 3),
-                                    "missing_artwork": missing}
+                                    "missing_artwork": missing, "categories": categories,
+                                    "review_required": True}
         att = self._attachments(res, pad)
         for a in att:
             if a["status"] != "PASS":

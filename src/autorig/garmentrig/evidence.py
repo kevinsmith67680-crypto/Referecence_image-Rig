@@ -59,6 +59,9 @@ def run_test(eng, vis, preset: str, kw: dict[str, Any], evaluate: bool = True) -
         args["ik"] = fk_state(kw["fk"])
     if eng.garment_mode == "structured":
         args["evaluate_garments"] = evaluate
+    for k in ("allow_pending", "corrective_mode", "corrective_overrides"):
+        if k in kw:
+            args[k] = kw[k]
     t0 = time.perf_counter()
     r = eng.pose(preset, **args)
     r["wall_s"] = round(time.perf_counter() - t0, 3)

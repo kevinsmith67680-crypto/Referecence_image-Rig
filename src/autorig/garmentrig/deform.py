@@ -32,7 +32,7 @@ from .structure import RIGID, GarmentStructure, shoulder_frame
 from .weights import WeightSet
 
 FEATHER_PX = 1.5
-PIECE_CODES = {"patch": 1, "segment": 2, "fit": 3, "hidden_under": 4}
+PIECE_CODES = {"patch": 1, "segment": 2, "fit": 3, "hidden_under": 4, "corrective": 5}
 FIT_KINDS = ("badge", "button", "tie", "pocket_flap_{s}")
 
 
@@ -91,6 +91,9 @@ class StructuredDeformer(ArtworkDeformationEngine):
         inf["home"] = mesh.dominant_at(pts).reshape(h, w).astype(np.int16)
         inf["homes"] = np.unique(inf["home"][inf["alpha"]])
         inf["overlays"] = self._overlay_specs(cid, inf, pts) if self.use_overlays else []
+        cut = [o["mask"] for o in inf["overlays"] if o.get("cut_from_patch")]
+        if cut:  # these pixels are drawn only by their segment: the patch samples a copy without them
+            inf["patch_keep"] = np.clip(1.0 - np.maximum.reduce(cut), 0.0, 1.0).astype(np.float32)
 
     def add_variant_layer(self, cid: str, rgba: np.ndarray) -> None:
         # a replaced drawing gets a fresh part map and weight mesh
@@ -129,13 +132,34 @@ class StructuredDeformer(ArtworkDeformationEngine):
             P, au = shoulder_frame(sk, s, self.pivot_report)
             s_sh = ((pts[:, 0] - P[0]) * au[0] + (pts[:, 1] - P[1]) * au[1]).reshape(h, w)
             s_fo = sk.s(sk.idx[f"forearm_{s}"], pts).reshape(h, w)
-            up = np.isin(name, [f"sleeve_upper_{s}", f"elbow_{s}"]) * ramp(s_sh) * ramp(-s_fo)
+            # the rigid upper sleeve starts where the shoulder transition ends: its straight proximal cut at the
+            # shoulder plane drew a straight diagonal across the chest (Phase 3.4 baseline D5); the weighted patch
+            # is continuous with the segment at the band end, so the join is invisible there
+            # (for a lowered arm; a raised arm keeps the Phase 3.3 start at the shoulder plane, where the underarm
+            # patch would otherwise have to stretch further: the two masks cross-fade with the arm's posed angle)
+            b_sh = self.wset.cfg["bands"]["shoulder"][1] * sk.bone(f"upper_arm_{s}").h
+            soft = lambda v: np.clip(v / 6.0 + 0.5, 0.0, 1.0)
+            sl = np.isin(name, [f"sleeve_upper_{s}", f"elbow_{s}"]) * ramp(-s_fo)
+            # the start follows a curved armhole line: at the shoulder plane on the underarm side (where the patch of a
+            # hanging arm would fold over itself) and at the band end on the shoulder-top side (where it only
+            # stretches and stays continuous with the segment), an S-curve in between
+            n = np.array([au[1], -au[0]])
+            if n[1] < 0:
+                n = -n  # toward the underarm (down in the T-pose image)
+            hw = sk.bone(f"upper_arm_{s}").h
+            perp = ((pts[:, 0] - P[0]) * n[0] + (pts[:, 1] - P[1]) * n[1]).reshape(h, w)
+            v = np.clip((hw - perp) / hw - float(self.wset.cfg.get("sleeve_start_underarm_frac", 1.0)), 0.0, 1.0)
+            start = b_sh * v * v * (3 - 2 * v)
+            up = sl * soft(s_sh - start)
+            up_plane = sl * ramp(s_sh)
             fo = np.isin(name, [f"elbow_{s}", f"sleeve_fore_{s}", f"shirt_cuff_{s}"]) * ramp(s_fo)
             # hand fragments Phase 1 left in the arm layer are drawn rigidly with the hand (they share mesh cells
             # with the cuff, so the weighted mapping would stretch them at a bent wrist)
             hd = ndimage.gaussian_filter((name == f"hand_{s}").astype(np.float32), 0.7)
             out += [{"kind": "segment", "bone": sk.idx[f"upper_arm_{s}"], "mask": up.astype(np.float32),
-                     "part": f"sleeve_upper_{s}"},
+                     "part": f"sleeve_upper_{s}", "mask_raised": up_plane.astype(np.float32),
+                     "bone_axis": np.asarray(sk.bone(f"upper_arm_{s}").u, float),
+                     "raised_range_deg": list(self.wset.cfg.get("sleeve_start_crossfade_deg", [60.0, 100.0]))},
                     {"kind": "segment", "bone": sk.idx[f"forearm_{s}"], "mask": fo.astype(np.float32),
                      "part": f"sleeve_fore_{s}"},
                     {"kind": "segment", "bone": sk.idx[f"hand_{s}"], "mask": np.clip(hd * 1.5, 0, 1),
@@ -146,9 +170,22 @@ class StructuredDeformer(ArtworkDeformationEngine):
             # the rigid shin segment stops where the hem starts to follow the foot (ankle transition)
             a0 = self.wset.cfg["bands"]["ankle"][0] * sk.bone(f"foot_{s}").h
             s_an = sk.s(sk.idx[f"foot_{s}"], pts).reshape(h, w)
-            sh = np.isin(name, [f"knee_{s}", f"trouser_shin_{s}", f"trouser_cuff_{s}"]) * ramp(s_sh) * ramp(a0 - s_an)
+            # Phase 3.4 (D4): the shin segment's straight proximal cut at the knee plane showed as a line across the
+            # inner knee when the leg bends; it starts ``segment_start["shin"]`` of the knee band in (soft 6 px ramp),
+            # where the weighted patch is continuous with it
+            k1 = float(self.wset.cfg.get("segment_start", {}).get("shin", 0.0)) * self.wset.cfg["bands"]["knee"][1] \
+                * sk.bone(f"shin_{s}").h
+            start = (lambda v: np.clip(v / 6.0 + 0.5, 0.0, 1.0)) if k1 > 0 else ramp
+            sh = np.isin(name, [f"knee_{s}", f"trouser_shin_{s}", f"trouser_cuff_{s}"]) * start(s_sh - k1) \
+                * ramp(a0 - s_an)
             out.append({"kind": "segment", "bone": sk.idx[f"shin_{s}"], "mask": sh.astype(np.float32),
                         "part": f"trouser_shin_{s}"})
+        if cls == "torso" and "head" in sk.idx:
+            # Phase 3.4 (D8): jaw/ear fragments Phase 1 left in the body layer share mesh cells with the collar, so
+            # the weighted mapping tore them off the jaw at a head tilt or lean; they are drawn rigidly with the head
+            hd = ndimage.gaussian_filter(np.isin(name, ["head", "hair"]).astype(np.float32), 0.7)
+            out.append({"kind": "segment", "bone": sk.idx["head"], "mask": np.clip(hd * 1.5, 0, 1), "part": "head",
+                        "cut_from_patch": True})
         for p in st.parts:
             if p.cls != RIGID or p.kind not in FIT_KINDS:
                 continue
@@ -160,7 +197,7 @@ class StructuredDeformer(ArtworkDeformationEngine):
                         "part": p.name, "core": m})
         out = [o for o in out if (o["mask"] * inf["pre"][..., 3] > 0.5).sum() >= 8]
         for o in out:
-            ys, xs = np.nonzero(o["mask"] > 0.01)
+            ys, xs = np.nonzero((o["mask"] > 0.01) | (o["mask_raised"] > 0.01 if "mask_raised" in o else False))
             o["bbox"] = (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)
         return out
 
@@ -187,7 +224,7 @@ class StructuredDeformer(ArtworkDeformationEngine):
         if pose.is_identity():
             return q
         for o in inf.get("overlays", []):
-            cov = self._mask_at(inf, o["mask"], pts) > 0.5
+            cov = self._mask_at(inf, self.overlay_mask(o, pose), pts) > 0.5
             if o["kind"] == "fit":
                 cov &= self._mask_at(inf, o["core"].astype(np.float32), pts) > 0.5
             if cov.any():
@@ -234,7 +271,7 @@ class StructuredDeformer(ArtworkDeformationEngine):
         cover = np.zeros(len(rest), bool)
         for o in inf.get("overlays", []):
             if o["kind"] == "segment":
-                cover |= self._mask_at(inf, o["mask"], rest) > 0.5
+                cover |= self._mask_at(inf, self.overlay_mask(o, pose), rest) > 0.5
         mesh = inf["wm"]
         gy, gx = mesh.grid_coords(rest)
         gh, gw = mesh.shape
@@ -254,6 +291,19 @@ class StructuredDeformer(ArtworkDeformationEngine):
         return out
 
     # -- drawing ----------------------------------------------------------------------------------------------
+    def overlay_mask(self, o: dict[str, Any], pose: PoseParams) -> np.ndarray:
+        """The overlay's rest-frame mask for this pose. The upper sleeve's start cross-fades with the arm's posed
+        angle from straight down (Phase 3.4: band end for a hanging arm, shoulder plane for a raised one)."""
+        if "mask_raised" not in o or pose.is_identity():
+            return o["mask"]
+        A = self.world(o["bone"], pose)
+        u = A[:2, :2] @ o["bone_axis"]
+        ang = math.degrees(math.acos(float(np.clip(u[1] / max(float(np.hypot(*u)), 1e-9), -1.0, 1.0))))
+        lo, hi = o["raised_range_deg"]
+        t = float(np.clip((ang - lo) / max(hi - lo, 1e-6), 0.0, 1.0))
+        t = t * t * (3 - 2 * t)
+        return o["mask"] if t <= 0 else (1 - t) * o["mask"] + t * o["mask_raised"]
+
     def _render_overlay(self, cid: str, o: dict[str, Any], pose: PoseParams, pad: int):
         inf = self.info[cid]
         x0, y0 = inf["origin"]
@@ -268,7 +318,7 @@ class StructuredDeformer(ArtworkDeformationEngine):
         Ai = np.linalg.inv(A)
         px = Ai[0, 0] * gx + Ai[0, 1] * gy + Ai[0, 2] - x0
         py = Ai[1, 0] * gx + Ai[1, 1] * gy + Ai[1, 2] - y0
-        mk = ndimage.map_coordinates(o["mask"], [py, px], order=1, mode="constant", cval=0.0)
+        mk = ndimage.map_coordinates(self.overlay_mask(o, pose), [py, px], order=1, mode="constant", cval=0.0)
         out = np.zeros((gh, gw, 4), np.float32)
         sel = mk > 0.003
         if sel.any():
@@ -310,7 +360,14 @@ class StructuredDeformer(ArtworkDeformationEngine):
                 stats[cid] = {"rigid": True}
             else:
                 self.last_src = None
-                lay, org, gen, st = self.render_layer(cid, pose, pad)
+                keep = inf.get("patch_keep")
+                full_pre = inf["pre"]
+                if keep is not None:
+                    inf["pre"] = full_pre * keep[..., None]
+                try:
+                    lay, org, gen, st = self.render_layer(cid, pose, pad)
+                finally:
+                    inf["pre"] = full_pre
                 src = self.last_src
                 if src is not None and self.max_patch_stretch:
                     lim = self._stretch_limits(cid, src)
@@ -333,12 +390,98 @@ class StructuredDeformer(ArtworkDeformationEngine):
         piece_top = np.zeros(canvas.shape[:2], np.int8)
         alphas: dict[str, np.ndarray] = {}
         drawn: list[dict[str, Any]] = []
-        for cid in order:
-            for it in before.get(cid, []) + items.get(cid, []):
-                self._draw(canvas, gen_vis, top, alphas, it, pos[it["cid"]], piece_top)
+        # corrective artwork pieces (Phase 3.4), placed relative to the layers
+        corr_before: dict[str, list] = {}
+        corr_after: dict[str, list] = {}
+        corr_group: dict[str, list] = {}
+        for c in (getattr(self, "correctives", None) or []):
+            pl = c["placement"]
+            it = self._render_corrective(c, pad)
+            if it is None:
+                continue
+            key = pl.get("layer") or pl.get("group")
+            if pl["mode"] == "after_patches":
+                corr_group.setdefault(key, []).append(it)
+            elif pl["mode"] == "after_layer":
+                corr_after.setdefault(self._resolve(key, order), []).append(it)
+            else:
+                corr_before.setdefault(self._resolve(key, order), []).append(it)
+        protected = np.zeros(canvas.shape[:2], bool)
+
+        def draw(it, idx):
+            if it["kind"].startswith("corrective"):
+                # a corrective never covers an original pixel: where one is already drawn (not generated; for a
+                # joint cap also not its joint patch), it is composited beneath; the prevented overlap is counted
+                h, w = it["img"].shape[:2]
+                ox, oy = it["origin"]
+                cx0, cy0, cx1, cy1 = max(0, ox), max(0, oy), min(canvas.shape[1], ox + w), min(canvas.shape[0], oy + h)
+                if cx1 <= cx0 or cy1 <= cy0:
+                    return
+                C = it["img"][cy0 - oy:cy1 - oy, cx0 - ox:cx1 - ox]
+                dst = canvas[cy0:cy1, cx0:cx1]
+                under = (dst[..., 3] > 0.02) & ~gen_vis[cy0:cy1, cx0:cx1]
+                if it.get("mode") == "after_patches":
+                    under &= piece_top[cy0:cy1, cx0:cx1] != PIECE_CODES["patch"]
+                protected[cy0:cy1, cx0:cx1] |= under & (C[..., 3] > 0.5) & (dst[..., 3] > 0.5)
+                dst[:] = np.where(under[..., None], dst + C * (1.0 - dst[..., 3:4]), C + dst * (1.0 - C[..., 3:4]))
+                on = ~under & (C[..., 3] > 0.5)
+                piece_top[cy0:cy1, cx0:cx1][on] = PIECE_CODES["corrective"]
+                top[cy0:cy1, cx0:cx1][on] = -2
+                gen_vis[cy0:cy1, cx0:cx1] |= on
+                a_ = alphas.setdefault(it["cid"], np.zeros(canvas.shape[:2], bool))
+                a_[cy0:cy1, cx0:cx1] |= on
                 drawn.append({"layer": it["cid"], "piece": it["kind"]})
+                return
+            self._draw(canvas, gen_vis, top, alphas, it, idx, piece_top)
+            drawn.append({"layer": it["cid"], "piece": it["kind"]})
+
+        def group_of(cid):
+            cls = layer_class(cid)
+            return cls if cls.startswith(("arm_", "leg_")) else None
+
+        def cap(it, gidx):
+            """A joint cap goes over empty pixels and over this limb's own joint-patch pixels, and beneath every
+            other piece (segments, fits, whole layers, other limbs): the draw order is left unchanged."""
+            h, w = it["img"].shape[:2]
+            ox, oy = it["origin"]
+            cx0, cy0, cx1, cy1 = max(0, ox), max(0, oy), min(canvas.shape[1], ox + w), min(canvas.shape[0], oy + h)
+            if cx1 <= cx0 or cy1 <= cy0:
+                return
+            C = it["img"][cy0 - oy:cy1 - oy, cx0 - ox:cx1 - ox]
+            dst = canvas[cy0:cy1, cx0:cx1]
+            pt, tp = piece_top[cy0:cy1, cx0:cx1], top[cy0:cy1, cx0:cx1]
+            # over empty pixels (not semi-transparent original edges) and this limb's joint patch; beneath the rest
+            over = ((pt == 0) & (dst[..., 3] < 0.02)) | ((pt == PIECE_CODES["patch"]) & np.isin(tp, gidx))
+            if it["params"].get("render_style") == "diffused_fill_bg_outline":
+                from .correctives import style_cap  # noqa: PLC0415
+
+                C = style_cap(dst, C[..., 3], over, it["params"])
+            dst[:] = np.where(over[..., None], C + dst * (1.0 - C[..., 3:4]), dst + C * (1.0 - dst[..., 3:4]))
+            on = over & (C[..., 3] > 0.5)
+            pt[on] = PIECE_CODES["corrective"]
+            tp[on] = -2
+            gen_vis[cy0:cy1, cx0:cx1] |= on
+            a_ = alphas.setdefault(it["cid"], np.zeros(canvas.shape[:2], bool))
+            a_[cy0:cy1, cx0:cx1] |= on
+            drawn.append({"layer": it["cid"], "piece": it["kind"]})
+
+        i = 0
+        while i < len(order):
+            cid = order[i]
+            g = group_of(cid)
+            j = i + 1
+            if g and g in corr_group:  # the whole limb group, then its joint caps
+                while j < len(order) and group_of(order[j]) == g:
+                    j += 1
+            for c in order[i:j]:
+                for it in corr_before.get(c, []) + before.get(c, []) + items.get(c, []) + corr_after.get(c, []):
+                    draw(it, pos[it["cid"]] if it["cid"] in pos else pos[c])
+            if g and g in corr_group:
+                for it in corr_group[g]:
+                    cap(it, list(range(i, j)))
+            i = j
         # clipped patch pixels that nothing else covers: the visible conflicts, per garment part
-        clipped_uncovered: dict[str, int] = {}
+        clipped_map = np.full(canvas.shape[:2], -1, np.int16)  # part id of each uncovered clipped pixel
         for cid, (ox, oy), cm, src in clip_masks:
             ys, xs = np.nonzero(cm)
             cy, cx = ys + oy, xs + ox
@@ -349,17 +492,46 @@ class StructuredDeformer(ArtworkDeformationEngine):
                 continue
             sp = src[ys[open_], xs[open_]]
             good = ~np.isnan(sp[:, 0])
-            pids = self.structure.ids_at(cid, sp[good])
-            for pid, n in zip(*np.unique(pids, return_counts=True)):
-                if pid >= 0:
-                    nm = self.structure.parts[pid].name
-                    clipped_uncovered[nm] = clipped_uncovered.get(nm, 0) + int(n)
+            clipped_map[cy[open_][good], cx[open_][good]] = self.structure.ids_at(cid, sp[good])
+        # gap fills (Phase 3.4 armpit gussets): composited beneath everything drawn, inside the open gap only
+        corrective_masks: dict[str, np.ndarray] = {}
+        fill_info: dict[str, Any] = {}
+        for f in (getattr(self, "gap_fills", None) or []):
+            from .correctives import armpit_fill  # noqa: PLC0415
+
+            ids = [self.structure.index[n] for n in f["parts"] if n in self.structure.index]
+            gap = np.isin(clipped_map, ids)
+            ax, ay = f["anchor"][0] + pad, f["anchor"][1] + pad
+            yy, xx = np.ogrid[:canvas.shape[0], :canvas.shape[1]]
+            gap &= (xx - ax) ** 2 + (yy - ay) ** 2 <= f["radius"] ** 2
+            res_ = armpit_fill(canvas, gap, (ax, ay), f["params"], f["weight"]) if gap.any() else None
+            if res_ is None:
+                continue
+            F, fm, inf = res_
+            canvas[:] = canvas + F * (1.0 - canvas[..., 3:4])
+            newpx = fm & (piece_top == 0)
+            piece_top[newpx] = PIECE_CODES["corrective"]
+            top[newpx] = -2
+            gen_vis |= newpx
+            corrective_masks[f["asset_id"]] = fm
+            fill_info[f["asset_id"]] = inf
+            drawn.append({"layer": f"corrective:{f['asset_id']}", "piece": f"corrective:{f['asset_id']}"})
+        clipped_uncovered: dict[str, int] = {}
+        still = (clipped_map >= 0) & (canvas[..., 3] < 0.5)
+        clipped_map[~still] = -1
+        for pid, n in zip(*np.unique(clipped_map[still], return_counts=True)):
+            nm = self.structure.parts[pid].name
+            clipped_uncovered[nm] = clipped_uncovered.get(nm, 0) + int(n)
         out = canvas.copy()
         a = out[..., 3:4]
         out[..., :3] = np.where(a > 1e-6, out[..., :3] / np.maximum(a, 1e-6), 0.0)
         img = np.clip(np.rint(out * 255.0), 0, 255).astype(np.uint8)
         return {"image": img, "alphas": alphas, "stats": stats, "generated_visible": gen_vis, "pad": pad,
-                "clipped_uncovered": clipped_uncovered,
+                "clipped_uncovered": clipped_uncovered, "clipped_map": clipped_map,
+                "corrective_masks": corrective_masks, "gap_fill_info": fill_info,
+                # original pixels a corrective would have covered (it was composited beneath them instead)
+                "protected_overlap_prevented_px": int(protected.sum()),
+                "corrective_px": int((piece_top == PIECE_CODES["corrective"]).sum()),
                 "top": top, "order": list(order), "pieces": drawn, "piece_top": piece_top,
                 "piece_codes": PIECE_CODES}
 
@@ -393,6 +565,40 @@ class StructuredDeformer(ArtworkDeformationEngine):
             vals = np.where(inband, np.minimum(vals, float(lims[joint])), vals)
         out[ok] = vals
         return out
+
+    @staticmethod
+    def _resolve(layer: str, order: list[str]) -> str:
+        """The drawn layer id for a base layer id (switch variants replace their base layer)."""
+        if layer in order:
+            return layer
+        return next((c for c in order if c.split("__")[0] == layer), layer)
+
+    def _render_corrective(self, c: dict[str, Any], pad: int) -> dict[str, Any] | None:
+        """Warp one corrective asset (premultiplied RGBA in its bind frame) by its pose transform, scaled by its
+        activation weight."""
+        rgba, (bx, by), A, wgt = c["pre"], c["origin"], c["A"], float(c["weight"])
+        if wgt <= 1e-4:
+            return None
+        h, w = rgba.shape[:2]
+        corners = np.array([[bx, by], [bx + w, by], [bx, by + h], [bx + w, by + h]], float)
+        qc = corners @ A[:2, :2].T + A[:2, 2]
+        qx0, qy0 = int(math.floor(qc[:, 0].min())) - 2, int(math.floor(qc[:, 1].min())) - 2
+        qx1, qy1 = int(math.ceil(qc[:, 0].max())) + 3, int(math.ceil(qc[:, 1].max())) + 3
+        gy, gx = np.mgrid[qy0:qy1, qx0:qx1]
+        Ai = np.linalg.inv(A)
+        px = Ai[0, 0] * gx + Ai[0, 1] * gy + Ai[0, 2] - bx
+        py = Ai[1, 0] * gx + Ai[1, 1] * gy + Ai[1, 2] - by
+        out = np.zeros((qy1 - qy0, qx1 - qx0, 4), np.float32)
+        a = ndimage.map_coordinates(rgba[..., 3], [py, px], order=1, mode="constant", cval=0.0)
+        sel = a > 0.002
+        if not sel.any():
+            return None
+        for k in range(4):
+            out[..., k][sel] = ndimage.map_coordinates(rgba[..., k], [py[sel], px[sel]], order=1, mode="constant",
+                                                       cval=0.0) * wgt
+        return {"cid": f"corrective:{c['asset_id']}", "img": out, "mode": c["placement"].get("mode"),
+                "params": c.get("params") or {}, "origin": (qx0 + pad, qy0 + pad), "gen": out[..., 3] > 0.5,
+                "kind": f"corrective:{c['asset_id']}"}
 
     def _split_hidden(self, piece, src, order, pos, base_pos, before) -> dict[str, Any]:
         """Generated pixels that a layer drawn earlier covered at rest are drawn just beneath that layer."""
@@ -495,7 +701,7 @@ class StructuredDeformer(ArtworkDeformationEngine):
                     frac = np.maximum(frac, np.minimum(f, 1 - f) * 2)
                 for o in inf.get("overlays", []):
                     if o["kind"] == "segment":
-                        frac[self._mask_at(inf, o["mask"], pts) > 0.5] = 0.0
+                        frac[self._mask_at(inf, self.overlay_mask(o, pose), pts) > 0.5] = 0.0
                 q = self.forward(cid, pts, pose)
                 qx, qy = np.rint(q[:, 0] + pad).astype(int), np.rint(q[:, 1] + pad).astype(int)
                 ok = (qx >= 0) & (qx < W) & (qy >= 0) & (qy < H) & (frac > 0.02)

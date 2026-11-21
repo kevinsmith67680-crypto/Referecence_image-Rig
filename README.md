@@ -124,6 +124,18 @@ garment weights; edits are project operations and never change the artwork. Befo
 .venv/bin/python -m autorig garment-evidence ../schoolboy_pkg
 ```
 
+The **Correctives** tab (Phase 3.4) lists the corrective artwork built from the character's own pixels:
+- armpit gussets;
+- shoe tops under the trouser hem;
+- elbow and knee caps;
+- edge decontamination.
+
+Each asset shows its provenance, versions and approval state, with a before/after preview in the current pose. You can approve, reject, disable, change the blend strength and activation range, or replace a drawing with your own. Every generated asset is pending review until you approve it. To build the assets and their evidence:
+
+```bash
+.venv/bin/python -m autorig corrective-evidence ../schoolboy_pkg
+```
+
 ![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
 
 *Real browser screenshot of the editor (headless Chromium), not a Moho render.*
@@ -167,6 +179,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/hand_library_replacement_report.md](docs/hand_library_replacement_report.md) | Sleeve-free hand library: extraction, handedness, wrist alignment, natural hand selection, 14 gates, verdict |
 | [docs/phase3_3_clothing_audit.md](docs/phase3_3_clothing_audit.md) | Root causes of the garment distortion (renders + code) |
 | [docs/phase3_3_clothing_deformation_report.md](docs/phase3_3_clothing_deformation_report.md) | Phase 3.3 garment rig: parts, pivots, weights, rigid segments, correctives, evaluator, Weights tab, before/after, Moho matrix, verdict |
+| [docs/phase3_4_baseline_audit.md](docs/phase3_4_baseline_audit.md) | Phase 3.3 defects reproduced on the real character before Phase 3.4 |
+| [docs/phase3_4_corrective_artwork_report.md](docs/phase3_4_corrective_artwork_report.md) | Phase 3.4: corrective artwork, original-pixel safety, pose-space activation, Correctives tab, before/after, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

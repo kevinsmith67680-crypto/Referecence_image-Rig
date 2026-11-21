@@ -81,15 +81,20 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "shoulder_pivot": {"lift_h": 0.55, "inset_px": 4.0},
     # joint transitions, in units of the joint's half-thickness h, along the child bone from its joint plane
     "bands": {"shoulder": [0.0, 0.5], "elbow": [-0.15, 0.45], "knee": [-0.25, 0.35], "ankle": [-0.6, 0.45],
-              "neck": [-0.5, 0.6], "head": [-0.25, 0.3], "spine": [-0.9, 0.9], "chest": [-0.8, 0.8]},
+              "neck": [-0.5, 0.6], "head": [-0.25, 0.3], "spine": [-0.9, 0.9], "chest": [-0.8, 0.8],
+              "collar_neck": [-3.0, 3.0]},
+    "collar_neck_share": 0.5,  # the shirt collar takes half the neck rotation (it sits on the shoulders)
     # lapels and collar follow the shoulder girdle like the blazer around them (the arm never moves them); a lower
     # share sheared the lapel edge open when the shoulders rise (both-arms-raised test)
-    "lapel_clavicle_share": 1.0,
-    "collar_clavicle_share": 1.0,
+    "lapel_clavicle_share": 0.0,  # Phase 3.4: anchored to the chest (D7: the shrug rotated the collar points)
+    "collar_clavicle_share": 0.0,
     # share of the shoe's rotation the trouser hem takes (it rests on the shoe). Less than 1 lifts a hem corner off
     # the shoe and shows background (the shoe's top under the hem was never drawn: NEEDS_ARTWORK asset); 1.0
     # shears the plain hem slightly over the ankle band instead, which reads better than a hole
     "hem_follows_foot": 1.0,
+    # Phase 3.4: where a rigid segment starts, as a fraction of its joint band's distal half-width (0 = at the joint
+    # plane, the Phase 3.3 behaviour; 1 = at the band end, where the weighted patch is continuous with the segment)
+    "segment_start": {"shin": 1.0},
     "fold_half_width_h": 0.6,  # elbow/knee fold regions: |s| < 0.6 h around the joint plane
     "limited_smoothing_vertices": 2.5,  # gradual weight transitions between LIMITED torso parts (no shear)
     "class_overrides": {},  # part name -> class (per character)
@@ -510,6 +515,17 @@ class GarmentStructureAnalyzer:
                 garment = np.isin(ids, keep)  # parts already found here: the collar and lapel tips stay garment
                 put((s("neck") > 0) & ~(lateral & low) & ~garment, "neck")
                 put(s("head") > 0, "head")  # no garment reaches above the head pivot
+                # Phase 3.4 (D8): dark jaw/ear outline pixels just below the head pivot, touching a head layer, were
+                # labelled collar/neck and stayed behind at a head tilt or lean (floating outline specks)
+                head_m = np.zeros(self.source.shape[:2], bool)
+                for c2, a2 in self.layers.items():
+                    if layer_class(c2) == "head":
+                        head_m |= a2[..., 3] > 0
+                if head_m.any():
+                    d_head = crop(ndimage.distance_transform_edt(~head_m))
+                    lum = crop(self.source[..., :3].astype(np.float32) @ np.array([0.299, 0.587, 0.114], np.float32))
+                    jaw = (d_head <= float(self.cfg.get("jaw_fragment_px", 2.5))) & (lum < 70) & (s("head") > -30)
+                    put(jaw, "head")
         elif cls.startswith("arm"):
             side = cls[-1]
             base = cid.split("__")[0]

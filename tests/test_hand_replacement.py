@@ -382,7 +382,7 @@ def test_gripping_lands_on_the_target_and_hands_stay_attached_under_ik(eng):
 @real
 def test_project_v4_persists_library_and_selection_ops(pkg):
     from autorig.editor.project import VERSION, EditorProject, OpError
-    assert VERSION == 5
+    assert VERSION == 6  # Phase 3.4: corrective settings (schema v6)
     p = EditorProject(pkg)
     p.submit({"type": "handstore.library", "library": "schoolboy_hand_switches_v1", "status": "active"})
     p.submit({"type": "handstore.placement", "uid": f"{LIB}/right_cupped", "fields": {"pivot_x": 2, "overlap": 3, "rot": -5}})
