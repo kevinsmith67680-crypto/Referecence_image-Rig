@@ -26,7 +26,8 @@ export interface EditorState {
   pose: { preset: string; overrides: Record<string, number> };
   ik: Record<string, any> & { pelvis_offset: [number, number] };
   switches: Record<string, { user: string | null; auto: boolean; keys: [number, string][]; offsets: Record<string, { dx: number; dy: number; rot: number }> }>;
-  hand_store?: { use: Record<string, string>; placement: Record<string, any>; mask: Record<string, any>; labels: Record<string, string>; deleted: string[]; versions: Record<string, number> };
+  hand_store?: { use: Record<string, string>; placement: Record<string, any>; mask: Record<string, any>; labels: Record<string, string>; deleted: string[]; versions: Record<string, number>; libraries?: Record<string, string> };
+  hand_selection?: { actions: Record<string, string | null>; targets: Record<string, [number, number] | null>; weights: Record<string, number> };
 }
 export interface Payload {
   project: { cursor: number; ops: number; can_undo: boolean; can_redo: boolean; revision: string; versions: any[] };

@@ -38,6 +38,11 @@ faithful, editable **Moho Pro 14** character rig.
   `references/schoolboy/hand_pack/`) as a character-scoped **Hand Pose Store**. Done; verdict **PARTIAL**
   (`docs/hand_pose_store_integration.md`): imported into `projects/schoolboy_tpose/character_package/hand_store/`, all
   drawings pending review, evidence in `hand_store/evidence/`.
+- The user asked to **replace the hands with a sleeve-free library** and add natural hand selection. Done; verdict
+  **PARTIAL** (`docs/hand_library_replacement_report.md`): 16 hands extracted from `references/schoolboy/hand_pack_v2/`,
+  imported as `schoolboy_hands_sleeveless` (the sleeve-attached v1 library and the Phase 2 sheet hands are archived,
+  restorable), `WristAlignmentController`, `NaturalHandSelectionEngine`; evidence in `hand_store/evidence_v2/`. All
+  drawings pending review; left pointing is a mirrored copy (the sheet has two right pointing hands).
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -127,6 +132,27 @@ faithful, editable **Moho Pro 14** character rig.
 - `autorig hand-evidence <package>` regenerates the committed hand evidence. Export writes `hand_switches.json`
   (validated metadata vs `not_implemented_in_native_moho`; Moho mapping `proposed_unverified`).
 
+## Sleeve-free hand library rules
+
+- Sheets are extracted by `autorig hand-sheet` (`handsheet.py`): background = near-white low-saturation pixels
+  connected to the border (dark outlines never qualify), unmatted edges, tight crops, no scaling. Order, handedness and
+  wrist openings are *measured* and checked against the assistant's `inspection.json`; a pair that is not mirrored is
+  reported and the side without a drawing gets a flagged `mirror_x` copy. Closed-outline wrists (no cut) get a chord
+  at the side's wrist width and are flagged for manual pivot review. The committed pack zip must equal a rebuild.
+- `base_orientation: wrist_edge` drawings are placed by `WristAlignmentController` (`wristalign.py`): opening centre on
+  the character's cuff edge, tucked TUCK_PX under it, wrist axis on the hand bone, rotation about the opening, one
+  scale per side and library; pixels behind the tucked opening are trimmed. Corrections: dx, dy, rot, scale, overlap,
+  pivot_x/pivot_y. Store hands are rigid on the hand bone (`GarmentSkeleton.RIGID`: no blend band, no stretch).
+- Libraries are active or archived (`library_status`): a pack's `supersedes` archives older libraries by default (while
+  the superseding library is active, so archiving it restores them), the
+  Phase 2 sheet hands (`phase2_sheet_hands`) are archived while a sleeve-free library is active; `handstore.library`
+  (project schema v4) restores or archives. Archived drawings stay in the store; `gesture_id_map` maps old ids.
+- `motion/handselect.py` `NaturalHandSelectionEngine` fills only the *automatic* slot of the switch groups (user >
+  keyframe > auto > default). Rules (`ACTIONS`), weights (`WEIGHTS`, per character in
+  `natural_pose/hand_rules.json` or `handselect.weights`), temporal rules (hysteresis, holds, beats, symmetry), wrist
+  aim within the wrist limit and eased in sequences. Scores never claim visual quality. It runs in AutoRig, not Moho.
+- `autorig hand-replace-evidence <package>` regenerates `hand_store/evidence_v2/` (10 test renders, sheets, gates).
+
 ## Live Models track (Moho 14.5)
 
 - Requirement: generate **Moho 14.5-compatible Live Models**, with Smart Bones and actions
@@ -212,6 +238,10 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 # Hand Pose Store
 .venv/bin/python -m autorig hand-import <package_dir> <pack.zip>   # validate + store a hand pack (pending review)
 .venv/bin/python -m autorig hand-evidence <package_dir>            # attachment sheet, seams, IK sweep (~3 min)
+# Sleeve-free hand library
+.venv/bin/python -m autorig hand-sheet references/schoolboy/hand_pack_v2/hand_sheet_sleeveless.jpg --inspection references/schoolboy/hand_pack_v2/inspection.json --out references/schoolboy/hand_pack_v2 --library-id schoolboy_hands_sleeveless --supersedes schoolboy_hand_switches_v1 --zip-name AutoRig_Hand_Library_Sleeveless_v2.zip
+.venv/bin/python -m autorig hand-library <package_dir> [--archive LIB | --restore LIB | --default LIB]
+.venv/bin/python -m autorig hand-replace-evidence <package_dir>    # replacement evidence + 14 gates (~5 min)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -239,6 +269,9 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   (garment model + deformation engine), feasibility, quality, pipeline (MotionEngine, evidence CLI); Phase 3.2: ik
   (solver, limb controllers, foot contacts), switches (switch groups, hand library, correction triggers), rigctl
   (rig controls spec, live action map), demo (`ik-demo`)
+- `src/autorig/handsheet.py` — hand sheet extraction; `src/autorig/wristalign.py` — WristAlignmentController;
+  `src/autorig/motion/handselect.py` — NaturalHandSelectionEngine; `src/autorig/handreplace.py` — replacement evidence;
+  `references/schoolboy/hand_pack_v2/` — the user's sleeve-free sheet, inspection record, extracted sprites, pack zip
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

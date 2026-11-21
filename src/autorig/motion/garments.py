@@ -201,7 +201,10 @@ class GarmentModel:
 
 class GarmentSkeleton(Skeleton):
     """The anatomical skeleton plus garment-aware homes and influence. One virtual home (``HEM``) marks
-    blazer-hem pixels: they belong to the pelvis but take no thigh rotation."""
+    blazer-hem pixels: they belong to the pelvis but take no thigh rotation. Virtual homes ``RIGID[side]`` mark
+    stored hand switch drawings (layer ids with ``__hs.``): every pixel follows the hand bone's full transform
+    (no joint blend band), so a switch hand is rigid artwork driven by the wrist only. The sleeve stays with the
+    forearm; the cuff covers the seam. Original hand pixels keep the blended wrist band (skin continuity)."""
 
     def __init__(self, base: Skeleton, model: GarmentModel):
         super().__init__(base.bones, base.ground_y, base.midline_x, base.notes)
@@ -211,11 +214,18 @@ class GarmentSkeleton(Skeleton):
         self.model = model
         N = len(self.bones)
         self.HEM = N
-        self.vreal = np.arange(N + 1)
-        self.vreal[N] = self.idx["pelvis"]
-        self.depth = np.append(self.depth, self.depth[self.idx["pelvis"]])
-        self.desc = np.concatenate([self.desc, self.desc[:, [self.idx["pelvis"]]]], 1)
-        self.anc_v = np.concatenate([self.anc, self.anc[:, [self.idx["pelvis"]]]], 1)
+        extra = [self.idx["pelvis"]]
+        self.RIGID: dict[str, int] = {}
+        for s in SIDES:
+            if f"hand_{s}" in self.idx:
+                self.RIGID[s] = N + len(extra)
+                extra.append(self.idx[f"hand_{s}"])
+        self.vreal = np.r_[np.arange(N), extra].astype(np.int64)
+        self._rigid = np.zeros(len(self.vreal), bool)
+        self._rigid[list(self.RIGID.values())] = True
+        self.depth = np.append(self.depth, self.depth[extra])
+        self.desc = np.concatenate([self.desc, self.desc[:, extra]], 1)
+        self.anc_v = np.concatenate([self.anc, self.anc[:, extra]], 1)
         self.leg_bones = [self.idx[f"{k}_{s}"] for s in SIDES for k in ("thigh", "shin", "foot")]
         self.thigh_bones = {self.idx[f"thigh_{s}"] for s in SIDES}
         # soft attachment under the blazer hem: trouser pixels close to the hem take the thigh rotation
@@ -245,11 +255,17 @@ class GarmentSkeleton(Skeleton):
             out[self.model.labels[yi, xi] == RID["blazer_hem"]] = self.HEM
         elif cls.startswith("leg"):
             out[self.model.hem_override[yi, xi]] = self.HEM
+        elif cls.startswith("arm") and "__hs." in cid and cls[-1] in self.RIGID:
+            out[:] = self.RIGID[cls[-1]]  # stored hand switch drawing: rigid on the hand bone
         return out
 
     def influence(self, b: int, pts: np.ndarray, home: np.ndarray) -> np.ndarray:
         hem = home == self.HEM
         f = super().influence(b, pts, self.vreal[home])
+        rig = self._rigid[home]
+        if rig.any():  # rigid hand drawings: the full transform of the hand bone and its ancestors, no blend band
+            real = self.vreal[home[rig]]
+            f[rig] = ((real == b) | self.desc[b][real]).astype(np.float32)
         if hem.any() and b in self.leg_bones:
             f[hem] = 0.0
         if b in self.thigh_bones and self.attach_dist is not None:

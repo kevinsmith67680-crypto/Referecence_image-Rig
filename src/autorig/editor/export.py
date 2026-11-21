@@ -170,7 +170,7 @@ def _rig_controls(eng, st: dict[str, Any]) -> tuple[dict, list[str]]:
     the editor uses; the document stays engine-side (Moho mapping proposed_unverified)."""
     from ..motion.rigctl import build_rig_controls, validate
 
-    doc = build_rig_controls(eng, st.get("ik"), st.get("switches"))
+    doc = build_rig_controls(eng, st.get("ik"), st.get("switches"), st.get("hand_selection"))
     return doc, validate(doc)
 
 
@@ -208,6 +208,9 @@ def _hand_switches(eng, st: dict[str, Any], out: Path, W: int, H: int) -> tuple[
                     "category": v.category, "provenance": v.provenance, "placement": (v.placement or {}).get("final"),
                     "placement_correction": (v.placement or {}).get("correction"),
                     "mask": (v.placement or {}).get("mask_settings"),
+                    "alignment_params": (v.placement or {}).get("params"),
+                    "library": (v.meta or {}).get("library_id"), "sleeve": (v.meta or {}).get("sleeve"),
+                    "handedness": (v.meta or {}).get("handedness"), "flags": (v.meta or {}).get("flags") or [],
                     "checks": {"file_written": data is not None, "full_canvas": rgba.shape[:2] == (H, W),
                                "has_alpha": ok_alpha, "side_ok": al.get("side_ok"),
                                "rest_attachment_error_px": al.get("attachment_error_px"),
@@ -220,12 +223,22 @@ def _hand_switches(eng, st: dict[str, Any], out: Path, W: int, H: int) -> tuple[
                        "keyframes": sw.get("keys", []), "variants": variants})
     actions = {k: a for k, a in LIVE_ACTIONS.items() if a.get("kind") == "switch" and a.get("group", "").startswith("hand_")}
     n = sum(len(g["variants"]) for g in groups)
+    from ..motion.handselect import rules_json
+
+    hsi = eng.hand_store or {}
     return {
-        "schema": "autorig.hand_switches", "schema_version": "1.0.0",
+        "schema": "autorig.hand_switches", "schema_version": "1.1.0",
         "validated": {"groups": groups,
-                      "rules": ["layers are full-canvas rest-frame RGBA, unscaled after placement, with the drawing's own "
-                                "sleeve/cuff masked and its matte halo removed (source files unchanged)",
+                      "rules": ["layers are full-canvas rest-frame RGBA, unscaled after placement (source files unchanged)",
+                                "sleeve-attached drawings: their own sleeve/cuff masked and matte halo removed",
+                                "sleeve-free drawings: placed by their own wrist opening (centre on the character's cuff edge, "
+                                "tucked under it, axis on the hand bone, one scale per side); pixels behind the tucked "
+                                "opening trimmed (alignment_params)",
                                 "pending or rejected drawings are listed but not approved; production use requires approval"]},
+        "libraries": hsi.get("libraries", {}),
+        "gesture_id_map": hsi.get("gesture_id_map", []),
+        "selection": {"rules": rules_json(eng.hand_select), "state": st.get("hand_selection"),
+                      "note": "the selection algorithm runs in AutoRig; Moho would receive its results as switch keys"},
         "semantic_actions": actions,
         "moho_mapping": {"status": "proposed_unverified",
                          "proposal": "one Moho Switch Layer per group (child per variant image), bound to the hand bone; "

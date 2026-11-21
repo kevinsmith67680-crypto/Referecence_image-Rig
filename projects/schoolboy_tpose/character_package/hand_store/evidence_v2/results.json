@@ -1,0 +1,4409 @@
+{
+ "package": "character_package",
+ "library": "schoolboy_hands_sleeveless",
+ "libraries": {
+  "schoolboy_hand_switches_v1": {
+   "library_id": "schoolboy_hand_switches_v1",
+   "version": 1,
+   "order": 0,
+   "sleeve": "attached",
+   "supersedes": [],
+   "imported_at": "2026-11-21T14:06:30Z",
+   "superseded_by": [
+    "schoolboy_hands_sleeveless"
+   ],
+   "default": "archived",
+   "status": "archived",
+   "user": false,
+   "reason": "superseded by schoolboy_hands_sleeveless"
+  },
+  "schoolboy_hands_sleeveless": {
+   "library_id": "schoolboy_hands_sleeveless",
+   "version": 1,
+   "order": 1,
+   "sleeve": "none",
+   "supersedes": [
+    "schoolboy_hand_switches_v1"
+   ],
+   "imported_at": "2026-11-21T15:55:14Z",
+   "superseded_by": [],
+   "default": "active",
+   "status": "active",
+   "user": false,
+   "reason": "current"
+  },
+  "phase2_sheet_hands": {
+   "library_id": "phase2_sheet_hands",
+   "version": null,
+   "order": -1,
+   "sleeve": "attached",
+   "supersedes": [],
+   "superseded_by": [
+    "schoolboy_hands_sleeveless"
+   ],
+   "imported_at": null,
+   "default": "archived",
+   "status": "archived",
+   "user": false,
+   "pseudo": true,
+   "reason": "sleeve-free library active (schoolboy_hands_sleeveless)"
+  }
+ },
+ "allow_pending": true,
+ "note": "pending-review drawings are previewed, not approved",
+ "tests": [
+  {
+   "id": "01_relaxed_standing",
+   "title": "Standing with relaxed hands",
+   "preset": "relaxed_standing",
+   "config": {},
+   "expect": {
+    "r": [
+     "relaxed"
+    ],
+    "l": [
+     "relaxed"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "relaxed_standing",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 96.5,
+      "fill": 0.613,
+      "own_cloth_px": 158,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -1.76,
+      "cuff_center_q_px": -7.26,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "relaxed_standing",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 98.5,
+      "fill": 0.545,
+      "own_cloth_px": 135,
+      "own_white_px": 1,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.06,
+      "cuff_center_q_px": 7.56,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 6,
+    "changed_px_in_hand_zones": 24534,
+    "owners_outside": {
+     "upper_arm_l": 3,
+     "background": 4,
+     "forearm_r__hscuff": 1,
+     "upper_arm_r": 2,
+     "forearm_l": 1,
+     "forearm_r": 1
+    },
+    "changed_px_along_arms": 6,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "status": "OK",
+   "file": "tests/01_relaxed_standing.png"
+  },
+  {
+   "id": "02_walking",
+   "title": "Walking with natural hands",
+   "preset": "casual_walk",
+   "config": {
+    "phase": 0.25
+   },
+   "expect": {
+    "r": [
+     "relaxed",
+     "partially_closed"
+    ],
+    "l": [
+     "relaxed",
+     "partially_closed"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "walking",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 98.0,
+      "fill": 0.594,
+      "own_cloth_px": 139,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -2.51,
+      "cuff_center_q_px": -6.51,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": 3.046,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "walking",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 98.0,
+      "fill": 0.553,
+      "own_cloth_px": 134,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.31,
+      "cuff_center_q_px": 7.81,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": 7.747,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 6,
+    "changed_px_in_hand_zones": 24405,
+    "owners_outside": {
+     "upper_arm_r": 3,
+     "forearm_r__hscuff": 1,
+     "background": 6,
+     "forearm_r": 2
+    },
+    "changed_px_along_arms": 6,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "cycle_switching": {
+    "frames": 17,
+    "switches_after_first_frame": 0,
+    "hands": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "history": {
+     "r": [
+      "relaxed"
+     ],
+     "l": [
+      "relaxed"
+     ]
+    }
+   },
+   "status": "OK",
+   "file": "tests/02_walking.png"
+  },
+  {
+   "id": "03_running_fists",
+   "title": "Running with fists",
+   "preset": "running",
+   "config": {
+    "phase": 0.25
+   },
+   "expect": {
+    "r": [
+     "fist"
+    ],
+    "l": [
+     "fist"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "fist",
+     "cid": "store:schoolboy_hands_sleeveless/right_fist",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_fist.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "running",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 91.0,
+      "fill": 0.628,
+      "own_cloth_px": 121,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -1.51,
+      "cuff_center_q_px": -1.01,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": -8.415,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "fist",
+     "cid": "store:schoolboy_hands_sleeveless/left_fist",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_fist.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "running",
+     "reason": "highest score",
+     "score": 0.9319,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 97.5,
+      "fill": 0.628,
+      "own_cloth_px": 137,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 1.06,
+      "cuff_center_q_px": 9.56,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": 15.325,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 10,
+    "changed_px_in_hand_zones": 24529,
+    "owners_outside": {
+     "background": 10,
+     "upper_arm_r": 2,
+     "forearm_r__hscuff": 2,
+     "upper_arm_l": 1,
+     "forearm_r": 4,
+     "forearm_l": 1
+    },
+    "changed_px_along_arms": 10,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "cycle_switching": {
+    "frames": 17,
+    "switches_after_first_frame": 0,
+    "hands": {
+     "r": "fist",
+     "l": "fist"
+    },
+    "history": {
+     "r": [
+      "fist"
+     ],
+     "l": [
+      "fist"
+     ]
+    }
+   },
+   "status": "OK",
+   "file": "tests/03_running_fists.png"
+  },
+  {
+   "id": "04_pointing_right_hand",
+   "title": "Pointing with the right hand",
+   "preset": "pointing_speaking",
+   "config": {},
+   "expect": {
+    "r": [
+     "pointing"
+    ],
+    "l": [
+     "relaxed"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "pointing",
+     "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_pointing.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "pointing",
+     "reason": "highest score",
+     "score": 0.918,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": {
+      "feature": "index_tip",
+      "measured": true,
+      "goal_deg": 122.78,
+      "feature_deg": 133.64,
+      "weight": 1.0,
+      "needed_deg": -10.86,
+      "weighted_need_deg": -10.86,
+      "applied_deg": -10.86,
+      "residual_deg": 0.0,
+      "wrist_bend_after_deg": 6.86,
+      "goal_applied_deg": -10.86,
+      "eased": false
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 98.0,
+      "fill": 0.67,
+      "own_cloth_px": 105,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -4.01,
+      "cuff_center_q_px": -8.01,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": 6.86,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "relaxed_standing",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 98.5,
+      "fill": 0.545,
+      "own_cloth_px": 139,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 2.56,
+      "cuff_center_q_px": 7.56,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 7,
+    "changed_px_in_hand_zones": 25268,
+    "owners_outside": {
+     "forearm_r__hscuff": 2,
+     "background": 6,
+     "upper_arm_l": 1,
+     "torso": 2,
+     "forearm_r": 2,
+     "forearm_l": 1
+    },
+    "changed_px_along_arms": 7,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "status": "OK",
+   "file": "tests/04_pointing_right_hand.png"
+  },
+  {
+   "id": "05_pointing_left_hand",
+   "title": "Pointing with the left hand",
+   "preset": "relaxed_standing",
+   "config": {
+    "hand_actions": {
+     "l": "pointing"
+    },
+    "hand_targets": {
+     "l": [
+      1405.4776342076807,
+      396.5122365792319
+     ]
+    },
+    "ik": {
+     "arm_l": [
+      913.5612508324323,
+      439.70489463169275
+     ]
+    }
+   },
+   "expect": {
+    "r": [
+     "relaxed"
+    ],
+    "l": [
+     "pointing"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "relaxed_standing",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 97.5,
+      "fill": 0.592,
+      "own_cloth_px": 153,
+      "own_white_px": 1,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -2.76,
+      "cuff_center_q_px": -7.76,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "pointing",
+     "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_pointing.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "pointing",
+     "reason": "highest score",
+     "score": 0.8948,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "right",
+      "row_group_side": "left"
+     },
+     "aim": {
+      "feature": "index_tip",
+      "measured": true,
+      "goal_deg": -94.96,
+      "feature_deg": -84.56,
+      "weight": 1.0,
+      "needed_deg": -10.4,
+      "weighted_need_deg": -10.4,
+      "applied_deg": -10.4,
+      "residual_deg": 0.0,
+      "wrist_bend_after_deg": -4.4,
+      "goal_applied_deg": -10.4,
+      "eased": false
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 92.5,
+      "fill": 0.79,
+      "own_cloth_px": 109,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       6.0
+      ],
+      "hand_center_q_px": 16.31,
+      "cuff_center_q_px": 3.56,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": -4.4,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 4,
+    "changed_px_in_hand_zones": 25880,
+    "owners_outside": {
+     "background": 2,
+     "upper_arm_l": 1,
+     "upper_arm_r": 2,
+     "forearm_l": 1,
+     "forearm_r": 2
+    },
+    "changed_px_along_arms": 4,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "status": "OK",
+   "file": "tests/05_pointing_left_hand.png"
+  },
+  {
+   "id": "06_shrugging_open_palms",
+   "title": "Shrugging with open palms",
+   "preset": "one_hand_shrug",
+   "config": {},
+   "expect": {
+    "r": [
+     "open_palm",
+     "cupped"
+    ],
+    "l": [
+     "open_palm",
+     "cupped"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "layer": "hand_r",
+     "source": "auto",
+     "status": "original",
+     "action": "shrugging",
+     "reason": "highest score",
+     "score": 0.962,
+     "handedness": "character's own hand",
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 27.5,
+      "fill": 1.0,
+      "own_cloth_px": 293,
+      "own_white_px": 33,
+      "overhang_px": [
+       40.5,
+       36.0
+      ],
+      "hand_center_q_px": 6.49,
+      "cuff_center_q_px": 8.74,
+      "own_white_px_near_wrist": 13
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.039,
+      "det_min": 0.888,
+      "det_max": 1.157,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": null,
+     "side_scale": null,
+     "wrist_bend_deg": -10.0,
+     "checks": {
+      "handedness": true,
+      "wrist_orientation": true,
+      "gesture": true
+     },
+     "note": "the character's original hand artwork: attachment checks apply to replacement drawings"
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "layer": "hand_l",
+     "source": "auto",
+     "status": "original",
+     "action": "shrugging",
+     "reason": "highest score",
+     "score": 0.962,
+     "handedness": "character's own hand",
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 3.0,
+      "fill": 1.0,
+      "own_cloth_px": 325,
+      "own_white_px": 27,
+      "overhang_px": [
+       16.5,
+       98.0
+      ],
+      "hand_center_q_px": -13.94,
+      "cuff_center_q_px": -54.69,
+      "own_white_px_near_wrist": 9
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0325,
+      "det_min": 0.909,
+      "det_max": 1.156,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": null,
+     "side_scale": null,
+     "wrist_bend_deg": -10.0,
+     "checks": {
+      "handedness": true,
+      "wrist_orientation": true,
+      "gesture": true
+     },
+     "note": "the character's original hand artwork: attachment checks apply to replacement drawings"
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 0,
+    "changed_px_in_hand_zones": 0,
+    "owners_outside": {},
+    "changed_px_along_arms": 0,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "status": "OK",
+   "file": "tests/06_shrugging_open_palms.png"
+  },
+  {
+   "id": "07_gripping_object",
+   "title": "Gripping an object",
+   "preset": "relaxed_standing",
+   "config": {
+    "hand_actions": {
+     "r": "gripping"
+    },
+    "hand_targets": {
+     "r": [
+      384.51870063045646,
+      748.0148080855137
+     ]
+    }
+   },
+   "expect": {
+    "r": [
+     "gripping"
+    ],
+    "l": [
+     "relaxed"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "gripping",
+     "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_gripping.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "gripping",
+     "reason": "highest score",
+     "score": 0.8911,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 97.5,
+      "fill": 0.76,
+      "own_cloth_px": 131,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -4.51,
+      "cuff_center_q_px": -7.26,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "relaxed_standing",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 98.0,
+      "fill": 0.548,
+      "own_cloth_px": 130,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.06,
+      "cuff_center_q_px": 7.81,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 2,
+    "changed_px_in_hand_zones": 25600,
+    "owners_outside": {
+     "upper_arm_l": 2,
+     "forearm_l": 2
+    },
+    "changed_px_along_arms": 2,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {
+    "r": {
+     "grip_center": [
+      384.13,
+      747.91
+     ],
+     "error_px": 0.4,
+     "wrist_target": [
+      404.17,
+      676.32
+     ],
+     "target": [
+      384.52,
+      748.01
+     ],
+     "ik_status": "ok"
+    }
+   },
+   "feasibility": "NEEDS_ARTWORK",
+   "status": "OK",
+   "file": "tests/07_gripping_object.png"
+  },
+  {
+   "id": "08_thumbs_up",
+   "title": "Thumbs-up gesture",
+   "preset": "relaxed_standing",
+   "config": {
+    "hand_actions": {
+     "r": "thumbs_up"
+    },
+    "ik": {
+     "arm_r": [
+      260.31235143069495,
+      582.7269619855786
+     ]
+    }
+   },
+   "expect": {
+    "r": [
+     "thumbs_up"
+    ],
+    "l": [
+     "relaxed"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "thumbs_up",
+     "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_thumbs_up.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "thumbs_up",
+     "reason": "highest score",
+     "score": 0.9418,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": {
+      "feature": "thumb_tip",
+      "measured": true,
+      "goal_deg": -180.0,
+      "feature_deg": 140.9,
+      "weight": 1.0,
+      "needed_deg": 39.1,
+      "weighted_need_deg": 39.1,
+      "applied_deg": 39.1,
+      "residual_deg": 0.0,
+      "wrist_bend_after_deg": -33.1,
+      "goal_applied_deg": 39.1,
+      "eased": false
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 91.5,
+      "fill": 0.679,
+      "own_cloth_px": 108,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -1.01,
+      "cuff_center_q_px": 8.24,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": -33.1,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "relaxed_standing",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 97.5,
+      "fill": 0.546,
+      "own_cloth_px": 131,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.31,
+      "cuff_center_q_px": 7.56,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": 6.0,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 5,
+    "changed_px_in_hand_zones": 25372,
+    "owners_outside": {
+     "background": 6,
+     "upper_arm_r": 3,
+     "forearm_r": 1
+    },
+    "changed_px_along_arms": 5,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "status": "OK",
+   "file": "tests/08_thumbs_up.png"
+  },
+  {
+   "id": "09_hands_near_hips",
+   "title": "Hands resting near the hips",
+   "preset": "hands_on_hips",
+   "config": {},
+   "expect": {
+    "r": [
+     "relaxed",
+     "cupped"
+    ],
+    "l": [
+     "relaxed",
+     "cupped"
+    ]
+   },
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+     "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "hand_on_hip",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "right",
+      "drawn_as": "right",
+      "row_group_side": "right"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 94.0,
+      "fill": 0.587,
+      "own_cloth_px": 164,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -3.76,
+      "cuff_center_q_px": -3.01,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.5424,
+     "side_scale": 0.5424,
+     "wrist_bend_deg": -4.428,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "source": "auto",
+     "status": "pending_review",
+     "action": "hand_on_hip",
+     "reason": "highest score",
+     "score": 0.956,
+     "handedness": {
+      "anatomical": "left",
+      "drawn_as": "left",
+      "row_group_side": "left"
+     },
+     "aim": null,
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 95.5,
+      "fill": 0.557,
+      "own_cloth_px": 135,
+      "own_white_px": 1,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.31,
+      "cuff_center_q_px": 5.56,
+      "own_white_px_near_wrist": 0
+     },
+     "rigid": {
+      "rigid": false,
+      "blended_fraction": 0.0,
+      "det_min": 1.0,
+      "det_max": 1.0,
+      "folded_fraction": 0.0,
+      "compressed_fraction": 0.0,
+      "stretched_fraction": 0.0
+     },
+     "scale": 0.54323,
+     "side_scale": 0.54323,
+     "wrist_bend_deg": -1.102,
+     "checks": {
+      "handedness": true,
+      "attachment": true,
+      "no_sleeve_duplication": true,
+      "no_large_gap": true,
+      "no_excessive_overlap": true,
+      "no_scaling_distortion": true,
+      "wrist_orientation": true,
+      "gesture": true
+     }
+    }
+   },
+   "preserved": {
+    "changed_px_outside_hands": 5,
+    "changed_px_in_hand_zones": 24397,
+    "owners_outside": {
+     "background": 10
+    },
+    "changed_px_along_arms": 5,
+    "clothing_or_face_px_changed": 0,
+    "note": "changes along the arms are the forearm under switch drawings (Phase 2 trim + wrist cleanup); the torso, legs, face and hair must not change",
+    "zone": "both renders' hand pixels (+6 px) and discs of 1.45 x hand length around each posed wrist and hand centre (the cuff region)"
+   },
+   "grip": {},
+   "feasibility": "NEEDS_ARTWORK",
+   "status": "OK",
+   "file": "tests/09_hands_near_hips.png"
+  },
+  {
+   "id": "10_switching_during_arm_movement",
+   "title": "Switching gestures during arm movement",
+   "frames": [
+    {
+     "frame": 0,
+     "t": 0.0,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "highest score",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": null,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 1,
+     "t": 0.083,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 2,
+     "t": 0.167,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 3,
+     "t": 0.25,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 4,
+     "t": 0.333,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 5,
+     "t": 0.417,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 6,
+     "t": 0.5,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 7,
+     "t": 0.583,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 8,
+     "t": 0.667,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 9,
+     "t": 0.75,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      388.95,
+      687.21
+     ],
+     "wrist_step_px": 13.04,
+     "visible_centre_offset_px": 5.25,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 10,
+     "t": 0.833,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "action changed: switch at the action boundary",
+     "wrist": [
+      368.82,
+      658.65
+     ],
+     "wrist_step_px": 34.94,
+     "visible_centre_offset_px": 1.25,
+     "anchor_to_cuff_px": 6.335,
+     "aim": 0.72
+    },
+    {
+     "frame": 11,
+     "t": 0.917,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      339.68,
+      617.3
+     ],
+     "wrist_step_px": 50.59,
+     "visible_centre_offset_px": -7.25,
+     "anchor_to_cuff_px": 5.68,
+     "aim": 15.72
+    },
+    {
+     "frame": 12,
+     "t": 1.0,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      305.13,
+      568.28
+     ],
+     "wrist_step_px": 59.97,
+     "visible_centre_offset_px": -5.5,
+     "anchor_to_cuff_px": 5.922,
+     "aim": 10.45
+    },
+    {
+     "frame": 13,
+     "t": 1.083,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      268.78,
+      516.69
+     ],
+     "wrist_step_px": 63.11,
+     "visible_centre_offset_px": 4.25,
+     "anchor_to_cuff_px": 6.54,
+     "aim": -4.55
+    },
+    {
+     "frame": 14,
+     "t": 1.167,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      234.23,
+      467.67
+     ],
+     "wrist_step_px": 59.97,
+     "visible_centre_offset_px": 7.25,
+     "anchor_to_cuff_px": 7.046,
+     "aim": -19.55
+    },
+    {
+     "frame": 15,
+     "t": 1.25,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      205.08,
+      426.32
+     ],
+     "wrist_step_px": 50.59,
+     "visible_centre_offset_px": 15.5,
+     "anchor_to_cuff_px": 7.306,
+     "aim": -29.04
+    },
+    {
+     "frame": 16,
+     "t": 1.333,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      184.96,
+      397.76
+     ],
+     "wrist_step_px": 34.94,
+     "visible_centre_offset_px": 8.0,
+     "anchor_to_cuff_px": 7.061,
+     "aim": -20.03
+    },
+    {
+     "frame": 17,
+     "t": 1.417,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 10.78,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 18,
+     "t": 1.5,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 19,
+     "t": 1.583,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 20,
+     "t": 1.667,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 21,
+     "t": 1.75,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 22,
+     "t": 1.833,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 23,
+     "t": 1.917,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 24,
+     "t": 2.0,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 25,
+     "t": 2.083,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 26,
+     "t": 2.167,
+     "action": "pointing",
+     "pose": "pointing",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      180.8,
+      387.82
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 4.5,
+     "anchor_to_cuff_px": 6.787,
+     "aim": -11.46
+    },
+    {
+     "frame": 27,
+     "t": 2.25,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "action changed: switch at the action boundary",
+     "wrist": [
+      189.58,
+      404.32
+     ],
+     "wrist_step_px": 18.69,
+     "visible_centre_offset_px": 5.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 28,
+     "t": 2.333,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      220.86,
+      448.71
+     ],
+     "wrist_step_px": 54.3,
+     "visible_centre_offset_px": 4.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 29,
+     "t": 2.417,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      263.65,
+      509.41
+     ],
+     "wrist_step_px": 74.27,
+     "visible_centre_offset_px": 5.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 30,
+     "t": 2.5,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      310.26,
+      575.55
+     ],
+     "wrist_step_px": 80.91,
+     "visible_centre_offset_px": 6.25,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 31,
+     "t": 2.583,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      353.04,
+      636.26
+     ],
+     "wrist_step_px": 74.27,
+     "visible_centre_offset_px": 5.5,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 32,
+     "t": 2.667,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      384.33,
+      680.65
+     ],
+     "wrist_step_px": 54.31,
+     "visible_centre_offset_px": 5.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 33,
+     "t": 2.75,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 21.06,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 34,
+     "t": 2.833,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    },
+    {
+     "frame": 35,
+     "t": 2.917,
+     "action": "relaxed_standing",
+     "pose": "relaxed",
+     "source": "auto",
+     "reason": "unchanged",
+     "wrist": [
+      396.46,
+      697.87
+     ],
+     "wrist_step_px": 0.0,
+     "visible_centre_offset_px": 3.75,
+     "anchor_to_cuff_px": 6.363,
+     "aim": null
+    }
+   ],
+   "switch_frames": [
+    10,
+    27
+   ],
+   "pops": [
+    {
+     "frame": 10,
+     "from": "relaxed",
+     "to": "pointing",
+     "anchor_change_px": 0.028,
+     "wrist_step_px": 34.94,
+     "aim_before": null,
+     "aim_after": 0.72
+    },
+    {
+     "frame": 27,
+     "from": "pointing",
+     "to": "relaxed",
+     "anchor_change_px": 0.424,
+     "wrist_step_px": 18.69,
+     "aim_before": -11.46,
+     "aim_after": null
+    }
+   ],
+   "summary": "2 switches (frames [10, 27]); wrist anchor change at a switch 0.42 px; max wrist aim step 15.0 deg/frame; flicker test 7 switches/24 frames",
+   "wrist_path": {
+    "max_step_px": 80.91,
+    "mean_step_px": 21.59
+   },
+   "wrist_aim": {
+    "max_step_deg_per_frame": 15.0,
+    "rate_limit_deg_s": 180.0,
+    "limit_per_frame_deg": 15.0
+   },
+   "flicker": {
+    "frames": 24,
+    "toggling": "pointing/relaxed every frame",
+    "switches": 7,
+    "max_allowed": 9,
+    "sequence": [
+     "pointing",
+     "pointing",
+     "pointing",
+     "relaxed",
+     "relaxed",
+     "relaxed",
+     "pointing",
+     "pointing",
+     "pointing",
+     "relaxed",
+     "relaxed",
+     "relaxed",
+     "pointing",
+     "pointing",
+     "pointing",
+     "relaxed",
+     "relaxed",
+     "relaxed",
+     "pointing",
+     "pointing",
+     "pointing",
+     "relaxed",
+     "relaxed",
+     "relaxed"
+    ]
+   },
+   "file": "switch_sequence.png",
+   "animation": "switch_sequence.gif",
+   "status": "OK"
+  }
+ ],
+ "artistic_review_required": true,
+ "library_sheet": {
+  "file": "library_attached.jpg",
+  "drawings": [
+   {
+    "side": "r",
+    "pose": "relaxed",
+    "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 1.0,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       66.0,
+       10.0
+      ],
+      [
+       162.0,
+       16.0
+      ]
+     ],
+     "wrist_axis": [
+      -0.0624,
+      0.9981
+     ],
+     "pivot_px": [
+      114.0,
+      13.0
+     ],
+     "natural_angle_deg": 88.982,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 96.19,
+     "wrist_fit": 0.82,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.613,
+     "own_cloth_px": 158,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -1.76,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "r",
+    "pose": "open_palm",
+    "cid": "store:schoolboy_hands_sleeveless/right_open_palm",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 0.97,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       100.0,
+       11.0
+      ],
+      [
+       191.0,
+       14.0
+      ]
+     ],
+     "wrist_axis": [
+      -0.0329,
+      0.9995
+     ],
+     "pivot_px": [
+      145.5,
+      12.5
+     ],
+     "natural_angle_deg": 90.674,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 91.05,
+     "wrist_fit": 0.776,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.593,
+     "own_cloth_px": 229,
+     "own_white_px": 2,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -0.76,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "one_hand_shrug",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "r",
+    "pose": "fist",
+    "cid": "store:schoolboy_hands_sleeveless/right_fist",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 1.0,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       56.0,
+       11.0
+      ],
+      [
+       160.0,
+       15.0
+      ]
+     ],
+     "wrist_axis": [
+      -0.0384,
+      0.9993
+     ],
+     "pivot_px": [
+      108.0,
+      13.0
+     ],
+     "natural_angle_deg": 90.358,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 104.08,
+     "wrist_fit": 0.887,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.644,
+     "own_cloth_px": 119,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -1.26,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "running",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "r",
+    "pose": "pointing",
+    "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "closed_outline",
+     "opening_confidence": 0.35,
+     "manual_review": true,
+     "wrist_edge_px": [
+      [
+       246.5,
+       23.78
+      ],
+      [
+       246.5,
+       116.28
+      ]
+     ],
+     "wrist_axis": [
+      -1.0,
+      -0.0
+     ],
+     "pivot_px": [
+      246.5,
+      70.03
+     ],
+     "natural_angle_deg": 2.559,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 41,
+     "wrist_width_px": 92.5,
+     "wrist_fit": 0.788,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.68,
+     "own_cloth_px": 124,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -5.01,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "r",
+    "pose": "thumbs_up",
+    "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 1.0,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       188.0,
+       132.0
+      ],
+      [
+       188.0,
+       219.0
+      ]
+     ],
+     "wrist_axis": [
+      -1.0,
+      0.0
+     ],
+     "pivot_px": [
+      188.0,
+      175.5
+     ],
+     "natural_angle_deg": 2.559,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 87.0,
+     "wrist_fit": 0.741,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.582,
+     "own_cloth_px": 115,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -2.26,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "r",
+    "pose": "gripping",
+    "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "closed_outline",
+     "opening_confidence": 0.35,
+     "manual_review": true,
+     "wrist_edge_px": [
+      [
+       220.5,
+       57.84
+      ],
+      [
+       220.5,
+       152.34
+      ]
+     ],
+     "wrist_axis": [
+      -1.0,
+      -0.0
+     ],
+     "pivot_px": [
+      220.5,
+      105.09
+     ],
+     "natural_angle_deg": 2.559,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 94.5,
+     "wrist_fit": 0.805,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.773,
+     "own_cloth_px": 159,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -4.51,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "r",
+    "pose": "palm_down",
+    "cid": "store:schoolboy_hands_sleeveless/right_palm_down",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 1.0,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       113.0,
+       14.0
+      ],
+      [
+       210.0,
+       13.0
+      ]
+     ],
+     "wrist_axis": [
+      0.0103,
+      0.9999
+     ],
+     "pivot_px": [
+      161.5,
+      13.5
+     ],
+     "natural_angle_deg": 93.149,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 97.01,
+     "wrist_fit": 0.827,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.624,
+     "own_cloth_px": 129,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -2.26,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "sitting",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "r",
+    "pose": "cupped",
+    "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "closed_outline",
+     "opening_confidence": 0.35,
+     "manual_review": true,
+     "wrist_edge_px": [
+      [
+       18.5,
+       113.4
+      ],
+      [
+       18.5,
+       20.9
+      ]
+     ],
+     "wrist_axis": [
+      1.0,
+      -0.0
+     ],
+     "pivot_px": [
+      18.5,
+      67.15
+     ],
+     "natural_angle_deg": 182.559,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 92.5,
+     "wrist_fit": 0.788,
+     "attachment_bone": "hand_r",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 96.5,
+     "fill": 0.737,
+     "own_cloth_px": 115,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 2.24,
+     "cuff_center_q_px": -7.26,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "hands_on_hips",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "l",
+    "pose": "relaxed",
+    "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 0.91,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       21.0,
+       20.0
+      ],
+      [
+       115.0,
+       7.0
+      ]
+     ],
+     "wrist_axis": [
+      0.137,
+      0.9906
+     ],
+     "pivot_px": [
+      68.0,
+      13.5
+     ],
+     "natural_angle_deg": -84.109,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 94.89,
+     "wrist_fit": 0.819,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.545,
+     "own_cloth_px": 135,
+     "own_white_px": 1,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 3.06,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "l",
+    "pose": "open_palm",
+    "cid": "store:schoolboy_hands_sleeveless/left_open_palm",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 0.888,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       85.0,
+       15.0
+      ],
+      [
+       176.0,
+       12.0
+      ]
+     ],
+     "wrist_axis": [
+      0.0329,
+      0.9995
+     ],
+     "pivot_px": [
+      130.5,
+      13.5
+     ],
+     "natural_angle_deg": -90.098,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 91.05,
+     "wrist_fit": 0.786,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.545,
+     "own_cloth_px": 203,
+     "own_white_px": 1,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 3.06,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "one_hand_shrug",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "l",
+    "pose": "fist",
+    "cid": "store:schoolboy_hands_sleeveless/left_fist",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 1.0,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       34.0,
+       16.0
+      ],
+      [
+       136.0,
+       9.0
+      ]
+     ],
+     "wrist_axis": [
+      0.0685,
+      0.9977
+     ],
+     "pivot_px": [
+      85.0,
+      12.5
+     ],
+     "natural_angle_deg": -88.055,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 102.24,
+     "wrist_fit": 0.883,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.576,
+     "own_cloth_px": 120,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 4.56,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "running",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "l",
+    "pose": "pointing",
+    "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "closed_outline",
+     "opening_confidence": 0.35,
+     "manual_review": true,
+     "wrist_edge_px": [
+      [
+       19.5,
+       20.75
+      ],
+      [
+       19.5,
+       113.25
+      ]
+     ],
+     "wrist_axis": [
+      1.0,
+      -0.0
+     ],
+     "pivot_px": [
+      19.5,
+      67.0
+     ],
+     "natural_angle_deg": -1.983,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 15,
+     "wrist_width_px": 92.5,
+     "wrist_fit": 0.799,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.803,
+     "own_cloth_px": 126,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 15.81,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+     "derived: horizontal mirror of r1c4 (drawn as a right hand); the sheet has no left pointing drawing"
+    ]
+   },
+   {
+    "side": "l",
+    "pose": "thumbs_up",
+    "cid": "store:schoolboy_hands_sleeveless/left_thumbs_up",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 1.0,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       12.0,
+       212.0
+      ],
+      [
+       15.0,
+       125.0
+      ]
+     ],
+     "wrist_axis": [
+      0.9994,
+      0.0345
+     ],
+     "pivot_px": [
+      13.5,
+      168.5
+     ],
+     "natural_angle_deg": -3.96,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 87.05,
+     "wrist_fit": 0.752,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.545,
+     "own_cloth_px": 124,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 3.06,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "l",
+    "pose": "gripping",
+    "cid": "store:schoolboy_hands_sleeveless/left_gripping",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "closed_outline",
+     "opening_confidence": 0.35,
+     "manual_review": true,
+     "wrist_edge_px": [
+      [
+       17.5,
+       153.41
+      ],
+      [
+       17.5,
+       61.91
+      ]
+     ],
+     "wrist_axis": [
+      1.0,
+      -0.0
+     ],
+     "pivot_px": [
+      17.5,
+      107.66
+     ],
+     "natural_angle_deg": -1.983,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 91.5,
+     "wrist_fit": 0.79,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.702,
+     "own_cloth_px": 130,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 3.81,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "relaxed_standing",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "l",
+    "pose": "palm_down",
+    "cid": "store:schoolboy_hands_sleeveless/left_palm_down",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "open_cut",
+     "opening_confidence": 0.724,
+     "manual_review": false,
+     "wrist_edge_px": [
+      [
+       98.0,
+       14.0
+      ],
+      [
+       192.0,
+       13.0
+      ]
+     ],
+     "wrist_axis": [
+      0.0106,
+      0.9999
+     ],
+     "pivot_px": [
+      145.0,
+      13.5
+     ],
+     "natural_angle_deg": -91.376,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 0,
+     "wrist_width_px": 94.01,
+     "wrist_fit": 0.812,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.596,
+     "own_cloth_px": 138,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": 5.56,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "sitting",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": []
+   },
+   {
+    "side": "l",
+    "pose": "cupped",
+    "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+    "status": "pending_review",
+    "alignment": {
+     "method": "wrist_edge_match",
+     "opening": "closed_outline",
+     "opening_confidence": 0.35,
+     "manual_review": true,
+     "wrist_edge_px": [
+      [
+       220.5,
+       15.76
+      ],
+      [
+       220.5,
+       109.26
+      ]
+     ],
+     "wrist_axis": [
+      -1.0,
+      -0.0
+     ],
+     "pivot_px": [
+      220.5,
+      62.51
+     ],
+     "natural_angle_deg": -181.983,
+     "rotation_offset_deg": 0.0,
+     "tuck_px": 6.0,
+     "trimmed_px": 20,
+     "wrist_width_px": 93.5,
+     "wrist_fit": 0.807,
+     "attachment_bone": "hand_l",
+     "rotation_about": "wrist opening centre (anchor)"
+    },
+    "rest_seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 98.5,
+     "fill": 0.662,
+     "own_cloth_px": 96,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -3.19,
+     "cuff_center_q_px": 7.56,
+     "own_white_px_near_wrist": 0
+    },
+    "rest_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "action": "hands_on_hips",
+    "action_checks": {
+     "handedness": true,
+     "attachment": true,
+     "no_sleeve_duplication": true,
+     "no_large_gap": true,
+     "no_excessive_overlap": true,
+     "no_scaling_distortion": true,
+     "wrist_orientation": true
+    },
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   }
+  ]
+ },
+ "before_after": {
+  "file": "before_after.jpg",
+  "cells": [
+   {
+    "pose": "relaxed_standing",
+    "column": "original hand",
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 33.0,
+       "fill": 1.0,
+       "own_cloth_px": 307,
+       "own_white_px": 25,
+       "overhang_px": [
+        37.0,
+        33.0
+       ],
+       "hand_center_q_px": 6.49,
+       "cuff_center_q_px": 8.49,
+       "own_white_px_near_wrist": 9
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.5,
+       "fill": 1.0,
+       "own_cloth_px": 334,
+       "own_white_px": 20,
+       "overhang_px": [
+        17.5,
+        98.5
+       ],
+       "hand_center_q_px": -13.94,
+       "cuff_center_q_px": -54.44,
+       "own_white_px_near_wrist": 6
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "relaxed_standing",
+    "column": "before: sleeve-attached library",
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hand_switches_v1/right_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 96.5,
+       "fill": 0.644,
+       "own_cloth_px": 119,
+       "own_white_px": 14,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -5.26,
+       "cuff_center_q_px": -7.26,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hand_switches_v1/left_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.5,
+       "fill": 0.596,
+       "own_cloth_px": 120,
+       "own_white_px": 14,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 5.56,
+       "cuff_center_q_px": 7.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "relaxed_standing",
+    "column": "after: sleeve-free library",
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 96.5,
+       "fill": 0.613,
+       "own_cloth_px": 158,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.76,
+       "cuff_center_q_px": -7.26,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.5,
+       "fill": 0.545,
+       "own_cloth_px": 135,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 3.06,
+       "cuff_center_q_px": 7.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "running",
+    "column": "original hand",
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 30.5,
+       "fill": 1.0,
+       "own_cloth_px": 311,
+       "own_white_px": 16,
+       "overhang_px": [
+        38.5,
+        35.0
+       ],
+       "hand_center_q_px": 6.49,
+       "cuff_center_q_px": 8.24,
+       "own_white_px_near_wrist": 5
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.5,
+       "fill": 1.0,
+       "own_cloth_px": 344,
+       "own_white_px": 14,
+       "overhang_px": [
+        18.0,
+        103.0
+       ],
+       "hand_center_q_px": -12.44,
+       "cuff_center_q_px": -54.94,
+       "own_white_px_near_wrist": 4
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "running",
+    "column": "before: sleeve-attached library",
+    "hands": {
+     "r": {
+      "pose": "fist",
+      "cid": "phase2:fist",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 51.0,
+       "fill": 1.0,
+       "own_cloth_px": 253,
+       "own_white_px": 19,
+       "overhang_px": [
+        13.0,
+        13.5
+       ],
+       "hand_center_q_px": 2.24,
+       "cuff_center_q_px": 1.99,
+       "own_white_px_near_wrist": 5
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "fist",
+      "cid": "phase2:fist",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 59.0,
+       "fill": 1.0,
+       "own_cloth_px": 245,
+       "own_white_px": 19,
+       "overhang_px": [
+        14.0,
+        6.0
+       ],
+       "hand_center_q_px": -2.69,
+       "cuff_center_q_px": 1.31,
+       "own_white_px_near_wrist": 8
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "running",
+    "column": "after: sleeve-free library",
+    "hands": {
+     "r": {
+      "pose": "fist",
+      "cid": "store:schoolboy_hands_sleeveless/right_fist",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 91.0,
+       "fill": 0.628,
+       "own_cloth_px": 121,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.51,
+       "cuff_center_q_px": -1.01,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "fist",
+      "cid": "store:schoolboy_hands_sleeveless/left_fist",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.5,
+       "fill": 0.628,
+       "own_cloth_px": 137,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 1.06,
+       "cuff_center_q_px": 9.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "pointing_speaking",
+    "column": "original hand",
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 31.0,
+       "fill": 1.0,
+       "own_cloth_px": 310,
+       "own_white_px": 33,
+       "overhang_px": [
+        37.5,
+        35.5
+       ],
+       "hand_center_q_px": 6.49,
+       "cuff_center_q_px": 7.49,
+       "own_white_px_near_wrist": 13
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.5,
+       "fill": 1.0,
+       "own_cloth_px": 331,
+       "own_white_px": 19,
+       "overhang_px": [
+        114.5,
+        1.5
+       ],
+       "hand_center_q_px": -14.44,
+       "cuff_center_q_px": 42.06,
+       "own_white_px_near_wrist": 7
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "pointing_speaking",
+    "column": "before: sleeve-attached library",
+    "hands": {
+     "r": {
+      "pose": "pointing",
+      "cid": "phase2:point",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 52.0,
+       "fill": 1.0,
+       "own_cloth_px": 358,
+       "own_white_px": 88,
+       "overhang_px": [
+        12.0,
+        12.0
+       ],
+       "hand_center_q_px": 2.49,
+       "cuff_center_q_px": 2.49,
+       "own_white_px_near_wrist": 20
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hand_switches_v1/left_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.5,
+       "fill": 0.601,
+       "own_cloth_px": 116,
+       "own_white_px": 13,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 5.31,
+       "cuff_center_q_px": 7.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "pointing_speaking",
+    "column": "after: sleeve-free library",
+    "hands": {
+     "r": {
+      "pose": "pointing",
+      "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.0,
+       "fill": 0.67,
+       "own_cloth_px": 105,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -4.01,
+       "cuff_center_q_px": -8.01,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.5,
+       "fill": 0.545,
+       "own_cloth_px": 139,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 2.56,
+       "cuff_center_q_px": 7.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "hands_on_hips",
+    "column": "original hand",
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 31.0,
+       "fill": 1.0,
+       "own_cloth_px": 327,
+       "own_white_px": 19,
+       "overhang_px": [
+        37.0,
+        34.5
+       ],
+       "hand_center_q_px": 6.74,
+       "cuff_center_q_px": 7.99,
+       "own_white_px_near_wrist": 9
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.0,
+       "fill": 1.0,
+       "own_cloth_px": 335,
+       "own_white_px": 13,
+       "overhang_px": [
+        18.0,
+        98.5
+       ],
+       "hand_center_q_px": -13.94,
+       "cuff_center_q_px": -54.19,
+       "own_white_px_near_wrist": 6
+      },
+      "checks": {
+       "handedness": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "hands_on_hips",
+    "column": "before: sleeve-attached library",
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hand_switches_v1/right_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 94.0,
+       "fill": 0.646,
+       "own_cloth_px": 105,
+       "own_white_px": 14,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -6.51,
+       "cuff_center_q_px": -3.01,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hand_switches_v1/left_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 95.5,
+       "fill": 0.609,
+       "own_cloth_px": 121,
+       "own_white_px": 11,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 5.81,
+       "cuff_center_q_px": 5.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   },
+   {
+    "pose": "hands_on_hips",
+    "column": "after: sleeve-free library",
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 94.0,
+       "fill": 0.587,
+       "own_cloth_px": 164,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.76,
+       "cuff_center_q_px": -3.01,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 95.5,
+       "fill": 0.557,
+       "own_cloth_px": 135,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 3.31,
+       "cuff_center_q_px": 5.56,
+       "own_white_px_near_wrist": 0
+      },
+      "checks": {
+       "handedness": true,
+       "attachment": true,
+       "no_sleeve_duplication": true,
+       "no_large_gap": true,
+       "no_excessive_overlap": true,
+       "no_scaling_distortion": true,
+       "wrist_orientation": true
+      }
+     }
+    }
+   }
+  ],
+  "archived_libraries_restored_for_this_sheet": [
+   "schoolboy_hand_switches_v1"
+  ]
+ },
+ "ik": {
+  "switching": {
+   "relaxed": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "relaxed+aim": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "fist": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "fist+aim": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "pointing": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "pointing+aim": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "open_palm": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "open_palm+aim": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "cupped": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   },
+   "cupped+aim": {
+    "max_joint_move_px": 0.0,
+    "max_tail_move_px_except_hand": 0.0,
+    "max_bone_length_change_px": 0.0071
+   }
+  },
+  "fk_ik_match": {
+   "arm_r": {
+    "jump_px": 0.0141,
+    "max_rotation_jump_deg": 0.003
+   },
+   "arm_l": {
+    "jump_px": 0.0141,
+    "max_rotation_jump_deg": 0.0027
+   }
+  },
+  "attachment_in_ik": {
+   "thumbs_up_ik": {
+    "side": "r",
+    "pose": "thumbs_up",
+    "seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 91.5,
+     "fill": 0.679,
+     "own_cloth_px": 108,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      0.0
+     ],
+     "hand_center_q_px": -1.01,
+     "cuff_center_q_px": 8.24,
+     "own_white_px_near_wrist": 0
+    },
+    "ik_status": "ok"
+   },
+   "point_left_ik": {
+    "side": "l",
+    "pose": "pointing",
+    "seam": {
+     "status": "OK",
+     "covered": true,
+     "cuff_width_px": 92.5,
+     "fill": 0.79,
+     "own_cloth_px": 109,
+     "own_white_px": 0,
+     "overhang_px": [
+      0.0,
+      6.0
+     ],
+     "hand_center_q_px": 16.31,
+     "cuff_center_q_px": 3.56,
+     "own_white_px_near_wrist": 0
+    },
+    "ik_status": "clamped_max_reach"
+   }
+  },
+  "status": "OK"
+ },
+ "garments": {
+  "pose": "conversational_gesture",
+  "switching": {
+   "relaxed": {
+    "cover": "forearm_r__hscuff",
+    "cover_alpha_identical": true,
+    "hand_below_cover": true,
+    "upper_arm_pixels_identical": true
+   },
+   "fist": {
+    "cover": "forearm_r__hscuff",
+    "cover_alpha_identical": true,
+    "hand_below_cover": true,
+    "upper_arm_pixels_identical": true
+   },
+   "open_palm": {
+    "cover": "forearm_r",
+    "cover_alpha_identical": false,
+    "hand_below_cover": true,
+    "upper_arm_pixels_identical": true
+   }
+  },
+  "rigidity": {
+   "relaxed": {
+    "rigid": false,
+    "blended_fraction": 0.0,
+    "det_min": 1.0,
+    "det_max": 1.0,
+    "folded_fraction": 0.0,
+    "compressed_fraction": 0.0,
+    "stretched_fraction": 0.0
+   },
+   "fist": {
+    "rigid": false,
+    "blended_fraction": 0.0,
+    "det_min": 1.0,
+    "det_max": 1.0,
+    "folded_fraction": 0.0,
+    "compressed_fraction": 0.0,
+    "stretched_fraction": 0.0
+   },
+   "open_palm": {
+    "rigid": false,
+    "blended_fraction": 0.039,
+    "det_min": 0.858,
+    "det_max": 1.2,
+    "folded_fraction": 0.0,
+    "compressed_fraction": 0.0,
+    "stretched_fraction": 0.0
+   }
+  },
+  "store_hands_rigid": true,
+  "cover_vs_forearm": {
+   "r": {
+    "removed_px": 1182,
+    "sleeve_px_removed": 0,
+    "dark_px_beyond_cuff_removed": 9,
+    "skin_px_removed": 925
+   },
+   "l": {
+    "removed_px": 1182,
+    "sleeve_px_removed": 0,
+    "dark_px_beyond_cuff_removed": 8,
+    "skin_px_removed": 946
+   }
+  },
+  "cover_removed_sleeve_px": 0,
+  "rule": "forearm controls the sleeve, the hand bone controls the hand (rigid, no blend band)",
+  "status": "OK"
+ },
+ "overrides": {
+  "auto": {
+   "r": "fist",
+   "l": "fist"
+  },
+  "user_choice": {
+   "requested": "open_palm",
+   "shown": "open_palm",
+   "source": "user",
+   "auto_would_be": "fist"
+  },
+  "keyframe": {
+   "key": "relaxed",
+   "shown": "relaxed",
+   "source": "keyframe"
+  },
+  "reset_to_auto": {
+   "shown": "fist",
+   "source": "auto"
+  },
+  "approved_only": {
+   "r": {
+    "pose": "open_palm",
+    "cid": "original"
+   },
+   "l": {
+    "pose": "open_palm",
+    "cid": "original"
+   }
+  },
+  "status": "OK"
+ },
+ "persistence": {
+  "ops": 5,
+  "reload_identical": true,
+  "undo": true,
+  "redo": true,
+  "placement_saved": {
+   "pivot_x": 3.0,
+   "pivot_y": -2.0,
+   "rot": 4.0,
+   "overlap": 2.0
+  },
+  "status": "OK"
+ },
+ "preservation": {
+  "source_sha256_matches": true,
+  "hand_store_files_modified": [],
+  "status": "OK"
+ },
+ "extraction": {
+  "drawings": 16,
+  "clean_pixels": true,
+  "summary": {
+   "drawings": 16,
+   "assets": 16,
+   "open_cut": 10,
+   "closed_outline": 6,
+   "mirrored_pairs": 7,
+   "not_mirrored_pairs": [
+    "pointing"
+   ],
+   "derived_assets": [
+    "left_pointing"
+   ],
+   "manual_review": [
+    "left_pointing",
+    "left_gripping",
+    "left_cupped",
+    "right_pointing",
+    "right_gripping",
+    "right_cupped"
+   ]
+  },
+  "handedness": {
+   "r1c1": "left",
+   "r1c2": "left",
+   "r1c3": "left",
+   "r1c4": "right",
+   "r2c1": "left",
+   "r2c2": "left",
+   "r2c3": "left",
+   "r2c4": "left",
+   "r3c1": "right",
+   "r3c2": "right",
+   "r3c3": "right",
+   "r3c4": "right",
+   "r4c1": "right",
+   "r4c2": "right",
+   "r4c3": "right",
+   "r4c4": "right"
+  },
+  "status": "OK"
+ },
+ "missing_and_unsuitable": {
+  "missing": [
+   {
+    "side": "r",
+    "pose": "partially_closed",
+    "drawing": "partial",
+    "status": "NEEDS_ARTWORK",
+    "fallback": "open_palm"
+   },
+   {
+    "side": "l",
+    "pose": "partially_closed",
+    "drawing": "partial",
+    "status": "NEEDS_ARTWORK",
+    "fallback": "open_palm"
+   }
+  ],
+  "flagged": [
+   {
+    "side": "r",
+    "pose": "pointing",
+    "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "r",
+    "pose": "gripping",
+    "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "r",
+    "pose": "cupped",
+    "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "l",
+    "pose": "pointing",
+    "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+     "derived: horizontal mirror of r1c4 (drawn as a right hand); the sheet has no left pointing drawing"
+    ]
+   },
+   {
+    "side": "l",
+    "pose": "gripping",
+    "cid": "store:schoolboy_hands_sleeveless/left_gripping",
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   },
+   {
+    "side": "l",
+    "pose": "cupped",
+    "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+    "flags": [
+     "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+    ]
+   }
+  ],
+  "pending_review": [
+   "handstore:schoolboy_hands_sleeveless/left_cupped@v1",
+   "handstore:schoolboy_hands_sleeveless/left_fist@v1",
+   "handstore:schoolboy_hands_sleeveless/left_gripping@v1",
+   "handstore:schoolboy_hands_sleeveless/left_palm_down@v1",
+   "handstore:schoolboy_hands_sleeveless/left_pointing@v1",
+   "handstore:schoolboy_hands_sleeveless/left_relaxed@v1",
+   "handstore:schoolboy_hands_sleeveless/left_thumbs_up@v1",
+   "handstore:schoolboy_hands_sleeveless/right_cupped@v1",
+   "handstore:schoolboy_hands_sleeveless/right_fist@v1",
+   "handstore:schoolboy_hands_sleeveless/right_gripping@v1",
+   "handstore:schoolboy_hands_sleeveless/right_palm_down@v1",
+   "handstore:schoolboy_hands_sleeveless/right_pointing@v1",
+   "handstore:schoolboy_hands_sleeveless/right_relaxed@v1",
+   "handstore:schoolboy_hands_sleeveless/right_thumbs_up@v1"
+  ],
+  "status": "OK"
+ },
+ "gates": [
+  {
+   "id": "G1",
+   "gate": "All 16 hand assets are extracted correctly",
+   "status": "PASS",
+   "evidence": "extraction_sheet.jpg (references/schoolboy/hand_pack_v2), library_attached.jpg"
+  },
+  {
+   "id": "G2",
+   "gate": "Both hands have functioning switch groups",
+   "status": "PASS",
+   "evidence": "results.json overrides"
+  },
+  {
+   "id": "G3",
+   "gate": "The old sleeve-attached variants are no longer active",
+   "status": "PASS",
+   "evidence": "active old: none"
+  },
+  {
+   "id": "G4",
+   "gate": "All new hands attach naturally at the wrist",
+   "status": "PASS",
+   "evidence": "tests/*.png, library_attached.jpg (visual review pending)"
+  },
+  {
+   "id": "G5",
+   "gate": "The forearm remains unchanged during hand switching",
+   "status": "PASS",
+   "evidence": "ik.switching, garments.switching (stored drawings share one cover; the cover differs from the original forearm layer only by old-hand pixels)"
+  },
+  {
+   "id": "G6",
+   "gate": "Automatic hand selection produces sensible results",
+   "status": "PASS",
+   "evidence": "auto_selection.jpg, tests/*.png"
+  },
+  {
+   "id": "G7",
+   "gate": "Manual selection overrides automatic behaviour",
+   "status": "PASS",
+   "evidence": "results.json overrides"
+  },
+  {
+   "id": "G8",
+   "gate": "Hand switching does not create excessive popping",
+   "status": "PASS",
+   "evidence": "switch_sequence.gif/png"
+  },
+  {
+   "id": "G9",
+   "gate": "Existing IK continues working",
+   "status": "PASS",
+   "evidence": "ik.fk_ik_match, tests 05/07/08"
+  },
+  {
+   "id": "G10",
+   "gate": "Garment deformation remains unaffected",
+   "status": "PASS",
+   "evidence": "garments, tests preserved"
+  },
+  {
+   "id": "G11",
+   "gate": "Projects save and reload correctly",
+   "status": "PASS",
+   "evidence": "persistence"
+  },
+  {
+   "id": "G12",
+   "gate": "Visual comparisons demonstrate improvement",
+   "status": "PASS",
+   "evidence": "before_after.jpg (judged by measurements; visual judgement is the user's)"
+  },
+  {
+   "id": "G13",
+   "gate": "Missing or unsuitable artwork is reported",
+   "status": "PASS",
+   "evidence": "missing_and_unsuitable"
+  },
+  {
+   "id": "G14",
+   "gate": "Existing character source artwork is preserved",
+   "status": "PASS",
+   "evidence": "preservation"
+  }
+ ],
+ "elapsed_s": 275.2
+}

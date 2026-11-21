@@ -22,6 +22,7 @@ from ..phase2.posing import PoseSolver
 from ..phase2.skeleton import SIDES, Skeleton, layer_class
 from ..phase2.skinning import Deformer, PoseParams
 from .feasibility import ArtInventory, PoseFeasibilityEvaluator
+from .handselect import NaturalHandSelectionEngine, action_for, context_from_pose, ease_aim, load_rules
 from .garments import ArtworkDeformationEngine, GarmentDeformationEngine, GarmentModel, GarmentSkeleton
 from .ik import LAT, ArmIKController, FootContactController, LegIKController
 from .intent import ArmIntent, LegIntent, PoseIntent
@@ -96,13 +97,15 @@ class MotionEngine:
         self.dark = (lum < 80) & fp
         self._legacy = None
         self.hand_lib = HandPoseLibrary(sk, layers, self.variants, self.approvals, corrective_manifest,
-                                        self.hand_store.get("candidates"), self.hand_store.get("use"))
+                                        self.hand_store.get("candidates"), self.hand_store.get("use"),
+                                        self.hand_store.get("phase2_active", True))
         # the feasibility inventory sees each pose through its active candidate (canonical drawing keys)
         self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
                                 for s in SIDES}
         self.corr_switch = CorrectionSwitchController(sk, self.approvals, corrective_ids)
         self._offset_layers: dict[tuple, str] = {}
         self._view, self._corrective_ids, self._corrective_manifest = view, corrective_ids, corrective_manifest
+        self.hand_select = NaturalHandSelectionEngine()  # engine_for_package loads the character's rules
         self.build_s = round(time.time() - t0, 3)
 
     def set_hand_store(self, hand_store: dict[str, Any] | None, approvals: dict[str, Any]) -> dict[str, Any]:
@@ -122,7 +125,7 @@ class MotionEngine:
         self.inventory = ArtInventory.build(set(self.layers), set(self.variants), approvals, self._view, self._corrective_ids)
         self.feas = PoseFeasibilityEvaluator(self.inventory)
         self.hand_lib = HandPoseLibrary(self.sk, self.layers, self.variants, approvals, self._corrective_manifest,
-                                        hs.get("candidates"), hs.get("use"))
+                                        hs.get("candidates"), hs.get("use"), hs.get("phase2_active", True))
         self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
                                 for s in SIDES}
         self.corr_switch.approvals = approvals
@@ -147,9 +150,51 @@ class MotionEngine:
             self._offset_layers[key] = oid
         return self._offset_layers[key]
 
+    def select_hands(self, name: str, it: PoseIntent, pose: PoseParams, allow_pending: bool,
+                     switches: dict[str, Any] | None, t_key: float | None, actions: dict[str, str | None] | None = None,
+                     targets: dict[str, Any] | None = None, states: dict[str, Any] | None = None,
+                     t: float | None = None, beat: int | None = None, aim: bool = True,
+                     previous_wrists: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Stage 3b (hand selection, after the skeletal solve): the NaturalHandSelectionEngine's automatic choice
+        per side, the switch resolution it feeds (user > keyframe > auto > default), and the wrist aim of the
+        active drawing (index toward the target, thumb up), applied to the hand bone within the wrist limit.
+        The forearm and every other bone are untouched; bone lengths never change."""
+        ctl = self.switch_controller(switches)
+        ctxs = {s: context_from_pose(self.solver, self.sk, pose, it, s, action_for(name, s, (actions or {}).get(s)),
+                                     (targets or {}).get(s), (previous_wrists or {}).get(s), t, beat, self._view)
+                for s in SIDES}
+        dec = self.hand_select.select_pair(self.hand_lib, ctxs, states, allow_pending)
+        out = {}
+        for s in SIDES:
+            r = ctl.resolve(f"hand_{s}", t_key, dec[s]["chosen"], allow_pending)
+            v = self.hand_lib.hands[s].get(r["active"])
+            rule = self.hand_select.rule(ctxs[s].action)
+            a = self.hand_select.aim(v, ctxs[s], rule) if (aim and v is not None and v.available) else None
+            goal = a["applied_deg"] if a and a.get("measured") else 0.0
+            applied, limited = ease_aim(goal, (states or {}).get(s), t) if aim else (0.0, False)
+            if a and a.get("measured"):
+                a = {**a, "goal_applied_deg": a["applied_deg"], "applied_deg": round(float(applied), 2),
+                     "residual_deg": round(float(a["needed_deg"] - applied), 2), "eased": limited}
+            elif abs(applied) > 1e-9:
+                a = {"feature": None, "measured": True, "applied_deg": round(float(applied), 2), "goal_applied_deg": 0.0,
+                     "needed_deg": 0.0, "residual_deg": round(float(-applied), 2), "eased": limited,
+                     "note": "easing the wrist back from the previous gesture's aim"}
+            if abs(applied) > 1e-9:
+                pose.theta[self.sk.idx[f"hand_{s}"]] += applied
+            missing = [p for p in rule.get("prefer", []) if not (self.hand_lib.hands[s].get(p) and
+                                                                  self.hand_lib.hands[s][p].available)]
+            chosen = dec[s]["chosen"]
+            if chosen in rule.get("prefer", []):
+                missing = [p for p in missing if rule["prefer"].index(p) < rule["prefer"].index(chosen)]
+            out[s] = {**dec[s], "resolution": {k: r[k] for k in ("requested", "active", "source", "note")},
+                      "aim_applied": a, "missing_preferred": missing,
+                      "overridden_by": r["source"] if r["source"] in ("user", "keyframe") else None}
+        return {"decisions": out, "auto": {s: dec[s]["chosen"] for s in SIDES}}
+
     def resolve_switches(self, it: PoseIntent, allow_pending: bool, switches: dict[str, Any] | None,
-                         t: float | None) -> tuple[dict[str, Any], dict[str, Any]]:
-        """Stage 6 (switch resolution). Hands: user > keyframe > automatic preset choice > reference hand.
+                         t: float | None, selection: dict[str, Any] | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Stage 6 (switch resolution). Hands: user > keyframe > automatic choice (``selection``: the
+        NaturalHandSelectionEngine; without it the planner's preference list) > reference hand.
         Returns the hands record used for layering/feasibility and the full resolution per group."""
         auto = self.feas.choose_hands(it, allow_pending)
         ctl = self.switch_controller(switches)
@@ -157,15 +202,31 @@ class MotionEngine:
         for s in SIDES:
             g = f"hand_{s}"
             a = auto[s]
-            r = ctl.resolve(g, t, DRAWING_TO_POSE.get(a["drawing"], FALLBACK_POSE), allow_pending)
+            dec = (selection or {}).get("decisions", {}).get(s)
+            auto_pose = dec["chosen"] if dec is not None else DRAWING_TO_POSE.get(a["drawing"], FALLBACK_POSE)
+            r = ctl.resolve(g, t, auto_pose, allow_pending)
             res[g] = r
             drawing = HAND_POSES[r["active"]]
-            pref = a["preferred"] if r["source"] in ("auto", "default") else HAND_POSES.get(r["requested"], drawing)
-            note = r["note"] or (a["note"] if r["source"] in ("auto", "default") else None)
+            if dec is not None:
+                prefer = self.hand_select.rule(dec["action"]).get("prefer") or [FALLBACK_POSE]
+                pref = HAND_POSES[prefer[0]] if r["source"] in ("auto", "default") else HAND_POSES.get(r["requested"], drawing)
+                note = r["note"] or (None if r["source"] not in ("auto", "default") else
+                                     (f"{dec['action']}: {dec['chosen']} ({dec['reason']})" if dec["chosen"] else
+                                      f"{dec['action']}: no eligible drawing, showing the default"))
+            else:
+                pref = a["preferred"] if r["source"] in ("auto", "default") else HAND_POSES.get(r["requested"], drawing)
+                note = r["note"] or (a["note"] if r["source"] in ("auto", "default") else None)
             out[s] = {"drawing": drawing, "pose": r["active"], "preferred": pref, "source": r["source"],
                       "pending_review": r["pending_review"], "note": note, "needs_artwork": r["needs_artwork"],
                       "offset": r["offset"], "layer": r["layer"],
                       "cid": self.hand_lib.hands[s][r["active"]].cid}
+            if dec is not None:
+                out[s]["selection"] = dec
+                missing = dec.get("missing_preferred") or []
+                if missing and r["source"] in ("auto", "default"):
+                    out[s]["missing_preferred"] = missing
+                    out[s]["fallback"] = r["active"]
+                continue
             prefs = it.arms[s].hand if s in it.arms else ["open"]
             missing = [p for p in prefs if self.inventory.hands.get(s, {}).get(p, "missing") == "missing"]
             if missing and r["source"] in ("auto", "default"):
@@ -259,6 +320,61 @@ class MotionEngine:
             notes.append(f"pelvis offset {po[0]:+.1f}, {po[1]:+.1f} px with feet locked")
         return notes
 
+    def feature_world(self, side: str, pose: PoseParams, feature: str) -> np.ndarray | None:
+        """Posed world position (rest-canvas px) of a stored drawing's feature (grip_center, index_tip ...) of the
+        side's active drawing for the feature's pose; None without a measured feature."""
+        pose_name = {"grip_center": "gripping", "index_tip": "pointing", "thumb_tip": "thumbs_up"}.get(feature)
+        v = self.hand_lib.hands[side].get(pose_name) if pose_name else None
+        if v is None or not v.available or not v.placement:
+            return None
+        f = ((v.meta or {}).get("features") or {}).get(feature)
+        fin = (v.placement or {}).get("final")
+        if f is None or fin is None:
+            return None
+        from ..handstore import Placement  # noqa: PLC0415
+
+        M = Placement(tuple(fin["anchor"]), tuple(fin["point"]), fin["angle_deg"], fin["scale"]).matrix()
+        rest = M[:2, :2] @ np.asarray(f, float) + M[:2, 2]
+        return self.solver.K.point(self.sk.idx[f"hand_{side}"], rest, pose)
+
+    def _grip_ik(self, name, phase, speed, exaggeration, travel, overrides, live_head, allow_pending, fluid, ik,
+                 switches, switch_time, actions, targets) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+        """Gripping with an interaction target: the arm's IK target is moved so the grip drawing's grip centre
+        (not the wrist) lands on the target (two fixed-point passes). Uses the one arm IK (TwoBoneIKSolver)."""
+        report: dict[str, Any] = {}
+        sides = [s for s in SIDES if (targets or {}).get(s) is not None and
+                 action_for(name, s, (actions or {}).get(s)) == "gripping"]
+        if not sides:
+            return ik, report
+        import copy  # noqa: PLC0415
+
+        from .rigctl import default_ik_state  # noqa: PLC0415
+
+        ik2 = copy.deepcopy(ik) if ik else {}
+        for s in sides:
+            arm = {**default_ik_state()[f"arm_{s}"], **ik2.get(f"arm_{s}", {})}
+            arm.update(enabled=True, mode="ik", target=[float(v) for v in targets[s]])
+            ik2[f"arm_{s}"] = arm
+        for _ in range(8):
+            it, pose, _info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
+                                                  allow_pending, fluid, ik2)
+            done = True
+            for s in sides:
+                g = self.feature_world(s, pose, "grip_center")
+                if g is None:
+                    report[s] = {"status": "no grip drawing with a measured grip centre: the wrist goes to the target"}
+                    continue
+                err = np.asarray(targets[s], float) - g
+                report[s] = {"grip_center": [round(float(v), 2) for v in g], "error_px": round(float(np.hypot(*err)), 2),
+                             "wrist_target": [round(float(v), 2) for v in ik2[f"arm_{s}"]["target"]]}
+                if np.hypot(*err) > 0.5:
+                    ik2[f"arm_{s}"]["target"] = [float(ik2[f"arm_{s}"]["target"][0] + err[0]),
+                                                 float(ik2[f"arm_{s}"]["target"][1] + err[1])]
+                    done = False
+            if done:
+                break
+        return ik2, report
+
     def plan_and_solve(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
                        travel: float = 0.0, overrides: dict[str, float] | None = None,
                        live_head: dict[str, float] | None = None, allow_pending: bool = False, fluid: bool = True,
@@ -347,13 +463,37 @@ class MotionEngine:
              skeleton_only: bool = False, fluid: bool = True, ik: dict[str, Any] | None = None,
              switches: dict[str, Any] | None = None, switch_time: float | None = None,
              corrections_stateful: bool = False, correction_overrides: dict[str, bool] | None = None,
-             hand_layers: dict[str, str] | None = None) -> dict[str, Any]:
-        """Processing order: intent -> contact/IK targets -> skeletal solve -> correction selection -> garment
-        deformation -> switch resolution -> composition -> evaluation."""
+             hand_layers: dict[str, str] | None = None, hand_actions: dict[str, str | None] | None = None,
+             hand_targets: dict[str, Any] | None = None, hand_state: dict[str, Any] | None = None,
+             hand_time: float | None = None, hand_beat: int | None = None, hand_aim: bool = True,
+             previous_wrists: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Processing order: intent -> contact/IK targets -> skeletal solve -> hand selection (+ wrist aim) ->
+        correction selection -> garment deformation -> switch resolution -> composition -> evaluation.
+
+        Hand selection: ``hand_actions`` (side -> action; default from the preset), ``hand_targets`` (side ->
+        [x, y]: pointing/gripping targets; a gripping target also moves that arm's IK target so the grip centre
+        lands on it), ``hand_state`` (side -> HandSelectionState, for sequences), ``hand_time`` (s), ``hand_beat``."""
         spec = SPEC_BY_NAME[name]
         t0 = time.perf_counter()
+        ik, grip_report = self._grip_ik(name, phase, speed, exaggeration, travel, overrides, live_head, allow_pending,
+                                        fluid, ik, switches, switch_time, hand_actions, hand_targets)
         it, pose, info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
                                              allow_pending, fluid, ik)
+        hsel = self.select_hands(name, it, pose, allow_pending, switches,
+                                 switch_time if switch_time is not None else it.phase, hand_actions, hand_targets,
+                                 hand_state, hand_time, hand_beat, hand_aim, previous_wrists)
+        if any((d.get("aim_applied") or {}).get("applied_deg") for d in hsel["decisions"].values()):
+            info.update(self.solver.K.joints(pose))
+            info["anatomical"] = self.solver.anatomical(pose)
+        for s, g in grip_report.items():  # the grip centre on the final pose (after the last IK pass)
+            gw = self.feature_world(s, pose, "grip_center") if "grip_center" in g else None
+            if gw is not None:
+                err = float(np.hypot(*(np.asarray(hand_targets[s], float) - gw)))
+                g.update(grip_center=[round(float(v), 2) for v in gw], error_px=round(err, 2),
+                         wrist_target=[round(float(v), 2) for v in ik[f"arm_{s}"]["target"]],
+                         target=[round(float(v), 2) for v in hand_targets[s]],
+                         ik_status=(info.get("arms") or {}).get(s, {}).get("status"))
+        hsel["grip"] = grip_report
         t_solve = time.perf_counter() - t0
         t1 = time.perf_counter()
         forced = dict(correction_overrides or {})
@@ -366,7 +506,7 @@ class MotionEngine:
         t_corr = time.perf_counter() - t1
         t1 = time.perf_counter()
         hands, switch_res = self.resolve_switches(it, allow_pending, switches,
-                                                  switch_time if switch_time is not None else it.phase)
+                                                  switch_time if switch_time is not None else it.phase, hsel)
         for s, lay in (hand_layers or {}).items():  # Hand Library preview of one candidate (never an approval)
             if lay in self.variants or lay == f"hand_{s}":
                 hands[s] = {**hands[s], "layer": lay, "preview_override": True,
@@ -377,7 +517,7 @@ class MotionEngine:
                                           "allow_pending": allow_pending, "fluid": fluid},
                                "intent": it, "pose": pose, "solve": info, "hands": hands,
                                "corrections": corr["active"], "spec": spec.to_json(), "pad": pad,
-                               "switches": switch_res, "correction_switches": csw,
+                               "switches": switch_res, "correction_switches": csw, "hand_selection": hsel,
                                "timing_ms": {"solve": round(t_solve * 1000, 2), "corrections": round(t_corr * 1000, 2),
                                              "switches": round(t_switch * 1000, 2)}}
         solver_notes = [n for s in SIDES if s in info["legs"] for n in [info["legs"][s]["note"]] if n]
@@ -663,6 +803,7 @@ def engine_for_package(pkg, view: str = "front") -> tuple["MotionEngine", list[s
     hs = engine_input(pkg, st.get("hand_store"), sk, layers, ps.variants, st["approvals"], art.source)
     eng = MotionEngine(sk, layers, gen, art.source, ps.variants, st["approvals"], view, load_overrides(pkg), cids,
                        corrective_manifest(pkg), hs)
+    eng.hand_select = NaturalHandSelectionEngine.for_character(load_rules(pkg), (st.get("hand_selection") or {}).get("weights"))
     vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in m]
     del json
     return eng, vis

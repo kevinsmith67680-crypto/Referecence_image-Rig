@@ -42,7 +42,11 @@ SIDE_MAP = {"left": "l", "right": "r"}
 # pack pose name -> switch pose id (motion/switches.py HAND_POSES)
 PACK_POSES = {"relaxed": "relaxed", "open_palm": "open_palm", "fist": "fist", "point": "pointing",
               "thumbs_up": "thumbs_up", "grip": "gripping", "palm_down": "palm_down", "cupped": "cupped"}
-ORIENTATIONS = {"sleeve_top_hand_down": (0.0, 1.0)}  # sprite direction from wrist to fingers
+# sprite direction from wrist to fingers. "wrist_edge": sleeve-free drawings that carry their own wrist opening
+# (``wrist_edge_px`` end points and the unit ``wrist_axis`` into the hand; see ``autorig.handsheet``)
+ORIENTATIONS = {"sleeve_top_hand_down": (0.0, 1.0), "wrist_edge": None}
+GEOMETRY_KEYS = ("wrist_edge_px", "wrist_axis", "wrist_opening", "wrist_method", "wrist_confidence", "features",
+                 "handedness", "derived", "flags", "view", "sheet_cell", "sleeve", "manual_review")
 MAX_ZIP_BYTES = 64 * 1024 * 1024
 MAX_ENTRIES = 400
 ALLOWED_EXT = {".png", ".json", ".md", ".txt"}
@@ -97,6 +101,30 @@ def read_zip(data: bytes) -> dict[str, bytes]:
         root = tops.pop() + "/"
         files = {n[len(root):]: b for n, b in files.items()}
     return files
+
+
+def _check_wrist_edge(tag: str, a: dict[str, Any], w: int, h: int) -> list[str]:
+    """A sleeve-free drawing must say where its wrist opening is (two points on the canvas) and which way the hand
+    goes from it (a unit vector)."""
+    errs = []
+    e, ax = a.get("wrist_edge_px"), a.get("wrist_axis")
+    try:
+        (x0, y0), (x1, y1) = e
+        pts_ok = all(-1 <= x <= w and -1 <= y <= h for x, y in ((x0, y0), (x1, y1))) and math.hypot(x1 - x0, y1 - y0) >= 4
+    except (TypeError, ValueError):
+        pts_ok = False
+    if not pts_ok:
+        errs.append(f"{tag}: base_orientation wrist_edge needs wrist_edge_px [[x0, y0], [x1, y1]] on the canvas, "
+                    f">= 4 px apart (got {e!r})")
+    try:
+        n = math.hypot(float(ax[0]), float(ax[1]))
+        ax_ok = len(ax) == 2 and 0.9 <= n <= 1.1
+    except (TypeError, ValueError, IndexError):
+        ax_ok = False
+    if not ax_ok:
+        errs.append(f"{tag}: base_orientation wrist_edge needs wrist_axis, a unit vector from the wrist into the hand "
+                    f"(got {ax!r})")
+    return errs
 
 
 def validate_pack(files: dict[str, bytes]) -> tuple[dict[str, Any], list[dict[str, Any]], list[str], list[str]]:
@@ -178,6 +206,8 @@ def validate_pack(files: dict[str, bytes]) -> tuple[dict[str, Any], list[dict[st
         ax, ay = a["wrist_anchor_px"]
         if not (0 <= ax < im.width and 0 <= ay < im.height):
             errs.append(f"{tag}: wrist_anchor_px {a['wrist_anchor_px']} is outside the {im.width}x{im.height} canvas")
+        if orient == "wrist_edge":
+            errs.extend(_check_wrist_edge(tag, a, im.width, im.height))
         out.append({**a, "file": f, "sha256": _sha(files[f]), "size": [im.width, im.height],
                     "side_code": SIDE_MAP.get(a["side"]), "switch_pose": PACK_POSES.get(a["pose"])})
     for s in m["hand_sides"]:
@@ -248,17 +278,20 @@ class HandStore:
                                    "manifest_status": a.get("approval_status"), "notes": a.get("notes")},
                        manifest_anchor=list(a["wrist_anchor_px"]), anchor_status=a.get("wrist_anchor_status"),
                        base_orientation=a.get("base_orientation", "sleeve_top_hand_down"))
+            geom = {k: a[k] for k in GEOMETRY_KEYS if k in a}
             if rec["versions"] and rec["versions"][-1]["sha256"] == a["sha256"]:
                 continue
             rec["versions"].append({"v": len(rec["versions"]) + 1, "file": str(rel / a["file"]), "sha256": a["sha256"],
-                                    "size": a["size"], "origin": "pack", "pack_version": version, "imported_at": now})
+                                    "size": a["size"], "origin": "pack", "pack_version": version, "imported_at": now,
+                                    **({"geometry": geom} if geom else {})})
             new_versions += 1
         self.index["packs"].append({"library_id": lib, "version": version, "zip_sha256": zsha, "source_name": source_name,
                                     "imported_at": now, "dir": str(rel), "asset_count": len(assets),
                                     "manifest_sha256": _sha(files["manifest.json"]),
                                     "provenance": m.get("source_provenance"), "intended_use": m.get("intended_use"),
                                     "files": {n: _sha(b) for n, b in files.items() if Path(n).suffix.lower() in ALLOWED_EXT},
-                                    "warnings": warns})
+                                    "warnings": warns, "supersedes": [str(x) for x in m.get("supersedes", [])],
+                                    "sleeve": m.get("sleeve", "attached"), "pack_schema_version": m.get("schema_version", 1)})
         self._persist()
         return {"status": "imported", "library_id": lib, "version": version, "assets": len(assets),
                 "new_versions": new_versions, "warnings": warns}
@@ -281,17 +314,37 @@ class HandStore:
         sha = _sha(data)
         if rec["versions"] and rec["versions"][-1]["sha256"] == sha:
             return {"status": "unchanged", "uid": uid, "v": rec["versions"][-1]["v"]}
+        extra = {}
+        if rec.get("base_orientation") == "wrist_edge":
+            extra["geometry"] = replacement_geometry(np.asarray(im.convert("RGBA")), rec["versions"][-1].get("geometry", {}))
         v = len(rec["versions"]) + 1
         rel = Path("uploads") / rec["library_id"] / rec["asset_id"] / f"v{v}.png"
         _atomic_write(self.dir / rel, data)
         rec["versions"].append({"v": v, "file": str(rel), "sha256": sha, "size": [im.width, im.height],
                                 "origin": "replacement", "source_name": source_name,
-                                "imported_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+                                "imported_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), **extra})
         self._persist()
         return {"status": "replaced", "uid": uid, "v": v}
 
     def assets(self) -> list[dict[str, Any]]:
         return list(self.index["assets"].values())
+
+    def geometry(self, uid: str, v: int | None = None) -> dict[str, Any]:
+        """Wrist opening and features of a sleeve-free drawing version (empty for sleeve-attached drawings)."""
+        return dict(self.version(uid, v).get("geometry") or {})
+
+    def libraries(self) -> dict[str, dict[str, Any]]:
+        """Per library: its latest pack and the libraries a later pack supersedes it with."""
+        out: dict[str, dict[str, Any]] = {}
+        for i, p in enumerate(self.index["packs"]):
+            out[p["library_id"]] = {"library_id": p["library_id"], "version": p["version"], "order": i,
+                                    "sleeve": p.get("sleeve", "attached"), "supersedes": p.get("supersedes", []),
+                                    "imported_at": p["imported_at"], "superseded_by": []}
+        for lib, rec in out.items():
+            for other in out.values():
+                if lib in other["supersedes"] and other["order"] > rec["order"]:
+                    rec["superseded_by"].append(other["library_id"])
+        return out
 
     def version(self, uid: str, v: int | None = None) -> dict[str, Any]:
         vs = self.index["assets"][uid]["versions"]
@@ -328,8 +381,54 @@ def approval_key(uid: str, v: int) -> str:
 
 
 def default_store_state() -> dict[str, Any]:
-    """Editor project (schema v3) state for the user's decisions about stored drawings."""
-    return {"use": {}, "placement": {}, "mask": {}, "labels": {}, "deleted": [], "versions": {}}
+    """Editor project state for the user's decisions about stored drawings (schema v3; ``libraries`` from v4)."""
+    return {"use": {}, "placement": {}, "mask": {}, "labels": {}, "deleted": [], "versions": {}, "libraries": {}}
+
+
+LIBRARY_STATUS = ("active", "archived")
+PHASE2_LIBRARY = "phase2_sheet_hands"  # the Phase 2 hands cut from the character sheet (with their cuffs)
+
+
+def library_status(store: "HandStore", st: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    """Active or archived, per library. Default: archived when a later-imported pack supersedes it (its manifest
+    lists it under ``supersedes``), else active. The user's choice (``handstore.library``) overrides the default.
+    Archived drawings stay in the store (rollback) but are not candidates of the switch groups."""
+    user = (st or {}).get("libraries") or {}
+    out = {}
+    libs = store.libraries()
+    for lib, rec in sorted(libs.items(), key=lambda kv: -kv[1]["order"]):  # newest first: superseders decided first
+        by = [o for o in rec["superseded_by"] if out.get(o, {}).get("status") == "active"]
+        default = "archived" if by else "active"
+        status = user.get(lib, default)
+        why = (f"superseded by {', '.join(by)}" if by else
+               ("current" if not rec["superseded_by"] else f"its replacement {', '.join(rec['superseded_by'])} is archived"))
+        out[lib] = {**rec, "default": default, "status": status, "user": lib in user,
+                    "reason": why + ("; set by the user" if lib in user else "")}
+    out = {lib: out[lib] for lib in libs}
+    # the Phase 2 sheet hands are sleeve-attached too: archived while a sleeve-free library is active
+    free = [lib for lib, r in out.items() if r["sleeve"] == "none" and r["status"] == "active"]
+    default = "archived" if free else "active"
+    status = user.get(PHASE2_LIBRARY, default)
+    out[PHASE2_LIBRARY] = {"library_id": PHASE2_LIBRARY, "version": None, "order": -1, "sleeve": "attached",
+                           "supersedes": [], "superseded_by": free, "imported_at": None, "default": default,
+                           "status": status, "user": PHASE2_LIBRARY in user, "pseudo": True,
+                           "reason": (f"sleeve-free library active ({', '.join(free)})" if free else "no sleeve-free library")
+                           + ("; set by the user" if PHASE2_LIBRARY in user else "")}
+    return out
+
+
+def replacement_geometry(rgba: np.ndarray, old: dict[str, Any]) -> dict[str, Any]:
+    """Wrist opening of a replacement version of a sleeve-free drawing: detected on the new pixels near the side
+    the earlier version's opening faced (handsheet.wrist_opening)."""
+    from .handsheet import SIDE_DEG, wrist_opening  # noqa: PLC0415
+
+    ax = old.get("wrist_axis") or [0.0, 1.0]
+    facing = math.degrees(math.atan2(-ax[1], -ax[0])) % 360  # direction from the hand out through the opening
+    side = min(SIDE_DEG, key=lambda k: abs((SIDE_DEG[k] - facing + 180) % 360 - 180))
+    w = wrist_opening(rgba[..., 3] > 127, side, old.get("wrist_width_px"))
+    return {"wrist_edge_px": [w["p0"], w["p1"]], "wrist_axis": w["axis"], "wrist_opening": w["opening"],
+            "wrist_method": w["method"] + " (replacement, re-detected)", "wrist_confidence": w["confidence"],
+            "features": {}, "manual_review": True, "flags": ["replacement version: wrist opening re-detected"]}
 
 
 # -- image analysis: sleeve/cuff mask, matte halo, wrist edge ---------------------------------------------
@@ -565,7 +664,10 @@ def corrected(pl: Placement, corr: dict[str, Any] | None) -> Placement:
                      pl.angle + float(corr.get("rot", 0.0)), pl.scale * float(corr.get("scale", 1.0)))
 
 
-PLACEMENT_LIMITS = {"dx": (-80.0, 80.0), "dy": (-80.0, 80.0), "rot": (-180.0, 180.0), "scale": (0.5, 2.0)}
+PLACEMENT_LIMITS = {"dx": (-80.0, 80.0), "dy": (-80.0, 80.0), "rot": (-180.0, 180.0), "scale": (0.5, 2.0),
+                    # sleeve-free drawings (WristAlignmentController): extra overlap under the cuff (px) and the
+                    # manual wrist pivot on the drawing (sprite px)
+                    "overlap": (-6.0, 24.0), "pivot_x": (-60.0, 60.0), "pivot_y": (-60.0, 60.0)}
 MASK_LIMITS = {"cut_offset": (-30.0, 60.0)}
 
 
@@ -607,127 +709,197 @@ def layer_id(side: str, uid: str, v: int) -> str:
     return f"hand_{side}__hs.{uid.replace('/', '.')}.v{v}"
 
 
+def _sleeve_free(a: dict[str, Any]) -> bool:
+    return a.get("base_orientation") == "wrist_edge"
+
+
 def side_scales(store: HandStore, ref: dict[str, dict[str, Any]], assets: list[dict[str, Any]],
                 st: dict[str, Any], layers: dict[str, np.ndarray] | None = None,
-                covers: dict[str, np.ndarray] | None = None) -> tuple[dict[str, float], dict[str, Any]]:
-    """One scale per side, so every pose of a side has the same size (no size pop between stored drawings).
+                covers: dict[str, np.ndarray] | None = None) -> tuple[dict[tuple[str, str], float], dict[tuple[str, str], Any]]:
+    """One scale per library and side, so every pose of a side has the same size (no size pop between drawings of
+    a library). Keyed (library_id, side).
 
-    Primary rule (``open_palm_area``): the stored open palm, placed at the wrist, shows the same visible area as the
-    character's original open hand (iterated at rest, with the sleeve composited over both). Switching from the
-    original hand to a stored one then keeps the hand size. Fallback (``cuff_width``, no stored open palm): the
-    character's cuff width / the median width of the drawings' own cuffs."""
-    out, info = {}, {}
-    for s in ("r", "l"):
-        if s not in ref:
-            continue
-        side_assets = [a for a in assets if a["side"] == s]
-        widths = []
-        for a in side_assets:
-            _, mi = cuff_mask_cached(store, a["uid"], st["versions"].get(a["uid"]), a.get("base_orientation", "sleeve_top_hand_down"))
-            if mi.get("found"):
-                widths.append(mi["cut_span"][1] - mi["cut_span"][0] + 1)
-        w = float(np.median(widths)) if widths else 0.0
-        scale = ref[s]["cuff_width_px"] / w if w > 0 else 1.0
-        method = "cuff_width"
-        skey = None
-        palm = next((a for a in side_assets if a["pose"] == "open_palm"), None)
-        if palm is not None and layers is not None and f"hand_{s}" in layers:
-            img = store.image(palm["uid"], st["versions"].get(palm["uid"]))
-            m = {"enabled": True, "defringe": True, "cut_offset": 0.0, **st["mask"].get(palm["uid"], {})}
-            mask, mi = cuff_mask_cached(store, palm["uid"], st["versions"].get(palm["uid"]),
-                                        palm.get("base_orientation", "sleeve_top_hand_down"), float(m["cut_offset"]))
-            skey = ("scale", s, store.version(palm["uid"], st["versions"].get(palm["uid"]))["sha256"],
-                    json.dumps(m, sort_keys=True), json.dumps(ref[s], sort_keys=True, default=float), round(scale, 8))
-            if skey in _DERIVED:
-                out[s], info[s] = _DERIVED[skey]
+    Primary rule (``open_palm_area``): the library's open palm, placed at the wrist, shows the same visible area as
+    the character's original open hand (iterated at rest, with the sleeve composited over both). Switching from the
+    original hand to a stored one then keeps the hand size. Fallbacks: sleeve-attached libraries ``cuff_width``
+    (character cuff width / median width of the drawings' own cuffs), sleeve-free ones ``wrist_width`` (character
+    cuff width / median wrist-opening width)."""
+    from .wristalign import WristAlignmentController  # noqa: PLC0415
+
+    out: dict[tuple[str, str], float] = {}
+    info: dict[tuple[str, str], Any] = {}
+    wac = WristAlignmentController(ref)
+    for lib in sorted({a["library_id"] for a in assets}):
+        for s in ("r", "l"):
+            if s not in ref:
                 continue
-            if mi.get("found"):
-                src = hand_only(img, mask, bool(m["defringe"]))
-                fa = layers[f"forearm_{s}"][..., 3] > 127
-                target = float(((layers[f"hand_{s}"][..., 3] > 127) & ~fa).sum())
-                cov = covers.get(s) if covers else None
-                cov = fa if cov is None else cov
-                shape = layers[f"hand_{s}"].shape[:2]
-                for _ in range(3):
-                    placed = place(src, auto_placement(src, mi, ref[s], scale), shape)
-                    area = float(((placed[..., 3] > 127) & ~cov).sum())
-                    if area <= 0:
-                        break
-                    scale *= math.sqrt(target / area)
-                method = "open_palm_area"
-        out[s] = scale
-        info[s] = {"scale": round(scale, 5), "method": method, "cuff_scale": round(ref[s]["cuff_width_px"] / w, 5) if w else None}
-        if skey is not None:
-            _DERIVED[skey] = (scale, info[s])
+            side_assets = [a for a in assets if a["side"] == s and a["library_id"] == lib]
+            if not side_assets:
+                continue
+            palm = next((a for a in side_assets if a["pose"] == "open_palm"), None)
+            have_layers = layers is not None and f"hand_{s}" in layers
+            if all(_sleeve_free(a) for a in side_assets):
+                geoms = [store.geometry(a["uid"], st["versions"].get(a["uid"])) for a in side_assets]
+                widths = [wac.opening(g)["width_px"] for g in geoms if g.get("wrist_edge_px")]
+                skey = ("scale_we", lib, s, json.dumps(ref[s], sort_keys=True, default=float),
+                        tuple(store.version(a["uid"], st["versions"].get(a["uid"]))["sha256"] for a in side_assets))
+                if skey in _DERIVED:
+                    out[(lib, s)], info[(lib, s)] = _DERIVED[skey]
+                    continue
+                pimg = pgeom = target = cov = None
+                if palm is not None and have_layers:
+                    pimg = store.image(palm["uid"], st["versions"].get(palm["uid"]))
+                    pgeom = store.geometry(palm["uid"], st["versions"].get(palm["uid"]))
+                    fa = layers[f"forearm_{s}"][..., 3] > 127
+                    target = float(((layers[f"hand_{s}"][..., 3] > 127) & ~fa).sum())
+                    cov = (covers or {}).get(s)
+                    cov = fa if cov is None else cov
+                shape = next(iter(layers.values())).shape[:2] if layers else (1, 1)
+                sc, inf = wac.side_scale(s, pimg, pgeom, target, cov, shape, widths)
+                out[(lib, s)], info[(lib, s)] = sc, inf
+                _DERIVED[skey] = (sc, inf)
+                continue
+            widths = []
+            for a in side_assets:
+                _, mi = cuff_mask_cached(store, a["uid"], st["versions"].get(a["uid"]), a.get("base_orientation", "sleeve_top_hand_down"))
+                if mi.get("found"):
+                    widths.append(mi["cut_span"][1] - mi["cut_span"][0] + 1)
+            w = float(np.median(widths)) if widths else 0.0
+            scale = ref[s]["cuff_width_px"] / w if w > 0 else 1.0
+            method = "cuff_width"
+            skey = None
+            if palm is not None and have_layers:
+                img = store.image(palm["uid"], st["versions"].get(palm["uid"]))
+                m = {"enabled": True, "defringe": True, "cut_offset": 0.0, **st["mask"].get(palm["uid"], {})}
+                mask, mi = cuff_mask_cached(store, palm["uid"], st["versions"].get(palm["uid"]),
+                                            palm.get("base_orientation", "sleeve_top_hand_down"), float(m["cut_offset"]))
+                skey = ("scale", s, store.version(palm["uid"], st["versions"].get(palm["uid"]))["sha256"],
+                        json.dumps(m, sort_keys=True), json.dumps(ref[s], sort_keys=True, default=float), round(scale, 8))
+                if skey in _DERIVED:
+                    out[(lib, s)], info[(lib, s)] = _DERIVED[skey]
+                    continue
+                if mi.get("found"):
+                    src = hand_only(img, mask, bool(m["defringe"]))
+                    fa = layers[f"forearm_{s}"][..., 3] > 127
+                    target = float(((layers[f"hand_{s}"][..., 3] > 127) & ~fa).sum())
+                    cov = covers.get(s) if covers else None
+                    cov = fa if cov is None else cov
+                    shape = layers[f"hand_{s}"].shape[:2]
+                    for _ in range(3):
+                        placed = place(src, auto_placement(src, mi, ref[s], scale), shape)
+                        area = float(((placed[..., 3] > 127) & ~cov).sum())
+                        if area <= 0:
+                            break
+                        scale *= math.sqrt(target / area)
+                    method = "open_palm_area"
+            out[(lib, s)] = scale
+            info[(lib, s)] = {"scale": round(scale, 5), "method": method,
+                              "cuff_scale": round(ref[s]["cuff_width_px"] / w, 5) if w else None}
+            if skey is not None:
+                _DERIVED[skey] = (scale, info[(lib, s)])
     return out, info
+
+
+def active_assets(store: HandStore, st: dict[str, Any]) -> list[dict[str, Any]]:
+    """Stored drawings that are switch candidates: not deleted, in an active library."""
+    libs = library_status(store, st)
+    return [a for a in store.assets() if a["uid"] not in set(st.get("deleted", []))
+            and libs.get(a["library_id"], {}).get("status", "active") == "active"]
 
 
 def derive_layers(store: HandStore, st: dict[str, Any], sk, layers: dict[str, np.ndarray],
                   approvals: dict[str, Any], refine=None, cover_masks: dict[str, np.ndarray] | None = None,
                   source: np.ndarray | None = None) -> tuple[dict[str, np.ndarray], list[dict[str, Any]]]:
-    """Rest-frame layers for every non-deleted stored drawing, plus candidate records for the hand library.
+    """Rest-frame layers for every candidate drawing (not deleted, library active), plus candidate records for the
+    hand library. Sleeve-attached drawings are cut at their own cuff (``cuff_mask``) and matched cuff edge to cuff
+    edge; sleeve-free ones are placed by their wrist opening (``WristAlignmentController``).
     ``refine(side, rgba) -> (dx, dy, error)`` is the visible-attachment search (HandPoseLibrary.best_translation)."""
+    from .wristalign import WristAlignmentController  # noqa: PLC0415
+
     st = {**default_store_state(), **(st or {})}
-    assets = [a for a in store.assets() if a["uid"] not in set(st["deleted"])]
+    assets = active_assets(store, st)
     if not assets:
         return {}, []
     covers = {s: (cover_masks or {}).get(s) for s in ("r", "l")}
     ref = {s: reference_wrist(sk, layers, s, covers.get(s), source) for s in ("r", "l") if f"forearm_{s}" in layers}
     scales, scale_info = side_scales(store, ref, assets, st, layers, covers)
+    wac = WristAlignmentController(ref)
+    lib_order = {lib: rec["order"] for lib, rec in store.libraries().items()}
     shape = next(iter(layers.values())).shape[:2]
     skey = tuple(round(float(x), 3) for s in ("r", "l") for b in (f"hand_{s}", f"forearm_{s}")
                  for x in (*sk.bone(b).head, *sk.bone(b).tail))
     out, cands = {}, []
     from .motion.switches import _status  # noqa: PLC0415 - avoid an import cycle at module load
 
-    for a in assets:
+    for a in sorted(assets, key=lambda a: (-lib_order.get(a["library_id"], 0), a["uid"])):  # newest library first
         s = a["side"]
         if s not in ref:
             continue
         ver = store.version(a["uid"], st["versions"].get(a["uid"]))
-        m = {"enabled": True, "defringe": True, "cut_offset": 0.0, **st["mask"].get(a["uid"], {})}
         corr = st["placement"].get(a["uid"], {})
-        key = (a["uid"], ver["sha256"], json.dumps(m, sort_keys=True), json.dumps(corr, sort_keys=True), skey,
-               round(scales[s], 6), shape)
-        if key not in _DERIVED:
-            img = store.image(a["uid"], ver["v"])
-            mask, info = cuff_mask_cached(store, a["uid"], ver["v"], a.get("base_orientation", "sleeve_top_hand_down"),
-                                          float(m["cut_offset"]))
-            if not info.get("found"):
-                info = {"found": False, "anchor": list(a.get("manifest_anchor", [img.shape[1] / 2, img.shape[0] / 3]))}
-                mask = np.zeros(img.shape[:2], bool)
-            src = hand_only(img, mask if m["enabled"] else np.zeros_like(mask), bool(m["defringe"]))
-            auto = auto_placement(src, info, ref[s], scales[s])
-            placed = place(src, auto, shape)
-            ref_shift = (0.0, 0.0, None)
-            if refine is not None:
-                ref_shift = refine(s, placed)
-                if ref_shift is not None:
-                    auto = Placement(auto.anchor, (auto.point[0] + ref_shift[0], auto.point[1] + ref_shift[1]),
-                                     auto.angle, auto.scale)
-            final = corrected(auto, corr)
-            rgba = place(src, final, shape)
-            meta = {"mask": info, "auto": auto.to_json(), "final": final.to_json(), "correction": corr,
-                    "mask_settings": m, "refine_px": list(ref_shift[:2]) if ref_shift else [0, 0],
-                    "manifest_anchor": a.get("manifest_anchor"),
-                    "manifest_anchor_delta_px": (None if not info.get("found") else
-                                                 [round(info["anchor"][0] - a["manifest_anchor"][0], 1),
-                                                  round(info["anchor"][1] - a["manifest_anchor"][1], 1)]),
-                    "halo_removed_px": int(matte_halo(img).sum()) if m["defringe"] else 0,
-                    "side_scale": round(scales[s], 5), "scale_rule": scale_info.get(s), "reference_wrist": ref[s]}
-            _DERIVED[key] = (rgba, meta)
-            while len(_DERIVED) > 96:
-                _DERIVED.pop(next(iter(_DERIVED)))
+        sc = scales[(a["library_id"], s)]
+        if _sleeve_free(a):
+            geom = dict(ver.get("geometry") or {})
+            key = ("we", a["uid"], ver["sha256"], json.dumps(corr, sort_keys=True), skey, round(sc, 6), shape)
+            if key not in _DERIVED:
+                img = store.image(a["uid"], ver["v"])
+                rgba, pm = wac.layer(s, img, geom, sc, corr, shape)
+                meta = {**pm, "correction": corr, "side_scale": round(sc, 5), "scale_rule": scale_info.get((a["library_id"], s)),
+                        "reference_wrist": ref[s], "geometry": geom,
+                        "mask": {"found": True, "anchor": pm["params"]["pivot_px"],
+                                 "wrist_width_px": pm["params"]["wrist_width_px"], "opening": pm["params"]["opening"]}}
+                _DERIVED[key] = (rgba, meta)
+        else:
+            m = {"enabled": True, "defringe": True, "cut_offset": 0.0, **st["mask"].get(a["uid"], {})}
+            key = (a["uid"], ver["sha256"], json.dumps(m, sort_keys=True), json.dumps(corr, sort_keys=True), skey,
+                   round(sc, 6), shape)
+            if key not in _DERIVED:
+                img = store.image(a["uid"], ver["v"])
+                mask, info = cuff_mask_cached(store, a["uid"], ver["v"], a.get("base_orientation", "sleeve_top_hand_down"),
+                                              float(m["cut_offset"]))
+                if not info.get("found"):
+                    info = {"found": False, "anchor": list(a.get("manifest_anchor", [img.shape[1] / 2, img.shape[0] / 3]))}
+                    mask = np.zeros(img.shape[:2], bool)
+                src = hand_only(img, mask if m["enabled"] else np.zeros_like(mask), bool(m["defringe"]))
+                auto = auto_placement(src, info, ref[s], sc)
+                placed = place(src, auto, shape)
+                ref_shift = (0.0, 0.0, None)
+                if refine is not None:
+                    ref_shift = refine(s, placed)
+                    if ref_shift is not None:
+                        auto = Placement(auto.anchor, (auto.point[0] + ref_shift[0], auto.point[1] + ref_shift[1]),
+                                         auto.angle, auto.scale)
+                final = corrected(auto, corr)
+                rgba = place(src, final, shape)
+                meta = {"mask": info, "auto": auto.to_json(), "final": final.to_json(), "correction": corr,
+                        "mask_settings": m, "refine_px": list(ref_shift[:2]) if ref_shift else [0, 0],
+                        "manifest_anchor": a.get("manifest_anchor"),
+                        "manifest_anchor_delta_px": (None if not info.get("found") else
+                                                     [round(info["anchor"][0] - a["manifest_anchor"][0], 1),
+                                                      round(info["anchor"][1] - a["manifest_anchor"][1], 1)]),
+                        "halo_removed_px": int(matte_halo(img).sum()) if m["defringe"] else 0,
+                        "side_scale": round(sc, 5), "scale_rule": scale_info.get((a["library_id"], s)),
+                        "reference_wrist": ref[s]}
+                _DERIVED[key] = (rgba, meta)
+        while len(_DERIVED) > 160:
+            _DERIVED.pop(next(iter(_DERIVED)))
         rgba, meta = _DERIVED[key]
         lid = layer_id(s, a["uid"], ver["v"])
         out[lid] = rgba
+        geom = dict(ver.get("geometry") or {})
         cands.append({"cid": f"store:{a['uid']}", "uid": a["uid"], "v": ver["v"], "side": s, "pose": a["pose"],
                       "layer": lid, "status": _status(approvals, approval_key(a["uid"], ver["v"])),
                       "approval_item": approval_key(a["uid"], ver["v"]),
                       "category": "G_ai_generated_concept", "label": st["labels"].get(a["uid"], a["asset_id"]),
+                      "library_id": a["library_id"], "sleeve": "none" if _sleeve_free(a) else "attached",
+                      "library_rank": -lib_order.get(a["library_id"], 0),
+                      "features": geom.get("features", {}), "view": geom.get("view"),
+                      "handedness": geom.get("handedness"), "derived": geom.get("derived"),
+                      "flags": geom.get("flags", []),
                       "provenance": {**a.get("provenance", {}), "library_id": a["library_id"], "asset_id": a["asset_id"],
                                      "version": ver["v"], "sha256": ver["sha256"], "file": ver["file"],
-                                     "origin": ver["origin"]},
+                                     "origin": ver["origin"], "sheet_cell": geom.get("sheet_cell"),
+                                     "derived": geom.get("derived")},
                       "placement": meta})
     return out, cands
 
@@ -767,31 +939,109 @@ def engine_input(pkg: str | Path, st: dict[str, Any] | None, sk, layers: dict[st
     # available as the editor's explicit Auto-align tool.
     del refine
     lay, cands = derive_layers(store, state, sk, layers, approvals, None, covers, source)
-    return {"layers": {**extra, **lay}, "candidates": cands, "use": dict(state["use"]), "revision": store.revision}
+    idmap = gesture_id_map(store, state, cands)
+    use, remapped = dict(state["use"]), []
+    for k, cid in list(use.items()):  # a choice of an archived drawing follows the map to its replacement
+        hit = next((m for m in idmap if m["old"] == cid and m["side"] == k.split("/")[0]), None)
+        if hit is not None and hit["new"] and not any(c["cid"] == cid for c in cands):
+            use[k] = hit["new"]
+            remapped.append({"slot": k, "from": cid, "to": hit["new"], "reason": hit["reason"]})
+    libs = library_status(store, state)
+    return {"layers": {**extra, **lay}, "candidates": cands, "use": use, "use_remapped": remapped,
+            "gesture_id_map": idmap, "libraries": libs, "revision": store.revision,
+            "phase2_active": libs[PHASE2_LIBRARY]["status"] == "active"}
+
+
+def gesture_id_map(store: HandStore, st: dict[str, Any], cands: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Old gesture identifiers -> the drawing that replaces them: every drawing of an archived (or superseded)
+    library and every Phase 2 sheet hand, mapped by side and pose to the active sleeve-free candidate (newest
+    library first). Rollback: restoring a library (``handstore.library``) makes its drawings candidates again."""
+    from .motion.switches import HAND_POSES  # noqa: PLC0415
+
+    libs = library_status(store, st)
+    active = {}
+    for c in sorted(cands, key=lambda c: c.get("library_rank", 0)):
+        if c.get("sleeve") == "none":
+            active.setdefault((c["side"], c["pose"]), c["cid"])
+    out = []
+    for a in store.assets():
+        lib = libs.get(a["library_id"], {})
+        if lib.get("status") == "archived":
+            out.append({"old": f"store:{a['uid']}", "side": a["side"], "pose": a["pose"],
+                        "new": active.get((a["side"], a["pose"])),
+                        "reason": f"library {a['library_id']} archived ({lib.get('reason')})"})
+    p2 = libs.get(PHASE2_LIBRARY, {})
+    if p2.get("status") == "archived":
+        for s in ("r", "l"):
+            for pose, drawing in HAND_POSES.items():
+                if drawing != "open":
+                    out.append({"old": f"phase2:{drawing}", "side": s, "pose": pose, "new": active.get((s, pose)),
+                                "reason": f"Phase 2 sheet hand (cut with its cuff) archived ({p2.get('reason')})"})
+    return out
 
 
 _COVERS: dict[tuple, np.ndarray] = {}
 
 
+CUFF_OUTLINE_PX = 4.0  # the white cuff's own outline beyond its distal edge stays in the cover layer
+SPECK_PX = 40  # isolated pieces this small near the wrist are segmentation specks
+
+
 def cuff_cover(sk, layers: dict[str, np.ndarray], forearm: np.ndarray, side: str, source: np.ndarray | None) -> np.ndarray:
-    """Forearm layer for stored hands (``forearm_<side>__hscuff``): the trimmed forearm without the original hand's
-    skin pixels (and that hand's outline) beyond the shirt cuff's edge. Segmentation left those pixels in the forearm
-    layer; over a replacement hand they show as a patch of the old hand. Pixels are only removed, never added."""
+    """Forearm layer for stored hands (``forearm_<side>__hscuff``): the trimmed forearm without anything beyond the
+    shirt cuff. Segmentation left the original hand's skin, its outline (ticks at the cuff corners) and a few specks
+    in the forearm layer; over a replacement hand they show as a patch or dashes of the old hand. Removed: pixels
+    beyond the white cuff's distal edge, measured per 4 px across the sleeve (plus the cuff's own outline,
+    CUFF_OUTLINE_PX), the old hand's skin and the dark pixels touching it, and pieces smaller than SPECK_PX that are
+    cut off from the sleeve near the wrist. Pixels are only removed, never added."""
     key = (side, hashlib.blake2b(forearm.tobytes(), digest_size=12).hexdigest(),
            tuple(np.round(np.r_[sk.bone(f"hand_{side}").head, sk.bone(f"hand_{side}").tail], 3)))
     if key in _COVERS:
         return _COVERS[key]
     ref = reference_wrist(sk, layers, side, None, source)
     W, u = np.asarray(ref["wrist_joint"]), np.asarray(ref["axis"])
+    n = np.array([-u[1], u[0]])
+    hb = sk.bone(f"hand_{side}")
     c = classify(forearm)
     H, Wd = forearm.shape[:2]
     yy, xx = np.mgrid[0:H, 0:Wd]
     t = (xx - W[0]) * u[0] + (yy - W[1]) * u[1]
+    q = (xx - W[0]) * n[0] + (yy - W[1]) * n[1]
     beyond = t > ref["cuff_edge_t_px"] + 1.0
     skin = c["skin"] & beyond
     dark_near = ndimage.binary_dilation(skin, iterations=3) & beyond & ~(c["navy"] | c["white"]) & (forearm[..., 3] > 0)
+    remove = skin | dark_near
+    # the cuff's distal edge per 4 px strip across the sleeve (interpolated; held at the span ends)
+    wsel = c["white"] & (np.abs(t - ref["cuff_edge_t_px"]) <= 25) & (np.abs(q) < 0.9 * hb.length)
+    if wsel.sum() >= 50:
+        tq, qq = t[wsel], q[wsel]
+        q0 = float(qq.min())
+        bins = np.floor((qq - q0) / 4).astype(int)
+        ks = np.unique(bins)
+        centres = np.array([q0 + 4 * k + 2 for k in ks if (bins == k).sum() >= 3])
+        edges = np.array([float(tq[bins == k].max()) for k in ks if (bins == k).sum() >= 3])
+        if len(edges) >= 2:
+            edge_q = np.interp(q, centres, edges)  # held constant outside the cuff span
+            near = (np.abs(q) < 1.2 * hb.length) & (t < ref["cuff_edge_t_px"] + 1.5 * hb.length)
+            remove |= near & (t > edge_q + CUFF_OUTLINE_PX) & (forearm[..., 3] > 0)
+            # outline ticks at the cuff corners (thin strokes of the old hand's outline): thin protrusions in the
+            # white cuff's band and beyond. A 5x5 opening removes strokes up to ~4 px wide; the solid sleeve and
+            # cuff (and the cuff's outline, which borders the white) are unchanged by it
+            al0 = (forearm[..., 3] > 0) & ~remove
+            zone = near & (t > float(np.percentile(tq, 5)) - 2.0)
+            opened = ndimage.binary_opening(al0, structure=np.ones((5, 5), bool))
+            remove |= zone & al0 & ~opened & ~c["white"] & ~c["navy"]
     out = forearm.copy()
-    out[skin | dark_near, 3] = 0
+    out[remove, 3] = 0
+    al = out[..., 3] > 0
+    lab, nl = ndimage.label(al)
+    if nl > 1:
+        sizes = ndimage.sum(al, lab, range(1, nl + 1))
+        dist = np.hypot(xx - W[0], yy - W[1])
+        for i in np.nonzero(sizes < SPECK_PX)[0]:
+            comp = lab == i + 1
+            if dist[comp].min() < 1.5 * hb.length:
+                out[comp, 3] = 0
     _COVERS[key] = out
     return out
 

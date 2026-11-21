@@ -1,5 +1,10 @@
 # Hand Pose Store integration: schoolboy hand pack
 
+> **Superseded (2026-11-21).** The sleeve-attached library described here (`schoolboy_hand_switches_v1`) is now
+> archived (still stored, restorable) in favour of the sleeve-free library: see
+> [hand_library_replacement_report.md](hand_library_replacement_report.md). The store, its rules and this evidence
+> are unchanged.
+
 **Verdict: PARTIAL.** The pack is imported, validated and stored. Every drawing is selectable for both wrists in the
 existing switch system, attached at the character's cuff, sized like the original hand, masked so no second cuff
 appears, and previewed under IK without moving the skeleton. Choices, approvals and corrections persist with

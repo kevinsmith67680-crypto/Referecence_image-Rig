@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "autorig.rig_controls-1.0.0",
-  "title": "AutoRig Studio rig_controls 1.0.0",
+  "$id": "autorig.rig_controls-1.1.0",
+  "title": "AutoRig Studio rig_controls 1.1.0",
   "type": "object",
   "required": [
     "schema",
@@ -13,6 +13,7 @@
     "corrections",
     "missing_artwork",
     "live",
+    "hand_selection",
     "moho"
   ],
   "properties": {
@@ -20,7 +21,7 @@
       "const": "autorig.rig_controls"
     },
     "schema_version": {
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "coordinate_system": {
       "type": "string"
@@ -845,6 +846,130 @@
             "status": {
               "const": "unassigned"
             }
+          }
+        },
+        "moho": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "const": "proposed_unverified"
+            }
+          }
+        }
+      }
+    },
+    "hand_selection": {
+      "type": "object",
+      "required": [
+        "engine",
+        "runs_in",
+        "rules",
+        "state",
+        "groups",
+        "moho_translation",
+        "moho"
+      ],
+      "properties": {
+        "runs_in": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "object",
+          "required": [
+            "weights",
+            "actions",
+            "temporal",
+            "resolution",
+            "disclaimer"
+          ],
+          "properties": {
+            "weights": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "required": [
+            "actions",
+            "targets",
+            "weights"
+          ]
+        },
+        "groups": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "group",
+              "bone",
+              "pivot",
+              "default",
+              "variants",
+              "override",
+              "timeline_keys"
+            ],
+            "properties": {
+              "pivot": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "variants": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "pose",
+                    "cid",
+                    "layer",
+                    "status",
+                    "wrist_pivot",
+                    "attachment_bone"
+                  ],
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "original",
+                        "approved",
+                        "pending_review",
+                        "rejected"
+                      ]
+                    },
+                    "wrist_pivot": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "moho_translation": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "rule",
+              "moho"
+            ]
           }
         },
         "moho": {

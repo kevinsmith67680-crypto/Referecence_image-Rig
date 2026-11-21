@@ -225,3 +225,28 @@ Those layers enter the existing `HandPoseLibrary` as candidates next to the orig
 resolution, presets, live actions, IK and export are unchanged in structure. Hand Library edits update the cached
 engine in place (`MotionEngine.set_hand_store`). See [hand_pose_store_integration.md](hand_pose_store_integration.md).
 
+## 15. Sleeve-free hand library and natural hand selection
+
+* `src/autorig/handsheet.py` turns a hand sheet into a pack (`autorig hand-sheet`). It extracts each drawing (border
+  flood fill, unmatted edges, tight crop, no scaling) and measures the wrist opening (a cut with corners, or a chord on a
+  closed outline). Handedness comes from mirror-pair IoU, the open palm's thumb and per-drawing thumb evidence.
+* `src/autorig/wristalign.py` `WristAlignmentController` places a sleeve-free drawing by its own opening:
+  * the opening goes onto the character's cuff edge, tucked under it;
+  * the axis goes onto the hand bone, rotating about the opening;
+  * one scale per side and library;
+  * pixels behind the opening are trimmed.
+  `handstore.derive_layers` dispatches on `base_orientation`.
+* `GarmentSkeleton.RIGID` binds stored hand drawings rigidly to the hand bone (no wrist blend band).
+* `handstore.library_status` marks libraries active or archived (`supersedes`, the `phase2_sheet_hands` pseudo-library,
+  the user's `handstore.library` choice). Archived drawings stay stored and leave the switch candidates.
+  `gesture_id_map` maps old ids.
+* `src/autorig/motion/handselect.py` `NaturalHandSelectionEngine` runs after the skeletal solve:
+  * `MotionEngine.select_hands` ranks the active drawing of every pose by eight weighted criteria under per-action
+    rules, then applies the temporal rules and symmetry;
+  * the result fills the switch groups' automatic slot (user > keyframe > auto > default);
+  * the gesture's wrist aim is applied to the hand bone within the wrist limit, eased in sequences;
+  * gripping targets move the arm IK target so the grip centre lands on the object.
+* `rig_controls` 1.1.0 adds `hand_selection` (groups, variants, pivots, offsets, rules, overrides, keys, provenance, Moho
+  translation notes); `hand_switches.json` 1.1.0 adds libraries, the gesture map and alignment parameters.
+* Editor project schema v4: `hand_store.libraries`, `hand_selection` (`handselect.action|weights`). See
+  [hand_library_replacement_report.md](hand_library_replacement_report.md).

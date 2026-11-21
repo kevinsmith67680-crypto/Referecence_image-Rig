@@ -27,6 +27,7 @@ const PKG = process.env.AUTORIG_PACKAGE || path.join(repo, "projects/schoolboy_t
 const PY = process.env.AUTORIG_PYTHON || "python3";
 const SHOTS = process.env.AUTORIG_SHOTS || path.join(repo, "docs/phase3/screenshots");
 const SHOTS32 = process.env.AUTORIG_SHOTS_P32 || path.join(repo, "docs/phase3_2/screenshots");
+const SHOTSHR = process.env.AUTORIG_SHOTS_HR || path.join(repo, "docs/hand_replacement/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
@@ -447,6 +448,70 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     assert.ok((await api("/api/project")).state.hand_store.deleted.includes("schoolboy_hand_switches_v1/left_cupped"));
     await post("/api/undo");
     assert.ok(!(await api("/api/project")).state.hand_store.deleted.includes("schoolboy_hand_switches_v1/left_cupped"));
+
+    // 6e. Sleeve-free hand replacement: import the new library (the sleeve-attached one is archived, rollback kept),
+    // adjust a drawing's wrist pivot and overlap, read the selection engine's decision, set a gesture intention,
+    // auto toggle / reset to automatic, archive and restore the new library
+    mkdirSync(SHOTSHR, { recursive: true });
+    const NEW = "schoolboy_hands_sleeveless";
+    await page.click("[data-testid=tab-Hands]");
+    await page.waitForSelector("[data-testid=hand-library]");
+    await page.setInputFiles("[data-testid=hand-import]", path.join(repo, "references/schoolboy/hand_pack_v2/AutoRig_Hand_Library_Sleeveless_v2.zip"));
+    await page.waitForFunction(() => /imported/.test(document.querySelector("[data-testid=hand-import-result]")?.textContent ?? ""),
+      null, { timeout: 180000 });
+    await page.waitForSelector(`[data-testid=hand-lib-${NEW}]`, { timeout: 180000 });
+    assert.match(await page.textContent("[data-testid=hand-lib-schoolboy_hand_switches_v1]"), /archived/, "old library archived");
+    assert.match(await page.textContent(`[data-testid=hand-lib-${NEW}]`), /active/);
+    assert.match(await page.textContent("[data-testid=hand-lib-phase2_sheet_hands]"), /archived/, "sheet hands archived");
+    await page.screenshot({ path: path.join(SHOTSHR, "01_libraries_archived_and_active.png") });
+    const sel = `[data-testid=hc-r-pointing-store_${NEW}_right_pointing]`;
+    await page.selectOption("[data-testid=hand-side]", "r");
+    await page.waitForSelector(sel, { timeout: 120000 });
+    await page.click(sel);
+    await page.waitForSelector("[data-testid=hand-wrist-params]");
+    assert.match(await page.textContent("[data-testid=hand-flags]"), /closed outline/, "estimated pivot flagged for review");
+    const opClick = async (selector) => {   // an op through the UI, then wait until the project revision changes
+      const r0 = await rev(page);
+      await page.click(selector);
+      await page.waitForFunction((b) => !document.querySelector("[data-testid=revision]").textContent.includes(b),
+        r0, { timeout: 180000 });
+    };
+    await opClick("[data-testid=hand-pivot_xp]");
+    await opClick("[data-testid=hand-overlapp]");
+    st = (await api("/api/project")).state;
+    assert.equal(st.hand_store.placement[`${NEW}/right_pointing`].pivot_x, 2, "manual wrist pivot stored");
+    assert.equal(st.hand_store.placement[`${NEW}/right_pointing`].overlap, 1, "overlap stored");
+    await page.screenshot({ path: path.join(SHOTSHR, "02_sleeve_free_wrist_controls.png") });
+    await page.click("[data-testid=tab-Switches]");
+    await page.waitForSelector("[data-testid=hand-decision-l]");
+    await page.waitForFunction(() => /auto choice/.test(document.querySelector("[data-testid=hand-decision-l]")?.textContent ?? ""),
+      null, { timeout: 120000 });
+    let r1 = await rev(page);
+    await page.selectOption("[data-testid=hand-action-l]", "thumbs_up");
+    await page.waitForFunction((b) => !document.querySelector("[data-testid=revision]").textContent.includes(b), r1, { timeout: 180000 });
+    st = (await api("/api/project")).state;
+    assert.equal(st.hand_selection.actions.l, "thumbs_up", "gesture intention stored");
+    pr = await post("/api/pose", { preset: "relaxed_standing", skeleton_only: true, allow_pending: true });
+    assert.equal(pr.hand_selection.decisions.l.action, "thumbs_up");
+    assert.equal(pr.hands.l.pose, "thumbs_up", "the engine follows the gesture intention");
+    await opClick("[data-testid=sw-hand_l-autotoggle]");   // off: the current hand becomes an explicit choice
+    st = (await api("/api/project")).state;
+    assert.equal(st.switches.hand_l.auto, false);
+    await page.screenshot({ path: path.join(SHOTSHR, "03_hand_selection_decision.png") });
+    await opClick("[data-testid=sw-hand_l-auto]");          // reset to automatic
+    r1 = await rev(page);
+    await page.selectOption("[data-testid=hand-action-l]", "");
+    await page.waitForFunction((b) => !document.querySelector("[data-testid=revision]").textContent.includes(b), r1, { timeout: 180000 });
+    st = (await api("/api/project")).state;
+    assert.equal(st.switches.hand_l.auto, true);
+    assert.equal(st.hand_selection.actions.l, null);
+    await post("/api/op", { type: "handstore.library", library: NEW, status: "archived" });   // rollback ...
+    let hl = await api("/api/handstore");
+    assert.equal(hl.libraries.schoolboy_hand_switches_v1.status, "active", "rollback: the old library is active again");
+    await post("/api/op", { type: "handstore.library", library: NEW, status: null });          // ... and back
+    hl = await api("/api/handstore");
+    assert.equal(hl.libraries[NEW].status, "active");
+    assert.equal(hl.libraries.schoolboy_hand_switches_v1.status, "archived");
     await page.reload();
     await page.waitForSelector("[data-testid=layers-panel]");
 
@@ -501,6 +566,7 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     assert.equal(reopened.state.switches.hand_r.user, "fist", "hand switch persists");
     assert.equal(reopened.state.approvals["handstore:schoolboy_hand_switches_v1/left_relaxed@v1"].status, "approved", "hand approval persists");
     assert.equal(reopened.state.hand_store.placement["schoolboy_hand_switches_v1/left_relaxed"].dx, 1, "wrist placement persists");
+    assert.equal(reopened.state.hand_store.placement["schoolboy_hands_sleeveless/right_pointing"].pivot_x, 2, "manual pivot persists");
 
     // 11. export the Moho-ready package
     await page.click("[data-testid=tab-Export]");

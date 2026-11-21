@@ -98,6 +98,8 @@ class HandVariant:
     label: str = ""
     approval_item: str | None = None
     placement: dict[str, Any] | None = None  # stored drawings: automatic and corrected wrist placement
+    rank: int = 3  # default-choice rank after approved (0) and original (1): sleeve-free store 2, others 3
+    meta: dict[str, Any] = field(default_factory=dict)  # store drawings: library, sleeve, features, view, handedness
 
     @property
     def available(self) -> bool:
@@ -111,11 +113,13 @@ class HandVariant:
                 "bbox": self.bbox, "orientation_deg": None if self.orientation_deg is None else round(self.orientation_deg, 2),
                 "measure": self.measure, "view": "front",  # supported viewing orientation (the reference is front)
                 "needs_artwork": self.layer is None, "cid": self.cid, "label": self.label or self.pose,
-                "approval_item": self.approval_item, "placement": self.placement}
+                "approval_item": self.approval_item, "placement": self.placement, "meta": self.meta}
 
 
 EXTRA_HAND_POSES = ("palm_up", "cupped")
-CANDIDATE_RANK = {"approved": 0, "original": 1}  # default choice: approved, then original, then the order below
+# default choice per side/pose: approved, then the original hand, then sleeve-free store drawings (newest active
+# library first), then the remaining candidates (Phase 2 sheet hands and sleeve-attached store drawings)
+CANDIDATE_RANK = {"approved": 0, "original": 1}
 
 
 def _attachment(sk: Skeleton, mask: np.ndarray, origin, side: str) -> np.ndarray | None:
@@ -174,7 +178,8 @@ class HandPoseLibrary:
 
     def __init__(self, sk: Skeleton, layers: dict[str, np.ndarray], variants: dict[str, np.ndarray],
                  approvals: dict[str, Any] | None = None, manifest: dict[str, Any] | None = None,
-                 candidates: list[dict[str, Any]] | None = None, use: dict[str, str] | None = None):
+                 candidates: list[dict[str, Any]] | None = None, use: dict[str, str] | None = None,
+                 phase2_active: bool = True):
         self.sk, self.layers, self.variants = sk, layers, variants
         approvals = approvals or {}
         use = use or {}
@@ -192,7 +197,7 @@ class HandPoseLibrary:
                     cands.append(HandVariant(s, pose, drawing, f"hand_{s}", "original", "O_original",
                                              {"from": "reference image (original pixels)"}, pivot, 1.0,
                                              cid="original", label="original"))
-                if drawing != "open" and f"hand_{s}__{drawing}" in variants:
+                if drawing != "open" and f"hand_{s}__{drawing}" in variants and phase2_active:
                     r = recs.get(f"hand__{drawing}", {})
                     cat = r.get("category", "unknown")
                     conf = {"R_reference_derived": 0.8, "R_composed_from_reference": 0.6,
@@ -204,9 +209,13 @@ class HandPoseLibrary:
                                              approval_item=f"corrective:hand__{drawing}"))
                 for c in candidates or []:
                     if c["side"] == s and c["pose"] == pose and c["layer"] in variants:
+                        free = c.get("sleeve") == "none"
                         cands.append(HandVariant(s, pose, drawing, c["layer"], c["status"], c["category"],
                                                  c["provenance"], pivot, 0.4, cid=c["cid"], label=c.get("label", ""),
-                                                 approval_item=c.get("approval_item"), placement=c.get("placement")))
+                                                 approval_item=c.get("approval_item"), placement=c.get("placement"),
+                                                 rank=2 if free else 3,
+                                                 meta={k: c.get(k) for k in ("library_id", "sleeve", "features", "view",
+                                                                             "handedness", "derived", "flags")}))
                 for v in cands:
                     rgba, cover = self._rgba_cover_v(v)
                     v.measure = self.measure(rgba, s, cover)
@@ -228,7 +237,7 @@ class HandPoseLibrary:
                 if v.cid == preferred:
                     return v
         usable = [v for v in cands if v.status != "rejected"] or cands
-        return sorted(usable, key=lambda v: (CANDIDATE_RANK.get(v.status, 2), usable.index(v)))[0]
+        return sorted(usable, key=lambda v: (CANDIDATE_RANK.get(v.status, v.rank), usable.index(v)))[0]
 
     def candidate(self, side: str, cid: str) -> HandVariant | None:
         for vs in self.candidates[side].values():

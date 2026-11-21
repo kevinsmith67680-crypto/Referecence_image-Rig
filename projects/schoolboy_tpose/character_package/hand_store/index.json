@@ -38,6 +38,44 @@
     "sprites/right_grip.png": "85cf397ed585dde205c3a130f829b3ff66d2f92877dc88543d0d004f8fca612e"
    },
    "warnings": []
+  },
+  {
+   "library_id": "schoolboy_hands_sleeveless",
+   "version": 1,
+   "zip_sha256": "3f4acf8bacc1ec18088e7623176546ad576ddb0e812280c93b33e7132d5062ad",
+   "source_name": "AutoRig_Hand_Library_Sleeveless_v2.zip",
+   "imported_at": "2026-11-21T15:55:14Z",
+   "dir": "packs/schoolboy_hands_sleeveless/v1",
+   "asset_count": 16,
+   "manifest_sha256": "e4894bcb8e33891b2df79171708f338a098810184c95e28006b3f22a5bc218fe",
+   "provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+   "intended_use": "sleeve-free hand switch drawings for the schoolboy character",
+   "files": {
+    "README.md": "c332f6b635271ecc3e9360c7a5adfcd69678402c9f194485eb84207f612ddf21",
+    "hands/left/cupped.png": "6c9caef3012f6698636819481159fca2283be2fdcf88995ea4073138f3a8bba9",
+    "hands/left/fist.png": "d3c5f53ea437ea2a68f68e7e9e38a2ca547c9cbacc89d8962778c7e8134b21e9",
+    "hands/left/gripping.png": "122f2199a851344dd02763cccc80204faf73b2349c1609f9f966131c729dfdcc",
+    "hands/left/open_palm.png": "e18b0448fc8d8e1948eb8c8d7ea74968866337a3190d9ae3a6f5f0323b1e541f",
+    "hands/left/palm_down.png": "a159bd04547f983ee2cd5776311ec80f88ed9c608d5400cbbd60f3115b4ed30d",
+    "hands/left/pointing.png": "014fb32c1620c934da363a4d01feb8dbd5191a75d874624abe2d12de99e3a49e",
+    "hands/left/relaxed.png": "3bcd5fbae87775b54c9a4e4492fca06fece5416e4f40679b59cd52e475e6029a",
+    "hands/left/thumbs_up.png": "df49eb994b37dea8ec17ac44cd7341e0bf5717448eaf05acf88609761f40590d",
+    "hands/right/cupped.png": "12d53df56007ff00862844dfc5131079eaba41585cb187640fe24ea658cfe384",
+    "hands/right/fist.png": "c789fe50b145843467fa98a24150d20d6d6effeb561bffb222d60cb4808b0206",
+    "hands/right/gripping.png": "03b49a3e1084a31264fd145b331a13310103022d8a63cdfa2d5da7293cd35262",
+    "hands/right/open_palm.png": "c382d7446fc11c5e60ca3926989da289948312733764d5df0aae92d868ee252d",
+    "hands/right/palm_down.png": "bdd101ec155890b9dbf7c68cbdd180796059c76a29b2d2e1a10593295464952c",
+    "hands/right/pointing.png": "765847bc3ce7a1da6c2753b73fc1679611f22d4ec326691c58bb41d93b385d61",
+    "hands/right/relaxed.png": "c3b387d4da7f49568e25282d525a6f95106404df93c5d137a60b159795936afc",
+    "hands/right/thumbs_up.png": "0a9c048eb7eb7659daab1e6332a65c886bea8127473f15d0ab64dd3a97d4dba3",
+    "manifest.json": "e4894bcb8e33891b2df79171708f338a098810184c95e28006b3f22a5bc218fe"
+   },
+   "warnings": [],
+   "supersedes": [
+    "schoolboy_hand_switches_v1"
+   ],
+   "sleeve": "none",
+   "pack_schema_version": 2
   }
  ],
  "assets": {
@@ -600,7 +638,1222 @@
    ],
    "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
    "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hands_sleeveless/left_relaxed": {
+   "uid": "schoolboy_hands_sleeveless/left_relaxed",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_relaxed",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "relaxed",
+   "pack_pose": "relaxed",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/relaxed.png",
+     "sha256": "3bcd5fbae87775b54c9a4e4492fca06fece5416e4f40679b59cd52e475e6029a",
+     "size": [
+      186,
+      254
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        21.0,
+        20.0
+       ],
+       [
+        115.0,
+        7.0
+       ]
+      ],
+      "wrist_axis": [
+       0.137,
+       0.9906
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.91,
+      "features": {
+       "centroid": [
+        85.5,
+        119.76
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r1c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    68.0,
+    13.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_open_palm": {
+   "uid": "schoolboy_hands_sleeveless/left_open_palm",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_open_palm",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "open_palm",
+   "pack_pose": "open_palm",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/open_palm.png",
+     "sha256": "e18b0448fc8d8e1948eb8c8d7ea74968866337a3190d9ae3a6f5f0323b1e541f",
+     "size": [
+      275,
+      259
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        85.0,
+        15.0
+       ],
+       [
+        176.0,
+        12.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0329,
+       0.9995
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.888,
+      "features": {
+       "centroid": [
+        136.11,
+        125.5
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r1c2",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    130.5,
+    13.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_fist": {
+   "uid": "schoolboy_hands_sleeveless/left_fist",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_fist",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "fist",
+   "pack_pose": "fist",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/fist.png",
+     "sha256": "d3c5f53ea437ea2a68f68e7e9e38a2ca547c9cbacc89d8962778c7e8134b21e9",
+     "size": [
+      195,
+      206
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        34.0,
+        16.0
+       ],
+       [
+        136.0,
+        9.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0685,
+       0.9977
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        93.3,
+        104.45
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r1c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    85.0,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_pointing": {
+   "uid": "schoolboy_hands_sleeveless/left_pointing",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_pointing",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "pointing",
+   "pack_pose": "point",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/pointing.png",
+     "sha256": "014fb32c1620c934da363a4d01feb8dbd5191a75d874624abe2d12de99e3a49e",
+     "size": [
+      257,
+      191
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        19.5,
+        20.75
+       ],
+       [
+        19.5,
+        113.25
+       ]
+      ],
+      "wrist_axis": [
+       1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        103.59,
+        85.3
+       ],
+       "index_tip": [
+        251.0,
+        76.0
+       ],
+       "index_tip_dir": [
+        0.9992,
+        0.0388
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "right",
+       "row_group_side": "left"
+      },
+      "derived": "mirror_x",
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+       "derived: horizontal mirror of r1c4 (drawn as a right hand); the sheet has no left pointing drawing"
+      ],
+      "view": "palm",
+      "sheet_cell": "r1c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    19.5,
+    67.0
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_thumbs_up": {
+   "uid": "schoolboy_hands_sleeveless/left_thumbs_up",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_thumbs_up",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "thumbs_up",
+   "pack_pose": "thumbs_up",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/thumbs_up.png",
+     "sha256": "df49eb994b37dea8ec17ac44cd7341e0bf5717448eaf05acf88609761f40590d",
+     "size": [
+      200,
+      258
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        12.0,
+        212.0
+       ],
+       [
+        15.0,
+        125.0
+       ]
+      ],
+      "wrist_axis": [
+       0.9994,
+       0.0345
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        102.61,
+        149.11
+       ],
+       "thumb_tip": [
+        119.0,
+        5.32
+       ],
+       "thumb_tip_dir": [
+        0.5429,
+        -0.8398
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r2c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    13.5,
+    168.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_gripping": {
+   "uid": "schoolboy_hands_sleeveless/left_gripping",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_gripping",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "gripping",
+   "pack_pose": "grip",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/gripping.png",
+     "sha256": "122f2199a851344dd02763cccc80204faf73b2349c1609f9f966131c729dfdcc",
+     "size": [
+      233,
+      217
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        17.5,
+        153.41
+       ],
+       [
+        17.5,
+        61.91
+       ]
+      ],
+      "wrist_axis": [
+       1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        101.28,
+        99.57
+       ],
+       "grip_cavity_px": 6929,
+       "grip_center": [
+        157.2,
+        111.87
+       ],
+       "grip_center_dir": [
+        0.9995,
+        0.0301
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r2c2",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    17.5,
+    107.66
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_palm_down": {
+   "uid": "schoolboy_hands_sleeveless/left_palm_down",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_palm_down",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "palm_down",
+   "pack_pose": "palm_down",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/palm_down.png",
+     "sha256": "a159bd04547f983ee2cd5776311ec80f88ed9c608d5400cbbd60f3115b4ed30d",
+     "size": [
+      300,
+      192
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        98.0,
+        14.0
+       ],
+       [
+        192.0,
+        13.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0106,
+       0.9999
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.724,
+      "features": {
+       "centroid": [
+        159.14,
+        98.16
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "back",
+      "sheet_cell": "r2c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    145.0,
+    13.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/left_cupped": {
+   "uid": "schoolboy_hands_sleeveless/left_cupped",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "left_cupped",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "cupped",
+   "pack_pose": "cupped",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/left/cupped.png",
+     "sha256": "6c9caef3012f6698636819481159fca2283be2fdcf88995ea4073138f3a8bba9",
+     "size": [
+      241,
+      171
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        220.5,
+        15.76
+       ],
+       [
+        220.5,
+        109.26
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        134.26,
+        91.05
+       ],
+       "palm_center": [
+        134.26,
+        91.05
+       ],
+       "palm_center_dir": [
+        -0.9494,
+        0.3142
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r2c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    220.5,
+    62.51
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_relaxed": {
+   "uid": "schoolboy_hands_sleeveless/right_relaxed",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_relaxed",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "relaxed",
+   "pack_pose": "relaxed",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/relaxed.png",
+     "sha256": "c3b387d4da7f49568e25282d525a6f95106404df93c5d137a60b159795936afc",
+     "size": [
+      188,
+      254
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        66.0,
+        10.0
+       ],
+       [
+        162.0,
+        16.0
+       ]
+      ],
+      "wrist_axis": [
+       -0.0624,
+       0.9981
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        100.65,
+        120.78
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r3c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    114.0,
+    13.0
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_open_palm": {
+   "uid": "schoolboy_hands_sleeveless/right_open_palm",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_open_palm",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "open_palm",
+   "pack_pose": "open_palm",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/open_palm.png",
+     "sha256": "c382d7446fc11c5e60ca3926989da289948312733764d5df0aae92d868ee252d",
+     "size": [
+      276,
+      262
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        100.0,
+        11.0
+       ],
+       [
+        191.0,
+        14.0
+       ]
+      ],
+      "wrist_axis": [
+       -0.0329,
+       0.9995
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.97,
+      "features": {
+       "centroid": [
+        136.29,
+        124.66
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r3c2",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    145.5,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_fist": {
+   "uid": "schoolboy_hands_sleeveless/right_fist",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_fist",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "fist",
+   "pack_pose": "fist",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/fist.png",
+     "sha256": "c789fe50b145843467fa98a24150d20d6d6effeb561bffb222d60cb4808b0206",
+     "size": [
+      197,
+      209
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        56.0,
+        11.0
+       ],
+       [
+        160.0,
+        15.0
+       ]
+      ],
+      "wrist_axis": [
+       -0.0384,
+       0.9993
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        102.32,
+        105.5
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r3c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    108.0,
+    13.0
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_pointing": {
+   "uid": "schoolboy_hands_sleeveless/right_pointing",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_pointing",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "pointing",
+   "pack_pose": "point",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/pointing.png",
+     "sha256": "765847bc3ce7a1da6c2753b73fc1679611f22d4ec326691c58bb41d93b385d61",
+     "size": [
+      268,
+      184
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        246.5,
+        23.78
+       ],
+       [
+        246.5,
+        116.28
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        155.04,
+        79.18
+       ],
+       "index_tip": [
+        5.0,
+        41.0
+       ],
+       "index_tip_dir": [
+        -0.9929,
+        -0.1194
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "palm",
+      "sheet_cell": "r3c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    246.5,
+    70.03
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_thumbs_up": {
+   "uid": "schoolboy_hands_sleeveless/right_thumbs_up",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_thumbs_up",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "thumbs_up",
+   "pack_pose": "thumbs_up",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/thumbs_up.png",
+     "sha256": "0a9c048eb7eb7659daab1e6332a65c886bea8127473f15d0ab64dd3a97d4dba3",
+     "size": [
+      203,
+      263
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        188.0,
+        132.0
+       ],
+       [
+        188.0,
+        219.0
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       0.0
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        98.53,
+        152.87
+       ],
+       "thumb_tip": [
+        94.5,
+        5.56
+       ],
+       "thumb_tip_dir": [
+        -0.4821,
+        -0.8761
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r4c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    188.0,
+    175.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_gripping": {
+   "uid": "schoolboy_hands_sleeveless/right_gripping",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_gripping",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "gripping",
+   "pack_pose": "grip",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/gripping.png",
+     "sha256": "03b49a3e1084a31264fd145b331a13310103022d8a63cdfa2d5da7293cd35262",
+     "size": [
+      239,
+      223
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        220.5,
+        57.84
+       ],
+       [
+        220.5,
+        152.34
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        134.93,
+        100.77
+       ],
+       "grip_cavity_px": 7588,
+       "grip_center": [
+        78.16,
+        115.46
+       ],
+       "grip_center_dir": [
+        -0.9974,
+        0.0726
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r4c2",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    220.5,
+    105.09
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_palm_down": {
+   "uid": "schoolboy_hands_sleeveless/right_palm_down",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_palm_down",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "palm_down",
+   "pack_pose": "palm_down",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/palm_down.png",
+     "sha256": "bdd101ec155890b9dbf7c68cbdd180796059c76a29b2d2e1a10593295464952c",
+     "size": [
+      304,
+      193
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        113.0,
+        14.0
+       ],
+       [
+        210.0,
+        13.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0103,
+       0.9999
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        142.67,
+        99.2
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "back",
+      "sheet_cell": "r4c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    161.5,
+    13.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "schoolboy_hands_sleeveless/right_cupped": {
+   "uid": "schoolboy_hands_sleeveless/right_cupped",
+   "library_id": "schoolboy_hands_sleeveless",
+   "asset_id": "right_cupped",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "cupped",
+   "pack_pose": "cupped",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hands_sleeveless/v1/hands/right/cupped.png",
+     "sha256": "12d53df56007ff00862844dfc5131079eaba41585cb187640fe24ea658cfe384",
+     "size": [
+      255,
+      177
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T15:55:14Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        18.5,
+        113.4
+       ],
+       [
+        18.5,
+        20.9
+       ]
+      ],
+      "wrist_axis": [
+       1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        112.75,
+        93.63
+       ],
+       "palm_center": [
+        112.75,
+        93.63
+       ],
+       "palm_center_dir": [
+        0.9627,
+        0.2705
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r4c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    18.5,
+    67.15
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
   }
  },
- "saved_at": "2026-11-21T14:06:30Z"
+ "saved_at": "2026-11-21T15:55:14Z"
 }

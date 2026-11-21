@@ -276,6 +276,10 @@ class PoseService:
                 self._cache.pop(k)
             self._cache[base_key] = eng
         eng._hand_key = hand_key
+        from ..motion.handselect import NaturalHandSelectionEngine, load_rules  # noqa: PLC0415
+
+        eng.hand_select = NaturalHandSelectionEngine.for_character(
+            load_rules(self.pkg), (st.get("hand_selection") or {}).get("weights"))
         return eng
 
     def motion(self, st: dict[str, Any], masks: dict[str, np.ndarray], rejected: set[str], body: dict[str, Any]
@@ -293,17 +297,24 @@ class PoseService:
             raise PoseError(f"unknown bones in overrides: {unknown}")
         ik = body["ik"] if body.get("ik") is not None else st.get("ik")
         switches = body["switches"] if body.get("switches") is not None else st.get("switches")
-        hand_layers = None
+        hand_layers, preview_note = None, None
         if body.get("hand_preview"):  # {side, cid}: show one Hand Library candidate in this pose
             hp = body["hand_preview"]
-            v = eng.hand_lib.candidate(hp.get("side"), hp.get("cid", ""))
-            if v is None or v.layer is None:
-                raise PoseError(f"unknown hand candidate {hp}")
-            hand_layers = {hp["side"]: v.layer}
+            if hp.get("side") not in ("r", "l"):
+                raise PoseError(f"hand preview needs side r|l: {hp}")
+            v = eng.hand_lib.candidate(hp["side"], hp.get("cid", ""))
+            if v is None or v.layer is None:  # e.g. its library was archived since: no preview, no error
+                preview_note = f"hand preview {hp.get('cid')} is not a candidate any more (archived or deleted)"
+            else:
+                hand_layers = {hp["side"]: v.layer}
+        hsel = st.get("hand_selection") or {}
+        actions = {**(hsel.get("actions") or {}), **(body.get("hand_actions") or {})}
+        targets = {**(hsel.get("targets") or {}), **(body.get("hand_targets") or {})}
         r = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
                      0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
                      skeleton_only=bool(body.get("skeleton_only")), fluid=bool(body.get("fluid", True)),
-                     ik=ik, switches=switches, switch_time=body.get("switch_time"), hand_layers=hand_layers)
+                     ik=ik, switches=switches, switch_time=body.get("switch_time"), hand_layers=hand_layers,
+                     hand_actions={k: v for k, v in actions.items() if v}, hand_targets={k: v for k, v in targets.items() if v})
         s = r["solve"]
         out = {"name": name, "title": r["title"], "kind": r["kind"], "phase": r["phase"], "pad": r["pad"],
                "joints_posed": s["joints_posed"], "bone_tails_posed": s["bone_tails_posed"], "contact": s["contact"],
@@ -313,7 +324,12 @@ class PoseService:
                "violations": s["violations"], "clamps": s["clamps"], "spec": r["spec"],
                "local_rotation_deg": {b.name: round(float(r["pose"].theta[i]), 2) for i, b in enumerate(eng.sk.bones)},
                "ik": self.ik_report(eng, r, ik), "switches": r["switches"],
-               "correction_switches": [c for c in r["correction_switches"] if c["on"]]}
+               "correction_switches": [c for c in r["correction_switches"] if c["on"]], "hand_preview_note": preview_note,
+               "hand_selection": {"decisions": {s: {k: d.get(k) for k in ("action", "rule", "chosen", "cid", "score",
+                                                                          "reason", "held", "ranking", "aim_applied",
+                                                                          "missing_preferred", "overridden_by")}
+                                                for s, d in r["hand_selection"]["decisions"].items()},
+                                  "grip": r["hand_selection"].get("grip")}}
         if body.get("skeleton_only"):
             return out
         q = r["quality"]
@@ -406,9 +422,15 @@ class PoseService:
             hs = HandStore(self.pkg)
             store = {"packs": hs.index["packs"], "assets": hs.index["assets"], "verify": hs.verify()}
         deleted = set(st.get("hand_store", {}).get("deleted", []))
+        from ..motion.handselect import ACTIONS, rules_json  # noqa: PLC0415
+
+        hsi = eng.hand_store or {}
         return {"poses": list(HAND_POSES), "required": list(REQUIRED_HAND_POSES), "fallback": FALLBACK_POSE,
                 "candidates": cands, "missing": lib.missing(), "store": store, "state": st.get("hand_store"),
-                "deleted": sorted(deleted)}
+                "deleted": sorted(deleted), "libraries": hsi.get("libraries", {}),
+                "gesture_id_map": hsi.get("gesture_id_map", []), "use_remapped": hsi.get("use_remapped", []),
+                "selection": {"state": st.get("hand_selection"), "actions": sorted(ACTIONS),
+                              "rules": rules_json(eng.hand_select)}}
 
     def hand_preview(self, st, masks, rejected, side: str, cid: str, size: int = 220) -> np.ndarray | None:
         """Rest-frame preview of one candidate on the character: the candidate replaces the hand, the sleeve is

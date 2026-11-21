@@ -89,6 +89,31 @@ export function IKPanel({ payload, result, ctx, busy: rendering, onOp, onError }
   );
 }
 
+// The NaturalHandSelectionEngine's decision for one side (latest pose render) and the gesture intention override.
+function HandDecision({ side, decision, state, actions, onOp }: { side: string; decision: any; state: any; actions: string[] | undefined; onOp: OnOp }) {
+  const cur = state?.actions?.[side] ?? "";
+  return (
+    <div className="kv" data-testid={`hand-decision-${side}`}>
+      <div className="row gap">gesture intention
+        <select value={cur} data-testid={`hand-action-${side}`} onChange={(e) => onOp({ type: "handselect.action", side, action: e.target.value || null, target: state?.targets?.[side] ?? null })}>
+          <option value="">from the preset{decision?.action && !cur ? ` (${decision.action})` : ""}</option>
+          {(actions ?? []).map((a) => <option key={a} value={a}>{a.replace(/_/g, " ")}</option>)}
+        </select></div>
+      {decision ? <>
+        <div className="small">auto choice <b data-testid={`hand-auto-${side}`}>{decision.chosen ?? "default"}</b>
+          {decision.score != null && <> · score {Number(decision.score).toFixed(2)}</>} · {decision.reason}
+          {decision.held && <> · held</>}{decision.overridden_by && <> · overridden by the {decision.overridden_by}</>}</div>
+        {decision.rule && <div className="small muted">{decision.action}: {decision.rule}</div>}
+        {decision.aim_applied?.measured && <div className="small">wrist aim {decision.aim_applied.applied_deg}° toward the goal (residual {decision.aim_applied.residual_deg}°)</div>}
+        {decision.missing_preferred?.length > 0 && <div className="warn-box">preferred but missing: {decision.missing_preferred.join(", ")} (NEEDS_ARTWORK)</div>}
+        <table className="small"><thead><tr><th>pose</th><th>total</th><th>gesture</th><th>anatomy</th><th>wrist</th><th>silh.</th><th>view</th><th>cont.</th><th>fid.</th><th>appr.</th></tr></thead>
+          <tbody>{(decision.ranking ?? []).slice(0, 4).map((x: any) => <tr key={x.pose} title={x.notes?.join("; ")}>
+            <td>{x.pose}</td><td>{x.total.toFixed(2)}</td>{["gesture", "anatomy", "wrist", "silhouette", "view", "continuity", "fidelity", "approval"].map((k) =>
+              <td key={k}>{x.scores?.[k]?.toFixed(2)}</td>)}</tr>)}</tbody></table>
+      </> : <div className="small muted">render a pose to see the automatic choice</div>}
+    </div>);
+}
+
 export function SwitchesPanel({ payload, result, rev, phase, onOp, onError }: { payload: Payload; result: any; rev: string; phase: number; onOp: OnOp; onError: (e: string) => void }) {
   const [info, setInfo] = useState<any>(null);
   const [actions, setActions] = useState<Record<string, any> | null>(null);
@@ -103,8 +128,9 @@ export function SwitchesPanel({ payload, result, rev, phase, onOp, onError }: { 
   }).catch((e) => onError(String(e.message ?? e)));
   return (
     <div className="form" data-testid="switches-panel">
-      <div className="muted">One drawing per group is active. Order: your choice &gt; keyframe &gt; automatic preset choice &gt;
-        the original. Pending drawings are only previewed (Pose tab: “preview pending”); missing ones are NEEDS_ARTWORK.</div>
+      <div className="muted">One drawing per group is active. Order: your choice &gt; keyframe &gt; automatic choice (natural hand
+        selection, auto mode only) &gt; the original. Pending drawings are only previewed (Pose tab: “preview pending”); missing
+        ones are NEEDS_ARTWORK. Scores rank the drawings for an action; they do not measure visual quality.</div>
       {info.groups.filter((g: any) => g.kind === "hand").map((g: any) => {
         const s = sw[g.id] ?? { user: null, auto: true, keys: [], offsets: {} };
         const r = res[g.id];
@@ -112,9 +138,12 @@ export function SwitchesPanel({ payload, result, rev, phase, onOp, onError }: { 
         return (
           <div key={g.id} className="ik-limb" data-testid={`sw-${g.id}`}>
             <div className="row gap"><b>{side === "r" ? "Right hand" : "Left hand"}</b>
-              <button className={s.auto ? "on" : ""} onClick={() => onOp({ type: "switch.set", group: g.id, variant: null, auto: true })} data-testid={`sw-${g.id}-auto`}>Auto</button>
+              <label className="check"><input type="checkbox" checked={!!s.auto} data-testid={`sw-${g.id}-autotoggle`}
+                onChange={(e) => onOp({ type: "switch.set", group: g.id, variant: e.target.checked ? null : (r?.active ?? "open_palm"), auto: e.target.checked })} />automatic selection</label>
+              <button className={s.auto ? "on" : ""} onClick={() => onOp({ type: "switch.set", group: g.id, variant: null, auto: true })} data-testid={`sw-${g.id}-auto`}>Reset to automatic</button>
               {r && <span className="small">active <b data-testid={`sw-${g.id}-active`}>{r.active}</b> ({r.source})</span>}
             </div>
+            <HandDecision side={side} decision={result?.hand_selection?.decisions?.[side]} state={payload.state.hand_selection} actions={info.selection_actions} onOp={onOp} />
             {r?.note && <div className="warn-box">{r.note}</div>}
             <div className="thumbs">
               {g.variants.map((v: any) => {
@@ -136,11 +165,12 @@ export function SwitchesPanel({ payload, result, rev, phase, onOp, onError }: { 
               if (!v || !v.layer) return null;
               const al = lib.alignment?.[side]?.[cur];
               const off = s.offsets?.[cur] ?? { dx: 0, dy: 0, rot: 0 };
-              const drawing = lib.variants?.[side]?.[cur]?.drawing;
+              const lv = lib.variants?.[side]?.[cur];
+              const item = lv?.approval_item ?? `corrective:hand__${lv?.drawing}`;
               return <>
-                {v.status !== "original" && <div className="row gap">Review “{cur}” drawing {badge(v.status)}
-                  <button onClick={() => onOp({ type: "approval.set", item: `corrective:hand__${drawing}`, status: "approved" })} data-testid={`sw-${g.id}-approve`}>Approve</button>
-                  <button onClick={() => onOp({ type: "approval.set", item: `corrective:hand__${drawing}`, status: "rejected" })}>Reject</button></div>}
+                {v.status !== "original" && <div className="row gap">Review “{cur}” drawing ({lv?.cid}) {badge(v.status)}
+                  <button onClick={() => onOp({ type: "approval.set", item, status: "approved" })} data-testid={`sw-${g.id}-approve`}>Approve</button>
+                  <button onClick={() => onOp({ type: "approval.set", item, status: "rejected" })}>Reject</button></div>}
                 {al && <div className="kv"><b>Alignment</b> {badge(al.status)} wrist {al.attachment_error_px} px · width ×{al.width_ratio} · side {al.side_ok ? "ok" : "SWAPPED"}
                   {al.issues?.map((i: string) => <div key={i} className="warn-box">{i}</div>)}</div>}
                 <div className="row gap">offset dx {off.dx.toFixed(1)} dy {off.dy.toFixed(1)} rot {off.rot.toFixed(1)}°

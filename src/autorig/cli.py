@@ -539,6 +539,27 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", help="output directory (default <package>/hand_store/evidence)")
     p.set_defaults(func=cmd_hand_evidence)
 
+    p = sub.add_parser("hand-sheet", help="Extract a sheet of sleeve-free hand drawings into a validated hand pack")
+    p.add_argument("sheet", help="sheet image (hands on a white background, in a grid)")
+    p.add_argument("--inspection", required=True, help="inspection record (gesture, wrist side, view per cell)")
+    p.add_argument("--out", required=True, help="output directory (sprites, pack zip, extraction report, QA sheet)")
+    p.add_argument("--library-id", required=True, help="library id of the pack")
+    p.add_argument("--supersedes", nargs="*", default=[], help="library ids this pack replaces (archived on import)")
+    p.add_argument("--zip-name", help="pack file name (default <library-id>.zip)")
+    p.set_defaults(func=cmd_hand_sheet)
+
+    p = sub.add_parser("hand-library", help="List hand libraries, or archive/restore one (editor project operation)")
+    p.add_argument("package", help="Phase 2 character package with a hand store")
+    p.add_argument("--archive", metavar="LIBRARY", help="archive a library (its drawings stop being candidates)")
+    p.add_argument("--restore", metavar="LIBRARY", help="make an archived library active again")
+    p.add_argument("--default", metavar="LIBRARY", help="drop the user's choice (superseded libraries are archived)")
+    p.set_defaults(func=cmd_hand_library)
+
+    p = sub.add_parser("hand-replace-evidence", help="Sleeve-free hand replacement evidence (renders, sheets, metrics)")
+    p.add_argument("package", help="Phase 2 character package with the sleeve-free hand library imported")
+    p.add_argument("--out", help="output directory (default <package>/hand_store/evidence_v2)")
+    p.set_defaults(func=cmd_hand_replace_evidence)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -625,7 +646,7 @@ def cmd_rig_controls(args: argparse.Namespace) -> int:
 
     eng, _ = engine_for_package(args.package)
     st = EditorProject(args.package).state()
-    doc = build_rig_controls(eng, st.get("ik"), st.get("switches"))
+    doc = build_rig_controls(eng, st.get("ik"), st.get("switches"), st.get("hand_selection"))
     errs = validate(doc)
     if args.out:
         from pathlib import Path
@@ -654,6 +675,48 @@ def cmd_hand_import(args: argparse.Namespace) -> int:
     print(f"{r['status']}: {r['library_id']} v{r['version']} ({r['assets']} drawings, all pending review)")
     for w in r.get("warnings", []):
         print(f"  warning: {w}")
+    return 0
+
+
+def cmd_hand_sheet(args: argparse.Namespace) -> int:
+    from .handsheet import build_pack
+
+    try:
+        r = build_pack(args.sheet, args.inspection, args.out, args.library_id, args.supersedes, args.zip_name)
+    except ValueError as exc:
+        print(f"REJECTED: {exc}")
+        return 2
+    sm = r["summary"]
+    print(f"{r['zip']}: {sm['assets']} drawings from {sm['drawings']} cells; wrist openings: {sm['open_cut']} open cuts, "
+          f"{sm['closed_outline']} closed outlines; mirrored pairs {sm['mirrored_pairs']}, not mirrored: "
+          f"{sm['not_mirrored_pairs'] or 'none'}; derived: {sm['derived_assets'] or 'none'}")
+    print(f"  manual review: {', '.join(sm['manual_review']) or 'none'}")
+    return 0
+
+
+def cmd_hand_library(args: argparse.Namespace) -> int:
+    from .editor.project import EditorProject, OpError
+    from .handstore import HandStore, library_status
+
+    proj = EditorProject(args.package)
+    for flag, status in ((args.archive, "archived"), (args.restore, "active"), (args.default, None)):
+        if flag:
+            try:
+                proj.submit({"type": "handstore.library", "library": flag, "status": status})
+            except OpError as exc:
+                print(f"REJECTED: {exc}")
+                return 2
+    st = proj.state().get("hand_store") or {}
+    for lib, rec in library_status(HandStore(args.package), st).items():
+        print(f"{lib}: {rec['status']} ({rec['reason']}); sleeve {rec['sleeve']}")
+    return 0
+
+
+def cmd_hand_replace_evidence(args: argparse.Namespace) -> int:
+    from .handreplace import replacement_evidence
+
+    r = replacement_evidence(args.package, args.out)
+    print(f"  {len(r['tests'])} test renders; gates: " + ", ".join(f"{g['id']} {g['status']}" for g in r["gates"]))
     return 0
 
 

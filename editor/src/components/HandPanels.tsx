@@ -30,9 +30,12 @@ export function HandLibraryPanel({ payload, rev, onOp, onError, onPreviewPose, p
   const cur = cands.find((c) => key(c) === sel) ?? null;
   const uid = cur?.cid?.startsWith("store:") ? cur.cid.slice(6) : null;
   const st = payload.state.hand_store ?? { placement: {}, mask: {}, labels: {}, deleted: [], use: {}, versions: {} };
-  const pl = (uid && st.placement[uid]) || { dx: 0, dy: 0, rot: 0, scale: 1 };
+  const pl: Record<string, number> = { dx: 0, dy: 0, rot: 0, scale: 1, ...((uid && st.placement[uid]) || {}) };
+  const free = cur?.meta?.sleeve === "none";
+  const prm = cur?.placement?.params;
+  const libs: [string, any][] = Object.entries(info?.libraries ?? {});
   const mk = { enabled: true, defringe: true, cut_offset: 0, ...((uid && st.mask[uid]) || {}) };
-  const place = (f: Record<string, number>) => uid && onOp({ type: "handstore.placement", uid, fields: { dx: 0, dy: 0, rot: 0, scale: 1, ...pl, ...f } });
+  const place = (f: Record<string, number>) => uid && onOp({ type: "handstore.placement", uid, fields: { ...pl, ...f } });
   const importPack = async (f: File | undefined) => {
     if (!f) return;
     const r = await api.handstoreImport(f.name, await readB64(f));
@@ -61,6 +64,17 @@ export function HandLibraryPanel({ payload, rev, onOp, onError, onPreviewPose, p
         <select value={pose} onChange={(e) => setPose(e.target.value)} data-testid="hand-pose"><option value="all">all poses</option>{info.poses.map((p: string) => <option key={p}>{p}</option>)}</select>
         <select value={status} onChange={(e) => setStatus(e.target.value)}><option value="all">any status</option>{["original", "approved", "pending_review", "rejected"].map((s) => <option key={s}>{s}</option>)}</select>
       </div>
+      {libs.length > 0 && <div className="kv" data-testid="hand-libs"><b>Hand libraries</b>
+        {libs.map(([id, l]) => <div key={id} className="row gap" data-testid={`hand-lib-${id}`}>
+          <span>{id}</span>{badge(l.status)}<span className="small">{l.sleeve === "none" ? "sleeve-free" : "sleeve-attached"} · {l.reason}</span>
+          {l.status === "active"
+            ? <button onClick={() => onOp({ type: "handstore.library", library: id, status: "archived" })} data-testid={`hand-lib-archive-${id}`}>Archive</button>
+            : <button onClick={() => onOp({ type: "handstore.library", library: id, status: "active" })} data-testid={`hand-lib-restore-${id}`}>Restore (rollback)</button>}
+          {l.user && <button onClick={() => onOp({ type: "handstore.library", library: id, status: null })}>default</button>}
+        </div>)}
+        {info.use_remapped?.length > 0 && <div className="small">choices of archived drawings follow the gesture map: {info.use_remapped.map((u: any) => `${u.slot} → ${u.to}`).join(", ")}</div>}
+        <div className="small muted">Archived drawings stay in the store (rollback); they are not switch candidates. {info.gesture_id_map?.length ?? 0} old gesture ids map to the active drawings.</div>
+      </div>}
       {info.missing.length > 0 && <div className="warn-box">NEEDS_ARTWORK: {info.missing.map((m: any) => `${m.pose} (${m.side})`).join(", ")} — the reference hand is shown instead.</div>}
       <div className="thumbs" data-testid="hand-grid">
         {shown.map((c) => (
@@ -102,9 +116,22 @@ export function HandLibraryPanel({ payload, rev, onOp, onError, onPreviewPose, p
             {info.store?.assets[uid]?.versions?.length > 1 && <select value={st.versions[uid] ?? ""} onChange={(e) => onOp({ type: "handstore.version", uid, v: e.target.value ? +e.target.value : null })}>
               <option value="">latest version</option>{info.store.assets[uid].versions.map((v: any) => <option key={v.v} value={v.v}>v{v.v} ({v.origin})</option>)}</select>}
           </div>
+          {cur.meta?.flags?.length > 0 && <div className="warn-box" data-testid="hand-flags">{cur.meta.flags.map((f: string) => <div key={f}>{f}</div>)}</div>}
           <b>Wrist anchor matching</b>
-          <div className="small">Automatic: the drawing's own cuff edge goes to the character's shirt-cuff edge (from the skeleton and the original pixels), tucked under the sleeve; one scale per side. The manifest anchor is not used
-            {cur.placement?.manifest_anchor_delta_px && <> (it is off by {cur.placement.manifest_anchor_delta_px.join(", ")} sprite px)</>}.</div>
+          {free ? <div className="small" data-testid="hand-wrist-params">Sleeve-free drawing: its wrist opening ({prm?.opening?.replace("_", " ")}, confidence {prm?.opening_confidence}
+            {prm?.manual_review && <b> · pivot needs your review</b>}) goes onto the character's shirt-cuff edge, tucked {prm?.tuck_px} px under it; the hand
+            turns about the opening's centre (pivot {prm?.pivot_px?.join(", ")} sprite px), natural angle {prm?.natural_angle_deg}° + offset {prm?.rotation_offset_deg}°;
+            wrist ×{prm?.wrist_fit} of the sleeve opening; one scale per side ({cur.placement?.side_scale}).</div>
+            : <div className="small">Automatic: the drawing's own cuff edge goes to the character's shirt-cuff edge (from the skeleton and the original pixels), tucked under the sleeve; one scale per side. The manifest anchor is not used
+            {cur.placement?.manifest_anchor_delta_px && <> (it is off by {cur.placement.manifest_anchor_delta_px.join(", ")} sprite px)</>}.</div>}
+          {free && <div className="row gap wrap" data-testid="hand-pivot">
+            <span className="small">wrist pivot</span>
+            {([["pivot_x", -2], ["pivot_x", 2], ["pivot_y", -2], ["pivot_y", 2]] as [string, number][]).map(([k, d]) => (
+              <button key={k + d} onClick={() => place({ [k]: (pl[k] ?? 0) + d })} data-testid={`hand-${k}${d > 0 ? "p" : "m"}`}>{k.replace("pivot_", "")}{d > 0 ? "+" : ""}{d}</button>))}
+            <span className="small">overlap</span>
+            <button onClick={() => place({ overlap: (pl.overlap ?? 0) - 1 })} data-testid="hand-overlapm">−1</button>
+            <button onClick={() => place({ overlap: (pl.overlap ?? 0) + 1 })} data-testid="hand-overlapp">+1</button>
+          </div>}
           <div className="row gap wrap" data-testid="hand-placement">
             {([["dx", -1], ["dx", 1], ["dy", -1], ["dy", 1], ["rot", -2], ["rot", 2]] as [string, number][]).map(([k, d]) => (
               <button key={k + d} onClick={() => place({ [k]: (pl as any)[k] + d })} data-testid={`hand-${k}${d > 0 ? "p" : "m"}`}>{k}{d > 0 ? "+" : ""}{d}</button>))}
@@ -113,8 +140,9 @@ export function HandLibraryPanel({ payload, rev, onOp, onError, onPreviewPose, p
             <button onClick={() => onOp({ type: "handstore.placement", uid, fields: null })}>reset</button>
           </div>
           <div className="small">correction dx {pl.dx ?? 0} · dy {pl.dy ?? 0} · rot {pl.rot ?? 0}° · scale ×{pl.scale ?? 1}
+            {free && <> · pivot {pl.pivot_x ?? 0}, {pl.pivot_y ?? 0} · overlap {pl.overlap ?? 0} px</>}
             {cur.placement?.final && <> · final scale {cur.placement.final.scale} · angle {cur.placement.final.angle_deg}°</>}</div>
-          <b>Sleeve and cuff mask</b>
+          {!free && <><b>Sleeve and cuff mask</b>
           <div className="row gap wrap">
             <label className="check"><input type="checkbox" checked={!!mk.enabled} data-testid="hand-mask" onChange={(e) => onOp({ type: "handstore.mask", uid, fields: { enabled: e.target.checked } })} />hide the drawing's own sleeve and cuff</label>
             <label className="check"><input type="checkbox" checked={!!mk.defringe} onChange={(e) => onOp({ type: "handstore.mask", uid, fields: { defringe: e.target.checked } })} />remove grey matte halo</label>
@@ -123,6 +151,7 @@ export function HandLibraryPanel({ payload, rev, onOp, onError, onPreviewPose, p
             <button onClick={() => onOp({ type: "handstore.mask", uid, fields: { cut_offset: (mk.cut_offset ?? 0) + 2 } })}>down</button>
           </div>
           {cur.placement?.mask && <div className="small">masked {cur.placement.mask.masked_px} px (sleeve {cur.placement.mask.sleeve_px}, cuff {cur.placement.mask.cuff_px}); skin removed {cur.placement.mask.skin_masked_px} px; halo removed {cur.placement.halo_removed_px} px</div>}
+          </>}
         </>}
       </div>}
       {st.deleted.length > 0 && <div className="kv"><b>Deleted candidates</b> {st.deleted.map((u: string) => <span key={u} className="badge">{u.split("/")[1]}

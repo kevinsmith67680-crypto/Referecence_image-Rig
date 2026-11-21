@@ -23,7 +23,7 @@ from .ik import CONTACT_STATES, LAT
 from .switches import HAND_POSES, MOUTH_SHAPES
 
 SCHEMA = "autorig.rig_controls"
-VERSION = "1.0.0"
+VERSION = "1.1.0"  # 1.1.0: hand_selection (sleeve-free hand library, NaturalHandSelectionEngine)
 LIMBS = ("arm_r", "arm_l", "leg_r", "leg_l")
 IK_MODES = ("fk", "ik")
 PROPOSED = "proposed_unverified"
@@ -171,9 +171,49 @@ def action_ops(action: str, sk, value: float = 1.0, t: float = 0.0, current: dic
 
 
 # -- spec -----------------------------------------------------------------------------------------------
-def build_rig_controls(eng, ik_state: dict[str, Any] | None = None, switch_state: dict[str, Any] | None = None
-                       ) -> dict[str, Any]:
-    """Rig controls document for an engine (character) and the editor's IK/switch state."""
+def hand_selection_section(eng, ctl, selection_state: dict[str, Any] | None) -> dict[str, Any]:
+    """Hand switch groups as data for a later Moho exporter: approved/pending variants with their wrist pivot,
+    placement (natural angle, rotation offset, tuck, scale), attachment bone and provenance; the selection rules
+    and the user's overrides and keys. The algorithm runs in AutoRig; only its results can become Moho keys."""
+    from .handselect import default_selection_state, rules_json
+
+    groups = {}
+    for s in SIDES:
+        g = ctl.groups[f"hand_{s}"]
+        vs = []
+        for pose, v in eng.hand_lib.hands[s].items():
+            if not v.available:
+                continue
+            pl = v.placement or {}
+            vs.append({"pose": pose, "cid": v.cid, "layer": v.layer, "status": v.status,
+                       "approval_item": v.approval_item, "library": (v.meta or {}).get("library_id"),
+                       "sleeve": (v.meta or {}).get("sleeve") or ("drawn with the character" if v.cid == "original" else "attached"),
+                       "wrist_pivot": list(g.pivot), "attachment_bone": g.bone,
+                       "placement": {"final": pl.get("final"), "params": pl.get("params")} if pl else None,
+                       "features": (v.meta or {}).get("features") or {}, "handedness": (v.meta or {}).get("handedness"),
+                       "provenance": v.provenance})
+        groups[g.alias or g.id] = {"group": g.id, "bone": g.bone, "pivot": list(g.pivot), "default": g.default,
+                                   "variants": vs, "override": {k: ctl.state[g.id][k] for k in ("user", "auto")},
+                                   "timeline_keys": ctl.state[g.id]["keys"]}
+    hs = getattr(eng, "hand_store", None) or {}
+    return {"engine": "NaturalHandSelectionEngine", "runs_in": "AutoRig (Python); not in Moho",
+            "rules": rules_json(eng.hand_select), "state": selection_state or default_selection_state(),
+            "groups": groups, "libraries": hs.get("libraries", {}), "gesture_id_map": hs.get("gesture_id_map", []),
+            "moho_translation": [
+                {"rule": "explicit user choice and switch keyframes", "moho": "Switch Layer keyframes on the hand switch layer"},
+                {"rule": "automatic per-action choice (incl. hysteresis, minimum hold, symmetry)",
+                 "moho": "baked into Switch Layer keyframes when exporting an animation; no runtime equivalent assumed"},
+                {"rule": "wrist aim (index toward the target, thumb up)", "moho": "hand bone rotation keys"},
+                {"rule": "per-variant pivot, rotation offset, overlap and scale",
+                 "moho": "the variant layer's own transform inside the switch layer (origin at the wrist pivot)"},
+                {"rule": "gesture actions for live puppeteering", "moho": "Actions on Live Mode inputs (input names not discovered)"},
+                {"rule": "gripping target", "moho": "arm IK target (bone target) offset by the grip centre"}],
+            "moho": {"status": PROPOSED}}
+
+
+def build_rig_controls(eng, ik_state: dict[str, Any] | None = None, switch_state: dict[str, Any] | None = None,
+                       selection_state: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Rig controls document for an engine (character) and the editor's IK/switch/hand-selection state."""
     from .ik import ArmIKController, LegIKController
 
     ik_state = copy.deepcopy(ik_state) if ik_state else default_ik_state()
@@ -220,6 +260,7 @@ def build_rig_controls(eng, ik_state: dict[str, Any] | None = None, switch_state
                  "inputs": {"status": "unassigned", "reason": "Moho 14.5 Live Mode input identifiers have not been "
                             "discovered yet (docs/live-models.md); no names are invented"},
                  "moho": {"status": PROPOSED}},
+        "hand_selection": hand_selection_section(eng, ctl, selection_state),
         "moho": {"status": PROPOSED, "note": "no .moho is written in Phase 3.2"},
     }
     return json.loads(json.dumps(doc, default=_json_default))
@@ -262,7 +303,7 @@ RIG_CONTROLS_SCHEMA: dict[str, Any] = {
     "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": f"{SCHEMA}-{VERSION}",
     "title": f"AutoRig Studio rig_controls {VERSION}", "type": "object",
     "required": ["schema", "schema_version", "coordinate_system", "ik", "foot_contacts", "switches", "corrections",
-                 "missing_artwork", "live", "moho"],
+                 "missing_artwork", "live", "hand_selection", "moho"],
     "properties": {
         "schema": {"const": SCHEMA}, "schema_version": {"const": VERSION},
         "coordinate_system": {"type": "string"},
@@ -303,6 +344,22 @@ RIG_CONTROLS_SCHEMA: dict[str, Any] = {
                 "type": "object", "required": ["channel", "kind"],
                 "properties": {"channel": {"enum": ["body", "face"]}}}},
             "inputs": {"type": "object", "required": ["status"], "properties": {"status": {"const": "unassigned"}}},
+            "moho": PROPOSED_BLOCK}},
+        "hand_selection": {"type": "object", "required": ["engine", "runs_in", "rules", "state", "groups",
+                                                           "moho_translation", "moho"], "properties": {
+            "runs_in": {"type": "string"},
+            "rules": {"type": "object", "required": ["weights", "actions", "temporal", "resolution", "disclaimer"],
+                      "properties": {"weights": {"type": "object", "additionalProperties": {
+                          "type": "number", "minimum": 0, "maximum": 1}}}},
+            "state": {"type": "object", "required": ["actions", "targets", "weights"]},
+            "groups": {"type": "object", "additionalProperties": {
+                "type": "object", "required": ["group", "bone", "pivot", "default", "variants", "override", "timeline_keys"],
+                "properties": {"pivot": PT, "variants": {"type": "array", "items": {
+                    "type": "object", "required": ["pose", "cid", "layer", "status", "wrist_pivot", "attachment_bone"],
+                    "properties": {"status": {"enum": ["original", "approved", "pending_review", "rejected"]},
+                                   "wrist_pivot": PT}}}}}},
+            "moho_translation": {"type": "array", "minItems": 1, "items": {
+                "type": "object", "required": ["rule", "moho"]}},
             "moho": PROPOSED_BLOCK}},
         "moho": PROPOSED_BLOCK,
     },

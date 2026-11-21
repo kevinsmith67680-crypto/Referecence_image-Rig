@@ -293,9 +293,10 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
         with S.lock:
             st, eng = _engine()
             ctl = eng.switch_controller(st["switches"])
+            from ..motion.handselect import ACTIONS
             return jsonable({"groups": [g.to_json() for g in ctl.groups.values()], "state": ctl.state,
                              "hand_library": eng.hand_lib.to_json(eng.profile.midline_x),
-                             "corrections": eng.corr_switch.to_json()})
+                             "corrections": eng.corr_switch.to_json(), "selection_actions": sorted(ACTIONS)})
 
     @app.get("/api/switch/thumb/{group}/{variant}.png")
     def switch_thumb(group: str, variant: str):

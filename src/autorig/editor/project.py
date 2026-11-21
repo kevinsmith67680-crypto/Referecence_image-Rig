@@ -21,12 +21,14 @@ from typing import Any
 import numpy as np
 from PIL import Image
 
-from ..handstore import STORE_DIR, check_mask, check_placement, default_store_state
+from ..handstore import LIBRARY_STATUS, PHASE2_LIBRARY, STORE_DIR, check_mask, check_placement, default_store_state
+from ..motion.handselect import default_selection_state
 from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
 from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 3  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions. Older projects migrate unchanged
+VERSION = 4  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
+# hand selection settings (sleeve-free hand replacement). Older projects migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -138,7 +140,8 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "layers": layers, "groups": groups, "bones": bones, "vectors": seed_vectors(pkg, art, W, H),
             "mask_ops": [], "corrections": {"gussets": True, "joints": {}}, "defects": {}, "approvals": approvals,
             "pose": {"preset": "relaxed_standing", "overrides": {}},
-            "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state()}
+            "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state(),
+            "hand_selection": default_selection_state()}
 
 
 def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
@@ -353,6 +356,8 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
             G["offsets"][v] = {"dx": dx, "dy": dy, "rot": rot}
     elif t.startswith("handstore."):
         _apply_handstore(st, op)
+    elif t.startswith("handselect."):
+        _apply_handselect(st, op)
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
     else:
@@ -370,6 +375,19 @@ def _apply_handstore(st: dict[str, Any], op: dict[str, Any]) -> None:
     for k, v in default_store_state().items():
         H.setdefault(k, v)
     known = op.get("_known_uids")
+    if t == "handstore.library":
+        lib, status = op.get("library"), op.get("status")
+        if not isinstance(lib, str) or not re.match(r"^[A-Za-z0-9_.-]{1,64}$", lib):
+            raise OpError("handstore.library needs a library id")
+        if op.get("_known_libraries") is not None and lib not in op["_known_libraries"]:
+            raise OpError(f"{lib} is not a library of this character's hand store")
+        if status is None:
+            H["libraries"].pop(lib, None)  # back to the default (archived when superseded)
+        elif status in LIBRARY_STATUS:
+            H["libraries"][lib] = status
+        else:
+            raise OpError(f"library status must be one of {list(LIBRARY_STATUS)} or null")
+        return
     if t == "handstore.use":
         side, pose, cid = op.get("side"), op.get("pose"), op.get("candidate")
         if side not in ("r", "l") or pose not in HAND_POSES:
@@ -449,7 +467,51 @@ def _v2_to_v3(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {2})}
 
 
-MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3}  # from_version -> fn(data) -> data
+def _v3_to_v4(data: dict[str, Any]) -> dict[str, Any]:
+    """Hand replacement: ``hand_store`` gains ``libraries`` (active/archived) and the base state gains
+    ``hand_selection`` (defaults from build_base); earlier ops replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {3})}
+
+
+MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4}  # from_version -> fn(data) -> data
+
+
+def _apply_handselect(st: dict[str, Any], op: dict[str, Any]) -> None:
+    """Hand selection settings (NaturalHandSelectionEngine): per-side gesture intention (``action``, overrides the
+    preset's action) and its target, and per-character weight overrides. Choosing a hand drawing itself stays the
+    switch groups' job (``switch.set``: explicit choice, auto toggle, reset to automatic)."""
+    from ..motion.handselect import ACTIONS, WEIGHTS  # noqa: PLC0415
+
+    H = st.setdefault("hand_selection", default_selection_state())
+    for k, v in default_selection_state().items():
+        H.setdefault(k, v)
+    t = op["type"]
+    if t == "handselect.action":
+        side = op.get("side")
+        if side not in ("r", "l"):
+            raise OpError("handselect.action needs side r|l")
+        action = op.get("action")
+        if action is not None and action not in ACTIONS:
+            raise OpError(f"unknown hand action {action!r}; known: {sorted(ACTIONS)}")
+        tgt = op.get("target")
+        if tgt is not None and (not isinstance(tgt, (list, tuple)) or len(tgt) != 2
+                                or not all(isinstance(x, (int, float)) for x in tgt)):
+            raise OpError("target must be [x, y] (rest-canvas px) or null")
+        H["actions"][side] = action
+        H["targets"][side] = None if tgt is None else [float(tgt[0]), float(tgt[1])]
+    elif t == "handselect.weights":
+        f = op.get("weights")
+        if f is None:
+            H["weights"] = {}
+            return
+        bad = [k for k in f if k not in WEIGHTS]
+        if bad:
+            raise OpError(f"unknown selection criteria {bad}; known: {sorted(WEIGHTS)}")
+        if not all(isinstance(v, (int, float)) and 0.0 <= float(v) <= 1.0 for v in f.values()):
+            raise OpError("weights must be numbers in [0, 1]")
+        H["weights"] = {**H["weights"], **{k: float(v) for k, v in f.items()}}
+    else:
+        raise OpError(f"unknown operation type {t!r}")
 
 
 def migrate(data: dict[str, Any]) -> dict[str, Any]:
@@ -514,10 +576,12 @@ class EditorProject:
             op["base"] = copy.deepcopy(self.base["bones"][op["name"]])
         trial = copy.deepcopy(self.state())
         check = op
-        if str(op.get("type", "")).startswith("handstore.") and "uid" in op:
+        if str(op.get("type", "")).startswith("handstore.") and ("uid" in op or "library" in op):
             idx = self.pkg / STORE_DIR / "index.json"
-            known = set(json.loads(idx.read_text()).get("assets", {})) if idx.is_file() else set()
-            check = {**op, "_known_uids": known}  # validation only; the log keeps the plain operation
+            index = json.loads(idx.read_text()) if idx.is_file() else {}
+            known = set(index.get("assets", {}))
+            libs = {p["library_id"] for p in index.get("packs", [])} | {PHASE2_LIBRARY}
+            check = {**op, "_known_uids": known, "_known_libraries": libs}  # validation only; the log keeps the op
         apply_op(trial, check)  # validate first: nothing invalid enters the log
         del self.ops[self.cursor:]
         self.ops.append(op)
