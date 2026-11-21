@@ -47,13 +47,14 @@ def motion_order(visible: list[str], it: PoseIntent, hands: dict[str, Any], avai
     rest = [c for c in visible if c not in legs + body + arms + head]
     out = legs + body + rest + (arms + head if it.arms_behind_head else head + arms)
     for s, h in hands.items():
-        if h["drawing"] == "open":
+        v = h.get("layer") or (f"hand_{s}" if h["drawing"] == "open" else f"hand_{s}__{h['drawing']}")
+        if v == f"hand_{s}":
             continue
-        v = f"hand_{s}__{h['drawing']}"
         if v in available and f"hand_{s}" in out:
             out[out.index(f"hand_{s}")] = v
-            if f"forearm_{s}__trim" in available and f"forearm_{s}" in out:
-                out[out.index(f"forearm_{s}")] = f"forearm_{s}__trim"
+            cover = f"forearm_{s}__hscuff" if "__hs." in v and f"forearm_{s}__hscuff" in available else f"forearm_{s}__trim"
+            if cover in available and f"forearm_{s}" in out:
+                out[out.index(f"forearm_{s}")] = cover
     for f in it.front:
         if f in out:
             out.remove(f)
@@ -66,10 +67,13 @@ class MotionEngine:
                  source: np.ndarray, variants: dict[str, np.ndarray] | None = None,
                  approvals: dict[str, Any] | None = None, view: str = "front",
                  profile_overrides: dict[str, Any] | None = None, corrective_ids: list[str] | None = None,
-                 corrective_manifest: dict[str, Any] | None = None):
+                 corrective_manifest: dict[str, Any] | None = None, hand_store: dict[str, Any] | None = None):
+        """``hand_store``: {"layers": derived rest layers of stored hand drawings, "candidates": their records,
+        "use": the user's active-candidate choices} (``handstore.derive_layers``; built by the editor)."""
         t0 = time.time()
         self.sk, self.layers, self.generated, self.source = sk, layers, generated or {}, source
-        self.variants = variants or {}
+        self.hand_store = hand_store or {"layers": {}, "candidates": [], "use": {}}
+        self.variants = {**(variants or {}), **self.hand_store.get("layers", {})}
         self.approvals = approvals or {}
         masks = {c: a[..., 3] > 0 for c, a in layers.items()}
         self.masks = masks
@@ -91,17 +95,45 @@ class MotionEngine:
             fp |= m
         self.dark = (lum < 80) & fp
         self._legacy = None
-        self.hand_lib = HandPoseLibrary(sk, layers, self.variants, self.approvals, corrective_manifest)
+        self.hand_lib = HandPoseLibrary(sk, layers, self.variants, self.approvals, corrective_manifest,
+                                        self.hand_store.get("candidates"), self.hand_store.get("use"))
+        # the feasibility inventory sees each pose through its active candidate (canonical drawing keys)
+        self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
+                                for s in SIDES}
         self.corr_switch = CorrectionSwitchController(sk, self.approvals, corrective_ids)
         self._offset_layers: dict[tuple, str] = {}
+        self._view, self._corrective_ids, self._corrective_manifest = view, corrective_ids, corrective_manifest
         self.build_s = round(time.time() - t0, 3)
+
+    def set_hand_store(self, hand_store: dict[str, Any] | None, approvals: dict[str, Any]) -> dict[str, Any]:
+        """Incremental update after a Hand Library edit (approval, placement, mask, version, choice): only the
+        changed hand layers are re-registered; the skeleton, garments and other layers are kept."""
+        t0 = time.time()
+        hs = hand_store or {"layers": {}, "candidates": [], "use": {}}
+        old = self.hand_store.get("layers", {})
+        changed = [lid for lid, a in hs.get("layers", {}).items() if old.get(lid) is not a]
+        for lid in changed:
+            self.dfm.add_variant_layer(lid, hs["layers"][lid])
+            self.variants[lid] = hs["layers"][lid]
+            self.rest_area[lid] = int((hs["layers"][lid][..., 3] > 127).sum())
+        for lid in set(old) - set(hs.get("layers", {})):
+            self.variants.pop(lid, None)
+        self.hand_store, self.approvals = hs, approvals
+        self.inventory = ArtInventory.build(set(self.layers), set(self.variants), approvals, self._view, self._corrective_ids)
+        self.feas = PoseFeasibilityEvaluator(self.inventory)
+        self.hand_lib = HandPoseLibrary(self.sk, self.layers, self.variants, approvals, self._corrective_manifest,
+                                        hs.get("candidates"), hs.get("use"))
+        self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
+                                for s in SIDES}
+        self.corr_switch.approvals = approvals
+        return {"changed_layers": len(changed), "update_s": round(time.time() - t0, 3)}
 
     # -- switches ------------------------------------------------------------------------------------
     def switch_controller(self, state: dict[str, Any] | None = None) -> ArtworkSwitchController:
         # one source of truth for approval: the feasibility inventory (the planner's arm style reads it too)
         for s in SIDES:
             for v in self.hand_lib.hands[s].values():
-                if v.layer is not None and v.drawing != "open":
+                if v.layer is not None and v.cid != "original":
                     v.status = self.inventory.hands.get(s, {}).get(v.drawing, v.status)
         return ArtworkSwitchController.build(self.hand_lib, self.sk, self.layers, self.corr_switch, state)
 
@@ -132,7 +164,8 @@ class MotionEngine:
             note = r["note"] or (a["note"] if r["source"] in ("auto", "default") else None)
             out[s] = {"drawing": drawing, "pose": r["active"], "preferred": pref, "source": r["source"],
                       "pending_review": r["pending_review"], "note": note, "needs_artwork": r["needs_artwork"],
-                      "offset": r["offset"]}
+                      "offset": r["offset"], "layer": r["layer"],
+                      "cid": self.hand_lib.hands[s][r["active"]].cid}
             prefs = it.arms[s].hand if s in it.arms else ["open"]
             missing = [p for p in prefs if self.inventory.hands.get(s, {}).get(p, "missing") == "missing"]
             if missing and r["source"] in ("auto", "default"):
@@ -313,8 +346,8 @@ class MotionEngine:
              live_head: dict[str, float] | None = None, visible: list[str] | None = None, pad: int = 160,
              skeleton_only: bool = False, fluid: bool = True, ik: dict[str, Any] | None = None,
              switches: dict[str, Any] | None = None, switch_time: float | None = None,
-             corrections_stateful: bool = False, correction_overrides: dict[str, bool] | None = None
-             ) -> dict[str, Any]:
+             corrections_stateful: bool = False, correction_overrides: dict[str, bool] | None = None,
+             hand_layers: dict[str, str] | None = None) -> dict[str, Any]:
         """Processing order: intent -> contact/IK targets -> skeletal solve -> correction selection -> garment
         deformation -> switch resolution -> composition -> evaluation."""
         spec = SPEC_BY_NAME[name]
@@ -334,6 +367,10 @@ class MotionEngine:
         t1 = time.perf_counter()
         hands, switch_res = self.resolve_switches(it, allow_pending, switches,
                                                   switch_time if switch_time is not None else it.phase)
+        for s, lay in (hand_layers or {}).items():  # Hand Library preview of one candidate (never an approval)
+            if lay in self.variants or lay == f"hand_{s}":
+                hands[s] = {**hands[s], "layer": lay, "preview_override": True,
+                            "pending_review": lay != f"hand_{s}", "note": "Hand Library preview"}
         t_switch = time.perf_counter() - t1
         res: dict[str, Any] = {"name": name, "title": spec.title, "kind": spec.kind, "phase": it.phase,
                                "params": {"speed": speed, "exaggeration": exaggeration, "travel": travel,
@@ -351,7 +388,7 @@ class MotionEngine:
         order = motion_order(vis, it, hands, set(self.variants))
         for s in SIDES:  # alignment offsets of the active hand variant (rigid, about the wrist pivot)
             off = hands[s]["offset"]
-            base = f"hand_{s}__{hands[s]['drawing']}" if hands[s]["drawing"] != "open" else f"hand_{s}"
+            base = hands[s].get("layer") or (f"hand_{s}__{hands[s]['drawing']}" if hands[s]["drawing"] != "open" else f"hand_{s}")
             if base in order and any(abs(off[k]) > 1e-9 for k in ("dx", "dy", "rot")):
                 pivot = self.sk.bone(f"hand_{s}").head
                 order[order.index(base)] = self._offset_layer(base, pivot, off)
@@ -621,8 +658,11 @@ def engine_for_package(pkg, view: str = "front") -> tuple["MotionEngine", list[s
     layers = {c: art.layer_rgba(c, m, rej) for c in m}
     gen = {c: art.generated_mask(c, m, rej) for c in m}
     cids = [k.split(":", 1)[1] for k in st["approvals"] if k.startswith("corrective:gusset")]
+    from ..handstore import engine_input
+
+    hs = engine_input(pkg, st.get("hand_store"), sk, layers, ps.variants, st["approvals"], art.source)
     eng = MotionEngine(sk, layers, gen, art.source, ps.variants, st["approvals"], view, load_overrides(pkg), cids,
-                       corrective_manifest(pkg))
+                       corrective_manifest(pkg), hs)
     vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in m]
     del json
     return eng, vis

@@ -100,7 +100,8 @@ async function waitPose(page) {
 test("editor: real edits persist, poses preview, package exports", { timeout: 600000 }, async () => {
   const work = mkdtempSync(path.join(tmpdir(), "autorig-e2e-"));
   const pkg = path.join(work, "character_package");
-  cpSync(PKG, pkg, { recursive: true, filter: (s) => !s.includes(`${path.sep}editor`) && !/natural_pose[\\/](poses|legacy|closeups)/.test(s) });
+  cpSync(PKG, pkg, { recursive: true, filter: (s) => !s.includes(`${path.sep}editor`) && !s.includes(`${path.sep}hand_store`) &&
+    !/natural_pose[\\/](poses|legacy|closeups)/.test(s) });
   const srcFile = path.join(pkg, "source/original.jpg");
   const srcSha = existsSync(srcFile) ? sha(srcFile) : sha(path.join(pkg, "source/original.png"));
   let server = startServer(pkg);
@@ -401,6 +402,54 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.uncheck("[data-testid=allow-pending]");
     await waitPose(page);
 
+    // 6d. Hand Pose Store: import the user's pack in the UI, review and align a drawing, preview it posed
+    const UIDL = "schoolboy_hand_switches_v1/left_relaxed";
+    await page.click("[data-testid=tab-Hands]");
+    await page.waitForSelector("[data-testid=hand-library]");
+    await page.setInputFiles("[data-testid=hand-import]", path.join(repo, "references/schoolboy/hand_pack/AutoRig_Hand_Pose_Library.zip"));
+    await page.waitForFunction(() => /imported/.test(document.querySelector("[data-testid=hand-import-result]")?.textContent ?? ""),
+      null, { timeout: 180000 });
+    const card = "[data-testid=hc-l-relaxed-store_schoolboy_hand_switches_v1_left_relaxed]";
+    await page.waitForSelector(card, { timeout: 180000 });
+    assert.ok(existsSync(path.join(pkg, "hand_store", "index.json")), "store persisted on disk");
+    const badPack = await post("/api/handstore/import", { name: "bad.zip", data_b64: Buffer.from("nope").toString("base64") });
+    assert.equal(badPack.status, "rejected");
+    await page.selectOption("[data-testid=hand-side]", "l");
+    await page.click(card);
+    await page.waitForSelector("[data-testid=hand-detail]");
+    await sleep(1500);
+    await page.screenshot({ path: path.join(SHOTS32, "06_hand_library_candidate.png") });
+    st = (await api("/api/project")).state;
+    assert.notEqual(st.approvals[`handstore:${UIDL}@v1`]?.status, "approved", "imported drawings start unapproved");
+    r0 = await rev(page);
+    await page.click("[data-testid=hand-approve]");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.click("[data-testid=hand-dxp]");
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    assert.equal(st.approvals[`handstore:${UIDL}@v1`].status, "approved");
+    assert.equal(st.hand_store.placement[UIDL].dx, 1);
+    await page.click("[data-testid=hand-preview-pose]");
+    await page.waitForFunction(() => /shown on the canvas/.test(document.querySelector("[data-testid=hand-preview-status]")?.textContent ?? ""),
+      null, { timeout: 120000 });
+    await sleep(800);
+    await page.screenshot({ path: path.join(SHOTS32, "07_hand_preview_in_pose.png") });
+    // the earlier manual choice (left hand: pointing) is kept; in auto mode the approved relaxed drawing is used
+    pr = await post("/api/pose", { preset: "relaxed_standing", skeleton_only: true });
+    assert.equal(pr.hands.l.source, "user", "auto-selection never overrides a manual choice");
+    await post("/api/op", { type: "switch.set", group: "hand_l", variant: null, auto: true });
+    pr = await post("/api/pose", { preset: "relaxed_standing", skeleton_only: true });
+    assert.equal(pr.hands.l.cid, `store:${UIDL}`, "approved relaxed drawing chosen automatically");
+    assert.equal(pr.hands.l.pending_review, false);
+    // delete and restore a candidate, undo/redo through the op log
+    await post("/api/op", { type: "handstore.delete", uid: "schoolboy_hand_switches_v1/left_cupped" });
+    assert.ok((await api("/api/project")).state.hand_store.deleted.includes("schoolboy_hand_switches_v1/left_cupped"));
+    await post("/api/undo");
+    assert.ok(!(await api("/api/project")).state.hand_store.deleted.includes("schoolboy_hand_switches_v1/left_cupped"));
+    await page.reload();
+    await page.waitForSelector("[data-testid=layers-panel]");
+
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");
     await page.waitForSelector("[data-testid=cap-left_eye_blink]");
@@ -450,6 +499,8 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     assert.equal(reopened.project.versions.length, 1);
     assert.deepEqual(reopened.state.ik.arm_r.target, saved.ik.arm_r.target, "IK target persists");
     assert.equal(reopened.state.switches.hand_r.user, "fist", "hand switch persists");
+    assert.equal(reopened.state.approvals["handstore:schoolboy_hand_switches_v1/left_relaxed@v1"].status, "approved", "hand approval persists");
+    assert.equal(reopened.state.hand_store.placement["schoolboy_hand_switches_v1/left_relaxed"].dx, 1, "wrist placement persists");
 
     // 11. export the Moho-ready package
     await page.click("[data-testid=tab-Export]");

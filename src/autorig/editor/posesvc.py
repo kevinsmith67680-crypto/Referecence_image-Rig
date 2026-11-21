@@ -248,20 +248,34 @@ class PoseService:
         from ..motion.pipeline import MotionEngine, corrective_manifest
         from ..motion.profile import load_overrides
 
-        appr = {k: v for k, v in st["approvals"].items() if k.startswith("corrective:")}
-        key = "motion:" + _digest([st["mask_ops"], st["bones"], st["corrections"], sorted(rejected), appr,
-                                   [(L["id"], L["visible"]) for L in st["layers"]]])
-        if key in self._cache:
-            return self._cache[key]
-        sk = self.skeleton(st, masks, None)
-        layers = {c: self.art.layer_rgba(c, masks, rejected) for c in masks}
-        gen = {c: self.art.generated_mask(c, masks, rejected) for c in masks}
+        from ..handstore import STORE_DIR
+
+        from ..handstore import engine_input
+
+        appr = {k: v for k, v in st["approvals"].items() if k.startswith(("corrective:", "handstore:"))}
+        idx = self.pkg / STORE_DIR / "index.json"
+        store_rev = hashlib.sha256(idx.read_bytes()).hexdigest()[:12] if idx.is_file() else None
         cids = [k.split(":", 1)[1] for k in st["approvals"] if k.startswith("corrective:gusset")]
-        eng = MotionEngine(sk, layers, gen, self.art.source, self.variants, st["approvals"], "front",
-                           load_overrides(self.pkg), cids, corrective_manifest(self.pkg))
-        for k in [k for k in self._cache if k.startswith("motion:")]:
-            self._cache.pop(k)
-        self._cache[key] = eng
+        # the engine is rebuilt only when the character changes; Hand Library edits and approvals update it in place
+        base_key = "motion:" + _digest([st["mask_ops"], st["bones"], st["corrections"], sorted(rejected),
+                                        [(L["id"], L["visible"]) for L in st["layers"]], sorted(cids)])
+        hand_key = _digest([appr, st.get("hand_store"), store_rev])
+        eng = self._cache.get(base_key)
+        if eng is not None and getattr(eng, "_hand_key", None) == hand_key:
+            return eng
+        sk = eng.sk if eng is not None else self.skeleton(st, masks, None)
+        layers = eng.layers if eng is not None else {c: self.art.layer_rgba(c, masks, rejected) for c in masks}
+        hs = engine_input(self.pkg, st.get("hand_store"), sk, layers, self.variants, st["approvals"], self.art.source)
+        if eng is not None:
+            eng.set_hand_store(hs, st["approvals"])
+        else:
+            gen = {c: self.art.generated_mask(c, masks, rejected) for c in masks}
+            eng = MotionEngine(sk, layers, gen, self.art.source, self.variants, st["approvals"], "front",
+                               load_overrides(self.pkg), cids, corrective_manifest(self.pkg), hs)
+            for k in [k for k in self._cache if k.startswith("motion:")]:
+                self._cache.pop(k)
+            self._cache[base_key] = eng
+        eng._hand_key = hand_key
         return eng
 
     def motion(self, st: dict[str, Any], masks: dict[str, np.ndarray], rejected: set[str], body: dict[str, Any]
@@ -279,10 +293,17 @@ class PoseService:
             raise PoseError(f"unknown bones in overrides: {unknown}")
         ik = body["ik"] if body.get("ik") is not None else st.get("ik")
         switches = body["switches"] if body.get("switches") is not None else st.get("switches")
+        hand_layers = None
+        if body.get("hand_preview"):  # {side, cid}: show one Hand Library candidate in this pose
+            hp = body["hand_preview"]
+            v = eng.hand_lib.candidate(hp.get("side"), hp.get("cid", ""))
+            if v is None or v.layer is None:
+                raise PoseError(f"unknown hand candidate {hp}")
+            hand_layers = {hp["side"]: v.layer}
         r = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
                      0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
                      skeleton_only=bool(body.get("skeleton_only")), fluid=bool(body.get("fluid", True)),
-                     ik=ik, switches=switches, switch_time=body.get("switch_time"))
+                     ik=ik, switches=switches, switch_time=body.get("switch_time"), hand_layers=hand_layers)
         s = r["solve"]
         out = {"name": name, "title": r["title"], "kind": r["kind"], "phase": r["phase"], "pad": r["pad"],
                "joints_posed": s["joints_posed"], "bone_tails_posed": s["bone_tails_posed"], "contact": s["contact"],
@@ -362,6 +383,71 @@ class PoseService:
         crop[sy0 - y0:sy1 - y0, sx0 - x0:sx1 - x0] = rgba[sy0:sy1, sx0:sx1]
         im = Image.fromarray(crop, "RGBA").resize((size, size), Image.LANCZOS)
         return np.asarray(im)
+
+    def hand_library(self, st, masks, rejected) -> dict[str, Any]:
+        """Hand Library panel data: every candidate per side and pose (original, Phase 2 drawing, stored drawings),
+        which one is active, its approval, provenance, placement and measured alignment."""
+        from ..handstore import STORE_DIR, HandStore
+        from ..motion.switches import FALLBACK_POSE, HAND_POSES, REQUIRED_HAND_POSES
+
+        eng = self.motion_engine(st, masks, rejected)
+        lib = eng.hand_lib
+        cands = []
+        for s in ("r", "l"):
+            for pose, vs in lib.candidates[s].items():
+                for v in vs:
+                    al = lib.alignment_v(v, eng.profile.midline_x)
+                    cands.append({**v.to_json(), "active": v is lib.hands[s][pose],
+                                  "alignment": {k: al.get(k) for k in ("status", "method", "attachment_error_px",
+                                                                       "width_ratio", "wrist_fit", "side_ok", "issues",
+                                                                       "auto_align", "visible_band_vs_reference_px")}})
+        store = None
+        if (self.pkg / STORE_DIR / "index.json").is_file():
+            hs = HandStore(self.pkg)
+            store = {"packs": hs.index["packs"], "assets": hs.index["assets"], "verify": hs.verify()}
+        deleted = set(st.get("hand_store", {}).get("deleted", []))
+        return {"poses": list(HAND_POSES), "required": list(REQUIRED_HAND_POSES), "fallback": FALLBACK_POSE,
+                "candidates": cands, "missing": lib.missing(), "store": store, "state": st.get("hand_store"),
+                "deleted": sorted(deleted)}
+
+    def hand_preview(self, st, masks, rejected, side: str, cid: str, size: int = 220) -> np.ndarray | None:
+        """Rest-frame preview of one candidate on the character: the candidate replaces the hand, the sleeve is
+        drawn over it (as in every pose), cropped around the wrist, with the wrist joint marked."""
+        from ..phase2.skinning import PoseParams
+
+        eng = self.motion_engine(st, masks, rejected)
+        v = eng.hand_lib.candidate(side, cid)
+        if v is None or v.layer is None:
+            return None
+        vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+        order = list(vis)
+        if f"hand_{side}" in order and v.layer != f"hand_{side}":
+            order[order.index(f"hand_{side}")] = v.layer
+            cover = f"forearm_{side}__hscuff" if v.cid.startswith("store:") and f"forearm_{side}__hscuff" in eng.variants \
+                else f"forearm_{side}__trim"
+            if cover in eng.variants and f"forearm_{side}" in order:
+                order[order.index(f"forearm_{side}")] = cover
+        # sleeve over the hand, as motion_order composes it
+        for c in (f"forearm_{side}__hscuff", f"forearm_{side}__trim", f"forearm_{side}"):
+            if c in order:
+                order.remove(c)
+                order.append(c)
+        r = eng.dfm.render(PoseParams.identity(len(eng.sk.bones)), order, 0)
+        img = Image.fromarray(r["image"], "RGBA")
+        bg = Image.new("RGBA", img.size, (236, 238, 242, 255))
+        bg.alpha_composite(img)
+        hb = eng.sk.bone(f"hand_{side}")
+        cx, cy = (hb.head + hb.tail) / 2
+        half = int(max(70, 1.6 * hb.length))
+        crop = bg.crop((int(cx - half), int(cy - half), int(cx + half), int(cy + half))).convert("RGB")
+        from PIL import ImageDraw
+
+        d = ImageDraw.Draw(crop)
+        wx, wy = hb.head[0] - (cx - half), hb.head[1] - (cy - half)
+        d.ellipse((wx - 4, wy - 4, wx + 4, wy + 4), outline=(28, 126, 214), width=2)
+        tx, ty = hb.tail[0] - (cx - half), hb.tail[1] - (cy - half)
+        d.line((wx, wy, tx, ty), fill=(28, 126, 214), width=1)
+        return np.asarray(crop.resize((size, size), Image.LANCZOS))
 
     @staticmethod
     def motion_presets() -> list[dict[str, Any]]:

@@ -23,7 +23,7 @@ from ..phase2.pose_eval import on_bg
 from ..phase2.skeleton import SIDES
 from .ik import LAT, TwoBoneIKSolver
 from .pipeline import engine_for_package, save_animation
-from .switches import ALIGN, HAND_POSES, REQUIRED_HAND_POSES, offset_layer, posed_hand_alignment
+from .switches import ALIGN, EXTRA_HAND_POSES, HAND_POSES, REQUIRED_HAND_POSES, offset_layer, posed_hand_alignment
 
 CONTACT_RGB = {"PLANTED": (47, 158, 68), "LIFTING": (240, 140, 0), "SWINGING": (28, 126, 214),
                "LANDING": (174, 62, 201), "FREE": (134, 142, 150)}
@@ -297,7 +297,7 @@ def ik_demo(pkg, out=None, progress=print) -> dict[str, Any]:
     # 9 hand switch comparison sheet (relaxed standing; every pose for both hands; measured attachment)
     progress("  09_hand_switch_sheet")
     lib = e.hand_lib
-    poses = list(REQUIRED_HAND_POSES) + ["palm_up"]
+    poses = list(REQUIRED_HAND_POSES) + list(EXTRA_HAND_POSES)
     rows, table = [], []
     for pose in poses:
         sw = {f"hand_{s}": {"user": pose, "auto": False, "keys": [], "offsets": {}} for s in SIDES}

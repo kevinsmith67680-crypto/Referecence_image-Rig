@@ -10,6 +10,10 @@ bindings, ready to animate.
 > drawings. All hand variants are still pending review and several hand and correction drawings do not exist. Moho
 > has not run. See [docs/phase3_2_ik_switch_report.md](docs/phase3_2_ik_switch_report.md).
 >
+> **Hand Pose Store (schoolboy hand pack): PARTIAL.** 16 imported concept hand drawings are stored with the
+> character, attached at the cuff of either wrist, masked against duplicate cuffs and selectable in the editor's
+> Hands tab. They stay pending review. See [docs/hand_pose_store_integration.md](docs/hand_pose_store_integration.md).
+>
 > **Phase 3.1 (natural motion and clothing deformation): PARTIAL.** Posing is now split into a motion planner,
 > an anatomical solver (IK, foot contact, balance, no bone scaling), a garment-aware deformation engine and
 > measurable checks, with a phase-driven front-view walk and run. Nothing is visually approved yet, and Moho has not
@@ -146,6 +150,7 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_1_natural_motion_report.md](docs/phase3_1_natural_motion_report.md) | Phase 3.1 results: architecture, gait, garments, checks, before/after, performance, verdict |
 | [docs/phase3_2_implementation_plan.md](docs/phase3_2_implementation_plan.md) | Phase 3.2 audit and plan: IK, switch groups, hand library, rig controls, migration |
 | [docs/phase3_2_ik_switch_report.md](docs/phase3_2_ik_switch_report.md) | Phase 3.2 results: IK, contacts, switches, editor, tests, evidence, performance, verdict |
+| [docs/hand_pose_store_integration.md](docs/hand_pose_store_integration.md) | Hand Pose Store: pack import, wrist matching, cuff masking, Hand Library, switch manifest, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

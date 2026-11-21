@@ -88,7 +88,8 @@ LIVE_ACTIONS: dict[str, dict[str, Any]] = {
     **{f"HAND_{'RIGHT' if s == 'r' else 'LEFT'}_{n.upper()}": {"channel": "body", "kind": "switch",
                                                                "group": f"hand_{s}", "variant": p}
        for s in SIDES for n, p in (("point", "pointing"), ("fist", "fist"), ("open", "open_palm"),
-                                   ("relaxed", "relaxed"), ("thumbs_up", "thumbs_up"), ("grip", "gripping"))},
+                                   ("relaxed", "relaxed"), ("thumbs_up", "thumbs_up"), ("grip", "gripping"),
+                                   ("palm_down", "palm_down"), ("cupped", "cupped"))},
     "HAND_RIGHT_AUTO": {"channel": "body", "kind": "switch_auto", "group": "hand_r"},
     "HAND_LEFT_AUTO": {"channel": "body", "kind": "switch_auto", "group": "hand_l"},
     "ARM_RIGHT_REACH": {"channel": "body", "kind": "ik_reach", "limb": "arm_r", "reach": [0.55, 0.55],
@@ -106,6 +107,9 @@ LIVE_ACTIONS: dict[str, dict[str, Any]] = {
                      "amplitude": [0.14, 0.03], "period_s": 0.8, "hand": "open_palm",
                      "note": "the wrist target swings sideways about a raised hand; the elbow bend side is held"},
     "GESTURE_IDLE": {"channel": "body", "kind": "preset", "preset": "relaxed_standing"},
+    "GESTURE_GRASP": {"channel": "body", "kind": "ik_reach", "limb": "arm_r", "reach": [0.45, -0.35], "hand": "gripping",
+                      "note": "no grasping pose preset exists: the right wrist reaches out at hip height and the "
+                              "right hand switches to the grip drawing (shown only once approved or previewed)"},
     "HEAD_TILT": {"channel": "face", "kind": "head", "param": "tilt", "range_deg": [-20.0, 20.0]},
     "MOUTH_OPEN": {"channel": "face", "kind": "switch", "group": "face_mouth", "variant": "open"},
     "MOUTH_NEUTRAL": {"channel": "face", "kind": "switch", "group": "face_mouth", "variant": "neutral"},

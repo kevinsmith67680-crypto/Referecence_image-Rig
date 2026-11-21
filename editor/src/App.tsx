@@ -5,9 +5,10 @@ import CanvasView, { CompareSettings, MaskSettings, Mode, Overlays, Tool } from 
 import LayersPanel from "./components/LayersPanel";
 import { ComparePanel, Cycle, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, Motion, Perf, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
 import { IKPanel, SwitchesPanel } from "./components/RigPanels";
+import { HandLibraryPanel } from "./components/HandPanels";
 
-const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "IK", "Switches", "Face", "Live", "Compare", "Export"] as const;
-const POSE_TABS = ["Pose", "IK", "Switches"];
+const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "IK", "Switches", "Hands", "Face", "Live", "Compare", "Export"] as const;
+const POSE_TABS = ["Pose", "IK", "Switches", "Hands"];
 type Tab = (typeof TABS)[number];
 const TOOLS: { t: Tool; key: string; label: string }[] = [
   { t: "select", key: "v", label: "Select" }, { t: "pan", key: "h", label: "Pan" }, { t: "brush", key: "b", label: "Brush" },
@@ -50,6 +51,7 @@ export default function App() {
   const [exportRes, setExportRes] = useState<any>(null);
   const poseSeq = useRef(0);
   const [dragging, setDragging] = useState(false);
+  const [handPreview, setHandPreview] = useState<{ side: string; cid: string } | null>(null);
   const drag = useRef<{ busy: boolean; pending: any; t: number; lat: number[] }>({ busy: false, pending: null, t: 0, lat: [] });
 
   const rev = payload?.project.revision ?? "0";
@@ -89,7 +91,7 @@ export default function App() {
   const poseBody = (extra: Record<string, unknown> = {}) => ({ preset, overrides, boundaries: overlays.boundaries,
     phase: motion.phase, speed: motion.speed, exaggeration: motion.exaggeration, allow_pending: motion.allowPending,
     diagnostics: motion.diagnostics, before: motion.before, live_head: motion.liveTilt ? { tilt: motion.liveTilt } : null,
-    fluid: motion.fluid, ...extra });
+    fluid: motion.fluid, hand_preview: tab === "Hands" ? handPreview : null, ...extra });
   // animated cycle: full-artwork frames rendered by a background job, then played back frame by frame
   const renderCycle = (frames: number) => {
     setAnim(false);
@@ -125,7 +127,7 @@ export default function App() {
       if (seq === poseSeq.current) { setPoseRes({ ...r, roundtrip_ms: Math.round(performance.now() - t0 - 350) }); setPoseBusy(false); setSkel(null); setDragging(false); }
     }).catch((e) => { setError(String(e.message ?? e)); setPoseBusy(false); }), 350);
     return () => clearTimeout(t);
-  }, [mode, preset, overrides, rev, overlays.boundaries, motion, playing]);
+  }, [mode, preset, overrides, rev, overlays.boundaries, motion, playing, handPreview, tab]);
   // interactive scrubbing: skeleton-only solves (milliseconds) as fast as the server answers; artwork after release
   useEffect(() => {
     if (!playing || mode !== "pose") return;
@@ -254,6 +256,9 @@ export default function App() {
             {tab === "IK" && <IKPanel payload={payload} result={dragging && skel ? skel : poseRes} busy={poseBusy || dragging} onOp={onOp} onError={setError}
               ctx={{ preset, phase: motion.phase, speed: motion.speed, exaggeration: motion.exaggeration, allowPending: motion.allowPending, fluid: motion.fluid }} />}
             {tab === "Switches" && <SwitchesPanel payload={payload} result={poseRes} rev={rev} phase={motion.phase} onOp={onOp} onError={setError} />}
+            {tab === "Hands" && <HandLibraryPanel payload={payload} rev={rev} onOp={onOp} onError={setError}
+              onPreviewPose={(side, cid) => setHandPreview({ side, cid })}
+              previewStatus={!handPreview ? "" : poseBusy ? "rendering…" : poseRes?.hands?.[handPreview.side]?.preview_override ? "shown on the canvas (preview)" : ""} />}
             {tab === "Face" && <FacePanel face={face} overlays={overlays} setOverlays={setOverlays} onOp={onOp} />}
             {tab === "Live" && <LivePanel live={live} />}
             {tab === "Compare" && <ComparePanel cmp={cmp} setCmp={setCmp} metrics={metrics} payload={payload} onOp={onOp} />}

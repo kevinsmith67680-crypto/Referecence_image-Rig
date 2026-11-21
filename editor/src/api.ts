@@ -26,6 +26,7 @@ export interface EditorState {
   pose: { preset: string; overrides: Record<string, number> };
   ik: Record<string, any> & { pelvis_offset: [number, number] };
   switches: Record<string, { user: string | null; auto: boolean; keys: [number, string][]; offsets: Record<string, { dx: number; dy: number; rot: number }> }>;
+  hand_store?: { use: Record<string, string>; placement: Record<string, any>; mask: Record<string, any>; labels: Record<string, string>; deleted: string[]; versions: Record<string, number> };
 }
 export interface Payload {
   project: { cursor: number; ops: number; can_undo: boolean; can_redo: boolean; revision: string; versions: any[] };
@@ -66,6 +67,11 @@ export const api = {
   rigControls: () => fetch("/api/rig/controls").then((r) => j<any>(r)),
   liveActions: () => fetch("/api/live/actions").then((r) => j<Record<string, any>>(r)),
   liveAction: (body: Record<string, unknown>) => post("/api/live/action", body).then((r) => j<any>(r)),
+  handstore: () => fetch("/api/handstore").then((r) => j<any>(r)),
+  handstoreImport: (name: string, data_b64: string) => post("/api/handstore/import", { name, data_b64 }).then(async (r) => ({ ok: r.ok, body: await r.json() })),
+  handstoreReplace: (uid: string, name: string, data_b64: string) => post("/api/handstore/replace", { uid, name, data_b64 }).then(async (r) => ({ ok: r.ok, body: await r.json() })),
+  handSourceUrl: (uid: string, v?: number) => `/api/handstore/source/${uid}.png${v ? `?v=${v}` : ""}`,
+  handPreviewUrl: (side: string, cid: string, rev: string) => `/api/handstore/preview/${side}/${cid}.png?rev=${rev}`,
   face: () => fetch("/api/face").then((r) => j<any>(r)),
   live: () => fetch("/api/live").then((r) => j<any>(r)),
   gates: () => fetch("/api/gates").then((r) => j<any>(r)),

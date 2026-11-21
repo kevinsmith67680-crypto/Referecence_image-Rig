@@ -211,3 +211,17 @@ intent -> contact and IK target planning (`apply_ik`) -> skeletal solve -> corre
   the operation on release), Switches tab with thumbnails, approval, alignment and keys.
 
 See [phase3_2_ik_switch_report.md](phase3_2_ik_switch_report.md).
+
+## 14. Hand Pose Store
+
+`src/autorig/handstore.py` keeps imported hand drawings with the character (`<package>/hand_store/`, append-only,
+hashed). The editor project (schema v3) records the user's decisions (`handstore.*` operations, approvals per
+version). `engine_input` derives a rest-frame layer per drawing:
+* sleeve/cuff mask and matte-halo removal;
+* wrist placement from the character's own shirt cuff and the hand bone;
+* one scale per side.
+
+Those layers enter the existing `HandPoseLibrary` as candidates next to the original and Phase 2 drawings, so switch
+resolution, presets, live actions, IK and export are unchanged in structure. Hand Library edits update the cached
+engine in place (`MotionEngine.set_hand_store`). See [hand_pose_store_integration.md](hand_pose_store_integration.md).
+

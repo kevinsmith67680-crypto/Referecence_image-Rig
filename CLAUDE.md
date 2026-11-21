@@ -34,6 +34,10 @@ faithful, editable **Moho Pro 14** character rig.
   and Switches tabs; evidence in `projects/schoolboy_tpose/character_package/natural_pose/ik_switch/`. Hand variants
   are all pending review; relaxed/gripping/palm-down/partially-closed hands and every elbow/knee correction drawing
   are missing.
+- The user asked to integrate their **schoolboy hand pack** (16 AI-generated concept drawings,
+  `references/schoolboy/hand_pack/`) as a character-scoped **Hand Pose Store**. Done; verdict **PARTIAL**
+  (`docs/hand_pose_store_integration.md`): imported into `projects/schoolboy_tpose/character_package/hand_store/`, all
+  drawings pending review, evidence in `hand_store/evidence/`.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -103,6 +107,25 @@ faithful, editable **Moho Pro 14** character rig.
   a test) is validated before export (manifest 1.1.0). Moho mappings stay `proposed_unverified`; live inputs stay
   unassigned (no Moho input names are invented). No webcam tracking.
 - `autorig ik-demo <package>` regenerates the committed Phase 3.2 evidence.
+
+## Hand Pose Store rules
+
+- Imported hand drawings live in `<package>/hand_store/` (append-only: `index.json` with hashes and provenance, packs
+  byte for byte, replacement PNGs as new versions). `autorig hand-import` / the Hands tab validate the whole pack
+  (manifest, unique ids, alpha, canvas size, complete side/pose pairs, safe zip paths) and reject it with
+  actionable errors otherwise. Never modify stored files; `HandStore.verify()` checks the hashes.
+- User decisions are editor-project operations (schema v3 `hand_store` state): `handstore.use|placement|mask|rename|
+  delete|restore|version`; approvals use `approval.set` with `handstore:<library>/<asset>@v<N>` (each version is
+  reviewed separately). Imported drawings are never approved in code and are only previewed until approved.
+- Stored drawings are candidates in the existing switch system (`HandPoseLibrary` candidates per side/pose: original,
+  `phase2:<drawing>`, `store:<uid>`); there is no second switch engine. The original hand stays the open-palm default.
+- Placement is derived, never taken from the manifest anchor: the drawing's own cuff edge (masked sleeve/cuff) goes
+  onto the character's white shirt cuff edge (skeleton + original pixels), tucked under the sleeve, rotated onto the
+  hand bone; one scale per side (open-palm visible area matched to the original hand). User corrections: dx, dy,
+  rot, uniform scale. Derived layers are computed from the stored source (mask, matte-halo removal) and covered by
+  `forearm_<side>__hscuff` (the trimmed forearm without the original hand's skin pixels past the cuff).
+- `autorig hand-evidence <package>` regenerates the committed hand evidence. Export writes `hand_switches.json`
+  (validated metadata vs `not_implemented_in_native_moho`; Moho mapping `proposed_unverified`).
 
 ## Live Models track (Moho 14.5)
 
@@ -186,6 +209,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 # Phase 3.2
 .venv/bin/python -m autorig ik-demo <package_dir>                  # IK / contacts / hand-switch evidence (~2 min)
 .venv/bin/python -m autorig rig-controls <package_dir> [--out f]   # write + validate the rig controls spec
+# Hand Pose Store
+.venv/bin/python -m autorig hand-import <package_dir> <pack.zip>   # validate + store a hand pack (pending review)
+.venv/bin/python -m autorig hand-evidence <package_dir>            # attachment sheet, seams, IK sweep (~3 min)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -213,6 +239,8 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   (garment model + deformation engine), feasibility, quality, pipeline (MotionEngine, evidence CLI); Phase 3.2: ik
   (solver, limb controllers, foot contacts), switches (switch groups, hand library, correction triggers), rigctl
   (rig controls spec, live action map), demo (`ik-demo`)
+- `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
+  layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright
 - `projects/schoolboy_tpose/moho_asset_package/` — validated Phase 3 export of the unedited real package (not
   production-ready); `docs/phase3/screenshots/` — real-browser screenshots from the e2e test

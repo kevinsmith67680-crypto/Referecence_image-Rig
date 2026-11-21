@@ -159,15 +159,83 @@ def _motion_json(pkg: Path, name: str) -> dict[str, Any] | None:
     return d
 
 
-def _rig_controls(proj: EditorProject, art: ArtworkModel, st: dict[str, Any], masks, rej) -> tuple[dict, list[str]]:
+def _engine(proj: EditorProject, art: ArtworkModel, st: dict[str, Any], masks, rej):
+    from .posesvc import PoseService
+
+    return PoseService(proj.pkg, art).motion_engine(st, masks, rej)
+
+
+def _rig_controls(eng, st: dict[str, Any]) -> tuple[dict, list[str]]:
     """Rig controls (IK, switches, corrections, live map) validated before export. Built with the same engine
     the editor uses; the document stays engine-side (Moho mapping proposed_unverified)."""
     from ..motion.rigctl import build_rig_controls, validate
-    from .posesvc import PoseService
 
-    eng = PoseService(proj.pkg, art).motion_engine(st, masks, rej)
     doc = build_rig_controls(eng, st.get("ik"), st.get("switches"))
     return doc, validate(doc)
+
+
+def _hand_switches(eng, st: dict[str, Any], out: Path, W: int, H: int) -> tuple[dict[str, Any], list[str]]:
+    """Future-compatible hand switch manifest for Moho Switch Layers. ``validated`` holds what this export checked
+    (files written, full canvas, alpha, hashes, pivots, approvals, measured alignment); ``not_implemented_in_native_moho``
+    lists what no verified Moho code does yet. Every hand candidate is exported as a full-canvas rest-frame layer."""
+    import hashlib
+
+    from ..motion.rigctl import LIVE_ACTIONS
+    from ..motion.switches import FALLBACK_POSE
+
+    lib = eng.hand_lib
+    files, groups, pending = [], [], 0
+    for s in ("r", "l"):
+        hb = eng.sk.bone(f"hand_{s}")
+        variants = []
+        for pose, vs in lib.candidates[s].items():
+            for v in vs:
+                rgba = eng.layers[v.layer] if v.cid == "original" else eng.variants[v.layer]
+                fname = f"layers/{v.layer}.png"
+                if v.cid != "original":
+                    f = out / fname
+                    if not f.exists():
+                        Image.fromarray(rgba, "RGBA").save(f, optimize=True)
+                        files.append(str(f))
+                data = (out / fname).read_bytes() if (out / fname).is_file() else None
+                ok_alpha = bool((rgba[..., 3] == 0).any() and (rgba[..., 3] > 127).any())
+                al = lib.alignment_v(v, eng.profile.midline_x)
+                pending += int(v.status in ("pending_review", "rejected"))
+                variants.append({
+                    "pose": pose, "candidate": v.cid, "label": v.label or pose, "layer": v.layer, "file": fname,
+                    "sha256": hashlib.sha256(data).hexdigest() if data else None, "status": v.status,
+                    "approval_item": v.approval_item, "active_for_pose": v is lib.hands[s][pose],
+                    "category": v.category, "provenance": v.provenance, "placement": (v.placement or {}).get("final"),
+                    "placement_correction": (v.placement or {}).get("correction"),
+                    "mask": (v.placement or {}).get("mask_settings"),
+                    "checks": {"file_written": data is not None, "full_canvas": rgba.shape[:2] == (H, W),
+                               "has_alpha": ok_alpha, "side_ok": al.get("side_ok"),
+                               "rest_attachment_error_px": al.get("attachment_error_px"),
+                               "width_ratio": al.get("width_ratio")}})
+        sw = (st.get("switches") or {}).get(f"hand_{s}", {})
+        groups.append({"id": f"hand_{s}", "alias": "hand_right" if s == "r" else "hand_left", "bone": f"hand_{s}",
+                       "pivot_px": [round(float(v), 2) for v in hb.head],
+                       "pivot_moho": [round((float(hb.head[0]) - W / 2) / (H / 2), 5), round((H / 2 - float(hb.head[1])) / (H / 2), 5)],
+                       "default": FALLBACK_POSE, "user_choice": sw.get("user"), "auto": sw.get("auto", True),
+                       "keyframes": sw.get("keys", []), "variants": variants})
+    actions = {k: a for k, a in LIVE_ACTIONS.items() if a.get("kind") == "switch" and a.get("group", "").startswith("hand_")}
+    n = sum(len(g["variants"]) for g in groups)
+    return {
+        "schema": "autorig.hand_switches", "schema_version": "1.0.0",
+        "validated": {"groups": groups,
+                      "rules": ["layers are full-canvas rest-frame RGBA, unscaled after placement, with the drawing's own "
+                                "sleeve/cuff masked and its matte halo removed (source files unchanged)",
+                                "pending or rejected drawings are listed but not approved; production use requires approval"]},
+        "semantic_actions": actions,
+        "moho_mapping": {"status": "proposed_unverified",
+                         "proposal": "one Moho Switch Layer per group (child per variant image), bound to the hand bone; "
+                                     "switch keys from 'keyframes'; live actions map to switch values later"},
+        "not_implemented_in_native_moho": [
+            "creating a Switch layer and adding these images as its children: no Moho API for it is verified in the allowlist",
+            "binding switch values to Smart Bones, actions or Live Mode inputs (input identifiers not discovered)",
+            "writing a .moho/.mohoproj file: blocked until the Phase 0 importer is verified natively"],
+        "summary": {"groups": len(groups), "variants": n, "pending_or_rejected": pending,
+                    "production_ready": pending == 0}}, files
 
 
 def _clear_previous_export(out: Path) -> None:
@@ -238,11 +306,15 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
     validation = art.validate_masks(masks)
     face = face_panel(proj.pkg, st, masks)
     live = live_panel(proj.pkg, st, masks)
-    rig_controls, rc_errors = _rig_controls(proj, art, st, masks, rej)
+    eng = _engine(proj, art, st, masks, rej)
+    rig_controls, rc_errors = _rig_controls(eng, st)
     if rc_errors:
         raise ValueError("rig controls do not validate: " + "; ".join(rc_errors[:5]))
     (out / "rig_controls.json").write_text(json.dumps(rig_controls, indent=2, default=float), encoding="utf-8")
     files.append(str(out / "rig_controls.json"))
+    hand_sw, hand_files = _hand_switches(eng, st, out, art.W, art.H)
+    (out / "hand_switches.json").write_text(json.dumps(hand_sw, indent=2, default=float), encoding="utf-8")
+    files += hand_files + [str(out / "hand_switches.json")]
     manifest = {
         "schema": SCHEMA, "schema_version": VERSION, "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "editor_project": {"schema_version": proj.data["schema_version"], "revision": proj.revision(), "ops": proj.cursor},
@@ -260,7 +332,8 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
                                             "corrective shapes -> Smart Bone actions (Phase 4)",
                         "garments": _motion_json(proj.pkg, "garments.json"),
                         "motion_profile": _motion_json(proj.pkg, "profile.json")},
-        "rig_controls": rig_controls, "facial": face, "live": live,
+        "rig_controls": rig_controls, "hand_switches": {"file": "hand_switches.json",
+                                                         "summary": hand_sw["summary"]}, "facial": face, "live": live,
         "provenance": {"mask_corrections": len(st["mask_ops"]), "reassigned_px": validation["reassigned_px"],
                        "unassigned_px": validation["unassigned_px"],
                        "rule": "layer pixels are source pixels; generated pixels only in listed extensions/corrective"},

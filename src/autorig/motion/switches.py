@@ -31,6 +31,7 @@ HAND_POSES: dict[str, str] = {
     "relaxed": "relaxed", "open_palm": "open", "fist": "fist", "pointing": "point", "thumbs_up": "thumbs_up",
     "gripping": "grip", "palm_down": "palm_down", "partially_closed": "partial",
     "palm_up": "palm_up",  # extra: the Phase 2 palm-up approximation (foreshortened open hand)
+    "cupped": "cupped",  # extra: cupped hand (imported concept packs); not the same as partially closed
 }
 REQUIRED_HAND_POSES = ("relaxed", "open_palm", "fist", "pointing", "thumbs_up", "gripping", "palm_down",
                        "partially_closed")
@@ -81,8 +82,8 @@ def offset_layer(rgba: np.ndarray, pivot, dx: float = 0.0, dy: float = 0.0, rot:
 class HandVariant:
     side: str
     pose: str
-    drawing: str
-    layer: str | None  # deformer layer id (hand_r, hand_r__fist ...); None when missing
+    drawing: str  # canonical drawing key of the pose (HAND_POSES); the layer says which drawing it actually is
+    layer: str | None  # deformer layer id (hand_r, hand_r__fist, hand_r__hs.<lib>.<asset>.v1 ...); None when missing
     status: str  # original | approved | pending_review | rejected | missing
     category: str
     provenance: dict[str, Any]
@@ -93,6 +94,10 @@ class HandVariant:
     bbox: list[int] | None = None
     orientation_deg: float | None = None  # hand body direction relative to the hand bone (deg)
     measure: dict[str, Any] = field(default_factory=dict)
+    cid: str = ""  # candidate id: original | phase2:<drawing> | store:<library_id>/<asset_id>
+    label: str = ""
+    approval_item: str | None = None
+    placement: dict[str, Any] | None = None  # stored drawings: automatic and corrected wrist placement
 
     @property
     def available(self) -> bool:
@@ -105,48 +110,132 @@ class HandVariant:
                 "rotation_offset_deg": self.rotation_offset_deg, "offset_px": list(self.offset_px),
                 "bbox": self.bbox, "orientation_deg": None if self.orientation_deg is None else round(self.orientation_deg, 2),
                 "measure": self.measure, "view": "front",  # supported viewing orientation (the reference is front)
-                "needs_artwork": self.layer is None}
+                "needs_artwork": self.layer is None, "cid": self.cid, "label": self.label or self.pose,
+                "approval_item": self.approval_item, "placement": self.placement}
+
+
+EXTRA_HAND_POSES = ("palm_up", "cupped")
+CANDIDATE_RANK = {"approved": 0, "original": 1}  # default choice: approved, then original, then the order below
+
+
+def _attachment(sk: Skeleton, mask: np.ndarray, origin, side: str) -> np.ndarray | None:
+    """Visible wrist attachment of a hand mask: centroid of the proximal band along the hand bone axis."""
+    hb = sk.bone(f"hand_{side}")
+    Wp = np.asarray(hb.head, float)
+    u = (np.asarray(hb.tail, float) - Wp) / max(hb.length, 1e-6)
+    n = np.array([-u[1], u[0]])
+    ys, xs = np.nonzero(mask)
+    if len(xs) < 10:
+        return None
+    P = np.stack([xs + origin[0], ys + origin[1]], 1).astype(float)
+    t, q = (P - Wp) @ u, (P - Wp) @ n
+    t0 = float(np.percentile(t, 0.5))
+    sel = t <= t0 + max(4.0, 0.15 * hb.length)
+    return Wp + u * float(t[sel].mean()) + n * float(q[sel].mean())
+
+
+def best_translation(sk: Skeleton, side: str, rgba: np.ndarray, cover: np.ndarray, target, radius: int = 12
+                     ) -> tuple[float, float, float] | None:
+    """Integer translation (|dx|, |dy| <= radius) that brings the drawing's *visible* wrist attachment closest to
+    ``target``. Searched on the measure itself: the sleeve cuff hides a different part of the drawing at every
+    offset, so a plain difference vector is wrong. Returns (dx, dy, error)."""
+    a = rgba[..., 3] > 127
+    ys, xs = np.nonzero(a)
+    if not len(xs):
+        return None
+    m = radius + 4
+    H, W = a.shape
+    x0, y0 = max(0, xs.min() - m), max(0, ys.min() - m)
+    x1, y1 = min(W, xs.max() + m + 1), min(H, ys.max() + m + 1)
+    A, Cv = a[y0:y1, x0:x1], cover[y0:y1, x0:x1]
+    target = np.asarray(target, float)
+    best = None
+    for dy in range(-radius, radius + 1):
+        for dx in range(-radius, radius + 1):
+            S = np.zeros_like(A)
+            S[max(0, dy):A.shape[0] + min(0, dy), max(0, dx):A.shape[1] + min(0, dx)] = \
+                A[max(0, -dy):A.shape[0] - max(0, dy), max(0, -dx):A.shape[1] - max(0, dx)]
+            att = _attachment(sk, S & ~Cv, (x0, y0), side)
+            if att is None:
+                continue
+            err = float(np.hypot(*(att - target)))
+            if best is None or err < best[2] - 1e-9 or (abs(err - best[2]) < 1e-9 and abs(dx) + abs(dy) < abs(best[0]) + abs(best[1])):
+                best = (float(dx), float(dy), err)
+    return best
 
 
 class HandPoseLibrary:
-    """Hand drawings per side and semantic pose, with wrist attachment measured from the pixels."""
+    """Hand drawings per side and semantic pose, with wrist attachment measured from the pixels.
+
+    Each side/pose can hold several *candidates*: the reference hand (open palm only), the Phase 2 drawing and
+    drawings from the Hand Pose Store. One candidate is *active* per side/pose: the user's choice
+    (``use["<side>/<pose>"] = cid``), else an approved one, else the original, else the first in that order. Being
+    active does not approve anything: a pending active drawing is still only previewed."""
 
     def __init__(self, sk: Skeleton, layers: dict[str, np.ndarray], variants: dict[str, np.ndarray],
-                 approvals: dict[str, Any] | None = None, manifest: dict[str, Any] | None = None):
+                 approvals: dict[str, Any] | None = None, manifest: dict[str, Any] | None = None,
+                 candidates: list[dict[str, Any]] | None = None, use: dict[str, str] | None = None):
         self.sk, self.layers, self.variants = sk, layers, variants
         approvals = approvals or {}
+        use = use or {}
         recs = {r["id"]: r for r in (manifest or {}).get("assets", [])}
         self._auto: dict[tuple, Any] = {}
         self.hands: dict[str, dict[str, HandVariant]] = {s: {} for s in SIDES}
+        self.candidates: dict[str, dict[str, list[HandVariant]]] = {s: {} for s in SIDES}
+        self.ref_measure: dict[str, dict[str, Any]] = {}
         for s in SIDES:
             hb = sk.bone(f"hand_{s}")
             pivot = (float(hb.head[0]), float(hb.head[1]))
             for pose, drawing in HAND_POSES.items():
-                if drawing == "open":
-                    if f"hand_{s}" not in layers:
-                        continue
-                    v = HandVariant(s, pose, drawing, f"hand_{s}", "original", "O_original",
-                                    {"from": "reference image (original pixels)"}, pivot, 1.0)
-                    rgba = layers[f"hand_{s}"]
-                elif f"hand_{s}__{drawing}" in variants:
+                cands: list[HandVariant] = []
+                if drawing == "open" and f"hand_{s}" in layers:
+                    cands.append(HandVariant(s, pose, drawing, f"hand_{s}", "original", "O_original",
+                                             {"from": "reference image (original pixels)"}, pivot, 1.0,
+                                             cid="original", label="original"))
+                if drawing != "open" and f"hand_{s}__{drawing}" in variants:
                     r = recs.get(f"hand__{drawing}", {})
                     cat = r.get("category", "unknown")
                     conf = {"R_reference_derived": 0.8, "R_composed_from_reference": 0.6,
                             "C_approximation": 0.35}.get(cat, 0.3)
                     prov = {k: r[k] for k in ("source", "scale_to_reference", "mirrored_for") if k in r}
-                    v = HandVariant(s, pose, drawing, f"hand_{s}__{drawing}",
-                                    _status(approvals, f"corrective:hand__{drawing}"), cat, prov, pivot, conf)
-                    rgba = variants[f"hand_{s}__{drawing}"]
-                else:
-                    self.hands[s][pose] = HandVariant(s, pose, drawing, None, "missing", "none", {}, pivot, 0.0)
-                    continue
-                cover = (variants.get(f"forearm_{s}__trim") if drawing != "open" else None)
-                if cover is None:
-                    cover = layers.get(f"forearm_{s}")
-                v.measure = self.measure(rgba, s, None if cover is None else cover[..., 3] > 127)
-                v.bbox = v.measure.get("bbox")
-                v.orientation_deg = v.measure.get("orientation_deg")
-                self.hands[s][pose] = v
+                    cands.append(HandVariant(s, pose, drawing, f"hand_{s}__{drawing}",
+                                             _status(approvals, f"corrective:hand__{drawing}"), cat, prov, pivot, conf,
+                                             cid=f"phase2:{drawing}", label=f"{pose} (sheet)",
+                                             approval_item=f"corrective:hand__{drawing}"))
+                for c in candidates or []:
+                    if c["side"] == s and c["pose"] == pose and c["layer"] in variants:
+                        cands.append(HandVariant(s, pose, drawing, c["layer"], c["status"], c["category"],
+                                                 c["provenance"], pivot, 0.4, cid=c["cid"], label=c.get("label", ""),
+                                                 approval_item=c.get("approval_item"), placement=c.get("placement")))
+                for v in cands:
+                    rgba, cover = self._rgba_cover_v(v)
+                    v.measure = self.measure(rgba, s, cover)
+                    v.bbox = v.measure.get("bbox")
+                    v.orientation_deg = v.measure.get("orientation_deg")
+                self.candidates[s][pose] = cands
+                self.hands[s][pose] = self._choose(cands, use.get(f"{s}/{pose}")) or \
+                    HandVariant(s, pose, drawing, None, "missing", "none", {}, pivot, 0.0, cid="")
+            if self.hands[s].get(FALLBACK_POSE) and self.hands[s][FALLBACK_POSE].available:
+                orig = next((v for v in self.candidates[s][FALLBACK_POSE] if v.cid == "original"), None)
+                self.ref_measure[s] = (orig or self.hands[s][FALLBACK_POSE]).measure
+
+    @staticmethod
+    def _choose(cands: list[HandVariant], preferred: str | None) -> HandVariant | None:
+        if not cands:
+            return None
+        if preferred:
+            for v in cands:
+                if v.cid == preferred:
+                    return v
+        usable = [v for v in cands if v.status != "rejected"] or cands
+        return sorted(usable, key=lambda v: (CANDIDATE_RANK.get(v.status, 2), usable.index(v)))[0]
+
+    def candidate(self, side: str, cid: str) -> HandVariant | None:
+        for vs in self.candidates[side].values():
+            for v in vs:
+                if v.cid == cid:
+                    return v
+        return None
 
     # -- measurement ----------------------------------------------------------------------------------
     def measure(self, rgba: np.ndarray, side: str, cover: np.ndarray | None = None) -> dict[str, Any]:
@@ -180,74 +269,61 @@ class HandPoseLibrary:
                 "area_px": int(len(xs)), "hidden_px": hidden, "proximal_t_px": round(t0, 2),
                 "bbox": [int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1]}
 
-    def _rgba_cover(self, side: str, pose: str):
-        v = self.hands[side][pose]
-        rgba = self.layers[v.layer] if v.drawing == "open" else self.variants[v.layer]
-        cover = self.variants.get(f"forearm_{side}__trim") if v.drawing != "open" else None
+    def _rgba_cover_v(self, v: HandVariant):
+        side = v.side
+        rgba = self.layers[v.layer] if v.cid == "original" else self.variants[v.layer]
+        cover = None
+        if v.cid.startswith("store:"):
+            cover = self.variants.get(f"forearm_{side}__hscuff")
+        if cover is None and v.cid != "original":
+            cover = self.variants.get(f"forearm_{side}__trim")
         if cover is None:
             cover = self.layers.get(f"forearm_{side}")
         return rgba, (cover[..., 3] > 127 if cover is not None else np.zeros(rgba.shape[:2], bool))
 
-    def auto_align(self, side: str, pose: str, radius: int = 12) -> dict[str, Any] | None:
+    def _rgba_cover(self, side: str, pose: str):
+        return self._rgba_cover_v(self.hands[side][pose])
+
+    def auto_align_v(self, v: HandVariant, radius: int = 12) -> dict[str, Any] | None:
         """Alignment tool: the integer translation (|dx|, |dy| <= radius px, no rotation, no scaling) that brings
-        the variant's *visible* wrist attachment closest to the reference hand's. Searched directly on the measure,
-        because the sleeve cuff hides a different part of the drawing at every offset. Cached."""
-        key = (side, pose, radius)
+        the candidate's *visible* wrist attachment closest to the reference hand's (``best_translation``). Cached."""
+        key = (v.side, v.cid, v.layer, radius)
         if key in self._auto:
             return self._auto[key]
-        v, ref = self.hands[side].get(pose), self.hands[side].get(FALLBACK_POSE)
-        if v is None or not v.available or ref is None or not ref.available or pose == FALLBACK_POSE:
+        ref = self.ref_measure.get(v.side)
+        if v is None or not v.available or ref is None or v.cid == "original":
             return None
-        rgba, cover = self._rgba_cover(side, pose)
-        a = rgba[..., 3] > 127
-        ys, xs = np.nonzero(a)
-        m = radius + 4
-        H, W = a.shape
-        x0, y0 = max(0, xs.min() - m), max(0, ys.min() - m)
-        x1, y1 = min(W, xs.max() + m + 1), min(H, ys.max() + m + 1)
-        A, Cv = a[y0:y1, x0:x1], cover[y0:y1, x0:x1]
-        target = np.asarray(ref.measure["attachment"], float)
-        best = None
-        for dy in range(-radius, radius + 1):
-            for dx in range(-radius, radius + 1):
-                S = np.zeros_like(A)
-                S[max(0, dy):A.shape[0] + min(0, dy), max(0, dx):A.shape[1] + min(0, dx)] = \
-                    A[max(0, -dy):A.shape[0] - max(0, dy), max(0, -dx):A.shape[1] - max(0, dx)]
-                att = self._attachment(S & ~Cv, (x0, y0), side)
-                if att is None:
-                    continue
-                err = float(np.hypot(*(att - target)))
-                if best is None or err < best[0] - 1e-9 or (abs(err - best[0]) < 1e-9 and abs(dx) + abs(dy) < abs(best[1]) + abs(best[2])):
-                    best = (err, dx, dy)
-        out = None if best is None else {"offset_px": [float(best[1]), float(best[2])], "rot_deg": 0.0,
-                                         "error_after_px": round(best[0], 2),
-                                         "error_before_px": round(float(np.hypot(*(np.subtract(v.measure["attachment"], target)))), 2)}
+        rgba, cover = self._rgba_cover_v(v)
+        best = best_translation(self.sk, v.side, rgba, cover, ref["attachment"], radius)
+        out = None if best is None else {"offset_px": [best[0], best[1]], "rot_deg": 0.0,
+                                         "error_after_px": round(best[2], 2),
+                                         "error_before_px": round(float(np.hypot(*(np.subtract(v.measure["attachment"], ref["attachment"])))), 2)}
         self._auto[key] = out
         return out
 
-    def _attachment(self, mask: np.ndarray, origin, side: str) -> np.ndarray | None:
-        hb = self.sk.bone(f"hand_{side}")
-        Wp = np.asarray(hb.head, float)
-        u = (np.asarray(hb.tail, float) - Wp) / max(hb.length, 1e-6)
-        n = np.array([-u[1], u[0]])
-        ys, xs = np.nonzero(mask)
-        if len(xs) < 10:
-            return None
-        P = np.stack([xs + origin[0], ys + origin[1]], 1).astype(float)
-        t, q = (P - Wp) @ u, (P - Wp) @ n
-        t0 = float(np.percentile(t, 0.5))
-        sel = t <= t0 + max(4.0, 0.15 * hb.length)
-        return Wp + u * float(t[sel].mean()) + n * float(q[sel].mean())
-
-    def alignment(self, side: str, pose: str, midline_x: float) -> dict[str, Any]:
-        """Rest-frame alignment of a variant against the reference hand (Step 8)."""
+    def auto_align(self, side: str, pose: str, radius: int = 12) -> dict[str, Any] | None:
         v = self.hands[side].get(pose)
-        ref = self.hands[side].get(FALLBACK_POSE)
-        if v is None or not v.available:
+        if v is None or not v.available or pose == FALLBACK_POSE and v.cid == "original":
+            return None
+        return self.auto_align_v(v, radius)
+
+    def _attachment(self, mask: np.ndarray, origin, side: str) -> np.ndarray | None:
+        return _attachment(self.sk, mask, origin, side)
+
+    def alignment_v(self, v: HandVariant, midline_x: float) -> dict[str, Any]:
+        """Rest-frame alignment of a candidate against the reference hand (Step 8). Stored drawings are placed by
+        matching their own cuff edge to the character's cuff (handstore): their check is that anchor (residual =
+        the user's correction), the wrist fit in the sleeve opening and the side; the visible-band distance to the
+        reference hand is reported for information only (it measures hand shape, not misplacement)."""
+        if v.cid.startswith("store:") and v.placement:
+            return self._store_alignment(v, midline_x)
+        side, pose = v.side, v.pose
+        r = self.ref_measure.get(side)
+        if not v.available:
             return {"side": side, "pose": pose, "status": "NEEDS_ARTWORK", "issues": ["drawing missing"]}
-        if ref is None or not ref.available:
+        if r is None:
             return {"side": side, "pose": pose, "status": "UNCHECKED", "issues": ["no reference hand"]}
-        m, r = v.measure, ref.measure
+        m = v.measure
         att_err = float(np.hypot(*(np.subtract(m["attachment"], r["attachment"]))))
         ratio = m["wrist_width_px"] / max(r["wrist_width_px"], 1e-6)
         dori = abs(((m["orientation_deg"] - r["orientation_deg"]) + 180) % 360 - 180)
@@ -259,14 +335,46 @@ class HandPoseLibrary:
         lo, hi = ALIGN["width_ratio"]
         if not lo <= ratio <= hi:
             issues.append(f"wrist width ratio {ratio:.2f} outside [{lo}, {hi}] (scale mismatch)")
-        if dori > ALIGN["orientation_delta_deg"] and pose not in ("pointing", "thumbs_up", "fist"):
+        if dori > ALIGN["orientation_delta_deg"] and pose not in ("pointing", "thumbs_up", "fist", "gripping",
+                                                                   "palm_down", "cupped"):
             issues.append(f"hand body direction differs by {dori:.0f} deg")
         if not side_ok:
             issues.append("left/right swap: the drawing sits on the other side of the body")
-        return {"side": side, "pose": pose, "layer": v.layer, "status": "OK" if not issues else "MISMATCH",
+        return {"side": side, "pose": pose, "cid": v.cid, "layer": v.layer, "status": "OK" if not issues else "MISMATCH",
                 "attachment_error_px": round(att_err, 2), "width_ratio": round(ratio, 3),
                 "orientation_delta_deg": round(dori, 1), "side_ok": bool(side_ok), "issues": issues,
-                "auto_align": self.auto_align(side, pose) if pose != FALLBACK_POSE else None}
+                "auto_align": self.auto_align_v(v) if v.cid != "original" else None}
+
+    def _store_alignment(self, v: HandVariant, midline_x: float) -> dict[str, Any]:
+        pl, r = v.placement, self.ref_measure.get(v.side)
+        corr = pl.get("correction") or {}
+        resid = float(math.hypot(float(corr.get("dx", 0.0)), float(corr.get("dy", 0.0))))
+        mi, ref = pl.get("mask") or {}, pl.get("reference_wrist") or {}
+        fit = (mi.get("wrist_width_px", 0.0) * pl["final"]["scale"] / ref["cuff_width_px"]) if ref.get("cuff_width_px") else None
+        m = v.measure
+        side_ok = bool(r is None or np.sign(m["centroid"][0] - midline_x) == np.sign(r["centroid"][0] - midline_x))
+        issues = []
+        if resid > ALIGN["attachment_error_px"]:
+            issues.append(f"wrist anchor moved {resid:.1f} px off the cuff edge by the correction (> {ALIGN['attachment_error_px']})")
+        lo, hi = ALIGN["width_ratio"]
+        if fit is not None and not lo <= fit <= hi:
+            issues.append(f"wrist width {fit:.2f} x the sleeve opening (outside [{lo}, {hi}])")
+        if not side_ok:
+            issues.append("left/right swap: the drawing sits on the other side of the body")
+        if not mi.get("found", True):
+            issues.append("no sleeve/cuff found in the drawing: anchor from the manifest estimate")
+        band = float(np.hypot(*(np.subtract(m["attachment"], r["attachment"])))) if r else None
+        return {"side": v.side, "pose": v.pose, "cid": v.cid, "layer": v.layer, "method": "cuff_edge_match",
+                "status": "OK" if not issues else "MISMATCH", "attachment_error_px": round(resid, 2),
+                "wrist_fit": None if fit is None else round(fit, 3), "width_ratio": None if fit is None else round(fit, 3),
+                "visible_band_vs_reference_px": None if band is None else round(band, 2),
+                "side_ok": side_ok, "issues": issues, "auto_align": self.auto_align_v(v)}
+
+    def alignment(self, side: str, pose: str, midline_x: float) -> dict[str, Any]:
+        v = self.hands[side].get(pose)
+        if v is None:
+            return {"side": side, "pose": pose, "status": "NEEDS_ARTWORK", "issues": ["drawing missing"]}
+        return self.alignment_v(v, midline_x)
 
     def missing(self) -> list[dict[str, Any]]:
         return [{"side": s, "pose": p, "drawing": HAND_POSES[p], "status": "NEEDS_ARTWORK",
@@ -275,9 +383,11 @@ class HandPoseLibrary:
                 not self.hands[s][p].available]
 
     def to_json(self, midline_x: float) -> dict[str, Any]:
-        return {"poses": list(REQUIRED_HAND_POSES), "extra": ["palm_up"],
+        return {"poses": list(REQUIRED_HAND_POSES), "extra": list(EXTRA_HAND_POSES),
                 "variants": {s: {p: v.to_json() for p, v in self.hands[s].items()} for s in SIDES},
                 "alignment": {s: {p: self.alignment(s, p, midline_x) for p in self.hands[s]} for s in SIDES},
+                "candidates": {s: {p: [v.to_json() | {"active": v is self.hands[s][p]} for v in vs]
+                                   for p, vs in self.candidates[s].items() if vs} for s in SIDES},
                 "missing": self.missing(), "tolerances": {k: list(v) if isinstance(v, tuple) else v
                                                           for k, v in ALIGN.items()}}
 
@@ -288,7 +398,7 @@ def posed_hand_alignment(eng, res: dict[str, Any], side: str, layer: str, rest_a
     r = res["render"]
     pad = r["pad"]
     alphas = r["alphas"]
-    fa = next((alphas[c] for c in (f"forearm_{side}__trim", f"forearm_{side}") if c in alphas), None)
+    fa = next((alphas[c] for c in (f"forearm_{side}__hscuff", f"forearm_{side}__trim", f"forearm_{side}") if c in alphas), None)
     ha = alphas.get(layer)
     if fa is None or ha is None or not ha.any():
         return {"side": side, "layer": layer, "status": "UNCHECKED", "issues": ["layer not rendered"]}
@@ -351,10 +461,11 @@ class SwitchGroup:
     default: str
     channel: str = "body"  # body | face (live puppeteering keeps them separate)
     replaces: str | None = None  # the base layer the active variant replaces in the composite
+    alias: str | None = None  # readable name (hand_right / hand_left) used in switch manifests
     moho: dict[str, Any] = field(default_factory=lambda: {"target": "Switch Layer", "status": "proposed_unverified"})
 
     def to_json(self) -> dict[str, Any]:
-        return {"id": self.id, "kind": self.kind, "bone": self.bone, "pivot": [round(v, 2) for v in self.pivot],
+        return {"id": self.id, "alias": self.alias, "kind": self.kind, "bone": self.bone, "pivot": [round(v, 2) for v in self.pivot],
                 "default": self.default, "channel": self.channel, "replaces": self.replaces,
                 "variants": [v.to_json() for v in self.variants.values()], "moho": self.moho}
 
@@ -381,13 +492,14 @@ class ArtworkSwitchController:
         for s in SIDES:
             hb = sk.bone(f"hand_{s}")
             vs = {}
-            for pose in list(REQUIRED_HAND_POSES) + ["palm_up"]:
+            for pose in list(REQUIRED_HAND_POSES) + list(EXTRA_HAND_POSES):
                 v = lib.hands[s].get(pose)
                 if v is None:
                     continue
                 vs[pose] = SwitchVariant(pose, v.layer, v.status, v.category, v.provenance, pose.replace("_", " "))
             groups[f"hand_{s}"] = SwitchGroup(f"hand_{s}", "hand", f"hand_{s}", (float(hb.head[0]), float(hb.head[1])),
-                                              vs, FALLBACK_POSE, replaces=f"hand_{s}")
+                                              vs, FALLBACK_POSE, replaces=f"hand_{s}",
+                                              alias="hand_right" if s == "r" else "hand_left")
         if corrections is not None:
             for c in corrections.triggers:
                 st = corrections.asset_state(c)

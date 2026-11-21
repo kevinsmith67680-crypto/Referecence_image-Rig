@@ -86,3 +86,8 @@ td, th { border-bottom: 1px solid var(--line); padding: 3px; text-align: left; v
 .b-original, .b-planted { background: #2b6a3a; }
 .b-lifting, .b-landing { background: #6b5a1e; }
 .b-swinging, .b-free { background: #1f4f7a; }
+/* Hand Library */
+.filebtn { display: inline-flex !important; flex-direction: row !important; align-items: center; gap: 4px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; background: #2a2f37; }
+.filebtn input[type=file] { width: 0; height: 0; opacity: 0; position: absolute; }
+.ok-box { background: #1e3a26; border: 1px solid #2b6a3a; }
+.b-g_ai_generated_concept { background: #4b3a70; }

@@ -529,6 +529,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", help="output JSON (default: print a summary only)")
     p.set_defaults(func=cmd_rig_controls)
 
+    p = sub.add_parser("hand-import", help="Import a hand pose pack (zip) into a package's Hand Pose Store")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("pack", help="hand pack zip (manifest.json + transparent PNG sprites)")
+    p.set_defaults(func=cmd_hand_import)
+
+    p = sub.add_parser("hand-evidence", help="Hand Pose Store evidence: attachment sheet, seams, measurements")
+    p.add_argument("package", help="Phase 2 character package with an imported hand store")
+    p.add_argument("--out", help="output directory (default <package>/hand_store/evidence)")
+    p.set_defaults(func=cmd_hand_evidence)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -627,6 +637,32 @@ def cmd_rig_controls(args: argparse.Namespace) -> int:
     for e in errs:
         print(f"  {e}")
     return 1 if errs else 0
+
+
+def cmd_hand_import(args: argparse.Namespace) -> int:
+    from pathlib import Path
+
+    from .handstore import HandStore, PackError
+
+    try:
+        r = HandStore(args.package).import_pack(Path(args.pack).read_bytes(), Path(args.pack).name)
+    except PackError as exc:
+        print("REJECTED:")
+        for e in exc.errors:
+            print(f"  - {e}")
+        return 2
+    print(f"{r['status']}: {r['library_id']} v{r['version']} ({r['assets']} drawings, all pending review)")
+    for w in r.get("warnings", []):
+        print(f"  warning: {w}")
+    return 0
+
+
+def cmd_hand_evidence(args: argparse.Namespace) -> int:
+    from .handevidence import hand_evidence
+
+    r = hand_evidence(args.package, args.out)
+    print(f"  {len(r['variants'])} variants measured; sheet {r['files']['sheet']}")
+    return 0
 
 
 def cmd_motion_bench(args: argparse.Namespace) -> int:

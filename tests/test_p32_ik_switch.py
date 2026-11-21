@@ -186,7 +186,7 @@ def test_schema_file_in_sync_and_no_moho_api_in_the_motion_core():
 
 # -- real package --------------------------------------------------------------------------------------------
 def _ignore(d, names):
-    skip = {"editor", "motion", "ik_switch"}
+    skip = {"editor", "motion", "ik_switch", "hand_store"}  # Phase 3.2 state; the store has tests/test_hand_store.py
     if Path(d).name == "natural_pose":
         skip |= {"poses", "legacy", "closeups", "contact_sheet.png", "contact_sheet_diagnostic.png"}
     return [n for n in names if n in skip]
@@ -422,7 +422,7 @@ def test_rig_controls_spec_validates_and_catches_errors(eng):
 def test_project_v2_ops_persist_undo_and_migrate_from_v1(pkg):
     from autorig.editor.project import VERSION, EditorProject, OpError
     p = EditorProject(pkg)
-    assert VERSION == 2 and p.state()["ik"] == default_ik_state()
+    assert VERSION >= 2 and p.state()["ik"] == default_ik_state()
     p.submit({"type": "ik.set", "limb": "arm_r", "fields": {"enabled": True, "mode": "ik", "target": [300, 400], "bend": 1}})
     p.submit({"type": "ik.set", "limb": "pelvis", "fields": {"pelvis_offset": [5, 3]}})
     p.submit({"type": "switch.set", "group": "hand_r", "variant": "fist", "auto": False})
@@ -450,7 +450,7 @@ def test_project_v2_ops_persist_undo_and_migrate_from_v1(pkg):
     data["cursor"] = len(data["ops"])
     p.path.write_text(json.dumps(data))
     q = EditorProject(pkg)
-    assert q.data["schema_version"] == 2 and 1 in q.data["migrated_from"]
+    assert q.data["schema_version"] == VERSION and 1 in q.data["migrated_from"]
     assert q.state()["ik"] == default_ik_state() and q.state()["switches"] == {}
 
 

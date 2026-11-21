@@ -13,6 +13,7 @@ import copy
 import hashlib
 import json
 import os
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -20,10 +21,12 @@ from typing import Any
 import numpy as np
 from PIL import Image
 
+from ..handstore import STORE_DIR, check_mask, check_placement, default_store_state
 from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
+from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 2  # 2: IK and switch state (Phase 3.2); v1 projects migrate without changing their operations
+VERSION = 3  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions. Older projects migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -135,7 +138,7 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "layers": layers, "groups": groups, "bones": bones, "vectors": seed_vectors(pkg, art, W, H),
             "mask_ops": [], "corrections": {"gussets": True, "joints": {}}, "defects": {}, "approvals": approvals,
             "pose": {"preset": "relaxed_standing", "overrides": {}},
-            "ik": default_ik_state(), "switches": {}}
+            "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state()}
 
 
 def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
@@ -348,8 +351,80 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
             if op.get("scale") not in (None, 1, 1.0):
                 raise OpError("switch offsets never scale artwork")
             G["offsets"][v] = {"dx": dx, "dy": dy, "rot": rot}
+    elif t.startswith("handstore."):
+        _apply_handstore(st, op)
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
+    else:
+        raise OpError(f"unknown operation type {t!r}")
+
+
+CID = re.compile(r"^(original|phase2:[a-z_]{1,32}|store:[A-Za-z0-9_.-]{1,64}/[A-Za-z0-9_.-]{1,64})$")
+UID = re.compile(r"^[A-Za-z0-9_.-]{1,64}/[A-Za-z0-9_.-]{1,64}$")
+
+
+def _apply_handstore(st: dict[str, Any], op: dict[str, Any]) -> None:
+    """User decisions about Hand Pose Store drawings (the drawings themselves live in <package>/hand_store)."""
+    t = op["type"]
+    H = st.setdefault("hand_store", default_store_state())
+    for k, v in default_store_state().items():
+        H.setdefault(k, v)
+    known = op.get("_known_uids")
+    if t == "handstore.use":
+        side, pose, cid = op.get("side"), op.get("pose"), op.get("candidate")
+        if side not in ("r", "l") or pose not in HAND_POSES:
+            raise OpError("handstore.use needs side r|l and a known hand pose")
+        if cid is None:
+            H["use"].pop(f"{side}/{pose}", None)
+            return
+        if not isinstance(cid, str) or not CID.match(cid):
+            raise OpError("candidate must be original, phase2:<drawing> or store:<library>/<asset>")
+        if cid == "original" and pose != "open_palm":
+            raise OpError("the original hand is the open-palm pose")
+        H["use"][f"{side}/{pose}"] = cid
+        return
+    uid = op.get("uid")
+    if not isinstance(uid, str) or not UID.match(uid):
+        raise OpError("uid must be <library_id>/<asset_id>")
+    if known is not None and uid not in known:
+        raise OpError(f"{uid} is not in this character's hand store")
+    if t == "handstore.placement":
+        f = op.get("fields")
+        if f is None:
+            H["placement"].pop(uid, None)
+            return
+        errs = check_placement(f)
+        if errs:
+            raise OpError("; ".join(errs))
+        H["placement"][uid] = {**H["placement"].get(uid, {}), **{k: float(v) for k, v in f.items()}}
+    elif t == "handstore.mask":
+        f = op.get("fields")
+        if f is None:
+            H["mask"].pop(uid, None)
+            return
+        errs = check_mask(f)
+        if errs:
+            raise OpError("; ".join(errs))
+        H["mask"][uid] = {**H["mask"].get(uid, {}), **f}
+    elif t == "handstore.rename":
+        label = str(op.get("label", "")).strip()
+        if not 1 <= len(label) <= 64:
+            raise OpError("label must be 1-64 characters")
+        H["labels"][uid] = label
+    elif t == "handstore.delete":
+        if uid not in H["deleted"]:
+            H["deleted"].append(uid)
+        H["use"] = {k: v for k, v in H["use"].items() if v != f"store:{uid}"}
+    elif t == "handstore.restore":
+        H["deleted"] = [u for u in H["deleted"] if u != uid]
+    elif t == "handstore.version":
+        v = op.get("v")
+        if v is None:
+            H["versions"].pop(uid, None)
+        elif not isinstance(v, int) or v < 1:
+            raise OpError("version must be a positive integer")
+        else:
+            H["versions"][uid] = v
     else:
         raise OpError(f"unknown operation type {t!r}")
 
@@ -369,7 +444,12 @@ def _v1_to_v2(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {1})}
 
 
-MIGRATIONS: dict[int, Any] = {1: _v1_to_v2}  # from_version -> fn(data) -> data
+def _v2_to_v3(data: dict[str, Any]) -> dict[str, Any]:
+    """Hand Pose Store: the base state gains ``hand_store`` (defaults from build_base); earlier ops replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {2})}
+
+
+MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3}  # from_version -> fn(data) -> data
 
 
 def migrate(data: dict[str, Any]) -> dict[str, Any]:
@@ -433,7 +513,12 @@ class EditorProject:
         if op.get("type") == "bone.reset":
             op["base"] = copy.deepcopy(self.base["bones"][op["name"]])
         trial = copy.deepcopy(self.state())
-        apply_op(trial, op)  # validate first: nothing invalid enters the log
+        check = op
+        if str(op.get("type", "")).startswith("handstore.") and "uid" in op:
+            idx = self.pkg / STORE_DIR / "index.json"
+            known = set(json.loads(idx.read_text()).get("assets", {})) if idx.is_file() else set()
+            check = {**op, "_known_uids": known}  # validation only; the log keeps the plain operation
+        apply_op(trial, check)  # validate first: nothing invalid enters the log
         del self.ops[self.cursor:]
         self.ops.append(op)
         self.data["cursor"] = len(self.ops)

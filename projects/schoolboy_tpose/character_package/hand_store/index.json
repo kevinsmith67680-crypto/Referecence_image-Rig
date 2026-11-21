@@ -1,0 +1,606 @@
+{
+ "schema": "autorig.hand_store",
+ "schema_version": 1,
+ "package": "character_package",
+ "source_sha256": "46453da1785d61037fd568227f0361e3dac05f8edb74679789d4a039091d36a2",
+ "packs": [
+  {
+   "library_id": "schoolboy_hand_switches_v1",
+   "version": 1,
+   "zip_sha256": "65b9ed591f66c5fff1effad5bbed0a1d253c86cc0c0b3ba13f1f29386cec7cb1",
+   "source_name": "AutoRig_Hand_Pose_Library.zip",
+   "imported_at": "2026-11-21T14:06:30Z",
+   "dir": "packs/schoolboy_hand_switches_v1/v1",
+   "asset_count": 16,
+   "manifest_sha256": "abfec1fde038ccd824f7d1ce924315790c3008afdf272cf13342139fdfe6478a",
+   "provenance": "Generated visual concepts; not extracted from original reference artwork",
+   "intended_use": "AutoRig switch-hand asset library and Moho switch layer preparation",
+   "files": {
+    "CLAUDE_CODE_IMPORT_PROMPT.md": "354e8f67770611ca0f78beb2b761bd01227af819a11ba53ba3724c48e44bdfe0",
+    "README.md": "cef57c06344dadd4d98406e031a3107dc2c0b243c36a32909b93014edc157cc1",
+    "manifest.json": "abfec1fde038ccd824f7d1ce924315790c3008afdf272cf13342139fdfe6478a",
+    "hand_pose_contact_sheet.png": "8e352d385c0cb710f5347bcfa79a31083c23bc227c482b43b91268f3f103ca8e",
+    "sprites/left_cupped.png": "c3d6c22c022d120adaec8462e11a9fe1b8c50be4bf89a7713df41817b86fe6b9",
+    "sprites/right_thumbs_up.png": "0d7416eb34ad37272b4fbbefe69872cd53c32e4fad787d4491fd3ac01864da8d",
+    "sprites/right_cupped.png": "07300004fe33f2ef1d8b5b2ab54c606bfddc36bf47d98187cf2b7233cfef4234",
+    "sprites/right_relaxed.png": "97dd49edeb508bca43dac723297cd7a159d70beba7db3b97a198ed4193a6a4c8",
+    "sprites/left_grip.png": "68ae7754d677f4761959cbddd2ad342d60cc64306c3cea88fca39cb7f4a2e424",
+    "sprites/right_open_palm.png": "4a1b68f7308934a9e347fa11840ac798ce437e3156a4983564c42019d2d2b86e",
+    "sprites/left_relaxed.png": "574443441a71da92849e5fa495967766e455be1da87d6ceebe94111e9013b21c",
+    "sprites/right_point.png": "39cee04c4dc764292f861499366648162cf6352f1940a800a4158d4ae8d9fa70",
+    "sprites/left_thumbs_up.png": "5a49972aebcd37cecbba94d68189ebf98ec44368dd45c84391abb3e1104207b6",
+    "sprites/right_fist.png": "9603bb471dcea747797a3ca0f2abe5d3cbc66d82f02b123bdf408e5112f5652d",
+    "sprites/left_palm_down.png": "9b1ca651a7e11c9e8a9fa1c37b521d9a9266bff0a3c352388f73202378cf17bb",
+    "sprites/right_palm_down.png": "fc9ba6bc4d3c1e0829834e0f0dedb235e528a478e462f2ec0da136f70dd33660",
+    "sprites/left_fist.png": "06df2b543f1ce3103ebe4a3510d40ad617ab99cfa61e2736ae679c0339da43a9",
+    "sprites/left_open_palm.png": "a4e6d3f64d47554a34312adb6799e49d2fdee94b58ddec60daedcb436b5e792f",
+    "sprites/left_point.png": "41d3ee3c672c749b3bb1005ff35c4e9b4d4f6ed25822774dd535cb476abafaf8",
+    "sprites/right_grip.png": "85cf397ed585dde205c3a130f829b3ff66d2f92877dc88543d0d004f8fca612e"
+   },
+   "warnings": []
+  }
+ ],
+ "assets": {
+  "schoolboy_hand_switches_v1/left_relaxed": {
+   "uid": "schoolboy_hand_switches_v1/left_relaxed",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_relaxed",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "relaxed",
+   "pack_pose": "relaxed",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_relaxed.png",
+     "sha256": "574443441a71da92849e5fa495967766e455be1da87d6ceebe94111e9013b21c",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_open_palm": {
+   "uid": "schoolboy_hand_switches_v1/left_open_palm",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_open_palm",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "open_palm",
+   "pack_pose": "open_palm",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_open_palm.png",
+     "sha256": "a4e6d3f64d47554a34312adb6799e49d2fdee94b58ddec60daedcb436b5e792f",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_fist": {
+   "uid": "schoolboy_hand_switches_v1/left_fist",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_fist",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "fist",
+   "pack_pose": "fist",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_fist.png",
+     "sha256": "06df2b543f1ce3103ebe4a3510d40ad617ab99cfa61e2736ae679c0339da43a9",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_point": {
+   "uid": "schoolboy_hand_switches_v1/left_point",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_point",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "pointing",
+   "pack_pose": "point",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_point.png",
+     "sha256": "41d3ee3c672c749b3bb1005ff35c4e9b4d4f6ed25822774dd535cb476abafaf8",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_thumbs_up": {
+   "uid": "schoolboy_hand_switches_v1/left_thumbs_up",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_thumbs_up",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "thumbs_up",
+   "pack_pose": "thumbs_up",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_thumbs_up.png",
+     "sha256": "5a49972aebcd37cecbba94d68189ebf98ec44368dd45c84391abb3e1104207b6",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_grip": {
+   "uid": "schoolboy_hand_switches_v1/left_grip",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_grip",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "gripping",
+   "pack_pose": "grip",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_grip.png",
+     "sha256": "68ae7754d677f4761959cbddd2ad342d60cc64306c3cea88fca39cb7f4a2e424",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_palm_down": {
+   "uid": "schoolboy_hand_switches_v1/left_palm_down",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_palm_down",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "palm_down",
+   "pack_pose": "palm_down",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_palm_down.png",
+     "sha256": "9b1ca651a7e11c9e8a9fa1c37b521d9a9266bff0a3c352388f73202378cf17bb",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/left_cupped": {
+   "uid": "schoolboy_hand_switches_v1/left_cupped",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "left_cupped",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "cupped",
+   "pack_pose": "cupped",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/left_cupped.png",
+     "sha256": "c3d6c22c022d120adaec8462e11a9fe1b8c50be4bf89a7713df41817b86fe6b9",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_relaxed": {
+   "uid": "schoolboy_hand_switches_v1/right_relaxed",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_relaxed",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "relaxed",
+   "pack_pose": "relaxed",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_relaxed.png",
+     "sha256": "97dd49edeb508bca43dac723297cd7a159d70beba7db3b97a198ed4193a6a4c8",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_open_palm": {
+   "uid": "schoolboy_hand_switches_v1/right_open_palm",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_open_palm",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "open_palm",
+   "pack_pose": "open_palm",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_open_palm.png",
+     "sha256": "4a1b68f7308934a9e347fa11840ac798ce437e3156a4983564c42019d2d2b86e",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_fist": {
+   "uid": "schoolboy_hand_switches_v1/right_fist",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_fist",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "fist",
+   "pack_pose": "fist",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_fist.png",
+     "sha256": "9603bb471dcea747797a3ca0f2abe5d3cbc66d82f02b123bdf408e5112f5652d",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_point": {
+   "uid": "schoolboy_hand_switches_v1/right_point",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_point",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "pointing",
+   "pack_pose": "point",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_point.png",
+     "sha256": "39cee04c4dc764292f861499366648162cf6352f1940a800a4158d4ae8d9fa70",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_thumbs_up": {
+   "uid": "schoolboy_hand_switches_v1/right_thumbs_up",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_thumbs_up",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "thumbs_up",
+   "pack_pose": "thumbs_up",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_thumbs_up.png",
+     "sha256": "0d7416eb34ad37272b4fbbefe69872cd53c32e4fad787d4491fd3ac01864da8d",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_grip": {
+   "uid": "schoolboy_hand_switches_v1/right_grip",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_grip",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "gripping",
+   "pack_pose": "grip",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_grip.png",
+     "sha256": "85cf397ed585dde205c3a130f829b3ff66d2f92877dc88543d0d004f8fca612e",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_palm_down": {
+   "uid": "schoolboy_hand_switches_v1/right_palm_down",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_palm_down",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "palm_down",
+   "pack_pose": "palm_down",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_palm_down.png",
+     "sha256": "fc9ba6bc4d3c1e0829834e0f0dedb235e528a478e462f2ec0da136f70dd33660",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  },
+  "schoolboy_hand_switches_v1/right_cupped": {
+   "uid": "schoolboy_hand_switches_v1/right_cupped",
+   "library_id": "schoolboy_hand_switches_v1",
+   "asset_id": "right_cupped",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "cupped",
+   "pack_pose": "cupped",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/schoolboy_hand_switches_v1/v1/sprites/right_cupped.png",
+     "sha256": "07300004fe33f2ef1d8b5b2ab54c606bfddc36bf47d98187cf2b7233cfef4234",
+     "size": [
+      400,
+      320
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-21T14:06:30Z"
+    }
+   ],
+   "provenance": {
+    "artwork_source": "AI-generated reference concept",
+    "pack_provenance": "Generated visual concepts; not extracted from original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+   },
+   "manifest_anchor": [
+    200,
+    92
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+   "base_orientation": "sleeve_top_hand_down"
+  }
+ },
+ "saved_at": "2026-11-21T14:06:30Z"
+}

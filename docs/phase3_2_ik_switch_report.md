@@ -6,6 +6,11 @@ planted, and hands switch without leaving the sleeve. But no generated or refere
 reviewed by a person. Four of the eight required hand poses, and every elbow, knee, hip, wrist, trouser and sleeve
 correction drawing, do not exist. A deep elbow bend still breaks the sleeve. Moho has not run. Details are in §16.
 
+> **Update after this report:** the user's hand pack was imported as a Hand Pose Store
+> ([hand_pose_store_integration.md](hand_pose_store_integration.md)). Relaxed, gripping and palm-down drawings, and a
+> cupped one, now exist for both sides as pending candidates. Partially closed is still missing. The tables below
+> describe the state when Phase 3.2 was reported.
+
 Everything below was measured in the cloud sandbox (x86 CPU, headless Chromium) on a copy of
 `projects/schoolboy_tpose/character_package`. Phase 0 is still not verified in Moho, and that carries forward.
 

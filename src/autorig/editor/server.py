@@ -335,6 +335,74 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
 
         return LIVE_ACTIONS
 
+    # -- Hand Pose Store / Hand Library ---------------------------------------------------------------------
+    @app.get("/api/handstore")
+    def handstore_info():
+        with S.lock:
+            st = S.project.state()
+            return jsonable(S.pose.hand_library(st, S.masks(), rejected_ids(st)))
+
+    def _b64(body: dict, key: str = "data_b64", limit: int = 64 * 1024 * 1024) -> bytes:
+        raw = str(body.get(key) or "")
+        if "," in raw[:80]:
+            raw = raw.split(",", 1)[1]
+        if len(raw) > limit * 4 // 3 + 16:
+            raise HTTPException(413, "upload too large")
+        try:
+            return base64.b64decode(raw, validate=True)
+        except ValueError as exc:
+            raise HTTPException(400, "data_b64 is not base64") from exc
+
+    @app.post("/api/handstore/import")
+    def handstore_import(body: dict = Body(...)):
+        """Import a hand pack (zip, base64). Validated in full; nothing is approved; files are stored with hashes."""
+        from ..handstore import HandStore, PackError
+
+        data = _b64(body)
+        name = re.sub(r"[^A-Za-z0-9._ -]", "_", str(body.get("name") or "pack.zip"))[:96]
+        with S.lock:
+            try:
+                rep = HandStore(S.pkg).import_pack(data, name)
+            except PackError as exc:
+                return JSONResponse({"status": "rejected", "errors": exc.errors}, status_code=422)
+            return jsonable(rep)
+
+    @app.post("/api/handstore/replace")
+    def handstore_replace(body: dict = Body(...)):
+        """A new version of a stored drawing (PNG with alpha, base64). Earlier versions stay; the new one needs review."""
+        from ..handstore import HandStore, PackError
+
+        data = _b64(body, limit=16 * 1024 * 1024)
+        with S.lock:
+            try:
+                rep = HandStore(S.pkg).replace_png(str(body.get("uid")), data,
+                                                   re.sub(r"[^A-Za-z0-9._ -]", "_", str(body.get("name") or "replacement.png"))[:96])
+            except KeyError as exc:
+                raise HTTPException(404, str(exc)) from exc
+            except PackError as exc:
+                return JSONResponse({"status": "rejected", "errors": exc.errors}, status_code=422)
+            return jsonable(rep)
+
+    @app.get("/api/handstore/source/{lib}/{asset}.png")
+    def handstore_source(lib: str, asset: str, v: int | None = None):
+        from ..handstore import HandStore
+
+        with S.lock:
+            try:
+                arr = HandStore(S.pkg).image(f"{lib}/{asset}", v)
+            except KeyError as exc:
+                raise HTTPException(404, str(exc)) from exc
+        return png(arr)
+
+    @app.get("/api/handstore/preview/{side}/{cid:path}.png")
+    def handstore_preview(side: str, cid: str):
+        with S.lock:
+            st = S.project.state()
+            arr = S.pose.hand_preview(st, S.masks(), rejected_ids(st), side, cid)
+        if arr is None:
+            raise HTTPException(404, "no such hand candidate")
+        return png(arr)
+
     @app.get("/api/face")
     def face():
         with S.lock:

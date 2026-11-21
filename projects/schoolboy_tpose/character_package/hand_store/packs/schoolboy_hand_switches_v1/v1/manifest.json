@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0.0",
+  "library_id": "schoolboy_hand_switches_v1",
+  "source_image": "hand_pose_contact_sheet.png",
+  "reference_character": "schoolboy in navy blazer",
+  "asset_count": 16,
+  "pose_names": [
+    "relaxed",
+    "open_palm",
+    "fist",
+    "point",
+    "thumbs_up",
+    "grip",
+    "palm_down",
+    "cupped"
+  ],
+  "hand_sides": [
+    "left",
+    "right"
+  ],
+  "source_provenance": "Generated visual concepts; not extracted from original reference artwork",
+  "default_pose": "relaxed",
+  "wrist_anchor_space": "sprite pixels; approximate and requires interactive validation",
+  "all_variants_require_review": true,
+  "intended_use": "AutoRig switch-hand asset library and Moho switch layer preparation",
+  "assets": [
+    {
+      "id": "left_relaxed",
+      "side": "left",
+      "pose": "relaxed",
+      "file": "sprites/left_relaxed.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_open_palm",
+      "side": "left",
+      "pose": "open_palm",
+      "file": "sprites/left_open_palm.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_fist",
+      "side": "left",
+      "pose": "fist",
+      "file": "sprites/left_fist.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_point",
+      "side": "left",
+      "pose": "point",
+      "file": "sprites/left_point.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_thumbs_up",
+      "side": "left",
+      "pose": "thumbs_up",
+      "file": "sprites/left_thumbs_up.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_grip",
+      "side": "left",
+      "pose": "grip",
+      "file": "sprites/left_grip.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_palm_down",
+      "side": "left",
+      "pose": "palm_down",
+      "file": "sprites/left_palm_down.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "left_cupped",
+      "side": "left",
+      "pose": "cupped",
+      "file": "sprites/left_cupped.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_relaxed",
+      "side": "right",
+      "pose": "relaxed",
+      "file": "sprites/right_relaxed.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_open_palm",
+      "side": "right",
+      "pose": "open_palm",
+      "file": "sprites/right_open_palm.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_fist",
+      "side": "right",
+      "pose": "fist",
+      "file": "sprites/right_fist.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_point",
+      "side": "right",
+      "pose": "point",
+      "file": "sprites/right_point.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_thumbs_up",
+      "side": "right",
+      "pose": "thumbs_up",
+      "file": "sprites/right_thumbs_up.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_grip",
+      "side": "right",
+      "pose": "grip",
+      "file": "sprites/right_grip.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_palm_down",
+      "side": "right",
+      "pose": "palm_down",
+      "file": "sprites/right_palm_down.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    },
+    {
+      "id": "right_cupped",
+      "side": "right",
+      "pose": "cupped",
+      "file": "sprites/right_cupped.png",
+      "artwork_source": "AI-generated reference concept",
+      "approval_status": "NEEDS_REVIEW",
+      "canvas_px": [
+        400,
+        320
+      ],
+      "wrist_anchor_px": [
+        200,
+        92
+      ],
+      "wrist_anchor_status": "ESTIMATED_NEEDS_ALIGNMENT",
+      "base_orientation": "sleeve_top_hand_down",
+      "attachment": "wrist",
+      "notes": "Align to actual character wrist in editor; do not assume sheet export is production-matched."
+    }
+  ]
+}
