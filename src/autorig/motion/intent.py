@@ -23,6 +23,7 @@ class LegIntent:
     ground: tuple[float, float] | None = None  # ground contact this leg refers to (planted target, or next landing)
     hang_knee: float | None = None  # swing legs: knee flexion when hanging free (the foot never over-reaches)
     clearance: float = 0.0  # swing legs: minimum height of the ankle above its ground line (px), ramps with the swing
+    pole: tuple[float, float] | None = None  # knee pole target (world); default: knee lateral (front view)
 
 
 @dataclass
@@ -35,6 +36,10 @@ class ArmIntent:
     elbow: str = "down"  # IK bend preference: "down" or "out"
     hand_dir: float | None = None  # world direction of the hand bone (deg from straight down), overrides wrist
     hand: list[str] = field(default_factory=lambda: ["open"])  # preferred hand drawings, best first
+    pole: tuple[float, float] | None = None  # elbow pole target (world) for IK; default from ``elbow``
+    target_joint: str | None = None  # IK wrist target taken from a solved joint (e.g. "knee_r": hands on knees)
+    target_offset: tuple[float, float] = (0.0, 0.0)  # added to the joint target (px)
+    max_flex: float | None = None  # IK: user elbow flexion limit (deg), tighter than the anatomical one
 
 
 @dataclass

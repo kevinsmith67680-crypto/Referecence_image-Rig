@@ -228,7 +228,8 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
                     out_dir = S.project.dir / "cycles"
                 res = render_cycle(eng, name, n, vis, float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
                                    bool(body.get("allow_pending")), bool(body.get("fluid", True)),
-                                   progress=lambda i, t: job.update(progress=i), lock=S.lock)
+                                   progress=lambda i, t: job.update(progress=i), lock=S.lock,
+                                   ik=st.get("ik"), switches=st.get("switches"))
                 job["frames"] = [png_bytes(f) for f in res["frames"]]
                 out_dir.mkdir(parents=True, exist_ok=True)
                 save_animation(res["frames"], res["duration_ms"], out_dir / f"{jid}.webp", scale=0.5)
@@ -264,6 +265,75 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
             raise HTTPException(404, jid)
         return FileResponse(job["files"][ext], media_type=f"image/{ext}",
                             filename=f"{jid}.{ext}", headers=NO_STORE)
+
+    # -- Phase 3.2: IK, switches, rig controls, live actions --------------------------------------------------
+    def _engine():
+        st = S.project.state()
+        return st, S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+
+    @app.post("/api/ik/match")
+    def ik_match(body: dict = Body(...)):
+        """FK<->IK matching for one limb in the current pose; returns the new limb state (submit it as ik.set)."""
+        with S.lock:
+            st, eng = _engine()
+            limb, to = body.get("limb"), body.get("to")
+            if limb not in ("arm_r", "arm_l", "leg_r", "leg_l") or to not in ("ik", "fk"):
+                raise HTTPException(400, "limb must be arm_r/arm_l/leg_r/leg_l and to must be ik or fk")
+            preset = body.get("preset", "relaxed_standing")
+            if preset == "rest":
+                preset = "relaxed_standing"
+            ik = body["ik"] if body.get("ik") is not None else st["ik"]
+            r = eng.match_ik(limb, to, preset, body.get("phase"), ik=ik, speed=float(body.get("speed", 1.0)),
+                             exaggeration=float(body.get("exaggeration", 1.0)),
+                             allow_pending=bool(body.get("allow_pending")), fluid=bool(body.get("fluid", True)))
+            return jsonable(r)
+
+    @app.get("/api/switches")
+    def switches_info():
+        with S.lock:
+            st, eng = _engine()
+            ctl = eng.switch_controller(st["switches"])
+            return jsonable({"groups": [g.to_json() for g in ctl.groups.values()], "state": ctl.state,
+                             "hand_library": eng.hand_lib.to_json(eng.profile.midline_x),
+                             "corrections": eng.corr_switch.to_json()})
+
+    @app.get("/api/switch/thumb/{group}/{variant}.png")
+    def switch_thumb(group: str, variant: str):
+        with S.lock:
+            st = S.project.state()
+            arr = S.pose.thumbnail(st, S.masks(), rejected_ids(st), group, variant)
+        if arr is None:
+            raise HTTPException(404, "no drawing for this variant")
+        return png(arr)
+
+    @app.get("/api/rig/controls")
+    def rig_controls():
+        from ..motion.rigctl import build_rig_controls, validate
+
+        with S.lock:
+            st, eng = _engine()
+            doc = build_rig_controls(eng, st["ik"], st["switches"])
+            return jsonable({"controls": doc, "validation_errors": validate(doc)})
+
+    @app.post("/api/live/action")
+    def live_action(body: dict = Body(...)):
+        """Semantic live action -> editor operations (returned, not submitted; the UI submits them so undo works).
+        No webcam or device input is read here."""
+        from ..motion.rigctl import LIVE_ACTIONS, action_ops
+
+        with S.lock:
+            st, eng = _engine()
+            act = body.get("action")
+            if act not in LIVE_ACTIONS:
+                raise HTTPException(400, f"unknown action {act}")
+            ops = action_ops(act, eng.sk, float(body.get("value", 1.0)), float(body.get("t", 0.0)), st["ik"])
+            return jsonable({"action": act, "spec": LIVE_ACTIONS[act], "ops": ops})
+
+    @app.get("/api/live/actions")
+    def live_actions():
+        from ..motion.rigctl import LIVE_ACTIONS
+
+        return LIVE_ACTIONS
 
     @app.get("/api/face")
     def face():

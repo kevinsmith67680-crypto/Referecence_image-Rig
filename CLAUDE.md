@@ -28,6 +28,12 @@ faithful, editable **Moho Pro 14** character rig.
   implemented; verdict **PARTIAL** (`docs/phase3_1_natural_motion_report.md`, audit in `docs/phase3_1_motion_audit.md`):
   planner/solver/garment engine/evaluators in `src/autorig/motion/`, editor Pose tab uses it, evidence in
   `projects/schoolboy_tpose/character_package/natural_pose/motion/`. Visual quality is not approved by anyone.
+- The user explicitly started **Phase 3.2** (IK, switch layers, articulated controls). It is implemented; verdict
+  **PARTIAL** (`docs/phase3_2_ik_switch_report.md`, plan in `docs/phase3_2_implementation_plan.md`): two-bone IK,
+  arm/leg controllers, foot contacts, switch groups, hand library, correction triggers, rig controls spec, editor IK
+  and Switches tabs; evidence in `projects/schoolboy_tpose/character_package/natural_pose/ik_switch/`. Hand variants
+  are all pending review; relaxed/gripping/palm-down/partially-closed hands and every elbow/knee correction drawing
+  are missing.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -78,6 +84,25 @@ faithful, editable **Moho Pro 14** character rig.
   moves a planted foot; garment terms (hem lag, hair sway) must stay continuous fields (no seams).
 - `autorig motion <package>` regenerates the committed evidence (contact sheets, cycles, close-ups, animations,
   hand paths, results.json).
+
+## Phase 3.2 rules (IK and switches)
+
+- One solver: `motion/ik.py` `TwoBoneIKSolver` is used by `SkeletalPoseSolver` for legs and arms and by the arm/leg
+  controllers. It only rotates bones: unreachable targets are clamped and reported (`clamped_max_reach`/`min`).
+- User IK lives in the editor project (`ik` state, ops `ik.set`/`ik.reset`); `MotionEngine.apply_ik` turns it into
+  intent before the skeletal solve (stage 2). FK/IK switching goes through `MotionEngine.match_ik` (no jumps).
+- Arm clavicle elevation is the fixed point of the shoulder rhythm (bracketed root, overhead abduction unwrapped),
+  so an IK arm that reproduces an FK arm gets the same clavicle.
+- Switch groups (`motion/switches.py`): user choice > keyframe > automatic preset choice > the original drawing.
+  Pending drawings are previewed only with `allow_pending`; missing ones are NEEDS_ARTWORK with a named fallback.
+  Offsets are rigid (translate/rotate about the wrist pivot), never scaled. Wrist alignment is measured on the
+  *visible* pixels (the sleeve cuff covers the wrist).
+- A deep-elbow bend above 125 deg without an elbow drawing makes the pose NEEDS_ARTWORK (band deformation alone
+  breaks the fold there; it is clean at ~120 deg); other triggered corrections without drawings are optional assets.
+- `autorig.rig_controls` v1 (`motion/rigctl.py`, schema in `data/schemas/rig_controls.schema.json`, kept in sync by
+  a test) is validated before export (manifest 1.1.0). Moho mappings stay `proposed_unverified`; live inputs stay
+  unassigned (no Moho input names are invented). No webcam tracking.
+- `autorig ik-demo <package>` regenerates the committed Phase 3.2 evidence.
 
 ## Live Models track (Moho 14.5)
 
@@ -158,6 +183,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 # Phase 3.1
 .venv/bin/python -m autorig motion <package_dir> [--out <dir>]     # natural-motion evidence (about 2-3 min)
 .venv/bin/python -m autorig motion-bench <package_dir>             # measure solve/render times on this machine
+# Phase 3.2
+.venv/bin/python -m autorig ik-demo <package_dir>                  # IK / contacts / hand-switch evidence (~2 min)
+.venv/bin/python -m autorig rig-controls <package_dir> [--out f]   # write + validate the rig controls spec
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -182,7 +210,9 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
 - `src/autorig/editor/` — Phase 3 backend: project (op log), artwork (masks, fidelity, comparison), posesvc, vectors,
   readiness, export (quality gates), server (FastAPI)
 - `src/autorig/motion/` — Phase 3.1: profile, intent, planner (presets + front-view gaits), solver, garments
-  (garment model + deformation engine), feasibility, quality, pipeline (MotionEngine, evidence CLI)
+  (garment model + deformation engine), feasibility, quality, pipeline (MotionEngine, evidence CLI); Phase 3.2: ik
+  (solver, limb controllers, foot contacts), switches (switch groups, hand library, correction triggers), rigctl
+  (rig controls spec, live action map), demo (`ik-demo`)
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright
 - `projects/schoolboy_tpose/moho_asset_package/` — validated Phase 3 export of the unedited real package (not
   production-ready); `docs/phase3/screenshots/` — real-browser screenshots from the e2e test

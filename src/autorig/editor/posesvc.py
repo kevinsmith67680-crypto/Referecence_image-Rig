@@ -245,7 +245,7 @@ class PoseService:
 
     # -- Phase 3.1 motion engine (planner -> solver -> garment deformation -> evaluation) -------------------
     def motion_engine(self, st: dict[str, Any], masks: dict[str, np.ndarray], rejected: set[str]):
-        from ..motion.pipeline import MotionEngine
+        from ..motion.pipeline import MotionEngine, corrective_manifest
         from ..motion.profile import load_overrides
 
         appr = {k: v for k, v in st["approvals"].items() if k.startswith("corrective:")}
@@ -258,7 +258,7 @@ class PoseService:
         gen = {c: self.art.generated_mask(c, masks, rejected) for c in masks}
         cids = [k.split(":", 1)[1] for k in st["approvals"] if k.startswith("corrective:gusset")]
         eng = MotionEngine(sk, layers, gen, self.art.source, self.variants, st["approvals"], "front",
-                           load_overrides(self.pkg), cids)
+                           load_overrides(self.pkg), cids, corrective_manifest(self.pkg))
         for k in [k for k in self._cache if k.startswith("motion:")]:
             self._cache.pop(k)
         self._cache[key] = eng
@@ -277,9 +277,12 @@ class PoseService:
         unknown = [b for b in overrides if b not in eng.sk.idx]
         if unknown:
             raise PoseError(f"unknown bones in overrides: {unknown}")
+        ik = body["ik"] if body.get("ik") is not None else st.get("ik")
+        switches = body["switches"] if body.get("switches") is not None else st.get("switches")
         r = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
                      0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
-                     skeleton_only=bool(body.get("skeleton_only")), fluid=bool(body.get("fluid", True)))
+                     skeleton_only=bool(body.get("skeleton_only")), fluid=bool(body.get("fluid", True)),
+                     ik=ik, switches=switches, switch_time=body.get("switch_time"))
         s = r["solve"]
         out = {"name": name, "title": r["title"], "kind": r["kind"], "phase": r["phase"], "pad": r["pad"],
                "joints_posed": s["joints_posed"], "bone_tails_posed": s["bone_tails_posed"], "contact": s["contact"],
@@ -287,7 +290,9 @@ class PoseService:
                "feasibility": r["feasibility"], "hands": r["hands"], "corrections": r["corrections"],
                "timing_ms": r["timing_ms"], "phase_name": r["intent"].channels.get("phase_name"),
                "violations": s["violations"], "clamps": s["clamps"], "spec": r["spec"],
-               "local_rotation_deg": {b.name: round(float(r["pose"].theta[i]), 2) for i, b in enumerate(eng.sk.bones)}}
+               "local_rotation_deg": {b.name: round(float(r["pose"].theta[i]), 2) for i, b in enumerate(eng.sk.bones)},
+               "ik": self.ik_report(eng, r, ik), "switches": r["switches"],
+               "correction_switches": [c for c in r["correction_switches"] if c["on"]]}
         if body.get("skeleton_only"):
             return out
         q = r["quality"]
@@ -307,6 +312,56 @@ class PoseService:
             if b is not None:
                 out["before"] = b["image"]
         return out
+
+    @staticmethod
+    def ik_report(eng, r: dict[str, Any], ik: dict[str, Any] | None) -> dict[str, Any]:
+        """Handles for the canvas: per limb the root, middle joint, effector, target and pole (rest-canvas px),
+        plus solver status, foot contacts and notes."""
+        s = r["solve"]
+        J, T = s["joints_posed"], s["bone_tails_posed"]
+        limbs = {}
+        for limb in ("arm_r", "arm_l", "leg_r", "leg_l"):
+            kind, side = limb.split("_")
+            b0, b1 = ("upper_arm", "forearm") if kind == "arm" else ("thigh", "shin")
+            cfg = (ik or {}).get(limb) or {}
+            rep = (s["arms"] if kind == "arm" else s["legs"]).get(side, {})
+            ctl = eng.limb(limb)
+            pole = cfg.get("pole")
+            if pole is None and rep.get("pole") is not None:
+                pole = rep["pole"]
+            if pole is None:
+                pole = [round(float(v), 2) for v in ctl.default_pole(r["pose"])]
+            limbs[limb] = {"root": J[f"{b0}_{side}"], "mid": J[f"{b1}_{side}"], "effector": T[f"{b1}_{side}"],
+                           "target": cfg.get("target") if cfg.get("enabled") else None, "pole": pole,
+                           "enabled": bool(cfg.get("enabled")), "mode": cfg.get("mode", "fk"),
+                           "status": rep.get("status"), "error_px": rep.get("error_px"),
+                           "flexion_deg": rep.get("flexion_deg"),
+                           "reach_px": [round(ctl.solver.min_reach, 1), round(ctl.solver.max_reach, 1)]}
+        return {"limbs": limbs, "contacts": s.get("contacts"), "notes": s.get("ik_notes", []) + [
+            n for n in s.get("notes", []) if n.startswith(("arm_", "leg_"))],
+            "pelvis_offset": (ik or {}).get("pelvis_offset", [0.0, 0.0])}
+
+    def thumbnail(self, st, masks, rejected, group: str, variant: str, size: int = 96) -> np.ndarray | None:
+        """Rest-frame crop of a hand variant around the wrist (Switches panel)."""
+        from ..motion.switches import HAND_POSES
+
+        eng = self.motion_engine(st, masks, rejected)
+        if not group.startswith("hand_") or variant not in HAND_POSES:
+            return None
+        v = eng.hand_lib.hands[group[-1]].get(variant)
+        if v is None or v.layer is None:
+            return None
+        rgba = {**eng.layers, **eng.variants}[v.layer]
+        hb = eng.sk.bone(group)
+        cx, cy = (hb.head + hb.tail) / 2
+        half = max(40, int(1.3 * hb.length))
+        x0, y0 = int(cx) - half, int(cy) - half
+        crop = np.zeros((2 * half, 2 * half, 4), np.uint8)
+        H, W = rgba.shape[:2]
+        sx0, sy0, sx1, sy1 = max(0, x0), max(0, y0), min(W, x0 + 2 * half), min(H, y0 + 2 * half)
+        crop[sy0 - y0:sy1 - y0, sx0 - x0:sx1 - x0] = rgba[sy0:sy1, sx0:sx1]
+        im = Image.fromarray(crop, "RGBA").resize((size, size), Image.LANCZOS)
+        return np.asarray(im)
 
     @staticmethod
     def motion_presets() -> list[dict[str, Any]]:

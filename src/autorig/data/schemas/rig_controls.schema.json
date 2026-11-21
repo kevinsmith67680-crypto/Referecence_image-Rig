@@ -1,0 +1,875 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autorig.rig_controls-1.0.0",
+  "title": "AutoRig Studio rig_controls 1.0.0",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "coordinate_system",
+    "ik",
+    "foot_contacts",
+    "switches",
+    "corrections",
+    "missing_artwork",
+    "live",
+    "moho"
+  ],
+  "properties": {
+    "schema": {
+      "const": "autorig.rig_controls"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "coordinate_system": {
+      "type": "string"
+    },
+    "ik": {
+      "type": "object",
+      "required": [
+        "chains",
+        "state"
+      ],
+      "properties": {
+        "chains": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "kind",
+              "side",
+              "bones",
+              "lengths_px",
+              "constraints",
+              "moho"
+            ],
+            "properties": {
+              "id": {
+                "enum": [
+                  "arm_r",
+                  "arm_l",
+                  "leg_r",
+                  "leg_l"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "arm",
+                  "leg"
+                ]
+              },
+              "side": {
+                "enum": [
+                  "r",
+                  "l"
+                ]
+              },
+              "bones": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "lengths_px": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "constraints": {
+                "type": "object",
+                "required": [
+                  "min_flex_deg",
+                  "max_flex_deg",
+                  "reach_px",
+                  "no_axial_scaling"
+                ],
+                "properties": {
+                  "no_axial_scaling": {
+                    "const": true
+                  }
+                }
+              },
+              "moho": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "const": "proposed_unverified"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "required": [
+            "arm_r",
+            "arm_l",
+            "leg_r",
+            "leg_l",
+            "pelvis_offset"
+          ],
+          "properties": {
+            "arm_r": {
+              "type": "object",
+              "required": [
+                "enabled",
+                "mode",
+                "target",
+                "pole"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "mode": {
+                  "enum": [
+                    "fk",
+                    "ik"
+                  ]
+                },
+                "target": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "pole": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "bend": {
+                  "enum": [
+                    1,
+                    -1,
+                    null
+                  ]
+                },
+                "lock": {
+                  "type": "boolean"
+                },
+                "max_flex": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "torso_follow": {
+                  "type": "boolean"
+                },
+                "end_angle": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "fk": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "abduction": {
+                          "type": "number"
+                        },
+                        "flexion": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "arm_l": {
+              "type": "object",
+              "required": [
+                "enabled",
+                "mode",
+                "target",
+                "pole"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "mode": {
+                  "enum": [
+                    "fk",
+                    "ik"
+                  ]
+                },
+                "target": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "pole": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "bend": {
+                  "enum": [
+                    1,
+                    -1,
+                    null
+                  ]
+                },
+                "lock": {
+                  "type": "boolean"
+                },
+                "max_flex": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "torso_follow": {
+                  "type": "boolean"
+                },
+                "end_angle": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "fk": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "abduction": {
+                          "type": "number"
+                        },
+                        "flexion": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "leg_r": {
+              "type": "object",
+              "required": [
+                "enabled",
+                "mode",
+                "target",
+                "pole"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "mode": {
+                  "enum": [
+                    "fk",
+                    "ik"
+                  ]
+                },
+                "target": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "pole": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "bend": {
+                  "enum": [
+                    1,
+                    -1,
+                    null
+                  ]
+                },
+                "lock": {
+                  "type": "boolean"
+                },
+                "max_flex": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "torso_follow": {
+                  "type": "boolean"
+                },
+                "end_angle": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "fk": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "abduction": {
+                          "type": "number"
+                        },
+                        "flexion": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "leg_l": {
+              "type": "object",
+              "required": [
+                "enabled",
+                "mode",
+                "target",
+                "pole"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "mode": {
+                  "enum": [
+                    "fk",
+                    "ik"
+                  ]
+                },
+                "target": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "pole": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "bend": {
+                  "enum": [
+                    1,
+                    -1,
+                    null
+                  ]
+                },
+                "lock": {
+                  "type": "boolean"
+                },
+                "max_flex": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "torso_follow": {
+                  "type": "boolean"
+                },
+                "end_angle": {
+                  "oneOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "fk": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "abduction": {
+                          "type": "number"
+                        },
+                        "flexion": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "pelvis_offset": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        }
+      }
+    },
+    "foot_contacts": {
+      "type": "object",
+      "required": [
+        "states",
+        "locks"
+      ],
+      "properties": {
+        "states": {
+          "const": [
+            "PLANTED",
+            "LIFTING",
+            "SWINGING",
+            "LANDING",
+            "FREE"
+          ]
+        },
+        "locks": {
+          "type": "object",
+          "required": [
+            "r",
+            "l"
+          ],
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "switches": {
+      "type": "object",
+      "required": [
+        "groups",
+        "state",
+        "hand_library"
+      ],
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "kind",
+              "bone",
+              "pivot",
+              "default",
+              "channel",
+              "variants",
+              "moho"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "hand",
+                  "correction",
+                  "face"
+                ]
+              },
+              "pivot": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "channel": {
+                "enum": [
+                  "body",
+                  "face"
+                ]
+              },
+              "variants": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "layer",
+                    "status",
+                    "needs_artwork"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "layer": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "original",
+                        "approved",
+                        "pending_review",
+                        "rejected",
+                        "missing"
+                      ]
+                    },
+                    "needs_artwork": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "moho": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "const": "proposed_unverified"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "state": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "user",
+              "auto",
+              "keys",
+              "offsets"
+            ],
+            "properties": {
+              "user": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "auto": {
+                "type": "boolean"
+              },
+              "keys": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "offsets": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "required": [
+                    "dx",
+                    "dy",
+                    "rot"
+                  ],
+                  "properties": {
+                    "dx": {
+                      "type": "number"
+                    },
+                    "dy": {
+                      "type": "number"
+                    },
+                    "rot": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "corrections": {
+      "type": "object",
+      "required": [
+        "triggers",
+        "moho"
+      ],
+      "properties": {
+        "triggers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "bone",
+              "measure",
+              "on",
+              "hysteresis",
+              "asset",
+              "priority",
+              "compatible",
+              "binding",
+              "asset_state"
+            ],
+            "properties": {
+              "on": {
+                "type": "number"
+              },
+              "hysteresis": {
+                "type": "number",
+                "minimum": 0
+              },
+              "asset_state": {
+                "enum": [
+                  "approved",
+                  "pending_review",
+                  "rejected",
+                  "missing"
+                ]
+              }
+            }
+          }
+        },
+        "moho": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "const": "proposed_unverified"
+            }
+          }
+        }
+      }
+    },
+    "missing_artwork": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "const": "NEEDS_ARTWORK"
+          }
+        }
+      }
+    },
+    "live": {
+      "type": "object",
+      "required": [
+        "actions",
+        "channels",
+        "inputs",
+        "moho"
+      ],
+      "properties": {
+        "actions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "channel",
+              "kind"
+            ],
+            "properties": {
+              "channel": {
+                "enum": [
+                  "body",
+                  "face"
+                ]
+              }
+            }
+          }
+        },
+        "inputs": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "const": "unassigned"
+            }
+          }
+        },
+        "moho": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "const": "proposed_unverified"
+            }
+          }
+        }
+      }
+    },
+    "moho": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "const": "proposed_unverified"
+        }
+      }
+    }
+  }
+}

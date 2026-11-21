@@ -62,6 +62,11 @@ class PresetSpec:
 
 
 # -- helpers -------------------------------------------------------------------------------------------------
+# Step 9 hand choices: standing and walking prefer a relaxed hand; the reference (open) hand is the fallback when
+# the relaxed drawing does not exist (reported, never faked)
+RELAXED_HANDS = ("relaxed", "open")
+
+
 def _feet(p: CharacterProfile, sep: float, dx: float = 0.0, weight_left: float = 0.5, **leg) -> dict[str, LegIntent]:
     """Planted feet on the ground line. In a weight shift the unweighted (relaxed) leg may bend further."""
     out = {}
@@ -92,13 +97,15 @@ def smooth_pulse(u: float) -> float:
 def relaxed(p, **_):
     return PoseIntent("relaxed_standing", "Relaxed standing", "even weight, arms hanging with soft elbows",
                       legs=_feet(p, p.stance_natural, knee_min=4.0),
-                      arms=_arms(abduction=9.0, flexion=14.0, wrist=6.0), clavicle={"r": -2.0, "l": -2.0})
+                      arms=_arms(abduction=9.0, flexion=14.0, wrist=6.0, hand=list(RELAXED_HANDS)),
+                      clavicle={"r": -2.0, "l": -2.0})
 
 
 def hands_at_sides(p, **_):
     return PoseIntent("hands_at_sides", "Hands at sides", "attention stance, arms close to the body",
                       legs=_feet(p, p.track_min + 0.15 * p.hip_sep, knee_min=3.0),
-                      arms=_arms(abduction=4.0, flexion=5.0, wrist=3.0), clavicle={"r": -3.0, "l": -3.0})
+                      arms=_arms(abduction=4.0, flexion=5.0, wrist=3.0, hand=list(RELAXED_HANDS)),
+                      clavicle={"r": -3.0, "l": -3.0})
 
 
 def hands_on_hips(p, **_):
@@ -133,7 +140,7 @@ def conversational(p, **_):
 def shrug(p, **_):
     return PoseIntent("one_hand_shrug", "Shrugging", "both shoulders raised, forearms out, palms open",
                       legs=_feet(p, p.stance_natural, knee_min=4.0), head=6.0,
-                      arms=_arms(abduction=20.0, flexion=-88.0, wrist=-10.0, hand=["palm_up", "open"]),
+                      arms=_arms(abduction=20.0, flexion=-88.0, wrist=-10.0, hand=["open", "palm_up"]),
                       clavicle={"r": 16.0, "l": 14.0}, scapulohumeral=False)
 
 
@@ -146,7 +153,8 @@ def arm_raise(p, **_):
 def head_tilt(p, **_):
     return PoseIntent("head_tilt_compensated", "Head tilt", "head tilts to the left, shoulders answer slightly",
                       legs=_feet(p, p.stance_natural, knee_min=4.0), head=14.0, chest=-3.0,
-                      arms=_arms(abduction=9.0, flexion=14.0, wrist=6.0), clavicle={"l": -3.0, "r": 4.0})
+                      arms=_arms(abduction=9.0, flexion=14.0, wrist=6.0, hand=list(RELAXED_HANDS)),
+                      clavicle={"l": -3.0, "r": 4.0})
 
 
 def squat(p, **_):
@@ -161,7 +169,11 @@ def sitting(p, **_):
     L = (p.leg("r") + p.leg("l")) / 2
     return PoseIntent("sitting", "Sitting", "seated on a low seat; front-view approximation (wide knees)",
                       legs=_feet(p, p.stance_natural * 2.0, knee_min=4.0, knee_max=p.front_knee["squat"] + 15),
-                      pelvis_dy=0.33 * L, arms=_arms(abduction=20.0, flexion=50.0, wrist=8.0),
+                      pelvis_dy=0.33 * L,
+                      arms={s: ArmIntent(target_joint=f"knee_{s}", target_offset=(0.0, -0.45 * p.hand_len[s]),
+                                         elbow="out", hand=["palm_down", "open"],
+                                         abduction=20.0, flexion=50.0, wrist=8.0)  # FK fallback if out of reach
+                            for s in SIDES},
                       notes=["front-view approximation: thighs pointing at the viewer need foreshortened drawings"])
 
 
@@ -170,8 +182,8 @@ def side_lean(p, direction: float = 1.0, **_):
     return PoseIntent("side_lean", "Side lean", "torso bends sideways; head stays near upright",
                       legs=_feet(p, p.stance_natural, knee_min=4.0), spine=-8.0 * direction, chest=-6.0 * direction,
                       head=4.0 * direction, weight_left=0.5 - 0.15 * direction,
-                      arms={"r": ArmIntent(abduction=9.0 + 6 * direction, flexion=12.0),
-                            "l": ArmIntent(abduction=9.0 - 6 * direction, flexion=12.0)})
+                      arms={"r": ArmIntent(abduction=9.0 + 6 * direction, flexion=12.0, hand=list(RELAXED_HANDS)),
+                            "l": ArmIntent(abduction=9.0 - 6 * direction, flexion=12.0, hand=list(RELAXED_HANDS))})
 
 
 def lean_forward(p, **_):
@@ -339,6 +351,8 @@ def _gait_core(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0,
             contact[s] = False
         chan[f"lift_{s}"] = lift
         chan[f"load_{s}"] = load
+        chan[f"stance_psi_{s}"] = psi if psi < d else None
+        chan[f"swing_u_{s}"] = (psi - d) / (1.0 - d) if psi >= d else None
         chan[f"leg_forward_{s}"] = math.cos(2 * math.pi * (ph - off))  # +1 at this foot's contact (leg in front)
     # pelvis path. Negative roll = the swing-side hip lifts. A real gait drops the swing hip and clears the foot
     # with sagittal knee flexion, which a front view cannot draw; the hip hitch is the front-view substitute.
@@ -364,7 +378,8 @@ def _gait_core(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0,
         chan[f"arm_forward_{s}"] = fwd
         arms[s] = ArmIntent(abduction=g["abd"] - g["abd_amp"] * fwd + arc, flexion=g["flex"] + g["flex_amp"] * fwd,
                             wrist=ARM_STYLE[arm_style]["wrist"] if kind == "run" else 6.0,
-                            hand=(["fist", "open"] if arm_style == "fist" else ["open"]) if kind == "run" else ["open"])
+                            hand=(["fist", "relaxed", "open"] if arm_style == "fist" else list(RELAXED_HANDS))
+                            if kind == "run" else list(RELAXED_HANDS))
         # forward-arm shoulder lift; the fluid cycle uses a smooth positive part (max(.,0) has a kink -> jerk)
         clav[s] = g["clav"] * (((1.0 + fwd) / 2.0) ** 2 if shaped else max(fwd, 0.0))
     hem_lag = g["hem_lag"] * math.sin(2 * math.pi * (ph - d / 2))  # roll velocity (derivative of cos) -> lag

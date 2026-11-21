@@ -28,7 +28,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -110,7 +126,7 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.0, support 348.3..736.9"
+      "detail": "CoM x 541.9, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
@@ -162,7 +178,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0562,
+      "value": 0.056,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -176,10 +192,10 @@
     },
     "warnings": [
      "compressed_fraction 0.0794 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.0562 > 0.04 (layer neck)"
+     "layer_area_change 0.056 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5386 unreviewed generated pixels visible"
+     "5394 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -187,15 +203,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -279,47 +319,47 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      540.74,
+      540.64,
       729.37
      ],
      "spine": [
-      540.14,
+      540.04,
       616.67
      ],
      "chest": [
-      539.64,
+      539.54,
       503.97
      ],
      "neck": [
-      539.04,
+      538.94,
       387.77
      ],
      "head": [
-      539.34,
+      539.24,
       298.17
      ],
      "clavicle_r": [
-      499.84,
+      499.74,
       428.57
      ],
      "upper_arm_r": [
-      406.34,
-      451.47
+      406.24,
+      451.48
      ],
      "forearm_r": [
-      386.15,
+      386.05,
       578.92
      ],
      "hand_r": [
-      396.56,
-      697.86
+      396.46,
+      697.87
      ],
      "thigh_r": [
-      484.94,
+      484.84,
       729.17
      ],
      "shin_r": [
-      455.03,
+      454.91,
       999.87
      ],
      "foot_r": [
@@ -327,27 +367,27 @@
       1272.2
      ],
      "clavicle_l": [
-      583.74,
+      583.64,
       431.27
      ],
      "upper_arm_l": [
-      682.39,
-      453.88
+      682.29,
+      453.89
      ],
      "forearm_l": [
-      701.91,
-      577.1
+      701.81,
+      577.11
      ],
      "hand_l": [
-      691.87,
-      691.86
+      691.77,
+      691.87
      ],
      "thigh_l": [
-      596.44,
+      596.34,
       729.57
      ],
      "shin_l": [
-      619.23,
+      619.18,
       1000.58
      ],
      "foot_l": [
@@ -364,7 +404,7 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -1.46,
+     -1.56,
      -24.43
     ],
     "clamps": [],
@@ -380,14 +420,14 @@
      "upper_arm_r_abduction": 9.0,
      "forearm_r_flexion": 14.0,
      "hand_r_bend": 6.0,
-     "thigh_r_abduction": 6.304,
-     "knee_r_flexion": 7.615,
+     "thigh_r_abduction": 6.309,
+     "knee_r_flexion": 7.644,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -5.645,
      "upper_arm_l_abduction": 9.0,
      "forearm_l_flexion": 14.0,
      "hand_l_bend": 6.0,
-     "thigh_l_abduction": 4.807,
+     "thigh_l_abduction": 4.818,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -409,7 +449,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       455.03,
+       454.91,
        999.87
       ],
       "note": null
@@ -431,7 +471,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       619.23,
+       619.18,
        1000.58
       ],
       "note": null
@@ -450,8 +490,8 @@
      "l": -5.645
     },
     "com": [
-     542.0,
-     698.32
+     541.92,
+     698.33
     ]
    },
    "intent": {
@@ -489,9 +529,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 2.88,
-    "render_and_tears": 2401.2,
-    "total": 2421.3
+    "solve": 5.25,
+    "corrections": 0.26,
+    "switches": 0.29,
+    "render_and_tears": 3029.5,
+    "total": 3057.1
    }
   },
   "pointing_speaking": {
@@ -533,7 +575,8 @@
     ],
     "alternative": "conversational_gesture",
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": []
    },
    "quality": {
     "checks": [
@@ -615,11 +658,11 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 560.3, support 348.3..736.9"
+      "detail": "CoM x 560.6, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
-      "value": 36.0,
+      "value": 29.0,
       "threshold": 10.0,
       "pass": false,
       "meaning": "rest-adjacent pixel pairs torn apart where the background shows",
@@ -635,7 +678,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 36.0,
+      "value": 29.0,
       "threshold": 12.0,
       "pass": false,
       "meaning": "torn pairs on dark outline pixels",
@@ -659,7 +702,7 @@
      },
      {
       "check": "folded_fraction",
-      "value": 0.0151,
+      "value": 0.0152,
       "threshold": 0.03,
       "pass": true,
       "meaning": "max share of a layer folded (inner crease, det <= 0.05)",
@@ -667,11 +710,11 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0541,
+      "value": 0.0539,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
-      "detail": "layer upper_arm_r"
+      "detail": "layer neck"
      }
     ],
     "numerical": {
@@ -680,13 +723,13 @@
      "all_pass": false
     },
     "warnings": [
-     "exposed_gap_pairs 36.0 > 10.0",
-     "outline_break_pairs 36.0 > 12.0",
+     "exposed_gap_pairs 29.0 > 10.0",
+     "outline_break_pairs 29.0 > 12.0",
      "compressed_fraction 0.0667 > 0.06 (layer upper_arm_l)",
-     "layer_area_change 0.0541 > 0.04 (layer upper_arm_r)"
+     "layer_area_change 0.0539 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5385 unreviewed generated pixels visible"
+     "5379 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -694,15 +737,31 @@
    "hands": {
     "r": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "point",
+     "source": "auto",
      "pending_review": false,
-     "note": "point hand is pending_review: using 'open'"
+     "note": "point hand is pending_review: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     },
     "l": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     }
    },
    "corrections": [
@@ -739,8 +798,8 @@
     {
      "rule": "band:shin_r",
      "region": "knee / trouser fold",
-     "driver_deg": 6.9,
-     "band_scale": 1.08
+     "driver_deg": 6.8,
+     "band_scale": 1.079
     },
     {
      "rule": "band:upper_arm_l",
@@ -798,76 +857,76 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      597.4,
-      732.46
+      597.7,
+      732.47
      ],
      "spine": [
-      590.91,
-      619.94
+      591.21,
+      619.96
      ],
      "chest": [
-      584.51,
-      507.42
+      584.81,
+      507.44
      ],
      "neck": [
-      582.69,
-      391.24
+      582.99,
+      391.25
      ],
      "head": [
-      579.3,
-      301.7
+      579.6,
+      301.72
      ],
      "clavicle_r": [
-      543.92,
-      432.44
+      544.22,
+      432.46
      ],
      "upper_arm_r": [
-      447.69,
-      429.74
+      448.05,
+      436.73
      ],
      "forearm_r": [
-      319.52,
-      414.9
+      319.88,
+      421.88
      ],
      "hand_r": [
-      219.14,
-      350.25
+      219.49,
+      357.23
      ],
      "thigh_r": [
-      541.67,
-      735.18
+      541.97,
+      735.19
      ],
      "shin_r": [
-      479.94,
-      1000.44
+      480.27,
+      1000.46
      ],
      "foot_r": [
       461.26,
       1272.2
      ],
      "clavicle_l": [
-      627.84,
-      434.27
+      628.14,
+      434.28
      ],
      "upper_arm_l": [
-      726.75,
-      455.77
+      727.05,
+      455.78
      ],
      "forearm_l": [
-      748.41,
-      578.63
+      748.71,
+      578.65
      ],
      "hand_l": [
-      736.37,
-      693.2
+      736.67,
+      693.22
      ],
      "thigh_l": [
-      653.04,
-      729.74
+      653.34,
+      729.76
      ],
      "shin_l": [
-      647.52,
-      1001.65
+      647.67,
+      1001.67
      ],
      "foot_l": [
       623.06,
@@ -883,8 +942,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     55.2,
-     -21.34
+     55.5,
+     -21.33
     ],
     "clamps": [],
     "violations": [],
@@ -895,18 +954,18 @@
      "neck_bend": -1.76,
      "head_bend": -2.64,
      "head_world": -5.0,
-     "clavicle_r_elevation": 10.329,
+     "clavicle_r_elevation": 6.18,
      "upper_arm_r_abduction": 96.607,
      "forearm_r_flexion": -26.176,
      "hand_r_bend": -4.0,
-     "thigh_r_abduction": 13.1,
-     "knee_r_flexion": 9.168,
+     "thigh_r_abduction": 13.095,
+     "knee_r_flexion": 9.094,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -5.6,
      "upper_arm_l_abduction": 10.0,
      "forearm_l_flexion": 16.0,
      "hand_l_bend": 6.0,
-     "thigh_l_abduction": -1.161,
+     "thigh_l_abduction": -1.193,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -928,8 +987,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       479.94,
-       1000.44
+       480.27,
+       1000.46
       ],
       "note": null
      },
@@ -950,8 +1009,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       647.52,
-       1001.65
+       647.67,
+       1001.67
       ],
       "note": null
      }
@@ -960,13 +1019,23 @@
      "r": {
       "mode": "ik",
       "target": [
-       219.14,
-       350.25
+       219.49,
+       357.23
       ],
       "wrist": [
-       219.14,
-       350.25
+       219.49,
+       357.23
       ],
+      "elbow": [
+       319.88,
+       421.88
+      ],
+      "pole": [
+       333.77,
+       1396.98
+      ],
+      "status": "ok",
+      "flexion_deg": 26.18,
       "error_px": 0.0,
       "reachable": true
      },
@@ -975,12 +1044,12 @@
      }
     },
     "clavicle_elevation": {
-     "r": 10.329072648517537,
+     "r": 6.1804742330667,
      "l": -5.6
     },
     "com": [
-     560.32,
-     676.42
+     560.57,
+     677.04
     ]
    },
    "intent": {
@@ -1018,9 +1087,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 3.24,
-    "render_and_tears": 2355.0,
-    "total": 2385.0
+    "solve": 9.13,
+    "corrections": 0.19,
+    "switches": 0.22,
+    "render_and_tears": 2212.9,
+    "total": 2243.3
    }
   },
   "both_hands_raised": {
@@ -1061,7 +1132,8 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": []
    },
    "quality": {
     "checks": [
@@ -1143,11 +1215,11 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.2, support 348.3..736.9"
+      "detail": "CoM x 541.9, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
-      "value": 51.0,
+      "value": 52.0,
       "threshold": 10.0,
       "pass": false,
       "meaning": "rest-adjacent pixel pairs torn apart where the background shows",
@@ -1163,7 +1235,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 51.0,
+      "value": 52.0,
       "threshold": 12.0,
       "pass": false,
       "meaning": "torn pairs on dark outline pixels",
@@ -1179,7 +1251,7 @@
      },
      {
       "check": "compressed_fraction",
-      "value": 0.016,
+      "value": 0.0159,
       "threshold": 0.06,
       "pass": true,
       "meaning": "max share of a layer compressed < 0.45x in area",
@@ -1195,7 +1267,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.1224,
+      "value": 0.1221,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -1208,13 +1280,13 @@
      "all_pass": false
     },
     "warnings": [
-     "exposed_gap_pairs 51.0 > 10.0",
-     "outline_break_pairs 51.0 > 12.0",
+     "exposed_gap_pairs 52.0 > 10.0",
+     "outline_break_pairs 52.0 > 12.0",
      "stretched_fraction 0.0288 > 0.005 (layer upper_arm_l)",
-     "layer_area_change 0.1224 > 0.04 (layer upper_arm_r)"
+     "layer_area_change 0.1221 > 0.04 (layer upper_arm_r)"
     ],
     "review_items": [
-     "5273 unreviewed generated pixels visible"
+     "5279 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -1222,15 +1294,31 @@
    "hands": {
     "r": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     },
     "l": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     }
    },
    "corrections": [
@@ -1249,14 +1337,14 @@
     {
      "rule": "band:thigh_r",
      "region": "hip / trouser top",
-     "driver_deg": 12.7,
-     "band_scale": 1.113
+     "driver_deg": 12.6,
+     "band_scale": 1.112
     },
     {
      "rule": "band:shin_r",
      "region": "knee / trouser fold",
      "driver_deg": 5.2,
-     "band_scale": 1.06
+     "band_scale": 1.061
     },
     {
      "rule": "band:upper_arm_l",
@@ -1273,7 +1361,7 @@
     {
      "rule": "band:thigh_l",
      "region": "hip / trouser top",
-     "driver_deg": 13.2,
+     "driver_deg": 13.1,
      "band_scale": 1.117
     },
     {
@@ -1314,76 +1402,76 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      541.27,
-      729.34
+      540.96,
+      729.36
      ],
      "spine": [
-      540.67,
-      616.64
+      540.36,
+      616.66
      ],
      "chest": [
-      540.17,
-      503.94
+      539.86,
+      503.96
      ],
      "neck": [
-      539.57,
-      387.74
+      539.26,
+      387.76
      ],
      "head": [
-      539.87,
-      298.14
+      539.56,
+      298.16
      ],
      "clavicle_r": [
-      500.37,
-      428.54
+      500.06,
+      428.56
      ],
      "upper_arm_r": [
-      408.98,
-      398.28
+      408.67,
+      398.3
      ],
      "forearm_r": [
-      360.65,
-      278.65
+      360.34,
+      278.67
      ],
      "hand_r": [
-      339.91,
-      161.06
+      339.6,
+      161.08
      ],
      "thigh_r": [
-      485.47,
-      729.14
+      485.16,
+      729.16
      ],
      "shin_r": [
-      455.67,
-      999.85
+      455.3,
+      999.86
      ],
      "foot_r": [
       461.26,
       1272.2
      ],
      "clavicle_l": [
-      584.27,
-      431.24
+      583.96,
+      431.26
      ],
      "upper_arm_l": [
-      679.87,
-      398.0
+      679.56,
+      398.01
      ],
      "forearm_l": [
-      726.6,
-      282.32
+      726.29,
+      282.34
      ],
      "hand_l": [
-      746.61,
-      168.87
+      746.3,
+      168.89
      ],
      "thigh_l": [
-      596.97,
-      729.54
+      596.66,
+      729.56
      ],
      "shin_l": [
-      619.5,
-      1000.57
+      619.34,
+      1000.58
      ],
      "foot_l": [
       623.06,
@@ -1399,8 +1487,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -0.93,
-     -24.46
+     -1.24,
+     -24.44
     ],
     "clamps": [],
     "violations": [],
@@ -1415,14 +1503,14 @@
      "upper_arm_r_abduction": 158.0,
      "forearm_r_flexion": -12.0,
      "hand_r_bend": -0.0,
-     "thigh_r_abduction": 6.282,
-     "knee_r_flexion": 7.457,
+     "thigh_r_abduction": 6.295,
+     "knee_r_flexion": 7.549,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": 26.44,
      "upper_arm_l_abduction": 158.0,
      "forearm_l_flexion": -12.0,
      "hand_l_bend": -0.0,
-     "thigh_l_abduction": 4.751,
+     "thigh_l_abduction": 4.784,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -1444,8 +1532,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       455.67,
-       999.85
+       455.3,
+       999.86
       ],
       "note": null
      },
@@ -1466,8 +1554,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       619.5,
-       1000.57
+       619.34,
+       1000.58
       ],
       "note": null
      }
@@ -1485,8 +1573,8 @@
      "l": 26.44
     },
     "com": [
-     542.18,
-     624.24
+     541.93,
+     624.25
     ]
    },
    "intent": {
@@ -1524,9 +1612,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 2.99,
-    "render_and_tears": 1992.8,
-    "total": 2016.6
+    "solve": 3.38,
+    "corrections": 0.38,
+    "switches": 0.12,
+    "render_and_tears": 2144.4,
+    "total": 2170.2
    }
   },
   "head_tilt_compensated": {
@@ -1559,7 +1649,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -1641,7 +1747,7 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.0, support 348.3..736.9"
+      "detail": "CoM x 541.9, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
@@ -1693,7 +1799,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0547,
+      "value": 0.0545,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -1707,10 +1813,10 @@
     },
     "warnings": [
      "compressed_fraction 0.0833 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.0547 > 0.04 (layer neck)"
+     "layer_area_change 0.0545 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5381 unreviewed generated pixels visible"
+     "5384 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -1718,15 +1824,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -1764,7 +1894,7 @@
      "rule": "band:shin_r",
      "region": "knee / trouser fold",
      "driver_deg": 6.6,
-     "band_scale": 1.077
+     "band_scale": 1.078
     },
     {
      "rule": "band:upper_arm_l",
@@ -1822,47 +1952,47 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      535.91,
-      729.62
+      535.79,
+      729.63
      ],
      "spine": [
-      535.31,
-      616.92
+      535.19,
+      616.93
      ],
      "chest": [
-      534.81,
-      504.22
+      534.69,
+      504.23
      ],
      "neck": [
-      528.13,
+      528.01,
       388.22
      ],
      "head": [
-      534.36,
-      298.83
+      534.25,
+      298.84
      ],
      "clavicle_r": [
-      491.12,
-      431.01
+      491.0,
+      431.02
      ],
      "upper_arm_r": [
-      396.54,
-      448.99
+      396.43,
+      449.0
      ],
      "forearm_r": [
-      376.36,
+      376.24,
       576.44
      ],
      "hand_r": [
-      386.77,
-      695.38
+      386.65,
+      695.39
      ],
      "thigh_r": [
-      480.11,
-      729.42
+      479.99,
+      729.43
      ],
      "shin_r": [
-      449.52,
+      449.39,
       1000.05
      ],
      "foot_r": [
@@ -1870,27 +2000,27 @@
       1272.2
      ],
      "clavicle_l": [
-      575.04,
+      574.93,
       429.32
      ],
      "upper_arm_l": [
-      674.43,
-      448.47
+      674.31,
+      448.48
      ],
      "forearm_l": [
-      693.94,
+      693.82,
       571.7
      ],
      "hand_l": [
-      683.9,
-      686.46
+      683.78,
+      686.47
      ],
      "thigh_l": [
-      591.61,
-      729.82
+      591.49,
+      729.83
      ],
      "shin_l": [
-      616.81,
+      616.75,
       1000.62
      ],
      "foot_l": [
@@ -1907,8 +2037,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -6.29,
-     -24.18
+     -6.41,
+     -24.17
     ],
     "clamps": [],
     "violations": [],
@@ -1923,14 +2053,14 @@
      "upper_arm_r_abduction": 9.0,
      "forearm_r_flexion": 14.0,
      "hand_r_bend": 6.0,
-     "thigh_r_abduction": 6.449,
-     "knee_r_flexion": 8.92,
+     "thigh_r_abduction": 6.452,
+     "knee_r_flexion": 8.949,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -6.645,
      "upper_arm_l_abduction": 9.0,
      "forearm_l_flexion": 14.0,
      "hand_l_bend": 6.0,
-     "thigh_l_abduction": 5.317,
+     "thigh_l_abduction": 5.329,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -1952,7 +2082,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       449.52,
+       449.39,
        1000.05
       ],
       "note": null
@@ -1974,7 +2104,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       616.81,
+       616.75,
        1000.62
       ],
       "note": null
@@ -1993,8 +2123,8 @@
      "l": -6.645
     },
     "com": [
-     542.01,
-     698.39
+     541.92,
+     698.4
     ]
    },
    "intent": {
@@ -2032,9 +2162,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 3.54,
-    "render_and_tears": 2718.1,
-    "total": 2743.1
+    "solve": 4.95,
+    "corrections": 0.18,
+    "switches": 0.14,
+    "render_and_tears": 2467.8,
+    "total": 2494.1
    }
   },
   "conversational_gesture": {
@@ -2051,7 +2183,16 @@
    "feasibility": {
     "status": "SUPPORTED_WITH_CORRECTIONS",
     "missing": [],
-    "optional_assets": [],
+    "optional_assets": [
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 74 deg; band-rule deformation used instead"
+     }
+    ],
     "approved_assets_used": [],
     "corrections": [
      "band:neck",
@@ -2066,7 +2207,8 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": []
    },
    "quality": {
     "checks": [
@@ -2148,7 +2290,7 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 515.9, support 348.3..736.9"
+      "detail": "CoM x 515.8, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
@@ -2176,7 +2318,7 @@
      },
      {
       "check": "stretched_fraction",
-      "value": 0.001,
+      "value": 0.0011,
       "threshold": 0.005,
       "pass": true,
       "meaning": "max share of a layer stretched > 2.2x in area",
@@ -2192,7 +2334,7 @@
      },
      {
       "check": "folded_fraction",
-      "value": 0.0098,
+      "value": 0.0099,
       "threshold": 0.03,
       "pass": true,
       "meaning": "max share of a layer folded (inner crease, det <= 0.05)",
@@ -2200,7 +2342,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0537,
+      "value": 0.0531,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -2214,10 +2356,10 @@
     },
     "warnings": [
      "compressed_fraction 0.0842 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.0537 > 0.04 (layer neck)"
+     "layer_area_change 0.0531 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5435 unreviewed generated pixels visible"
+     "5437 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -2225,15 +2367,31 @@
    "hands": {
     "r": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     },
     "l": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     }
    },
    "corrections": [
@@ -2289,7 +2447,7 @@
      "rule": "band:shin_l",
      "region": "knee / trouser fold",
      "driver_deg": 10.8,
-     "band_scale": 1.127
+     "band_scale": 1.126
     }
    ],
    "order": [
@@ -2323,47 +2481,47 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      513.32,
+      513.15,
       730.91
      ],
      "spine": [
-      518.62,
+      518.45,
       618.34
      ],
      "chest": [
-      524.02,
+      523.85,
       505.76
      ],
      "neck": [
-      524.64,
+      524.47,
       389.56
      ],
      "head": [
-      521.75,
+      521.58,
       300.01
      ],
      "clavicle_r": [
-      485.01,
+      484.84,
       429.95
      ],
      "upper_arm_r": [
-      389.17,
+      389.0,
       439.01
      ],
      "forearm_r": [
-      332.61,
-      554.98
+      332.44,
+      554.99
      ],
      "hand_r": [
-      215.02,
+      214.85,
       534.25
      ],
      "thigh_r": [
-      457.61,
+      457.44,
       727.79
      ],
      "shin_r": [
-      449.93,
+      449.84,
       1000.03
      ],
      "foot_r": [
@@ -2371,27 +2529,27 @@
       1272.2
      ],
      "clavicle_l": [
-      568.88,
+      568.71,
       433.53
      ],
      "upper_arm_l": [
-      667.31,
+      667.14,
       457.1
      ],
      "forearm_l": [
-      688.97,
+      688.8,
       579.96
      ],
      "hand_l": [
-      676.93,
+      676.76,
       694.53
      ],
      "thigh_l": [
-      568.93,
+      568.76,
       734.03
      ],
      "shin_l": [
-      623.08,
+      622.92,
       1000.55
      ],
      "foot_l": [
@@ -2408,7 +2566,7 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -28.88,
+     -29.05,
      -22.89
     ],
     "clamps": [],
@@ -2424,15 +2582,15 @@
      "upper_arm_r_abduction": 26.0,
      "forearm_r_flexion": -74.0,
      "hand_r_bend": -12.0,
-     "thigh_r_abduction": 1.616,
+     "thigh_r_abduction": 1.598,
      "knee_r_flexion": 4.0,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -5.6,
      "upper_arm_l_abduction": 10.0,
      "forearm_l_flexion": 16.0,
      "hand_l_bend": 6.0,
-     "thigh_l_abduction": 11.484,
-     "knee_l_flexion": 11.488,
+     "thigh_l_abduction": 11.485,
+     "knee_l_flexion": 11.454,
      "foot_l_world": 0.0
     },
     "legs": {
@@ -2453,7 +2611,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       449.93,
+       449.84,
        1000.03
       ],
       "note": null
@@ -2475,7 +2633,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       623.08,
+       622.92,
        1000.55
       ],
       "note": null
@@ -2494,7 +2652,7 @@
      "l": -5.6
     },
     "com": [
-     515.9,
+     515.77,
      688.6
     ]
    },
@@ -2533,9 +2691,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 5.18,
-    "render_and_tears": 2484.5,
-    "total": 2510.2
+    "solve": 5.37,
+    "corrections": 0.25,
+    "switches": 0.32,
+    "render_and_tears": 2940.9,
+    "total": 2967.3
    }
   },
   "one_hand_shrug": {
@@ -2561,6 +2721,22 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 88 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 88 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -2578,7 +2754,8 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": []
    },
    "quality": {
     "checks": [
@@ -2660,11 +2837,11 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.2, support 348.3..736.9"
+      "detail": "CoM x 541.9, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
-      "value": 4.0,
+      "value": 5.0,
       "threshold": 10.0,
       "pass": true,
       "meaning": "rest-adjacent pixel pairs torn apart where the background shows",
@@ -2680,7 +2857,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 4.0,
+      "value": 5.0,
       "threshold": 12.0,
       "pass": true,
       "meaning": "torn pairs on dark outline pixels",
@@ -2712,7 +2889,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0531,
+      "value": 0.0537,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -2726,10 +2903,10 @@
     },
     "warnings": [
      "compressed_fraction 0.1255 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.0531 > 0.04 (layer neck)"
+     "layer_area_change 0.0537 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5297 unreviewed generated pixels visible"
+     "5304 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -2737,15 +2914,31 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "palm_up",
+     "pose": "open_palm",
+     "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": "palm_up hand is pending_review: using 'open'"
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     },
     "l": {
      "drawing": "open",
-     "preferred": "palm_up",
+     "pose": "open_palm",
+     "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": "palm_up hand is pending_review: using 'open'"
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     }
    },
    "corrections": [
@@ -2782,8 +2975,8 @@
     {
      "rule": "band:shin_r",
      "region": "knee / trouser fold",
-     "driver_deg": 6.1,
-     "band_scale": 1.071
+     "driver_deg": 6.2,
+     "band_scale": 1.072
     },
     {
      "rule": "band:upper_arm_l",
@@ -2801,7 +2994,7 @@
      "rule": "band:thigh_l",
      "region": "hip / trouser top",
      "driver_deg": 12.8,
-     "band_scale": 1.114
+     "band_scale": 1.113
     },
     {
      "rule": "band:shin_l",
@@ -2841,75 +3034,75 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      537.82,
-      729.52
+      537.51,
+      729.53
      ],
      "spine": [
-      537.22,
-      616.82
+      536.91,
+      616.83
      ],
      "chest": [
-      536.72,
-      504.12
+      536.41,
+      504.13
      ],
      "neck": [
-      536.12,
-      387.92
+      535.81,
+      387.93
      ],
      "head": [
-      540.18,
-      298.41
+      539.86,
+      298.43
      ],
      "clavicle_r": [
-      496.92,
-      428.72
+      496.61,
+      428.73
      ],
      "upper_arm_r": [
-      401.57,
-      415.52
+      401.25,
+      415.54
      ],
      "forearm_r": [
-      357.44,
-      536.77
+      357.12,
+      536.79
      ],
      "hand_r": [
-      243.88,
-      499.87
+      243.57,
+      499.89
      ],
      "thigh_r": [
-      482.02,
-      729.32
+      481.71,
+      729.33
      ],
      "shin_r": [
-      451.65,
-      999.96
+      451.29,
+      999.98
      ],
      "foot_r": [
       461.26,
       1272.2
      ],
      "clavicle_l": [
-      580.82,
-      431.42
+      580.51,
+      431.43
      ],
      "upper_arm_l": [
-      681.34,
-      419.55
+      681.03,
+      419.57
      ],
      "forearm_l": [
-      724.01,
-      536.78
+      723.7,
+      536.8
      ],
      "hand_l": [
-      833.57,
-      501.18
+      833.26,
+      501.2
      ],
      "thigh_l": [
-      593.52,
-      729.72
+      593.21,
+      729.73
      ],
      "shin_l": [
-      617.77,
+      617.61,
       1000.6
      ],
      "foot_l": [
@@ -2926,8 +3119,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -4.38,
-     -24.28
+     -4.69,
+     -24.27
     ],
     "clamps": [],
     "violations": [],
@@ -2942,14 +3135,14 @@
      "upper_arm_r_abduction": 20.0,
      "forearm_r_flexion": -88.0,
      "hand_r_bend": -10.0,
-     "thigh_r_abduction": 6.404,
-     "knee_r_flexion": 8.426,
+     "thigh_r_abduction": 6.412,
+     "knee_r_flexion": 8.509,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": 14.0,
      "upper_arm_l_abduction": 20.0,
      "forearm_l_flexion": -88.0,
      "hand_l_bend": -10.0,
-     "thigh_l_abduction": 5.115,
+     "thigh_l_abduction": 5.148,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -2971,8 +3164,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       451.65,
-       999.96
+       451.29,
+       999.98
       ],
       "note": null
      },
@@ -2993,7 +3186,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       617.77,
+       617.61,
        1000.6
       ],
       "note": null
@@ -3012,8 +3205,8 @@
      "l": 14.0
     },
     "com": [
-     542.18,
-     671.88
+     541.93,
+     671.9
     ]
    },
    "intent": {
@@ -3051,9 +3244,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 2.8,
-    "render_and_tears": 2347.1,
-    "total": 2379.6
+    "solve": 4.1,
+    "corrections": 0.19,
+    "switches": 0.13,
+    "render_and_tears": 2615.6,
+    "total": 2644.0
    }
   },
   "hands_on_hips": {
@@ -3094,7 +3289,8 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": []
    },
    "quality": {
     "checks": [
@@ -3176,7 +3372,7 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.1, support 337.1..748.0"
+      "detail": "CoM x 541.9, support 337.1..748.0"
      },
      {
       "check": "exposed_gap_pairs",
@@ -3212,7 +3408,7 @@
      },
      {
       "check": "compressed_fraction",
-      "value": 0.0789,
+      "value": 0.081,
       "threshold": 0.06,
       "pass": false,
       "meaning": "max share of a layer compressed < 0.45x in area",
@@ -3220,7 +3416,7 @@
      },
      {
       "check": "folded_fraction",
-      "value": 0.0004,
+      "value": 0.0014,
       "threshold": 0.03,
       "pass": true,
       "meaning": "max share of a layer folded (inner crease, det <= 0.05)",
@@ -3228,7 +3424,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0562,
+      "value": 0.0542,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -3241,11 +3437,11 @@
      "all_pass": false
     },
     "warnings": [
-     "compressed_fraction 0.0789 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.0562 > 0.04 (layer neck)"
+     "compressed_fraction 0.081 > 0.06 (layer upper_arm_r)",
+     "layer_area_change 0.0542 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5436 unreviewed generated pixels visible"
+     "5435 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -3253,53 +3449,69 @@
    "hands": {
     "r": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": false,
-     "note": "fist hand is pending_review: using 'open'"
+     "note": "fist hand is pending_review: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     },
     "l": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": false,
-     "note": "fist hand is pending_review: using 'open'"
+     "note": "fist hand is pending_review: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     }
    },
    "corrections": [
     {
      "rule": "band:upper_arm_r",
      "region": "shoulder seam (sleeve side)",
-     "driver_deg": 69.5,
-     "band_scale": 1.386
+     "driver_deg": 70.6,
+     "band_scale": 1.392
     },
     {
      "rule": "band:forearm_r",
      "region": "elbow / sleeve crease",
-     "driver_deg": 45.7,
-     "band_scale": 1.228
+     "driver_deg": 43.8,
+     "band_scale": 1.219
     },
     {
      "rule": "band:thigh_r",
      "region": "hip / trouser top",
-     "driver_deg": 11.5,
+     "driver_deg": 11.4,
      "band_scale": 1.102
     },
     {
      "rule": "band:shin_r",
      "region": "knee / trouser fold",
-     "driver_deg": 5.1,
-     "band_scale": 1.06
+     "driver_deg": 5.2,
+     "band_scale": 1.061
     },
     {
      "rule": "band:upper_arm_l",
      "region": "shoulder seam (sleeve side)",
-     "driver_deg": 76.0,
-     "band_scale": 1.422
+     "driver_deg": 76.9,
+     "band_scale": 1.427
     },
     {
      "rule": "band:forearm_l",
      "region": "elbow / sleeve crease",
-     "driver_deg": 36.3,
-     "band_scale": 1.182
+     "driver_deg": 34.2,
+     "band_scale": 1.171
     },
     {
      "rule": "band:thigh_l",
@@ -3345,47 +3557,47 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      541.66,
-      729.96
+      541.38,
+      729.98
      ],
      "spine": [
-      541.06,
-      617.26
+      540.78,
+      617.28
      ],
      "chest": [
-      540.56,
-      504.56
+      540.28,
+      504.58
      ],
      "neck": [
-      539.96,
-      388.36
+      539.68,
+      388.38
      ],
      "head": [
-      540.26,
-      298.76
+      539.98,
+      298.78
      ],
      "clavicle_r": [
-      500.76,
-      429.16
+      500.48,
+      429.18
      ],
      "upper_arm_r": [
-      406.05,
-      446.43
+      405.52,
+      444.99
      ],
      "forearm_r": [
-      368.24,
-      569.8
+      369.93,
+      569.02
      ],
      "hand_r": [
       419.31,
       677.73
      ],
      "thigh_r": [
-      485.86,
-      729.76
+      485.58,
+      729.78
      ],
      "shin_r": [
-      450.41,
+      449.99,
       999.79
      ],
      "foot_r": [
@@ -3393,27 +3605,27 @@
       1272.2
      ],
      "clavicle_l": [
-      584.66,
-      431.86
+      584.38,
+      431.88
      ],
      "upper_arm_l": [
-      684.46,
-      448.69
+      684.39,
+      447.47
      ],
      "forearm_l": [
-      708.6,
-      571.09
+      706.49,
+      570.25
      ],
      "hand_l": [
       665.01,
       677.73
      ],
      "thigh_l": [
-      597.36,
-      730.16
+      597.08,
+      730.18
      ],
      "shin_l": [
-      625.25,
+      625.12,
       1000.7
      ],
      "foot_l": [
@@ -3430,8 +3642,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -0.54,
-     -23.84
+     -0.82,
+     -23.82
     ],
     "clamps": [],
     "violations": [],
@@ -3442,18 +3654,18 @@
      "neck_bend": 0.0,
      "head_bend": 0.0,
      "head_world": 0.0,
-     "clavicle_r_elevation": -2.212,
-     "upper_arm_r_abduction": 17.04,
-     "forearm_r_flexion": 42.361,
-     "hand_r_bend": -5.321,
-     "thigh_r_abduction": 7.478,
-     "knee_r_flexion": 7.414,
+     "clavicle_r_elevation": -1.329,
+     "upper_arm_r_abduction": 16.011,
+     "forearm_r_flexion": 40.439,
+     "hand_r_bend": -4.428,
+     "thigh_r_abduction": 7.509,
+     "knee_r_flexion": 7.534,
      "foot_r_world": 0.0,
-     "clavicle_l_elevation": -2.303,
-     "upper_arm_l_abduction": 11.154,
-     "forearm_l_flexion": 33.385,
-     "hand_l_bend": -2.232,
-     "thigh_l_abduction": 5.887,
+     "clavicle_l_elevation": -1.591,
+     "upper_arm_l_abduction": 10.202,
+     "forearm_l_flexion": 31.304,
+     "hand_l_bend": -1.102,
+     "thigh_l_abduction": 5.916,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -3475,7 +3687,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       450.41,
+       449.99,
        999.79
       ],
       "note": null
@@ -3497,7 +3709,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       625.25,
+       625.12,
        1000.7
       ],
       "note": null
@@ -3514,6 +3726,16 @@
        419.31,
        677.73
       ],
+      "elbow": [
+       369.93,
+       569.02
+      ],
+      "pole": [
+       -587.58,
+       561.36
+      ],
+      "status": "ok",
+      "flexion_deg": 40.44,
       "error_px": 0.0,
       "reachable": true
      },
@@ -3527,17 +3749,27 @@
        665.01,
        677.73
       ],
+      "elbow": [
+       706.49,
+       570.25
+      ],
+      "pole": [
+       1674.7,
+       562.6
+      ],
+      "status": "ok",
+      "flexion_deg": 31.3,
       "error_px": 0.0,
       "reachable": true
      }
     },
     "clavicle_elevation": {
-     "r": -2.212328224446722,
-     "l": -2.3029161763453434
+     "r": -1.3294869158011815,
+     "l": -1.5909033509105353
     },
     "com": [
-     542.12,
-     696.3
+     541.92,
+     696.23
     ]
    },
    "intent": {
@@ -3575,9 +3807,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 3.07,
-    "render_and_tears": 2045.2,
-    "total": 2068.8
+    "solve": 11.04,
+    "corrections": 0.21,
+    "switches": 1.9,
+    "render_and_tears": 1816.3,
+    "total": 1850.3
    }
   },
   "casual_walk@0.000": {
@@ -3609,7 +3843,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -3768,15 +4018,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -3904,12 +4178,12 @@
       727.2
      ],
      "shin_r": [
-      479.8,
-      998.76
+      479.85,
+      998.77
      ],
      "foot_r": [
       466.92,
-      1270.86
+      1270.87
      ],
      "clavicle_l": [
       601.1,
@@ -3965,8 +4239,8 @@
      "upper_arm_r_abduction": 10.32,
      "forearm_r_flexion": 4.241,
      "hand_r_bend": 7.843,
-     "thigh_r_abduction": 4.332,
-     "knee_r_flexion": 1.621,
+     "thigh_r_abduction": 4.321,
+     "knee_r_flexion": 1.6,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -2.729,
      "upper_arm_l_abduction": 7.14,
@@ -3989,13 +4263,13 @@
       ],
       "ankle": [
        466.92,
-       1270.86
+       1270.87
       ],
-      "error_px": 1.338,
-      "requested_minus_achieved_lift_px": -1.34,
+      "error_px": 1.336,
+      "requested_minus_achieved_lift_px": -1.33,
       "knee": [
-       479.8,
-       998.76
+       479.85,
+       998.77
       ],
       "note": "target out of reach by 1.3 px: leg straightened toward it"
      },
@@ -4088,9 +4362,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 0.0,
+     "stance_psi_r": 0.0,
+     "swing_u_r": null,
      "leg_forward_r": 1.0,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.5,
+     "swing_u_l": null,
      "leg_forward_l": -1.0,
      "arm_forward_r": -1.0,
      "arm_forward_l": 1.0,
@@ -4107,9 +4385,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 27.48,
-    "render_and_tears": 2804.9,
-    "total": 2872.2
+    "solve": 10.2,
+    "corrections": 0.17,
+    "switches": 0.13,
+    "render_and_tears": 2621.8,
+    "total": 2652.4
    }
   },
   "casual_walk@0.250": {
@@ -4141,7 +4421,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -4300,15 +4596,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -4620,9 +4940,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.25,
+     "swing_u_r": null,
      "leg_forward_r": 6.123233995736766e-17,
      "lift_l": 9.842248893891968,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.37500000000000006,
      "leg_forward_l": 6.123233995736766e-17,
      "arm_forward_r": 0.2763556485641137,
      "arm_forward_l": 0.27635564856411415,
@@ -4639,9 +4963,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 2.75,
-    "render_and_tears": 2919.0,
-    "total": 2942.8
+    "solve": 1.81,
+    "corrections": 0.19,
+    "switches": 0.15,
+    "render_and_tears": 2914.0,
+    "total": 2941.0
    }
   },
   "casual_walk@0.500": {
@@ -4672,7 +4998,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -4754,7 +5096,7 @@
       "threshold": 25.0,
       "pass": true,
       "meaning": "gait frames: CoM x outside the span of both ankles",
-      "detail": "CoM x 535.7, ankles 467..617"
+      "detail": "CoM x 535.6, ankles 467..617"
      },
      {
       "check": "exposed_gap_pairs",
@@ -4831,15 +5173,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -4989,8 +5355,8 @@
       726.86
      ],
      "shin_l": [
-      604.46,
-      998.05
+      604.41,
+      998.06
      ],
      "foot_l": [
       617.31,
@@ -5029,8 +5395,8 @@
      "upper_arm_l_abduction": 10.32,
      "forearm_l_flexion": 4.241,
      "hand_l_bend": 7.843,
-     "thigh_l_abduction": 4.329,
-     "knee_l_flexion": 1.621,
+     "thigh_l_abduction": 4.319,
+     "knee_l_flexion": 1.6,
      "foot_l_world": -0.0
     },
     "legs": {
@@ -5070,11 +5436,11 @@
        617.31,
        1269.7
       ],
-      "error_px": 2.807,
+      "error_px": 2.806,
       "requested_minus_achieved_lift_px": -2.8,
       "knee": [
-       604.46,
-       998.05
+       604.41,
+       998.06
       ],
       "note": "target out of reach by 2.8 px: leg straightened toward it"
      }
@@ -5145,9 +5511,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.5,
+     "swing_u_r": null,
      "leg_forward_r": -1.0,
      "lift_l": 0.0,
      "load_l": 0.0,
+     "stance_psi_l": 0.0,
+     "swing_u_l": null,
      "leg_forward_l": 1.0,
      "arm_forward_r": 1.0,
      "arm_forward_l": -1.0,
@@ -5164,9 +5534,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.76,
-    "render_and_tears": 2986.6,
-    "total": 3010.3
+    "solve": 2.52,
+    "corrections": 0.34,
+    "switches": 0.2,
+    "render_and_tears": 2665.0,
+    "total": 2688.2
    }
   },
   "casual_walk@0.750": {
@@ -5199,7 +5571,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -5358,15 +5746,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -5532,7 +5944,7 @@
       1001.2
      ],
      "foot_l": [
-      617.49,
+      617.48,
       1272.5
      ]
     },
@@ -5684,9 +6096,13 @@
     "channels": {
      "lift_r": 9.842248893891968,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.37500000000000006,
      "leg_forward_r": -1.8369701987210297e-16,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.25,
+     "swing_u_l": null,
      "leg_forward_l": 6.123233995736766e-17,
      "arm_forward_r": 0.27635564856411415,
      "arm_forward_l": 0.2763556485641137,
@@ -5703,9 +6119,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.73,
-    "render_and_tears": 2540.0,
-    "total": 2562.0
+    "solve": 1.67,
+    "corrections": 0.14,
+    "switches": 0.14,
+    "render_and_tears": 3371.3,
+    "total": 3396.0
    }
   },
   "running@0.000": {
@@ -5763,7 +6181,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -5922,15 +6356,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -6248,9 +6706,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.0,
+     "swing_u_r": null,
      "leg_forward_r": 1.0,
      "lift_l": 38.78190977911043,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.28571428571428575,
      "leg_forward_l": -1.0,
      "arm_forward_r": -1.0,
      "arm_forward_l": 1.0,
@@ -6267,9 +6729,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 9.57,
-    "render_and_tears": 2482.4,
-    "total": 2508.4
+    "solve": 10.83,
+    "corrections": 0.16,
+    "switches": 0.13,
+    "render_and_tears": 3085.3,
+    "total": 3116.5
    }
   },
   "running@0.125": {
@@ -6326,7 +6790,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -6485,15 +6965,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -6806,9 +7310,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.125,
+     "swing_u_r": null,
      "leg_forward_r": 0.7071067811865476,
      "lift_l": 54.01565259946742,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.46428571428571436,
      "leg_forward_l": -0.7071067811865475,
      "arm_forward_r": -0.5542055784415579,
      "arm_forward_l": 0.8323798272569187,
@@ -6825,9 +7333,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.27,
-    "render_and_tears": 2559.1,
-    "total": 2581.3
+    "solve": 1.91,
+    "corrections": 0.21,
+    "switches": 0.21,
+    "render_and_tears": 2422.7,
+    "total": 2445.7
    }
   },
   "running@0.250": {
@@ -6885,7 +7395,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -7044,15 +7570,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -7370,9 +7920,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.25,
+     "swing_u_r": null,
      "leg_forward_r": 6.123233995736766e-17,
      "lift_l": 47.57769209556289,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.6428571428571429,
      "leg_forward_l": 6.123233995736766e-17,
      "arm_forward_r": 0.2763556485641137,
      "arm_forward_l": 0.27635564856411415,
@@ -7389,9 +7943,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.86,
-    "render_and_tears": 2850.8,
-    "total": 2872.6
+    "solve": 1.62,
+    "corrections": 0.16,
+    "switches": 0.12,
+    "render_and_tears": 3322.0,
+    "total": 3343.7
    }
   },
   "running@0.375": {
@@ -7449,7 +8005,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -7608,15 +8180,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -7934,9 +8530,13 @@
     "channels": {
      "lift_r": 8.458056553379627,
      "load_r": 0.6835937499999999,
+     "stance_psi_r": null,
+     "swing_u_r": 0.10714285714285716,
      "leg_forward_r": -0.7071067811865475,
      "lift_l": 20.467755357858493,
      "load_l": 0.3164062500000001,
+     "stance_psi_l": null,
+     "swing_u_l": 0.8214285714285714,
      "leg_forward_l": 0.7071067811865476,
      "arm_forward_r": 0.8323798272569188,
      "arm_forward_l": -0.5542055784415578,
@@ -7953,9 +8553,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.5,
-    "render_and_tears": 3024.1,
-    "total": 3045.6
+    "solve": 1.64,
+    "corrections": 0.25,
+    "switches": 0.14,
+    "render_and_tears": 2504.9,
+    "total": 2531.7
    }
   },
   "running@0.500": {
@@ -8014,7 +8616,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -8173,15 +8791,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -8505,9 +9147,13 @@
     "channels": {
      "lift_r": 38.78190977911043,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.28571428571428575,
      "leg_forward_r": -1.0,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.0,
+     "swing_u_l": null,
      "leg_forward_l": 1.0,
      "arm_forward_r": 1.0,
      "arm_forward_l": -1.0,
@@ -8524,9 +9170,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.7,
-    "render_and_tears": 3198.4,
-    "total": 3225.6
+    "solve": 2.31,
+    "corrections": 0.26,
+    "switches": 0.17,
+    "render_and_tears": 2917.2,
+    "total": 2939.6
    }
   },
   "running@0.625": {
@@ -8583,7 +9231,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -8742,15 +9406,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -9063,9 +9751,13 @@
     "channels": {
      "lift_r": 54.01565259946742,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.46428571428571436,
      "leg_forward_r": -0.7071067811865477,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.125,
+     "swing_u_l": null,
      "leg_forward_l": 0.7071067811865476,
      "arm_forward_r": 0.8323798272569187,
      "arm_forward_l": -0.5542055784415579,
@@ -9082,9 +9774,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.96,
-    "render_and_tears": 2880.0,
-    "total": 2908.2
+    "solve": 1.56,
+    "corrections": 0.15,
+    "switches": 0.17,
+    "render_and_tears": 2545.8,
+    "total": 2567.8
    }
   },
   "running@0.750": {
@@ -9142,7 +9836,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -9301,15 +10011,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -9627,9 +10361,13 @@
     "channels": {
      "lift_r": 47.57769209556289,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.6428571428571429,
      "leg_forward_r": -1.8369701987210297e-16,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.25,
+     "swing_u_l": null,
      "leg_forward_l": 6.123233995736766e-17,
      "arm_forward_r": 0.27635564856411415,
      "arm_forward_l": 0.2763556485641137,
@@ -9646,9 +10384,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.38,
-    "render_and_tears": 2767.0,
-    "total": 2786.5
+    "solve": 1.69,
+    "corrections": 0.18,
+    "switches": 0.14,
+    "render_and_tears": 2922.7,
+    "total": 2945.7
    }
   },
   "running@0.875": {
@@ -9706,7 +10446,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -9865,15 +10621,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -10191,9 +10971,13 @@
     "channels": {
      "lift_r": 20.467755357858493,
      "load_r": 0.3164062500000001,
+     "stance_psi_r": null,
+     "swing_u_r": 0.8214285714285714,
      "leg_forward_r": 0.7071067811865474,
      "lift_l": 8.458056553379627,
      "load_l": 0.6835937499999999,
+     "stance_psi_l": null,
+     "swing_u_l": 0.10714285714285716,
      "leg_forward_l": -0.7071067811865475,
      "arm_forward_r": -0.5542055784415578,
      "arm_forward_l": 0.8323798272569188,
@@ -10210,9 +10994,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.27,
-    "render_and_tears": 2556.3,
-    "total": 2581.0
+    "solve": 1.61,
+    "corrections": 0.15,
+    "switches": 0.15,
+    "render_and_tears": 2671.6,
+    "total": 2693.4
    }
   },
   "running_fists_preview@0.000": {
@@ -10265,6 +11051,22 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 119 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 119 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -10282,7 +11084,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -10445,15 +11263,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -10771,9 +11613,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.0,
+     "swing_u_r": null,
      "leg_forward_r": 1.0,
      "lift_l": 38.78190977911043,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.28571428571428575,
      "leg_forward_l": -1.0,
      "arm_forward_r": -1.0,
      "arm_forward_l": 1.0,
@@ -10790,9 +11636,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 16.07,
-    "render_and_tears": 2827.9,
-    "total": 2872.1
+    "solve": 10.23,
+    "corrections": 0.14,
+    "switches": 0.13,
+    "render_and_tears": 2626.3,
+    "total": 2656.8
    }
   },
   "running_fists_preview@0.125": {
@@ -10845,6 +11693,22 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 118 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 118 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -10861,7 +11725,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -11024,15 +11904,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -11345,9 +12249,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.125,
+     "swing_u_r": null,
      "leg_forward_r": 0.7071067811865476,
      "lift_l": 54.01565259946742,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.46428571428571436,
      "leg_forward_l": -0.7071067811865475,
      "arm_forward_r": -0.5542055784415579,
      "arm_forward_l": 0.8323798272569187,
@@ -11364,9 +12272,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 2.34,
-    "render_and_tears": 2623.4,
-    "total": 2650.0
+    "solve": 1.58,
+    "corrections": 0.14,
+    "switches": 0.13,
+    "render_and_tears": 2788.2,
+    "total": 2812.2
    }
   },
   "running_fists_preview@0.250": {
@@ -11419,6 +12329,30 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 104 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 73 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 104 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -11436,7 +12370,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -11599,15 +12549,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -11931,9 +12905,13 @@
     "channels": {
      "lift_r": 0.0,
      "load_r": 1.0,
+     "stance_psi_r": 0.25,
+     "swing_u_r": null,
      "leg_forward_r": 6.123233995736766e-17,
      "lift_l": 47.57769209556289,
      "load_l": 0.0,
+     "stance_psi_l": null,
+     "swing_u_l": 0.6428571428571429,
      "leg_forward_l": 6.123233995736766e-17,
      "arm_forward_r": 0.2763556485641137,
      "arm_forward_l": 0.27635564856411415,
@@ -11950,9 +12928,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.63,
-    "render_and_tears": 2950.1,
-    "total": 3148.1
+    "solve": 1.6,
+    "corrections": 0.16,
+    "switches": 0.14,
+    "render_and_tears": 2682.2,
+    "total": 2872.1
    }
   },
   "running_fists_preview@0.375": {
@@ -12005,6 +12985,30 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 105 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 105 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 76 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -12022,7 +13026,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -12184,15 +13204,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -12510,9 +13554,13 @@
     "channels": {
      "lift_r": 8.458056553379627,
      "load_r": 0.6835937499999999,
+     "stance_psi_r": null,
+     "swing_u_r": 0.10714285714285716,
      "leg_forward_r": -0.7071067811865475,
      "lift_l": 20.467755357858493,
      "load_l": 0.3164062500000001,
+     "stance_psi_l": null,
+     "swing_u_l": 0.8214285714285714,
      "leg_forward_l": 0.7071067811865476,
      "arm_forward_r": 0.8323798272569188,
      "arm_forward_l": -0.5542055784415578,
@@ -12529,9 +13577,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 2.29,
-    "render_and_tears": 3083.0,
-    "total": 3109.7
+    "solve": 1.9,
+    "corrections": 0.13,
+    "switches": 0.11,
+    "render_and_tears": 2428.3,
+    "total": 2446.2
    }
   },
   "running_fists_preview@0.500": {
@@ -12584,6 +13634,22 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 119 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 119 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -12602,7 +13668,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -12764,15 +13846,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -13096,9 +14202,13 @@
     "channels": {
      "lift_r": 38.78190977911043,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.28571428571428575,
      "leg_forward_r": -1.0,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.0,
+     "swing_u_l": null,
      "leg_forward_l": 1.0,
      "arm_forward_r": 1.0,
      "arm_forward_l": -1.0,
@@ -13115,9 +14225,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 2.32,
-    "render_and_tears": 2926.4,
-    "total": 2953.8
+    "solve": 1.25,
+    "corrections": 0.12,
+    "switches": 0.12,
+    "render_and_tears": 2459.5,
+    "total": 2477.2
    }
   },
   "running_fists_preview@0.625": {
@@ -13170,6 +14282,22 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 118 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 118 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -13186,7 +14314,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -13348,15 +14492,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -13669,9 +14837,13 @@
     "channels": {
      "lift_r": 54.01565259946742,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.46428571428571436,
      "leg_forward_r": -0.7071067811865477,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.125,
+     "swing_u_l": null,
      "leg_forward_l": 0.7071067811865476,
      "arm_forward_r": 0.8323798272569187,
      "arm_forward_l": -0.5542055784415579,
@@ -13688,9 +14860,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.59,
-    "render_and_tears": 2689.7,
-    "total": 2720.3
+    "solve": 1.23,
+    "corrections": 0.11,
+    "switches": 0.18,
+    "render_and_tears": 2431.7,
+    "total": 2453.5
    }
   },
   "running_fists_preview@0.750": {
@@ -13743,6 +14917,30 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 104 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 104 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 73 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -13760,7 +14958,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -13922,15 +15136,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -14248,9 +15486,13 @@
     "channels": {
      "lift_r": 47.57769209556289,
      "load_r": 0.0,
+     "stance_psi_r": null,
+     "swing_u_r": 0.6428571428571429,
      "leg_forward_r": -1.8369701987210297e-16,
      "lift_l": 0.0,
      "load_l": 1.0,
+     "stance_psi_l": 0.25,
+     "swing_u_l": null,
      "leg_forward_l": 6.123233995736766e-17,
      "arm_forward_r": 0.27635564856411415,
      "arm_forward_l": 0.2763556485641137,
@@ -14267,9 +15509,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 1.99,
-    "render_and_tears": 2923.9,
-    "total": 2957.8
+    "solve": 1.67,
+    "corrections": 0.12,
+    "switches": 0.12,
+    "render_and_tears": 2898.5,
+    "total": 2921.3
    }
   },
   "running_fists_preview@0.875": {
@@ -14322,6 +15566,30 @@
        "r",
        "l"
       ]
+     },
+     {
+      "asset": "corrective:elbow_deep_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "deep elbow bend (inner-elbow drawing) triggered at 105 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 76 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 105 deg; band-rule deformation used instead"
      }
     ],
     "approved_assets_used": [],
@@ -14339,7 +15607,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "fist"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -14501,15 +15785,39 @@
    "hands": {
     "r": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     },
     "l": {
      "drawing": "fist",
+     "pose": "fist",
      "preferred": "fist",
+     "source": "auto",
      "pending_review": true,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "fist"
     }
    },
    "corrections": [
@@ -14827,9 +16135,13 @@
     "channels": {
      "lift_r": 20.467755357858493,
      "load_r": 0.3164062500000001,
+     "stance_psi_r": null,
+     "swing_u_r": 0.8214285714285714,
      "leg_forward_r": 0.7071067811865474,
      "lift_l": 8.458056553379627,
      "load_l": 0.6835937499999999,
+     "stance_psi_l": null,
+     "swing_u_l": 0.10714285714285716,
      "leg_forward_l": -0.7071067811865475,
      "arm_forward_r": -0.5542055784415578,
      "arm_forward_l": 0.8323798272569188,
@@ -14846,9 +16158,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 2.52,
-    "render_and_tears": 2987.8,
-    "total": 3018.4
+    "solve": 1.53,
+    "corrections": 0.14,
+    "switches": 0.18,
+    "render_and_tears": 2861.9,
+    "total": 2891.3
    }
   },
   "sitting": {
@@ -14884,7 +16198,56 @@
       ]
      }
     ],
-    "optional_assets": [],
+    "optional_assets": [
+     {
+      "asset": "corrective:hip_flex_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "hip flexion (front-view thigh drawing) triggered at 61 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:hip_flex_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "hip flexion (front-view thigh drawing) triggered at 61 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:knee_deep_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "knee flexion (bent-knee drawing) triggered at 90 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:knee_deep_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "knee flexion (bent-knee drawing) triggered at 89 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:trouser_fold_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "trouser folds at the knee triggered at 90 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:trouser_fold_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "trouser folds at the knee triggered at 89 deg; band-rule deformation used instead"
+     }
+    ],
     "approved_assets_used": [],
     "corrections": [
      "band:upper_arm_r",
@@ -14899,7 +16262,23 @@
     "alternative": "natural_squat",
     "front_view_limits": [],
     "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
-    "reason": "the action happens toward or away from the viewer; a front view needs extra drawings"
+    "reason": "the action happens toward or away from the viewer; a front view needs extra drawings",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "palm_down"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "palm_down"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -14981,7 +16360,7 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.1, support 267.4..817.8"
+      "detail": "CoM x 541.9, support 267.4..817.8"
      },
      {
       "check": "exposed_gap_pairs",
@@ -15025,7 +16404,7 @@
      },
      {
       "check": "folded_fraction",
-      "value": 0.0332,
+      "value": 0.0333,
       "threshold": 0.03,
       "pass": false,
       "meaning": "max share of a layer folded (inner crease, det <= 0.05)",
@@ -15033,7 +16412,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0696,
+      "value": 0.0709,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -15048,11 +16427,11 @@
     "warnings": [
      "stretched_fraction 0.0502 > 0.005 (layer thigh_l)",
      "compressed_fraction 0.0817 > 0.06 (layer thigh_r)",
-     "folded_fraction 0.0332 > 0.03 (layer thigh_l)",
-     "layer_area_change 0.0696 > 0.04 (layer thigh_l)"
+     "folded_fraction 0.0333 > 0.03 (layer thigh_l)",
+     "layer_area_change 0.0709 > 0.04 (layer thigh_l)"
     ],
     "review_items": [
-     "5287 unreviewed generated pixels visible"
+     "5291 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -15060,15 +16439,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "palm_down",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "palm_down hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "palm_down"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "palm_down",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "palm_down hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "palm_down"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -15112,12 +16515,12 @@
      "rule": "band:thigh_l",
      "region": "hip / trouser top",
      "driver_deg": 43.1,
-     "band_scale": 1.383
+     "band_scale": 1.384
     },
     {
      "rule": "band:shin_l",
      "region": "knee / trouser fold",
-     "driver_deg": 88.8,
+     "driver_deg": 88.7,
      "band_scale": 1.7
     }
    ],
@@ -15152,76 +16555,76 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      539.5,
-      901.32
+      539.29,
+      901.27
      ],
      "spine": [
-      538.9,
-      788.62
+      538.69,
+      788.57
      ],
      "chest": [
-      538.4,
-      675.92
+      538.19,
+      675.87
      ],
      "neck": [
-      537.8,
-      559.72
+      537.59,
+      559.67
      ],
      "head": [
-      538.1,
-      470.12
+      537.89,
+      470.07
      ],
      "clavicle_r": [
-      498.6,
-      600.52
+      498.39,
+      600.47
      ],
      "upper_arm_r": [
-      404.19,
-      619.34
+      403.99,
+      619.28
      ],
      "forearm_r": [
-      360.06,
-      740.59
+      359.86,
+      740.53
      ],
      "hand_r": [
-      419.76,
-      843.99
+      419.56,
+      843.93
      ],
      "thigh_r": [
-      483.7,
-      901.12
+      483.49,
+      901.07
      ],
      "shin_r": [
-      246.5,
-      1034.95
+      246.37,
+      1035.02
      ],
      "foot_r": [
       380.36,
       1272.2
      ],
      "clavicle_l": [
-      582.5,
-      603.22
+      582.29,
+      603.17
      ],
      "upper_arm_l": [
-      682.05,
-      621.52
+      681.84,
+      621.46
      ],
      "forearm_l": [
-      724.72,
-      738.76
+      724.51,
+      738.7
      ],
      "hand_l": [
-      667.12,
-      838.52
+      666.91,
+      838.46
      ],
      "thigh_l": [
-      595.2,
-      901.52
+      594.99,
+      901.47
      ],
      "shin_l": [
-      833.16,
-      1033.2
+      832.98,
+      1033.1
      ],
      "foot_l": [
       703.96,
@@ -15237,8 +16640,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -2.7,
-     147.52
+     -2.91,
+     147.47
     ],
     "clamps": [],
     "violations": [],
@@ -15253,15 +16656,15 @@
      "upper_arm_r_abduction": 20.0,
      "forearm_r_flexion": 50.0,
      "hand_r_bend": 8.0,
-     "thigh_r_abduction": 60.568,
+     "thigh_r_abduction": 60.536,
      "knee_r_flexion": 90.0,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -3.15,
      "upper_arm_l_abduction": 20.0,
      "forearm_l_flexion": 50.0,
      "hand_l_bend": 8.0,
-     "thigh_l_abduction": 61.041,
-     "knee_l_flexion": 89.408,
+     "thigh_l_abduction": 61.051,
+     "knee_l_flexion": 89.374,
      "foot_l_world": 0.0
     },
     "legs": {
@@ -15282,8 +16685,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       246.5,
-       1034.95
+       246.37,
+       1035.02
       ],
       "note": null
      },
@@ -15304,8 +16707,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       833.16,
-       1033.2
+       832.98,
+       1033.1
       ],
       "note": null
      }
@@ -15323,8 +16726,8 @@
      "l": -3.15
     },
     "com": [
-     542.09,
-     818.13
+     541.92,
+     818.09
     ]
    },
    "intent": {
@@ -15361,9 +16764,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 2.93,
-    "render_and_tears": 2048.9,
-    "total": 2071.7
+    "solve": 4.75,
+    "corrections": 0.23,
+    "switches": 0.31,
+    "render_and_tears": 2240.5,
+    "total": 2284.0
    }
   },
   "natural_squat": {
@@ -15380,7 +16785,72 @@
    "feasibility": {
     "status": "SUPPORTED_WITH_CORRECTIONS",
     "missing": [],
-    "optional_assets": [],
+    "optional_assets": [
+     {
+      "asset": "corrective:sleeve_crease_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 62 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:sleeve_crease_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "sleeve creases triggered at 62 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:hip_flex_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "hip flexion (front-view thigh drawing) triggered at 46 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:hip_flex_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "hip flexion (front-view thigh drawing) triggered at 46 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:knee_deep_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "knee flexion (bent-knee drawing) triggered at 74 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:knee_deep_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "knee flexion (bent-knee drawing) triggered at 73 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:trouser_fold_r",
+      "sides": [
+       "r"
+      ],
+      "state": "missing",
+      "why": "trouser folds at the knee triggered at 74 deg; band-rule deformation used instead"
+     },
+     {
+      "asset": "corrective:trouser_fold_l",
+      "sides": [
+       "l"
+      ],
+      "state": "missing",
+      "why": "trouser folds at the knee triggered at 73 deg; band-rule deformation used instead"
+     }
+    ],
     "approved_assets_used": [],
     "corrections": [
      "band:upper_arm_r",
@@ -15394,7 +16864,8 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": []
    },
    "quality": {
     "checks": [
@@ -15476,7 +16947,7 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.1, support 303.8..781.4"
+      "detail": "CoM x 541.9, support 303.8..781.4"
      },
      {
       "check": "exposed_gap_pairs",
@@ -15488,7 +16959,7 @@
      },
      {
       "check": "visible_seam_pairs",
-      "value": 11.0,
+      "value": 10.0,
       "threshold": 15.0,
       "pass": true,
       "meaning": "torn pairs where one torn layer is on top (visible cut)",
@@ -15496,7 +16967,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 11.0,
+      "value": 10.0,
       "threshold": 12.0,
       "pass": true,
       "meaning": "torn pairs on dark outline pixels",
@@ -15528,7 +16999,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.054,
+      "value": 0.0533,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -15543,10 +17014,10 @@
     "warnings": [
      "stretched_fraction 0.0185 > 0.005 (layer thigh_l)",
      "compressed_fraction 0.0793 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.054 > 0.04 (layer neck)"
+     "layer_area_change 0.0533 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5246 unreviewed generated pixels visible"
+     "5250 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -15554,15 +17025,31 @@
    "hands": {
     "r": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     },
     "l": {
      "drawing": "open",
+     "pose": "open_palm",
      "preferred": "open",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": null,
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     }
     }
    },
    "corrections": [
@@ -15646,76 +17133,76 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      539.62,
-      842.4
+      539.4,
+      842.43
      ],
      "spine": [
-      539.02,
-      729.7
+      538.8,
+      729.73
      ],
      "chest": [
-      538.52,
-      617.0
+      538.3,
+      617.03
      ],
      "neck": [
-      537.92,
-      500.8
+      537.7,
+      500.83
      ],
      "head": [
-      538.22,
-      411.2
+      538.0,
+      411.23
      ],
      "clavicle_r": [
-      498.72,
-      541.6
+      498.5,
+      541.63
      ],
      "upper_arm_r": [
-      403.66,
-      556.81
+      403.45,
+      556.84
      ],
      "forearm_r": [
-      351.18,
-      674.69
+      350.96,
+      674.72
      ],
      "hand_r": [
-      424.69,
-      768.78
+      424.47,
+      768.81
      ],
      "thigh_r": [
-      483.82,
-      842.2
+      483.6,
+      842.23
      ],
      "shin_r": [
-      288.42,
-      1031.92
+      288.26,
+      1032.01
      ],
      "foot_r": [
-      416.77,
+      416.76,
       1272.2
      ],
      "clavicle_l": [
-      582.62,
-      544.3
+      582.4,
+      544.33
      ],
      "upper_arm_l": [
-      682.79,
-      558.8
+      682.57,
+      558.83
      ],
      "forearm_l": [
-      733.53,
-      672.77
+      733.31,
+      672.8
      ],
      "hand_l": [
-      662.61,
-      763.55
+      662.39,
+      763.58
      ],
      "thigh_l": [
-      595.32,
-      842.6
+      595.1,
+      842.63
      ],
      "shin_l": [
-      791.84,
-      1030.61
+      791.71,
+      1030.54
      ],
      "foot_l": [
       667.55,
@@ -15731,8 +17218,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -2.58,
-     88.6
+     -2.8,
+     88.63
     ],
     "clamps": [],
     "violations": [],
@@ -15747,15 +17234,15 @@
      "upper_arm_r_abduction": 24.0,
      "forearm_r_flexion": 62.0,
      "hand_r_bend": 8.0,
-     "thigh_r_abduction": 45.844,
-     "knee_r_flexion": 73.952,
-     "foot_r_world": -0.0,
+     "thigh_r_abduction": 45.827,
+     "knee_r_flexion": 73.974,
+     "foot_r_world": 0.0,
      "clavicle_l_elevation": -0.97,
      "upper_arm_l_abduction": 24.0,
      "forearm_l_flexion": 62.0,
      "hand_l_bend": 8.0,
-     "thigh_l_abduction": 46.268,
-     "knee_l_flexion": 73.462,
+     "thigh_l_abduction": 46.295,
+     "knee_l_flexion": 73.459,
      "foot_l_world": 0.0
     },
     "legs": {
@@ -15776,8 +17263,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       288.42,
-       1031.92
+       288.26,
+       1032.01
       ],
       "note": null
      },
@@ -15798,8 +17285,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       791.84,
-       1030.61
+       791.71,
+       1030.54
       ],
       "note": null
      }
@@ -15817,8 +17304,8 @@
      "l": -0.9699999999999998
     },
     "com": [
-     542.1,
-     774.81
+     541.93,
+     774.83
     ]
    },
    "intent": {
@@ -15856,9 +17343,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 2.56,
-    "render_and_tears": 1778.0,
-    "total": 1798.9
+    "solve": 7.09,
+    "corrections": 0.34,
+    "switches": 0.17,
+    "render_and_tears": 2478.4,
+    "total": 2514.8
    }
   },
   "side_lean": {
@@ -15891,7 +17380,23 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -15973,11 +17478,11 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 514.0, support 348.3..736.9"
+      "detail": "CoM x 513.9, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
-      "value": 26.0,
+      "value": 24.0,
       "threshold": 10.0,
       "pass": false,
       "meaning": "rest-adjacent pixel pairs torn apart where the background shows",
@@ -15993,7 +17498,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 21.0,
+      "value": 19.0,
       "threshold": 12.0,
       "pass": false,
       "meaning": "torn pairs on dark outline pixels",
@@ -16025,7 +17530,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0546,
+      "value": 0.0549,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -16038,13 +17543,13 @@
      "all_pass": false
     },
     "warnings": [
-     "exposed_gap_pairs 26.0 > 10.0",
-     "outline_break_pairs 21.0 > 12.0",
+     "exposed_gap_pairs 24.0 > 10.0",
+     "outline_break_pairs 19.0 > 12.0",
      "compressed_fraction 0.0897 > 0.06 (layer upper_arm_l)",
-     "layer_area_change 0.0546 > 0.04 (layer neck)"
+     "layer_area_change 0.0549 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5331 unreviewed generated pixels visible"
+     "5326 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -16052,15 +17557,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -16115,7 +17644,7 @@
     {
      "rule": "band:thigh_l",
      "region": "hip / trouser top",
-     "driver_deg": 12.3,
+     "driver_deg": 12.2,
      "band_scale": 1.109
     },
     {
@@ -16156,75 +17685,75 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      532.81,
-      729.81
+      532.63,
+      729.82
      ],
      "spine": [
-      532.21,
-      617.11
+      532.03,
+      617.12
      ],
      "chest": [
-      516.03,
-      505.58
+      515.85,
+      505.59
      ],
      "neck": [
-      487.34,
-      392.98
+      487.16,
+      392.99
      ],
      "head": [
-      477.03,
-      303.97
+      476.85,
+      303.98
      ],
      "clavicle_r": [
-      459.18,
-      442.05
+      459.0,
+      442.06
      ],
      "upper_arm_r": [
-      372.29,
-      483.49
+      372.11,
+      483.5
      ],
      "forearm_r": [
-      338.89,
-      608.12
+      338.71,
+      608.13
      ],
      "hand_r": [
-      332.64,
-      727.36
+      332.46,
+      727.37
      ],
      "thigh_r": [
-      477.01,
-      729.61
+      476.83,
+      729.62
      ],
      "shin_r": [
-      446.2,
-      1000.21
+      446.02,
+      1000.22
      ],
      "foot_r": [
       461.26,
       1272.2
      ],
      "clavicle_l": [
-      541.24,
-      424.37
+      541.06,
+      424.38
      ],
      "upper_arm_l": [
-      642.33,
-      419.39
+      642.15,
+      419.4
      ],
      "forearm_l": [
-      648.86,
-      543.98
+      648.68,
+      543.99
      ],
      "hand_l": [
-      630.84,
-      657.76
+      630.66,
+      657.77
      ],
      "thigh_l": [
-      588.51,
-      730.01
+      588.33,
+      730.02
      ],
      "shin_l": [
-      615.26,
+      615.17,
       1000.66
      ],
      "foot_l": [
@@ -16241,8 +17770,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -9.39,
-     -23.99
+     -9.57,
+     -23.98
     ],
     "clamps": [],
     "violations": [],
@@ -16257,14 +17786,14 @@
      "upper_arm_r_abduction": 15.0,
      "forearm_r_flexion": 12.0,
      "hand_r_bend": 4.0,
-     "thigh_r_abduction": 6.496,
-     "knee_r_flexion": 9.664,
+     "thigh_r_abduction": 6.498,
+     "knee_r_flexion": 9.706,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -3.915,
      "upper_arm_l_abduction": 3.0,
      "forearm_l_flexion": 12.0,
      "hand_l_bend": 4.0,
-     "thigh_l_abduction": 5.644,
+     "thigh_l_abduction": 5.663,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -16286,8 +17815,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       446.2,
-       1000.21
+       446.02,
+       1000.22
       ],
       "note": null
      },
@@ -16308,7 +17837,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       615.26,
+       615.17,
        1000.66
       ],
       "note": null
@@ -16327,8 +17856,8 @@
      "l": -3.915
     },
     "com": [
-     514.05,
-     699.39
+     513.9,
+     699.4
     ]
    },
    "intent": {
@@ -16363,9 +17892,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 3.62,
-    "render_and_tears": 2859.9,
-    "total": 2883.9
+    "solve": 5.58,
+    "corrections": 0.31,
+    "switches": 0.28,
+    "render_and_tears": 2750.3,
+    "total": 2779.7
    }
   },
   "leaning_forward": {
@@ -16409,7 +17940,23 @@
     "alternative": "side_lean",
     "front_view_limits": [],
     "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
-    "reason": "the action happens toward or away from the viewer; a front view needs extra drawings"
+    "reason": "the action happens toward or away from the viewer; a front view needs extra drawings",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -16491,11 +18038,11 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 514.0, support 348.3..736.9"
+      "detail": "CoM x 513.9, support 348.3..736.9"
      },
      {
       "check": "exposed_gap_pairs",
-      "value": 26.0,
+      "value": 24.0,
       "threshold": 10.0,
       "pass": false,
       "meaning": "rest-adjacent pixel pairs torn apart where the background shows",
@@ -16511,7 +18058,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 21.0,
+      "value": 19.0,
       "threshold": 12.0,
       "pass": false,
       "meaning": "torn pairs on dark outline pixels",
@@ -16543,7 +18090,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0546,
+      "value": 0.0549,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -16556,13 +18103,13 @@
      "all_pass": false
     },
     "warnings": [
-     "exposed_gap_pairs 26.0 > 10.0",
-     "outline_break_pairs 21.0 > 12.0",
+     "exposed_gap_pairs 24.0 > 10.0",
+     "outline_break_pairs 19.0 > 12.0",
      "compressed_fraction 0.0897 > 0.06 (layer upper_arm_l)",
-     "layer_area_change 0.0546 > 0.04 (layer neck)"
+     "layer_area_change 0.0549 > 0.04 (layer neck)"
     ],
     "review_items": [
-     "5331 unreviewed generated pixels visible"
+     "5326 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -16570,15 +18117,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -16633,7 +18204,7 @@
     {
      "rule": "band:thigh_l",
      "region": "hip / trouser top",
-     "driver_deg": 12.3,
+     "driver_deg": 12.2,
      "band_scale": 1.109
     },
     {
@@ -16674,75 +18245,75 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      532.81,
-      729.81
+      532.63,
+      729.82
      ],
      "spine": [
-      532.21,
-      617.11
+      532.03,
+      617.12
      ],
      "chest": [
-      516.03,
-      505.58
+      515.85,
+      505.59
      ],
      "neck": [
-      487.34,
-      392.98
+      487.16,
+      392.99
      ],
      "head": [
-      477.03,
-      303.97
+      476.85,
+      303.98
      ],
      "clavicle_r": [
-      459.18,
-      442.05
+      459.0,
+      442.06
      ],
      "upper_arm_r": [
-      372.29,
-      483.49
+      372.11,
+      483.5
      ],
      "forearm_r": [
-      338.89,
-      608.12
+      338.71,
+      608.13
      ],
      "hand_r": [
-      332.64,
-      727.36
+      332.46,
+      727.37
      ],
      "thigh_r": [
-      477.01,
-      729.61
+      476.83,
+      729.62
      ],
      "shin_r": [
-      446.2,
-      1000.21
+      446.02,
+      1000.22
      ],
      "foot_r": [
       461.26,
       1272.2
      ],
      "clavicle_l": [
-      541.24,
-      424.37
+      541.06,
+      424.38
      ],
      "upper_arm_l": [
-      642.33,
-      419.39
+      642.15,
+      419.4
      ],
      "forearm_l": [
-      648.86,
-      543.98
+      648.68,
+      543.99
      ],
      "hand_l": [
-      630.84,
-      657.76
+      630.66,
+      657.77
      ],
      "thigh_l": [
-      588.51,
-      730.01
+      588.33,
+      730.02
      ],
      "shin_l": [
-      615.26,
+      615.17,
       1000.66
      ],
      "foot_l": [
@@ -16759,8 +18330,8 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -9.39,
-     -23.99
+     -9.57,
+     -23.98
     ],
     "clamps": [],
     "violations": [],
@@ -16775,14 +18346,14 @@
      "upper_arm_r_abduction": 15.0,
      "forearm_r_flexion": 12.0,
      "hand_r_bend": 4.0,
-     "thigh_r_abduction": 6.496,
-     "knee_r_flexion": 9.664,
+     "thigh_r_abduction": 6.498,
+     "knee_r_flexion": 9.706,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -3.915,
      "upper_arm_l_abduction": 3.0,
      "forearm_l_flexion": 12.0,
      "hand_l_bend": 4.0,
-     "thigh_l_abduction": 5.644,
+     "thigh_l_abduction": 5.663,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -16804,8 +18375,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       446.2,
-       1000.21
+       446.02,
+       1000.22
       ],
       "note": null
      },
@@ -16826,7 +18397,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       615.26,
+       615.17,
        1000.66
       ],
       "note": null
@@ -16845,8 +18416,8 @@
      "l": -3.915
     },
     "com": [
-     514.05,
-     699.39
+     513.9,
+     699.4
     ]
    },
    "intent": {
@@ -16883,9 +18454,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 3.75,
-    "render_and_tears": 2731.2,
-    "total": 2751.4
+    "solve": 4.9,
+    "corrections": 0.19,
+    "switches": 0.14,
+    "render_and_tears": 2534.4,
+    "total": 2559.4
    }
   },
   "hands_at_sides": {
@@ -16916,13 +18489,29 @@
     ],
     "alternative": null,
     "front_view_limits": [],
-    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose"
+    "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
      {
       "check": "bone_length_rel",
-      "value": 0.0,
+      "value": 0.0001,
       "threshold": 0.002,
       "pass": true,
       "meaning": "max relative change of any bone length (rigid bones: exact)",
@@ -16998,11 +18587,11 @@
       "threshold": 0.0,
       "pass": true,
       "meaning": "static poses: CoM x outside the planted shoes' extent",
-      "detail": "CoM x 542.0, support 362.2..722.9"
+      "detail": "CoM x 541.9, support 362.2..722.9"
      },
      {
       "check": "exposed_gap_pairs",
-      "value": 15.0,
+      "value": 14.0,
       "threshold": 10.0,
       "pass": false,
       "meaning": "rest-adjacent pixel pairs torn apart where the background shows",
@@ -17018,7 +18607,7 @@
      },
      {
       "check": "outline_break_pairs",
-      "value": 15.0,
+      "value": 14.0,
       "threshold": 12.0,
       "pass": false,
       "meaning": "torn pairs on dark outline pixels",
@@ -17050,7 +18639,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.059,
+      "value": 0.0589,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -17063,10 +18652,10 @@
      "all_pass": false
     },
     "warnings": [
-     "exposed_gap_pairs 15.0 > 10.0",
-     "outline_break_pairs 15.0 > 12.0",
+     "exposed_gap_pairs 14.0 > 10.0",
+     "outline_break_pairs 14.0 > 12.0",
      "compressed_fraction 0.0888 > 0.06 (layer upper_arm_r)",
-     "layer_area_change 0.059 > 0.04 (layer upper_arm_r)"
+     "layer_area_change 0.0589 > 0.04 (layer upper_arm_r)"
     ],
     "review_items": [
      "5335 unreviewed generated pixels visible"
@@ -17077,15 +18666,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -17169,75 +18782,75 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      540.82,
+      540.7,
       728.72
      ],
      "spine": [
-      540.22,
+      540.1,
       616.02
      ],
      "chest": [
-      539.72,
+      539.6,
       503.32
      ],
      "neck": [
-      539.12,
+      539.0,
       387.12
      ],
      "head": [
-      539.42,
+      539.3,
       297.52
      ],
      "clavicle_r": [
-      499.92,
+      499.8,
       427.92
      ],
      "upper_arm_r": [
-      406.93,
+      406.81,
       452.82
      ],
      "forearm_r": [
-      397.93,
-      581.53
+      397.81,
+      581.54
      ],
      "hand_r": [
-      400.01,
-      700.91
+      399.9,
+      700.92
      ],
      "thigh_r": [
-      485.02,
+      484.9,
       728.52
      ],
      "shin_r": [
-      463.79,
-      1000.03
+      463.7,
+      1000.04
      ],
      "foot_r": [
       475.2,
       1272.2
      ],
      "clavicle_l": [
-      583.82,
+      583.7,
       430.62
      ],
      "upper_arm_l": [
-      681.97,
-      455.33
+      681.85,
+      455.34
      ],
      "forearm_l": [
-      690.67,
+      690.55,
       579.79
      ],
      "hand_l": [
-      688.66,
+      688.54,
       694.97
      ],
      "thigh_l": [
-      596.52,
+      596.4,
       728.92
      ],
      "shin_l": [
-      609.94,
+      609.88,
       1000.55
      ],
      "foot_l": [
@@ -17254,7 +18867,7 @@
      "l": true
     },
     "pelvis_shift_px": [
-     -1.38,
+     -1.5,
      -25.08
     ],
     "clamps": [],
@@ -17270,14 +18883,14 @@
      "upper_arm_r_abduction": 4.0,
      "forearm_r_flexion": 5.0,
      "hand_r_bend": 3.0,
-     "thigh_r_abduction": 4.47,
-     "knee_r_flexion": 6.869,
+     "thigh_r_abduction": 4.466,
+     "knee_r_flexion": 6.886,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -6.87,
      "upper_arm_l_abduction": 4.0,
      "forearm_l_flexion": 5.0,
      "hand_l_bend": 3.0,
-     "thigh_l_abduction": 2.828,
+     "thigh_l_abduction": 2.84,
      "knee_l_flexion": 3.0,
      "foot_l_world": 0.0
     },
@@ -17299,8 +18912,8 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       463.79,
-       1000.03
+       463.7,
+       1000.04
       ],
       "note": null
      },
@@ -17321,7 +18934,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       609.94,
+       609.88,
        1000.55
       ],
       "note": null
@@ -17340,7 +18953,7 @@
      "l": -6.869999999999999
     },
     "com": [
-     542.01,
+     541.92,
      698.53
     ]
    },
@@ -17379,9 +18992,11 @@
     "notes": []
    },
    "timing_ms": {
-    "solve": 2.89,
-    "render_and_tears": 1897.7,
-    "total": 1921.8
+    "solve": 4.0,
+    "corrections": 0.14,
+    "switches": 0.12,
+    "render_and_tears": 1826.9,
+    "total": 1851.0
    }
   },
   "leaning_backward": {
@@ -17425,7 +19040,23 @@
     "alternative": "side_lean",
     "front_view_limits": [],
     "rule": "pending-review artwork never counts as approved; approve it in the editor to unlock the pose",
-    "reason": "the action happens toward or away from the viewer; a front view needs extra drawings"
+    "reason": "the action happens toward or away from the viewer; a front view needs extra drawings",
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "relaxed"
+      ],
+      "shown": "open_palm"
+     }
+    ]
    },
    "quality": {
     "checks": [
@@ -17559,7 +19190,7 @@
      },
      {
       "check": "layer_area_change",
-      "value": 0.0659,
+      "value": 0.0657,
       "threshold": 0.04,
       "pass": false,
       "meaning": "max |posed/rest - 1| of a layer's opaque area, layers > 3000 px (proportions)",
@@ -17576,10 +19207,10 @@
      "outline_break_pairs 23.0 > 12.0",
      "compressed_fraction 0.1098 > 0.06 (layer upper_arm_r)",
      "folded_fraction 0.0318 > 0.03 (layer upper_arm_r)",
-     "layer_area_change 0.0659 > 0.04 (layer upper_arm_r)"
+     "layer_area_change 0.0657 > 0.04 (layer upper_arm_r)"
     ],
     "review_items": [
-     "5270 unreviewed generated pixels visible"
+     "5273 unreviewed generated pixels visible"
     ],
     "artistic_review_required": true,
     "visual_quality": "UNRATED: automated checks cannot judge appeal; review the render"
@@ -17587,15 +19218,39 @@
    "hands": {
     "r": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     },
     "l": {
      "drawing": "open",
-     "preferred": "open",
+     "pose": "open_palm",
+     "preferred": "relaxed",
+     "source": "auto",
      "pending_review": false,
-     "note": null
+     "note": "relaxed hand is missing: using 'open'",
+     "needs_artwork": null,
+     "offset": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "rot": 0.0
+     },
+     "missing_preferred": [
+      "relaxed"
+     ],
+     "fallback": "open_palm"
     }
    },
    "corrections": [
@@ -17627,7 +19282,7 @@
      "rule": "band:thigh_r",
      "region": "hip / trouser top",
      "driver_deg": 13.2,
-     "band_scale": 1.117
+     "band_scale": 1.118
     },
     {
      "rule": "band:shin_r",
@@ -17691,47 +19346,47 @@
    "solve": {
     "joints_posed": {
      "pelvis": [
-      548.54,
+      548.61,
       729.04
      ],
      "spine": [
-      547.94,
+      548.01,
       616.34
      ],
      "chest": [
-      563.13,
-      504.67
+      563.2,
+      504.66
      ],
      "neck": [
-      590.65,
+      590.73,
       391.77
      ],
      "head": [
-      601.56,
+      601.63,
       302.84
      ],
      "clavicle_r": [
-      542.75,
+      542.82,
       421.88
      ],
      "upper_arm_r": [
-      446.54,
+      446.61,
       418.58
      ],
      "forearm_r": [
-      439.79,
+      439.86,
       547.43
      ],
      "hand_r": [
-      458.46,
+      458.54,
       665.36
      ],
      "thigh_r": [
-      492.74,
+      492.81,
       728.84
      ],
      "shin_r": [
-      465.57,
+      465.69,
       999.83
      ],
      "foot_r": [
@@ -17739,27 +19394,27 @@
       1272.2
      ],
      "clavicle_l": [
-      623.5,
-      444.8
+      623.57,
+      444.79
      ],
      "upper_arm_l": [
-      715.5,
+      715.57,
       486.99
      ],
      "forearm_l": [
-      747.79,
+      747.86,
       607.5
      ],
      "hand_l": [
-      753.82,
+      753.89,
       722.54
      ],
      "thigh_l": [
-      604.24,
+      604.31,
       729.24
      ],
      "shin_l": [
-      623.13,
+      623.17,
       1000.55
      ],
      "foot_l": [
@@ -17776,7 +19431,7 @@
      "l": true
     },
     "pelvis_shift_px": [
-     6.34,
+     6.41,
      -24.76
     ],
     "clamps": [],
@@ -17792,14 +19447,14 @@
      "upper_arm_r_abduction": 3.0,
      "forearm_r_flexion": 12.0,
      "hand_r_bend": 4.0,
-     "thigh_r_abduction": 5.724,
-     "knee_r_flexion": 4.817,
+     "thigh_r_abduction": 5.715,
+     "knee_r_flexion": 4.784,
      "foot_r_world": 0.0,
      "clavicle_l_elevation": -3.375,
      "upper_arm_l_abduction": 15.0,
      "forearm_l_flexion": 12.0,
      "hand_l_bend": 4.0,
-     "thigh_l_abduction": 3.984,
+     "thigh_l_abduction": 3.977,
      "knee_l_flexion": 4.0,
      "foot_l_world": 0.0
     },
@@ -17821,7 +19476,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       465.57,
+       465.69,
        999.83
       ],
       "note": null
@@ -17843,7 +19498,7 @@
       "error_px": 0.0,
       "requested_minus_achieved_lift_px": 0.0,
       "knee": [
-       623.13,
+       623.17,
        1000.55
       ],
       "note": null
@@ -17862,7 +19517,7 @@
      "l": -3.375
     },
     "com": [
-     569.85,
+     569.91,
      699.78
     ]
    },
@@ -17900,9 +19555,11 @@
     ]
    },
    "timing_ms": {
-    "solve": 3.65,
-    "render_and_tears": 2598.7,
-    "total": 2623.3
+    "solve": 3.14,
+    "corrections": 0.12,
+    "switches": 0.2,
+    "render_and_tears": 2082.4,
+    "total": 2105.9
    }
   }
  },
@@ -18231,6 +19888,168 @@
    "airborne_samples": 24,
    "artistic_review_required": true
   },
+  "casual_walk": {
+   "checks": [
+    {
+     "check": "loop_closure_px",
+     "value": 0.0,
+     "threshold": 0.5,
+     "pass": true,
+     "meaning": "max joint distance between phase 0 and phase 1 of a cycle (minus travel)",
+     "detail": ""
+    },
+    {
+     "check": "continuity_spike_px",
+     "value": 3.1725,
+     "threshold": 4.0,
+     "pass": true,
+     "meaning": "max jump of a joint: its step minus the larger neighbouring step (64 samples)",
+     "detail": "joint shin_r at sample 32: step 5.46 px vs neighbours 2.29 px; fastest joint step 8.94 px"
+    },
+    {
+     "check": "foot_slide_px",
+     "value": 0.46,
+     "threshold": 1.0,
+     "pass": true,
+     "meaning": "weight-bearing ankle drift in world space within one stance (load >= 0.8)",
+     "detail": ""
+    },
+    {
+     "check": "gait_ground_penetration_px",
+     "value": 0.0,
+     "threshold": 1.0,
+     "pass": true,
+     "meaning": "ankle below its standing height in any sample",
+     "detail": ""
+    },
+    {
+     "check": "coordination_corr",
+     "value": 0.9884,
+     "threshold": 0.9,
+     "pass": true,
+     "meaning": "best corr(solved forearm swing, opposite leg) within a lag of +/-0.15 cycle",
+     "detail": "right arm vs left leg 0.988 (lag 0.047), left arm vs right leg 0.988 (lag 0.047)"
+    },
+    {
+     "check": "com_drift_px",
+     "value": 1.74,
+     "threshold": 6.0,
+     "pass": true,
+     "meaning": "in-place cycle: mean CoM x vs the rest midline",
+     "detail": ""
+    },
+    {
+     "check": "jerk_ratio",
+     "value": 42.2727,
+     "threshold": 60.0,
+     "pass": true,
+     "meaning": "upper body relative to the pelvis: max |3rd difference| of a joint path over its range x (2 pi / N)^3 (a pure sine = 1; foot impacts are excluded on purpose)",
+     "detail": "joint chest at sample 31"
+    },
+    {
+     "check": "arm_overlap_cycles",
+     "value": 0.0469,
+     "threshold": 0.02,
+     "pass": true,
+     "meaning": "lag of elbow flexion behind the planned arm swing (cycle fraction); 0 = lockstep",
+     "detail": "right 0.047, left 0.047 cycle"
+    },
+    {
+     "check": "hand_arc_quotient",
+     "value": 0.0987,
+     "threshold": 0.04,
+     "pass": true,
+     "meaning": "hand path (relative to the chest) area vs a circle of equal perimeter; 0 = a line",
+     "detail": "right 0.099, left 0.099"
+    }
+   ],
+   "numerical": {
+    "passed": 9,
+    "total": 9,
+    "all_pass": true
+   },
+   "samples": 65,
+   "pelvis_vertical_range_px": 1.55,
+   "airborne_samples": 0,
+   "artistic_review_required": true
+  },
+  "casual_walk_moving": {
+   "checks": [
+    {
+     "check": "loop_closure_px",
+     "value": 0.0,
+     "threshold": 0.5,
+     "pass": true,
+     "meaning": "max joint distance between phase 0 and phase 1 of a cycle (minus travel)",
+     "detail": ""
+    },
+    {
+     "check": "continuity_spike_px",
+     "value": 3.1925,
+     "threshold": 4.0,
+     "pass": true,
+     "meaning": "max jump of a joint: its step minus the larger neighbouring step (64 samples)",
+     "detail": "joint shin_r at sample 32: step 5.79 px vs neighbours 2.60 px; fastest joint step 9.41 px"
+    },
+    {
+     "check": "foot_slide_px",
+     "value": 0.44,
+     "threshold": 1.0,
+     "pass": true,
+     "meaning": "weight-bearing ankle drift in world space within one stance (load >= 0.8)",
+     "detail": ""
+    },
+    {
+     "check": "gait_ground_penetration_px",
+     "value": 0.0,
+     "threshold": 1.0,
+     "pass": true,
+     "meaning": "ankle below its standing height in any sample",
+     "detail": ""
+    },
+    {
+     "check": "coordination_corr",
+     "value": 0.9884,
+     "threshold": 0.9,
+     "pass": true,
+     "meaning": "best corr(solved forearm swing, opposite leg) within a lag of +/-0.15 cycle",
+     "detail": "right arm vs left leg 0.988 (lag 0.047), left arm vs right leg 0.988 (lag 0.047)"
+    },
+    {
+     "check": "jerk_ratio",
+     "value": 52.8409,
+     "threshold": 60.0,
+     "pass": true,
+     "meaning": "upper body relative to the pelvis: max |3rd difference| of a joint path over its range x (2 pi / N)^3 (a pure sine = 1; foot impacts are excluded on purpose)",
+     "detail": "joint chest at sample 20"
+    },
+    {
+     "check": "arm_overlap_cycles",
+     "value": 0.0469,
+     "threshold": 0.02,
+     "pass": true,
+     "meaning": "lag of elbow flexion behind the planned arm swing (cycle fraction); 0 = lockstep",
+     "detail": "right 0.047, left 0.047 cycle"
+    },
+    {
+     "check": "hand_arc_quotient",
+     "value": 0.0987,
+     "threshold": 0.04,
+     "pass": true,
+     "meaning": "hand path (relative to the chest) area vs a circle of equal perimeter; 0 = a line",
+     "detail": "right 0.099, left 0.099"
+    }
+   ],
+   "numerical": {
+    "passed": 8,
+    "total": 8,
+    "all_pass": true
+   },
+   "samples": 65,
+   "pelvis_vertical_range_px": 2.12,
+   "airborne_samples": 0,
+   "artistic_review_required": true
+  },
   "running_plain": {
    "checks": [
     {
@@ -18316,168 +20135,6 @@
    "airborne_samples": 24,
    "artistic_review_required": true
   },
-  "casual_walk": {
-   "checks": [
-    {
-     "check": "loop_closure_px",
-     "value": 0.0,
-     "threshold": 0.5,
-     "pass": true,
-     "meaning": "max joint distance between phase 0 and phase 1 of a cycle (minus travel)",
-     "detail": ""
-    },
-    {
-     "check": "continuity_spike_px",
-     "value": 3.1421,
-     "threshold": 4.0,
-     "pass": true,
-     "meaning": "max jump of a joint: its step minus the larger neighbouring step (64 samples)",
-     "detail": "joint shin_r at sample 32: step 5.42 px vs neighbours 2.28 px; fastest joint step 8.94 px"
-    },
-    {
-     "check": "foot_slide_px",
-     "value": 0.46,
-     "threshold": 1.0,
-     "pass": true,
-     "meaning": "weight-bearing ankle drift in world space within one stance (load >= 0.8)",
-     "detail": ""
-    },
-    {
-     "check": "gait_ground_penetration_px",
-     "value": 0.0,
-     "threshold": 1.0,
-     "pass": true,
-     "meaning": "ankle below its standing height in any sample",
-     "detail": ""
-    },
-    {
-     "check": "coordination_corr",
-     "value": 0.9884,
-     "threshold": 0.9,
-     "pass": true,
-     "meaning": "best corr(solved forearm swing, opposite leg) within a lag of +/-0.15 cycle",
-     "detail": "right arm vs left leg 0.988 (lag 0.047), left arm vs right leg 0.988 (lag 0.047)"
-    },
-    {
-     "check": "com_drift_px",
-     "value": 1.74,
-     "threshold": 6.0,
-     "pass": true,
-     "meaning": "in-place cycle: mean CoM x vs the rest midline",
-     "detail": ""
-    },
-    {
-     "check": "jerk_ratio",
-     "value": 42.2727,
-     "threshold": 60.0,
-     "pass": true,
-     "meaning": "upper body relative to the pelvis: max |3rd difference| of a joint path over its range x (2 pi / N)^3 (a pure sine = 1; foot impacts are excluded on purpose)",
-     "detail": "joint chest at sample 31"
-    },
-    {
-     "check": "arm_overlap_cycles",
-     "value": 0.0469,
-     "threshold": 0.02,
-     "pass": true,
-     "meaning": "lag of elbow flexion behind the planned arm swing (cycle fraction); 0 = lockstep",
-     "detail": "right 0.047, left 0.047 cycle"
-    },
-    {
-     "check": "hand_arc_quotient",
-     "value": 0.0987,
-     "threshold": 0.04,
-     "pass": true,
-     "meaning": "hand path (relative to the chest) area vs a circle of equal perimeter; 0 = a line",
-     "detail": "right 0.099, left 0.099"
-    }
-   ],
-   "numerical": {
-    "passed": 9,
-    "total": 9,
-    "all_pass": true
-   },
-   "samples": 65,
-   "pelvis_vertical_range_px": 1.55,
-   "airborne_samples": 0,
-   "artistic_review_required": true
-  },
-  "casual_walk_moving": {
-   "checks": [
-    {
-     "check": "loop_closure_px",
-     "value": 0.0,
-     "threshold": 0.5,
-     "pass": true,
-     "meaning": "max joint distance between phase 0 and phase 1 of a cycle (minus travel)",
-     "detail": ""
-    },
-    {
-     "check": "continuity_spike_px",
-     "value": 3.1449,
-     "threshold": 4.0,
-     "pass": true,
-     "meaning": "max jump of a joint: its step minus the larger neighbouring step (64 samples)",
-     "detail": "joint shin_r at sample 32: step 5.74 px vs neighbours 2.60 px; fastest joint step 9.41 px"
-    },
-    {
-     "check": "foot_slide_px",
-     "value": 0.44,
-     "threshold": 1.0,
-     "pass": true,
-     "meaning": "weight-bearing ankle drift in world space within one stance (load >= 0.8)",
-     "detail": ""
-    },
-    {
-     "check": "gait_ground_penetration_px",
-     "value": 0.0,
-     "threshold": 1.0,
-     "pass": true,
-     "meaning": "ankle below its standing height in any sample",
-     "detail": ""
-    },
-    {
-     "check": "coordination_corr",
-     "value": 0.9884,
-     "threshold": 0.9,
-     "pass": true,
-     "meaning": "best corr(solved forearm swing, opposite leg) within a lag of +/-0.15 cycle",
-     "detail": "right arm vs left leg 0.988 (lag 0.047), left arm vs right leg 0.988 (lag 0.047)"
-    },
-    {
-     "check": "jerk_ratio",
-     "value": 52.8409,
-     "threshold": 60.0,
-     "pass": true,
-     "meaning": "upper body relative to the pelvis: max |3rd difference| of a joint path over its range x (2 pi / N)^3 (a pure sine = 1; foot impacts are excluded on purpose)",
-     "detail": "joint chest at sample 20"
-    },
-    {
-     "check": "arm_overlap_cycles",
-     "value": 0.0469,
-     "threshold": 0.02,
-     "pass": true,
-     "meaning": "lag of elbow flexion behind the planned arm swing (cycle fraction); 0 = lockstep",
-     "detail": "right 0.047, left 0.047 cycle"
-    },
-    {
-     "check": "hand_arc_quotient",
-     "value": 0.0987,
-     "threshold": 0.04,
-     "pass": true,
-     "meaning": "hand path (relative to the chest) area vs a circle of equal perimeter; 0 = a line",
-     "detail": "right 0.099, left 0.099"
-    }
-   ],
-   "numerical": {
-    "passed": 8,
-    "total": 8,
-    "all_pass": true
-   },
-   "samples": 65,
-   "pelvis_vertical_range_px": 2.12,
-   "airborne_samples": 0,
-   "artistic_review_required": true
-  },
   "casual_walk_plain": {
    "checks": [
     {
@@ -18490,11 +20147,11 @@
     },
     {
      "check": "continuity_spike_px",
-     "value": 3.0899,
+     "value": 3.1205,
      "threshold": 4.0,
      "pass": true,
      "meaning": "max jump of a joint: its step minus the larger neighbouring step (64 samples)",
-     "detail": "joint shin_r at sample 32: step 5.42 px vs neighbours 2.33 px; fastest joint step 5.42 px"
+     "detail": "joint shin_r at sample 32: step 5.46 px vs neighbours 2.34 px; fastest joint step 5.46 px"
     },
     {
      "check": "foot_slide_px",
@@ -18564,7 +20221,7 @@
    "artistic_review_required": true
   }
  },
- "generated_s": 358.2,
+ "generated_s": 344.7,
  "library": [
   {
    "name": "relaxed_standing",
@@ -18886,6 +20543,10 @@
   "hip_y": 753.8,
   "waist_y": 697.45,
   "waist_half": 134.0,
+  "hand_len": {
+   "r": 71.67147270706805,
+   "l": 72.24326958270927
+  },
   "front_knee": {
    "stance": 10.0,
    "swing": 18.0,

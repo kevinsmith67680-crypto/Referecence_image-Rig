@@ -20,8 +20,10 @@ from typing import Any
 import numpy as np
 from PIL import Image
 
+from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
+
 SCHEMA = "autorig.editor_project"
-VERSION = 1
+VERSION = 2  # 2: IK and switch state (Phase 3.2); v1 projects migrate without changing their operations
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -132,7 +134,8 @@ def build_base(pkg: Path) -> dict[str, Any]:
     return {"canvas": {"width": W, "height": H, "units": "source px, origin top-left, +y down"},
             "layers": layers, "groups": groups, "bones": bones, "vectors": seed_vectors(pkg, art, W, H),
             "mask_ops": [], "corrections": {"gussets": True, "joints": {}}, "defects": {}, "approvals": approvals,
-            "pose": {"preset": "relaxed_standing", "overrides": {}}}
+            "pose": {"preset": "relaxed_standing", "overrides": {}},
+            "ik": default_ik_state(), "switches": {}}
 
 
 def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
@@ -298,6 +301,53 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
         prev = st["approvals"].get(op["item"], {})
         st["approvals"][op["item"]] = {**prev, "status": op["status"], "note": op.get("note", ""),
                                        "source": "editor_user", "at": op.get("at")}
+    elif t == "ik.set":
+        limb = op.get("limb")
+        f = op.get("fields", {})
+        errs = check_ik_fields(limb, f)
+        if errs:
+            raise OpError("; ".join(errs))
+        if limb == "pelvis":
+            st["ik"]["pelvis_offset"] = [float(v) for v in f["pelvis_offset"]]
+        else:
+            L = st["ik"][limb]
+            L.update({k: ([float(x) for x in v] if k in ("target", "pole") and v is not None else v)
+                      for k, v in f.items()})
+            if L["enabled"] and L["mode"] == "ik" and L["target"] is None:
+                raise OpError(f"{limb}: IK needs a target")
+    elif t == "ik.reset":
+        limb = op.get("limb", "all")
+        base = default_ik_state()
+        if limb == "all":
+            st["ik"] = base
+        elif limb in base:
+            st["ik"][limb] = base[limb]
+        else:
+            raise OpError(f"unknown limb {limb}")
+    elif t in ("switch.set", "switch.key", "switch.offset"):
+        g = op.get("group", "")
+        allowed = group_variants(g)
+        if allowed is None:
+            raise OpError(f"unknown switch group {g}")
+        G = st["switches"].setdefault(g, {"user": None, "auto": True, "keys": [], "offsets": {}})
+        v = op.get("variant")
+        if v is not None and v not in allowed:
+            raise OpError(f"{g}: unknown variant {v}")
+        if t == "switch.set":
+            G["user"] = v
+            G["auto"] = bool(op.get("auto", v is None))
+        elif t == "switch.key":
+            tt = float(op["t"])
+            G["keys"] = sorted([k for k in G["keys"] if abs(k[0] - tt) > 1e-9] + ([[tt, v]] if v is not None else []))
+        else:
+            if v is None:
+                raise OpError("switch.offset needs a variant")
+            dx, dy, rot = (float(op.get(k, 0.0)) for k in ("dx", "dy", "rot"))
+            if max(abs(dx), abs(dy)) > 200 or abs(rot) > 180:
+                raise OpError("offset out of range (|dx|,|dy| <= 200 px, |rot| <= 180 deg)")
+            if op.get("scale") not in (None, 1, 1.0):
+                raise OpError("switch offsets never scale artwork")
+            G["offsets"][v] = {"dx": dx, "dy": dy, "rot": rot}
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
     else:
@@ -313,7 +363,13 @@ def _check_vector(v: dict[str, Any]) -> None:
             raise OpError("vector nodes need x and y")
 
 
-MIGRATIONS: dict[int, Any] = {}  # from_version -> fn(data) -> data (version 1 is current)
+def _v1_to_v2(data: dict[str, Any]) -> dict[str, Any]:
+    """Phase 3.2: the base state gains ``ik`` and ``switches`` (defaults come from build_base); v1 operations
+    never touch them, so the log replays unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {1})}
+
+
+MIGRATIONS: dict[int, Any] = {1: _v1_to_v2}  # from_version -> fn(data) -> data
 
 
 def migrate(data: dict[str, Any]) -> dict[str, Any]:

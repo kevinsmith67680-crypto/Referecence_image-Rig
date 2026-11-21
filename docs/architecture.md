@@ -190,3 +190,24 @@ See [phase3_implementation_plan.md](phase3_implementation_plan.md) and [phase3_r
 Gaits are phase-driven front-view cycles. The editor's Pose tab uses the engine: skeleton-only solves for scrubbing
 and playback, and full renders after release. `autorig motion` writes the evidence set to
 `<package>/natural_pose/motion/`. See [phase3_1_natural_motion_report.md](phase3_1_natural_motion_report.md).
+
+## 13. Phase 3.2: IK, switch layers and articulated controls
+
+The Phase 3.1 stages stay; Phase 3.2 adds controls between them. The processing order in `MotionEngine.pose` is:
+intent -> contact and IK target planning (`apply_ik`) -> skeletal solve -> correction selection
+(`CorrectionSwitchController`, plus the continuous band rules) -> garment deformation -> switch resolution
+(`ArtworkSwitchController`) -> composition -> evaluation.
+
+* `motion/ik.py`: `TwoBoneIKSolver` (analytic, pole target, flexion limits that define the reach interval, clamping
+  without scaling), `ArmIKController` / `LegIKController` on the existing bones (FK<->IK matching),
+  `FootContactController` (PLANTED, LIFTING, SWINGING, LANDING, FREE; world locks with slide/lift errors).
+* `motion/switches.py`: switch groups (hands, elbow/knee/shoulder corrections, the mouth), the `HandPoseLibrary`
+  (8 poses per side; wrist attachment measured on the visible pixels; auto-align search), correction triggers with
+  hysteresis.
+* `motion/rigctl.py`: the `autorig.rig_controls` v1 document (IK chains, state, contacts, switch groups, triggers,
+  missing artwork, semantic live actions), validated with its JSON Schema before export.
+* Editor: project schema v2 (`ik`, `switches`; ops `ik.set`, `ik.reset`, `switch.set`, `switch.key`,
+  `switch.offset`), IK tab with draggable targets and poles on the canvas (skeleton-only solves while dragging,
+  the operation on release), Switches tab with thumbnails, approval, alignment and keys.
+
+See [phase3_2_ik_switch_report.md](phase3_2_ik_switch_report.md).

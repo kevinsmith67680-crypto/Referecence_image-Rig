@@ -94,6 +94,47 @@ export interface CanvasProps {
   onOp: (op: Record<string, unknown>) => void; onCursor: (p: Pt) => void; fitSignal: number;
   skel?: any | null; showBefore?: boolean;
   flip?: { img: HTMLImageElement; x: number; y: number } | null;  // animated cycle frame (image coords)
+  ikHandles?: boolean;  // IK tab: draggable wrist/ankle targets and elbow/knee poles, foot contact markers
+  onIkDrag?: (limb: string, kind: "target" | "pole", pt: Pt) => void;
+  onIkDragEnd?: (limb: string, kind: "target" | "pole", pt: Pt) => void;
+}
+
+const CONTACT_COLOR: Record<string, string> = { PLANTED: "#2f9e44", LIFTING: "#f08c00", SWINGING: "#1c7ed6", LANDING: "#ae3ec9", FREE: "#868e96" };
+
+function IKHandles({ ik, k, onDrag, onEnd }: { ik: any; k: number; onDrag?: CanvasProps["onIkDrag"]; onEnd?: CanvasProps["onIkDragEnd"] }) {
+  // the handle being dragged keeps the position it had when the drag started (Konva moves it with the pointer);
+  // skeleton previews arriving during the drag must not reposition or remount it
+  const [active, setActive] = useState<{ id: string; x: number; y: number } | null>(null);
+  const pos = (id: string, p: number[]) => (active?.id === id ? [active.x, active.y] : p);
+  const start = (id: string, p: number[]) => setActive({ id, x: p[0], y: p[1] });
+  if (!ik?.limbs) return null;
+  return <Group>
+    {Object.entries(ik.limbs).map(([limb, L]: any) => {
+      const on = L.enabled && L.mode === "ik";
+      const tgt = on && L.target ? L.target : L.effector;
+      const col = limb.endsWith("_r") ? "#ff9f43" : "#48dbfb";
+      return <Group key={limb}>
+        {on && L.target && <Line points={[...L.effector, ...L.target]} stroke="#e03131" strokeWidth={1.5 * k} dash={[4 * k, 3 * k]} listening={false} />}
+        {on && L.pole && <Line points={[...L.mid, ...L.pole]} stroke="#7048e8" strokeWidth={1.2 * k} dash={[5 * k, 4 * k]} listening={false} />}
+        {on && L.pole && <Rect key={`${limb}p`} x={pos(`${limb}p`, L.pole)[0]} y={pos(`${limb}p`, L.pole)[1]} width={11 * k} height={11 * k}
+          offsetX={5.5 * k} offsetY={5.5 * k} rotation={45} fill="#7048e8" stroke="#fff" strokeWidth={1.5 * k} draggable name={`ik-pole-${limb}`}
+          onDragStart={() => start(`${limb}p`, L.pole)}
+          onDragMove={(e) => onDrag?.(limb, "pole", { x: e.target.x(), y: e.target.y() })}
+          onDragEnd={(e) => { setActive(null); onEnd?.(limb, "pole", { x: e.target.x(), y: e.target.y() }); }} />}
+        <Rect key={`${limb}t`} x={pos(`${limb}t`, tgt)[0]} y={pos(`${limb}t`, tgt)[1]} width={14 * k} height={14 * k} offsetX={7 * k} offsetY={7 * k}
+          fill={on ? (L.status && L.status !== "ok" ? "#e03131" : col) : "rgba(255,255,255,0.65)"} stroke={on ? "#fff" : col}
+          strokeWidth={2 * k} draggable name={`ik-target-${limb}`}
+          onDragStart={() => start(`${limb}t`, tgt)}
+          onDragMove={(e) => onDrag?.(limb, "target", { x: e.target.x(), y: e.target.y() })}
+          onDragEnd={(e) => { setActive(null); onEnd?.(limb, "target", { x: e.target.x(), y: e.target.y() }); }} />
+      </Group>;
+    })}
+    {ik.contacts && Object.entries(ik.contacts).map(([s, c]: any) => c && (
+      <Group key={`c${s}`} listening={false}>
+        <Circle x={c.ankle[0]} y={c.ankle[1] + 18 * k} radius={6 * k} fill={CONTACT_COLOR[c.state] ?? "#868e96"} stroke="#fff" strokeWidth={1.5 * k} />
+        {c.lock && <Line points={[c.lock[0] - 10 * k, c.lock[1] + 30 * k, c.lock[0] + 10 * k, c.lock[1] + 30 * k]} stroke="#2f9e44" strokeWidth={3 * k} />}
+      </Group>))}
+  </Group>;
 }
 
 function DiagImg({ src, pad }: { src: string; pad: number }) {
@@ -266,6 +307,7 @@ export default function CanvasView(p: CanvasProps) {
           {p.mode === "pose" && sk && p.overlays.joints && !p.showBefore && !p.flip && Object.entries(sk.joints_posed).map(([n, h]: any) => (
             <Circle key={n} x={h[0]} y={h[1]} radius={(n === p.selectedBone ? 7 : 5) * k} fill={n === p.selectedBone ? "#ff6b6b" : "#1c7ed6"} stroke="#fff" strokeWidth={1.5 * k}
               onClick={() => p.onSelectBone(n)} />))}
+          {p.mode === "pose" && p.ikHandles && sk && !p.showBefore && !p.flip && <IKHandles ik={sk.ik} k={k} onDrag={p.onIkDrag} onEnd={p.onIkDragEnd} />}
           {p.mode === "pose" && p.pose && p.overlays.tears && (p.pose.tear_points ?? []).map((t: number[], i: number) => (
             <Circle key={i} x={t[0] - pad} y={t[1] - pad} radius={3 * k} fill="#ff0000" listening={false} />))}
           {p.mode === "artwork" && p.overlays.joints && bones.map(([n, b]) => (

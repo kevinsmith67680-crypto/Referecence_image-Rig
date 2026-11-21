@@ -31,7 +31,7 @@ from .readiness import face_panel, live_panel
 from .vectors import bounds, to_svg
 
 SCHEMA = "autorig.moho_asset_package"
-VERSION = "1.0.0"
+VERSION = "1.1.0"  # 1.1.0: rig_controls (Phase 3.2), additive
 LEVELS = ("PASS", "WARNING", "NEEDS_REVIEW", "FAIL")
 P1_JOINT = {"upper_arm": "shoulder", "forearm": "elbow", "hand": "wrist", "thigh": "hip", "shin": "knee",
             "foot": "ankle", "neck": "neck_base", "head": "neck", "pelvis": "pelvis"}
@@ -159,6 +159,17 @@ def _motion_json(pkg: Path, name: str) -> dict[str, Any] | None:
     return d
 
 
+def _rig_controls(proj: EditorProject, art: ArtworkModel, st: dict[str, Any], masks, rej) -> tuple[dict, list[str]]:
+    """Rig controls (IK, switches, corrections, live map) validated before export. Built with the same engine
+    the editor uses; the document stays engine-side (Moho mapping proposed_unverified)."""
+    from ..motion.rigctl import build_rig_controls, validate
+    from .posesvc import PoseService
+
+    eng = PoseService(proj.pkg, art).motion_engine(st, masks, rej)
+    doc = build_rig_controls(eng, st.get("ik"), st.get("switches"))
+    return doc, validate(doc)
+
+
 def _clear_previous_export(out: Path) -> None:
     """Only an earlier AutoRig export (or an empty directory) may be replaced; never delete anything else."""
     if out.is_file() or out.is_symlink():
@@ -227,6 +238,11 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
     validation = art.validate_masks(masks)
     face = face_panel(proj.pkg, st, masks)
     live = live_panel(proj.pkg, st, masks)
+    rig_controls, rc_errors = _rig_controls(proj, art, st, masks, rej)
+    if rc_errors:
+        raise ValueError("rig controls do not validate: " + "; ".join(rc_errors[:5]))
+    (out / "rig_controls.json").write_text(json.dumps(rig_controls, indent=2, default=float), encoding="utf-8")
+    files.append(str(out / "rig_controls.json"))
     manifest = {
         "schema": SCHEMA, "schema_version": VERSION, "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "editor_project": {"schema_version": proj.data["schema_version"], "revision": proj.revision(), "ops": proj.cursor},
@@ -244,7 +260,7 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
                                             "corrective shapes -> Smart Bone actions (Phase 4)",
                         "garments": _motion_json(proj.pkg, "garments.json"),
                         "motion_profile": _motion_json(proj.pkg, "profile.json")},
-        "facial": face, "live": live,
+        "rig_controls": rig_controls, "facial": face, "live": live,
         "provenance": {"mask_corrections": len(st["mask_ops"]), "reassigned_px": validation["reassigned_px"],
                        "unassigned_px": validation["unassigned_px"],
                        "rule": "layer pixels are source pixels; generated pixels only in listed extensions/corrective"},

@@ -9,7 +9,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -26,9 +26,11 @@ const repo = path.resolve(here, "../..");
 const PKG = process.env.AUTORIG_PACKAGE || path.join(repo, "projects/schoolboy_tpose/character_package");
 const PY = process.env.AUTORIG_PYTHON || "python3";
 const SHOTS = process.env.AUTORIG_SHOTS || path.join(repo, "docs/phase3/screenshots");
+const SHOTS32 = process.env.AUTORIG_SHOTS_P32 || path.join(repo, "docs/phase3_2/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
+mkdirSync(SHOTS32, { recursive: true });
 
 const sha = (f) => createHash("sha256").update(readFileSync(f)).digest("hex");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -67,6 +69,26 @@ async function waitRev(page, before) {
     before, { timeout: 30000 });
 }
 const rev = async (page) => (await page.textContent("[data-testid=revision]")).split(" ")[1];
+async function waitIK(page) {
+  await page.waitForFunction(() => {
+    const t = document.querySelector("[data-testid=ik-timing]")?.textContent ?? "";
+    return /full frame/.test(t) && !t.includes("rendering");
+  }, null, { timeout: 90000 });
+  await sleep(600);
+}
+const post = (p, body) => api(p, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+async function drag(page, from, to, steps = 12, pauseMs = 0) {
+  // pauseMs > 0: a human-paced drag (one move every pauseMs), so the skeleton previews can be measured
+  const a = await toScreen(page, from[0], from[1]);
+  const b = await toScreen(page, to[0], to[1]);
+  await page.mouse.move(a.x, a.y); await page.mouse.down();
+  if (!pauseMs) await page.mouse.move(b.x, b.y, { steps });
+  else for (let i = 1; i <= steps; i++) {
+    await page.mouse.move(a.x + (b.x - a.x) * i / steps, a.y + (b.y - a.y) * i / steps);
+    await sleep(pauseMs);
+  }
+  await page.mouse.up();
+}
 async function waitPose(page) {
   await page.waitForFunction(() => {
     const t = document.querySelector("[data-testid=pose-panel]")?.textContent ?? "";
@@ -291,6 +313,94 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.selectOption("[data-testid=preset]", "relaxed_standing");
     await waitPose(page);
 
+    // 6c. Phase 3.2: FK->IK matching, wrist and ankle targets dragged on the canvas, foot lock, hand switches
+    await page.click("[data-testid=tab-IK]");
+    await page.waitForSelector("[data-testid=ik-arm_r]");
+    await waitIK(page);
+    r0 = await rev(page);
+    await page.click("[data-testid=ik-arm_r-ik]");
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    assert.equal(st.ik.arm_r.mode, "ik", "right arm switched to IK");
+    const t0 = st.ik.arm_r.target;
+    await waitIK(page);
+    const goal = [t0[0] - 110, t0[1] - 260];
+    r0 = await rev(page);
+    await drag(page, t0, goal, 30, 60);
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    assert.ok(Math.hypot(st.ik.arm_r.target[0] - goal[0], st.ik.arm_r.target[1] - goal[1]) < 4, `wrist target moved: ${st.ik.arm_r.target}`);
+    const lat = await page.evaluate(() => window.__autorigIkLatency ?? []);
+    assert.ok(lat.length >= 5, `skeleton previews while dragging (${lat.length})`);
+    const ls = [...lat].sort((a, b) => a - b);
+    console.log(`# IK drag input-to-skeleton latency (headless Chromium, cloud CPU): ${lat.length} updates in 1.8 s, ` +
+      `median ${ls[Math.floor(ls.length / 2)].toFixed(1)} ms, p90 ${ls[Math.floor(ls.length * 0.9)].toFixed(1)} ms, max ${ls[ls.length - 1].toFixed(1)} ms`);
+    writeFileSync(path.join(SHOTS32, "ik_drag_latency_ms.json"), JSON.stringify({ samples: lat, note: "headless Chromium, cloud CPU; pointer move to skeleton-only response" }, null, 1));
+    await waitIK(page);
+    await page.screenshot({ path: path.join(SHOTS32, "01_ik_drag_wrist.png") });
+    let pr = await post("/api/pose", { preset: "relaxed_standing", skeleton_only: true });
+    assert.ok(["ok", "clamped_max_reach"].includes(pr.ik.limbs.arm_r.status), pr.ik.limbs.arm_r.status);
+    if (pr.ik.limbs.arm_r.status === "ok") assert.ok(pr.ik.limbs.arm_r.error_px < 0.5, "wrist reaches its target");
+    // left leg: IK, unlock the foot, lift the ankle target; the right foot stays planted
+    r0 = await rev(page);
+    await page.click("[data-testid=ik-leg_l-ik]");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.click("[data-testid=ik-leg_l-lock]");  // controlled checkbox: it flips when the op returns
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    const a0 = st.ik.leg_l.target;
+    await waitIK(page);
+    r0 = await rev(page);
+    await drag(page, a0, [a0[0] + 10, a0[1] - 70]);
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    assert.ok(Math.abs(st.ik.leg_l.target[1] - (a0[1] - 70)) < 4, "ankle target lifted");
+    pr = await post("/api/pose", { preset: "relaxed_standing", skeleton_only: true });
+    assert.equal(pr.ik.contacts.l.state, "FREE");
+    assert.equal(pr.ik.contacts.r.state, "PLANTED");
+    assert.ok(pr.ik.contacts.r.lock_error_px < 0.05, "planted foot does not slide");
+    await waitIK(page);
+    await page.screenshot({ path: path.join(SHOTS32, "02_ik_drag_ankle_lifted.png") });
+    // switches: a pending fist is only previewed; a missing grip is NEEDS_ARTWORK
+    await page.click("[data-testid=tab-Switches]");
+    await page.waitForSelector("[data-testid=sw-hand_r-fist]");
+    r0 = await rev(page);
+    await page.click("[data-testid=sw-hand_r-fist]");
+    await waitRev(page, r0);
+    await page.waitForFunction(() => /pending review/.test(document.querySelector("[data-testid=sw-hand_r]")?.textContent ?? ""),
+      null, { timeout: 90000 });
+    assert.equal(await page.textContent("[data-testid=sw-hand_r-active]"), "open_palm", "pending fist not shown as approved");
+    await page.screenshot({ path: path.join(SHOTS32, "03_switch_pending_fist.png") });
+    await page.click("[data-testid=tab-Pose]");
+    await page.check("[data-testid=allow-pending]");
+    await page.click("[data-testid=tab-Switches]");
+    await page.waitForFunction(() => document.querySelector("[data-testid=sw-hand_r-active]")?.textContent === "fist",
+      null, { timeout: 90000 });
+    await sleep(2500);
+    await page.screenshot({ path: path.join(SHOTS32, "04_switch_fist_preview_ik.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=sw-hand_r-align]");
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    assert.ok(st.switches.hand_r.offsets.fist, "alignment offset stored");
+    r0 = await rev(page);
+    await page.click("[data-testid=sw-hand_l-gripping]");
+    await waitRev(page, r0);
+    await page.waitForFunction(() => /NEEDS_ARTWORK/.test(document.querySelector("[data-testid=sw-hand_l]")?.textContent ?? ""),
+      null, { timeout: 90000 });
+    await page.screenshot({ path: path.join(SHOTS32, "05_switch_missing_grip.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=act-HAND_LEFT_POINT]");
+    await waitRev(page, r0);
+    st = (await api("/api/project")).state;
+    assert.equal(st.switches.hand_l.user, "pointing", "live action -> switch op");
+    const rc = await api("/api/rig/controls");
+    assert.deepEqual(rc.validation_errors, [], "rig controls validate");
+    await page.click("[data-testid=tab-Pose]");
+    await page.uncheck("[data-testid=allow-pending]");
+    await waitPose(page);
+
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");
     await page.waitForSelector("[data-testid=cap-left_eye_blink]");
@@ -338,6 +448,8 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     assert.equal(reopened.state.mask_ops.length, 2);
     assert.ok(reopened.state.vectors[vid]);
     assert.equal(reopened.project.versions.length, 1);
+    assert.deepEqual(reopened.state.ik.arm_r.target, saved.ik.arm_r.target, "IK target persists");
+    assert.equal(reopened.state.switches.hand_r.user, "fist", "hand switch persists");
 
     // 11. export the Moho-ready package
     await page.click("[data-testid=tab-Export]");

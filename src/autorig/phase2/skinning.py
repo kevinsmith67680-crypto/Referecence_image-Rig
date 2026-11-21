@@ -85,31 +85,43 @@ class Deformer:
                 rgba[ring] = np.rint(rest[ring] * 255).astype(np.uint8)
                 layers = {**layers, cid: rgba}
         self.bleed = True
+        self.margin = margin
         for cid, rgba in layers.items():
-            alpha = rgba[..., 3] > 0
-            if not alpha.any():
-                continue
-            ys, xs = np.nonzero(alpha)
-            x0, y0 = max(0, xs.min() - margin), max(0, ys.min() - margin)
-            x1, y1 = min(W, xs.max() + margin + 1), min(H, ys.max() + margin + 1)
-            crop = rgba[y0:y1, x0:x1].astype(np.float32) / 255.0
-            pre = crop.copy()
-            pre[..., :3] *= pre[..., 3:4]
-            a_crop = alpha[y0:y1, x0:x1]
-            ay, ax = np.nonzero(a_crop)
-            home_pts = sk.home(cid, np.stack([ax + x0, ay + y0], 1).astype(np.float64))
-            home = np.zeros(a_crop.shape, np.int16)
-            home[ay, ax] = home_pts
-            # extend home bones to the transparent margin (nearest opaque pixel) for sub-pixel lookups
-            _, (iy, ix) = ndimage.distance_transform_edt(~a_crop, return_indices=True)
-            home = home[iy, ix]
-            gen = None
-            if generated and cid in generated and generated[cid].any():
-                gen = generated[cid][y0:y1, x0:x1]
-            self.info[cid] = {"rgba": rgba, "pre": pre, "alpha": a_crop, "origin": (x0, y0), "home": home,
-                              "alpha0": orig_alpha[cid][y0:y1, x0:x1],
-                              "dil": ndimage.binary_dilation(a_crop, iterations=3), "gen": gen,
-                              "homes": np.unique(home_pts), "area": int(alpha.sum())}
+            self._add_info(cid, rgba, orig_alpha[cid], generated)
+
+    def add_variant_layer(self, cid: str, rgba: np.ndarray) -> None:
+        """Register (or replace) a switch drawing after construction, e.g. a hand variant with an alignment
+        offset. Variants get no bleed ring, exactly as at construction."""
+        self.variants.add(cid)
+        self._add_info(cid, rgba, rgba[..., 3] > 0, None)
+
+    def _add_info(self, cid: str, rgba: np.ndarray, orig_alpha: np.ndarray, generated) -> None:
+        sk, margin = self.sk, self.margin
+        H, W = self.shape
+        alpha = rgba[..., 3] > 0
+        if not alpha.any():
+            return
+        ys, xs = np.nonzero(alpha)
+        x0, y0 = max(0, xs.min() - margin), max(0, ys.min() - margin)
+        x1, y1 = min(W, xs.max() + margin + 1), min(H, ys.max() + margin + 1)
+        crop = rgba[y0:y1, x0:x1].astype(np.float32) / 255.0
+        pre = crop.copy()
+        pre[..., :3] *= pre[..., 3:4]
+        a_crop = alpha[y0:y1, x0:x1]
+        ay, ax = np.nonzero(a_crop)
+        home_pts = sk.home(cid, np.stack([ax + x0, ay + y0], 1).astype(np.float64))
+        home = np.zeros(a_crop.shape, np.int16)
+        home[ay, ax] = home_pts
+        # extend home bones to the transparent margin (nearest opaque pixel) for sub-pixel lookups
+        _, (iy, ix) = ndimage.distance_transform_edt(~a_crop, return_indices=True)
+        home = home[iy, ix]
+        gen = None
+        if generated and cid in generated and generated[cid].any():
+            gen = generated[cid][y0:y1, x0:x1]
+        self.info[cid] = {"rgba": rgba, "pre": pre, "alpha": a_crop, "origin": (x0, y0), "home": home,
+                          "alpha0": orig_alpha[y0:y1, x0:x1],
+                          "dil": ndimage.binary_dilation(a_crop, iterations=3), "gen": gen,
+                          "homes": np.unique(home_pts), "area": int(alpha.sum())}
 
     # -- transforms ------------------------------------------------------------------------------
     def root_matrix(self, pose: PoseParams) -> np.ndarray:

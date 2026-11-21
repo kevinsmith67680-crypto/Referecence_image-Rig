@@ -23,11 +23,14 @@ from ..phase2.skeleton import SIDES, Skeleton, layer_class
 from ..phase2.skinning import Deformer, PoseParams
 from .feasibility import ArtInventory, PoseFeasibilityEvaluator
 from .garments import ArtworkDeformationEngine, GarmentDeformationEngine, GarmentModel, GarmentSkeleton
-from .intent import PoseIntent
+from .ik import LAT, ArmIKController, FootContactController, LegIKController
+from .intent import ArmIntent, LegIntent, PoseIntent
 from .planner import LIBRARY, SPEC_BY_NAME, MotionPlanner, gait
 from .profile import build_profile
 from .quality import PoseQualityEvaluator
 from .solver import SkeletalPoseSolver
+from .switches import (DRAWING_TO_POSE, FALLBACK_POSE, HAND_POSES, ArtworkSwitchController,
+                       CorrectionSwitchController, HandPoseLibrary, correction_readings_from_pose, offset_layer)
 
 DIAGNOSTICS = ("skeleton", "garments", "boundaries", "weights", "overlaps", "contacts", "com", "provenance",
                "missing", "correctives")
@@ -62,7 +65,8 @@ class MotionEngine:
     def __init__(self, sk: Skeleton, layers: dict[str, np.ndarray], generated: dict[str, np.ndarray] | None,
                  source: np.ndarray, variants: dict[str, np.ndarray] | None = None,
                  approvals: dict[str, Any] | None = None, view: str = "front",
-                 profile_overrides: dict[str, Any] | None = None, corrective_ids: list[str] | None = None):
+                 profile_overrides: dict[str, Any] | None = None, corrective_ids: list[str] | None = None,
+                 corrective_manifest: dict[str, Any] | None = None):
         t0 = time.time()
         self.sk, self.layers, self.generated, self.source = sk, layers, generated or {}, source
         self.variants = variants or {}
@@ -87,7 +91,57 @@ class MotionEngine:
             fp |= m
         self.dark = (lum < 80) & fp
         self._legacy = None
+        self.hand_lib = HandPoseLibrary(sk, layers, self.variants, self.approvals, corrective_manifest)
+        self.corr_switch = CorrectionSwitchController(sk, self.approvals, corrective_ids)
+        self._offset_layers: dict[tuple, str] = {}
         self.build_s = round(time.time() - t0, 3)
+
+    # -- switches ------------------------------------------------------------------------------------
+    def switch_controller(self, state: dict[str, Any] | None = None) -> ArtworkSwitchController:
+        # one source of truth for approval: the feasibility inventory (the planner's arm style reads it too)
+        for s in SIDES:
+            for v in self.hand_lib.hands[s].values():
+                if v.layer is not None and v.drawing != "open":
+                    v.status = self.inventory.hands.get(s, {}).get(v.drawing, v.status)
+        return ArtworkSwitchController.build(self.hand_lib, self.sk, self.layers, self.corr_switch, state)
+
+    def _offset_layer(self, layer: str, pivot, off: dict[str, float]) -> str:
+        """Deformer layer id of ``layer`` with a rigid local offset about the group pivot (cached)."""
+        key = (layer, round(off["dx"], 3), round(off["dy"], 3), round(off["rot"], 3))
+        if key not in self._offset_layers:
+            src = {**self.layers, **self.variants}[layer]
+            oid = f"{layer}__off{len(self._offset_layers)}"
+            self.dfm.add_variant_layer(oid, offset_layer(src, pivot, off["dx"], off["dy"], off["rot"]))
+            self._offset_layers[key] = oid
+        return self._offset_layers[key]
+
+    def resolve_switches(self, it: PoseIntent, allow_pending: bool, switches: dict[str, Any] | None,
+                         t: float | None) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Stage 6 (switch resolution). Hands: user > keyframe > automatic preset choice > reference hand.
+        Returns the hands record used for layering/feasibility and the full resolution per group."""
+        auto = self.feas.choose_hands(it, allow_pending)
+        ctl = self.switch_controller(switches)
+        out, res = {}, {}
+        for s in SIDES:
+            g = f"hand_{s}"
+            a = auto[s]
+            r = ctl.resolve(g, t, DRAWING_TO_POSE.get(a["drawing"], FALLBACK_POSE), allow_pending)
+            res[g] = r
+            drawing = HAND_POSES[r["active"]]
+            pref = a["preferred"] if r["source"] in ("auto", "default") else HAND_POSES.get(r["requested"], drawing)
+            note = r["note"] or (a["note"] if r["source"] in ("auto", "default") else None)
+            out[s] = {"drawing": drawing, "pose": r["active"], "preferred": pref, "source": r["source"],
+                      "pending_review": r["pending_review"], "note": note, "needs_artwork": r["needs_artwork"],
+                      "offset": r["offset"]}
+            prefs = it.arms[s].hand if s in it.arms else ["open"]
+            missing = [p for p in prefs if self.inventory.hands.get(s, {}).get(p, "missing") == "missing"]
+            if missing and r["source"] in ("auto", "default"):
+                out[s]["missing_preferred"] = [DRAWING_TO_POSE.get(p, p) for p in missing]
+                out[s]["fallback"] = r["active"]
+        for g in ctl.groups:
+            if g not in res and ctl.groups[g].kind == "face":
+                res[g] = ctl.resolve(g, t, None, allow_pending)
+        return out, res
 
     # -- poses ---------------------------------------------------------------------------------------
     def arm_style(self, name: str, allow_pending: bool) -> str:
@@ -98,11 +152,88 @@ class MotionEngine:
                  (allow_pending and self.inventory.hands.get(s, {}).get("fist") == "pending_review") for s in SIDES)
         return "fist" if ok else "open"
 
+    def apply_ik(self, it: PoseIntent, ik: dict[str, Any] | None) -> list[str]:
+        """User IK controls on top of the planned intent (stage 2: contact and IK target planning).
+        ``ik``: {"arm_r"|"arm_l"|"leg_r"|"leg_l": {enabled, mode, target, pole, bend, lock, max_flex, torso_follow},
+        "pelvis_offset": [dx, dy]}. Targets are world source px."""
+        from dataclasses import replace
+        notes: list[str] = []
+        if not ik:
+            return notes
+        for s in SIDES:
+            a = ik.get(f"arm_{s}") or {}
+            if a.get("enabled") and a.get("mode") == "fk" and a.get("fk"):
+                arm = it.arms.get(s) or ArmIntent()
+                fk = a["fk"]
+                it.arms[s] = replace(arm, target=None, reach=None, target_joint=None, pole=None,
+                                     abduction=float(fk.get("abduction", arm.abduction)),
+                                     flexion=float(fk.get("flexion", arm.flexion)))
+            if a.get("enabled") and a.get("mode", "ik") == "ik" and a.get("target") is not None:
+                arm = it.arms.get(s) or ArmIntent()
+                tgt = np.asarray(a["target"], float)
+                pole = tuple(a["pole"]) if a.get("pole") is not None else None
+                if a.get("bend") in (1, -1, "1", "-1"):
+                    # bend side held (no elbow inversion while dragging): a far pole perpendicular to the
+                    # shoulder->target line on the chosen side; cross(u, n) = +1 for n = (-u_y, u_x)
+                    sh = self.sk.bone(f"upper_arm_{s}").head
+                    d = tgt - sh
+                    u = d / max(float(np.hypot(*d)), 1e-6)
+                    pole = tuple((sh + tgt) / 2 + int(a["bend"]) * np.array([-u[1], u[0]]) * 1000.0)
+                it.arms[s] = replace(arm, target=tuple(tgt), reach=None, target_joint=None, pole=pole,
+                                     max_flex=float(a["max_flex"]) if a.get("max_flex") else None)
+            if a.get("enabled") and a.get("end_angle") is not None and s in it.arms:
+                # wrist orientation: world direction of the hand bone relative to its rest direction
+                it.arms[s] = replace(it.arms[s], hand_dir=float(self.sk.bone(f"hand_{s}").rest_angle) + float(a["end_angle"]))
+                if a.get("torso_follow"):
+                    sh = self.sk.bone(f"upper_arm_{s}").head
+                    reach = self.profile.arm(s)
+                    over = float(np.hypot(*(np.asarray(a["target"]) - sh))) - 0.95 * reach
+                    if over > 0:
+                        lean = LAT[s] * min(8.0, 40.0 * over / reach)
+                        it.chest = (it.chest if it.chest is not None else 0.0) + lean
+                        notes.append(f"arm_{s}: torso leans {lean:+.1f} deg toward the target")
+            g = ik.get(f"leg_{s}") or {}
+            if g.get("enabled") and g.get("mode", "ik") == "ik" and g.get("target") is not None:
+                tx, ty = map(float, g["target"])
+                ground = self.profile.ankle_y[s]
+                if ty > ground:  # never below the ground
+                    notes.append(f"leg_{s}: ankle target {ty - ground:.1f} px below the ground, clamped")
+                    ty = ground
+                lock = bool(g.get("lock"))
+                if lock and abs(ty - ground) > 0.5:  # a locked foot is planted: it stands on the ground
+                    notes.append(f"leg_{s}: locked foot placed on the ground ({ground - ty:.1f} px lower)")
+                    ty = ground
+                pole = tuple(g["pole"]) if g.get("pole") is not None else None
+                kmax = float(g.get("max_flex") or self.profile.front_knee["squat"])
+                base = it.legs.get(s)
+                if base is None:
+                    it.legs[s] = LegIntent(lock, (tx, ty), knee_max=kmax, knee_min=3.0, pole=pole,
+                                           ground=(tx, ground), load=1.0 if lock else 0.0)
+                else:
+                    # keep the planner's load, ground and foot behaviour (pelvis height and balance stay
+                    # continuous); the user target replaces the ankle goal and the swing knee schedule
+                    it.legs[s] = replace(base, planted=lock, ankle=(tx, ty), pole=pole, hang_knee=None,
+                                         knee_max=max(kmax, base.knee_max),
+                                         load=base.load if lock == base.planted else (1.0 if lock else 0.0))
+                if g.get("end_angle") is not None:  # foot orientation (world, from rest); planted feet stay flat by default
+                    it.legs[s] = replace(it.legs[s], foot_angle=float(g["end_angle"]), foot_follow=0.0)
+        po = ik.get("pelvis_offset")
+        if po and (abs(po[0]) > 1e-6 or abs(po[1]) > 1e-6):
+            it.pelvis_dx += float(po[0])
+            it.pelvis_dy += float(po[1])
+            if it.balance == "static":
+                it.balance = "manual"  # the user places the pelvis; planted feet stay locked through IK
+            notes.append(f"pelvis offset {po[0]:+.1f}, {po[1]:+.1f} px with feet locked")
+        return notes
+
     def plan_and_solve(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
                        travel: float = 0.0, overrides: dict[str, float] | None = None,
-                       live_head: dict[str, float] | None = None, allow_pending: bool = False, fluid: bool = True):
+                       live_head: dict[str, float] | None = None, allow_pending: bool = False, fluid: bool = True,
+                       ik: dict[str, Any] | None = None):
         it = self.planner.plan(name, phase, speed, exaggeration, travel, self.arm_style(name, allow_pending), fluid)
+        ik_notes = self.apply_ik(it, ik)
         pose, info = self.solver.solve(it)
+        info["ik_notes"] = ik_notes
         manual = {}
         for b, deg in (overrides or {}).items():
             if b not in self.sk.idx:
@@ -117,7 +248,49 @@ class MotionEngine:
             info["violations"] = self.solver.check_limits(pose, it, info["anatomical"])
             info["com"] = self.solver.com(pose)
         info["manual_rotations"] = manual
+        info["contacts"] = FootContactController().report(it, info)
         return it, pose, info
+
+    def limb(self, limb: str):
+        kind, s = limb.split("_")
+        cls = ArmIKController if kind == "arm" else LegIKController
+        return cls(self.sk, self.solver.K, s)
+
+    def match_ik(self, limb: str, to: str, name: str, phase=None, ik: dict[str, Any] | None = None,
+                 **kw) -> dict[str, Any]:
+        """FK/IK matching for a limb, evaluated in the current pose (the other limbs keep their state).
+        to="ik": target, pole and held bend side that reproduce the limb's FK pose.
+        to="fk" (arms): FK abduction/flexion that reproduce the limb's IK pose. Legs have no FK angles: in FK
+        mode they follow the planner, so the result reports the jump instead of hiding it.
+        Returns the new limb state and the measured joint jump (px) of the switch."""
+        ik = {k: (dict(v) if isinstance(v, dict) else v) for k, v in (ik or {}).items()}
+        ctl = self.limb(limb)
+        cur = dict(ik.get(limb) or {})
+        _, pose0, info0 = self.plan_and_solve(name, phase, ik=ik, **kw)
+        if to == "ik":
+            m = ctl.fk_to_ik(pose0)
+            new = {**cur, "enabled": True, "mode": "ik", "target": m["target"], "pole": m["pole"]}
+            if ctl.kind == "arm":
+                r = ctl.root(pose0)
+                u = np.asarray(m["target"]) - r
+                new["bend"] = 1 if float(u[0] * (m["pole"][1] - r[1]) - u[1] * (m["pole"][0] - r[0])) >= 0 else -1
+            else:
+                it0 = self.planner.plan(name, phase, kw.get("speed", 1.0), kw.get("exaggeration", 1.0),
+                                        kw.get("travel", 0.0), self.arm_style(name, kw.get("allow_pending", False)),
+                                        kw.get("fluid", True))
+                self.apply_ik(it0, ik)
+                leg = it0.legs.get(ctl.side)
+                new["lock"] = bool(leg.planted) if leg is not None else True
+        elif ctl.kind == "arm":
+            new = {**cur, "enabled": True, "mode": "fk", "fk": ctl.fk_params(pose0)}
+        else:
+            new = {**cur, "enabled": False, "mode": "fk"}
+        ik[limb] = new
+        _, pose1, info1 = self.plan_and_solve(name, phase, ik=ik, **kw)
+        J0, J1 = info0["joints_posed"], info1["joints_posed"]
+        jump = max(float(np.hypot(J0[b][0] - J1[b][0], J0[b][1] - J1[b][1])) for b in J0)
+        return {"limb": limb, "state": new, "jump_px": round(jump, 4),
+                "max_rotation_jump_deg": round(float(np.abs(pose1.theta - pose0.theta).max()), 4)}
 
     def compose_live_head(self, pose: PoseParams, live: dict[str, float]) -> dict[str, Any]:
         """Live puppeteering channel: head tilt is added to the neck/head bones only, on top of the body pose.
@@ -138,27 +311,50 @@ class MotionEngine:
     def pose(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
              travel: float = 0.0, allow_pending: bool = False, overrides: dict[str, float] | None = None,
              live_head: dict[str, float] | None = None, visible: list[str] | None = None, pad: int = 160,
-             skeleton_only: bool = False, fluid: bool = True) -> dict[str, Any]:
+             skeleton_only: bool = False, fluid: bool = True, ik: dict[str, Any] | None = None,
+             switches: dict[str, Any] | None = None, switch_time: float | None = None,
+             corrections_stateful: bool = False, correction_overrides: dict[str, bool] | None = None
+             ) -> dict[str, Any]:
+        """Processing order: intent -> contact/IK targets -> skeletal solve -> correction selection -> garment
+        deformation -> switch resolution -> composition -> evaluation."""
         spec = SPEC_BY_NAME[name]
         t0 = time.perf_counter()
         it, pose, info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
-                                             allow_pending, fluid)
+                                             allow_pending, fluid, ik)
         t_solve = time.perf_counter() - t0
-        hands = self.feas.choose_hands(it, allow_pending)
+        t1 = time.perf_counter()
+        forced = dict(correction_overrides or {})
+        for g, gs in (switches or {}).items():  # explicit user choice on a correction group forces it on/off
+            if g.startswith("corr_") and gs.get("user") and not gs.get("auto", True):
+                forced[g[5:]] = gs["user"] == "on"
+        csw = self.corr_switch.evaluate(correction_readings_from_pose(self.solver, pose), allow_pending,
+                                        corrections_stateful, forced or None)
         corr = self.gdef.corrections(pose, it.garment)
+        t_corr = time.perf_counter() - t1
+        t1 = time.perf_counter()
+        hands, switch_res = self.resolve_switches(it, allow_pending, switches,
+                                                  switch_time if switch_time is not None else it.phase)
+        t_switch = time.perf_counter() - t1
         res: dict[str, Any] = {"name": name, "title": spec.title, "kind": spec.kind, "phase": it.phase,
                                "params": {"speed": speed, "exaggeration": exaggeration, "travel": travel,
                                           "allow_pending": allow_pending, "fluid": fluid},
                                "intent": it, "pose": pose, "solve": info, "hands": hands,
                                "corrections": corr["active"], "spec": spec.to_json(), "pad": pad,
-                               "timing_ms": {"solve": round(t_solve * 1000, 2)}}
+                               "switches": switch_res, "correction_switches": csw,
+                               "timing_ms": {"solve": round(t_solve * 1000, 2), "corrections": round(t_corr * 1000, 2),
+                                             "switches": round(t_switch * 1000, 2)}}
         solver_notes = [n for s in SIDES if s in info["legs"] for n in [info["legs"][s]["note"]] if n]
         if skeleton_only:
-            res["feasibility"] = self.feas.evaluate(spec, it, hands, corr["active"], solver_notes,
-                                                    exaggeration=exaggeration)
+            res["feasibility"] = self._feasibility(spec, it, hands, corr, solver_notes, csw, False, exaggeration)
             return res
         vis = visible or [c for c in self.layers]
         order = motion_order(vis, it, hands, set(self.variants))
+        for s in SIDES:  # alignment offsets of the active hand variant (rigid, about the wrist pivot)
+            off = hands[s]["offset"]
+            base = f"hand_{s}__{hands[s]['drawing']}" if hands[s]["drawing"] != "open" else f"hand_{s}"
+            if base in order and any(abs(off[k]) > 1e-9 for k in ("dx", "dy", "rot")):
+                pivot = self.sk.bone(f"hand_{s}").head
+                order[order.index(base)] = self._offset_layer(base, pivot, off)
         t1 = time.perf_counter()
         r = self.dfm.render_with(pose, order, corr, pad)
         tears = self.dfm.tears_with(pose, r, corr, self.dark)
@@ -176,8 +372,7 @@ class MotionEngine:
                 gussets = C.armpit_gussets(r, tears, self.sk, info, self.dfm, pose)
                 if gussets:
                     tears = self.dfm.tears_with(pose, r, corr, self.dark)
-        feas = self.feas.evaluate(spec, it, hands, corr["active"], solver_notes, tears_need_gusset=gusset_need,
-                                  exaggeration=exaggeration)
+        feas = self._feasibility(spec, it, hands, corr, solver_notes, csw, gusset_need, exaggeration)
         pending = [f"hand {s}: {h['drawing']}" for s, h in hands.items() if h["pending_review"]]
         if gussets and any(self.inventory.correctives.get(f"gusset__{name}__{g['side']}") != "approved"
                            for g in gussets):
@@ -188,6 +383,31 @@ class MotionEngine:
         res["timing_ms"].update({"render_and_tears": round(t_render * 1000, 1),
                                  "total": round((time.perf_counter() - t0) * 1000, 1)})
         return res
+
+    def _feasibility(self, spec, it, hands, corr, solver_notes, csw, gusset_need, exaggeration) -> dict[str, Any]:
+        feas = self.feas.evaluate(spec, it, hands, corr["active"], solver_notes, tears_need_gusset=gusset_need,
+                                  exaggeration=exaggeration)
+        # explicit switch choices without a usable drawing: NEEDS_ARTWORK with the fallback that is shown
+        for s, h in hands.items():
+            if h.get("needs_artwork") and h["source"] in ("user", "keyframe"):
+                feas["missing"].append({"asset": f"hand:{HAND_POSES[h['needs_artwork']]}", "sides": [s],
+                                        "state": "missing", "why": f"selected hand pose '{h['needs_artwork']}'",
+                                        "fallback": h["pose"]})
+                feas["status"] = "NEEDS_ARTWORK"
+        feas["hand_fallbacks"] = [{"side": s, "missing": h["missing_preferred"], "shown": h["fallback"]}
+                                  for s, h in hands.items() if h.get("missing_preferred")]
+        # pose-aware corrections that triggered without a drawing: deformation fallback, asset recommended
+        for c in csw:
+            if c["needs_artwork"]:
+                entry = {"asset": f"corrective:{c['asset']}", "sides": [c["side"]], "state": "missing",
+                         "why": f"{c['title']} triggered at {c['value_deg']:.0f} deg; band-rule deformation used instead"}
+                if c["required"]:  # the deformation-only fallback is visibly broken: the pose needs the drawing
+                    feas["missing"].append(entry)
+                    feas["status"] = "NEEDS_ARTWORK"
+                    feas["alternative"] = feas.get("alternative") or "reduce the bend below the trigger angle"
+                else:
+                    feas["optional_assets"].append(entry)
+        return feas
 
     def cycle(self, name: str, samples: int = 32, speed: float = 1.0, exaggeration: float = 1.0,
               travel: float = 0.0, allow_pending: bool = False, fluid: bool = True) -> dict[str, Any]:
@@ -401,10 +621,19 @@ def engine_for_package(pkg, view: str = "front") -> tuple["MotionEngine", list[s
     layers = {c: art.layer_rgba(c, m, rej) for c in m}
     gen = {c: art.generated_mask(c, m, rej) for c in m}
     cids = [k.split(":", 1)[1] for k in st["approvals"] if k.startswith("corrective:gusset")]
-    eng = MotionEngine(sk, layers, gen, art.source, ps.variants, st["approvals"], view, load_overrides(pkg), cids)
+    eng = MotionEngine(sk, layers, gen, art.source, ps.variants, st["approvals"], view, load_overrides(pkg), cids,
+                       corrective_manifest(pkg))
     vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in m]
     del json
     return eng, vis
+
+
+def corrective_manifest(pkg) -> dict[str, Any] | None:
+    import json
+    from pathlib import Path
+
+    f = Path(pkg) / "natural_pose" / "corrective" / "manifest.json"
+    return json.loads(f.read_text()) if f.is_file() else None
 
 
 def _tile(img: np.ndarray, box, title: str, sub: str, colour=(34, 40, 60)) -> Image.Image:
@@ -578,16 +807,19 @@ def cycle_duration_s(name: str, speed: float = 1.0) -> float:
 
 def render_cycle(eng: "MotionEngine", name: str, frames: int = 24, visible: list[str] | None = None,
                  speed: float = 1.0, exaggeration: float = 1.0, allow_pending: bool = False, fluid: bool = True,
-                 pad: int = 160, progress=None, lock=None) -> dict[str, Any]:
+                 pad: int = 160, progress=None, lock=None, ik: dict[str, Any] | None = None,
+                 switches: dict[str, Any] | None = None) -> dict[str, Any]:
     """Render ``frames`` evenly spaced phases of a gait with the full artwork. Returns the frames (RGBA, cropped to
-    their common bounds), the crop box in padded canvas coordinates and the per-frame duration."""
+    their common bounds), the crop box in padded canvas coordinates and the per-frame duration. Switch keyframes
+    are evaluated at the gait phase; correction triggers keep their hysteresis state across the frames."""
     import contextlib
 
     imgs, joints = [], []
+    eng.corr_switch.reset()
     for i in range(frames):
         with (lock or contextlib.nullcontext()):
             r = eng.pose(name, i / frames, speed, exaggeration, 0.0, allow_pending, visible=visible, pad=pad,
-                         fluid=fluid)
+                         fluid=fluid, ik=ik, switches=switches, corrections_stateful=True)
         imgs.append(r["image"])
         joints.append(r["solve"]["joints_posed"])
         if progress:

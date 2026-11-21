@@ -40,6 +40,7 @@ class CharacterProfile:
     hip_y: float
     waist_y: float  # between the hip line and the spine joint (hands-on-hips height)
     waist_half: float  # half body width at waist_y (torso/pelvis artwork)
+    hand_len: dict[str, float] = field(default_factory=dict)
     front_knee: dict[str, float] = field(default_factory=lambda: dict(FRONT_KNEE))
     limits: dict[str, dict[str, Any]] = field(default_factory=lambda: copy.deepcopy(LIMITS))
     notes: list[str] = field(default_factory=list)
@@ -93,7 +94,7 @@ def build_profile(sk: Skeleton, masks: dict[str, np.ndarray], view: str = "front
         stance_natural=max(track_min + 0.4 * hip_sep, 1.3 * hip_sep),
         track_run=track_min + 0.25 * hip_sep, track_walk=track_min + 0.3 * hip_sep,
         ankle_y={s: float(b(f"foot_{s}").head[1]) for s in SIDES}, hip_y=float(b("pelvis").head[1]),
-        waist_y=waist_y, waist_half=waist_half,
+        waist_y=waist_y, waist_half=waist_half, hand_len={s: b(f"hand_{s}").length for s in SIDES},
         notes=[f"track_min = medial shoe extents ({shoe['r']['medial']:.0f} + {shoe['l']['medial']:.0f}) + {gap:.0f} px "
                "gap: narrower ankle spacing makes the shoes overlap (legs read as crossing)"])
     for k, v in (overrides or {}).items():

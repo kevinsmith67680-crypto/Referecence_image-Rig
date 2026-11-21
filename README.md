@@ -4,7 +4,13 @@ Turn a single cartoon character reference image into a faithful, **editable
 Moho Pro 14 rig**: separated art layers, a bone hierarchy, layer-to-bone
 bindings, ready to animate.
 
-> **Status: Phase 3.1 (natural motion and clothing deformation): PARTIAL.** Posing is now split into a motion planner,
+> **Status: Phase 3.2 (IK, switch layers and articulated controls): PARTIAL.** Arms and legs can be posed by
+> dragging wrist and ankle targets (two-bone IK with poles, limits and FK/IK matching), feet lock to the ground,
+> hands switch between drawings with measured wrist alignment, and pose-aware correction switches report missing
+> drawings. All hand variants are still pending review and several hand and correction drawings do not exist. Moho
+> has not run. See [docs/phase3_2_ik_switch_report.md](docs/phase3_2_ik_switch_report.md).
+>
+> **Phase 3.1 (natural motion and clothing deformation): PARTIAL.** Posing is now split into a motion planner,
 > an anatomical solver (IK, foot contact, balance, no bone scaling), a garment-aware deformation engine and
 > measurable checks, with a phase-driven front-view walk and run. Nothing is visually approved yet, and Moho has not
 > run. See [docs/phase3_1_natural_motion_report.md](docs/phase3_1_natural_motion_report.md).
@@ -138,6 +144,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_report.md](docs/phase3_report.md) | Phase 3 results: editor, tests, screenshots, fidelity, poses, export gates, verdict |
 | [docs/phase3_1_motion_audit.md](docs/phase3_1_motion_audit.md) | Root-cause audit of the Phase 3 poses (confirmed defects vs hypotheses) |
 | [docs/phase3_1_natural_motion_report.md](docs/phase3_1_natural_motion_report.md) | Phase 3.1 results: architecture, gait, garments, checks, before/after, performance, verdict |
+| [docs/phase3_2_implementation_plan.md](docs/phase3_2_implementation_plan.md) | Phase 3.2 audit and plan: IK, switch groups, hand library, rig controls, migration |
+| [docs/phase3_2_ik_switch_report.md](docs/phase3_2_ik_switch_report.md) | Phase 3.2 results: IK, contacts, switches, editor, tests, evidence, performance, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |
@@ -154,4 +162,5 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 2+ | Natural posing (skinned joints, IK/balance, presets), corrective hands and gussets | Done on real art; pending review |
 | 3 | Interactive editor (layers, masks, pivots, vectors, pose preview, comparison, readiness) and Moho-ready asset package | Implemented; **PARTIAL** (reviews pending; Moho not run) |
 | 3.1 | Natural motion: planner/solver split, front-view gait cycles, garment deformation, feasibility and quality checks | Implemented; **PARTIAL** (visual review pending; Moho not run) |
+| 3.2 | IK (arms, legs, poles, FK/IK matching), foot contacts, switch groups, hand library, correction triggers, rig controls spec | Implemented; **PARTIAL** (hand variants pending review; drawings missing; Moho not run) |
 | 4 | Native Moho import and rig of the exported package | Not started (needs Phase 0 verification, reviews, missing artwork) |

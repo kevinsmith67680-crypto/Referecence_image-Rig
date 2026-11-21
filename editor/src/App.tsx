@@ -4,8 +4,10 @@ import { focusRect, Pt, View } from "./geometry";
 import CanvasView, { CompareSettings, MaskSettings, Mode, Overlays, Tool } from "./components/CanvasView";
 import LayersPanel from "./components/LayersPanel";
 import { ComparePanel, Cycle, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, Motion, Perf, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
+import { IKPanel, SwitchesPanel } from "./components/RigPanels";
 
-const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "Face", "Live", "Compare", "Export"] as const;
+const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "IK", "Switches", "Face", "Live", "Compare", "Export"] as const;
+const POSE_TABS = ["Pose", "IK", "Switches"];
 type Tab = (typeof TABS)[number];
 const TOOLS: { t: Tool; key: string; label: string }[] = [
   { t: "select", key: "v", label: "Select" }, { t: "pan", key: "h", label: "Pan" }, { t: "brush", key: "b", label: "Brush" },
@@ -47,6 +49,8 @@ export default function App() {
   const [gates, setGates] = useState<any>(null);
   const [exportRes, setExportRes] = useState<any>(null);
   const poseSeq = useRef(0);
+  const [dragging, setDragging] = useState(false);
+  const drag = useRef<{ busy: boolean; pending: any; t: number; lat: number[] }>({ busy: false, pending: null, t: 0, lat: [] });
 
   const rev = payload?.project.revision ?? "0";
   useEffect(() => { api.project().then(setPayload).catch((e) => setError(String(e))); }, []);
@@ -72,7 +76,7 @@ export default function App() {
 
   // tab-driven data and view modes
   useEffect(() => {
-    if (tab === "Pose") setMode("pose");
+    if (POSE_TABS.includes(tab)) { setMode("pose"); if (tab !== "Pose" && preset === "rest") setPreset("relaxed_standing"); }
     else if (tab === "Compare") setMode("compare");
     else setMode("artwork");
     if (tab === "Face" || tab === "Live" || tab === "Compare" || tab === "Export") {
@@ -118,7 +122,7 @@ export default function App() {
     setPoseBusy(true);
     const t0 = performance.now();
     const t = setTimeout(() => api.pose(poseBody()).then((r) => {
-      if (seq === poseSeq.current) { setPoseRes({ ...r, roundtrip_ms: Math.round(performance.now() - t0 - 350) }); setPoseBusy(false); setSkel(null); }
+      if (seq === poseSeq.current) { setPoseRes({ ...r, roundtrip_ms: Math.round(performance.now() - t0 - 350) }); setPoseBusy(false); setSkel(null); setDragging(false); }
     }).catch((e) => { setError(String(e.message ?? e)); setPoseBusy(false); }), 350);
     return () => clearTimeout(t);
   }, [mode, preset, overrides, rev, overlays.boundaries, motion, playing]);
@@ -145,6 +149,45 @@ export default function App() {
     return () => { alive = false; };
   }, [playing]);
   useEffect(() => { const t = setTimeout(() => api.gates().then(setGates).catch(() => {}), 1500); return () => clearTimeout(t); }, [rev]);
+
+  // IK handle drags: skeleton-only solves with the draft IK state (one request in flight, latest position wins);
+  // the operation is committed on release and the full artwork follows
+  const ikDraft = (limb: string, kind: "target" | "pole", pt: Pt) => {
+    const base = payload!.state.ik;
+    const c = base[limb] ?? {};
+    const L = (skel ?? poseRes)?.ik?.limbs?.[limb];
+    const P = [+pt.x.toFixed(2), +pt.y.toFixed(2)];
+    const fields: Record<string, unknown> = kind === "target" ? { enabled: true, mode: "ik", target: P } : { pole: P };
+    if (kind === "target" && !(c.enabled && c.mode === "ik") && L && limb.startsWith("arm")) {
+      const u = [L.effector[0] - L.root[0], L.effector[1] - L.root[1]], m = [L.mid[0] - L.root[0], L.mid[1] - L.root[1]];
+      fields.bend = u[0] * m[1] - u[1] * m[0] >= 0 ? 1 : -1;  // hold the current elbow side (no inversion)
+    }
+    return { fields, ik: { ...base, [limb]: { ...c, ...fields } } };
+  };
+  const onIkDrag = (limb: string, kind: "target" | "pole", pt: Pt) => {
+    const D = drag.current;
+    D.pending = ikDraft(limb, kind, pt).ik;
+    D.t = performance.now();
+    if (D.busy) return;
+    const pump = () => {
+      const ik = D.pending;
+      if (!ik) { D.busy = false; return; }
+      D.pending = null; D.busy = true;
+      const t0 = D.t;
+      api.pose(poseBody({ ik, skeleton_only: true, diagnostics: [], before: false })).then((r) => {
+        const lat = performance.now() - t0;
+        D.lat.push(lat); (window as any).__autorigIkLatency = D.lat;
+        setSkel(r); setDragging(true);
+        setPerf((p) => ({ ...p, latencyMs: Math.round(lat), solveMs: r.timing_ms?.solve ?? 0, frames: p.frames + 1 }));
+        pump();
+      }).catch(() => { D.busy = false; });
+    };
+    pump();
+  };
+  const onIkDragEnd = (limb: string, kind: "target" | "pole", pt: Pt) => {
+    drag.current.pending = null;
+    onOp({ type: "ik.set", limb, fields: ikDraft(limb, kind, pt).fields });
+  };
 
   if (!payload) return <div className="loading">{error ? `Cannot reach the editor backend: ${error}` : "Loading character project…"}</div>;
   const gl = gates?.overall ?? "…";
@@ -188,7 +231,8 @@ export default function App() {
           <CanvasView payload={payload} rev={rev} mode={mode} tool={tool} view={view} setView={setView} fitSignal={fit}
             selectedLayer={selLayer} onSelectLayer={setSelLayer} selectedBone={selBone} onSelectBone={setSelBone}
             selectedVector={selVec} onSelectVector={setSelVec} overlays={overlays} mask={mask} compare={cmp}
-            pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} skel={playing ? skel : null} showBefore={motion.showBefore && motion.before}
+            pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} skel={playing || dragging ? skel : null} showBefore={motion.showBefore && motion.before}
+            ikHandles={tab === "IK"} onIkDrag={onIkDrag} onIkDragEnd={onIkDragEnd}
             flip={anim && cycle?.box && flipImgs.current[flipIdx] ? { img: flipImgs.current[flipIdx], x: cycle.box[0] - (cycle.pad ?? 0), y: cycle.box[1] - (cycle.pad ?? 0) } : null} />
           <div className="modebar">
             {(["artwork", "pose", "compare"] as Mode[]).map((m) => <button key={m} className={mode === m ? "on" : ""} onClick={() => setTab(m === "pose" ? "Pose" : m === "compare" ? "Compare" : "Properties")}>{m}</button>)}
@@ -207,6 +251,9 @@ export default function App() {
               cycle={cycle} anim={anim} setAnim={setAnim} onRenderCycle={renderCycle} flipIdx={flipIdx}
               onCloseup={(n) => { const pos = (skel ?? poseRes)?.joints_posed?.[n]; const box = document.querySelector("[data-testid=canvas]") as HTMLElement;
                 if (pos && box) setView(focusRect([pos[0] - 110, pos[1] - 110, pos[0] + 110, pos[1] + 110], box.clientWidth, box.clientHeight)); }} />}
+            {tab === "IK" && <IKPanel payload={payload} result={dragging && skel ? skel : poseRes} busy={poseBusy || dragging} onOp={onOp} onError={setError}
+              ctx={{ preset, phase: motion.phase, speed: motion.speed, exaggeration: motion.exaggeration, allowPending: motion.allowPending, fluid: motion.fluid }} />}
+            {tab === "Switches" && <SwitchesPanel payload={payload} result={poseRes} rev={rev} phase={motion.phase} onOp={onOp} onError={setError} />}
             {tab === "Face" && <FacePanel face={face} overlays={overlays} setOverlays={setOverlays} onOp={onOp} />}
             {tab === "Live" && <LivePanel live={live} />}
             {tab === "Compare" && <ComparePanel cmp={cmp} setCmp={setCmp} metrics={metrics} payload={payload} onOp={onOp} />}

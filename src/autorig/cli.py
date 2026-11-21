@@ -519,6 +519,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--renders", type=int, default=5)
     p.set_defaults(func=cmd_motion_bench)
 
+    p = sub.add_parser("ik-demo", help="Phase 3.2: IK, foot contact and hand-switch evidence on a package")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", help="output directory (default <package>/natural_pose/ik_switch)")
+    p.set_defaults(func=cmd_ik_demo)
+
+    p = sub.add_parser("rig-controls", help="Phase 3.2: write and validate the rig controls spec of a package")
+    p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
+    p.add_argument("--out", help="output JSON (default: print a summary only)")
+    p.set_defaults(func=cmd_rig_controls)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -581,6 +591,42 @@ def cmd_motion(args: argparse.Namespace) -> int:
         print(f"  cycle {k}: {c['numerical']['passed']}/{c['numerical']['total']} checks, "
               f"pelvis range {c['pelvis_vertical_range_px']} px, airborne samples {c['airborne_samples']}")
     return 0
+
+
+def cmd_ik_demo(args: argparse.Namespace) -> int:
+    from .motion.demo import ik_demo
+
+    r = ik_demo(args.package, args.out)
+    q = r["ik_sequence"]
+    print(f"  IK sweep: {q['dense_samples']} samples, elbow flips {q['elbow_side_flips']}, max wrist error "
+          f"{q['max_wrist_error_px']} px, max joint step {q['max_joint_step_px']} px")
+    p = r["performance"]
+    print(f"  perf: IK solve {p['two_bone_ik_solve_us']} us, skeleton {p['skeleton_solve_with_arm_ik_ms']} ms, "
+          f"switches {p['switch_resolution_ms']} ms, full frame {p['full_frame_ms']} ms")
+    return 0
+
+
+def cmd_rig_controls(args: argparse.Namespace) -> int:
+    import json
+
+    from .editor.project import EditorProject
+    from .motion.pipeline import engine_for_package
+    from .motion.rigctl import build_rig_controls, validate
+
+    eng, _ = engine_for_package(args.package)
+    st = EditorProject(args.package).state()
+    doc = build_rig_controls(eng, st.get("ik"), st.get("switches"))
+    errs = validate(doc)
+    if args.out:
+        from pathlib import Path
+
+        Path(args.out).write_text(json.dumps(doc, indent=2), encoding="utf-8")
+    print(f"rig controls {doc['schema_version']}: {len(doc['ik']['chains'])} IK chains, "
+          f"{len(doc['switches']['groups'])} switch groups, {len(doc['corrections']['triggers'])} correction triggers, "
+          f"{len(doc['missing_artwork'])} missing drawings; validation errors: {len(errs)}")
+    for e in errs:
+        print(f"  {e}")
+    return 1 if errs else 0
 
 
 def cmd_motion_bench(args: argparse.Namespace) -> int:

@@ -70,3 +70,19 @@ td, th { border-bottom: 1px solid var(--line); padding: 3px; text-align: left; v
 .r-pass { background: #2b6a3a; } .r-warning, .r-needs_review { background: #6b5a1e; } .r-fail { background: #7a2e2c; }
 .loading { padding: 40px; font-size: 16px; }
 .wrap { flex-wrap: wrap; }
+/* Phase 3.2: IK and switch panels */
+.ik-limb { border: 1px solid var(--line); border-radius: 5px; padding: 6px 7px; display: flex; flex-direction: column; gap: 5px; }
+.ik-limb .row label { flex-direction: row; align-items: center; gap: 4px; }
+.ik-limb input[type=number] { width: 72px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 5px; }
+.thumb { border: 1px solid var(--line); border-radius: 4px; padding: 3px; text-align: center; cursor: pointer; background: #1f2329; }
+.thumb img { width: 64px; height: 64px; object-fit: contain; background: #e9ebef; border-radius: 3px; }
+.thumb .missing { width: 64px; height: 64px; margin: 0 auto; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #ffa8a8; border: 1px dashed #c92a2a; border-radius: 3px; }
+.thumb.active { border-color: #4dabf7; }
+.thumb.sel { box-shadow: 0 0 0 2px #fab005 inset; }
+.badge button.x { padding: 0 3px; margin-left: 3px; font-size: 10px; }
+.b-missing, .b-clamped_max_reach, .b-clamped_min_reach, .b-mismatch, .b-swapped { background: #7a2e2c; }
+.b-original, .b-planted { background: #2b6a3a; }
+.b-lifting, .b-landing { background: #6b5a1e; }
+.b-swinging, .b-free { background: #1f4f7a; }

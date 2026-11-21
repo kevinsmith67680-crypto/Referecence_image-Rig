@@ -21,14 +21,18 @@ import math
 from typing import Any
 
 import numpy as np
+from scipy.optimize import brentq
 
-from ..phase2.posing import two_bone_ik, wrap
+from ..phase2.posing import wrap
 from ..phase2.skeleton import SIDE_SIGN, SIDES, Skeleton, ang
 from ..phase2.skinning import PoseParams
+from .ik import TwoBoneIKSolver
 from .intent import ArmIntent, PoseIntent
 from .profile import CharacterProfile
 
 LAT = {"r": -1.0, "l": 1.0}
+MIN_FLEX = 1.6  # deg: limbs never solve exactly straight (the knee/elbow position is unstable at 0 deg)
+BALANCE_TOL_PX = 0.02  # static balance: CoM-over-support tolerance (tight, so FK/IK switches do not move the body)
 UNLOAD_PX = 5.0  # how far an unloading (or just landing) planted foot may rise in a gait
 SOFT_SUPPORT_PX = 1.5  # softness of the smooth max over planted feet (fluid gaits)
 LOADED = 0.8  # a planted foot counts as weight-bearing contact for the metrics at this load or more
@@ -87,6 +91,12 @@ class Kinematics:
                 "bone_tails_posed": {k: r(v) for k, v in tails.items()}}
 
 
+def unwrap_abduction(abd: float) -> float:
+    """Upper-arm abduction in (-90, 270]: an arm raised past vertical keeps increasing instead of wrapping to -180
+    (the shoulder rhythm would otherwise flip from elevation to depression overhead)."""
+    return abd + 360.0 if abd <= -90.0 else abd
+
+
 class SkeletalPoseSolver:
     def __init__(self, sk: Skeleton, profile: CharacterProfile, masses: dict[int, tuple[float, np.ndarray]],
                  limit_overrides: dict[tuple[str, str], dict[str, tuple[float, float]]] | None = None):
@@ -112,19 +122,15 @@ class SkeletalPoseSolver:
         th = np.zeros(N)
         clamps: list[str] = []
         notes: list[str] = list(it.notes)
+        self._notes: list[str] = []
+        self._clav_prev: dict[str, float] = {}
+        self._joint_targets: dict[str, np.ndarray] = {}
+        self._arm_notes: dict[str, str] = {}  # last call wins (the clavicle search re-solves the arm)
+        self._joint_fk: dict[str, bool] = {}  # arms whose joint target is out of reach (FK fallback)
         th[0] = self._clamp("pelvis", "tilt", it.pelvis_roll, clamps)
         th[I["spine"]] = self._clamp("spine", "bend", it.spine, clamps)
         chest = -it.chest_counter * (th[0] + th[I["spine"]]) if it.chest is None else it.chest
         th[I["chest"]] = self._clamp("chest", "bend", chest, clamps)
-        abd_est = {s: self._abduction_estimate(it.arms.get(s, ArmIntent()), s) for s in SIDES}
-        clav = {}
-        for s in SIDES:
-            e = it.clavicle.get(s, 0.0)
-            if it.scapulohumeral:
-                a = abd_est[s]
-                e += 0.33 * max(0.0, a - 90.0) - 0.045 * max(0.0, 90.0 - a)
-            clav[s] = self._clamp("clavicle", "elevation", e, clamps, s)
-            th[I[f"clavicle_{s}"]] = SIDE_SIGN[s] * clav[s]
         rel = it.head - K.rot(th, "chest")
         th[I["neck"]] = self._clamp("neck", "bend", it.neck_share * rel, clamps)
         th[I["head"]] = self._clamp("head", "bend", rel - th[I["neck"]], clamps)
@@ -132,22 +138,25 @@ class SkeletalPoseSolver:
         planted = [s for s in SIDES if s in it.legs and it.legs[s].planted]
         sx = it.pelvis_dx + it.root[0]
         info: dict[str, Any] = {}
-        iters = 14 if it.balance == "static" and planted else 1
+        iters = 24 if it.balance == "static" and planted else 1
+        clav: dict[str, float] = {}
         for _ in range(iters):
             sy, hinfo = self._pelvis_height(it, th, sx, planted)
             pose = PoseParams(th, np.ones(N), np.array([sx, sy + it.root[1]]))
-            leg_rep = self._legs(it, pose)
+            leg_rep = self._legs(it, pose)  # before the arms: arm targets may come from solved joints (knees)
+            clav = self._clavicles(it, th, np.array([sx, sy + it.root[1]]), clamps)
             arm_rep = self._arms(it, pose, clamps)
             com = self.com(pose)
             target_x, support = self._support(pose, it, planted)
             err = target_x - com[0] if (it.balance == "static" and planted) else 0.0
             info = {"com": com, "target_x": target_x, "support": support, "balance_error_px": err,
                     "pelvis_height": hinfo, "legs": leg_rep, "arms": arm_rep}
-            if abs(err) < 0.3:
+            if abs(err) < BALANCE_TOL_PX:
                 break
             lim = 0.8 * self.p.hip_sep
             sx = float(np.clip(sx + 0.9 * err, it.pelvis_dx - lim, it.pelvis_dx + lim))
         pose = PoseParams(th.copy(), np.ones(N), pose.shift.copy())
+        notes += sorted(set(self._notes)) + [self._arm_notes[k] for k in sorted(self._arm_notes)]
         info.update(K.joints(pose))
         anat = self.anatomical(pose)
         info.update({"clamps": sorted(set(clamps)), "violations": self.check_limits(pose, it, anat),
@@ -157,15 +166,143 @@ class SkeletalPoseSolver:
                      "contact_loaded": {s: (s in planted and it.legs[s].load >= LOADED) for s in SIDES}})
         return pose, info
 
-    def _abduction_estimate(self, a: ArmIntent, s: str) -> float:
-        if a.target is None and a.reach is None:
-            return a.abduction
-        if a.reach is not None:
-            lat, up = a.reach
-            return math.degrees(math.atan2(lat, -up)) if (lat or up) else 0.0
-        sh = self.sk.bone(f"upper_arm_{s}").head
-        v = np.asarray(a.target, float) - sh
-        return SIDE_SIGN[s] * ang(v)
+    @staticmethod
+    def rhythm(abd: float) -> float:
+        """Scapulohumeral rhythm: clavicle elevation (deg) for an upper-arm abduction (deg)."""
+        return 0.33 * max(0.0, abd - 90.0) - 0.045 * max(0.0, 90.0 - abd)
+
+    def _clavicles(self, it: PoseIntent, th: np.ndarray, shift, clamps: list[str]) -> dict[str, float]:
+        """Clavicle elevations. FK arms: rhythm of the commanded abduction. IK arms: fixed point of
+        rhythm(abduction of the solved upper arm), so an IK arm that reproduces an FK arm gets the same clavicle
+        (FK<->IK switching without a jump)."""
+        I = self.I
+        shift = np.array([float(shift), 0.0]) if np.ndim(shift) == 0 else np.asarray(shift, float)
+        out = {}
+        for s in SIDES:
+            a = it.arms.get(s, ArmIntent())
+            base = it.clavicle.get(s, 0.0)
+            ci = I[f"clavicle_{s}"]
+            if not it.scapulohumeral:
+                e = base
+            elif (a.target is None and a.reach is None and a.target_joint is None) or self._joint_unreachable(a, s, th, shift):
+                e = base + self.rhythm(a.abduction)
+            else:
+                lo, hi = self.limit("clavicle", "elevation", s)
+
+                def ik_at(e):
+                    th[ci] = SIDE_SIGN[s] * float(np.clip(e, lo, hi))
+                    shp, _, _, ikr = self._arm_ik(a, s, th, PoseParams(th, np.ones(len(th)), shift))
+                    return shp, ikr
+
+                def h(e):  # fixed-point residual: rhythm(abduction of the solved arm) - elevation
+                    shp, ikr = ik_at(e)
+                    return base + self.rhythm(unwrap_abduction(SIDE_SIGN[s] * ang(ikr.mid - shp))) - e
+
+                # root by bracketing (plain iteration oscillates: the residual's slope is below -1 near extension);
+                # the balance loop re-solves with a slightly moved pelvis, so try a narrow bracket first
+                prev = self._clav_prev.get(s)
+                if prev is not None and lo < prev - 0.25 and prev + 0.25 < hi and h(prev - 0.25) > 0 > h(prev + 0.25):
+                    lo_b, hi_b = prev - 0.25, prev + 0.25
+                    e = float(brentq(h, lo_b, hi_b, xtol=1e-10))
+                    h_lo = h_hi = None
+                else:
+                    h_lo, h_hi = h(lo), h(hi)
+                if h_lo is None:
+                    pass
+                elif h_lo <= 0:
+                    e = lo
+                elif h_hi >= 0:
+                    e = hi
+                else:
+                    e = float(brentq(h, lo, hi, xtol=1e-10))
+                shp, ikr = ik_at(e)
+                if ikr.status == "clamped_max_reach":
+                    # shoulder compensation: move the clavicle (within its limits) toward the target until it is
+                    # in reach; elevation for high targets, depression for low ones
+                    tgt = ikr.target
+                    dist = lambda x: float(np.hypot(*(tgt - ik_at(x)[0])))
+                    e0 = e
+                    end = hi if dist(hi) < dist(lo) else lo
+                    if dist(end) < dist(e0) - 1e-6:
+                        if ik_at(end)[1].status != "clamped_max_reach":
+                            a_in, a_out = end, e0  # bisect between the unreachable start and the reachable end
+                            for _ in range(30):
+                                mid = 0.5 * (a_in + a_out)
+                                if ik_at(mid)[1].status == "clamped_max_reach":
+                                    a_out = mid
+                                else:
+                                    a_in = mid
+                            e = a_in
+                        else:
+                            e = end
+                        verb = "raised" if e > e0 else "lowered"
+                        self._notes.append(f"arm_{s}: clavicle {verb} {abs(e - e0):.1f} deg toward the target"
+                                           + ("" if ik_at(e)[1].status == "ok" else " (still out of reach)"))
+                self._clav_prev[s] = e
+            out[s] = self._clamp("clavicle", "elevation", e, clamps, s)
+            th[ci] = SIDE_SIGN[s] * out[s]
+        return out
+
+    def _joint_unreachable(self, a: ArmIntent, s: str, th: np.ndarray, shift) -> bool:
+        """A joint target (hands on knees) that even the thigh puts out of reach: the arm keeps its FK pose instead
+        of straining straight toward the hip (that tears the armpit). Recorded per solve."""
+        if a.target_joint is None:
+            return False
+        if s not in self._joint_fk:
+            self._arm_ik(a, s, th, PoseParams(th, np.ones(len(th)), shift))
+            self._joint_fk[s] = "out of reach" in self._arm_notes.get(s, "") and "thigh are" in self._arm_notes.get(s, "")
+            if self._joint_fk[s]:
+                self._arm_notes[s] = self._arm_notes[s].replace("the arm reaches toward the hip",
+                                                                "the arm keeps its relaxed FK pose")
+        return self._joint_fk[s]
+
+    def _arm_ik(self, a: ArmIntent, s: str, th: np.ndarray, pose: PoseParams):
+        """Shoulder, target, pole and IK result of an IK arm in the given pose (the clavicle sets the shoulder)."""
+        I, sk, K = self.I, self.sk, self.K
+        up, fo = I[f"upper_arm_{s}"], I[f"forearm_{s}"]
+        Wc = K.world(I[f"clavicle_{s}"], pose)
+        shp = Wc[:2, :2] @ sk.J[up] + Wc[:2, 2]
+        L1, L2 = sk.bones[up].length, sk.bones[fo].length
+        if a.target is not None:
+            target = np.asarray(a.target, float)
+        elif a.target_joint is not None:
+            target = np.asarray(self._joint_targets[a.target_joint], float) + np.asarray(a.target_offset, float)
+            jside = a.target_joint.rsplit("_", 1)[1]
+            hip = self._joint_targets.get(f"hip_{jside}")
+            reach = 0.97 * TwoBoneIKSolver(L1, L2, MIN_FLEX, 179.0).max_reach
+            if a.target_joint.startswith("knee_") and hip is not None and np.hypot(*(target - shp)) > reach:
+                # the knee is out of reach (front-view sitting keeps the knees low): rest the hand on the thigh
+                # instead, at the farthest reachable point of the hip->knee line
+                lo_t, hi_t = 0.0, 1.0
+                for _ in range(40):
+                    m = 0.5 * (lo_t + hi_t)
+                    if np.hypot(*(hip + m * (target - hip) - shp)) <= reach:
+                        lo_t = m
+                    else:
+                        hi_t = m
+                if np.hypot(*(hip - shp)) > reach:
+                    self._arm_notes[s] = (f"arm_{s}: {a.target_joint} and the thigh are out of reach (arm "
+                                       f"{L1 + L2:.0f} px, shoulder to hip {np.hypot(*(hip - shp)):.0f} px): the arm "
+                                       "reaches toward the hip; hands on knees need a seated drawing")
+                    target = hip
+                else:
+                    self._arm_notes[s] = (f"arm_{s}: {a.target_joint} out of reach; hand rests on the thigh "
+                                       f"({100 * lo_t:.0f} % of the way to the knee)")
+                    target = hip + lo_t * (target - hip)
+        else:
+            lat, upv = a.reach
+            target = shp + np.array([LAT[s] * lat * (L1 + L2), -upv * (L1 + L2)])
+        mid = (shp + target) / 2
+        if a.pole is not None:
+            pole = np.asarray(a.pole, float)
+        elif a.elbow == "down":
+            pole = mid + np.array([0.0, 1000.0])
+        else:
+            pole = mid + np.array([LAT[s] * 1000.0, 0.0])
+        flex_hi = abs(self.limit("forearm", "flexion", s)[1])
+        if a.max_flex is not None:
+            flex_hi = max(MIN_FLEX, min(flex_hi, float(a.max_flex)))
+        return shp, target, pole, TwoBoneIKSolver(L1, L2, MIN_FLEX, min(flex_hi, 179.0)).solve(shp, target, pole)
 
     # -- pelvis --------------------------------------------------------------------------------------
     def _need(self, s, th, sx, ankle, knee_deg) -> float:
@@ -263,7 +400,9 @@ class SkeletalPoseSolver:
                 if d > l1 + l2:
                     note = f"target out of reach by {d - (l1 + l2):.1f} px: leg straightened toward it"
             mid = (hip + goal) / 2
-            knee, ankle, ok = two_bone_ik(hip, goal, l1, l2, lambda k: (k[0] - mid[0]) * LAT[s])
+            pole = np.asarray(leg.pole, float) if leg.pole is not None else mid + np.array([LAT[s] * 1000.0, 0.0])
+            ikr = TwoBoneIKSolver(l1, l2, MIN_FLEX, 179.0).solve(hip, goal, pole)  # knee lateral unless a pole says so
+            knee, ankle = ikr.mid, ikr.end
             th[t] = wrap(ang(knee - hip) - sk.bones[t].rest_angle - th[0])
             th[sh] = wrap(ang(ankle - knee) - sk.bones[sh].rest_angle - th[0] - th[t])
             shin_world = th[0] + th[t] + th[sh]
@@ -275,6 +414,8 @@ class SkeletalPoseSolver:
                       "error_px": round(float(np.hypot(*(ankle - (goal if not leg.planted else req)))), 3),
                       "requested_minus_achieved_lift_px": round(float(ankle[1] - req[1]), 2),
                       "knee": [round(float(v), 2) for v in knee], "note": note}
+            self._joint_targets[f"knee_{s}"] = knee
+            self._joint_targets[f"hip_{s}"] = hip
         return rep
 
     @staticmethod
@@ -295,24 +436,15 @@ class SkeletalPoseSolver:
             up, fo, ha, cl = I[f"upper_arm_{s}"], I[f"forearm_{s}"], I[f"hand_{s}"], f"clavicle_{s}"
             sg = SIDE_SIGN[s]
             r: dict[str, Any] = {"mode": "fk"}
-            if a.target is not None or a.reach is not None:
-                Wc = K.world(I[cl], pose)
-                shp = Wc[:2, :2] @ sk.J[up] + Wc[:2, 2]
-                L1, L2 = sk.bones[up].length, sk.bones[fo].length
-                if a.target is not None:
-                    target = np.asarray(a.target, float)
-                else:
-                    lat, upv = a.reach
-                    target = shp + np.array([LAT[s] * lat * (L1 + L2), -upv * (L1 + L2)])
-                if a.elbow == "down":
-                    pref = lambda e: e[1]
-                else:
-                    pref = lambda e: (e[0] - shp[0]) * LAT[s]
-                elbow, wrist, ok = two_bone_ik(shp, target, L1, L2, pref)
+            if a.target is not None or a.reach is not None or (a.target_joint is not None and not self._joint_fk.get(s)):
+                shp, target, pole, ikr = self._arm_ik(a, s, th, pose)
+                elbow, wrist, ok = ikr.mid, ikr.end, ikr.reached
                 th[up] = wrap(ang(elbow - shp) - sk.bones[up].rest_angle - K.rot(th, cl))
                 th[fo] = wrap(ang(wrist - elbow) - sk.bones[fo].rest_angle - K.rot(th, f"upper_arm_{s}"))
                 r = {"mode": "ik", "target": [round(float(v), 2) for v in target],
-                     "wrist": [round(float(v), 2) for v in wrist],
+                     "wrist": [round(float(v), 2) for v in wrist], "elbow": [round(float(v), 2) for v in elbow],
+                     "pole": [round(float(v), 2) for v in pole], "status": ikr.status,
+                     "flexion_deg": round(ikr.flexion_deg, 2),
                      "error_px": round(float(np.hypot(*(wrist - target))), 3), "reachable": bool(ok)}
             else:
                 abd = self._clamp("upper_arm", "abduction", a.abduction, clamps, s)

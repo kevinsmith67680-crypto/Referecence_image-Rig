@@ -115,7 +115,8 @@ class PoseQualityEvaluator:
         changes = {}
         for c, a in render["alphas"].items():
             base = c.split("__")[0]
-            r0 = self.rest_area.get(c) or self.rest_area.get(base)
+            # an alignment-offset copy (``<variant>__offN``) has the area of its variant, not of the base layer
+            r0 = self.rest_area.get(c) or self.rest_area.get(c.split("__off")[0]) or self.rest_area.get(base)
             if r0 and r0 > 3000:  # thin layers (brows, nose) are dominated by resampled edge pixels
                 changes[c] = abs(int(a.sum()) / r0 - 1.0)
         worst = max(changes.items(), key=lambda kv: kv[1], default=(None, 0.0))

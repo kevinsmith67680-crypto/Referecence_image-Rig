@@ -24,6 +24,8 @@ export interface EditorState {
   defects: Record<string, { joint: string; preset: string; status: string; note: string }>;
   approvals: Record<string, { status: string; type?: string; note?: string }>;
   pose: { preset: string; overrides: Record<string, number> };
+  ik: Record<string, any> & { pelvis_offset: [number, number] };
+  switches: Record<string, { user: string | null; auto: boolean; keys: [number, string][]; offsets: Record<string, { dx: number; dy: number; rot: number }> }>;
 }
 export interface Payload {
   project: { cursor: number; ops: number; can_undo: boolean; can_redo: boolean; revision: string; versions: any[] };
@@ -58,6 +60,12 @@ export const api = {
   cycleStatus: (id: string) => fetch(`/api/pose/cycle/${id}`).then((r) => j<any>(r)),
   cycleFrameUrl: (id: string, i: number) => `/api/pose/cycle/${id}/frame/${i}.png`,
   cycleAnimUrl: (id: string, ext: "webp" | "gif") => `/api/pose/cycle/${id}/animation.${ext}`,
+  ikMatch: (body: Record<string, unknown>) => post("/api/ik/match", body).then((r) => j<any>(r)),
+  switches: () => fetch("/api/switches").then((r) => j<any>(r)),
+  switchThumbUrl: (group: string, variant: string, rev: string) => `/api/switch/thumb/${group}/${variant}.png?rev=${rev}`,
+  rigControls: () => fetch("/api/rig/controls").then((r) => j<any>(r)),
+  liveActions: () => fetch("/api/live/actions").then((r) => j<Record<string, any>>(r)),
+  liveAction: (body: Record<string, unknown>) => post("/api/live/action", body).then((r) => j<any>(r)),
   face: () => fetch("/api/face").then((r) => j<any>(r)),
   live: () => fetch("/api/live").then((r) => j<any>(r)),
   gates: () => fetch("/api/gates").then((r) => j<any>(r)),
