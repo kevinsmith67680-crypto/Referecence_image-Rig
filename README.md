@@ -79,18 +79,21 @@ Open `character_packages/name/reports/visual_review.html` to inspect generated (
 
 ## Phase 3: edit the character in the browser
 
+Run these from the repository folder. The first copy puts a working copy of the package next to the repository
+(`../schoolboy_pkg`), so the committed snapshot stays untouched:
+
 ```bash
 .venv/bin/pip install -e '.[dev]'
-.venv/bin/python -m autorig editor "/Volumes/<SSD>/AutoRig/schoolboy_pkg"
+cp -R projects/schoolboy_tpose/character_package ../schoolboy_pkg
+.venv/bin/python -m autorig editor ../schoolboy_pkg
 ```
 
-Open <http://127.0.0.1:8765>. Work on a copy of a package (for example
-`cp -R projects/schoolboy_tpose/character_package "/Volumes/<SSD>/AutoRig/schoolboy_pkg"`). Edits are saved to
-`<package>/editor/`, and the package's own artwork is never modified. The built editor is committed in `editor/dist`, so
-Node is only needed to change the frontend. Export the Moho-ready asset package from the Export tab, or:
+Open <http://127.0.0.1:8765>. Edits are saved to `../schoolboy_pkg/editor/`, and the package's own artwork is never
+modified. Press Ctrl+C in the terminal to stop the editor. The built editor is committed in `editor/dist`, so Node is
+only needed to change the frontend. Export the Moho-ready asset package from the Export tab, or:
 
 ```bash
-.venv/bin/python -m autorig export-assets "/Volumes/<SSD>/AutoRig/schoolboy_pkg" --out "/Volumes/<SSD>/AutoRig/schoolboy_export"
+.venv/bin/python -m autorig export-assets ../schoolboy_pkg --out ../schoolboy_export
 ```
 
 ![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
