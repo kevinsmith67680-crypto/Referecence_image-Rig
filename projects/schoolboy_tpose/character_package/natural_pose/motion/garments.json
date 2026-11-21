@@ -162,8 +162,17 @@
    "anchors": []
   },
   "head": {
-   "pixels": 73222,
+   "pixels": 35920,
    "anchors": []
+  },
+  "hair": {
+   "pixels": 37302,
+   "anchors": {
+    "top_y": 21.0,
+    "hairline_y": 159.0,
+    "pivot_x": 542.16,
+    "pivot_y": 171.8
+   }
   }
  },
  "hem": {

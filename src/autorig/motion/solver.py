@@ -30,6 +30,7 @@ from .profile import CharacterProfile
 
 LAT = {"r": -1.0, "l": 1.0}
 UNLOAD_PX = 5.0  # how far an unloading (or just landing) planted foot may rise in a gait
+SOFT_SUPPORT_PX = 1.5  # softness of the smooth max over planted feet (fluid gaits)
 LOADED = 0.8  # a planted foot counts as weight-bearing contact for the metrics at this load or more
 
 
@@ -186,8 +187,17 @@ class SkeletalPoseSolver:
             # Airborne: the standing height passes from the leaving leg to the landing leg with their loads.
             w = {s: max(it.legs[s].load, 0.0) for s in SIDES if s in it.legs}
             if planted:
-                ref = max(self._need(s, th, sx, it.legs[s].ankle, it.legs[s].knee_min) - (1.0 - w[s]) * UNLOAD_PX
-                          for s in planted)
+                needs = [self._need(s, th, sx, it.legs[s].ankle, it.legs[s].knee_min) - (1.0 - w[s]) * UNLOAD_PX
+                         for s in planted]
+                if it.smooth_support and len(needs) > 1:
+                    # load-weighted soft max: no kink when the binding foot changes, and a foot that is just loading
+                    # (or unloading) enters the max gradually instead of with a step
+                    k = SOFT_SUPPORT_PX
+                    m = max(needs)
+                    ws = [max(w[s], 1e-4) for s in planted]
+                    ref = m + k * math.log(sum(wi * math.exp((n - m) / k) for wi, n in zip(ws, needs)) / max(ws))
+                else:
+                    ref = max(needs)
             else:
                 tot = sum(w.values()) or 1.0
                 ref = sum(w[s] * self._need(s, th, sx, it.legs[s].ground or it.legs[s].ankle, it.legs[s].knee_min)

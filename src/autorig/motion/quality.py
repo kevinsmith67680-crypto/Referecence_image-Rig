@@ -38,9 +38,14 @@ THRESHOLDS: dict[str, tuple[float, str]] = {
     "continuity_spike_px": (4.0, "max jump of a joint: its step minus the larger neighbouring step (64 samples)"),
     "foot_slide_px": (1.0, "weight-bearing ankle drift in world space within one stance (load >= 0.8)"),
     "gait_ground_penetration_px": (1.0, "ankle below its standing height in any sample"),
-    "coordination_corr": (0.9, "corr(arm forwardness measured on the solved forearm, opposite leg)"),
+    "coordination_corr": (0.9, "best corr(solved forearm swing, opposite leg) within a lag of +/-0.15 cycle"),
     "com_drift_px": (6.0, "in-place cycle: mean CoM x vs the rest midline"),
+    "jerk_ratio": (60.0, "upper body relative to the pelvis: max |3rd difference| of a joint path over its range x "
+                         "(2 pi / N)^3 (a pure sine = 1; foot impacts are excluded on purpose)"),
+    "arm_overlap_cycles": (0.02, "lag of elbow flexion behind the planned arm swing (cycle fraction); 0 = lockstep"),
+    "hand_arc_quotient": (0.04, "hand path (relative to the chest) area vs a circle of equal perimeter; 0 = a line"),
 }
+FLUIDITY = ("jerk_ratio", "arm_overlap_cycles", "hand_arc_quotient")
 
 
 def _chk(name: str, value: float, ok: bool, detail: str = "") -> dict[str, Any]:
@@ -160,21 +165,67 @@ class PoseQualityEvaluator:
         checks.append(_chk("foot_slide_px", slide, slide <= T["foot_slide_px"][0]))
         pen = max(max(info["joints_posed"][f"foot_{s}"][1] - self.p.ankle_y[s] for s in SIDES) for _, info in frames)
         checks.append(_chk("gait_ground_penetration_px", max(pen, 0.0), pen <= T["gait_ground_penetration_px"][0]))
-        corr = {}
+        corr, lagk = {}, {}
         for s, o in (("r", "l"), ("l", "r")):
-            arm = np.array([info["anatomical"][f"forearm_{s}_flexion"] for _, info in frames])
-            leg_o = np.array([it.channels[f"leg_forward_{o}"] for it, _ in frames])
-            corr[s] = float(np.corrcoef(arm, leg_o)[0, 1]) if arm.std() > 1e-6 else 0.0
+            arm = np.array([info["anatomical"][f"forearm_{s}_flexion"] for _, info in frames[:-1]])
+            leg_o = np.array([it.channels[f"leg_forward_{o}"] for it, _ in frames[:-1]])
+            n = len(arm)
+            best, bk = -1.0, 0
+            if arm.std() > 1e-6:  # opposition may lag (follow-through): best correlation within +/-0.15 cycle
+                for k in range(-int(0.15 * n), int(0.15 * n) + 1):
+                    c_ = float(np.corrcoef(arm, np.roll(leg_o, k))[0, 1])
+                    if c_ > best:
+                        best, bk = c_, k
+            corr[s], lagk[s] = (best if arm.std() > 1e-6 else 0.0), bk / n
         c = min(corr.values())
         checks.append(_chk("coordination_corr", c, c >= T["coordination_corr"][0],
-                           f"right arm vs left leg {corr['r']:.3f}, left arm vs right leg {corr['l']:.3f}"))
+                           f"right arm vs left leg {corr['r']:.3f} (lag {lagk['r']:.3f}), "
+                           f"left arm vs right leg {corr['l']:.3f} (lag {lagk['l']:.3f})"))
         if travel == 0.0:
             mx = float(np.mean([info["com"][0] for _, info in frames]))
             drift = abs(mx - self.p.midline_x)
             checks.append(_chk("com_drift_px", drift, drift <= T["com_drift_px"][0]))
+        checks += self.fluidity(frames, P, names)
         pel = np.array([info["joints_posed"]["pelvis"][1] for _, info in frames])
         airborne = sum(1 for _, info in frames if not any(info["contact"].values()))
         passed = sum(x["pass"] for x in checks)
         return {"checks": checks, "numerical": {"passed": passed, "total": len(checks), "all_pass": passed == len(checks)},
                 "samples": len(frames), "pelvis_vertical_range_px": round(float(np.ptp(pel)), 2),
                 "airborne_samples": airborne, "artistic_review_required": True}
+
+    def fluidity(self, frames, P: np.ndarray, names: list[str]) -> list[dict[str, Any]]:
+        """Smoothness, overlap and arcs over one cycle (``frames`` cover [0, 1]; the last repeats the first)."""
+        from .secondary import chain_lag
+
+        T = THRESHOLDS
+        # upper body relative to the pelvis: foot strikes may be sharp (impacts), arms/torso/head should not jerk
+        upper = [i for i, nm in enumerate(names) if nm.split("_")[0] in
+                 ("chest", "neck", "head", "clavicle", "upper", "forearm", "hand")]
+        pel = names.index("pelvis")
+        Q = (P[:-1, upper] - P[:-1, pel][:, None, :])  # one period
+        names = [names[i] for i in upper]
+        n = len(Q)
+        d3 = np.roll(Q, -2, 0) - 3 * np.roll(Q, -1, 0) + 3 * Q - np.roll(Q, 1, 0)
+        rng = np.maximum(np.ptp(Q, axis=0), 1.0)  # (J, 2)
+        unit = (2 * np.pi / n) ** 3
+        ratio = np.abs(d3) / (rng[None] * unit)
+        k, j, a = np.unravel_index(int(ratio.argmax()), ratio.shape)
+        jr = float(ratio.max())
+        out = [_chk("jerk_ratio", jr, jr <= T["jerk_ratio"][0], f"joint {names[j]} at sample {k}")]
+        lags, quot = [], []
+        for s in SIDES:
+            drv = np.array([it.channels[f"arm_forward_{s}"] for it, _ in frames[:-1]])  # planned swing (driver)
+            flex = np.array([info["anatomical"][f"forearm_{s}_flexion"] for _, info in frames[:-1]])
+            lags.append(chain_lag(drv, flex))
+            hand = np.array([np.subtract(info["joints_posed"][f"hand_{s}"], info["joints_posed"]["chest"])
+                             for _, info in frames[:-1]])
+            area = 0.5 * abs(float(np.dot(hand[:, 0], np.roll(hand[:, 1], -1)) - np.dot(hand[:, 1], np.roll(hand[:, 0], -1))))
+            per = float(np.hypot(*np.diff(np.vstack([hand, hand[:1]]), axis=0).T).sum())
+            quot.append(4 * np.pi * area / per ** 2 if per > 1e-6 else 0.0)
+        lag = min(lags)
+        out.append(_chk("arm_overlap_cycles", lag, lag >= T["arm_overlap_cycles"][0],
+                        f"right {lags[0]:.3f}, left {lags[1]:.3f} cycle"))
+        q = min(quot)
+        out.append(_chk("hand_arc_quotient", q, q >= T["hand_arc_quotient"][0], f"right {quot[0]:.3f}, left {quot[1]:.3f}"))
+        return out
+

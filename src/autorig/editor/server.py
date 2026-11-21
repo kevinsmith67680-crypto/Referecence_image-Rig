@@ -196,6 +196,75 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
                 out["boundaries"] = "data:image/png;base64," + base64.b64encode(png_bytes(r["boundaries"])).decode()
             return JSONResponse(jsonable(out))
 
+    # -- animated gait cycles: full-artwork frames rendered in a background job ------------------------------
+    jobs: dict[str, dict[str, Any]] = {}
+
+    @app.post("/api/pose/cycle")
+    def cycle_start(body: dict = Body(...)):
+        import uuid
+
+        from ..motion.pipeline import render_cycle, save_animation
+        from ..motion.planner import SPEC_BY_NAME
+
+        name = body.get("preset", "running")
+        if name not in SPEC_BY_NAME or SPEC_BY_NAME[name].kind != "gait":
+            raise HTTPException(400, f"{name} is not a gait cycle")
+        n = int(body.get("frames", 24))
+        if not 4 <= n <= 48:
+            raise HTTPException(400, "frames must be 4..48")
+        jid = uuid.uuid4().hex[:12]
+        job = {"done": False, "progress": 0, "total": n, "frames": [], "error": None}
+        jobs[jid] = job
+        while len(jobs) > 6:
+            jobs.pop(next(iter(jobs)))
+
+        def work():
+            try:
+                with S.lock:
+                    st = S.project.state()
+                    masks = S.masks()
+                    eng = S.pose.motion_engine(st, masks, rejected_ids(st))
+                    vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+                    out_dir = S.project.dir / "cycles"
+                res = render_cycle(eng, name, n, vis, float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
+                                   bool(body.get("allow_pending")), bool(body.get("fluid", True)),
+                                   progress=lambda i, t: job.update(progress=i), lock=S.lock)
+                job["frames"] = [png_bytes(f) for f in res["frames"]]
+                out_dir.mkdir(parents=True, exist_ok=True)
+                save_animation(res["frames"], res["duration_ms"], out_dir / f"{jid}.webp", scale=0.5)
+                save_animation(res["frames"], res["duration_ms"], out_dir / f"{jid}.gif", scale=0.4)
+                job.update(box=res["box"], pad=res["pad"], duration_ms=res["duration_ms"],
+                           files={"webp": str(out_dir / f"{jid}.webp"), "gif": str(out_dir / f"{jid}.gif")})
+            except Exception as exc:  # reported to the UI
+                job["error"] = str(exc)
+            finally:
+                job["done"] = True
+
+        threading.Thread(target=work, daemon=True).start()
+        return {"id": jid, "frames": n}
+
+    @app.get("/api/pose/cycle/{jid}")
+    def cycle_status(jid: str):
+        job = jobs.get(jid)
+        if job is None:
+            raise HTTPException(404, jid)
+        return jsonable({k: v for k, v in job.items() if k not in ("frames", "files")} | {"ready": len(job["frames"])})
+
+    @app.get("/api/pose/cycle/{jid}/frame/{i}.png")
+    def cycle_frame(jid: str, i: int):
+        job = jobs.get(jid)
+        if job is None or not 0 <= i < len(job["frames"]):
+            raise HTTPException(404, f"{jid}/{i}")
+        return Response(job["frames"][i], media_type="image/png", headers=NO_STORE)
+
+    @app.get("/api/pose/cycle/{jid}/animation.{ext}")
+    def cycle_animation(jid: str, ext: str):
+        job = jobs.get(jid)
+        if job is None or ext not in ("webp", "gif") or not job.get("files"):
+            raise HTTPException(404, jid)
+        return FileResponse(job["files"][ext], media_type=f"image/{ext}",
+                            filename=f"{jid}.{ext}", headers=NO_STORE)
+
     @app.get("/api/face")
     def face():
         with S.lock:

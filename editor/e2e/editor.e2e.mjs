@@ -243,8 +243,9 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.selectOption("[data-testid=preset]", "running");
     await page.waitForSelector("[data-testid=gait-controls]");
     await page.locator("[data-testid=gait-phase]").fill("0.375");
+    await page.waitForFunction(() => /SUPPORTED_WITH_CORRECTIONS/.test(
+      document.querySelector("[data-testid=feasibility]")?.textContent ?? ""), null, { timeout: 90000 });
     await waitPose(page);
-    assert.match(await page.textContent("[data-testid=feasibility]"), /SUPPORTED_WITH_CORRECTIONS/);
     await page.screenshot({ path: path.join(SHOTS, "14_run_cycle_flight.png") });
     for (const d of ["skeleton", "contacts", "com", "garments"]) await page.check(`[data-testid=diag-${d}]`);
     await waitPose(page);
@@ -260,8 +261,9 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     console.log(`# skeleton playback in headless Chromium (cloud CPU): ${perfText}`);
     await waitPose(page);
     await page.check("[data-testid=allow-pending]");
+    await page.waitForFunction(() => /NEEDS_ARTWORK[\s\S]*hand:fist \(pending_review\)/.test(
+      document.querySelector("[data-testid=feasibility]")?.textContent ?? ""), null, { timeout: 90000 });
     await waitPose(page);
-    assert.match(await page.textContent("[data-testid=feasibility]"), /NEEDS_ARTWORK[\s\S]*hand:fist \(pending_review\)/);
     await page.screenshot({ path: path.join(SHOTS, "17_run_fists_pending_preview.png") });
     await page.uncheck("[data-testid=allow-pending]");
     await page.check("[data-testid=before-after]");
@@ -275,6 +277,17 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await sleep(800);
     await page.screenshot({ path: path.join(SHOTS, "19_closeup_knee.png") });
     await page.keyboard.press("f");
+    // animated cycle with the full artwork (fluid motion), played back in the canvas; downloads are served
+    await page.selectOption("[data-testid=cycle-frames]", "12");
+    await page.click("[data-testid=cycle-render]");
+    await page.waitForFunction(() => /ready/.test(document.querySelector("[data-testid=cycle-progress]")?.textContent ?? ""),
+      null, { timeout: 240000 });
+    await page.waitForSelector("[data-testid=cycle-play]");
+    await sleep(700);
+    await page.screenshot({ path: path.join(SHOTS, "20_animated_cycle_frame.png") });
+    const gifOk = await page.evaluate(async () => (await fetch(document.querySelector("a[href$='.gif']").href)).ok);
+    assert.ok(gifOk, "animated GIF download");
+    await page.click("[data-testid=cycle-play]");
     await page.selectOption("[data-testid=preset]", "relaxed_standing");
     await waitPose(page);
 

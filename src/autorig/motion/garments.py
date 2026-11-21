@@ -34,14 +34,14 @@ REGIONS = ["none", "blazer_body", "lapel_trim", "shirt_collar", "tie_badge", "sw
            "shoulder_seam_r", "shoulder_seam_l", "sleeve_upper_r", "sleeve_upper_l", "sleeve_fore_r", "sleeve_fore_l",
            "shirt_cuff_r", "shirt_cuff_l", "hand_r", "hand_l", "trouser_thigh_r", "trouser_thigh_l",
            "trouser_knee_r", "trouser_knee_l", "trouser_shin_r", "trouser_shin_l", "trouser_cuff_r", "trouser_cuff_l",
-           "shoe_r", "shoe_l", "neck", "head"]
+           "shoe_r", "shoe_l", "neck", "head", "hair"]
 RID = {n: i for i, n in enumerate(REGIONS)}
 REGION_COLOR = {"blazer_body": (40, 70, 200), "lapel_trim": (240, 200, 120), "shirt_collar": (250, 250, 250),
                 "tie_badge": (250, 180, 0), "sweater": (110, 40, 160), "blazer_hem": (230, 40, 90),
                 "shoulder_seam": (0, 220, 200), "sleeve_upper": (60, 160, 255), "sleeve_fore": (120, 200, 255),
                 "shirt_cuff": (255, 255, 160), "hand": (255, 150, 120), "trouser_thigh": (150, 110, 60),
                 "trouser_knee": (255, 120, 0), "trouser_shin": (190, 150, 90), "trouser_cuff": (255, 220, 0),
-                "shoe": (100, 60, 30), "neck": (255, 190, 150), "head": (255, 210, 180)}
+                "shoe": (100, 60, 30), "neck": (255, 190, 150), "head": (255, 210, 180), "hair": (160, 255, 120)}
 
 HEM_SOFT = 30.0  # px: trouser attachment zone under the blazer hem
 
@@ -144,7 +144,16 @@ class GarmentModel:
         lab[get("neck")] = RID["neck"]
         for c, m in masks.items():
             if layer_class(c) == "head":
-                lab[m] = RID["head"]
+                lab[m] = RID["hair"] if c == "hair" else RID["head"]
+        hair_m = get("hair")
+        face_m = get("head_base")
+        if hair_m.any():
+            hy = np.nonzero(hair_m.any(1))[0]
+            fy = np.nonzero(face_m.any(1))[0] if face_m.any() else hy
+            hair = {"top_y": float(hy.min()), "hairline_y": float(max(fy.min(), hy.min() + 20)),
+                    "pivot_x": float(mid), "pivot_y": float((b("head").head[1] + hy.min()) / 2)}
+        else:
+            hair = None
         neck_m = get("neck")
         rows = [np.nonzero(r)[0] for r in neck_m if r.any()]
         neck_half = float(np.median([(r.max() - r.min()) / 2 for r in rows])) if rows else 0.25 * p.hip_sep
@@ -163,6 +172,7 @@ class GarmentModel:
         stats["hem_pixels_in_thigh_layers"] = int(hem_over.sum())
         notes.append(f"{int(hem_over.sum())} blazer-hem pixels were cut into the thigh layers; they now hang from "
                      "the pelvis instead of following the thighs")
+        anchors["hair"] = hair
         return cls(lab, hem_over, hem, anchors, stats, notes)
 
     def to_json(self) -> dict[str, Any]:
@@ -215,6 +225,8 @@ class GarmentSkeleton(Skeleton):
         # trousers also attach softly to the pelvis-layer waistband / fly (the crotch seam)
         waist = hem_any | (model.labels == RID["sweater"]) & (np.arange(model.labels.shape[0])[:, None] > model.hem["top_y"])
         self.attach_dist = ndimage.distance_transform_edt(~waist).astype(np.float32) if waist.any() else None
+        # hair sway zone: dilated so the silhouette edge and the resampling margin move with the hair they belong to
+        self.hair_zone = ndimage.binary_dilation(model.labels == RID["hair"], iterations=8)
 
     def home(self, cid: str, pts: np.ndarray) -> np.ndarray:
         out = super().home(cid, pts)
@@ -248,6 +260,14 @@ class GarmentSkeleton(Skeleton):
                 yi = np.clip(np.rint(pts[own, 1]).astype(int), 0, H - 1)
                 f[own] = f[own] * smoothstep(0.0, HEM_SOFT, self.attach_dist[yi, xi])
         return f
+
+    def hair_weight(self, pts: np.ndarray, top: float, bottom: float) -> np.ndarray:
+        """Hair sways most at the top and not at all at the hairline (so it never separates from the face)."""
+        H, W = self.model.labels.shape
+        xi = np.clip(np.rint(pts[:, 0]).astype(int), 0, W - 1)
+        yi = np.clip(np.rint(pts[:, 1]).astype(int), 0, H - 1)
+        is_hair = self.hair_zone[yi, xi]
+        return np.where(is_hair, 1.0 - smoothstep(top, bottom, pts[:, 1]), 0.0)
 
     def hem_weight(self, pts: np.ndarray, home: np.ndarray, top: float, bottom: float) -> np.ndarray:
         """Share of the hem's secondary motion at rest points: the hem itself by height, and the trousers just
@@ -306,6 +326,12 @@ class GarmentDeformationEngine:
             terms.append(GarmentTerm("blazer_hem_lag", (h["pivot_x"], h["pivot_y"]), float(lag), h["top_y"],
                                      h["bottom_y"]))
             active.append({"rule": "secondary:blazer_hem_lag", "region": "blazer_hem", "angle_deg": round(float(lag), 2)})
+        hair = (garment_hints or {}).get("hair_lag_deg", 0.0)
+        hg = self.model.anchors.get("hair")
+        if hg and abs(hair) > 0.05:
+            top = hg["top_y"] + 0.15 * (hg["hairline_y"] - hg["top_y"])
+            terms.append(GarmentTerm("hair_sway", (hg["pivot_x"], hg["pivot_y"]), float(hair), top, hg["hairline_y"]))
+            active.append({"rule": "secondary:hair_sway", "region": "hair", "angle_deg": round(float(hair), 2)})
         return {"rp": rp, "rc": rc, "terms": terms, "active": active}
 
 
@@ -328,7 +354,8 @@ class ArtworkDeformationEngine(Deformer):
         ident.theta[0] = 0.0
         a, b_, c, d, tx, ty = Deformer.compose(self, pts, home, ident, bones)
         for t in self.terms:
-            w = self.sk.hem_weight(pts, home, t.top, t.bottom)
+            w = (self.sk.hair_weight(pts, t.top, t.bottom) if t.name == "hair_sway"
+                 else self.sk.hem_weight(pts, home, t.top, t.bottom))
             if not w.any():
                 continue
             ang = np.radians(t.angle) * w

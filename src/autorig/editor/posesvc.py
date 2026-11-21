@@ -279,7 +279,7 @@ class PoseService:
             raise PoseError(f"unknown bones in overrides: {unknown}")
         r = eng.pose(name, body.get("phase"), float(body.get("speed", 1.0)), float(body.get("exaggeration", 1.0)),
                      0.0, bool(body.get("allow_pending")), overrides, body.get("live_head") or None, visible,
-                     skeleton_only=bool(body.get("skeleton_only")))
+                     skeleton_only=bool(body.get("skeleton_only")), fluid=bool(body.get("fluid", True)))
         s = r["solve"]
         out = {"name": name, "title": r["title"], "kind": r["kind"], "phase": r["phase"], "pad": r["pad"],
                "joints_posed": s["joints_posed"], "bone_tails_posed": s["bone_tails_posed"], "contact": s["contact"],

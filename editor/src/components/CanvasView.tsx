@@ -93,6 +93,7 @@ export interface CanvasProps {
   overlays: Overlays; mask: MaskSettings; compare: CompareSettings; pose: any | null; face: any | null;
   onOp: (op: Record<string, unknown>) => void; onCursor: (p: Pt) => void; fitSignal: number;
   skel?: any | null; showBefore?: boolean;
+  flip?: { img: HTMLImageElement; x: number; y: number } | null;  // animated cycle frame (image coords)
 }
 
 function DiagImg({ src, pad }: { src: string; pad: number }) {
@@ -219,7 +220,8 @@ export default function CanvasView(p: CanvasProps) {
           {p.overlays.checker && <Rect x={-pad} y={-pad} width={W + 2 * pad} height={H + 2 * pad} fillPatternImage={checkerPattern() as any} />}
           {!p.overlays.checker && <Rect x={-pad} y={-pad} width={W + 2 * pad} height={H + 2 * pad} fill="#f4f5f7" />}
           {p.mode === "artwork" && order.map((l) => <LayerImg key={l.id} id={l.id} rev={`${pix}-${l.edge_feather ?? 0}`} opacity={l.opacity} />)}
-          {p.mode === "pose" && poseImg && <KImage image={poseImg} x={-pad} y={-pad} />}
+          {p.mode === "pose" && poseImg && !p.flip && <KImage image={poseImg} x={-pad} y={-pad} />}
+          {p.mode === "pose" && p.flip && <KImage image={p.flip.img} x={p.flip.x} y={p.flip.y} />}
           {p.mode === "pose" && boundImg && <KImage image={boundImg} x={-pad} y={-pad} opacity={0.9} />}
           {p.mode === "pose" && p.pose?.diagnostics && !p.showBefore && Object.entries(p.pose.diagnostics).map(([k, src]: any) => (
             <DiagImg key={k} src={src} pad={pad} />))}
@@ -259,9 +261,9 @@ export default function CanvasView(p: CanvasProps) {
           {(p.mode === "artwork") && p.overlays.bones && bones.map(([n, b]) => (
             <Line key={n} points={[...bh(n), ...bt(n)]} stroke={sideColor(b.side)} strokeWidth={(n === p.selectedBone ? 4 : 2) * k}
               opacity={0.9} listening={false} />))}
-          {p.mode === "pose" && sk && p.overlays.bones && !p.showBefore && Object.entries(sk.joints_posed).map(([n, h]: any) => (
+          {p.mode === "pose" && sk && p.overlays.bones && !p.showBefore && !p.flip && Object.entries(sk.joints_posed).map(([n, h]: any) => (
             <Line key={n} points={[...h, ...sk.bone_tails_posed[n]]} stroke={sideColor(st.bones[n]?.side ?? null)} strokeWidth={(p.skel ? 4 : 2) * k} listening={false} />))}
-          {p.mode === "pose" && sk && p.overlays.joints && !p.showBefore && Object.entries(sk.joints_posed).map(([n, h]: any) => (
+          {p.mode === "pose" && sk && p.overlays.joints && !p.showBefore && !p.flip && Object.entries(sk.joints_posed).map(([n, h]: any) => (
             <Circle key={n} x={h[0]} y={h[1]} radius={(n === p.selectedBone ? 7 : 5) * k} fill={n === p.selectedBone ? "#ff6b6b" : "#1c7ed6"} stroke="#fff" strokeWidth={1.5 * k}
               onClick={() => p.onSelectBone(n)} />))}
           {p.mode === "pose" && p.pose && p.overlays.tears && (p.pose.tear_points ?? []).map((t: number[], i: number) => (

@@ -100,8 +100,8 @@ class MotionEngine:
 
     def plan_and_solve(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
                        travel: float = 0.0, overrides: dict[str, float] | None = None,
-                       live_head: dict[str, float] | None = None, allow_pending: bool = False):
-        it = self.planner.plan(name, phase, speed, exaggeration, travel, self.arm_style(name, allow_pending))
+                       live_head: dict[str, float] | None = None, allow_pending: bool = False, fluid: bool = True):
+        it = self.planner.plan(name, phase, speed, exaggeration, travel, self.arm_style(name, allow_pending), fluid)
         pose, info = self.solver.solve(it)
         manual = {}
         for b, deg in (overrides or {}).items():
@@ -138,17 +138,17 @@ class MotionEngine:
     def pose(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
              travel: float = 0.0, allow_pending: bool = False, overrides: dict[str, float] | None = None,
              live_head: dict[str, float] | None = None, visible: list[str] | None = None, pad: int = 160,
-             skeleton_only: bool = False) -> dict[str, Any]:
+             skeleton_only: bool = False, fluid: bool = True) -> dict[str, Any]:
         spec = SPEC_BY_NAME[name]
         t0 = time.perf_counter()
         it, pose, info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
-                                             allow_pending)
+                                             allow_pending, fluid)
         t_solve = time.perf_counter() - t0
         hands = self.feas.choose_hands(it, allow_pending)
         corr = self.gdef.corrections(pose, it.garment)
         res: dict[str, Any] = {"name": name, "title": spec.title, "kind": spec.kind, "phase": it.phase,
                                "params": {"speed": speed, "exaggeration": exaggeration, "travel": travel,
-                                          "allow_pending": allow_pending},
+                                          "allow_pending": allow_pending, "fluid": fluid},
                                "intent": it, "pose": pose, "solve": info, "hands": hands,
                                "corrections": corr["active"], "spec": spec.to_json(), "pad": pad,
                                "timing_ms": {"solve": round(t_solve * 1000, 2)}}
@@ -190,14 +190,14 @@ class MotionEngine:
         return res
 
     def cycle(self, name: str, samples: int = 32, speed: float = 1.0, exaggeration: float = 1.0,
-              travel: float = 0.0, allow_pending: bool = False) -> dict[str, Any]:
+              travel: float = 0.0, allow_pending: bool = False, fluid: bool = True) -> dict[str, Any]:
         """Gait metrics over ``samples`` evenly spaced phases plus phase 1 (= phase 0 one cycle later)."""
         kind = {"running": "run", "casual_walk": "walk"}[name]
         style = self.arm_style(name, allow_pending)
         frames = []
         for i in range(samples + 1):
             ph, cyc = (i / samples, 0.0) if i < samples else (0.0, 1.0)
-            it = gait(self.profile, kind, ph, speed, exaggeration, travel, cyc, arm_style=style)
+            it = gait(self.profile, kind, ph, speed, exaggeration, travel, cyc, arm_style=style, fluid=fluid)
             pose, info = self.solver.solve(it)
             frames.append((it, info))
         return self.quality.cycle(frames, travel)
@@ -522,6 +522,24 @@ def motion_report(pkg, out=None, progress=print) -> dict[str, Any]:
             for ap in ((False, True) if name == "running" else (False,)):
                 key = f"{name}{'_moving' if travel else ''}{'_fists' if ap else ''}"
                 results["cycles"][key] = eng.cycle(name, 64, travel=travel, allow_pending=ap)
+    # fluid motion: animated cycles (full artwork) and hand-path plots, plain vs fluid
+    anim = out / "animations"
+    anim.mkdir(exist_ok=True)
+    cyc = {}
+    for key, name, n, ap, fl in (("run_fluid", "running", 24, False, True), ("run_plain", "running", 24, False, False),
+                                 ("walk_fluid", "casual_walk", 16, False, True),
+                                 ("run_fists_preview_fluid", "running", 16, True, True)):
+        cyc[key] = render_cycle(eng, name, n, vis, allow_pending=ap, fluid=fl, pad=pad)
+        progress(f"animated cycle {key}: {n} frames")
+    for key in ("run_fluid", "walk_fluid", "run_fists_preview_fluid"):  # GIF renders inline on GitHub
+        save_animation(cyc[key]["frames"], cyc[key]["duration_ms"], anim / f"{key}.gif", scale=0.4)
+    both = side_by_side(cyc["run_plain"]["frames"], cyc["run_fluid"]["frames"])
+    save_animation(both, cyc["run_fluid"]["duration_ms"], anim / "run_plain_vs_fluid.gif", scale=0.4,
+                   labels=["left: plain cycle   right: fluid (overlap, follow-through, arcs)"] * len(both))
+    hand_paths(eng).save(out / "hand_paths.png", optimize=True)
+    for name in ("running", "casual_walk"):
+        results["cycles"][f"{name}_plain"] = eng.cycle(name, 64, fluid=False)
+    progress("animations and hand paths written")
     # before / after (the Phase 3 engine on the same package) and close-ups
     pairs = []
     for key, name in (("relaxed_standing", "relaxed_standing"), ("pointing_speaking", "pointing_speaking"),
@@ -550,3 +568,103 @@ def motion_report(pkg, out=None, progress=print) -> dict[str, Any]:
                                                  if isinstance(o, np.ndarray) else float(o)))
     progress(f"done in {results['generated_s']} s")
     return results
+
+
+# -- animated cycle previews ----------------------------------------------------------------------------------
+def cycle_duration_s(name: str, speed: float = 1.0) -> float:
+    from .planner import CYCLE_SECONDS
+    return CYCLE_SECONDS.get({"running": "run", "casual_walk": "walk"}.get(name, ""), 1.0) / max(speed, 0.1)
+
+
+def render_cycle(eng: "MotionEngine", name: str, frames: int = 24, visible: list[str] | None = None,
+                 speed: float = 1.0, exaggeration: float = 1.0, allow_pending: bool = False, fluid: bool = True,
+                 pad: int = 160, progress=None, lock=None) -> dict[str, Any]:
+    """Render ``frames`` evenly spaced phases of a gait with the full artwork. Returns the frames (RGBA, cropped to
+    their common bounds), the crop box in padded canvas coordinates and the per-frame duration."""
+    import contextlib
+
+    imgs, joints = [], []
+    for i in range(frames):
+        with (lock or contextlib.nullcontext()):
+            r = eng.pose(name, i / frames, speed, exaggeration, 0.0, allow_pending, visible=visible, pad=pad,
+                         fluid=fluid)
+        imgs.append(r["image"])
+        joints.append(r["solve"]["joints_posed"])
+        if progress:
+            progress(i + 1, frames)
+    acc = np.zeros(imgs[0].shape[:2], bool)
+    for im in imgs:
+        acc |= im[..., 3] > 0
+    ys, xs = np.nonzero(acc)
+    m = 16
+    box = (max(0, int(xs.min()) - m), max(0, int(ys.min()) - m), min(acc.shape[1], int(xs.max()) + m + 1),
+           min(acc.shape[0], int(ys.max()) + m + 1))
+    crops = [im[box[1]:box[3], box[0]:box[2]] for im in imgs]
+    return {"frames": crops, "box": box, "pad": pad, "joints": joints,
+            "duration_ms": round(1000 * cycle_duration_s(name, speed) / frames, 1)}
+
+
+def save_animation(frames: list[np.ndarray], duration_ms: float, path, scale: float = 1.0, bg=(255, 255, 255),
+                   labels: list[str] | None = None) -> None:
+    """Animated WebP or GIF (by suffix), looping forever, frames composited on ``bg``."""
+    from pathlib import Path
+
+    path = Path(path)
+    out = []
+    for i, f in enumerate(frames):
+        im = on_bg(f, bg)
+        if scale != 1.0:
+            im = im.resize((max(1, int(im.width * scale)), max(1, int(im.height * scale))), Image.LANCZOS)
+        if labels:
+            ImageDraw.Draw(im).text((6, 6), labels[i], fill=(0, 0, 0))
+        out.append(im)
+    kw = dict(save_all=True, append_images=out[1:], duration=int(round(duration_ms)), loop=0)
+    if path.suffix.lower() == ".gif":
+        pal = [im.quantize(colors=200, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE) for im in out]
+        pal[0].save(path, **{**kw, "append_images": pal[1:]}, optimize=True, disposal=1)
+    else:
+        out[0].save(path, **kw, quality=88, method=4)
+
+
+def side_by_side(a: list[np.ndarray], b: list[np.ndarray], gap: int = 12) -> list[np.ndarray]:
+    """Two equally long frame lists placed next to each other (bottom-aligned), for before/after animations."""
+    out = []
+    for x, y in zip(a, b):
+        H = max(x.shape[0], y.shape[0])
+        W = x.shape[1] + gap + y.shape[1]
+        c = np.zeros((H, W, 4), np.uint8)
+        c[H - x.shape[0]:, :x.shape[1]] = x
+        c[H - y.shape[0]:, x.shape[1] + gap:] = y
+        out.append(c)
+    return out
+
+
+def hand_paths(eng: "MotionEngine", samples: int = 64) -> Image.Image:
+    """Hand (wrist) paths relative to the chest over one cycle, plain vs fluid, for run and walk. A lockstep arm
+    retraces a line; follow-through and arcs open it into a loop."""
+    cells = []
+    for name, kind in (("running", "run"), ("casual_walk", "walk")):
+        style = eng.arm_style(name, False)
+        for fluid in (False, True):
+            pts = {s: [] for s in SIDES}
+            for i in range(samples):
+                it = gait(eng.profile, kind, i / samples, arm_style=style, fluid=fluid)
+                _, info = eng.solver.solve(it)
+                c = np.array(info["joints_posed"]["chest"])
+                for s in SIDES:
+                    pts[s].append(np.array(info["joints_posed"][f"hand_{s}"]) - c)
+            im = Image.new("RGB", (460, 300), "white")
+            d = ImageDraw.Draw(im)
+            ext = max(float(np.ptp(np.array(v), axis=0).max()) for v in pts.values())
+            sc = 190 / max(ext, 30.0)  # same scale for both hands and all panels of this gait
+            for s, col, cx in (("r", (220, 90, 0), 115), ("l", (0, 110, 220), 345)):
+                ctr = np.array(pts[s]).mean(0)
+                q = [((x - ctr[0]) * sc + cx, (y - ctr[1]) * sc + 160) for x, y in pts[s]]
+                d.line(q + [q[0]], fill=col, width=3)
+                for k in range(0, samples, 8):
+                    d.ellipse((q[k][0] - 3, q[k][1] - 3, q[k][0] + 3, q[k][1] + 3), fill=col)
+            d.text((8, 8), f"{name} - {'fluid' if fluid else 'plain'}: hand paths relative to the chest "
+                           f"(each hand centred; {ext:.0f} px span)", fill=(0, 0, 0))
+            cells.append(im)
+    return _rows([cells])
+

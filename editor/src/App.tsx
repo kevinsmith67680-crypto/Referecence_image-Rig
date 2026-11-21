@@ -3,7 +3,7 @@ import { api, Payload } from "./api";
 import { focusRect, Pt, View } from "./geometry";
 import CanvasView, { CompareSettings, MaskSettings, Mode, Overlays, Tool } from "./components/CanvasView";
 import LayersPanel from "./components/LayersPanel";
-import { ComparePanel, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, Motion, Perf, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
+import { ComparePanel, Cycle, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, Motion, Perf, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
 
 const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "Face", "Live", "Compare", "Export"] as const;
 type Tab = (typeof TABS)[number];
@@ -33,10 +33,14 @@ export default function App() {
   const [poseRes, setPoseRes] = useState<any>(null);
   const [poseBusy, setPoseBusy] = useState(false);
   const [motion, setMotion] = useState<Motion>({ phase: 0.25, speed: 1, exaggeration: 1, allowPending: false,
-    diagnostics: [], before: false, showBefore: false, liveTilt: 0 });
+    diagnostics: [], before: false, showBefore: false, liveTilt: 0, fluid: true });
   const [playing, setPlaying] = useState(false);
   const [skel, setSkel] = useState<any>(null);
   const [perf, setPerf] = useState<Perf>({ fps: 0, latencyMs: 0, solveMs: 0, frames: 0 });
+  const [cycle, setCycle] = useState<Cycle | null>(null);
+  const [anim, setAnim] = useState(false);
+  const [flipIdx, setFlipIdx] = useState(0);
+  const flipImgs = useRef<HTMLImageElement[]>([]);
   const [face, setFace] = useState<any>(null);
   const [live, setLive] = useState<any>(null);
   const [metrics, setMetrics] = useState<any>(null);
@@ -80,7 +84,34 @@ export default function App() {
   }, [tab, rev]);
   const poseBody = (extra: Record<string, unknown> = {}) => ({ preset, overrides, boundaries: overlays.boundaries,
     phase: motion.phase, speed: motion.speed, exaggeration: motion.exaggeration, allow_pending: motion.allowPending,
-    diagnostics: motion.diagnostics, before: motion.before, live_head: motion.liveTilt ? { tilt: motion.liveTilt } : null, ...extra });
+    diagnostics: motion.diagnostics, before: motion.before, live_head: motion.liveTilt ? { tilt: motion.liveTilt } : null,
+    fluid: motion.fluid, ...extra });
+  // animated cycle: full-artwork frames rendered by a background job, then played back frame by frame
+  const renderCycle = (frames: number) => {
+    setAnim(false);
+    api.cycleStart(poseBody({ frames })).then((r) => setCycle({ id: r.id, total: r.frames, progress: 0, done: false }))
+      .catch((e) => setError(String(e.message ?? e)));
+  };
+  useEffect(() => {
+    if (!cycle || cycle.done) return;
+    const t = setInterval(() => api.cycleStatus(cycle.id).then((s) => {
+      if (s.error) { setError(s.error); setCycle({ ...cycle, done: true, error: s.error }); return; }
+      if (!s.done) { setCycle({ ...cycle, progress: s.progress }); return; }
+      const imgs = Array.from({ length: s.total }, (_, i) => { const im = new window.Image(); im.src = api.cycleFrameUrl(cycle.id, i); return im; });
+      flipImgs.current = imgs;
+      Promise.all(imgs.map((im) => im.decode().catch(() => null))).then(() => {
+        setCycle({ ...cycle, progress: s.total, done: true, box: s.box, pad: s.pad, durationMs: s.duration_ms });
+        setFlipIdx(0); setAnim(true);
+      });
+    }), 700);
+    return () => clearInterval(t);
+  }, [cycle]);
+  useEffect(() => {
+    if (!anim || !cycle?.durationMs) return;
+    const t = setInterval(() => setFlipIdx((i) => (i + 1) % flipImgs.current.length), cycle.durationMs);
+    return () => clearInterval(t);
+  }, [anim, cycle?.durationMs]);
+  useEffect(() => { setAnim(false); }, [preset, rev]);
   useEffect(() => {
     if (mode !== "pose" || !payload || playing) return;
     const seq = ++poseSeq.current;
@@ -157,7 +188,8 @@ export default function App() {
           <CanvasView payload={payload} rev={rev} mode={mode} tool={tool} view={view} setView={setView} fitSignal={fit}
             selectedLayer={selLayer} onSelectLayer={setSelLayer} selectedBone={selBone} onSelectBone={setSelBone}
             selectedVector={selVec} onSelectVector={setSelVec} overlays={overlays} mask={mask} compare={cmp}
-            pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} skel={playing ? skel : null} showBefore={motion.showBefore && motion.before} />
+            pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} skel={playing ? skel : null} showBefore={motion.showBefore && motion.before}
+            flip={anim && cycle?.box && flipImgs.current[flipIdx] ? { img: flipImgs.current[flipIdx], x: cycle.box[0] - (cycle.pad ?? 0), y: cycle.box[1] - (cycle.pad ?? 0) } : null} />
           <div className="modebar">
             {(["artwork", "pose", "compare"] as Mode[]).map((m) => <button key={m} className={mode === m ? "on" : ""} onClick={() => setTab(m === "pose" ? "Pose" : m === "compare" ? "Compare" : "Properties")}>{m}</button>)}
           </div>
@@ -172,6 +204,7 @@ export default function App() {
             {tab === "Pose" && <PosePanel payload={payload} preset={preset} setPreset={setPreset} overrides={overrides} setOverrides={setOverrides}
               result={poseRes} busy={poseBusy} bone={selBone} onSelectBone={setSelBone} overlays={overlays} setOverlays={setOverlays} onOp={onOp}
               motion={motion} setMotion={setMotion} playing={playing} setPlaying={setPlaying} perf={perf}
+              cycle={cycle} anim={anim} setAnim={setAnim} onRenderCycle={renderCycle} flipIdx={flipIdx}
               onCloseup={(n) => { const pos = (skel ?? poseRes)?.joints_posed?.[n]; const box = document.querySelector("[data-testid=canvas]") as HTMLElement;
                 if (pos && box) setView(focusRect([pos[0] - 110, pos[1] - 110, pos[0] + 110, pos[1] + 110], box.clientWidth, box.clientHeight)); }} />}
             {tab === "Face" && <FacePanel face={face} overlays={overlays} setOverlays={setOverlays} onOp={onOp} />}

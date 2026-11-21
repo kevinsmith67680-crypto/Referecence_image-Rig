@@ -225,8 +225,11 @@ The editor screenshots from the end-to-end test (real browser, real package) are
 | `continuity_spike_px` | 4.0 | a joint's step minus its larger neighbouring step (64 samples) |
 | `foot_slide_px` | 1.0 | weight-bearing ankle drift within a stance (load ≥ 0.8) |
 | `gait_ground_penetration_px` | 1.0 | ankle below standing height in any sample |
-| `coordination_corr` | 0.9 | arm forwardness vs the opposite leg |
+| `coordination_corr` | 0.9 | best correlation of the solved forearm swing with the opposite leg within a lag of ±0.15 cycle |
 | `com_drift_px` | 6.0 | in-place cycle: mean CoM vs midline |
+| `jerk_ratio` | 60 | upper body relative to the pelvis: max 3rd difference of a joint path, normalised so a pure sine = 1 (foot impacts excluded on purpose) |
+| `arm_overlap_cycles` | ≥ 0.02 | elbow flexion lag behind the planned arm swing (cycle fraction); 0 = lockstep |
+| `hand_arc_quotient` | ≥ 0.04 | hand path relative to the chest: area vs a circle of equal perimeter; 0 = a straight back-and-forth line |
 
 A pose that passes every check still has `artistic_review_required: true` and `visual_quality: UNRATED`.
 
@@ -347,3 +350,80 @@ NOT EXECUTED.
 * *Interactivity.* The artwork preview is not interactive.
 
 Phase 4 has not been started.
+
+## 15. Fluid motion update (follow-up request)
+
+The user asked for more natural, fluid body and arm movement. Four changes were made in order, each switchable
+(`fluid=False` reproduces the cycle above exactly), so the comparison is like for like.
+
+### 15.1 Animated cycle preview
+
+* `render_cycle` renders evenly spaced phases with the full artwork. `save_animation` writes looping WebP/GIF files.
+* In the editor (Pose tab, gait presets), **Animated cycle → Render** runs a background job: 12, 24 or 32 frames,
+  about 2.5 s per frame on the cloud CPU. The job plays the frames in the canvas and offers WebP and GIF downloads.
+* `autorig motion` now also writes these animations:
+  * `natural_pose/motion/animations/run_fluid.gif`
+  * `walk_fluid.gif`
+  * `run_fists_preview_fluid.gif`
+  * `run_plain_vs_fluid.gif`, side by side.
+
+![Run: plain (left) vs fluid (right)](../projects/schoolboy_tpose/character_package/natural_pose/motion/animations/run_plain_vs_fluid.gif)
+
+### 15.2 Overlap and spring follow-through (`motion/secondary.py`)
+
+Each driven part follows its target through a damped spring. The periodic steady state is computed exactly in the
+frequency domain (per-harmonic transfer function), so the response loops seamlessly and any phase can still be
+evaluated on its own.
+
+| Channel | Spring (natural frequency, damping ratio) | Driven by |
+|---|---|---|
+| Upper-arm abduction | 6.0 Hz, 0.7 | planned arm swing |
+| Elbow flexion | 3.6 Hz, 0.5 | planned arm swing (lags, overshoots at the reversal) |
+| Hand | 4.5 Hz, 0.4 | forearm direction (the hand trails the forearm) |
+| Chest roll | 3.2 Hz, 0.6 | pelvis counter-roll |
+| Head | 2.6 Hz, 0.7 | 35 % of the shoulders' roll (softly stabilised) |
+| Blazer hem | 2.4 Hz, 0.35 | pelvis roll, applied relative to the pelvis (about ±4° in the run) |
+| Hair | 1.9 Hz, 0.3 | head plus body sway, a new rotation term about the skull centre; 0 at the hairline, so it never separates from the face (about ±5°) |
+
+### 15.3 Timing and arcs
+
+* **Arm swing:** a phase warp makes the forward swing quicker than the return.
+* **Feet:** they lift quickly and set down more gently.
+* **Elbows:** they move out on the forward swing and in on the return, so the hands travel on arcs.
+* **Smoothing:** the shoulder lift uses a smooth positive part instead of `max(·, 0)`, and the pelvis height uses a
+  load-weighted soft maximum over the planted feet. Both removed kinks that showed up as jerk in the walk.
+
+![Hand paths relative to the chest, plain vs fluid](../projects/schoolboy_tpose/character_package/natural_pose/motion/hand_paths.png)
+
+### 15.4 Measured smoothness (64 samples per cycle, real character)
+
+| Cycle | arm overlap (cycles) | hand arc quotient | jerk ratio | all cycle checks |
+|---|---|---|---|---|
+| Run, plain | 0.000 (lockstep) | 0.146 | 52.8 | 8/9 (overlap fails) |
+| Run, fluid | **0.063** | **0.232** | 52.8 | **9/9** |
+| Run, fists, plain | 0.000 | 0.023 | 60.2 | 6/9 |
+| Run, fists, fluid | **0.063** | **0.196** | 52.8 | **9/9** |
+| Walk, plain | 0.000 | 0.059 | 70.2 | 7/9 (jerk, overlap fail) |
+| Walk, fluid | **0.047** | **0.099** | **42.3** | **9/9** |
+
+On rendered fluid run frames:
+* all eight phases pass 15 of 17 checks; only the known armpit compression and neck-area issues remain;
+* there are no new tears or stretching. Two fixes made this true:
+  * the hair sway is computed on a dilated hair zone, so the silhouette edge moves with the hair;
+  * the open-hand arm sits 2° wider, because the spring overshoot had brought it closer to the body.
+
+Coordination with lag allowed (±0.15 cycle): 0.989 for the fluid run and walk (1.000 plain, which has no lag).
+
+**Tests for the update:**
+* new tests: spring periodicity and lag, fluid vs plain cycles, clean fluid render, animated export;
+* `tests/test_p31_motion.py` now has 32 tests; the full suite has 372 passed and 2 skipped (the native Moho tests,
+  NOT EXECUTED);
+* the editor end-to-end test renders a 12-frame animated cycle in the browser, plays it, and downloads the GIF;
+* skeleton playback measured 46–60 fps in headless Chromium across runs.
+
+![Editor: animated cycle frame](phase3/screenshots/20_animated_cycle_frame.png)
+
+What this does **not** change: front-view limits, armpit compression, the open-hand look and the neck-area issue are
+as in section 11. Whether the motion now *feels* natural is a judgement for the user. Watch
+`run_plain_vs_fluid.gif`, or render a cycle in the editor.
+

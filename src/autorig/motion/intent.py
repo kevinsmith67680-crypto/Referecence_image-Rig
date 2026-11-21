@@ -59,7 +59,8 @@ class PoseIntent:
     weight_left: float = 0.5
     standing_feet: dict[str, tuple[float, float]] | None = None  # nominal planted ankles for airborne frames
     root: tuple[float, float] = (0.0, 0.0)  # extra root translation (moving cycles)
-    garment: dict[str, float] = field(default_factory=dict)  # e.g. hem_lag_deg
+    garment: dict[str, float] = field(default_factory=dict)  # e.g. hem_lag_deg, hair_lag_deg
+    smooth_support: bool = False  # gaits: smooth (soft) max over planted feet for the pelvis height
     front: list[str] = field(default_factory=list)  # layers composited last
     arms_behind_head: bool = True
     phase: float | None = None

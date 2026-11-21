@@ -73,7 +73,11 @@ faithful, editable **Moho Pro 14** character rig.
   from loaded feet. Cycle checks (loop closure, continuity spikes, foot sliding, penetration, coordination) must pass.
 - Quality thresholds live in `motion/quality.py` `THRESHOLDS` and must be documented in the Phase 3.1 report. Visual
   quality is never scored automatically (`artistic_review_required` is always true).
-- `autorig motion <package>` regenerates the committed evidence (contact sheets, cycles, close-ups, results.json).
+- Fluid gaits (default): spring follow-through tables (`motion/secondary.py`, exact periodic steady state), eased
+  timing and hand arcs; `fluid=False` must keep reproducing the plain cycle for comparison. Secondary motion never
+  moves a planted foot; garment terms (hem lag, hair sway) must stay continuous fields (no seams).
+- `autorig motion <package>` regenerates the committed evidence (contact sheets, cycles, close-ups, animations,
+  hand paths, results.json).
 
 ## Live Models track (Moho 14.5)
 

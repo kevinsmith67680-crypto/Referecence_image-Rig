@@ -153,7 +153,9 @@ const POSE_BONES = ["head", "neck", "chest", "spine", "pelvis", "clavicle_r", "c
   "forearm_r", "forearm_l", "hand_r", "hand_l", "thigh_r", "thigh_l", "shin_r", "shin_l", "foot_r", "foot_l"];
 
 export interface Motion { phase: number; speed: number; exaggeration: number; allowPending: boolean; diagnostics: string[];
-  before: boolean; showBefore: boolean; liveTilt: number }
+  before: boolean; showBefore: boolean; liveTilt: number; fluid: boolean }
+export interface Cycle { id: string; total: number; progress: number; done: boolean; error?: string; box?: number[]; pad?: number;
+  durationMs?: number }
 export interface Perf { fps: number; latencyMs: number; solveMs: number; frames: number }
 const DIAG = [["skeleton", "anatomical skeleton"], ["garments", "garment regions + control points"], ["boundaries", "mesh / part boundaries"],
   ["weights", "deformation weights"], ["overlaps", "joint overlap regions"], ["contacts", "foot contacts"], ["com", "centre of mass"],
@@ -162,10 +164,12 @@ const CLOSE = [["upper_arm_r", "shoulder R"], ["upper_arm_l", "shoulder L"], ["f
   ["pelvis", "hips / hem"], ["shin_r", "knee R"], ["shin_l", "knee L"], ["foot_r", "shoe R"], ["foot_l", "shoe L"]];
 
 export function PosePanel({ payload, preset, setPreset, overrides, setOverrides, result, busy, bone, onSelectBone, overlays, setOverlays, onOp,
-  motion, setMotion, playing, setPlaying, perf, onCloseup }: {
+  motion, setMotion, playing, setPlaying, perf, onCloseup, cycle, anim, setAnim, onRenderCycle, flipIdx }: {
   payload: Payload; preset: string; setPreset: (p: string) => void; overrides: Record<string, number>; setOverrides: (o: Record<string, number>) => void;
   result: any; busy: boolean; bone: string | null; onSelectBone: (b: string) => void; overlays: Overlays; setOverlays: (o: Overlays) => void; onOp: OnOp;
-  motion: Motion; setMotion: (m: Motion) => void; playing: boolean; setPlaying: (p: boolean) => void; perf: Perf; onCloseup: (bone: string) => void }) {
+  motion: Motion; setMotion: (m: Motion) => void; playing: boolean; setPlaying: (p: boolean) => void; perf: Perf; onCloseup: (bone: string) => void;
+  cycle: Cycle | null; anim: boolean; setAnim: (a: boolean) => void; onRenderCycle: (frames: number) => void; flipIdx: number }) {
+  const [nFrames, setNFrames] = useState(24);
   const [presets, setPresets] = useState<any[]>([]);
   useEffect(() => { api.presets().then(setPresets); }, []);
   const corr = bone ? payload.state.corrections.joints[bone] : null;
@@ -191,6 +195,16 @@ export function PosePanel({ payload, preset, setPreset, overrides, setOverrides,
           data-testid="gait-exaggeration" onChange={(e) => set({ exaggeration: +e.target.value })} /></label>
         <div className="row gap"><button onClick={() => setPlaying(!playing)} data-testid="gait-play">{playing ? "■ Stop" : "▶ Play cycle (skeleton)"}</button>
           <span className="small" data-testid="perf">{playing || perf.frames ? `${perf.fps} fps · latency ${perf.latencyMs} ms · solve ${perf.solveMs} ms` : ""}</span></div>
+        <label className="check"><input type="checkbox" checked={motion.fluid} onChange={(e) => set({ fluid: e.target.checked })} data-testid="fluid" /> fluid motion (follow-through, eased timing, arcs)</label>
+        <div className="row gap wrap"><b>Animated cycle (full artwork)</b>
+          <select value={nFrames} onChange={(e) => setNFrames(+e.target.value)} data-testid="cycle-frames">
+            {[12, 24, 32].map((n) => <option key={n} value={n}>{n} frames</option>)}</select>
+          <button onClick={() => onRenderCycle(nFrames)} disabled={!!cycle && !cycle.done} data-testid="cycle-render">Render</button>
+          {cycle && <span className="small" data-testid="cycle-progress">{cycle.error ? `error: ${cycle.error}` : cycle.done ? `ready (${cycle.total} frames, ${cycle.durationMs} ms each)` : `rendering ${cycle.progress}/${cycle.total}…`}</span>}</div>
+        {cycle?.done && !cycle.error && <div className="row gap wrap">
+          <button onClick={() => setAnim(!anim)} data-testid="cycle-play">{anim ? `■ Stop animation (frame ${flipIdx + 1})` : "▶ Play animation"}</button>
+          <a href={api.cycleAnimUrl(cycle.id, "webp")} download>WebP</a><a href={api.cycleAnimUrl(cycle.id, "gif")} download>GIF</a></div>}
+        <div className="muted small">Rendering takes about 2.5 s per frame on the cloud CPU; it uses the current pose settings.</div>
       </div>}
       <div className="row gap wrap">
         <label className="check"><input type="checkbox" checked={motion.allowPending} onChange={(e) => set({ allowPending: e.target.checked })} data-testid="allow-pending" /> preview pending artwork</label>

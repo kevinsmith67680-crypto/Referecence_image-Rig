@@ -19,9 +19,10 @@ from typing import Any, Callable
 
 import numpy as np
 
-from ..phase2.skeleton import SIDES
+from ..phase2.skeleton import SIDE_SIGN, SIDES
 from .intent import ArmIntent, LegIntent, PoseIntent
 from .profile import CharacterProfile
+from .secondary import SAMPLES, SPRINGS, lookup
 
 LAT = {"r": -1.0, "l": 1.0}  # image x direction of the character's side
 
@@ -220,13 +221,82 @@ def gait_params(kind: str, speed: float = 1.0, exaggeration: float = 1.0) -> dic
 # with fists the forearm folds up toward the chest (reads as a sprint arm); with open hands that reads as
 # clutching, so the approved open-hand style keeps the hands low, swinging beside the hips.
 ARM_STYLE = {"fist": {"flex": 80.0, "flex_amp": 38.0, "abd": 20.0, "abd_amp": 6.0, "wrist": 8.0},
-             "open": {"flex": 24.0, "flex_amp": 16.0, "abd": 12.0, "abd_amp": 5.0, "wrist": 14.0}}
+             "open": {"flex": 24.0, "flex_amp": 16.0, "abd": 14.0, "abd_amp": 5.0, "wrist": 14.0}}
+
+
+CYCLE_SECONDS = {"run": 0.75, "walk": 1.1}  # one gait cycle at speed 1
+ARM_SKEW = 0.28  # > 0: the forward arm swing is quicker than the return (phase warp)
+LIFT_SKEW = 0.22  # > 0: the foot lifts quickly and lowers more slowly into the next contact
+ARC = {"run": 5.0, "walk": 4.0}  # elbow moves out on the forward swing, in on the return: the hand travels an arc
+
+
+def warp(u: float, skew: float) -> float:
+    """Monotonic phase warp on [0, 1) (fixed ends): positive skew makes the first half faster."""
+    return u + skew * math.sin(2 * math.pi * u) / (2 * math.pi)
 
 
 def gait(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exaggeration: float = 1.0,
-         travel: float = 0.0, cycles: float = 0.0, arm_style: str = "fist") -> PoseIntent:
+         travel: float = 0.0, cycles: float = 0.0, arm_style: str = "fist", fluid: bool = True) -> PoseIntent:
     """One frame of a front-view gait. ``phase`` in [0, 1): right-foot contact at 0, left-foot contact at 0.5.
-    ``travel``: root advance per cycle along image x (px); 0 = in place. Planted feet stay fixed in world space."""
+    ``travel``: root advance per cycle along image x (px); 0 = in place. Planted feet stay fixed in world space.
+    ``fluid``: eased timing, hand arcs and spring follow-through (overlap); False reproduces the plain cycle."""
+    if not fluid:
+        return _gait_core(p, kind, phase, speed, exaggeration, travel, cycles, arm_style, shaped=False)
+    it = _gait_core(p, kind, phase, speed, exaggeration, travel, cycles, arm_style, shaped=True)
+    tab = secondary_tables(p, kind, speed, exaggeration, arm_style)
+    ph = phase % 1.0
+    for s in SIDES:
+        a = it.arms[s]
+        a.abduction, a.flexion, a.wrist = (lookup(tab[f"abd_{s}"], ph), lookup(tab[f"flex_{s}"], ph),
+                                           lookup(tab[f"wrist_{s}"], ph))
+    it.chest = lookup(tab["chest"], ph)
+    it.head = lookup(tab["head"], ph)
+    it.garment = {"hem_lag_deg": lookup(tab["hem"], ph), "hair_lag_deg": lookup(tab["hair"], ph)}
+    it.channels["fluid"] = True
+    it.smooth_support = True
+    it.notes.append("fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair")
+    return it
+
+
+_TABLES: dict[tuple, dict[str, np.ndarray]] = {}
+
+
+def secondary_tables(p: CharacterProfile, kind: str, speed: float, exaggeration: float, arm_style: str
+                     ) -> dict[str, np.ndarray]:
+    """Periodic follow-through tables: the shaped (eased) cycle's driven channels passed through their springs."""
+    key = (id(p), p.midline_x, kind, round(speed, 4), round(exaggeration, 4), arm_style)
+    if key in _TABLES:
+        return _TABLES[key]
+    N = SAMPLES
+    raw = [_gait_core(p, kind, i / N, speed, exaggeration, 0.0, 0.0, arm_style, shaped=True) for i in range(N)]
+    T = CYCLE_SECONDS[kind] / float(np.clip(speed, 0.5, 1.6))
+    sp = SPRINGS
+    out: dict[str, np.ndarray] = {}
+    for s in SIDES:
+        sg = SIDE_SIGN[s]
+        abd = sp["abduction"].response(np.array([r.arms[s].abduction for r in raw]), T)
+        flex = sp["flexion"].response(np.array([r.arms[s].flexion for r in raw]), T)
+        wf = sg * (abd - flex)  # forearm world direction (deg from straight down)
+        wh = sp["hand"].response(wf, T)  # the hand trails the forearm
+        out[f"abd_{s}"], out[f"flex_{s}"] = abd, flex
+        out[f"wrist_{s}"] = np.array([r.arms[s].wrist for r in raw]) - sg * (wh - wf)
+    roll = np.array([r.pelvis_roll for r in raw])
+    chest_raw = -np.array([r.chest_counter for r in raw]) * roll
+    chest = sp["chest"].response(chest_raw, T)
+    out["chest"] = chest
+    out["head"] = sp["head"].response(0.35 * (roll + chest), T)  # the head partly follows the shoulders, softly
+    out["hem"] = 1.3 * (sp["hem"].response(roll, T) - roll)  # skirt angle relative to the pelvis
+    sway_deg = np.degrees(np.array([r.channels["pelvis_dx"] for r in raw]) / 300.0)
+    drv = out["head"] + sway_deg
+    out["hair"] = sp["hair"].response(drv, T) - drv  # hair relative to the head
+    _TABLES[key] = out
+    if len(_TABLES) > 64:
+        _TABLES.pop(next(iter(_TABLES)))
+    return out
+
+
+def _gait_core(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exaggeration: float = 1.0,
+               travel: float = 0.0, cycles: float = 0.0, arm_style: str = "fist", shaped: bool = False) -> PoseIntent:
     g = gait_params(kind, speed, exaggeration)
     d = g["duty"]
     L = (p.leg("r") + p.leg("l")) / 2
@@ -254,7 +324,8 @@ def gait(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exagg
             contact[s], lift = True, 0.0
         else:
             u = (psi - d) / (1.0 - d)
-            lift = g["lift"] * L * smooth_pulse(u)
+            ue = warp(u, LIFT_SKEW) if shaped else u  # quick lift, gentler set-down
+            lift = g["lift"] * L * smooth_pulse(ue)
             x = x0 + (x1 - x0) * (0.5 - 0.5 * math.cos(math.pi * u)) + LAT[s] * 0.05 * track * smooth_pulse(u)
             load = 0.0
             if ds <= 0:  # run: during flight, height authority passes from the leaving leg to the landing leg
@@ -263,8 +334,8 @@ def gait(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exagg
                     load = (1.0 - smooth_step01(fl)) if u < 0.5 else smooth_step01(fl)
             legs[s] = LegIntent(False, (x, p.ankle_y[s] - lift), foot_follow=0.35, knee_max=knee_cap, knee_min=3.0,
                                 load=load, ground=(x0 if u < 0.5 else x1, p.ankle_y[s]),
-                                hang_knee=3.0 + (knee_cap - 3.0) * smooth_pulse(u),
-                                clearance=3.0 * smooth_pulse(u) + 0.15 * lift)
+                                hang_knee=3.0 + (knee_cap - 3.0) * smooth_pulse(ue),
+                                clearance=3.0 * smooth_pulse(ue) + 0.15 * lift)
             contact[s] = False
         chan[f"lift_{s}"] = lift
         chan[f"load_{s}"] = load
@@ -283,13 +354,19 @@ def gait(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exagg
         a = ARM_STYLE[arm_style]
         amp = g["exaggeration"] * (0.75 + 0.25 * g["speed"])
         g["flex"], g["flex_amp"], g["abd"], g["abd_amp"] = a["flex"], a["flex_amp"] * amp, a["abd"], a["abd_amp"] * amp
-    for s in SIDES:
+    for s, off in (("r", 0.0), ("l", 0.5)):
         fwd = -chan[f"leg_forward_{s}"]  # opposition: this arm is forward when this leg is back
+        arc = 0.0
+        if shaped:  # quicker forward swing, slower return; the elbow arcs out going forward, in coming back
+            wa = warp((ph - off) % 1.0, ARM_SKEW)
+            fwd = -math.cos(2 * math.pi * wa)
+            arc = ARC[kind] * g["exaggeration"] * math.sin(2 * math.pi * wa)
         chan[f"arm_forward_{s}"] = fwd
-        arms[s] = ArmIntent(abduction=g["abd"] - g["abd_amp"] * fwd, flexion=g["flex"] + g["flex_amp"] * fwd,
+        arms[s] = ArmIntent(abduction=g["abd"] - g["abd_amp"] * fwd + arc, flexion=g["flex"] + g["flex_amp"] * fwd,
                             wrist=ARM_STYLE[arm_style]["wrist"] if kind == "run" else 6.0,
                             hand=(["fist", "open"] if arm_style == "fist" else ["open"]) if kind == "run" else ["open"])
-        clav[s] = g["clav"] * max(fwd, 0.0)
+        # forward-arm shoulder lift; the fluid cycle uses a smooth positive part (max(.,0) has a kink -> jerk)
+        clav[s] = g["clav"] * (((1.0 + fwd) / 2.0) ** 2 if shaped else max(fwd, 0.0))
     hem_lag = g["hem_lag"] * math.sin(2 * math.pi * (ph - d / 2))  # roll velocity (derivative of cos) -> lag
     head = g["head_lag"] * math.sin(2 * math.pi * (ph - d / 2))
     planted = [s for s in SIDES if contact[s]]
@@ -311,12 +388,13 @@ def gait(p: CharacterProfile, kind: str, phase: float, speed: float = 1.0, exagg
 
 
 def run_frame(p, phase: float = 0.25, speed: float = 1.0, exaggeration: float = 1.0, travel: float = 0.0,
-              arm_style: str = "fist", **_):
-    return gait(p, "run", phase, speed, exaggeration, travel, arm_style=arm_style)
+              arm_style: str = "fist", fluid: bool = True, **_):
+    return gait(p, "run", phase, speed, exaggeration, travel, arm_style=arm_style, fluid=fluid)
 
 
-def walk_frame(p, phase: float = 0.25, speed: float = 1.0, exaggeration: float = 1.0, travel: float = 0.0, **_):
-    return gait(p, "walk", phase, speed, exaggeration, travel)
+def walk_frame(p, phase: float = 0.25, speed: float = 1.0, exaggeration: float = 1.0, travel: float = 0.0,
+               fluid: bool = True, **_):
+    return gait(p, "walk", phase, speed, exaggeration, travel, fluid=fluid)
 
 
 HAND = "hand drawing from the character sheet (pending review until approved)"
@@ -387,11 +465,11 @@ class MotionPlanner:
         self.p = profile
 
     def plan(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
-             travel: float = 0.0, arm_style: str = "fist") -> PoseIntent:
+             travel: float = 0.0, arm_style: str = "fist", fluid: bool = True) -> PoseIntent:
         spec = SPEC_BY_NAME[name]
         if spec.kind == "gait":
             return spec.build(self.p, phase=0.25 if phase is None else phase, speed=speed,
-                              exaggeration=exaggeration, travel=travel, arm_style=arm_style)
+                              exaggeration=exaggeration, travel=travel, arm_style=arm_style, fluid=fluid)
         return spec.build(self.p)
 
     def cycle(self, name: str, n: int = 8, speed: float = 1.0, exaggeration: float = 1.0,

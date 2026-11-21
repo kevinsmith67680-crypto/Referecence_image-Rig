@@ -247,7 +247,67 @@ def test_committed_motion_evidence_is_consistent():
         assert v["feasibility"]["status"] in ("SUPPORTED", "SUPPORTED_WITH_CORRECTIONS", "NEEDS_ARTWORK", "UNSUPPORTED")
     assert r["presets"]["running@0.000"]["feasibility"]["status"] == "SUPPORTED_WITH_CORRECTIONS"
     assert r["presets"]["running_fists_preview@0.000"]["feasibility"]["status"] == "NEEDS_ARTWORK"
-    assert all(c["numerical"]["all_pass"] for c in r["cycles"].values())
+    assert all(c["numerical"]["all_pass"] for k, c in r["cycles"].items() if not k.endswith("_plain"))
+    assert not r["cycles"]["running_plain"]["numerical"]["all_pass"], "plain cycles keep their lockstep arms (baseline)"
     for f in ("contact_sheet.jpg", "run_cycle.jpg", "before_after.jpg", "diagnostics_running.jpg",
-              "garment_regions.png", "profile.json", "garments.json"):
+              "garment_regions.png", "profile.json", "garments.json", "hand_paths.png",
+              "animations/run_fluid.gif", "animations/run_plain_vs_fluid.gif", "animations/walk_fluid.gif"):
         assert (out / f).is_file(), f
+
+
+# -- fluid motion: overlap, follow-through, timing, arcs, animated cycles ------------------------------------------
+def test_spring_response_is_periodic_and_lags():
+    from autorig.motion.secondary import SAMPLES, Spring, chain_lag
+    t = np.arange(SAMPLES) / SAMPLES
+    x = np.sin(2 * np.pi * t)
+    y = Spring(3.6, 0.5).response(x, 0.75)
+    assert np.isclose(y[0], Spring(3.6, 0.5).response(np.roll(x, 5), 0.75)[5])  # shift-invariant, periodic
+    lag = chain_lag(x, y)
+    assert 0.0 < lag < 0.25, lag  # follows, does not lead
+    assert 0.8 < np.ptp(y) / np.ptp(x) < 1.6  # below resonance: similar amplitude, slight overshoot allowed
+    assert chain_lag(x, x) == 0.0
+
+
+@pytest.mark.parametrize("name", ["running", "casual_walk"])
+def test_fluid_cycles_add_overlap_and_arcs_and_pass_every_check(eng, name):
+    e, _ = eng
+    fluid = e.cycle(name, 64, fluid=True)
+    plain = e.cycle(name, 64, fluid=False)
+    assert fluid["numerical"]["all_pass"], [c for c in fluid["checks"] if not c["pass"]]
+    f = {c["check"]: c["value"] for c in fluid["checks"]}
+    p = {c["check"]: c["value"] for c in plain["checks"]}
+    assert p["arm_overlap_cycles"] == 0.0, "the plain cycle moves the arm joints in lockstep"
+    assert f["arm_overlap_cycles"] >= 0.03
+    assert f["hand_arc_quotient"] > p["hand_arc_quotient"]
+    assert f["jerk_ratio"] <= p["jerk_ratio"] + 1e-6
+    assert f["foot_slide_px"] <= 1.0 and f["loop_closure_px"] <= 0.5
+
+
+def test_fluid_frame_has_follow_through_terms_and_clean_render(eng):
+    e, vis = eng
+    r = e.pose("running", 0.375, visible=vis)
+    rules = {c["rule"] for c in r["corrections"]}
+    assert {"secondary:blazer_hem_lag", "secondary:hair_sway"} <= rules
+    checks = {c["check"]: c for c in r["quality"]["checks"]}
+    for k in ("exposed_gap_pairs", "outline_break_pairs", "stretched_fraction", "shoe_overlap_px", "axial_scale"):
+        assert checks[k]["pass"], (k, checks[k])
+    plain = e.plan_and_solve("running", 0.375, fluid=False)[2]
+    fl = e.plan_and_solve("running", 0.375, fluid=True)[2]
+    assert plain["joints_posed"]["hand_r"] != fl["joints_posed"]["hand_r"]
+    for s in SIDES:  # feet and contacts are the same: follow-through never moves a planted foot
+        assert plain["contact"][s] == fl["contact"][s]
+        if plain["contact"][s]:
+            assert np.allclose(plain["joints_posed"][f"foot_{s}"], fl["joints_posed"][f"foot_{s}"], atol=1.0)
+
+
+def test_animated_cycle_export(eng, tmp_path):
+    from PIL import Image as PILImage
+    from autorig.motion.pipeline import render_cycle, save_animation
+    e, vis = eng
+    res = render_cycle(e, "running", 4, vis)
+    assert len(res["frames"]) == 4 and res["duration_ms"] == pytest.approx(750 / 4, abs=0.1)
+    assert all(f.shape == res["frames"][0].shape for f in res["frames"])
+    for ext in ("gif", "webp"):
+        save_animation(res["frames"], res["duration_ms"], tmp_path / f"c.{ext}", scale=0.25)
+        with PILImage.open(tmp_path / f"c.{ext}") as im:
+            assert im.n_frames == 4 and im.info.get("loop", 0) == 0
