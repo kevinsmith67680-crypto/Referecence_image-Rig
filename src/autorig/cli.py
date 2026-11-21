@@ -502,6 +502,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--hand-sources", help="JSON naming hand drawings on the user's sheet (corrective hand variants)")
     p.set_defaults(func=cmd_pose_refine)
 
+    p = sub.add_parser("editor", help="Phase 3: interactive artwork editor (FastAPI + React) for a package")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--port", type=int, default=8765)
+    p.set_defaults(func=cmd_editor)
+
+    p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
+    p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
+    p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
+    p.set_defaults(func=cmd_export_assets)
+
     p = sub.add_parser("review", help="approve/reject Phase 2 generated assets")
     p.add_argument("package")
     p.add_argument("--list", action="store_true")
@@ -534,6 +545,39 @@ def cmd_pose_refine(args: argparse.Namespace) -> int:
                                       for k, v in rep["sequences"].items()))
     print("  preview renders only - not Moho; nothing human-reviewed")
     return 0
+
+
+def cmd_editor(args: argparse.Namespace) -> int:
+    import uvicorn
+
+    from .editor.server import create_app
+
+    static = Path(__file__).resolve().parents[2] / "editor" / "dist"
+    app = create_app(args.package, static if static.is_dir() else None)
+    if not static.is_dir():
+        print("note: editor/dist not built; API only (cd editor && npm install && npm run build)")
+    print(f"AutoRig editor: http://{args.host}:{args.port}/   package: {args.package}")
+    print("edits are saved to <package>/editor/ (the package's original artwork is never modified)")
+    uvicorn.run(app, host=args.host, port=args.port, log_level="warning")
+    return 0
+
+
+def cmd_export_assets(args: argparse.Namespace) -> int:
+    from .editor.artwork import ArtworkModel
+    from .editor.export import export_package
+    from .editor.project import EditorProject
+
+    try:
+        r = export_package(EditorProject(args.package), ArtworkModel(Path(args.package)), args.out)
+    except ValueError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    print(f"wrote {r['out']}  overall {r['gates']['overall']}  production_ready {r['manifest']['production_ready']}")
+    for g in r["gates"]["gates"]:
+        print(f"  {g['level']:12s} {g['check']}: {g['detail'][:110]}")
+    if r["validation_errors"]:
+        print("  validation errors:", r["validation_errors"])
+    return 1 if r["validation_errors"] else 0
 
 
 def main(argv: list[str] | None = None) -> int:

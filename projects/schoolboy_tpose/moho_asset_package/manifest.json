@@ -1,0 +1,3757 @@
+{
+  "schema": "autorig.moho_asset_package",
+  "schema_version": "1.0.0",
+  "created_at": "2026-11-21T00:47:16Z",
+  "editor_project": {
+    "schema_version": 1,
+    "revision": "4f53cda18c2baa0c",
+    "ops": 0
+  },
+  "source": {
+    "file": "source/original.jpg",
+    "sha256": "46453da1785d61037fd568227f0361e3dac05f8edb74679789d4a039091d36a2"
+  },
+  "canvas": {
+    "width": 1086,
+    "height": 1448,
+    "units": "source px, origin top-left, +y down",
+    "moho_frame": {
+      "convention": "origin frame centre, +y up, frame height spans [-1, 1]",
+      "x": "(x_px - W/2) / (H/2)",
+      "y": "(H/2 - y_px) / (H/2)",
+      "angles": "Moho radians CCW parent-relative; editor/natural-pose degrees are clockwise-on-screen (converted in bones[].moho_angle_rad_parent_relative)"
+    }
+  },
+  "layers": [
+    {
+      "id": "thigh_r",
+      "name": "thigh_r",
+      "group": "Right_Leg/Thigh",
+      "z_index": 0,
+      "file": "layers/thigh_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "thigh",
+      "bone": "thigh_r",
+      "pivot_px": [
+        486.4,
+        753.6
+      ],
+      "bounds_px": [
+        277,
+        721,
+        542,
+        1292
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "thigh_r__01",
+        "thigh_r__02"
+      ],
+      "approval": {
+        "thigh_r__01": "pending_review",
+        "thigh_r__02": "pending_review"
+      }
+    },
+    {
+      "id": "shin_r",
+      "name": "shin_r",
+      "group": "Right_Leg/Shin",
+      "z_index": 1,
+      "file": "layers/shin_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "shin",
+      "bone": "shin_r",
+      "pivot_px": [
+        398.0,
+        1011.2
+      ],
+      "bounds_px": [
+        261,
+        993,
+        455,
+        1303
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "shin_r__01"
+      ],
+      "approval": {
+        "shin_r__01": "pending_review"
+      }
+    },
+    {
+      "id": "foot_r",
+      "name": "foot_r",
+      "group": "Right_Leg/Foot",
+      "z_index": 2,
+      "file": "layers/foot_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "foot",
+      "bone": "foot_r",
+      "pivot_px": [
+        320.0,
+        1272.2
+      ],
+      "bounds_px": [
+        207,
+        1267,
+        375,
+        1402
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "thigh_l",
+      "name": "thigh_l",
+      "group": "Left_Leg/Thigh",
+      "z_index": 3,
+      "file": "layers/thigh_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "thigh",
+      "bone": "thigh_l",
+      "pivot_px": [
+        597.9,
+        754.0
+      ],
+      "bounds_px": [
+        542,
+        722,
+        820,
+        1294
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "thigh_l__01",
+        "thigh_l__02"
+      ],
+      "approval": {
+        "thigh_l__01": "pending_review",
+        "thigh_l__02": "pending_review"
+      }
+    },
+    {
+      "id": "shin_l",
+      "name": "shin_l",
+      "group": "Left_Leg/Shin",
+      "z_index": 4,
+      "file": "layers/shin_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "shin",
+      "bone": "shin_l",
+      "pivot_px": [
+        681.5,
+        1012.8
+      ],
+      "bounds_px": [
+        625,
+        995,
+        823,
+        1303
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "shin_l__01"
+      ],
+      "approval": {
+        "shin_l__01": "pending_review"
+      }
+    },
+    {
+      "id": "foot_l",
+      "name": "foot_l",
+      "group": "Left_Leg/Foot",
+      "z_index": 5,
+      "file": "layers/foot_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "foot",
+      "bone": "foot_l",
+      "pivot_px": [
+        762.2,
+        1272.5
+      ],
+      "bounds_px": [
+        705,
+        1267,
+        877,
+        1402
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "pelvis",
+      "name": "pelvis",
+      "group": "Pelvis",
+      "z_index": 6,
+      "file": "layers/pelvis.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "pelvis",
+      "bone": "pelvis",
+      "pivot_px": [
+        542.2,
+        753.8
+      ],
+      "bounds_px": [
+        400,
+        618,
+        684,
+        794
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "neck",
+      "name": "neck",
+      "group": "Torso",
+      "z_index": 7,
+      "file": "layers/neck.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "neck",
+      "bone": "neck",
+      "pivot_px": [
+        540.5,
+        412.2
+      ],
+      "bounds_px": [
+        501,
+        215,
+        580,
+        478
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "neck__01",
+        "neck__02"
+      ],
+      "approval": {
+        "neck__01": "pending_review",
+        "neck__02": "pending_review"
+      }
+    },
+    {
+      "id": "upper_arm_r",
+      "name": "upper_arm_r",
+      "group": "Right_Arm/Upper_Arm",
+      "z_index": 8,
+      "file": "layers/upper_arm_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "upper_arm",
+      "bone": "upper_arm_r",
+      "pivot_px": [
+        406.0,
+        466.6
+      ],
+      "bounds_px": [
+        243,
+        408,
+        466,
+        580
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "upper_arm_r__01"
+      ],
+      "approval": {
+        "upper_arm_r__01": "pending_review"
+      }
+    },
+    {
+      "id": "torso",
+      "name": "torso",
+      "group": "Torso",
+      "z_index": 9,
+      "file": "layers/torso.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "torso",
+      "bone": "chest",
+      "pivot_px": [
+        541.1,
+        528.4
+      ],
+      "bounds_px": [
+        405,
+        62,
+        682,
+        722
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "torso__01"
+      ],
+      "approval": {
+        "torso__01": "pending_review"
+      }
+    },
+    {
+      "id": "forearm_r",
+      "name": "forearm_r",
+      "group": "Right_Arm/Forearm",
+      "z_index": 10,
+      "file": "layers/forearm_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "forearm",
+      "bone": "forearm_r",
+      "pivot_px": [
+        277.2,
+        474.3
+      ],
+      "bounds_px": [
+        24,
+        419,
+        277,
+        530
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "forearm_r__01"
+      ],
+      "approval": {
+        "forearm_r__01": "pending_review"
+      }
+    },
+    {
+      "id": "hand_r",
+      "name": "hand_r",
+      "group": "Right_Arm/Hand",
+      "z_index": 11,
+      "file": "layers/hand_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "hand",
+      "bone": "hand_r",
+      "pivot_px": [
+        157.8,
+        474.5
+      ],
+      "bounds_px": [
+        8,
+        393,
+        152,
+        540
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "upper_arm_l",
+      "name": "upper_arm_l",
+      "group": "Left_Arm/Upper_Arm",
+      "z_index": 12,
+      "file": "layers/upper_arm_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "upper_arm",
+      "bone": "upper_arm_l",
+      "pivot_px": [
+        685.6,
+        468.5
+      ],
+      "bounds_px": [
+        617,
+        406,
+        841,
+        569
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "upper_arm_l__01"
+      ],
+      "approval": {
+        "upper_arm_l__01": "pending_review"
+      }
+    },
+    {
+      "id": "forearm_l",
+      "name": "forearm_l",
+      "group": "Left_Arm/Forearm",
+      "z_index": 13,
+      "file": "layers/forearm_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "forearm",
+      "bone": "forearm_l",
+      "pivot_px": [
+        810.2,
+        474.8
+      ],
+      "bounds_px": [
+        810,
+        409,
+        1067,
+        531
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "forearm_l__01"
+      ],
+      "approval": {
+        "forearm_l__01": "pending_review"
+      }
+    },
+    {
+      "id": "hand_l",
+      "name": "hand_l",
+      "group": "Left_Arm/Hand",
+      "z_index": 14,
+      "file": "layers/hand_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "hand",
+      "bone": "hand_l",
+      "pivot_px": [
+        925.4,
+        474.7
+      ],
+      "bounds_px": [
+        934,
+        393,
+        1077,
+        540
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "head_base",
+      "name": "head_base",
+      "group": "Head",
+      "z_index": 15,
+      "file": "layers/head_base.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "head_base",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        421,
+        159,
+        663,
+        379
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "nose",
+      "name": "nose",
+      "group": "Face",
+      "z_index": 16,
+      "file": "layers/nose.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "nose",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        528,
+        287,
+        561,
+        308
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "mouth",
+      "name": "mouth",
+      "group": "Face",
+      "z_index": 17,
+      "file": "layers/mouth.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "mouth",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        519,
+        325,
+        567,
+        333
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "eye_r_white",
+      "name": "eye_r_white",
+      "group": "Right_Eye",
+      "z_index": 18,
+      "file": "layers/eye_r_white.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "eye_r_white",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        471,
+        248,
+        525,
+        280
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "eye_r_white__01"
+      ],
+      "approval": {
+        "eye_r_white__01": "pending_review"
+      }
+    },
+    {
+      "id": "eye_r_iris",
+      "name": "eye_r_iris",
+      "group": "Right_Eye",
+      "z_index": 19,
+      "file": "layers/eye_r_iris.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "eye_r_iris",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        495,
+        248,
+        517,
+        269
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "eye_l_white",
+      "name": "eye_l_white",
+      "group": "Left_Eye",
+      "z_index": 20,
+      "file": "layers/eye_l_white.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "eye_l_white",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        563,
+        248,
+        616,
+        280
+      ],
+      "provenance": "original+reconstructed_extension",
+      "user_category": "original",
+      "generated_extensions": [
+        "eye_l_white__01"
+      ],
+      "approval": {
+        "eye_l_white__01": "pending_review"
+      }
+    },
+    {
+      "id": "eye_l_iris",
+      "name": "eye_l_iris",
+      "group": "Left_Eye",
+      "z_index": 21,
+      "file": "layers/eye_l_iris.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "eye_l_iris",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        570,
+        249,
+        592,
+        270
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "brow_r",
+      "name": "brow_r",
+      "group": "Right_Eyebrow",
+      "z_index": 22,
+      "file": "layers/brow_r.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "brow",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        462,
+        222,
+        534,
+        255
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "brow_l",
+      "name": "brow_l",
+      "group": "Left_Eyebrow",
+      "z_index": 23,
+      "file": "layers/brow_l.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "brow",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        554,
+        222,
+        626,
+        255
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hair",
+      "name": "hair",
+      "group": "Hair",
+      "z_index": 24,
+      "file": "layers/hair.png",
+      "kind": "bitmap",
+      "visible": true,
+      "opacity": 1.0,
+      "role": "hair",
+      "bone": "head",
+      "pivot_px": [
+        540.8,
+        322.6
+      ],
+      "bounds_px": [
+        379,
+        21,
+        696,
+        256
+      ],
+      "provenance": "original",
+      "user_category": "original",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_l__fist",
+      "name": "hand_l__fist",
+      "group": "Left_Arm/Hand",
+      "z_index": 25,
+      "file": "layers/hand_l__fist.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: fist",
+      "bone": "hand_l",
+      "pivot_px": [
+        925.4,
+        474.7
+      ],
+      "bounds_px": [
+        917,
+        415,
+        1042,
+        517
+      ],
+      "provenance": "reference_derived",
+      "user_category": "reference_derived",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_l__palm_up",
+      "name": "hand_l__palm_up",
+      "group": "Left_Arm/Hand",
+      "z_index": 26,
+      "file": "layers/hand_l__palm_up.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: palm_up",
+      "bone": "hand_l",
+      "pivot_px": [
+        925.4,
+        474.7
+      ],
+      "bounds_px": [
+        933,
+        432,
+        1077,
+        506
+      ],
+      "provenance": "approximation",
+      "user_category": "approximation",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_l__point",
+      "name": "hand_l__point",
+      "group": "Left_Arm/Hand",
+      "z_index": 27,
+      "file": "layers/hand_l__point.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: point",
+      "bone": "hand_l",
+      "pivot_px": [
+        925.4,
+        474.7
+      ],
+      "bounds_px": [
+        917,
+        415,
+        1084,
+        517
+      ],
+      "provenance": "reference_derived_composed",
+      "user_category": "reference_derived",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_l__thumbs_up",
+      "name": "hand_l__thumbs_up",
+      "group": "Left_Arm/Hand",
+      "z_index": 28,
+      "file": "layers/hand_l__thumbs_up.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: thumbs_up",
+      "bone": "hand_l",
+      "pivot_px": [
+        925.4,
+        474.7
+      ],
+      "bounds_px": [
+        917,
+        428,
+        1070,
+        516
+      ],
+      "provenance": "reference_derived",
+      "user_category": "reference_derived",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_r__fist",
+      "name": "hand_r__fist",
+      "group": "Right_Arm/Hand",
+      "z_index": 29,
+      "file": "layers/hand_r__fist.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: fist",
+      "bone": "hand_r",
+      "pivot_px": [
+        157.8,
+        474.5
+      ],
+      "bounds_px": [
+        41,
+        414,
+        166,
+        517
+      ],
+      "provenance": "reference_derived",
+      "user_category": "reference_derived",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_r__palm_up",
+      "name": "hand_r__palm_up",
+      "group": "Right_Arm/Hand",
+      "z_index": 30,
+      "file": "layers/hand_r__palm_up.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: palm_up",
+      "bone": "hand_r",
+      "pivot_px": [
+        157.8,
+        474.5
+      ],
+      "bounds_px": [
+        8,
+        432,
+        153,
+        505
+      ],
+      "provenance": "approximation",
+      "user_category": "approximation",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_r__point",
+      "name": "hand_r__point",
+      "group": "Right_Arm/Hand",
+      "z_index": 31,
+      "file": "layers/hand_r__point.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: point",
+      "bone": "hand_r",
+      "pivot_px": [
+        157.8,
+        474.5
+      ],
+      "bounds_px": [
+        0,
+        414,
+        166,
+        517
+      ],
+      "provenance": "reference_derived_composed",
+      "user_category": "reference_derived",
+      "generated_extensions": [],
+      "approval": {}
+    },
+    {
+      "id": "hand_r__thumbs_up",
+      "name": "hand_r__thumbs_up",
+      "group": "Right_Arm/Hand",
+      "z_index": 32,
+      "file": "layers/hand_r__thumbs_up.png",
+      "kind": "switch",
+      "visible": false,
+      "opacity": 1.0,
+      "role": "hand switch: thumbs_up",
+      "bone": "hand_r",
+      "pivot_px": [
+        157.8,
+        474.5
+      ],
+      "bounds_px": [
+        13,
+        427,
+        166,
+        515
+      ],
+      "provenance": "reference_derived",
+      "user_category": "reference_derived",
+      "generated_extensions": [],
+      "approval": {}
+    }
+  ],
+  "groups": {
+    "CHARACTER": {
+      "name": "CHARACTER",
+      "parent": null
+    },
+    "Head": {
+      "name": "Head",
+      "parent": "CHARACTER"
+    },
+    "Hair": {
+      "name": "Hair",
+      "parent": "Head"
+    },
+    "Face": {
+      "name": "Face",
+      "parent": "Head"
+    },
+    "Right_Eye": {
+      "name": "Right_Eye",
+      "parent": "Face"
+    },
+    "Left_Eye": {
+      "name": "Left_Eye",
+      "parent": "Face"
+    },
+    "Right_Eyebrow": {
+      "name": "Right_Eyebrow",
+      "parent": "Face"
+    },
+    "Left_Eyebrow": {
+      "name": "Left_Eyebrow",
+      "parent": "Face"
+    },
+    "Torso": {
+      "name": "Torso",
+      "parent": "CHARACTER"
+    },
+    "Right_Arm": {
+      "name": "Right_Arm",
+      "parent": "CHARACTER"
+    },
+    "Right_Arm/Upper_Arm": {
+      "name": "Upper_Arm",
+      "parent": "Right_Arm"
+    },
+    "Right_Arm/Forearm": {
+      "name": "Forearm",
+      "parent": "Right_Arm"
+    },
+    "Right_Arm/Hand": {
+      "name": "Hand",
+      "parent": "Right_Arm"
+    },
+    "Left_Arm": {
+      "name": "Left_Arm",
+      "parent": "CHARACTER"
+    },
+    "Left_Arm/Upper_Arm": {
+      "name": "Upper_Arm",
+      "parent": "Left_Arm"
+    },
+    "Left_Arm/Forearm": {
+      "name": "Forearm",
+      "parent": "Left_Arm"
+    },
+    "Left_Arm/Hand": {
+      "name": "Hand",
+      "parent": "Left_Arm"
+    },
+    "Pelvis": {
+      "name": "Pelvis",
+      "parent": "CHARACTER"
+    },
+    "Right_Leg": {
+      "name": "Right_Leg",
+      "parent": "CHARACTER"
+    },
+    "Right_Leg/Thigh": {
+      "name": "Thigh",
+      "parent": "Right_Leg"
+    },
+    "Right_Leg/Shin": {
+      "name": "Shin",
+      "parent": "Right_Leg"
+    },
+    "Right_Leg/Foot": {
+      "name": "Foot",
+      "parent": "Right_Leg"
+    },
+    "Left_Leg": {
+      "name": "Left_Leg",
+      "parent": "CHARACTER"
+    },
+    "Left_Leg/Thigh": {
+      "name": "Thigh",
+      "parent": "Left_Leg"
+    },
+    "Left_Leg/Shin": {
+      "name": "Shin",
+      "parent": "Left_Leg"
+    },
+    "Left_Leg/Foot": {
+      "name": "Foot",
+      "parent": "Left_Leg"
+    }
+  },
+  "vectors": [
+    {
+      "id": "ankle_r_cap",
+      "file": "vectors/ankle_r_cap.svg",
+      "purpose": "joint correction",
+      "target": "shin_r",
+      "origin": "phase2_generated",
+      "status": "pending_review",
+      "approval": "pending_review",
+      "bounds_px": [
+        276.1,
+        1228.3,
+        363.8,
+        1316.1
+      ]
+    },
+    {
+      "id": "upper_eyelid_r",
+      "file": "vectors/upper_eyelid_r.svg",
+      "purpose": "eyelid guide",
+      "target": "eye_r",
+      "origin": "phase2_generated",
+      "status": "pending_review",
+      "approval": "pending_review",
+      "bounds_px": [
+        471.5,
+        248.0,
+        523.5,
+        264.0
+      ]
+    },
+    {
+      "id": "lower_eyelid_r",
+      "file": "vectors/lower_eyelid_r.svg",
+      "purpose": "eyelid guide",
+      "target": "eye_r",
+      "origin": "phase2_generated",
+      "status": "pending_review",
+      "approval": "pending_review",
+      "bounds_px": [
+        471.5,
+        261.0,
+        523.5,
+        279.0
+      ]
+    },
+    {
+      "id": "upper_eyelid_l",
+      "file": "vectors/upper_eyelid_l.svg",
+      "purpose": "eyelid guide",
+      "target": "eye_l",
+      "origin": "phase2_generated",
+      "status": "pending_review",
+      "approval": "pending_review",
+      "bounds_px": [
+        563.5,
+        248.0,
+        614.5,
+        260.0
+      ]
+    },
+    {
+      "id": "lower_eyelid_l",
+      "file": "vectors/lower_eyelid_l.svg",
+      "purpose": "eyelid guide",
+      "target": "eye_l",
+      "origin": "phase2_generated",
+      "status": "pending_review",
+      "approval": "pending_review",
+      "bounds_px": [
+        563.5,
+        257.0,
+        614.5,
+        279.0
+      ]
+    }
+  ],
+  "bones": [
+    {
+      "name": "pelvis",
+      "parent": null,
+      "kind": "pelvis",
+      "side": null,
+      "head_px": [
+        542.2,
+        753.8
+      ],
+      "tail_px": [
+        541.6,
+        641.1
+      ],
+      "length_px": 112.7,
+      "head_moho": [
+        -0.001105,
+        -0.04116
+      ],
+      "tail_moho": [
+        -0.001934,
+        0.114503
+      ],
+      "moho_angle_rad_parent_relative": 1.57612,
+      "phase1_joint_name": "pelvis",
+      "rotation_constraints_deg": {
+        "tilt": [
+          -14,
+          14
+        ]
+      },
+      "blend_band_px": [
+        58.5,
+        58.5
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "spine",
+      "parent": "pelvis",
+      "kind": "spine",
+      "side": null,
+      "head_px": [
+        541.6,
+        641.1
+      ],
+      "tail_px": [
+        541.1,
+        528.4
+      ],
+      "length_px": 112.7,
+      "head_moho": [
+        -0.001934,
+        0.114503
+      ],
+      "tail_moho": [
+        -0.002624,
+        0.270166
+      ],
+      "moho_angle_rad_parent_relative": -0.000887,
+      "phase1_joint_name": null,
+      "rotation_constraints_deg": {
+        "bend": [
+          -18,
+          18
+        ]
+      },
+      "blend_band_px": [
+        105.2,
+        105.2
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "chest",
+      "parent": "spine",
+      "kind": "chest",
+      "side": null,
+      "head_px": [
+        541.1,
+        528.4
+      ],
+      "tail_px": [
+        540.5,
+        412.2
+      ],
+      "length_px": 116.2,
+      "head_moho": [
+        -0.002624,
+        0.270166
+      ],
+      "tail_moho": [
+        -0.003453,
+        0.430663
+      ],
+      "moho_angle_rad_parent_relative": 0.000727,
+      "phase1_joint_name": null,
+      "rotation_constraints_deg": {
+        "bend": [
+          -14,
+          14
+        ]
+      },
+      "blend_band_px": [
+        93.5,
+        93.5
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "neck",
+      "parent": "chest",
+      "kind": "neck",
+      "side": null,
+      "head_px": [
+        540.5,
+        412.2
+      ],
+      "tail_px": [
+        540.8,
+        322.6
+      ],
+      "length_px": 89.6,
+      "head_moho": [
+        -0.003453,
+        0.430663
+      ],
+      "tail_moho": [
+        -0.003039,
+        0.55442
+      ],
+      "moho_angle_rad_parent_relative": -0.008512,
+      "phase1_joint_name": "neck_base",
+      "rotation_constraints_deg": {
+        "bend": [
+          -20,
+          20
+        ]
+      },
+      "blend_band_px": [
+        19.0,
+        22.8
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "head",
+      "parent": "neck",
+      "kind": "head",
+      "side": null,
+      "head_px": [
+        540.8,
+        322.6
+      ],
+      "tail_px": [
+        540.8,
+        21.0
+      ],
+      "length_px": 301.6,
+      "head_moho": [
+        -0.003039,
+        0.55442
+      ],
+      "tail_moho": [
+        -0.003039,
+        0.970994
+      ],
+      "moho_angle_rad_parent_relative": 0.003348,
+      "phase1_joint_name": "neck",
+      "rotation_constraints_deg": {
+        "bend": [
+          -28,
+          28
+        ]
+      },
+      "blend_band_px": [
+        44.8,
+        53.7
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "clavicle_r",
+      "parent": "chest",
+      "kind": "clavicle",
+      "side": "r",
+      "head_px": [
+        501.3,
+        453.0
+      ],
+      "tail_px": [
+        406.0,
+        466.6
+      ],
+      "length_px": 96.27,
+      "head_moho": [
+        -0.057597,
+        0.374309
+      ],
+      "tail_moho": [
+        -0.189227,
+        0.355525
+      ],
+      "moho_angle_rad_parent_relative": 1.707383,
+      "phase1_joint_name": null,
+      "rotation_constraints_deg": {
+        "elevation": [
+          -10,
+          32
+        ]
+      },
+      "blend_band_px": [
+        21.8,
+        54.5
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "upper_arm_r",
+      "parent": "clavicle_r",
+      "kind": "upper_arm",
+      "side": "r",
+      "head_px": [
+        406.0,
+        466.6
+      ],
+      "tail_px": [
+        277.2,
+        474.3
+      ],
+      "length_px": 129.03,
+      "head_moho": [
+        -0.189227,
+        0.355525
+      ],
+      "tail_moho": [
+        -0.367127,
+        0.34489
+      ],
+      "moho_angle_rad_parent_relative": -0.082039,
+      "phase1_joint_name": "shoulder_r",
+      "rotation_constraints_deg": {
+        "abduction": [
+          -40,
+          178
+        ]
+      },
+      "blend_band_px": [
+        46.3,
+        54.5
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "forearm_r",
+      "parent": "upper_arm_r",
+      "kind": "forearm",
+      "side": "r",
+      "head_px": [
+        277.2,
+        474.3
+      ],
+      "tail_px": [
+        157.8,
+        474.5
+      ],
+      "length_px": 119.4,
+      "head_moho": [
+        -0.367127,
+        0.34489
+      ],
+      "tail_moho": [
+        -0.532044,
+        0.344613
+      ],
+      "moho_angle_rad_parent_relative": -0.058037,
+      "phase1_joint_name": "elbow_r",
+      "rotation_constraints_deg": {
+        "flexion": [
+          -150,
+          150
+        ]
+      },
+      "blend_band_px": [
+        27.9,
+        27.9
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "hand_r",
+      "parent": "forearm_r",
+      "kind": "hand",
+      "side": "r",
+      "head_px": [
+        157.8,
+        474.5
+      ],
+      "tail_px": [
+        86.2,
+        471.3
+      ],
+      "length_px": 71.67,
+      "head_moho": [
+        -0.532044,
+        0.344613
+      ],
+      "tail_moho": [
+        -0.630939,
+        0.349033
+      ],
+      "moho_angle_rad_parent_relative": -0.046338,
+      "phase1_joint_name": "wrist_r",
+      "rotation_constraints_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      },
+      "blend_band_px": [
+        11.8,
+        15.8
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "thigh_r",
+      "parent": "pelvis",
+      "kind": "thigh",
+      "side": "r",
+      "head_px": [
+        486.4,
+        753.6
+      ],
+      "tail_px": [
+        398.0,
+        1011.2
+      ],
+      "length_px": 272.35,
+      "head_moho": [
+        -0.078177,
+        -0.040884
+      ],
+      "tail_moho": [
+        -0.200276,
+        -0.396685
+      ],
+      "moho_angle_rad_parent_relative": 2.805694,
+      "phase1_joint_name": "hip_r",
+      "rotation_constraints_deg": {
+        "abduction": [
+          -25,
+          75
+        ]
+      },
+      "blend_band_px": [
+        19.6,
+        45.7
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "shin_r",
+      "parent": "thigh_r",
+      "kind": "shin",
+      "side": "r",
+      "head_px": [
+        398.0,
+        1011.2
+      ],
+      "tail_px": [
+        320.0,
+        1272.2
+      ],
+      "length_px": 272.41,
+      "head_moho": [
+        -0.200276,
+        -0.396685
+      ],
+      "tail_moho": [
+        -0.308011,
+        -0.757182
+      ],
+      "moho_angle_rad_parent_relative": 0.040173,
+      "phase1_joint_name": "knee_r",
+      "rotation_constraints_deg": {
+        "flexion": [
+          0,
+          140
+        ]
+      },
+      "blend_band_px": [
+        32.2,
+        32.2
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "foot_r",
+      "parent": "shin_r",
+      "kind": "foot",
+      "side": "r",
+      "head_px": [
+        320.0,
+        1272.2
+      ],
+      "tail_px": [
+        294.5,
+        1339.5
+      ],
+      "length_px": 71.97,
+      "head_moho": [
+        -0.308011,
+        -0.757182
+      ],
+      "tail_moho": [
+        -0.343232,
+        -0.850138
+      ],
+      "moho_angle_rad_parent_relative": -0.071784,
+      "phase1_joint_name": "ankle_r",
+      "rotation_constraints_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      },
+      "blend_band_px": [
+        13.3,
+        16.0
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "clavicle_l",
+      "parent": "chest",
+      "kind": "clavicle",
+      "side": "l",
+      "head_px": [
+        585.2,
+        455.7
+      ],
+      "tail_px": [
+        685.6,
+        468.5
+      ],
+      "length_px": 101.21,
+      "head_moho": [
+        0.058287,
+        0.37058
+      ],
+      "tail_moho": [
+        0.196961,
+        0.352901
+      ],
+      "moho_angle_rad_parent_relative": -1.702766,
+      "phase1_joint_name": null,
+      "rotation_constraints_deg": {
+        "elevation": [
+          -10,
+          32
+        ]
+      },
+      "blend_band_px": [
+        20.6,
+        51.5
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "upper_arm_l",
+      "parent": "clavicle_l",
+      "kind": "upper_arm",
+      "side": "l",
+      "head_px": [
+        685.6,
+        468.5
+      ],
+      "tail_px": [
+        810.2,
+        474.8
+      ],
+      "length_px": 124.76,
+      "head_moho": [
+        0.196961,
+        0.352901
+      ],
+      "tail_moho": [
+        0.369061,
+        0.344199
+      ],
+      "moho_angle_rad_parent_relative": 0.076287,
+      "phase1_joint_name": "shoulder_l",
+      "rotation_constraints_deg": {
+        "abduction": [
+          -40,
+          178
+        ]
+      },
+      "blend_band_px": [
+        43.8,
+        51.5
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "forearm_l",
+      "parent": "upper_arm_l",
+      "kind": "forearm",
+      "side": "l",
+      "head_px": [
+        810.2,
+        474.8
+      ],
+      "tail_px": [
+        925.4,
+        474.7
+      ],
+      "length_px": 115.2,
+      "head_moho": [
+        0.369061,
+        0.344199
+      ],
+      "tail_moho": [
+        0.528177,
+        0.344337
+      ],
+      "moho_angle_rad_parent_relative": 0.051387,
+      "phase1_joint_name": "elbow_l",
+      "rotation_constraints_deg": {
+        "flexion": [
+          -150,
+          150
+        ]
+      },
+      "blend_band_px": [
+        28.2,
+        28.2
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "hand_l",
+      "parent": "forearm_l",
+      "kind": "hand",
+      "side": "l",
+      "head_px": [
+        925.4,
+        474.7
+      ],
+      "tail_px": [
+        997.6,
+        472.2
+      ],
+      "length_px": 72.24,
+      "head_moho": [
+        0.528177,
+        0.344337
+      ],
+      "tail_moho": [
+        0.627901,
+        0.34779
+      ],
+      "moho_angle_rad_parent_relative": 0.033744,
+      "phase1_joint_name": "wrist_l",
+      "rotation_constraints_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      },
+      "blend_band_px": [
+        11.7,
+        15.6
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "thigh_l",
+      "parent": "pelvis",
+      "kind": "thigh",
+      "side": "l",
+      "head_px": [
+        597.9,
+        754.0
+      ],
+      "tail_px": [
+        681.5,
+        1012.8
+      ],
+      "length_px": 271.97,
+      "head_moho": [
+        0.075829,
+        -0.041436
+      ],
+      "tail_moho": [
+        0.191298,
+        -0.398895
+      ],
+      "moho_angle_rad_parent_relative": -2.834468,
+      "phase1_joint_name": "hip_l",
+      "rotation_constraints_deg": {
+        "abduction": [
+          -25,
+          75
+        ]
+      },
+      "blend_band_px": [
+        19.8,
+        46.3
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "shin_l",
+      "parent": "thigh_l",
+      "kind": "shin",
+      "side": "l",
+      "head_px": [
+        681.5,
+        1012.8
+      ],
+      "tail_px": [
+        762.2,
+        1272.5
+      ],
+      "length_px": 271.95,
+      "head_moho": [
+        0.191298,
+        -0.398895
+      ],
+      "tail_moho": [
+        0.302762,
+        -0.757597
+      ],
+      "moho_angle_rad_parent_relative": -0.011165,
+      "phase1_joint_name": "knee_l",
+      "rotation_constraints_deg": {
+        "flexion": [
+          0,
+          140
+        ]
+      },
+      "blend_band_px": [
+        33.3,
+        33.3
+      ],
+      "user_edited": false
+    },
+    {
+      "name": "foot_l",
+      "parent": "shin_l",
+      "kind": "foot",
+      "side": "l",
+      "head_px": [
+        762.2,
+        1272.5
+      ],
+      "tail_px": [
+        786.7,
+        1339.7
+      ],
+      "length_px": 71.53,
+      "head_moho": [
+        0.302762,
+        -0.757597
+      ],
+      "tail_moho": [
+        0.336602,
+        -0.850414
+      ],
+      "moho_angle_rad_parent_relative": 0.048324,
+      "phase1_joint_name": "ankle_l",
+      "rotation_constraints_deg": {
+        "bend": [
+          -60,
+          60
+        ]
+      },
+      "blend_band_px": [
+        12.9,
+        15.5
+      ],
+      "user_edited": false
+    }
+  ],
+  "deformation": {
+    "blend_bands": {
+      "pelvis": [
+        58.5,
+        58.5
+      ],
+      "spine": [
+        105.2,
+        105.2
+      ],
+      "chest": [
+        93.5,
+        93.5
+      ],
+      "neck": [
+        19.0,
+        22.8
+      ],
+      "head": [
+        44.8,
+        53.7
+      ],
+      "clavicle_r": [
+        21.8,
+        54.5
+      ],
+      "upper_arm_r": [
+        46.3,
+        54.5
+      ],
+      "forearm_r": [
+        27.9,
+        27.9
+      ],
+      "hand_r": [
+        11.8,
+        15.8
+      ],
+      "thigh_r": [
+        19.6,
+        45.7
+      ],
+      "shin_r": [
+        32.2,
+        32.2
+      ],
+      "foot_r": [
+        13.3,
+        16.0
+      ],
+      "clavicle_l": [
+        20.6,
+        51.5
+      ],
+      "upper_arm_l": [
+        43.8,
+        51.5
+      ],
+      "forearm_l": [
+        28.2,
+        28.2
+      ],
+      "hand_l": [
+        11.7,
+        15.6
+      ],
+      "thigh_l": [
+        19.8,
+        46.3
+      ],
+      "shin_l": [
+        33.3,
+        33.3
+      ],
+      "foot_l": [
+        12.9,
+        15.5
+      ]
+    },
+    "joint_corrections": {},
+    "armpit_gussets_enabled": true,
+    "corrective_artwork": [
+      {
+        "id": "hand__fist",
+        "type": "hand_variant",
+        "category": "R_reference_derived",
+        "source": {
+          "sheet": "character_sheet.jpg",
+          "crop_xyxy": [
+            381,
+            955,
+            436,
+            1023
+          ]
+        },
+        "scale_to_reference": 1.823,
+        "mirrored_for": [
+          "l"
+        ],
+        "status": "pending_review"
+      },
+      {
+        "id": "hand__thumbs_up",
+        "type": "hand_variant",
+        "category": "R_reference_derived",
+        "source": {
+          "sheet": "character_sheet.jpg",
+          "crop_xyxy": [
+            446,
+            935,
+            493,
+            1018
+          ]
+        },
+        "scale_to_reference": 1.823,
+        "mirrored_for": [
+          "l"
+        ],
+        "status": "pending_review"
+      },
+      {
+        "id": "hand__point",
+        "type": "hand_variant",
+        "category": "R_composed_from_reference",
+        "source": {
+          "sheet": "character_sheet.jpg",
+          "crop_xyxy": [
+            381,
+            955,
+            436,
+            1023
+          ],
+          "construction": "sheet fist + the index finger cut from the sheet's open hand (both the user's drawings)"
+        },
+        "scale_to_reference": 1.823,
+        "mirrored_for": [
+          "l"
+        ],
+        "status": "pending_review"
+      },
+      {
+        "id": "hand__palm_up",
+        "type": "hand_variant",
+        "category": "C_approximation",
+        "source": {
+          "from": "reference hand layers",
+          "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+        },
+        "status": "pending_review"
+      },
+      {
+        "id": "gusset__pointing_speaking__r",
+        "type": "armpit_gusset",
+        "category": "C_corrective_shape",
+        "preset": "pointing_speaking",
+        "status": "pending_review",
+        "file": "natural_pose/corrective/armpit/pointing_speaking__r.svg",
+        "shoulder_abduction_deg": 101.04,
+        "side": "r",
+        "pixels": 335,
+        "torn_pairs": 33,
+        "fill_rgb": [
+          33,
+          30,
+          37
+        ],
+        "outline_rgb": [
+          1,
+          1,
+          1
+        ],
+        "outline_px": 4,
+        "polygon_posed_px": [
+          [
+            518.0,
+            390.0
+          ],
+          [
+            467.0,
+            508.0
+          ],
+          [
+            465.0,
+            506.0
+          ],
+          [
+            460.0,
+            499.0
+          ],
+          [
+            458.0,
+            496.0
+          ],
+          [
+            458.0,
+            495.0
+          ],
+          [
+            475.0,
+            394.0
+          ],
+          [
+            481.0,
+            386.0
+          ],
+          [
+            482.0,
+            385.0
+          ],
+          [
+            486.0,
+            385.0
+          ],
+          [
+            510.0,
+            387.0
+          ],
+          [
+            516.0,
+            388.0
+          ]
+        ],
+        "polygon_clavicle_rest_frame_px": [
+          [
+            452.3,
+            411.6
+          ],
+          [
+            412.7,
+            533.9
+          ],
+          [
+            410.5,
+            532.1
+          ],
+          [
+            404.9,
+            525.6
+          ],
+          [
+            402.6,
+            522.8
+          ],
+          [
+            402.5,
+            521.8
+          ],
+          [
+            409.9,
+            419.7
+          ],
+          [
+            415.1,
+            411.1
+          ],
+          [
+            416.0,
+            410.1
+          ],
+          [
+            420.0,
+            409.7
+          ],
+          [
+            444.1,
+            409.4
+          ],
+          [
+            450.2,
+            409.8
+          ]
+        ]
+      },
+      {
+        "id": "gusset__one_hand_shrug__r",
+        "type": "armpit_gusset",
+        "category": "C_corrective_shape",
+        "preset": "one_hand_shrug",
+        "status": "pending_review",
+        "file": "natural_pose/corrective/armpit/one_hand_shrug__r.svg",
+        "shoulder_abduction_deg": 26.0,
+        "side": "r",
+        "pixels": 85,
+        "torn_pairs": 7,
+        "fill_rgb": [
+          63,
+          54,
+          66
+        ],
+        "outline_rgb": [
+          2,
+          1,
+          2
+        ],
+        "outline_px": 4,
+        "polygon_posed_px": [
+          [
+            431.0,
+            467.0
+          ],
+          [
+            448.0,
+            380.0
+          ],
+          [
+            460.0,
+            371.0
+          ],
+          [
+            462.0,
+            371.0
+          ],
+          [
+            467.0,
+            374.0
+          ],
+          [
+            468.0,
+            375.0
+          ],
+          [
+            442.0,
+            486.0
+          ],
+          [
+            441.0,
+            487.0
+          ],
+          [
+            439.0,
+            485.0
+          ],
+          [
+            435.0,
+            479.0
+          ],
+          [
+            431.0,
+            469.0
+          ]
+        ],
+        "polygon_clavicle_rest_frame_px": [
+          [
+            439.8,
+            510.5
+          ],
+          [
+            432.2,
+            422.2
+          ],
+          [
+            441.2,
+            410.2
+          ],
+          [
+            443.1,
+            409.7
+          ],
+          [
+            448.8,
+            411.2
+          ],
+          [
+            450.0,
+            411.9
+          ],
+          [
+            455.6,
+            525.7
+          ],
+          [
+            454.9,
+            527.0
+          ],
+          [
+            452.4,
+            525.6
+          ],
+          [
+            447.0,
+            520.9
+          ],
+          [
+            440.3,
+            512.4
+          ]
+        ]
+      },
+      {
+        "id": "gusset__both_hands_raised__r",
+        "type": "armpit_gusset",
+        "category": "C_corrective_shape",
+        "preset": "both_hands_raised",
+        "status": "pending_review",
+        "file": "natural_pose/corrective/armpit/both_hands_raised__r.svg",
+        "shoulder_abduction_deg": 156.0,
+        "side": "r",
+        "pixels": 1066,
+        "torn_pairs": 27,
+        "fill_rgb": [
+          21,
+          20,
+          25
+        ],
+        "outline_rgb": [
+          2,
+          2,
+          2
+        ],
+        "outline_px": 4,
+        "polygon_posed_px": [
+          [
+            469.0,
+            373.0
+          ],
+          [
+            389.0,
+            495.0
+          ],
+          [
+            388.0,
+            494.0
+          ],
+          [
+            386.0,
+            490.0
+          ],
+          [
+            380.0,
+            475.0
+          ],
+          [
+            369.0,
+            447.0
+          ],
+          [
+            404.0,
+            412.0
+          ],
+          [
+            467.0,
+            371.0
+          ]
+        ],
+        "polygon_clavicle_rest_frame_px": [
+          [
+            451.1,
+            412.5
+          ],
+          [
+            422.6,
+            555.6
+          ],
+          [
+            421.3,
+            555.0
+          ],
+          [
+            418.0,
+            552.0
+          ],
+          [
+            406.8,
+            540.4
+          ],
+          [
+            386.1,
+            518.5
+          ],
+          [
+            405.4,
+            473.0
+          ],
+          [
+            448.5,
+            411.4
+          ]
+        ]
+      },
+      {
+        "id": "gusset__both_hands_raised__l",
+        "type": "armpit_gusset",
+        "category": "C_corrective_shape",
+        "preset": "both_hands_raised",
+        "status": "pending_review",
+        "file": "natural_pose/corrective/armpit/both_hands_raised__l.svg",
+        "shoulder_abduction_deg": 156.0,
+        "side": "l",
+        "pixels": 1000,
+        "torn_pairs": 26,
+        "fill_rgb": [
+          36,
+          33,
+          41
+        ],
+        "outline_rgb": [
+          3,
+          2,
+          3
+        ],
+        "outline_px": 4,
+        "polygon_posed_px": [
+          [
+            701.0,
+            491.0
+          ],
+          [
+            616.0,
+            373.0
+          ],
+          [
+            618.0,
+            371.0
+          ],
+          [
+            620.0,
+            370.0
+          ],
+          [
+            685.0,
+            410.0
+          ],
+          [
+            689.0,
+            414.0
+          ],
+          [
+            717.0,
+            447.0
+          ],
+          [
+            717.0,
+            448.0
+          ],
+          [
+            712.0,
+            462.0
+          ],
+          [
+            703.0,
+            487.0
+          ]
+        ],
+        "polygon_clavicle_rest_frame_px": [
+          [
+            671.3,
+            554.1
+          ],
+          [
+            636.7,
+            412.8
+          ],
+          [
+            639.3,
+            411.7
+          ],
+          [
+            641.6,
+            411.5
+          ],
+          [
+            686.9,
+            473.0
+          ],
+          [
+            689.1,
+            478.2
+          ],
+          [
+            702.7,
+            519.3
+          ],
+          [
+            702.3,
+            520.2
+          ],
+          [
+            692.4,
+            531.3
+          ],
+          [
+            674.7,
+            551.1
+          ]
+        ]
+      },
+      {
+        "id": "gusset__conversational_gesture__r",
+        "type": "armpit_gusset",
+        "category": "C_corrective_shape",
+        "preset": "conversational_gesture",
+        "status": "pending_review",
+        "file": "natural_pose/corrective/armpit/conversational_gesture__r.svg",
+        "shoulder_abduction_deg": 30.0,
+        "side": "r",
+        "pixels": 64,
+        "torn_pairs": 9,
+        "fill_rgb": [
+          24,
+          21,
+          26
+        ],
+        "outline_rgb": [
+          1,
+          1,
+          2
+        ],
+        "outline_px": 4,
+        "polygon_posed_px": [
+          [
+            431.0,
+            384.0
+          ],
+          [
+            404.0,
+            488.0
+          ],
+          [
+            398.0,
+            482.0
+          ],
+          [
+            396.0,
+            472.0
+          ],
+          [
+            416.0,
+            387.0
+          ],
+          [
+            421.0,
+            380.0
+          ],
+          [
+            422.0,
+            379.0
+          ],
+          [
+            428.0,
+            381.0
+          ]
+        ],
+        "polygon_clavicle_rest_frame_px": [
+          [
+            453.6,
+            413.0
+          ],
+          [
+            440.6,
+            519.6
+          ],
+          [
+            433.9,
+            514.5
+          ],
+          [
+            430.6,
+            504.8
+          ],
+          [
+            439.1,
+            417.9
+          ],
+          [
+            443.2,
+            410.3
+          ],
+          [
+            444.0,
+            409.2
+          ],
+          [
+            450.2,
+            410.4
+          ]
+        ]
+      }
+    ],
+    "defects": {},
+    "moho_translation": "proposed_unverified: bands -> bone influence / Smart Warp falloff; corrective shapes -> Smart Bone actions (Phase 4)"
+  },
+  "facial": {
+    "features": [
+      {
+        "id": "head_base",
+        "present": true,
+        "pixels": 30501,
+        "bbox_xyxy": [
+          421,
+          159,
+          663,
+          379
+        ],
+        "centroid": [
+          542.1,
+          262.7
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "hair",
+        "present": true,
+        "pixels": 37302,
+        "bbox_xyxy": [
+          379,
+          21,
+          696,
+          256
+        ],
+        "centroid": [
+          537.5,
+          132.8
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "brow_l",
+        "present": true,
+        "pixels": 997,
+        "bbox_xyxy": [
+          554,
+          222,
+          626,
+          255
+        ],
+        "centroid": [
+          586.6,
+          237.9
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "brow_r",
+        "present": true,
+        "pixels": 1006,
+        "bbox_xyxy": [
+          462,
+          222,
+          534,
+          255
+        ],
+        "centroid": [
+          500.5,
+          237.6
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "eye_l_white",
+        "present": true,
+        "pixels": 976,
+        "bbox_xyxy": [
+          563,
+          248,
+          616,
+          280
+        ],
+        "centroid": [
+          591.3,
+          264.7
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "eye_l_iris",
+        "present": true,
+        "pixels": 359,
+        "bbox_xyxy": [
+          570,
+          249,
+          592,
+          270
+        ],
+        "centroid": [
+          580.8,
+          258.6
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "eye_r_white",
+        "present": true,
+        "pixels": 1005,
+        "bbox_xyxy": [
+          471,
+          248,
+          525,
+          280
+        ],
+        "centroid": [
+          494.6,
+          264.6
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "eye_r_iris",
+        "present": true,
+        "pixels": 370,
+        "bbox_xyxy": [
+          495,
+          248,
+          517,
+          269
+        ],
+        "centroid": [
+          505.5,
+          258.2
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "nose",
+        "present": true,
+        "pixels": 542,
+        "bbox_xyxy": [
+          528,
+          287,
+          561,
+          308
+        ],
+        "centroid": [
+          544.2,
+          296.8
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "mouth",
+        "present": true,
+        "pixels": 164,
+        "bbox_xyxy": [
+          519,
+          325,
+          567,
+          333
+        ],
+        "centroid": [
+          542.5,
+          327.8
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "eyelids",
+        "present": false,
+        "pixels": 0,
+        "note": "no separate layer: eyelids need closed-eye drawings",
+        "approval": "not_reviewed"
+      },
+      {
+        "id": "jaw_chin",
+        "present": false,
+        "pixels": 0,
+        "note": "part of head_base (jaw pivot from face analysis)",
+        "approval": "not_reviewed"
+      }
+    ],
+    "anchors": {
+      "eye_r": [
+        497.57,
+        262.89
+      ],
+      "eye_l": [
+        588.5,
+        263.07
+      ],
+      "pupil_r": [
+        505.55,
+        258.22
+      ],
+      "pupil_l": [
+        580.77,
+        258.63
+      ],
+      "brow_r": [
+        500.52,
+        237.61
+      ],
+      "brow_l": [
+        586.6,
+        237.89
+      ],
+      "jaw_pivot": {
+        "position": [
+          542.3663499537544,
+          286.1658028306016
+        ],
+        "method": "ear_line_at_midline",
+        "status": "approximate"
+      },
+      "mouth": null,
+      "head_pivot": [
+        540.8,
+        322.6
+      ]
+    },
+    "capabilities": [
+      {
+        "capability": "left_eye_blink",
+        "controls": [
+          "eye_blink_left"
+        ],
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "missing": [
+          "closed left eye drawing (eyelid down)",
+          "eye_l_closed"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "right_eye_blink",
+        "controls": [
+          "eye_blink_right"
+        ],
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "missing": [
+          "closed right eye drawing (eyelid down)",
+          "eye_r_closed"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "eye_direction",
+        "controls": [
+          "eye_look_x",
+          "eye_look_y"
+        ],
+        "readiness": "NEEDS_REVIEW",
+        "missing": [
+          "sclera under the iris (reconstructed, pending review)"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "eyebrow_movement",
+        "controls": [
+          "brow_raise_left",
+          "brow_raise_right",
+          "brow_frown"
+        ],
+        "readiness": "REQUIRES_RECONSTRUCTION",
+        "missing": [
+          "skin under both brows (reconstructed, pending review)",
+          "skin under the brow (reconstructed, pending review)"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "mouth_opening",
+        "controls": [
+          "jaw_open"
+        ],
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "missing": [
+          "mouth_open",
+          "open mouth with interior, teeth and tongue"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "mouth_narrowing",
+        "controls": [
+          "mouth_width",
+          "mouth_pucker"
+        ],
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "missing": [
+          "mouth_narrow",
+          "mouth_pucker",
+          "mouth_wide",
+          "narrowed mouth shape",
+          "puckered/pursed lips",
+          "widened mouth shape"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "smile_frown",
+        "controls": [
+          "smile_left",
+          "smile_right"
+        ],
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "missing": [
+          "left corner raised",
+          "mouth_smile_left",
+          "mouth_smile_right",
+          "right corner raised"
+        ],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "head_tilt",
+        "controls": [
+          "head_roll"
+        ],
+        "readiness": "NEEDS_REVIEW",
+        "missing": [],
+        "approval": "not_reviewed"
+      },
+      {
+        "capability": "head_turn",
+        "controls": [
+          "head_yaw",
+          "head_pitch"
+        ],
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "missing": [
+          "head pitched down",
+          "head pitched up",
+          "head_down",
+          "head_turn_left",
+          "head_turn_right",
+          "head_up",
+          "three-quarter view, turned left (incl. hair, ears, features)",
+          "three-quarter view, turned right"
+        ],
+        "approval": "not_reviewed"
+      }
+    ],
+    "rule": "statuses come from the live artwork manifest; nothing is inferred from the neutral image"
+  },
+  "live": {
+    "controls": [
+      {
+        "control": "head_yaw",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "head_base",
+          "hair",
+          "nose",
+          "mouth",
+          "brow_r",
+          "brow_l",
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris",
+          "head_turn_left",
+          "head_turn_right"
+        ],
+        "available_artwork": [
+          "head_base",
+          "hair",
+          "nose",
+          "mouth",
+          "brow_r",
+          "brow_l",
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "missing": [
+          "head_turn_left",
+          "head_turn_right",
+          "three-quarter view, turned left (incl. hair, ears, features)",
+          "three-quarter view, turned right"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "head_pitch",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "head_base",
+          "hair",
+          "nose",
+          "mouth",
+          "brow_r",
+          "brow_l",
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris",
+          "head_up",
+          "head_down"
+        ],
+        "available_artwork": [
+          "head_base",
+          "hair",
+          "nose",
+          "mouth",
+          "brow_r",
+          "brow_l",
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "missing": [
+          "head pitched down",
+          "head pitched up",
+          "head_down",
+          "head_up"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "head_roll",
+        "readiness": "NEEDS_REVIEW",
+        "required_artwork": [
+          "head_base",
+          "hair",
+          "nose",
+          "mouth",
+          "brow_r",
+          "brow_l",
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris",
+          "neck"
+        ],
+        "available_artwork": [
+          "head_base",
+          "hair",
+          "nose",
+          "mouth",
+          "brow_r",
+          "brow_l",
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris",
+          "neck"
+        ],
+        "missing": [],
+        "proposed_control_type": "bone_rotation",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "eye_blink_left",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "eye_l_white",
+          "eye_l_iris",
+          "eye_l_closed"
+        ],
+        "available_artwork": [
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "missing": [
+          "closed left eye drawing (eyelid down)",
+          "eye_l_closed"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "eye_blink_right",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_r_closed"
+        ],
+        "available_artwork": [
+          "eye_r_white",
+          "eye_r_iris"
+        ],
+        "missing": [
+          "closed right eye drawing (eyelid down)",
+          "eye_r_closed"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "eye_look_x",
+        "readiness": "NEEDS_REVIEW",
+        "required_artwork": [
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "available_artwork": [
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "missing": [
+          "sclera under the iris (reconstructed, pending review)"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "eye_look_y",
+        "readiness": "NEEDS_REVIEW",
+        "required_artwork": [
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "available_artwork": [
+          "eye_r_white",
+          "eye_r_iris",
+          "eye_l_white",
+          "eye_l_iris"
+        ],
+        "missing": [
+          "sclera under the iris (reconstructed, pending review)"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "brow_raise_left",
+        "readiness": "REQUIRES_RECONSTRUCTION",
+        "required_artwork": [
+          "brow_l",
+          "head_base"
+        ],
+        "available_artwork": [
+          "brow_l",
+          "head_base"
+        ],
+        "missing": [
+          "skin under the brow (reconstructed, pending review)"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "brow_raise_right",
+        "readiness": "REQUIRES_RECONSTRUCTION",
+        "required_artwork": [
+          "brow_r",
+          "head_base"
+        ],
+        "available_artwork": [
+          "brow_r",
+          "head_base"
+        ],
+        "missing": [
+          "skin under the brow (reconstructed, pending review)"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "brow_frown",
+        "readiness": "REQUIRES_RECONSTRUCTION",
+        "required_artwork": [
+          "brow_r",
+          "brow_l",
+          "head_base"
+        ],
+        "available_artwork": [
+          "brow_r",
+          "brow_l",
+          "head_base"
+        ],
+        "missing": [
+          "skin under both brows (reconstructed, pending review)"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "jaw_open",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "mouth",
+          "head_base",
+          "mouth_open"
+        ],
+        "available_artwork": [
+          "mouth",
+          "head_base"
+        ],
+        "missing": [
+          "mouth_open",
+          "open mouth with interior, teeth and tongue"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "mouth_width",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "mouth",
+          "head_base",
+          "mouth_wide",
+          "mouth_narrow"
+        ],
+        "available_artwork": [
+          "mouth",
+          "head_base"
+        ],
+        "missing": [
+          "mouth_narrow",
+          "mouth_wide",
+          "narrowed mouth shape",
+          "widened mouth shape"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "mouth_pucker",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "mouth",
+          "head_base",
+          "mouth_pucker"
+        ],
+        "available_artwork": [
+          "mouth",
+          "head_base"
+        ],
+        "missing": [
+          "mouth_pucker",
+          "puckered/pursed lips"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "smile_left",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "mouth",
+          "head_base",
+          "mouth_smile_left"
+        ],
+        "available_artwork": [
+          "mouth",
+          "head_base"
+        ],
+        "missing": [
+          "left corner raised",
+          "mouth_smile_left"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      },
+      {
+        "control": "smile_right",
+        "readiness": "REQUIRES_NEW_ARTWORK",
+        "required_artwork": [
+          "mouth",
+          "head_base",
+          "mouth_smile_right"
+        ],
+        "available_artwork": [
+          "mouth",
+          "head_base"
+        ],
+        "missing": [
+          "mouth_smile_right",
+          "right corner raised"
+        ],
+        "proposed_control_type": "smart_bone",
+        "user_approval": "not_reviewed",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false,
+        "why_not_live_ready": "artwork missing"
+      }
+    ],
+    "gamepad_gestures": [
+      {
+        "gesture": "relaxed_standing",
+        "title": "Relaxed standing",
+        "pose_status": "OK_PENDING_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "hands_at_sides",
+        "title": "Standing, hands at sides",
+        "pose_status": "OK_PENDING_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "pointing_speaking",
+        "title": "Pointing while speaking",
+        "pose_status": "NEEDS_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "one_hand_shrug",
+        "title": "One-handed shrug",
+        "pose_status": "NEEDS_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "both_hands_raised",
+        "title": "Both hands raised",
+        "pose_status": "NEEDS_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "arms_crossed",
+        "title": "Arms crossed",
+        "pose_status": "NEEDS_ARTWORK",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "casual_walk",
+        "title": "Casual walking stance",
+        "pose_status": "OK_PENDING_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "running",
+        "title": "Running stance",
+        "pose_status": "NEEDS_ARTWORK",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "sitting",
+        "title": "Sitting",
+        "pose_status": "NEEDS_ARTWORK",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "natural_squat",
+        "title": "Natural squat",
+        "pose_status": "OK_PENDING_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "head_tilt_compensated",
+        "title": "Head tilt with torso compensation",
+        "pose_status": "OK_PENDING_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      },
+      {
+        "gesture": "conversational_gesture",
+        "title": "Conversational gesture",
+        "pose_status": "NEEDS_REVIEW",
+        "trigger": "gamepad button (proposed)",
+        "moho_mapping": "proposed_unverified",
+        "live_ready": false
+      }
+    ],
+    "webcam_tracking": "not implemented in Phase 3",
+    "rule": "semantic controls are separate from verified Moho SHOWTIME input mappings (none verified yet)"
+  },
+  "provenance": {
+    "mask_corrections": 0,
+    "reassigned_px": 0,
+    "unassigned_px": 0,
+    "rule": "layer pixels are source pixels; generated pixels only in listed extensions/corrective"
+  },
+  "approvals": {
+    "eye_l_white__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "eye_r_white__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "forearm_l__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "forearm_r__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "neck__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "neck__02": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "shin_l__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "shin_r__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "thigh_l__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "thigh_l__02": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "thigh_r__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "thigh_r__02": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "torso__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "upper_arm_l__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "upper_arm_r__01": {
+      "status": "pending_review",
+      "type": "generated_extension",
+      "source": "phase2_approvals"
+    },
+    "joint_cap_ankle_r": {
+      "status": "pending_review",
+      "type": "vector_correction",
+      "source": "phase2_approvals"
+    },
+    "eyelid_guide_r": {
+      "status": "pending_review",
+      "type": "facial_control_guide",
+      "source": "phase2_approvals"
+    },
+    "eyelid_guide_l": {
+      "status": "pending_review",
+      "type": "facial_control_guide",
+      "source": "phase2_approvals"
+    },
+    "pivot:neck": {
+      "status": "pending_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:shoulder_r": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:elbow_r": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:wrist_r": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:hip_r": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:knee_r": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:ankle_r": {
+      "status": "pending_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:shoulder_l": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:elbow_l": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:wrist_l": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:hip_l": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:knee_l": {
+      "status": "needs_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "pivot:ankle_l": {
+      "status": "pending_review",
+      "type": "joint_pivot",
+      "source": "phase2_approvals"
+    },
+    "edge:brow_l>eye_l_iris": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "edge:brow_r>eye_r_iris": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "edge:forearm_l>upper_arm_l": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "edge:forearm_r>upper_arm_r": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "edge:torso>pelvis": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "edge:thigh_l>thigh_r": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "edge:torso>upper_arm_r": {
+      "status": "needs_review",
+      "type": "occlusion_edge",
+      "source": "phase2_approvals"
+    },
+    "switch:eye_r_closed": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:eye_l_closed": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:mouth_open": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:mouth_wide": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:mouth_narrow": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:mouth_pucker": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:mouth_smile_left": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:mouth_smile_right": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:head_turn_left": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:head_turn_right": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:head_up": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "switch:head_down": {
+      "status": "missing",
+      "type": "missing_switch_drawing",
+      "source": "phase2_approvals"
+    },
+    "corrective:hand__fist": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:hand__thumbs_up": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:hand__point": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:hand__palm_up": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:gusset__pointing_speaking__r": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:gusset__one_hand_shrug__r": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:gusset__both_hands_raised__r": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:gusset__both_hands_raised__l": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    },
+    "corrective:gusset__conversational_gesture__r": {
+      "status": "pending_review",
+      "type": "corrective_artwork",
+      "source": "phase2_approvals"
+    }
+  },
+  "files": [
+    "source/original.jpg",
+    "layers/thigh_r.png",
+    "layers/shin_r.png",
+    "layers/foot_r.png",
+    "layers/thigh_l.png",
+    "layers/shin_l.png",
+    "layers/foot_l.png",
+    "layers/pelvis.png",
+    "layers/neck.png",
+    "layers/upper_arm_r.png",
+    "layers/torso.png",
+    "layers/forearm_r.png",
+    "layers/hand_r.png",
+    "layers/upper_arm_l.png",
+    "layers/forearm_l.png",
+    "layers/hand_l.png",
+    "layers/head_base.png",
+    "layers/nose.png",
+    "layers/mouth.png",
+    "layers/eye_r_white.png",
+    "layers/eye_r_iris.png",
+    "layers/eye_l_white.png",
+    "layers/eye_l_iris.png",
+    "layers/brow_r.png",
+    "layers/brow_l.png",
+    "layers/hair.png",
+    "layers/hand_l__fist.png",
+    "layers/hand_l__palm_up.png",
+    "layers/hand_l__point.png",
+    "layers/hand_l__thumbs_up.png",
+    "layers/hand_r__fist.png",
+    "layers/hand_r__palm_up.png",
+    "layers/hand_r__point.png",
+    "layers/hand_r__thumbs_up.png",
+    "vectors/ankle_r_cap.svg",
+    "vectors/upper_eyelid_r.svg",
+    "vectors/lower_eyelid_r.svg",
+    "vectors/upper_eyelid_l.svg",
+    "vectors/lower_eyelid_l.svg"
+  ],
+  "quality": {
+    "gates": [
+      {
+        "id": 1,
+        "check": "original source image preserved",
+        "level": "PASS",
+        "detail": "source/original.jpg sha256 matches the Phase 1 record"
+      },
+      {
+        "id": 2,
+        "check": "artwork layer dimensions",
+        "level": "PASS",
+        "detail": "all layers 1086x1448 (full canvas)"
+      },
+      {
+        "id": 3,
+        "check": "coordinate alignment",
+        "level": "PASS",
+        "detail": "layers full-canvas; vectors and bones in source px"
+      },
+      {
+        "id": 4,
+        "check": "no missing referenced assets",
+        "level": "PASS",
+        "detail": "39 files present"
+      },
+      {
+        "id": 5,
+        "check": "valid bone hierarchy",
+        "level": "PASS",
+        "detail": "19 bones, single root, no cycles, no zero-length bones"
+      },
+      {
+        "id": 6,
+        "check": "valid joint positions",
+        "level": "PASS",
+        "detail": "ok"
+      },
+      {
+        "id": 7,
+        "check": "valid layer bindings",
+        "level": "PASS",
+        "detail": "every visible layer is bound to an existing bone"
+      },
+      {
+        "id": 8,
+        "check": "no unexpected neutral-pose gaps",
+        "level": "PASS",
+        "detail": "neutral composite covers every character pixel"
+      },
+      {
+        "id": 9,
+        "check": "original artwork preservation verified",
+        "level": "PASS",
+        "detail": "originals hash-verified; neutral composite equals the source where covered"
+      },
+      {
+        "id": 10,
+        "check": "unresolved deformation defects reported",
+        "level": "NEEDS_REVIEW",
+        "detail": "open: ['pointing_speaking', 'one_hand_shrug', 'both_hands_raised', 'arms_crossed', 'running', 'sitting', 'conversational_gesture']"
+      },
+      {
+        "id": 11,
+        "check": "facial artwork completeness reported",
+        "level": "NEEDS_REVIEW",
+        "detail": "REQUIRES_NEW_ARTWORK: ['left_eye_blink', 'right_eye_blink', 'mouth_opening', 'mouth_narrowing', 'smile_frown', 'head_turn']"
+      },
+      {
+        "id": 12,
+        "check": "mandatory user approvals recorded",
+        "level": "NEEDS_REVIEW",
+        "detail": "25 pending, e.g. ['corrective:gusset__both_hands_raised__l', 'corrective:gusset__both_hands_raised__r', 'corrective:gusset__conversational_gesture__r', 'corrective:gusset__one_hand_shrug__r', 'corrective:gusset__pointing_speaking__r', 'corrective:hand__fist']"
+      }
+    ],
+    "overall": "NEEDS_REVIEW",
+    "fidelity": {
+      "footprint_px": 412424,
+      "covered_px": 412424,
+      "gap_px": 0,
+      "max_abs_error_in_covered": 0,
+      "mean_abs_error_in_covered": 0.0,
+      "neutral_exact": true
+    },
+    "mask_validation": {
+      "unassigned_px": 0,
+      "overlap_px": 0,
+      "reassigned_px": 0,
+      "valid": true,
+      "warnings": []
+    }
+  },
+  "production_ready": false
+}

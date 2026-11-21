@@ -161,3 +161,16 @@ Phase 1 project (read-only) → `OcclusionAnalyzer` (linework cue + priors + sha
 → joint preparation and pose previews (gap, contour and overlap diagnostics) → vector corrections → live artwork manifest
 → QA reports → human review (`approvals.json`, `visual_review.html`) → Phase 2 character package.
 See [phase2_implementation_plan.md](phase2_implementation_plan.md) and [phase2_report.md](phase2_report.md).
+
+## 11. Phase 3: interactive editor and Moho-ready asset package
+
+Phase 2 package (read-only) → `EditorProject` (`<package>/editor/project.json`: operation log + cursor, versions,
+schema migration) → replayed state → `ArtworkModel` (base partition + mask operations → layer RGBA, composite,
+fidelity, diff heatmap, provenance), `PoseService` (the Phase 2 skeleton, skinning, `PoseSolver` and `evaluate`
+with edited bones, limits and blend bands), readiness (face, live) → `export_package` (layers, vectors, bones in
+pixels and Moho coordinates, deformation metadata, readiness, approvals, 12 quality gates, `validate_package`).
+
+FastAPI (`autorig editor`) serves the API and the React + TypeScript + react-konva editor (`editor/dist`). The
+browser holds view state only; every edit is an operation persisted by the backend. Masks move source pixels
+between layers, so the neutral pose stays identical to the reference; gaps and z-order regressions are reported.
+See [phase3_implementation_plan.md](phase3_implementation_plan.md) and [phase3_report.md](phase3_report.md).

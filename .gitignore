@@ -7,6 +7,8 @@ venv/
 .pytest_cache/
 build/
 dist/
+# the built Phase 3 editor is committed so `autorig editor` works without Node
+!editor/dist/
 
 # Machine-specific generated Moho scripts (contain absolute paths)
 build/moho/
@@ -29,3 +31,6 @@ examples/**/phase0_moho_report.json
 
 # Local caches (Replicate predictions, spend ledger)
 .autorig_cache/
+
+# Phase 3 editor work written into committed snapshot packages (edits stay local)
+projects/*/character_package/editor/

@@ -20,6 +20,12 @@ dependencies = [
 dev = [
     "pytest>=8.0",
     "lupa>=2.0",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+]
+editor = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
 ]
 
 [project.scripts]

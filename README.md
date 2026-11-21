@@ -4,19 +4,18 @@ Turn a single cartoon character reference image into a faithful, **editable
 Moho Pro 14 rig**: separated art layers, a bone hierarchy, layer-to-bone
 bindings, ready to animate.
 
-> **Status: Phase 2 (reconstruction and animation-ready assets): PARTIAL.** It is implemented and tested on a synthetic
-> labelled character. Original pixels are provably untouched, and hidden regions are reconstructed, posed and QA-reported.
-> Generative inpainting is untested (no Replicate credit), and no real artwork has been processed. See
-> [docs/phase2_report.md](docs/phase2_report.md).
+> **Status: Phase 3 (interactive artwork editor and Moho-ready asset package): PARTIAL.** A browser editor
+> (React + Konva on a FastAPI backend) corrects layers, masks, pivots and vector shapes on the user's real character,
+> previews natural poses and exports a validated asset package. It was tested in a real (headless) browser. Nothing
+> generated has been reviewed by a person yet, so the package is not production-ready. See
+> [docs/phase3_report.md](docs/phase3_report.md).
 >
-> **Phase 1 (AI character analysis and segmentation): PARTIAL.** The pipeline is implemented and
-> tested on a synthetic ground-truth character. Real SAM 3 inference is blocked by Replicate credit (HTTP 402),
-> and the real reference image is not yet in the repository. See [docs/phase1_report.md](docs/phase1_report.md).
+> **Phases 1 and 2 (analysis, reconstruction, natural posing): PARTIAL.** They ran on the user's real T-pose reference
+> with SAM 3 and FLUX inpainting. All generated pixels are pending review. See [docs/real_artwork_test.md](docs/real_artwork_test.md).
 >
-> **Phase 0 (Moho rigging proof of concept): PARTIAL.**
-> Everything that can run without Moho is implemented and passes in the cloud
-> (282 tests across all phases). The native Moho run is **NOT EXECUTED** yet; it has to happen on
-> the Mac. See [the completion report](docs/phase0/completion-report.md).
+> **Phase 0 (Moho rigging proof of concept): PARTIAL.** Everything that can run without Moho passes in the cloud
+> (340 tests across all phases). The native Moho run is **NOT EXECUTED** yet; it has to happen on the Mac. See
+> [the completion report](docs/phase0/completion-report.md).
 
 ![Phase 0 test character, simulated](examples/phase0_test_character/preview/contact_sheet.png)
 
@@ -78,6 +77,26 @@ Open `character_packages/name/reports/visual_review.html` to inspect generated (
 
 *Synthetic test character posed by the standalone preview engine. Red = remaining gaps that the QA reports. This is not a Moho render.*
 
+## Phase 3: edit the character in the browser
+
+```bash
+.venv/bin/pip install -e '.[dev]'
+.venv/bin/python -m autorig editor "/Volumes/<SSD>/AutoRig/schoolboy_pkg"
+```
+
+Open <http://127.0.0.1:8765>. Work on a copy of a package (for example
+`cp -R projects/schoolboy_tpose/character_package "/Volumes/<SSD>/AutoRig/schoolboy_pkg"`). Edits are saved to
+`<package>/editor/`, and the package's own artwork is never modified. The built editor is committed in `editor/dist`, so
+Node is only needed to change the frontend. Export the Moho-ready asset package from the Export tab, or:
+
+```bash
+.venv/bin/python -m autorig export-assets "/Volumes/<SSD>/AutoRig/schoolboy_pkg" --out "/Volumes/<SSD>/AutoRig/schoolboy_export"
+```
+
+![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
+
+*Real browser screenshot of the editor (headless Chromium), not a Moho render.*
+
 ## Running it in Moho Pro 14 (Mac)
 
 Read **[docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md)**. In short:
@@ -107,6 +126,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase2_report.md](docs/phase2_report.md) | Phase 2 results: preservation, reconstruction vs GT, poses, readiness, verdict |
 | [docs/real_artwork_test.md](docs/real_artwork_test.md) | First runs on the user's real character (front crop, then T-pose) |
 | [docs/phase2_natural_pose_refinement.md](docs/phase2_natural_pose_refinement.md) | Natural posing: root causes, skinned joints, IK/balance, presets, before/after |
+| [docs/phase3_implementation_plan.md](docs/phase3_implementation_plan.md) | Phase 3 audit, components, canvas library comparison, rules, acceptance criteria |
+| [docs/phase3_report.md](docs/phase3_report.md) | Phase 3 results: editor, tests, screenshots, fidelity, poses, export gates, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |
@@ -120,4 +141,6 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | LM | Moho 14.5 Live Models: Smart Bones and actions mapped to webcam and gamepad inputs | LM-0 (research and discovery tools) done; LM-1 blocked on Phase 0 and the Mac discovery data |
 | 1 | AI character analysis: SAM 3 (Replicate) segmentation, anatomy, face, original-pixel layers, live-control contract | Implemented; **PARTIAL** (needs Replicate credit and the real reference image) |
 | 2 | Occlusion analysis, pixel-preserving reconstruction, joint preparation, pose QA, live artwork manifest, review workflow | Implemented; **PARTIAL** (inpainting untested; synthetic evidence only) |
-| 2+ | Joint/pivot estimation, hybrid bitmap/vector art, MohoMCP-driven verification | Not started |
+| 2+ | Natural posing (skinned joints, IK/balance, presets), corrective hands and gussets | Done on real art; pending review |
+| 3 | Interactive editor (layers, masks, pivots, vectors, pose preview, comparison, readiness) and Moho-ready asset package | Implemented; **PARTIAL** (reviews pending; Moho not run) |
+| 4 | Native Moho import and rig of the exported package | Not started (needs Phase 0 verification, reviews, missing artwork) |

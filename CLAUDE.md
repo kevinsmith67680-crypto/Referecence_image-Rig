@@ -20,8 +20,12 @@ faithful, editable **Moho Pro 14** character rig.
   pointing hand, palm-up approximation, per-pose armpit gussets) is registered as `corrective:*` review items,
   pending review. Statuses: 5 OK_PENDING_REVIEW, 4 NEEDS_REVIEW, 3 NEEDS_ARTWORK. Preview renders only; Moho
   not run. Corrective artwork is never approved in code.
-- **Do not start Phase 3** (Moho import/rigging of the package) automatically. It also needs the blockers cleared and
-  generated assets reviewed.
+- The user explicitly started **Phase 3** (interactive artwork editor, hybrid assembly, Moho-ready asset package).
+  It is implemented; verdict **PARTIAL** (`docs/phase3_report.md`): editor tested in headless Chromium on the real
+  T-pose package (Playwright, screenshots in `docs/phase3/screenshots/`), export validated with 0 errors but
+  `production_ready: false` (25 approvals pending, facial/corrective artwork missing, Moho not run).
+- **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
+  native verification, the reviews, and the missing artwork.
 
 ## Phase 2 rules (reconstruction)
 
@@ -37,6 +41,20 @@ faithful, editable **Moho Pro 14** character rig.
   reference lacks are labelled NEEDS_ARTWORK, never passed. Presets are anatomical (rest-pose independent).
 - Replicate inputs go inline as data URIs (the SAM 3 model rejected Files API URLs). Small crops are upscaled
   by an integer factor for the model and area-averaged back.
+
+## Phase 3 rules (editor)
+
+- Edits are operations in `<package>/editor/project.json` (event log + cursor, versions, schema migration). Never
+  write the source, Phase 1 layers or Phase 2 originals/extensions; derived pixels are computed from the source.
+- Masks keep the partition: a mask edit moves source pixels between layers or leaves them unassigned (reported as a
+  neutral gap). The neutral composite must stay equal to the source; `fidelity()` and gate 9 check it.
+- Pose preview reuses the Phase 2 solver (`posesvc.py`); never add a second solver. Joint corrections are metadata
+  for Phase 4, not Moho Smart Bones. Live controls are never live-ready in Phase 3; no webcam tracking.
+- Approvals only through user actions (`approval.set` from the UI or API). `production_ready` stays false while a
+  mandatory approval or artwork is missing. No `.moho` file until the Phase 0 importer is verified in Moho.
+- Export replaces only an earlier AutoRig export or an empty directory; the API writes only inside
+  `<package>/editor/exports/`.
+- After changing `editor/src`, rebuild and commit `editor/dist` (`cd editor && npm run build`).
 
 ## Live Models track (Moho 14.5)
 
@@ -114,6 +132,11 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig prepare <phase1_project> --out <package_dir> [--provider flux-fill-dev] [--synthetic-gt]
 .venv/bin/python -m autorig review <package_dir> --list | --approve ID | --reject ID | --set-pivot JOINT X Y | --approve-phase
 .venv/bin/python -m autorig pose-refine <package_dir> [--presets ...] [--hand-sources references/schoolboy/hand_sources.json]
+# Phase 3
+.venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
+.venv/bin/python -m autorig export-assets <package_dir> --out <dir>
+cd editor && npm install && npm run build && npm test             # frontend build + vitest
+cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run e2e   # Playwright (global install in the cloud)
 ```
 
 ## Layout
@@ -130,6 +153,11 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 - `src/autorig/phase2/` — store (pixel preservation), occlusion, providers, reconstruct, facial, joints, pose, vector, review, pipeline
 - `src/autorig/phase2/` natural posing — skeleton, skinning (deformer), posing (solver + presets), pose_eval, natural (orchestration), corrective (hand variants, armpit gussets)
 - `examples/phase2_synthetic_character/` — Phase 2 package built from the synthetic Phase 1 project
+- `src/autorig/editor/` — Phase 3 backend: project (op log), artwork (masks, fidelity, comparison), posesvc, vectors,
+  readiness, export (quality gates), server (FastAPI)
+- `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright
+- `projects/schoolboy_tpose/moho_asset_package/` — validated Phase 3 export of the unedited real package (not
+  production-ready); `docs/phase3/screenshots/` — real-browser screenshots from the e2e test
 - `references/schoolboy/` — the user's character sheet, front-view crop, (assistant-estimated) landmarks and
   `tpose_front.jpg` (the T-pose reference, preferred for rigging)
 - `projects/schoolboy/`, `projects/schoolboy_tpose/` — snapshots of the real-art runs 1 and 2 (unreviewed)

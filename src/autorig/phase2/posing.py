@@ -143,6 +143,8 @@ class PoseSolver:
         self.hip_sep = float(abs(sk.bone("thigh_l").head[0] - sk.bone("thigh_r").head[0])) or 100.0
         self.leg_len = {s: sk.bone(f"thigh_{s}").length + sk.bone(f"shin_{s}").length for s in SIDES}
         self.I = I
+        # per-bone constraint overrides from the editor: {(kind, side): {key: (lo, hi)}}
+        self.limit_overrides: dict[tuple[str, str], dict[str, tuple[float, float]]] = {}
 
     def rot(self, th: np.ndarray, name: str) -> float:
         """World rotation (deg, relative to rest) of a bone."""
@@ -197,7 +199,7 @@ class PoseSolver:
 
     # -- pieces -------------------------------------------------------------------------------------
     def _clamp(self, kind: str, key: str, v: float, violations: list[str], side: str = "") -> float:
-        lo, hi = LIMITS[kind][key]
+        lo, hi = self.limit_overrides.get((kind, side), {}).get(key) or LIMITS[kind][key]
         if v < lo or v > hi:
             violations.append(f"{kind}{'_' + side if side else ''} {key} {v:.0f} clamped to [{lo}, {hi}]")
         return float(np.clip(v, lo, hi))
@@ -358,6 +360,11 @@ class PoseSolver:
                 bad.append(f"knee_{s} bends medially by {-knee:.0f} deg (knock-knee / impossible in front view)")
             if abs(knee) > hi_k:
                 bad.append(f"knee_{s} flexion {abs(knee):.0f} deg exceeds {hi_k}")
+        for (kind, side), lim in self.limit_overrides.items():
+            for key, r in lim.items():
+                k = f"{kind}_{side}_{key}" if side else f"{kind}_{key}"
+                if k in a and k != f"shin_{side}_flexion":
+                    rng[k] = tuple(r)
         for k, (lo, hi) in rng.items():
             if not lo - 0.5 <= a[k] <= hi + 0.5:
                 bad.append(f"{k} {a[k]:.0f} outside [{lo}, {hi}]")
