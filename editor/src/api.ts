@@ -69,6 +69,11 @@ export const api = {
   liveActions: () => fetch("/api/live/actions").then((r) => j<Record<string, any>>(r)),
   liveAction: (body: Record<string, unknown>) => post("/api/live/action", body).then((r) => j<any>(r)),
   handstore: () => fetch("/api/handstore").then((r) => j<any>(r)),
+  garments: () => fetch("/api/garments").then((r) => j<any>(r)),
+  garmentOverlayUrl: (kind: string, layer: string | null, bone: string | null, rev: string) =>
+    `/api/garments/overlay.png?kind=${kind}${layer ? `&layer=${encodeURIComponent(layer)}` : ""}${bone ? `&bone=${encodeURIComponent(bone)}` : ""}&rev=${rev}`,
+  garmentExplain: (layer: string, x: number, y: number) => post("/api/garments/explain", { layer, x, y }).then((r) => j<any>(r)),
+  garmentCompareUrl: (preset: string, rev: string) => `/api/garments/compare.png?preset=${encodeURIComponent(preset)}&rev=${rev}`,
   handstoreImport: (name: string, data_b64: string) => post("/api/handstore/import", { name, data_b64 }).then(async (r) => ({ ok: r.ok, body: await r.json() })),
   handstoreReplace: (uid: string, name: string, data_b64: string) => post("/api/handstore/replace", { uid, name, data_b64 }).then(async (r) => ({ ok: r.ok, body: await r.json() })),
   handSourceUrl: (uid: string, v?: number) => `/api/handstore/source/${uid}.png${v ? `?v=${v}` : ""}`,

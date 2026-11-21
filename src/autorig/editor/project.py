@@ -27,8 +27,9 @@ from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
 from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 4  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
-# hand selection settings (sleeve-free hand replacement). Older projects migrate unchanged
+VERSION = 5  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
+# hand selection settings (sleeve-free hand replacement); 5: garment weight edits (Phase 3.3). Older projects
+# migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -141,7 +142,53 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "mask_ops": [], "corrections": {"gussets": True, "joints": {}}, "defects": {}, "approvals": approvals,
             "pose": {"preset": "relaxed_standing", "overrides": {}},
             "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state(),
-            "hand_selection": default_selection_state()}
+            "hand_selection": default_selection_state(), "garment_weights": {"ops": []}}
+
+
+WEIGHT_OPS = ("weights.paint", "weights.erase", "weights.smooth", "weights.normalise", "weights.lock",
+              "weights.reset")
+
+
+def _apply_weights(st: dict[str, Any], op: dict[str, Any]) -> None:
+    """Garment weight edits (Phase 3.3 Weights tab). They are stored in order and replayed on the automatic weight
+    meshes (``garmentrig.weights``); they never touch the source image or any layer's pixels. ``weights.reset``
+    drops the edits of one layer (or all)."""
+    G = st.setdefault("garment_weights", {"ops": []})
+    t = op["type"]
+    if t == "weights.reset":
+        lay = op.get("layer")
+        G["ops"] = [o for o in G["ops"] if lay not in (None, "*") and o.get("layer") != lay]
+        return
+    lay = op.get("layer")
+    if not isinstance(lay, str) or not lay:
+        raise OpError(f"{t} needs a layer id")
+    rec: dict[str, Any] = {"type": t, "layer": lay}
+    if t in ("weights.paint", "weights.erase", "weights.smooth", "weights.lock"):
+        c = op.get("center")
+        if c is not None:
+            if not (isinstance(c, (list, tuple)) and len(c) == 2 and all(isinstance(x, (int, float)) for x in c)):
+                raise OpError("center must be [x, y] (rest-canvas px)")
+            rec["center"] = [float(c[0]), float(c[1])]
+        elif t != "weights.lock":
+            raise OpError(f"{t} needs a brush center")
+        r = float(op.get("radius", 20.0))
+        if not 1.0 <= r <= 400.0:
+            raise OpError("radius must be in [1, 400] px")
+        rec["radius"] = r
+        for k, dflt in (("strength", 0.5), ("hardness", 0.5)):
+            v = float(op.get(k, dflt))
+            if not 0.0 <= v <= 1.0:
+                raise OpError(f"{k} must be in [0, 1]")
+            rec[k] = v
+        if op.get("part"):
+            rec["part"] = str(op["part"])
+    if t in ("weights.paint", "weights.erase"):
+        if not isinstance(op.get("bone"), str):
+            raise OpError(f"{t} needs a bone")
+        rec["bone"] = op["bone"]
+    if t == "weights.lock":
+        rec["locked"] = bool(op.get("locked", True))
+    G["ops"].append(rec)
 
 
 def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
@@ -356,6 +403,8 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
             G["offsets"][v] = {"dx": dx, "dy": dy, "rot": rot}
     elif t.startswith("handstore."):
         _apply_handstore(st, op)
+    elif t in WEIGHT_OPS:
+        _apply_weights(st, op)
     elif t.startswith("handselect."):
         _apply_handselect(st, op)
     elif t == "pose.set":
@@ -467,13 +516,19 @@ def _v2_to_v3(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {2})}
 
 
+def _v4_to_v5(data: dict[str, Any]) -> dict[str, Any]:
+    """Garment rig (Phase 3.3): the base state gains ``garment_weights`` (the user's weight edits, replayed on the
+    automatic weights); earlier ops replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {4})}
+
+
 def _v3_to_v4(data: dict[str, Any]) -> dict[str, Any]:
     """Hand replacement: ``hand_store`` gains ``libraries`` (active/archived) and the base state gains
     ``hand_selection`` (defaults from build_base); earlier ops replay unchanged."""
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {3})}
 
 
-MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4}  # from_version -> fn(data) -> data
+MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5}  # from_version -> fn
 
 
 def _apply_handselect(st: dict[str, Any], op: dict[str, Any]) -> None:

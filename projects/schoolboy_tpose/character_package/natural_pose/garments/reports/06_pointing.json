@@ -1,0 +1,481 @@
+{
+ "preset": "pointing_speaking",
+ "feasibility": "NEEDS_ARTWORK",
+ "missing": [
+  "hand:point"
+ ],
+ "optional_assets": [
+  "corrective:foot_extension_under_hem_r",
+  "corrective:foot_extension_under_hem_l"
+ ],
+ "tears": {
+  "exposed_gap": 29,
+  "visible_seam": 2,
+  "outline_break": 31,
+  "bridged": 24
+ },
+ "generated_visible_px": 295,
+ "garments": {
+  "trousers": "NEEDS_ARTWORK",
+  "blazer": "FAIL",
+  "shoes": "WARNING",
+  "sweater": "WARNING",
+  "body": "WARNING",
+  "tie": "PASS",
+  "shirt": "FAIL"
+ },
+ "parts": {
+  "trouser_shin_r": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "trouser_thigh_r": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "knee_r": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "trouser_cuff_r": {
+   "status": "NEEDS_ARTWORK",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.3156,
+    "compression_p01": 0.3037,
+    "generated_visible_px": 16,
+    "clipped_patch_px": 2
+   },
+   "missing_artwork": [
+    "corrective:foot_extension_under_hem_r"
+   ]
+  },
+  "trouser_hip_r": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "blazer_hem": {
+   "status": "PASS",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "shoe_r": {
+   "status": "WARNING",
+   "class": "RIGID",
+   "failed_checks": {
+    "clipped_patch_px": 1
+   },
+   "missing_artwork": []
+  },
+  "trouser_shin_l": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "trouser_thigh_l": {
+   "status": "FAIL",
+   "class": "FLEXIBLE",
+   "failed_checks": {
+    "patch_inverted_fraction": 0.02108
+   },
+   "missing_artwork": []
+  },
+  "knee_l": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "trouser_cuff_l": {
+   "status": "NEEDS_ARTWORK",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.6338,
+    "compression_p01": 0.5708,
+    "residual_rms_px": 4.411,
+    "exposed_gaps": 12,
+    "outline_breaks": 12,
+    "generated_visible_px": 42,
+    "clipped_patch_px": 3
+   },
+   "missing_artwork": [
+    "corrective:foot_extension_under_hem_l"
+   ]
+  },
+  "trouser_hip_l": {
+   "status": "WARNING",
+   "class": "FLEXIBLE",
+   "failed_checks": {
+    "patch_stretch_p99": 1.1522
+   },
+   "missing_artwork": []
+  },
+  "shoe_l": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "button_2": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "pocket_flap_l": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "pocket_flap_r": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "sweater": {
+   "status": "WARNING",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.129
+   },
+   "missing_artwork": []
+  },
+  "waistband": {
+   "status": "PASS",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "neck": {
+   "status": "PASS",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "badge": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "button_1": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "tie": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "blazer_body": {
+   "status": "WARNING",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.1336,
+    "compression_p01": 0.1576
+   },
+   "missing_artwork": []
+  },
+  "blazer_shoulder_r": {
+   "status": "FAIL",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.2655,
+    "compression_p01": 0.3777,
+    "inverted_fraction": 0.00172,
+    "residual_rms_px": 4.966
+   },
+   "missing_artwork": []
+  },
+  "blazer_shoulder_l": {
+   "status": "WARNING",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "compression_p01": 0.1635,
+    "residual_rms_px": 3.281,
+    "generated_visible_px": 114,
+    "clipped_patch_px": 25
+   },
+   "missing_artwork": []
+  },
+  "shirt_collar": {
+   "status": "FAIL",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.6766,
+    "compression_p01": 0.6863,
+    "inverted_fraction": 0.00374,
+    "clipped_patch_px": 9
+   },
+   "missing_artwork": []
+  },
+  "lapels": {
+   "status": "FAIL",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "stretch_p99": 0.7158,
+    "compression_p01": 0.7142,
+    "inverted_fraction": 0.00217,
+    "generated_visible_px": 17
+   },
+   "missing_artwork": []
+  },
+  "head": {
+   "status": "WARNING",
+   "class": "RIGID",
+   "failed_checks": {
+    "generated_visible_px": 4,
+    "clipped_patch_px": 5
+   },
+   "missing_artwork": []
+  },
+  "sleeve_upper_r": {
+   "status": "FAIL",
+   "class": "FLEXIBLE",
+   "failed_checks": {
+    "clipped_patch_px": 840
+   },
+   "missing_artwork": []
+  },
+  "elbow_r": {
+   "status": "WARNING",
+   "class": "FLEXIBLE",
+   "failed_checks": {
+    "visible_seams": 2,
+    "outline_breaks": 2
+   },
+   "missing_artwork": []
+  },
+  "sleeve_cap_r": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "hand_r": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "sleeve_fore_r": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "shirt_cuff_r": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "sleeve_upper_l": {
+   "status": "WARNING",
+   "class": "FLEXIBLE",
+   "failed_checks": {
+    "clipped_patch_px": 1
+   },
+   "missing_artwork": []
+  },
+  "elbow_l": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "sleeve_cap_l": {
+   "status": "FAIL",
+   "class": "FLEXIBLE",
+   "failed_checks": {
+    "patch_inverted_fraction": 0.01547,
+    "generated_visible_px": 16
+   },
+   "missing_artwork": []
+  },
+  "hand_l": {
+   "status": "WARNING",
+   "class": "RIGID",
+   "failed_checks": {
+    "generated_visible_px": 22
+   },
+   "missing_artwork": []
+  },
+  "sleeve_fore_l": {
+   "status": "PASS",
+   "class": "FLEXIBLE",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "shirt_cuff_l": {
+   "status": "PASS",
+   "class": "RIGID",
+   "failed_checks": {},
+   "missing_artwork": []
+  },
+  "hair": {
+   "status": "WARNING",
+   "class": "LIMITED_DEFORMATION",
+   "failed_checks": {
+    "clipped_patch_px": 1
+   },
+   "missing_artwork": []
+  }
+ },
+ "attachments": [
+  {
+   "name": "cuff_r",
+   "parts": [
+    "sleeve_fore_r",
+    "shirt_cuff_r"
+   ],
+   "kind": "seam",
+   "distance_px": 0.0,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  },
+  {
+   "name": "wrist_r",
+   "parts": [
+    "shirt_cuff_r",
+    "hand_r"
+   ],
+   "kind": "cover",
+   "distance_px": 0.0,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  },
+  {
+   "name": "ankle_r",
+   "parts": [
+    "trouser_cuff_r",
+    "shoe_r"
+   ],
+   "kind": "cover",
+   "distance_px": 0.0,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  },
+  {
+   "name": "cuff_l",
+   "parts": [
+    "sleeve_fore_l",
+    "shirt_cuff_l"
+   ],
+   "kind": "seam",
+   "distance_px": 0.0,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  },
+  {
+   "name": "ankle_l",
+   "parts": [
+    "trouser_cuff_l",
+    "shoe_l"
+   ],
+   "kind": "cover",
+   "distance_px": 0.0,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  },
+  {
+   "name": "collar_neck",
+   "parts": [
+    "shirt_collar",
+    "neck"
+   ],
+   "kind": "cover",
+   "distance_px": 0.09,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  },
+  {
+   "name": "waist",
+   "parts": [
+    "blazer_body",
+    "blazer_hem"
+   ],
+   "kind": "seam",
+   "distance_px": 0.0,
+   "connected": true,
+   "status": "PASS",
+   "note": "together"
+  }
+ ],
+ "cuffs": {
+  "r": {
+   "displacement_px": 0.0,
+   "grade": "PASS",
+   "meaning": "95th percentile distance of drawn cuff pixels from the forearm's rigid transform (hand rotation and hand switches must not move the cuff)"
+  },
+  "l": {
+   "displacement_px": 0.0,
+   "grade": "PASS",
+   "meaning": "95th percentile distance of drawn cuff pixels from the forearm's rigid transform (hand rotation and hand switches must not move the cuff)"
+  }
+ },
+ "corrections_on": [
+  {
+   "id": "hem_on_shoe_r",
+   "value_deg": 12.09,
+   "asset": "foot_extension_under_hem_r",
+   "asset_state": "missing",
+   "handling": "deformation fallback: drawing missing",
+   "blend_weight": 0.0,
+   "needs_artwork": true,
+   "required": false
+  },
+  {
+   "id": "hem_on_shoe_l",
+   "value_deg": 22.7,
+   "asset": "foot_extension_under_hem_l",
+   "asset_state": "missing",
+   "handling": "deformation fallback: drawing missing",
+   "blend_weight": 0.0,
+   "needs_artwork": true,
+   "required": false
+  }
+ ],
+ "timing_ms": {
+  "solve": 8.53,
+  "corrections": 0.19,
+  "switches": 0.08,
+  "garment_eval": 480.8,
+  "render_and_tears": 2966.1,
+  "total": 3476.1
+ },
+ "wall_s": 3.476,
+ "visual_review_required": true,
+ "before": {
+  "feasibility": "NEEDS_ARTWORK",
+  "tears": {
+   "exposed_gap": 29,
+   "visible_seam": 0,
+   "outline_break": 29
+  },
+  "generated_visible_px": 5379,
+  "wall_s": 2.347
+ },
+ "title": "pointing"
+}

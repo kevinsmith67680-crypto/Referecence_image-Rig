@@ -1,0 +1,1600 @@
+{
+ "schema": "autorig.garment_structure",
+ "version": "1.0.0",
+ "classes": {
+  "RIGID": "one rigid transform per part (rigid fit of the local deformation on a bending torso)",
+  "LIMITED_DEFORMATION": "smooth, small deformation within strict stretch limits",
+  "FLEXIBLE": "rigid segments bending at joints over a weighted joint patch"
+ },
+ "parts": [
+  {
+   "name": "badge",
+   "kind": "badge",
+   "garment": "blazer",
+   "class": "RIGID",
+   "allowed_bones": [
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "chest",
+   "side": null,
+   "description": "embroidered crest on the breast pocket",
+   "pixels": 2436,
+   "layers": {
+    "torso": 2436
+   },
+   "centroid": [
+    617.6,
+    547.5
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "button_1",
+   "kind": "button",
+   "garment": "blazer",
+   "class": "RIGID",
+   "allowed_bones": [
+    "pelvis",
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "spine",
+   "side": null,
+   "description": "blazer button",
+   "pixels": 259,
+   "layers": {
+    "torso": 259
+   },
+   "centroid": [
+    494.1,
+    606.5
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "button_2",
+   "kind": "button",
+   "garment": "blazer",
+   "class": "RIGID",
+   "allowed_bones": [
+    "pelvis",
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "spine",
+   "side": null,
+   "description": "blazer button",
+   "pixels": 278,
+   "layers": {
+    "pelvis": 274,
+    "torso": 4
+   },
+   "centroid": [
+    484.3,
+    676.0
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "pocket_flap_l",
+   "kind": "pocket_flap_{s}",
+   "garment": "blazer",
+   "class": "RIGID",
+   "allowed_bones": [
+    "pelvis",
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "spine",
+   "side": "l",
+   "description": "trimmed pocket flap",
+   "pixels": 1267,
+   "layers": {
+    "pelvis": 1267
+   },
+   "centroid": [
+    646.3,
+    667.6
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "pocket_flap_r",
+   "kind": "pocket_flap_{s}",
+   "garment": "blazer",
+   "class": "RIGID",
+   "allowed_bones": [
+    "pelvis",
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "spine",
+   "side": "r",
+   "description": "trimmed pocket flap",
+   "pixels": 1271,
+   "layers": {
+    "pelvis": 1271
+   },
+   "centroid": [
+    437.6,
+    667.5
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "tie",
+   "kind": "tie",
+   "garment": "tie",
+   "class": "RIGID",
+   "allowed_bones": [
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "chest",
+   "side": null,
+   "description": "striped tie in the V-neck",
+   "pixels": 1112,
+   "layers": {
+    "torso": 1112
+   },
+   "centroid": [
+    542.5,
+    450.8
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "shoe_r",
+   "kind": "shoe_{s}",
+   "garment": "shoes",
+   "class": "RIGID",
+   "allowed_bones": [
+    "foot_r"
+   ],
+   "primary_bone": "foot_r",
+   "side": "r",
+   "description": "shoe",
+   "pixels": 16615,
+   "layers": {
+    "foot_r": 16615
+   },
+   "centroid": [
+    294.3,
+    1340.5
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "trouser_shin_r",
+   "kind": "trouser_shin_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "thigh_r",
+    "shin_r"
+   ],
+   "primary_bone": "shin_r",
+   "side": "r",
+   "description": "trouser shin",
+   "pixels": 19896,
+   "layers": {
+    "shin_r": 19825,
+    "thigh_r": 71
+   },
+   "centroid": [
+    360.1,
+    1124.1
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "trouser_thigh_r",
+   "kind": "trouser_thigh_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "pelvis",
+    "thigh_r",
+    "shin_r"
+   ],
+   "primary_bone": "thigh_r",
+   "side": "r",
+   "description": "trouser thigh",
+   "pixels": 22145,
+   "layers": {
+    "thigh_r": 22145
+   },
+   "centroid": [
+    442.4,
+    893.2
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "knee_r",
+   "kind": "knee_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "thigh_r",
+    "shin_r"
+   ],
+   "primary_bone": "shin_r",
+   "side": "r",
+   "description": "knee fold region of the trousers",
+   "pixels": 9892,
+   "layers": {
+    "shin_r": 4277,
+    "thigh_r": 5615
+   },
+   "centroid": [
+    398.0,
+    1013.0
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "trouser_cuff_r",
+   "kind": "trouser_cuff_{s}",
+   "garment": "trousers",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "shin_r",
+    "foot_r"
+   ],
+   "primary_bone": "shin_r",
+   "side": "r",
+   "description": "trouser hem resting on the shoe (its bottom edge follows the foot)",
+   "pixels": 11328,
+   "layers": {
+    "shin_r": 11264,
+    "thigh_r": 64
+   },
+   "centroid": [
+    327.1,
+    1245.4
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "trouser_hip_r",
+   "kind": "trouser_hip_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "pelvis",
+    "thigh_r"
+   ],
+   "primary_bone": "thigh_r",
+   "side": "r",
+   "description": "hip fold region: trouser top under the blazer hem (soft attachment)",
+   "pixels": 6299,
+   "layers": {
+    "thigh_r": 6299
+   },
+   "centroid": [
+    480.4,
+    785.3
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "blazer_hem",
+   "kind": "blazer_hem",
+   "garment": "blazer",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "pelvis"
+   ],
+   "primary_bone": "pelvis",
+   "side": null,
+   "description": "blazer skirt and hem (hangs from the pelvis)",
+   "pixels": 28088,
+   "layers": {
+    "thigh_r": 4719,
+    "thigh_l": 4605,
+    "pelvis": 18764
+   },
+   "centroid": [
+    542.2,
+    721.9
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "shoe_l",
+   "kind": "shoe_{s}",
+   "garment": "shoes",
+   "class": "RIGID",
+   "allowed_bones": [
+    "foot_l"
+   ],
+   "primary_bone": "foot_l",
+   "side": "l",
+   "description": "shoe",
+   "pixels": 16805,
+   "layers": {
+    "foot_l": 16805
+   },
+   "centroid": [
+    786.9,
+    1340.7
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "trouser_shin_l",
+   "kind": "trouser_shin_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "thigh_l",
+    "shin_l"
+   ],
+   "primary_bone": "shin_l",
+   "side": "l",
+   "description": "trouser shin",
+   "pixels": 20208,
+   "layers": {
+    "shin_l": 20020,
+    "thigh_l": 188
+   },
+   "centroid": [
+    719.8,
+    1125.6
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "trouser_thigh_l",
+   "kind": "trouser_thigh_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "pelvis",
+    "thigh_l",
+    "shin_l"
+   ],
+   "primary_bone": "thigh_l",
+   "side": "l",
+   "description": "trouser thigh",
+   "pixels": 22537,
+   "layers": {
+    "thigh_l": 22537
+   },
+   "centroid": [
+    639.4,
+    893.4
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "knee_l",
+   "kind": "knee_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "thigh_l",
+    "shin_l"
+   ],
+   "primary_bone": "shin_l",
+   "side": "l",
+   "description": "knee fold region of the trousers",
+   "pixels": 10446,
+   "layers": {
+    "shin_l": 4271,
+    "thigh_l": 6175
+   },
+   "centroid": [
+    682.5,
+    1014.7
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "trouser_cuff_l",
+   "kind": "trouser_cuff_{s}",
+   "garment": "trousers",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "shin_l",
+    "foot_l"
+   ],
+   "primary_bone": "shin_l",
+   "side": "l",
+   "description": "trouser hem resting on the shoe (its bottom edge follows the foot)",
+   "pixels": 11219,
+   "layers": {
+    "shin_l": 11163,
+    "thigh_l": 56
+   },
+   "centroid": [
+    753.7,
+    1245.9
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "trouser_hip_l",
+   "kind": "trouser_hip_{s}",
+   "garment": "trousers",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "pelvis",
+    "thigh_l"
+   ],
+   "primary_bone": "thigh_l",
+   "side": "l",
+   "description": "hip fold region: trouser top under the blazer hem (soft attachment)",
+   "pixels": 6141,
+   "layers": {
+    "thigh_l": 6141
+   },
+   "centroid": [
+    603.4,
+    785.5
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "sweater",
+   "kind": "sweater",
+   "garment": "sweater",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "pelvis",
+    "spine",
+    "chest"
+   ],
+   "primary_bone": "spine",
+   "side": null,
+   "description": "V-neck sweater in the opening",
+   "pixels": 13874,
+   "layers": {
+    "pelvis": 85,
+    "torso": 13789
+   },
+   "centroid": [
+    542.5,
+    590.8
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "waistband",
+   "kind": "waistband",
+   "garment": "trousers",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "pelvis"
+   ],
+   "primary_bone": "pelvis",
+   "side": null,
+   "description": "trouser waistband and fly",
+   "pixels": 1010,
+   "layers": {
+    "pelvis": 1010
+   },
+   "centroid": [
+    542.6,
+    730.4
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "neck",
+   "kind": "neck",
+   "garment": "body",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "chest",
+    "neck",
+    "head"
+   ],
+   "primary_bone": "neck",
+   "side": null,
+   "description": "neck (its hidden top under the skull follows the head)",
+   "pixels": 16390,
+   "layers": {
+    "neck": 16206,
+    "torso": 184
+   },
+   "centroid": [
+    540.7,
+    357.3
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "blazer_body",
+   "kind": "blazer_body",
+   "garment": "blazer",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "pelvis",
+    "spine",
+    "chest",
+    "clavicle_r",
+    "clavicle_l"
+   ],
+   "primary_bone": "chest",
+   "side": null,
+   "description": "blazer front and back panels on the torso",
+   "pixels": 21476,
+   "layers": {
+    "torso": 21476
+   },
+   "centroid": [
+    543.2,
+    567.6
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "blazer_shoulder_r",
+   "kind": "blazer_shoulder_{s}",
+   "garment": "blazer",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "spine",
+    "chest",
+    "clavicle_r"
+   ],
+   "primary_bone": "clavicle_r",
+   "side": "r",
+   "description": "shoulder of the blazer body next to the armhole",
+   "pixels": 4452,
+   "layers": {
+    "torso": 702,
+    "upper_arm_r": 3750
+   },
+   "centroid": [
+    451.3,
+    469.6
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "sleeve_upper_r",
+   "kind": "sleeve_upper_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "chest",
+    "clavicle_r",
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "primary_bone": "upper_arm_r",
+   "side": "r",
+   "description": "upper sleeve between the shoulder pivot and the elbow",
+   "pixels": 9934,
+   "layers": {
+    "upper_arm_r": 9934
+   },
+   "centroid": [
+    357.3,
+    470.6
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "blazer_shoulder_l",
+   "kind": "blazer_shoulder_{s}",
+   "garment": "blazer",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "spine",
+    "chest",
+    "clavicle_l"
+   ],
+   "primary_bone": "clavicle_l",
+   "side": "l",
+   "description": "shoulder of the blazer body next to the armhole",
+   "pixels": 9928,
+   "layers": {
+    "torso": 4717,
+    "upper_arm_l": 5211
+   },
+   "centroid": [
+    642.6,
+    465.8
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "sleeve_upper_l",
+   "kind": "sleeve_upper_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "chest",
+    "clavicle_l",
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "primary_bone": "upper_arm_l",
+   "side": "l",
+   "description": "upper sleeve between the shoulder pivot and the elbow",
+   "pixels": 9395,
+   "layers": {
+    "upper_arm_l": 9395
+   },
+   "centroid": [
+    732.6,
+    471.4
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "shirt_collar",
+   "kind": "shirt_collar",
+   "garment": "shirt",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "spine",
+    "chest",
+    "neck"
+   ],
+   "primary_bone": "chest",
+   "side": null,
+   "description": "white shirt collar",
+   "pixels": 3295,
+   "layers": {
+    "torso": 3295
+   },
+   "centroid": [
+    541.9,
+    419.0
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "lapels",
+   "kind": "lapels",
+   "garment": "blazer",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "spine",
+    "chest",
+    "clavicle_r",
+    "clavicle_l"
+   ],
+   "primary_bone": "chest",
+   "side": null,
+   "description": "lapels and their trim down to the top button (stiff)",
+   "pixels": 10500,
+   "layers": {
+    "torso": 10500
+   },
+   "centroid": [
+    542.9,
+    481.3
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "head",
+   "kind": "head",
+   "garment": "body",
+   "class": "RIGID",
+   "allowed_bones": [
+    "head"
+   ],
+   "primary_bone": "head",
+   "side": null,
+   "description": "head and face (independent of the garments)",
+   "pixels": 36916,
+   "layers": {
+    "torso": 267,
+    "head_base": 30501,
+    "nose": 542,
+    "mouth": 164,
+    "brow_r": 1006,
+    "brow_l": 997,
+    "eye_r_white": 1375,
+    "eye_r_iris": 370,
+    "eye_l_white": 1335,
+    "eye_l_iris": 359
+   },
+   "centroid": [
+    542.4,
+    262.2
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "sleeve_fore_r",
+   "kind": "sleeve_fore_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "primary_bone": "forearm_r",
+   "side": "r",
+   "description": "forearm sleeve between the elbow and the cuff",
+   "pixels": 8051,
+   "layers": {
+    "upper_arm_r": 189,
+    "forearm_r": 7862
+   },
+   "centroid": [
+    208.7,
+    478.6
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "elbow_r",
+   "kind": "elbow_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "primary_bone": "forearm_r",
+   "side": "r",
+   "description": "elbow fold region of the sleeve",
+   "pixels": 6569,
+   "layers": {
+    "upper_arm_r": 4241,
+    "forearm_r": 2328
+   },
+   "centroid": [
+    274.2,
+    474.7
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "sleeve_cap_r",
+   "kind": "sleeve_cap_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "spine",
+    "chest",
+    "clavicle_r"
+   ],
+   "primary_bone": "clavicle_r",
+   "side": "r",
+   "description": "shoulder fold region: sleeve fabric medial of the shoulder pivot (stays with the shoulder)",
+   "pixels": 3810,
+   "layers": {
+    "upper_arm_r": 3810
+   },
+   "centroid": [
+    421.6,
+    480.3
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "shirt_cuff_r",
+   "kind": "shirt_cuff_{s}",
+   "garment": "shirt",
+   "class": "RIGID",
+   "allowed_bones": [
+    "forearm_r"
+   ],
+   "primary_bone": "forearm_r",
+   "side": "r",
+   "description": "white shirt cuff at the sleeve end",
+   "pixels": 1663,
+   "layers": {
+    "forearm_r": 1663
+   },
+   "centroid": [
+    158.0,
+    477.1
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "hand_r",
+   "kind": "hand_{s}",
+   "garment": "body",
+   "class": "RIGID",
+   "allowed_bones": [
+    "hand_r"
+   ],
+   "primary_bone": "hand_r",
+   "side": "r",
+   "description": "hand (original drawing or switch drawing)",
+   "pixels": 13279,
+   "layers": {
+    "forearm_r": 1291,
+    "hand_r": 11988
+   },
+   "centroid": [
+    87.9,
+    471.0
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "sleeve_fore_l",
+   "kind": "sleeve_fore_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "primary_bone": "forearm_l",
+   "side": "l",
+   "description": "forearm sleeve between the elbow and the cuff",
+   "pixels": 7573,
+   "layers": {
+    "upper_arm_l": 30,
+    "forearm_l": 7543
+   },
+   "centroid": [
+    878.1,
+    479.1
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "elbow_l",
+   "kind": "elbow_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "primary_bone": "forearm_l",
+   "side": "l",
+   "description": "elbow fold region of the sleeve",
+   "pixels": 6709,
+   "layers": {
+    "upper_arm_l": 4037,
+    "forearm_l": 2672
+   },
+   "centroid": [
+    813.1,
+    475.2
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "sleeve_cap_l",
+   "kind": "sleeve_cap_{s}",
+   "garment": "blazer",
+   "class": "FLEXIBLE",
+   "allowed_bones": [
+    "spine",
+    "chest",
+    "clavicle_l"
+   ],
+   "primary_bone": "clavicle_l",
+   "side": "l",
+   "description": "shoulder fold region: sleeve fabric medial of the shoulder pivot (stays with the shoulder)",
+   "pixels": 3104,
+   "layers": {
+    "upper_arm_l": 3104
+   },
+   "centroid": [
+    671.9,
+    470.5
+   ],
+   "fold_region": true
+  },
+  {
+   "name": "shirt_cuff_l",
+   "kind": "shirt_cuff_{s}",
+   "garment": "shirt",
+   "class": "RIGID",
+   "allowed_bones": [
+    "forearm_l"
+   ],
+   "primary_bone": "forearm_l",
+   "side": "l",
+   "description": "white shirt cuff at the sleeve end",
+   "pixels": 1642,
+   "layers": {
+    "forearm_l": 1642
+   },
+   "centroid": [
+    926.4,
+    477.0
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "hand_l",
+   "kind": "hand_{s}",
+   "garment": "body",
+   "class": "RIGID",
+   "allowed_bones": [
+    "hand_l"
+   ],
+   "primary_bone": "hand_l",
+   "side": "l",
+   "description": "hand (original drawing or switch drawing)",
+   "pixels": 13176,
+   "layers": {
+    "forearm_l": 1296,
+    "hand_l": 11880
+   },
+   "centroid": [
+    995.8,
+    472.4
+   ],
+   "fold_region": false
+  },
+  {
+   "name": "hair",
+   "kind": "hair",
+   "garment": "body",
+   "class": "LIMITED_DEFORMATION",
+   "allowed_bones": [
+    "head"
+   ],
+   "primary_bone": "head",
+   "side": null,
+   "description": "hair (secondary sway only)",
+   "pixels": 37302,
+   "layers": {
+    "hair": 37302
+   },
+   "centroid": [
+    537.5,
+    132.8
+   ],
+   "fold_region": false
+  }
+ ],
+ "attachments": [
+  {
+   "name": "shoulder_seam_top_r",
+   "parts": [
+    "blazer_shoulder_r",
+    "sleeve_upper_r"
+   ],
+   "rest_point": [
+    404.2,
+    436.7
+   ],
+   "bones": [
+    "clavicle_r",
+    "upper_arm_r"
+   ],
+   "kind": "seam"
+  },
+  {
+   "name": "armpit_r",
+   "parts": [
+    "blazer_body",
+    "sleeve_upper_r"
+   ],
+   "rest_point": [
+    525.2,
+    845.1
+   ],
+   "bones": [
+    "chest",
+    "upper_arm_r"
+   ],
+   "kind": "seam"
+  },
+  {
+   "name": "elbow_a_r",
+   "parts": [
+    "sleeve_upper_r",
+    "sleeve_fore_r"
+   ],
+   "rest_point": [
+    277.1,
+    432.5
+   ],
+   "bones": [
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "elbow_b_r",
+   "parts": [
+    "sleeve_upper_r",
+    "sleeve_fore_r"
+   ],
+   "rest_point": [
+    277.3,
+    516.1
+   ],
+   "bones": [
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "cuff_r",
+   "parts": [
+    "sleeve_fore_r",
+    "shirt_cuff_r"
+   ],
+   "rest_point": [
+    163.8,
+    474.8
+   ],
+   "bones": [
+    "forearm_r"
+   ],
+   "kind": "seam"
+  },
+  {
+   "name": "wrist_r",
+   "parts": [
+    "shirt_cuff_r",
+    "hand_r"
+   ],
+   "rest_point": [
+    157.8,
+    474.5
+   ],
+   "bones": [
+    "forearm_r",
+    "hand_r"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "hip_r",
+   "parts": [
+    "blazer_hem",
+    "trouser_hip_r"
+   ],
+   "rest_point": [
+    464.3,
+    818.0
+   ],
+   "bones": [
+    "pelvis",
+    "thigh_r"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "knee_a_r",
+   "parts": [
+    "trouser_thigh_r",
+    "trouser_shin_r"
+   ],
+   "rest_point": [
+    347.6,
+    996.1
+   ],
+   "bones": [
+    "thigh_r",
+    "shin_r"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "knee_b_r",
+   "parts": [
+    "trouser_thigh_r",
+    "trouser_shin_r"
+   ],
+   "rest_point": [
+    448.4,
+    1026.3
+   ],
+   "bones": [
+    "thigh_r",
+    "shin_r"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "ankle_r",
+   "parts": [
+    "trouser_cuff_r",
+    "shoe_r"
+   ],
+   "rest_point": [
+    320.0,
+    1272.2
+   ],
+   "bones": [
+    "shin_r",
+    "foot_r"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "shoulder_seam_top_l",
+   "parts": [
+    "blazer_shoulder_l",
+    "sleeve_upper_l"
+   ],
+   "rest_point": [
+    687.0,
+    440.2
+   ],
+   "bones": [
+    "clavicle_l",
+    "upper_arm_l"
+   ],
+   "kind": "seam"
+  },
+  {
+   "name": "armpit_l",
+   "parts": [
+    "blazer_body",
+    "sleeve_upper_l"
+   ],
+   "rest_point": [
+    664.9,
+    519.2
+   ],
+   "bones": [
+    "chest",
+    "upper_arm_l"
+   ],
+   "kind": "seam"
+  },
+  {
+   "name": "elbow_a_l",
+   "parts": [
+    "sleeve_upper_l",
+    "sleeve_fore_l"
+   ],
+   "rest_point": [
+    810.2,
+    517.1
+   ],
+   "bones": [
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "elbow_b_l",
+   "parts": [
+    "sleeve_upper_l",
+    "sleeve_fore_l"
+   ],
+   "rest_point": [
+    810.2,
+    432.5
+   ],
+   "bones": [
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "cuff_l",
+   "parts": [
+    "sleeve_fore_l",
+    "shirt_cuff_l"
+   ],
+   "rest_point": [
+    919.4,
+    474.9
+   ],
+   "bones": [
+    "forearm_l"
+   ],
+   "kind": "seam"
+  },
+  {
+   "name": "wrist_l",
+   "parts": [
+    "shirt_cuff_l",
+    "hand_l"
+   ],
+   "rest_point": [
+    925.4,
+    474.7
+   ],
+   "bones": [
+    "forearm_l",
+    "hand_l"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "hip_l",
+   "parts": [
+    "blazer_hem",
+    "trouser_hip_l"
+   ],
+   "rest_point": [
+    618.8,
+    818.7
+   ],
+   "bones": [
+    "pelvis",
+    "thigh_l"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "knee_a_l",
+   "parts": [
+    "trouser_thigh_l",
+    "trouser_shin_l"
+   ],
+   "rest_point": [
+    629.5,
+    1029.0
+   ],
+   "bones": [
+    "thigh_l",
+    "shin_l"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "knee_b_l",
+   "parts": [
+    "trouser_thigh_l",
+    "trouser_shin_l"
+   ],
+   "rest_point": [
+    733.5,
+    996.6
+   ],
+   "bones": [
+    "thigh_l",
+    "shin_l"
+   ],
+   "kind": "fold"
+  },
+  {
+   "name": "ankle_l",
+   "parts": [
+    "trouser_cuff_l",
+    "shoe_l"
+   ],
+   "rest_point": [
+    762.2,
+    1272.5
+   ],
+   "bones": [
+    "shin_l",
+    "foot_l"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "collar_neck",
+   "parts": [
+    "shirt_collar",
+    "neck"
+   ],
+   "rest_point": [
+    540.5,
+    412.2
+   ],
+   "bones": [
+    "chest",
+    "neck"
+   ],
+   "kind": "cover"
+  },
+  {
+   "name": "waist",
+   "parts": [
+    "blazer_body",
+    "blazer_hem"
+   ],
+   "rest_point": [
+    461.8,
+    641.1
+   ],
+   "bones": [
+    "spine",
+    "pelvis"
+   ],
+   "kind": "seam"
+  }
+ ],
+ "fold_regions": [
+  "knee_r",
+  "trouser_hip_r",
+  "knee_l",
+  "trouser_hip_l",
+  "elbow_r",
+  "sleeve_cap_r",
+  "elbow_l",
+  "sleeve_cap_l"
+ ],
+ "pivots": [
+  {
+   "joint": "shoulder_r",
+   "bone": "upper_arm_r",
+   "rest_pivot": [
+    406.0,
+    466.6
+   ],
+   "distance_to_top_contour_px": 58.0,
+   "half_thickness_px": 54.5,
+   "aligned": true,
+   "pivot": [
+    404.2,
+    436.7
+   ],
+   "lift_px": 30.0,
+   "axis_offset_deg": 13.08,
+   "reason": "pivot near the shoulder point: a lowered sleeve hangs from the top of the armhole instead of swinging its cap outward (audit R2)"
+  },
+  {
+   "joint": "shoulder_l",
+   "bone": "upper_arm_l",
+   "rest_pivot": [
+    685.6,
+    468.5
+   ],
+   "distance_to_top_contour_px": 58.0,
+   "half_thickness_px": 51.5,
+   "aligned": true,
+   "pivot": [
+    687.0,
+    440.2
+   ],
+   "lift_px": 28.3,
+   "axis_offset_deg": -12.79,
+   "reason": "pivot near the shoulder point: a lowered sleeve hangs from the top of the armhole instead of swinging its cap outward (audit R2)"
+  },
+  {
+   "joint": "upper_arm_r",
+   "bone": "upper_arm_r",
+   "pivot": [
+    404.2,
+    436.7
+   ],
+   "method": "garment-aligned: 30 px toward the top of the armhole (armpit at 38 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 26.8,
+    "cross_section_fraction": 0.65,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "forearm_r",
+   "bone": "forearm_r",
+   "pivot": [
+    277.2,
+    474.3
+   ],
+   "method": "0.52 of shoulder->wrist (straight arm)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 45.3,
+    "cross_section_fraction": 0.01,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "hand_r",
+   "bone": "hand_r",
+   "pivot": [
+    157.8,
+    474.5
+   ],
+   "method": "phase1 wrist (arm/hand boundary), re-centred",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 30.7,
+    "cross_section_fraction": 0.0,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "thigh_r",
+   "bone": "thigh_r",
+   "pivot": [
+    486.4,
+    753.6
+   ],
+   "method": "phase1 hip",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 83.5,
+    "cross_section_fraction": 0.19,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "shin_r",
+   "bone": "shin_r",
+   "pivot": [
+    398.0,
+    1011.2
+   ],
+   "method": "midpoint of hip->ankle (straight leg)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 57.4,
+    "cross_section_fraction": 0.01,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "foot_r",
+   "bone": "foot_r",
+   "pivot": [
+    320.0,
+    1272.2
+   ],
+   "method": "phase1 ankle (leg/foot contact)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 58.5,
+    "cross_section_fraction": 0.51,
+    "at_layer_bbox_centre": false
+   },
+   "status": "warning"
+  },
+  {
+   "joint": "upper_arm_l",
+   "bone": "upper_arm_l",
+   "pivot": [
+    687.0,
+    440.2
+   ],
+   "method": "garment-aligned: 28 px toward the top of the armhole (armpit at 29 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 26.4,
+    "cross_section_fraction": 0.53,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "forearm_l",
+   "bone": "forearm_l",
+   "pivot": [
+    810.2,
+    474.8
+   ],
+   "method": "0.52 of shoulder->wrist (straight arm)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 46.5,
+    "cross_section_fraction": 0.0,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "hand_l",
+   "bone": "hand_l",
+   "pivot": [
+    925.4,
+    474.7
+   ],
+   "method": "phase1 wrist (arm/hand boundary), re-centred",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 31.0,
+    "cross_section_fraction": 0.03,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "thigh_l",
+   "bone": "thigh_l",
+   "pivot": [
+    597.9,
+    754.0
+   ],
+   "method": "phase1 hip",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 83.2,
+    "cross_section_fraction": 0.1,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "shin_l",
+   "bone": "shin_l",
+   "pivot": [
+    681.5,
+    1012.8
+   ],
+   "method": "midpoint of hip->ankle (straight leg)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 59.2,
+    "cross_section_fraction": 0.0,
+    "at_layer_bbox_centre": false
+   },
+   "status": "ok"
+  },
+  {
+   "joint": "foot_l",
+   "bone": "foot_l",
+   "pivot": [
+    762.2,
+    1272.5
+   ],
+   "method": "phase1 ankle (leg/foot contact)",
+   "checks": {
+    "inside_silhouette": true,
+    "edge_distance_px": 56.6,
+    "cross_section_fraction": 0.45,
+    "at_layer_bbox_centre": false
+   },
+   "status": "warning"
+  }
+ ],
+ "config": {
+  "shoulder_pivot": {
+   "lift_h": 0.55,
+   "inset_px": 4.0
+  },
+  "bands": {
+   "shoulder": [
+    0.0,
+    0.5
+   ],
+   "elbow": [
+    -0.15,
+    0.45
+   ],
+   "knee": [
+    -0.25,
+    0.35
+   ],
+   "ankle": [
+    -0.6,
+    0.45
+   ],
+   "neck": [
+    -0.5,
+    0.6
+   ],
+   "head": [
+    -0.25,
+    0.3
+   ],
+   "spine": [
+    -0.9,
+    0.9
+   ],
+   "chest": [
+    -0.8,
+    0.8
+   ]
+  },
+  "lapel_clavicle_share": 1.0,
+  "collar_clavicle_share": 1.0,
+  "hem_follows_foot": 1.0,
+  "fold_half_width_h": 0.6,
+  "limited_smoothing_vertices": 2.5,
+  "class_overrides": {},
+  "overlays": true,
+  "max_patch_stretch": {
+   "default": 4.0,
+   "shoulder": 1.8
+  },
+  "mesh_spacing_px": 6
+ },
+ "notes": [
+  "parts are estimated from colour, layer masks and joint planes; check them in the garment structure overlay and correct the weights in the Weights tab where they are wrong"
+ ]
+}

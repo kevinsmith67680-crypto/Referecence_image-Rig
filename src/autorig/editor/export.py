@@ -328,6 +328,19 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
     hand_sw, hand_files = _hand_switches(eng, st, out, art.W, art.H)
     (out / "hand_switches.json").write_text(json.dumps(hand_sw, indent=2, default=float), encoding="utf-8")
     files += hand_files + [str(out / "hand_switches.json")]
+    garment_rig = None
+    if getattr(eng, "structure", None) is not None:  # Phase 3.3 garment rig: data for Phase 4 (never a Moho file)
+        import numpy as _np
+
+        from ..garmentrig.moho import matrix_json
+
+        _np.savez_compressed(out / "garment_weights.npz", **eng.weights.export_arrays())
+        garment_rig = {"structure": eng.structure.to_json(), "weights": eng.weights.to_json(),
+                       "validation": eng.weights.validate(), "pivots": eng.pivot_report,
+                       "corrections": eng.corr_switch.to_json(), "moho_compatibility": matrix_json(),
+                       "status": "proposed_unverified"}
+        (out / "garment_rig.json").write_text(json.dumps(garment_rig, indent=1, default=str), encoding="utf-8")
+        files += [str(out / "garment_rig.json"), str(out / "garment_weights.npz")]
     manifest = {
         "schema": SCHEMA, "schema_version": VERSION, "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "editor_project": {"schema_version": proj.data["schema_version"], "revision": proj.revision(), "ops": proj.cursor},
@@ -345,6 +358,9 @@ def export_package(proj: EditorProject, art: ArtworkModel, out: str | Path | Non
                                             "corrective shapes -> Smart Bone actions (Phase 4)",
                         "garments": _motion_json(proj.pkg, "garments.json"),
                         "motion_profile": _motion_json(proj.pkg, "profile.json")},
+        "garment_rig": None if garment_rig is None else {
+            "file": "garment_rig.json", "weights": "garment_weights.npz", "status": "proposed_unverified",
+            "parts": len(garment_rig["structure"]["parts"]), "weights_valid": garment_rig["validation"]["ok"]},
         "rig_controls": rig_controls, "hand_switches": {"file": "hand_switches.json",
                                                          "summary": hand_sw["summary"]}, "facial": face, "live": live,
         "provenance": {"mask_corrections": len(st["mask_ops"]), "reassigned_px": validation["reassigned_px"],

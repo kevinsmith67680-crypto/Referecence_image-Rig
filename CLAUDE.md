@@ -43,6 +43,12 @@ faithful, editable **Moho Pro 14** character rig.
   imported as `schoolboy_hands_sleeveless` (the sleeve-attached v1 library and the Phase 2 sheet hands are archived,
   restorable), `WristAlignmentController`, `NaturalHandSelectionEngine`; evidence in `hand_store/evidence_v2/`. All
   drawings pending review; left pointing is a mirrored copy (the sheet has two right pointing hands).
+- The user explicitly started **Phase 3.3** (clothing distortion prevention, garment rigging). It is implemented;
+  verdict **PARTIAL** (`docs/phase3_3_clothing_deformation_report.md`, audit in `docs/phase3_3_clothing_audit.md`):
+  garment parts, aligned shoulder pivots, weight meshes, rigid segments over joint patches, correction controller,
+  distortion evaluator, editor Weights tab; evidence in `projects/schoolboy_tpose/character_package/natural_pose/garments/`.
+  Not reviewed by a person; gussets, deep elbow/knee, seated, 3/4 torso, raised-shoulder collar and the shoe top under
+  the hem are missing drawings.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -112,6 +118,26 @@ faithful, editable **Moho Pro 14** character rig.
   a test) is validated before export (manifest 1.1.0). Moho mappings stay `proposed_unverified`; live inputs stay
   unassigned (no Moho input names are invented). No webcam tracking.
 - `autorig ik-demo <package>` regenerates the committed Phase 3.2 evidence.
+
+## Phase 3.3 rules (garment rig)
+
+- `MotionEngine(garment_mode="structured")` is the default; `"legacy"` keeps the Phase 3.1 band deformer for
+  before/after only. One skeleton for solving and rendering: `garmentrig.structure.align_pivots` moves the shoulder
+  pivots (0.55 h toward the armhole top) unless the user edited the bone; `Bone.axis_offset` keeps the anatomical axis
+  for abduction/flexion/rhythm/FK/readings, the IK uses the pivot line with per-side limits (`ik.solve_axis_aware`).
+- Garment parts (`GarmentStructureAnalyzer`) decide which bones may move a pixel (RIGID / LIMITED_DEFORMATION /
+  FLEXIBLE); semantic parts, not Phase 1 cuts. Weights (`garmentrig.weights`): per-layer grid meshes, >= 0, sum 1,
+  restricted per part, rigid parts locked, never distance-only. User edits are `weights.*` project ops (schema v5),
+  replayed deterministically; the source and layers are never written.
+- `StructuredDeformer`: rigid segments (sleeves, trouser shin) over the weighted joint patch; rigid fits for the badge,
+  buttons, tie, pocket flaps; generated pixels drawn beneath the layer that hid them at rest; joint-patch pixels
+  beyond `max_patch_stretch` are not drawn (reported conflict), never smeared. The identity pose stays bit-exact.
+- `GarmentCorrectionController` extends the Phase 3.2 controller (one switch engine): angle ranges, eased blend,
+  attachment, layer order, approval, missing dependencies; drawings are never approved in code.
+- `GarmentDistortionEvaluator`: per part and garment PASS/WARNING/NEEDS_ARTWORK/FAIL, thresholds in
+  `evaluate.THRESHOLDS` (documented in the report); no global score; never claims visual quality.
+- Moho: `garmentrig/moho.py` matrix is `proposed_unverified`; per-vertex weights are not assumed to import; no exporter.
+- `autorig garment-evidence <package>` regenerates `natural_pose/garments/` (~3 min).
 
 ## Hand Pose Store rules
 
@@ -242,6 +268,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig hand-sheet references/schoolboy/hand_pack_v2/hand_sheet_sleeveless.jpg --inspection references/schoolboy/hand_pack_v2/inspection.json --out references/schoolboy/hand_pack_v2 --library-id schoolboy_hands_sleeveless --supersedes schoolboy_hand_switches_v1 --zip-name AutoRig_Hand_Library_Sleeveless_v2.zip
 .venv/bin/python -m autorig hand-library <package_dir> [--archive LIB | --restore LIB | --default LIB]
 .venv/bin/python -m autorig hand-replace-evidence <package_dir>    # replacement evidence + 14 gates (~5 min)
+# Phase 3.3 garment rig
+.venv/bin/python -m autorig garment-evidence <package_dir>         # before/after, close-ups, sweeps, reports (~3 min)
+.venv/bin/python -m autorig garment-weights <package_dir> [--explain LAYER X Y] [--export prefix]
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -272,6 +301,8 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
 - `src/autorig/handsheet.py` — hand sheet extraction; `src/autorig/wristalign.py` — WristAlignmentController;
   `src/autorig/motion/handselect.py` — NaturalHandSelectionEngine; `src/autorig/handreplace.py` — replacement evidence;
   `references/schoolboy/hand_pack_v2/` — the user's sleeve-free sheet, inspection record, extracted sprites, pack zip
+- `src/autorig/garmentrig/` — Phase 3.3: structure (parts, classes, pivots), weights (meshes, ops, explain), deform
+  (StructuredDeformer), corrections, evaluate, evidence, moho (compatibility matrix); `editor/src/components/WeightsPanel.tsx`
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

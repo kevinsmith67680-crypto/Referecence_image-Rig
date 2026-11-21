@@ -314,14 +314,16 @@ class GarmentTerm:
 class GarmentDeformationEngine:
     """Pose-dependent garment corrections: band widening per joint rotation and secondary hem motion."""
 
-    def __init__(self, gsk: GarmentSkeleton, model: GarmentModel):
-        self.sk, self.model = gsk, model
+    def __init__(self, gsk: GarmentSkeleton, model: GarmentModel, bands: bool = True):
+        """``bands``: rotation-dependent band widening (legacy deformer only; the Phase 3.3 structured deformer
+        uses weight meshes with fixed narrow transitions and rigid segments instead)."""
+        self.sk, self.model, self.bands = gsk, model, bands
 
     def corrections(self, pose: PoseParams, garment_hints: dict[str, float] | None = None) -> dict[str, Any]:
         sk, th = self.sk, pose.theta
         rp, rc = sk.base_rp.copy(), sk.base_rc.copy()
         active = []
-        for i, b in enumerate(sk.bones):
+        for i, b in enumerate(sk.bones if self.bands else []):
             rule = BAND_RULES.get(b.kind)
             if not rule:
                 continue

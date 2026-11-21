@@ -337,6 +337,36 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
         return LIVE_ACTIONS
 
     # -- Hand Pose Store / Hand Library ---------------------------------------------------------------------
+    @app.get("/api/garments")
+    def garments_info():
+        with S.lock:
+            st = S.project.state()
+            return jsonable(S.pose.garments(st, S.masks(), rejected_ids(st)))
+
+    @app.get("/api/garments/overlay.png")
+    def garments_overlay(kind: str = "parts", layer: str | None = None, bone: str | None = None):
+        if kind not in ("parts", "influence", "mesh"):
+            raise HTTPException(400, "kind must be parts|influence|mesh")
+        with S.lock:
+            st = S.project.state()
+            return png(S.pose.garment_overlay(st, S.masks(), rejected_ids(st), kind, layer, bone))
+
+    @app.post("/api/garments/explain")
+    def garments_explain(body: dict = Body(...)):
+        with S.lock:
+            st = S.project.state()
+            try:
+                return jsonable(S.pose.garment_explain(st, S.masks(), rejected_ids(st), str(body.get("layer")),
+                                                       float(body.get("x", 0)), float(body.get("y", 0))))
+            except PoseError as exc:
+                raise HTTPException(400, str(exc))
+
+    @app.get("/api/garments/compare.png")
+    def garments_compare(preset: str = "relaxed_standing"):
+        with S.lock:
+            st = S.project.state()
+            return png(S.pose.garment_compare(st, S.masks(), rejected_ids(st), preset))
+
     @app.get("/api/handstore")
     def handstore_info():
         with S.lock:

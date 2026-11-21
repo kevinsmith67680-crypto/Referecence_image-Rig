@@ -1,0 +1,894 @@
+{
+ "schema": "autorig.garment_weights",
+ "version": "1.0.0",
+ "convention": "per-layer grid mesh; per vertex one weight per bone (>= 0, sum 1, restricted to the vertex's garment part); pixel weights are bilinear in the grid; a bone's influence is the summed weight of its subtree (angle interpolation)",
+ "spacing_px": 6,
+ "ops": [],
+ "layers": {
+  "foot_r": {
+   "origin": [
+    189.0,
+    1248.0
+   ],
+   "grid": [
+    30,
+    35
+   ],
+   "bones": [
+    "foot_r"
+   ],
+   "active_vertices": 620,
+   "locked_vertices": 1050,
+   "edited_vertices": 0
+  },
+  "shin_r": {
+   "origin": [
+    243.0,
+    974.0
+   ],
+   "grid": [
+    59,
+    40
+   ],
+   "bones": [
+    "thigh_r",
+    "shin_r",
+    "foot_r"
+   ],
+   "active_vertices": 1269,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "thigh_r": {
+   "origin": [
+    258.0,
+    702.0
+   ],
+   "grid": [
+    103,
+    52
+   ],
+   "bones": [
+    "pelvis",
+    "thigh_r",
+    "shin_r",
+    "foot_r"
+   ],
+   "active_vertices": 1566,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "foot_l": {
+   "origin": [
+    687.0,
+    1248.0
+   ],
+   "grid": [
+    30,
+    36
+   ],
+   "bones": [
+    "foot_l"
+   ],
+   "active_vertices": 629,
+   "locked_vertices": 1080,
+   "edited_vertices": 0
+  },
+  "shin_l": {
+   "origin": [
+    607.0,
+    976.0
+   ],
+   "grid": [
+    59,
+    40
+   ],
+   "bones": [
+    "thigh_l",
+    "shin_l",
+    "foot_l"
+   ],
+   "active_vertices": 1281,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "thigh_l": {
+   "origin": [
+    523.0,
+    703.0
+   ],
+   "grid": [
+    103,
+    54
+   ],
+   "bones": [
+    "pelvis",
+    "thigh_l",
+    "shin_l",
+    "foot_l"
+   ],
+   "active_vertices": 1614,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "pelvis": {
+   "origin": [
+    382.0,
+    599.0
+   ],
+   "grid": [
+    37,
+    55
+   ],
+   "bones": [
+    "pelvis",
+    "spine"
+   ],
+   "active_vertices": 925,
+   "locked_vertices": 126,
+   "edited_vertices": 0
+  },
+  "neck": {
+   "origin": [
+    482.0,
+    196.0
+   ],
+   "grid": [
+    51,
+    21
+   ],
+   "bones": [
+    "chest",
+    "neck",
+    "head"
+   ],
+   "active_vertices": 717,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "torso": {
+   "origin": [
+    387.0,
+    43.0
+   ],
+   "grid": [
+    118,
+    53
+   ],
+   "bones": [
+    "pelvis",
+    "spine",
+    "chest",
+    "neck",
+    "clavicle_r",
+    "clavicle_l",
+    "head"
+   ],
+   "active_vertices": 2254,
+   "locked_vertices": 2678,
+   "edited_vertices": 0
+  },
+  "upper_arm_r": {
+   "origin": [
+    224.0,
+    390.0
+   ],
+   "grid": [
+    36,
+    45
+   ],
+   "bones": [
+    "spine",
+    "chest",
+    "clavicle_r",
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "active_vertices": 842,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "forearm_r": {
+   "origin": [
+    5.0,
+    401.0
+   ],
+   "grid": [
+    26,
+    50
+   ],
+   "bones": [
+    "upper_arm_r",
+    "forearm_r",
+    "hand_r"
+   ],
+   "active_vertices": 696,
+   "locked_vertices": 730,
+   "edited_vertices": 0
+  },
+  "hand_r": {
+   "origin": [
+    -10.0,
+    375.0
+   ],
+   "grid": [
+    32,
+    31
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 512,
+   "locked_vertices": 992,
+   "edited_vertices": 0
+  },
+  "upper_arm_l": {
+   "origin": [
+    598.0,
+    388.0
+   ],
+   "grid": [
+    35,
+    45
+   ],
+   "bones": [
+    "spine",
+    "chest",
+    "clavicle_l",
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "active_vertices": 835,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "forearm_l": {
+   "origin": [
+    791.0,
+    390.0
+   ],
+   "grid": [
+    28,
+    50
+   ],
+   "bones": [
+    "upper_arm_l",
+    "forearm_l",
+    "hand_l"
+   ],
+   "active_vertices": 688,
+   "locked_vertices": 818,
+   "edited_vertices": 0
+  },
+  "hand_l": {
+   "origin": [
+    915.0,
+    375.0
+   ],
+   "grid": [
+    32,
+    31
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 505,
+   "locked_vertices": 992,
+   "edited_vertices": 0
+  },
+  "head_base": {
+   "origin": [
+    403.0,
+    140.0
+   ],
+   "grid": [
+    44,
+    48
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 1248,
+   "locked_vertices": 2112,
+   "edited_vertices": 0
+  },
+  "nose": {
+   "origin": [
+    509.0,
+    268.0
+   ],
+   "grid": [
+    11,
+    13
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 53,
+   "locked_vertices": 143,
+   "edited_vertices": 0
+  },
+  "mouth": {
+   "origin": [
+    500.0,
+    306.0
+   ],
+   "grid": [
+    9,
+    16
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 50,
+   "locked_vertices": 144,
+   "edited_vertices": 0
+  },
+  "brow_r": {
+   "origin": [
+    443.0,
+    203.0
+   ],
+   "grid": [
+    13,
+    20
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 93,
+   "locked_vertices": 260,
+   "edited_vertices": 0
+  },
+  "brow_l": {
+   "origin": [
+    535.0,
+    203.0
+   ],
+   "grid": [
+    13,
+    20
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 93,
+   "locked_vertices": 260,
+   "edited_vertices": 0
+  },
+  "hair": {
+   "origin": [
+    361.0,
+    3.0
+   ],
+   "grid": [
+    47,
+    60
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 1462,
+   "locked_vertices": 0,
+   "edited_vertices": 0
+  },
+  "eye_r_white": {
+   "origin": [
+    452.0,
+    229.0
+   ],
+   "grid": [
+    13,
+    17
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 92,
+   "locked_vertices": 221,
+   "edited_vertices": 0
+  },
+  "eye_r_iris": {
+   "origin": [
+    476.0,
+    229.0
+   ],
+   "grid": [
+    11,
+    11
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 39,
+   "locked_vertices": 121,
+   "edited_vertices": 0
+  },
+  "eye_l_white": {
+   "origin": [
+    544.0,
+    229.0
+   ],
+   "grid": [
+    13,
+    16
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 92,
+   "locked_vertices": 208,
+   "edited_vertices": 0
+  },
+  "eye_l_iris": {
+   "origin": [
+    551.0,
+    230.0
+   ],
+   "grid": [
+    11,
+    11
+   ],
+   "bones": [
+    "head"
+   ],
+   "active_vertices": 41,
+   "locked_vertices": 121,
+   "edited_vertices": 0
+  },
+  "hand_r__palm_up": {
+   "origin": [
+    -10.0,
+    414.0
+   ],
+   "grid": [
+    19,
+    31
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 306,
+   "locked_vertices": 589,
+   "edited_vertices": 0
+  },
+  "hand_l__palm_up": {
+   "origin": [
+    915.0,
+    414.0
+   ],
+   "grid": [
+    20,
+    31
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 300,
+   "locked_vertices": 620,
+   "edited_vertices": 0
+  },
+  "forearm_r__trim": {
+   "origin": [
+    112.0,
+    410.0
+   ],
+   "grid": [
+    24,
+    32
+   ],
+   "bones": [
+    "upper_arm_r",
+    "forearm_r",
+    "hand_r"
+   ],
+   "active_vertices": 503,
+   "locked_vertices": 242,
+   "edited_vertices": 0
+  },
+  "forearm_l__trim": {
+   "origin": [
+    792.0,
+    411.0
+   ],
+   "grid": [
+    24,
+    31
+   ],
+   "bones": [
+    "upper_arm_l",
+    "forearm_l",
+    "hand_l"
+   ],
+   "active_vertices": 501,
+   "locked_vertices": 236,
+   "edited_vertices": 0
+  },
+  "hand_l__point": {
+   "origin": [
+    899.0,
+    397.0
+   ],
+   "grid": [
+    24,
+    35
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 419,
+   "locked_vertices": 840,
+   "edited_vertices": 0
+  },
+  "hand_r__thumbs_up": {
+   "origin": [
+    -5.0,
+    409.0
+   ],
+   "grid": [
+    22,
+    33
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 367,
+   "locked_vertices": 726,
+   "edited_vertices": 0
+  },
+  "hand_l__fist": {
+   "origin": [
+    899.0,
+    397.0
+   ],
+   "grid": [
+    24,
+    28
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 372,
+   "locked_vertices": 672,
+   "edited_vertices": 0
+  },
+  "hand_r__point": {
+   "origin": [
+    -18.0,
+    396.0
+   ],
+   "grid": [
+    24,
+    35
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 414,
+   "locked_vertices": 840,
+   "edited_vertices": 0
+  },
+  "hand_l__thumbs_up": {
+   "origin": [
+    899.0,
+    410.0
+   ],
+   "grid": [
+    22,
+    33
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 371,
+   "locked_vertices": 726,
+   "edited_vertices": 0
+  },
+  "hand_r__fist": {
+   "origin": [
+    23.0,
+    396.0
+   ],
+   "grid": [
+    24,
+    28
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 372,
+   "locked_vertices": 672,
+   "edited_vertices": 0
+  },
+  "forearm_r__hscuff": {
+   "origin": [
+    131.0,
+    410.0
+   ],
+   "grid": [
+    24,
+    29
+   ],
+   "bones": [
+    "upper_arm_r",
+    "forearm_r"
+   ],
+   "active_vertices": 460,
+   "locked_vertices": 165,
+   "edited_vertices": 0
+  },
+  "forearm_l__hscuff": {
+   "origin": [
+    792.0,
+    411.0
+   ],
+   "grid": [
+    24,
+    28
+   ],
+   "bones": [
+    "upper_arm_l",
+    "forearm_l"
+   ],
+   "active_vertices": 461,
+   "locked_vertices": 164,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_cupped.v1": {
+   "origin": [
+    897.0,
+    400.0
+   ],
+   "grid": [
+    22,
+    28
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 320,
+   "locked_vertices": 616,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_fist.v1": {
+   "origin": [
+    901.0,
+    403.0
+   ],
+   "grid": [
+    24,
+    25
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 357,
+   "locked_vertices": 600,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_gripping.v1": {
+   "origin": [
+    899.0,
+    400.0
+   ],
+   "grid": [
+    26,
+    28
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 373,
+   "locked_vertices": 728,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_open_palm.v1": {
+   "origin": [
+    901.0,
+    383.0
+   ],
+   "grid": [
+    31,
+    30
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 495,
+   "locked_vertices": 930,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_palm_down.v1": {
+   "origin": [
+    901.0,
+    375.0
+   ],
+   "grid": [
+    34,
+    24
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 378,
+   "locked_vertices": 816,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_pointing.v1": {
+   "origin": [
+    898.0,
+    424.0
+   ],
+   "grid": [
+    24,
+    30
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 348,
+   "locked_vertices": 720,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1": {
+   "origin": [
+    901.0,
+    404.0
+   ],
+   "grid": [
+    24,
+    30
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 391,
+   "locked_vertices": 720,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.schoolboy_hands_sleeveless.left_thumbs_up.v1": {
+   "origin": [
+    901.0,
+    366.0
+   ],
+   "grid": [
+    30,
+    24
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 375,
+   "locked_vertices": 720,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_cupped.v1": {
+   "origin": [
+    17.0,
+    398.0
+   ],
+   "grid": [
+    23,
+    30
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 355,
+   "locked_vertices": 690,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_fist.v1": {
+   "origin": [
+    39.0,
+    402.0
+   ],
+   "grid": [
+    24,
+    25
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 367,
+   "locked_vertices": 600,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_gripping.v1": {
+   "origin": [
+    26.0,
+    401.0
+   ],
+   "grid": [
+    27,
+    28
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 375,
+   "locked_vertices": 756,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_open_palm.v1": {
+   "origin": [
+    10.0,
+    382.0
+   ],
+   "grid": [
+    31,
+    30
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 501,
+   "locked_vertices": 930,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_palm_down.v1": {
+   "origin": [
+    51.0,
+    370.0
+   ],
+   "grid": [
+    34,
+    24
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 392,
+   "locked_vertices": 816,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_pointing.v1": {
+   "origin": [
+    12.0,
+    422.0
+   ],
+   "grid": [
+    23,
+    31
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 364,
+   "locked_vertices": 713,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1": {
+   "origin": [
+    14.0,
+    401.0
+   ],
+   "grid": [
+    24,
+    30
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 395,
+   "locked_vertices": 720,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.schoolboy_hands_sleeveless.right_thumbs_up.v1": {
+   "origin": [
+    44.0,
+    364.0
+   ],
+   "grid": [
+    30,
+    25
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 382,
+   "locked_vertices": 750,
+   "edited_vertices": 0
+  }
+ }
+}

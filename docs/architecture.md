@@ -250,3 +250,25 @@ engine in place (`MotionEngine.set_hand_store`). See [hand_pose_store_integratio
   translation notes); `hand_switches.json` 1.1.0 adds libraries, the gesture map and alignment parameters.
 * Editor project schema v4: `hand_store.libraries`, `hand_selection` (`handselect.action|weights`). See
   [hand_library_replacement_report.md](hand_library_replacement_report.md).
+
+## 16. Phase 3.3: garment rig
+
+* `src/autorig/garmentrig/structure.py` `GarmentStructureAnalyzer` labels every layer pixel (originals, hidden
+  extensions, switch drawings) with a semantic garment part (41 on the schoolboy) of class RIGID,
+  LIMITED_DEFORMATION or FLEXIBLE, with allowed bones, attachments and fold regions. `align_pivots` moves the shoulder
+  pivots toward the armhole top (`Bone.axis_offset` keeps the anatomical axis; `ik.solve_axis_aware` shifts the IK
+  limits per bend side) and `validate_pivots` checks every limb pivot against the artwork.
+* `garmentrig/weights.py` `WeightSet`: per-layer grid meshes of normalised, restricted, lockable bone weights from the
+  parts and joint planes (narrow per-class transitions, smoothed LIMITED torso family); user edits are `weights.*`
+  editor ops (schema v5) replayed deterministically; `explain` reports why a point follows its bones.
+* `garmentrig/deform.py` `StructuredDeformer` (a `MotionEngine(garment_mode="structured")` default): weight-mesh
+  angle interpolation for the joint patch, rigid segments (sleeves, trouser shin) and rigid fits (badge, buttons,
+  tie, pocket flaps) drawn over it, generated pixels drawn beneath the layer that hid them at rest, and a stretch limit
+  that leaves an over-stretched patch undrawn (a reported conflict). `garment_mode="legacy"` keeps the Phase 3.1
+  deformer for comparisons.
+* `garmentrig/corrections.py` `GarmentCorrectionController` (extends the Phase 3.2 controller) and
+  `garmentrig/evaluate.py` `GarmentDistortionEvaluator` (per part/garment PASS/WARNING/NEEDS_ARTWORK/FAIL);
+  `garmentrig/evidence.py` (`autorig garment-evidence`); `garmentrig/moho.py` (compatibility matrix,
+  `proposed_unverified`). Editor: Weights tab (`WeightsPanel.tsx`), `/api/garments*`. Export: `garment_rig.json`,
+  `garment_weights.npz`. See [phase3_3_clothing_deformation_report.md](phase3_3_clothing_deformation_report.md).
+

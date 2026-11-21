@@ -26,7 +26,7 @@ from scipy.optimize import brentq
 from ..phase2.posing import wrap
 from ..phase2.skeleton import SIDE_SIGN, SIDES, Skeleton, ang
 from ..phase2.skinning import PoseParams
-from .ik import TwoBoneIKSolver
+from .ik import TwoBoneIKSolver, solve_axis_aware
 from .intent import ArmIntent, PoseIntent
 from .profile import CharacterProfile
 
@@ -196,7 +196,8 @@ class SkeletalPoseSolver:
 
                 def h(e):  # fixed-point residual: rhythm(abduction of the solved arm) - elevation
                     shp, ikr = ik_at(e)
-                    return base + self.rhythm(unwrap_abduction(SIDE_SIGN[s] * ang(ikr.mid - shp))) - e
+                    off = self.sk.bones[I[f"upper_arm_{s}"]].axis_offset  # anatomical axis, not the pivot line
+                    return base + self.rhythm(unwrap_abduction(SIDE_SIGN[s] * (ang(ikr.mid - shp) + off))) - e
 
                 # root by bracketing (plain iteration oscillates: the residual's slope is below -1 near extension);
                 # the balance loop re-solves with a slightly moved pelvis, so try a narrow bracket first
@@ -302,7 +303,8 @@ class SkeletalPoseSolver:
         flex_hi = abs(self.limit("forearm", "flexion", s)[1])
         if a.max_flex is not None:
             flex_hi = max(MIN_FLEX, min(flex_hi, float(a.max_flex)))
-        return shp, target, pole, TwoBoneIKSolver(L1, L2, MIN_FLEX, min(flex_hi, 179.0)).solve(shp, target, pole)
+        return shp, target, pole, solve_axis_aware(L1, L2, MIN_FLEX, min(flex_hi, 179.0), sk.bones[up].axis_offset,
+                                                   shp, target, pole)
 
     # -- pelvis --------------------------------------------------------------------------------------
     def _need(self, s, th, sx, ankle, knee_deg) -> float:
@@ -448,9 +450,9 @@ class SkeletalPoseSolver:
                      "error_px": round(float(np.hypot(*(wrist - target))), 3), "reachable": bool(ok)}
             else:
                 abd = self._clamp("upper_arm", "abduction", a.abduction, clamps, s)
-                th[up] = wrap(sg * abd - sk.bones[up].rest_angle - K.rot(th, cl))
+                th[up] = wrap(sg * abd - sk.bones[up].anat_angle - K.rot(th, cl))
                 flex = self._clamp("forearm", "flexion", a.flexion, clamps, s)
-                rest_rel = wrap(sk.bones[fo].rest_angle - sk.bones[up].rest_angle)
+                rest_rel = wrap(sk.bones[fo].rest_angle - sk.bones[up].anat_angle)
                 th[fo] = wrap(-sg * flex - rest_rel)
             if a.hand_dir is not None:
                 th[ha] = wrap(a.hand_dir - sk.bones[ha].rest_angle - K.rot(th, f"forearm_{s}"))
@@ -490,7 +492,7 @@ class SkeletalPoseSolver:
     # -- anatomy report ------------------------------------------------------------------------------
     def anatomical(self, pose: PoseParams) -> dict[str, float]:
         th, sk, I, K = pose.theta, self.sk, self.I, self.K
-        w = lambda n: wrap(sk.bone(n).rest_angle + K.rot(th, n))
+        w = lambda n: wrap(sk.bone(n).anat_angle + K.rot(th, n))
         out = {"pelvis_tilt": th[0], "spine_bend": th[I["spine"]], "chest_bend": th[I["chest"]],
                "neck_bend": th[I["neck"]], "head_bend": th[I["head"]], "head_world": K.rot(th, "head")}
         for s in SIDES:

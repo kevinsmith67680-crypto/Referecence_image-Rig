@@ -261,7 +261,10 @@ class PoseService:
                                         [(L["id"], L["visible"]) for L in st["layers"]], sorted(cids)])
         hand_key = _digest([appr, st.get("hand_store"), store_rev])
         eng = self._cache.get(base_key)
+        w_ops = (st.get("garment_weights") or {}).get("ops", [])
+        w_key = _digest([w_ops])
         if eng is not None and getattr(eng, "_hand_key", None) == hand_key:
+            self._sync_weights(eng, w_ops, w_key)
             return eng
         sk = eng.sk if eng is not None else self.skeleton(st, masks, None)
         layers = eng.layers if eng is not None else {c: self.art.layer_rgba(c, masks, rejected) for c in masks}
@@ -270,17 +273,31 @@ class PoseService:
             eng.set_hand_store(hs, st["approvals"])
         else:
             gen = {c: self.art.generated_mask(c, masks, rejected) for c in masks}
+            from ..garmentrig.structure import load_config  # noqa: PLC0415
+
             eng = MotionEngine(sk, layers, gen, self.art.source, self.variants, st["approvals"], "front",
-                               load_overrides(self.pkg), cids, corrective_manifest(self.pkg), hs)
+                               load_overrides(self.pkg), cids, corrective_manifest(self.pkg), hs,
+                               "structured", load_config(self.pkg), w_ops)
+            eng._weights_key = w_key
             for k in [k for k in self._cache if k.startswith("motion:")]:
                 self._cache.pop(k)
             self._cache[base_key] = eng
         eng._hand_key = hand_key
+        self._sync_weights(eng, w_ops, w_key)
         from ..motion.handselect import NaturalHandSelectionEngine, load_rules  # noqa: PLC0415
 
         eng.hand_select = NaturalHandSelectionEngine.for_character(
             load_rules(self.pkg), (st.get("hand_selection") or {}).get("weights"))
         return eng
+
+    @staticmethod
+    def _sync_weights(eng, ops, key) -> None:
+        """Weight edits (undo/redo included) replay on the automatic weights without rebuilding the engine."""
+        if eng.weights is None or getattr(eng, "_weights_key", None) == key:
+            return
+        eng.weights.set_ops(ops, {c: inf["rgba"] for c, inf in eng.dfm.info.items()})
+        eng.dfm.refresh_weights()
+        eng._weights_key = key
 
     def motion(self, st: dict[str, Any], masks: dict[str, np.ndarray], rejected: set[str], body: dict[str, Any]
                ) -> dict[str, Any]:
@@ -399,6 +416,85 @@ class PoseService:
         crop[sy0 - y0:sy1 - y0, sx0 - x0:sx1 - x0] = rgba[sy0:sy1, sx0:sx1]
         im = Image.fromarray(crop, "RGBA").resize((size, size), Image.LANCZOS)
         return np.asarray(im)
+
+    # -- garment rig (Phase 3.3 Weights tab) --------------------------------------------------------------------
+    def garments(self, st, masks, rejected) -> dict[str, Any]:
+        eng = self.motion_engine(st, masks, rejected)
+        if eng.structure is None:
+            return {"available": False}
+        layers = {}
+        for cid, m in eng.weights.meshes.items():
+            if cid in eng.layers:
+                parts = sorted({eng.structure.parts[i].name for i in np.unique(m.part) if i >= 0})
+                layers[cid] = {"bones": list(m.bones), "parts": parts, "grid": list(m.shape),
+                               "locked": int(m.locked.sum()), "edited": int((m.touched > 0).sum())}
+        return {"available": True, "structure": eng.structure.to_json(), "pivots": eng.pivot_report,
+                "layers": layers, "validation": eng.weights.validate(),
+                "ops": (st.get("garment_weights") or {}).get("ops", []), "classes": ["RIGID", "LIMITED_DEFORMATION",
+                                                                                      "FLEXIBLE"]}
+
+    def garment_overlay(self, st, masks, rejected, kind: str, layer: str | None, bone: str | None) -> np.ndarray:
+        """Rest-frame RGBA overlay: ``parts`` (garment part map), ``influence`` (a bone's subtree influence as a
+        heatmap, red = 1), ``mesh`` (the layer's grid: active, locked, edited vertices) or ``pivots``."""
+        eng = self.motion_engine(st, masks, rejected)
+        H, W = eng.source.shape[:2]
+        out = np.zeros((H, W, 4), np.uint8)
+        if eng.structure is None:
+            return out
+        vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+        cids = [layer] if layer in eng.weights.meshes else [c for c in vis if c in eng.weights.meshes]
+        if kind == "parts":
+            return eng.structure.overlay(cids)
+        if kind == "influence" and bone in eng.sk.idx:
+            b = eng.sk.idx[bone]
+            for cid in cids:
+                inf = eng.dfm.info.get(cid)
+                if inf is None:
+                    continue
+                x0, y0 = inf["origin"]
+                ay, ax = np.nonzero(inf["alpha0"])
+                pts = np.stack([ax + x0, ay + y0], 1).astype(np.float64)
+                f = inf["wm"].influence(b, pts)
+                v = np.clip(f, 0, 1)
+                col = np.stack([255 * v, 60 + 120 * (1 - v) * v * 4, 255 * (1 - v), np.where(v > 0.002, 200, 40)], 1)
+                out[ay + y0, ax + x0] = np.clip(col, 0, 255).astype(np.uint8)
+            return out
+        if kind == "mesh":
+            for cid in cids[:1] if layer else []:
+                m = eng.weights.meshes[cid]
+                xy = m.vertex_xy()
+                for (vy, vx) in zip(*np.nonzero(m.active)):
+                    x, y = int(round(xy[vy, vx, 0])), int(round(xy[vy, vx, 1]))
+                    if 1 <= x < W - 1 and 1 <= y < H - 1:
+                        c = (255, 60, 60, 255) if m.locked[vy, vx] else (255, 200, 0, 255) if m.touched[vy, vx] else (40, 120, 255, 220)
+                        out[y - 1:y + 2, x - 1:x + 2] = c
+            return out
+        return out
+
+    def garment_explain(self, st, masks, rejected, layer: str, x: float, y: float) -> dict[str, Any]:
+        eng = self.motion_engine(st, masks, rejected)
+        if eng.weights is None or layer not in eng.weights.meshes:
+            raise PoseError(f"no weight mesh for layer {layer}")
+        return eng.weights.explain(layer, (x, y))
+
+    def garment_compare(self, st, masks, rejected, preset: str) -> np.ndarray:
+        """Side by side: the pose with the automatic weights (left) and with the user's weight edits (right)."""
+        from ..phase2.pose_eval import on_bg  # noqa: PLC0415
+
+        eng = self.motion_engine(st, masks, rejected)
+        vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+        ops = (st.get("garment_weights") or {}).get("ops", [])
+        lay = {c: inf["rgba"] for c, inf in eng.dfm.info.items()}
+        imgs = []
+        for o in ([], ops):
+            eng.weights.set_ops(o, lay)
+            eng.dfm.refresh_weights()
+            r = eng.pose(preset, visible=vis, evaluate_garments=False)
+            imgs.append(np.asarray(on_bg(r["image"]).convert("RGB")))
+        eng._weights_key = None
+        self._sync_weights(eng, ops, _digest([ops]))
+        h = min(i.shape[0] for i in imgs)
+        return np.concatenate([imgs[0][:h], np.full((h, 8, 3), 255, np.uint8), imgs[1][:h]], 1)
 
     def hand_library(self, st, masks, rejected) -> dict[str, Any]:
         """Hand Library panel data: every candidate per side and pose (original, Phase 2 drawing, stored drawings),

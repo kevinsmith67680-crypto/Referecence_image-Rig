@@ -19,7 +19,7 @@ from ..phase2.natural import natural_order
 from ..phase2.pose_eval import on_bg
 from ..phase2.posing import PRESET_BY_NAME as OLD_PRESETS
 from ..phase2.posing import PoseSolver
-from ..phase2.skeleton import SIDES, Skeleton, layer_class
+from ..phase2.skeleton import SIDE_SIGN, SIDES, Skeleton, layer_class
 from ..phase2.skinning import Deformer, PoseParams
 from .feasibility import ArtInventory, PoseFeasibilityEvaluator
 from .handselect import NaturalHandSelectionEngine, action_for, context_from_pose, ease_aim, load_rules
@@ -68,22 +68,55 @@ class MotionEngine:
                  source: np.ndarray, variants: dict[str, np.ndarray] | None = None,
                  approvals: dict[str, Any] | None = None, view: str = "front",
                  profile_overrides: dict[str, Any] | None = None, corrective_ids: list[str] | None = None,
-                 corrective_manifest: dict[str, Any] | None = None, hand_store: dict[str, Any] | None = None):
+                 corrective_manifest: dict[str, Any] | None = None, hand_store: dict[str, Any] | None = None,
+                 garment_mode: str = "structured", garment_config: dict[str, Any] | None = None,
+                 weight_ops: list[dict[str, Any]] | None = None):
         """``hand_store``: {"layers": derived rest layers of stored hand drawings, "candidates": their records,
-        "use": the user's active-candidate choices} (``handstore.derive_layers``; built by the editor)."""
+        "use": the user's active-candidate choices} (``handstore.derive_layers``; built by the editor).
+
+        ``garment_mode``: "structured" (Phase 3.3: garment parts, aligned shoulder pivots, weight meshes, rigid
+        segments over joint patches) or "legacy" (the Phase 3.1 band deformer, kept for before/after).
+        ``weight_ops``: the user's weight edits (editor project), replayed on the automatic weights."""
         t0 = time.time()
-        self.sk, self.layers, self.generated, self.source = sk, layers, generated or {}, source
+        if garment_mode not in ("structured", "legacy"):
+            raise ValueError(f"unknown garment_mode {garment_mode!r}")
+        self.garment_mode = garment_mode
+        self.layers, self.generated, self.source = layers, generated or {}, source
         self.hand_store = hand_store or {"layers": {}, "candidates": [], "use": {}}
         self.variants = {**(variants or {}), **self.hand_store.get("layers", {})}
         self.approvals = approvals or {}
         masks = {c: a[..., 3] > 0 for c, a in layers.items()}
         self.masks = masks
+        self.pivot_report: list[dict[str, Any]] = []
+        self.structure = self.weights = None
+        if garment_mode == "structured":
+            from ..garmentrig.structure import DEFAULT_CONFIG, align_pivots
+
+            import copy as _copy
+            self.garment_cfg = garment_config or _copy.deepcopy(DEFAULT_CONFIG)
+            sk, self.pivot_report = align_pivots(sk, masks, self.garment_cfg)
+        self.sk = sk
         self.profile = build_profile(sk, masks, view, profile_overrides)
         self.garments = GarmentModel.build(source, masks, sk, self.profile)
-        self.gsk = GarmentSkeleton(sk, self.garments)
-        self.dfm = ArtworkDeformationEngine(self.gsk, {**layers, **self.variants}, self.generated, reference=source,
-                                            variants=set(self.variants))
-        self.gdef = GarmentDeformationEngine(self.gsk, self.garments)
+        if garment_mode == "structured":
+            from ..garmentrig.deform import StructuredDeformer, StructuredSkeleton
+            from ..garmentrig.structure import GarmentStructureAnalyzer
+            from ..garmentrig.weights import WeightSet
+
+            self.gsk = StructuredSkeleton(sk, self.garments)
+            an = GarmentStructureAnalyzer(sk, source, layers, self.generated, self.garments, self.profile,
+                                          self.garment_cfg, self.pivot_report)
+            self.structure = an.analyze()
+            self.weights = WeightSet(self.gsk, self.structure, an, self.garment_cfg, self.pivot_report)
+            self.weights.ops = [dict(o) for o in (weight_ops or [])]
+            self.dfm = StructuredDeformer(self.gsk, {**layers, **self.variants}, self.generated, source,
+                                          set(self.variants), self.weights, self.structure,
+                                          bool(self.garment_cfg.get("overlays", True)), self.pivot_report)
+        else:
+            self.gsk = GarmentSkeleton(sk, self.garments)
+            self.dfm = ArtworkDeformationEngine(self.gsk, {**layers, **self.variants}, self.generated,
+                                                reference=source, variants=set(self.variants))
+        self.gdef = GarmentDeformationEngine(self.gsk, self.garments, bands=garment_mode == "legacy")
         self.solver = SkeletalPoseSolver(sk, self.profile, self.dfm.masses())
         self.planner = MotionPlanner(self.profile)
         self.inventory = ArtInventory.build(set(layers), set(self.variants), self.approvals, view, corrective_ids)
@@ -102,7 +135,12 @@ class MotionEngine:
         # the feasibility inventory sees each pose through its active candidate (canonical drawing keys)
         self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
                                 for s in SIDES}
-        self.corr_switch = CorrectionSwitchController(sk, self.approvals, corrective_ids)
+        if garment_mode == "structured":
+            from ..garmentrig.corrections import GarmentCorrectionController
+
+            self.corr_switch = GarmentCorrectionController(sk, self.approvals, corrective_ids)
+        else:
+            self.corr_switch = CorrectionSwitchController(sk, self.approvals, corrective_ids)
         self._offset_layers: dict[tuple, str] = {}
         self._view, self._corrective_ids, self._corrective_manifest = view, corrective_ids, corrective_manifest
         self.hand_select = NaturalHandSelectionEngine()  # engine_for_package loads the character's rules
@@ -262,6 +300,8 @@ class MotionEngine:
                 it.arms[s] = replace(arm, target=None, reach=None, target_joint=None, pole=None,
                                      abduction=float(fk.get("abduction", arm.abduction)),
                                      flexion=float(fk.get("flexion", arm.flexion)))
+                if fk.get("clavicle_extra"):  # shoulder compensation carried over from an IK pose (match_ik)
+                    it.clavicle[s] = it.clavicle.get(s, 0.0) + float(fk["clavicle_extra"])
             if a.get("enabled") and a.get("mode", "ik") == "ik" and a.get("target") is not None:
                 arm = it.arms.get(s) or ArmIntent()
                 tgt = np.asarray(a["target"], float)
@@ -355,9 +395,22 @@ class MotionEngine:
             arm = {**default_ik_state()[f"arm_{s}"], **ik2.get(f"arm_{s}", {})}
             arm.update(enabled=True, mode="ik", target=[float(v) for v in targets[s]])
             ik2[f"arm_{s}"] = arm
-        for _ in range(8):
+        # hold each gripping arm's current bend side: near a hanging, almost straight arm the default elbow pole is
+        # nearly collinear with the shoulder->hand line and the IK could bend the elbow the other way
+        _, pose0, info0 = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
+                                              allow_pending, fluid, ik)
+        for s in sides:
+            ctl = self.limb(f"arm_{s}")
+            r0 = ctl.root(pose0)
+            wr, el = np.asarray(info0["joints_posed"][f"hand_{s}"]), np.asarray(info0["joints_posed"][f"forearm_{s}"])
+            u = wr - r0
+            c = float(u[0] * (el[1] - r0[1]) - u[1] * (el[0] - r0[0]))
+            if abs(c) > 1e-6 and ik2[f"arm_{s}"].get("bend") not in (1, -1, "1", "-1"):
+                ik2[f"arm_{s}"]["bend"] = 1 if c > 0 else -1
+        for k in range(16):
             it, pose, _info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
                                                   allow_pending, fluid, ik2)
+            gain = 1.0 if k < 2 else 0.5  # damped after two full steps (the hand turns with the forearm)
             done = True
             for s in sides:
                 g = self.feature_world(s, pose, "grip_center")
@@ -368,8 +421,8 @@ class MotionEngine:
                 report[s] = {"grip_center": [round(float(v), 2) for v in g], "error_px": round(float(np.hypot(*err)), 2),
                              "wrist_target": [round(float(v), 2) for v in ik2[f"arm_{s}"]["target"]]}
                 if np.hypot(*err) > 0.5:
-                    ik2[f"arm_{s}"]["target"] = [float(ik2[f"arm_{s}"]["target"][0] + err[0]),
-                                                 float(ik2[f"arm_{s}"]["target"][1] + err[1])]
+                    ik2[f"arm_{s}"]["target"] = [float(ik2[f"arm_{s}"]["target"][0] + gain * err[0]),
+                                                 float(ik2[f"arm_{s}"]["target"][1] + gain * err[1])]
                     done = False
             if done:
                 break
@@ -432,6 +485,14 @@ class MotionEngine:
                 new["lock"] = bool(leg.planted) if leg is not None else True
         elif ctl.kind == "arm":
             new = {**cur, "enabled": True, "mode": "fk", "fk": ctl.fk_params(pose0)}
+            # an IK arm may have moved the shoulder to reach (clavicle compensation, beyond the rhythm): carry the
+            # difference so the FK pose reproduces the IK pose exactly
+            ik_try = {**ik, limb: new}
+            _, pose_f, _ = self.plan_and_solve(name, phase, ik=ik_try, **kw)
+            ci = self.sk.idx[f"clavicle_{ctl.side}"]
+            extra = SIDE_SIGN[ctl.side] * float(pose0.theta[ci] - pose_f.theta[ci])
+            if abs(extra) > 1e-6:
+                new = {**new, "fk": {**new["fk"], "clavicle_extra": extra}}
         else:
             new = {**cur, "enabled": False, "mode": "fk"}
         ik[limb] = new
@@ -466,7 +527,7 @@ class MotionEngine:
              hand_layers: dict[str, str] | None = None, hand_actions: dict[str, str | None] | None = None,
              hand_targets: dict[str, Any] | None = None, hand_state: dict[str, Any] | None = None,
              hand_time: float | None = None, hand_beat: int | None = None, hand_aim: bool = True,
-             previous_wrists: dict[str, Any] | None = None) -> dict[str, Any]:
+             previous_wrists: dict[str, Any] | None = None, evaluate_garments: bool = True) -> dict[str, Any]:
         """Processing order: intent -> contact/IK targets -> skeletal solve -> hand selection (+ wrist aim) ->
         correction selection -> garment deformation -> switch resolution -> composition -> evaluation.
 
@@ -500,8 +561,12 @@ class MotionEngine:
         for g, gs in (switches or {}).items():  # explicit user choice on a correction group forces it on/off
             if g.startswith("corr_") and gs.get("user") and not gs.get("auto", True):
                 forced[g[5:]] = gs["user"] == "on"
-        csw = self.corr_switch.evaluate(correction_readings_from_pose(self.solver, pose), allow_pending,
-                                        corrections_stateful, forced or None)
+        readings = correction_readings_from_pose(self.solver, pose)
+        if self.garment_mode == "structured":
+            from ..garmentrig.corrections import pose_readings
+
+            readings = pose_readings(spec, it, readings, pose, self.sk)
+        csw = self.corr_switch.evaluate(readings, allow_pending, corrections_stateful, forced or None)
         corr = self.gdef.corrections(pose, it.garment)
         t_corr = time.perf_counter() - t1
         t1 = time.perf_counter()
@@ -557,6 +622,19 @@ class MotionEngine:
         q = self.quality.frame(it, pose, info, r, tears, pending, int(r["generated_visible"].sum()))
         res.update({"image": r["image"], "render": r, "tears": tears, "order": order, "gussets": gussets,
                     "feasibility": feas, "quality": q})
+        if self.garment_mode == "structured" and evaluate_garments:
+            from ..garmentrig.evaluate import GarmentDistortionEvaluator
+
+            t2 = time.perf_counter()
+            ge = GarmentDistortionEvaluator(self).evaluate(res)
+            res["garment_eval"] = ge
+            res["timing_ms"]["garment_eval"] = round((time.perf_counter() - t2) * 1000, 1)
+            feas["garments"] = {k: v["status"] for k, v in ge.get("garments", {}).items()}
+            for m in ge.get("missing_artwork", []):
+                if not any(x.get("asset") == m for x in feas["missing"] + feas.get("optional_assets", [])):
+                    feas.setdefault("optional_assets", []).append(
+                        {"asset": m, "sides": [], "state": "missing", "why": "garment evaluator: needed to avoid "
+                                                                              "visible garment distortion"})
         res["timing_ms"].update({"render_and_tears": round(t_render * 1000, 1),
                                  "total": round((time.perf_counter() - t0) * 1000, 1)})
         return res
@@ -778,7 +856,7 @@ class MotionEngine:
 
 
 # -- package-level evidence (CLI: autorig motion <package>) ---------------------------------------------------
-def engine_for_package(pkg, view: str = "front") -> tuple["MotionEngine", list[str]]:
+def engine_for_package(pkg, view: str = "front", garment_mode: str = "structured") -> tuple["MotionEngine", list[str]]:
     """MotionEngine for a Phase 2 package, built exactly as the editor builds it (edited bones, masks, approvals)."""
     import json
     from pathlib import Path
@@ -801,8 +879,11 @@ def engine_for_package(pkg, view: str = "front") -> tuple["MotionEngine", list[s
     from ..handstore import engine_input
 
     hs = engine_input(pkg, st.get("hand_store"), sk, layers, ps.variants, st["approvals"], art.source)
+    from ..garmentrig.structure import load_config
+
     eng = MotionEngine(sk, layers, gen, art.source, ps.variants, st["approvals"], view, load_overrides(pkg), cids,
-                       corrective_manifest(pkg), hs)
+                       corrective_manifest(pkg), hs, garment_mode, load_config(pkg),
+                       (st.get("garment_weights") or {}).get("ops"))
     eng.hand_select = NaturalHandSelectionEngine.for_character(load_rules(pkg), (st.get("hand_selection") or {}).get("weights"))
     vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in m]
     del json

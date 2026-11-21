@@ -4,7 +4,7 @@ import type Konva from "konva";
 import { api, Payload } from "../api";
 import { effectiveBrushRadius, fitView, pathD, pixelKey, Pt, View, zoomAt } from "../geometry";
 
-export type Tool = "select" | "pan" | "brush" | "eraser" | "polygon" | "joint" | "vector";
+export type Tool = "select" | "pan" | "brush" | "eraser" | "polygon" | "joint" | "vector" | "weights";
 export type Mode = "artwork" | "pose" | "compare";
 export interface Overlays { checker: boolean; joints: boolean; bones: boolean; masks: boolean; baseMask: boolean;
   vectors: boolean; anchors: boolean; tears: boolean; boundaries: boolean; bounds: boolean }
@@ -97,6 +97,9 @@ export interface CanvasProps {
   ikHandles?: boolean;  // IK tab: draggable wrist/ankle targets and elbow/knee poles, foot contact markers
   onIkDrag?: (limb: string, kind: "target" | "pole", pt: Pt) => void;
   onIkDragEnd?: (limb: string, kind: "target" | "pole", pt: Pt) => void;
+  garmentOverlay?: string | null;  // Weights tab: rest-frame overlay image URL (parts, influence heatmap, mesh)
+  weightRadius?: number;  // Weights tab brush radius (px)
+  onWeightStroke?: (pts: Pt[]) => void;  // Weights tab: brush stroke (rest px)
 }
 
 const CONTACT_COLOR: Record<string, string> = { PLANTED: "#2f9e44", LIFTING: "#f08c00", SWINGING: "#1c7ed6", LANDING: "#ae3ec9", FREE: "#868e96" };
@@ -172,6 +175,7 @@ export default function CanvasView(p: CanvasProps) {
   }, [p.selectedLayer, rev]);
 
   const order = st.layers.filter((l) => l.visible);
+  const garmentImg = useImg(p.mode === "artwork" && p.garmentOverlay ? p.garmentOverlay : null);
   const maskTint = useTinted(p.overlays.masks && p.selectedLayer && p.mode === "artwork" ?
     api.maskUrl(p.selectedLayer, pix) : null, "rgba(0,200,255,1)");
   const baseTint = useTinted(p.overlays.baseMask && p.selectedLayer && p.mode === "artwork" ?
@@ -196,7 +200,7 @@ export default function CanvasView(p: CanvasProps) {
     if (e.evt.button !== 0) return;
     const pt = ip();
     if (p.mode !== "artwork") return;
-    if ((p.tool === "brush" || p.tool === "eraser") && p.selectedLayer) setStroke([pt]);
+    if ((p.tool === "brush" || p.tool === "eraser" || p.tool === "weights") && p.selectedLayer) setStroke([pt]);
   }
   function onMove() {
     const pt = ip();
@@ -204,6 +208,11 @@ export default function CanvasView(p: CanvasProps) {
     if (stroke) setStroke([...stroke, pt]);
   }
   function onUp() {
+    if (stroke && p.selectedLayer && p.tool === "weights") {
+      p.onWeightStroke?.(stroke.filter((_, i) => i % 3 === 0 || i === stroke.length - 1));
+      setStroke(null);
+      return;
+    }
     if (stroke && p.selectedLayer) {
       const pts = stroke.filter((_, i) => i % 2 === 0 || i === stroke.length - 1).map((q) => [+q.x.toFixed(1), +q.y.toFixed(1)]);
       p.onOp({ type: "mask.edit", layer: p.selectedLayer, mode: p.tool === "brush" ? "add" : "subtract",
@@ -276,7 +285,8 @@ export default function CanvasView(p: CanvasProps) {
           {p.mode === "compare" && p.compare.kind === "split" && <Line points={[W * p.compare.split, 0, W * p.compare.split, H]} stroke="#ff3366" strokeWidth={2 * k} />}
         </Layer>
         <Layer>
-          {p.mode === "artwork" && maskTint && <KImage image={maskTint} opacity={0.38} listening={false} />}
+          {p.mode === "artwork" && maskTint && p.tool !== "weights" && <KImage image={maskTint} opacity={0.38} listening={false} />}
+          {p.mode === "artwork" && garmentImg && <KImage image={garmentImg} opacity={0.7} listening={false} />}
           {p.mode === "artwork" && baseTint && <KImage image={baseTint} opacity={0.3} listening={false} />}
           {p.overlays.bounds && bounds && p.mode === "artwork" && (
             <Rect x={bounds[0]} y={bounds[1]} width={bounds[2] - bounds[0]} height={bounds[3] - bounds[1]}
@@ -328,8 +338,8 @@ export default function CanvasView(p: CanvasProps) {
               <Line points={[v[0] - 6 * k, v[1], v[0] + 6 * k, v[1]]} stroke="#e64980" strokeWidth={2 * k} />
               <Line points={[v[0], v[1] - 6 * k, v[0], v[1] + 6 * k]} stroke="#e64980" strokeWidth={2 * k} />
             </Group>))}
-          {stroke && <Line points={stroke.flatMap((q) => [q.x, q.y])} stroke={p.tool === "brush" ? "#40c057" : "#fa5252"}
-            strokeWidth={2 * effectiveBrushRadius(p.mask.size, p.mask.hardness)} lineCap="round" lineJoin="round" opacity={0.45} listening={false} />}
+          {stroke && <Line points={stroke.flatMap((q) => [q.x, q.y])} stroke={p.tool === "brush" ? "#40c057" : p.tool === "weights" ? "#f59f00" : "#fa5252"}
+            strokeWidth={p.tool === "weights" ? 2 * (p.weightRadius ?? 20) : 2 * effectiveBrushRadius(p.mask.size, p.mask.hardness)} lineCap="round" lineJoin="round" opacity={0.45} listening={false} />}
           {poly.length > 0 && <Line points={poly.flatMap((q) => [q.x, q.y])} closed={poly.length > 2} stroke="#fab005"
             strokeWidth={2 * k} dash={[6 * k, 4 * k]} fill="rgba(250,176,5,0.15)" listening={false} />}
         </Layer>

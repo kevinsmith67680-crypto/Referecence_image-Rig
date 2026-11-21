@@ -118,6 +118,32 @@ class TwoBoneIKSolver:
                         self.flexion_for(dc), side, (lo, hi))
 
 
+def solve_axis_aware(l1: float, l2: float, lo: float, hi: float, axis_offset: float, root, target, pole=None,
+                     bend_sign: int = 1) -> IKResult:
+    """Two-bone IK whose flexion limits [lo, hi] apply to the *anatomical* elbow, for an upper arm whose pivot
+    line is tilted off its anatomical axis by ``axis_offset`` (deg; Phase 3.3 garment-aligned shoulder pivots).
+    The anatomical bend is the line bend minus the offset, signed toward the bend side. So the line limits are
+    shifted per side: the limb never shows a reverse bend at full reach, and it bends exactly as far as the
+    anatomical limit allows."""
+    if abs(axis_offset) < 1e-9:
+        return TwoBoneIKSolver(l1, l2, lo, hi).solve(root, target, pole, bend_sign)
+    root, target = np.asarray(root, float), np.asarray(target, float)
+    d = target - root
+    dist = float(np.hypot(*d))
+    u = d / dist if dist > 1e-9 else np.array([0.0, 1.0])
+    side = int(bend_sign) if bend_sign else 1
+    if pole is not None:
+        c = _cross(u, np.asarray(pole, float) - root)
+        if abs(c) > 1e-9:
+            side = 1 if c > 0 else -1
+    probe = TwoBoneIKSolver(l1, l2, 30.0, 150.0).solve(np.zeros(2), np.array([0.0, 0.7 * (l1 + l2)]), None, side)
+    rho = ((ang(probe.end - probe.mid) - ang(probe.mid - probe.root) + 180) % 360) - 180
+    sigma = 1.0 if rho >= 0 else -1.0
+    lo_l = float(np.clip(lo + sigma * axis_offset, 0.0, 179.0))
+    hi_l = float(np.clip(hi + sigma * axis_offset, lo_l, 179.0))
+    return TwoBoneIKSolver(l1, l2, lo_l, hi_l).solve(root, target, pole, side)
+
+
 # -- controllers on the existing skeleton -----------------------------------------------------------------
 class LimbIK:
     """IK for one limb chain of the existing skeleton (no duplicate bones). ``kind`` is "arm" or "leg"."""
@@ -131,6 +157,7 @@ class LimbIK:
         lim = limits or {}
         self.solver = TwoBoneIKSolver(sk.bones[self.i0].length, sk.bones[self.i1].length,
                                       float(lim.get("min_flex", 0.0)), float(lim.get("max_flex", 150.0 if kind == "arm" else 120.0)))
+        self.axis_offset = float(sk.bones[self.i0].axis_offset)  # anatomical limits via solve_axis_aware
 
     def root(self, pose) -> np.ndarray:
         return self.K.point(self.sk.idx[self.parent], self.sk.J[self.i0], pose)
@@ -147,7 +174,8 @@ class LimbIK:
         th, sk = pose.theta, self.sk
         r = self.root(pose)
         pole = self.default_pole(pose) if pole is None else np.asarray(pole, float)
-        res = self.solver.solve(r, target, pole)
+        res = solve_axis_aware(self.solver.l1, self.solver.l2, self.solver.min_flex, self.solver.max_flex,
+                               self.axis_offset, r, target, pole)
         parent_rot = self.K.rot(th, self.parent)
         th[self.i0] = wrap(ang(res.mid - r) - sk.bones[self.i0].rest_angle - parent_rot)
         th[self.i1] = wrap(ang(res.end - res.mid) - sk.bones[self.i1].rest_angle - parent_rot - th[self.i0])
@@ -187,8 +215,8 @@ class LimbIK:
         th, sk = pose.theta, self.sk
         sg = SIDE_SIGN[self.side]
         b0, b1 = sk.bones[self.i0], sk.bones[self.i1]
-        abd = sg * wrap(th[self.i0] + b0.rest_angle + self.K.rot(th, self.parent))
-        rest_rel = wrap(b1.rest_angle - b0.rest_angle)
+        abd = sg * wrap(th[self.i0] + b0.anat_angle + self.K.rot(th, self.parent))
+        rest_rel = wrap(b1.rest_angle - b0.anat_angle)
         flex = -sg * wrap(th[self.i1] + rest_rel)
         return {"abduction": float(abd), "flexion": float(flex)}
 

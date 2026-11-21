@@ -691,11 +691,11 @@ def correction_readings_from_pose(solver, pose) -> dict[str, float]:
     out = {}
     for s in SIDES:
         sg = SIDE_SIGN[s]
-        out[f"abduction_{s}"] = sg * float(K.rot(th, f"upper_arm_{s}") + sk.bones[I[f"upper_arm_{s}"]].rest_angle)
+        out[f"abduction_{s}"] = sg * float(K.rot(th, f"upper_arm_{s}") + sk.bones[I[f"upper_arm_{s}"]].anat_angle)
         a = float(((out[f"abduction_{s}"] + 180) % 360) - 180)
         out[f"abduction_{s}"] = a + 360.0 if a <= -90.0 else a  # overhead arms keep increasing (no wrap)
         fo, up, ha = sk.bones[I[f"forearm_{s}"]], sk.bones[I[f"upper_arm_{s}"]], sk.bones[I[f"hand_{s}"]]
-        rest_rel = ((fo.rest_angle - up.rest_angle + 180) % 360) - 180
+        rest_rel = ((fo.rest_angle - up.anat_angle + 180) % 360) - 180
         out[f"elbow_{s}"] = abs(float(((th[I[f"forearm_{s}"]] + rest_rel + 180) % 360) - 180))
         hr = ((ha.rest_angle - fo.rest_angle + 180) % 360) - 180
         out[f"wrist_{s}"] = abs(float(((th[I[f"hand_{s}"]] + hr + 180) % 360) - 180))

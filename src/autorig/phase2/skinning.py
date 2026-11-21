@@ -249,6 +249,8 @@ class Deformer:
         have = ~np.isnan(seed[..., 0])
         if not have.any():
             out = np.zeros((gh, gw, 4), np.float32)
+            if getattr(self, "keep_src", False):
+                self.last_src = np.full((gh, gw, 2), np.nan)
             return out, (qx0 + pad, qy0 + pad), np.zeros((gh, gw), bool), stats
         dist, (iy, ix) = ndimage.distance_transform_edt(~have, return_indices=True)
         use = dist <= 3.0
@@ -293,6 +295,8 @@ class Deformer:
         ok &= self._sample(inf["pre"][..., 3], p[:, 0] - x0, p[:, 1] - y0) > 0.003
         src = np.full((gh * gw, 2), np.nan)
         src[(gy * gw + gx)[ok]] = p[ok]
+        if getattr(self, "keep_src", False):  # rest position of every output pixel (Phase 3.3 compositing)
+            self.last_src = src.reshape(gh, gw, 2)
         valid = ~np.isnan(src[:, 0])
         out = np.zeros((gh, gw, 4), np.float32)
         gen = np.zeros(out.shape[:2], bool)

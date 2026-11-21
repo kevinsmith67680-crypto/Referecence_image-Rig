@@ -6,8 +6,9 @@ import LayersPanel from "./components/LayersPanel";
 import { ComparePanel, Cycle, ExportPanel, FacePanel, JointsPanel, LivePanel, MaskPanel, Motion, Perf, PosePanel, PropertiesPanel, VectorsPanel } from "./components/Panels";
 import { IKPanel, SwitchesPanel } from "./components/RigPanels";
 import { HandLibraryPanel } from "./components/HandPanels";
+import { WeightBrush, WeightsPanel } from "./components/WeightsPanel";
 
-const TABS = ["Properties", "Mask", "Joints", "Vectors", "Pose", "IK", "Switches", "Hands", "Face", "Live", "Compare", "Export"] as const;
+const TABS = ["Properties", "Mask", "Joints", "Vectors", "Weights", "Pose", "IK", "Switches", "Hands", "Face", "Live", "Compare", "Export"] as const;
 const POSE_TABS = ["Pose", "IK", "Switches", "Hands"];
 type Tab = (typeof TABS)[number];
 const TOOLS: { t: Tool; key: string; label: string }[] = [
@@ -52,6 +53,8 @@ export default function App() {
   const poseSeq = useRef(0);
   const [dragging, setDragging] = useState(false);
   const [handPreview, setHandPreview] = useState<{ side: string; cid: string } | null>(null);
+  const [wbrush, setWbrush] = useState<WeightBrush>({ mode: "paint", bone: "upper_arm_r", radius: 24, strength: 0.5, hardness: 0.5, part: "", view: "parts" });
+  const [wexplain, setWexplain] = useState<any>(null);
   const drag = useRef<{ busy: boolean; pending: any; t: number; lat: number[] }>({ busy: false, pending: null, t: 0, lat: [] });
 
   const rev = payload?.project.revision ?? "0";
@@ -87,6 +90,7 @@ export default function App() {
     if (tab === "Mask" && !["brush", "eraser", "polygon"].includes(tool)) setTool("brush");
     if (tab === "Joints") setTool("joint");
     if (tab === "Vectors") setTool("vector");
+    if (tab === "Weights") setTool("weights");
   }, [tab, rev]);
   const poseBody = (extra: Record<string, unknown> = {}) => ({ preset, overrides, boundaries: overlays.boundaries,
     phase: motion.phase, speed: motion.speed, exaggeration: motion.exaggeration, allow_pending: motion.allowPending,
@@ -186,6 +190,28 @@ export default function App() {
     };
     pump();
   };
+  const onWeightStroke = (pts: Pt[]) => {
+    if (!selLayer || !pts.length) return;
+    if (wbrush.mode === "explain") {
+      const q = pts[pts.length - 1];
+      api.garmentExplain(selLayer, q.x, q.y).then(setWexplain).catch((e) => setError(String(e.message ?? e)));
+      return;
+    }
+    const base: Record<string, unknown> = { layer: selLayer, radius: wbrush.radius, strength: wbrush.strength, hardness: wbrush.hardness };
+    if (wbrush.part) base.part = wbrush.part;
+    const type = wbrush.mode === "unlock" ? "weights.lock" : `weights.${wbrush.mode}`;
+    // one operation per dab along the stroke, spaced by half the radius
+    const dabs: Pt[] = [];
+    for (const q of pts) if (!dabs.length || Math.hypot(q.x - dabs[dabs.length - 1].x, q.y - dabs[dabs.length - 1].y) >= wbrush.radius / 2) dabs.push(q);
+    (async () => {
+      for (const q of dabs) {
+        const op: Record<string, unknown> = { ...base, type, center: [+q.x.toFixed(1), +q.y.toFixed(1)] };
+        if (wbrush.mode === "paint" || wbrush.mode === "erase") op.bone = wbrush.bone;
+        if (wbrush.mode === "lock" || wbrush.mode === "unlock") op.locked = wbrush.mode === "lock";
+        await api.op(op).then((p) => { setPayload(p); setError(null); }).catch((e) => setError(String(e.message ?? e)));
+      }
+    })();
+  };
   const onIkDragEnd = (limb: string, kind: "target" | "pole", pt: Pt) => {
     drag.current.pending = null;
     onOp({ type: "ik.set", limb, fields: ikDraft(limb, kind, pt).fields });
@@ -235,6 +261,8 @@ export default function App() {
             selectedVector={selVec} onSelectVector={setSelVec} overlays={overlays} mask={mask} compare={cmp}
             pose={poseRes} face={face} onOp={onOp} onCursor={setCursor} skel={playing || dragging ? skel : null} showBefore={motion.showBefore && motion.before}
             ikHandles={tab === "IK"} onIkDrag={onIkDrag} onIkDragEnd={onIkDragEnd}
+            garmentOverlay={tab === "Weights" && wbrush.view !== "none" ? api.garmentOverlayUrl(wbrush.view, wbrush.view === "parts" ? null : selLayer, wbrush.bone, rev) : null}
+            weightRadius={wbrush.radius} onWeightStroke={onWeightStroke}
             flip={anim && cycle?.box && flipImgs.current[flipIdx] ? { img: flipImgs.current[flipIdx], x: cycle.box[0] - (cycle.pad ?? 0), y: cycle.box[1] - (cycle.pad ?? 0) } : null} />
           <div className="modebar">
             {(["artwork", "pose", "compare"] as Mode[]).map((m) => <button key={m} className={mode === m ? "on" : ""} onClick={() => setTab(m === "pose" ? "Pose" : m === "compare" ? "Compare" : "Properties")}>{m}</button>)}
@@ -247,6 +275,8 @@ export default function App() {
             {tab === "Mask" && <MaskPanel payload={payload} id={selLayer} tool={tool} setTool={setTool} mask={mask} setMask={setMask} overlays={overlays} setOverlays={setOverlays} onOp={onOp} />}
             {tab === "Joints" && <JointsPanel payload={payload} bone={selBone} onSelect={setSelBone} onOp={onOp} />}
             {tab === "Vectors" && <VectorsPanel payload={payload} sel={selVec} onSelect={setSelVec} bone={selBone} onOp={onOp} />}
+            {tab === "Weights" && <WeightsPanel payload={payload} layer={selLayer} rev={rev} brush={wbrush} setBrush={setWbrush}
+              explain={wexplain} onOp={onOp} onError={setError} preset={preset} />}
             {tab === "Pose" && <PosePanel payload={payload} preset={preset} setPreset={setPreset} overrides={overrides} setOverrides={setOverrides}
               result={poseRes} busy={poseBusy} bone={selBone} onSelectBone={setSelBone} overlays={overlays} setOverlays={setOverlays} onOp={onOp}
               motion={motion} setMotion={setMotion} playing={playing} setPlaying={setPlaying} perf={perf}

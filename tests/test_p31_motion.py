@@ -130,10 +130,12 @@ def test_blazer_hem_hangs_from_the_pelvis_not_the_thighs(eng):
     inf = e.dfm.info["thigh_r"]
     x0, y0 = inf["origin"]
     ys, xs = np.nonzero(g.hem_override[y0:y0 + inf["alpha"].shape[0], x0:x0 + inf["alpha"].shape[1]] & inf["alpha0"])
-    assert len(ys) and np.all(inf["home"][ys, xs] == e.gsk.HEM)
+    assert len(ys)
     pts = np.stack([xs + x0, ys + y0], 1).astype(float)[:50]
+    # Phase 3.3: the hem pixels are the 'blazer_hem' garment part, weighted to the pelvis only (no thigh, no shin)
+    assert {e.structure.parts[i].name for i in e.structure.ids_at("thigh_r", pts)} == {"blazer_hem"}
     for b in (e.sk.idx["thigh_r"], e.sk.idx["shin_r"]):
-        assert not e.gsk.influence(b, pts, np.full(len(pts), e.gsk.HEM)).any()
+        assert not inf["wm"].influence(b, pts).any()
     # rotate only the right thigh: hem pixels in that layer stay put
     N = len(e.sk.bones)
     th = np.zeros(N)
@@ -160,8 +162,14 @@ def test_rotation_dependent_corrections_scale_with_the_joint(eng):
     _, p_relax, _ = e.plan_and_solve("relaxed_standing")
     _, p_squat, _ = e.plan_and_solve("natural_squat")
     i = e.sk.idx["shin_r"]
-    c0 = e.gdef.corrections(p_relax, {})
-    c1 = e.gdef.corrections(p_squat, {})
+    # the band widening belongs to the legacy deformer (garment_mode="legacy"); the structured deformer keeps
+    # fixed narrow transitions and draws rigid segments instead, so it reports no band rules
+    assert e.garment_mode == "structured" and not e.gdef.bands
+    assert not any(r["rule"].startswith("band:") for r in e.gdef.corrections(p_squat, {})["active"])
+    from autorig.motion.garments import GarmentDeformationEngine
+    legacy = GarmentDeformationEngine(e.gsk, e.garments, bands=True)
+    c0 = legacy.corrections(p_relax, {})
+    c1 = legacy.corrections(p_squat, {})
     assert c1["rc"][i] > c0["rc"][i] >= e.gsk.base_rc[i]
     assert any(r["rule"] == "band:shin_r" for r in c1["active"])
     lag = e.gdef.corrections(p_relax, {"hem_lag_deg": 2.0})

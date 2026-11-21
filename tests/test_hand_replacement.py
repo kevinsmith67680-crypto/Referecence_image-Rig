@@ -367,10 +367,12 @@ def test_switching_hands_never_moves_the_forearm_and_hands_are_rigid(eng):
 def test_gripping_lands_on_the_target_and_hands_stay_attached_under_ik(eng):
     from autorig.handstore import posed_seam
     e, vis = eng
-    hb = e.sk.bone("hand_r")
     rest = e.pose("relaxed_standing", skeleton_only=True)
-    w = e.solver.K.point(e.sk.idx["hand_r"], hb.head, rest["pose"])
-    tgt = (w + np.array([-12.0, 50.0])).tolist()
+    # Phase 3.3: with the shoulder pivot at the shoulder point the relaxed arm hangs at full reach, so the target is
+    # lateral of the shoulder (forearm pointing sideways, the orientation the gripping drawing was drawn in);
+    # a target below the hanging hand is out of reach and the engine rightly prefers the fist there
+    sh = np.asarray(rest["solve"]["joints_posed"]["upper_arm_r"])
+    tgt = (sh + np.array([-0.7, 0.3]) * e.profile.arm("r")).tolist()
     r = e.pose("relaxed_standing", allow_pending=True, visible=vis, hand_actions={"r": "gripping"}, hand_targets={"r": tgt})
     assert r["hands"]["r"]["pose"] == "gripping" and r["hand_selection"]["grip"]["r"]["error_px"] <= 1.5
     sm = posed_seam(r, e, "r", r["hands"]["r"]["layer"])
@@ -380,7 +382,7 @@ def test_gripping_lands_on_the_target_and_hands_stay_attached_under_ik(eng):
 @real
 def test_project_v4_persists_library_and_selection_ops(pkg):
     from autorig.editor.project import VERSION, EditorProject, OpError
-    assert VERSION == 4
+    assert VERSION == 5
     p = EditorProject(pkg)
     p.submit({"type": "handstore.library", "library": "schoolboy_hand_switches_v1", "status": "active"})
     p.submit({"type": "handstore.placement", "uid": f"{LIB}/right_cupped", "fields": {"pivot_x": 2, "overlap": 3, "rot": -5}})

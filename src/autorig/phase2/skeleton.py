@@ -96,6 +96,14 @@ class Bone:
     tail: np.ndarray
     h: float  # local half-thickness (px)
     method: str
+    # anatomical axis minus the head->tail line (deg). Non-zero when a garment-aligned pivot moved the head off the
+    # limb's axis (Phase 3.3): anatomical angles (abduction, flexion, rhythm) use the axis, IK geometry the line.
+    axis_offset: float = 0.0
+
+    @property
+    def anat_angle(self) -> float:
+        """Rest direction of the limb's anatomical axis (deg, as ``rest_angle``)."""
+        return self.rest_angle + self.axis_offset
 
     @property
     def u(self) -> np.ndarray:
@@ -248,6 +256,7 @@ class Skeleton:
                 "bones": [{"name": b.name, "parent": b.parent, "kind": b.kind, "side": b.side,
                            "head": [round(float(v), 1) for v in b.head], "tail": [round(float(v), 1) for v in b.tail],
                            "length_px": round(b.length, 1), "rest_angle_deg": round(b.rest_angle, 1),
+                           "axis_offset_deg": round(b.axis_offset, 2),
                            "half_thickness_px": round(b.h, 1), "pivot_method": b.method,
                            "blend_band_px": {"into_parent": round(float(self.rp[i]), 1),
                                              "into_child": round(float(self.rc[i]), 1)},

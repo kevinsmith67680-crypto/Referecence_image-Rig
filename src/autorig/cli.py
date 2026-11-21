@@ -560,6 +560,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", help="output directory (default <package>/hand_store/evidence_v2)")
     p.set_defaults(func=cmd_hand_replace_evidence)
 
+    p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", help="output directory (default <package>/natural_pose/garments)")
+    p.set_defaults(func=cmd_garment_evidence)
+
+    p = sub.add_parser("garment-weights", help="Phase 3.3: validate the garment weight meshes; explain a point")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--explain", nargs=3, metavar=("LAYER", "X", "Y"), help="why a rest point follows its bones")
+    p.add_argument("--export", help="write the weight meshes (npz) and the garment structure (json) to this prefix")
+    p.set_defaults(func=cmd_garment_weights)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -710,6 +721,39 @@ def cmd_hand_library(args: argparse.Namespace) -> int:
     for lib, rec in library_status(HandStore(args.package), st).items():
         print(f"{lib}: {rec['status']} ({rec['reason']}); sleeve {rec['sleeve']}")
     return 0
+
+
+def cmd_garment_evidence(args: argparse.Namespace) -> int:
+    from .garmentrig.evidence import garment_evidence
+
+    res = garment_evidence(args.package, args.out, progress=print)
+    print(f"garment evidence: {len(res['tests'])} tests, mean pose {res['performance']['pose_wall_s_mean']} s; "
+          "visual review required")
+    return 0
+
+
+def cmd_garment_weights(args: argparse.Namespace) -> int:
+    import json
+
+    import numpy as np
+
+    from .motion.pipeline import engine_for_package
+
+    eng, _ = engine_for_package(args.package)
+    v = eng.weights.validate()
+    print(f"weight meshes: {v['meshes']}, active vertices {v['vertices']}, issues {v['n_issues']}, "
+          f"op errors {len(v['op_errors'])}")
+    for i in v["issues"][:20]:
+        print(f"  {i}")
+    if args.explain:
+        cid, x, y = args.explain
+        print(json.dumps(eng.weights.explain(cid, (float(x), float(y))), indent=1))
+    if args.export:
+        np.savez_compressed(f"{args.export}_weights.npz", **eng.weights.export_arrays())
+        with open(f"{args.export}_structure.json", "w", encoding="utf-8") as f:
+            json.dump(eng.structure.to_json(), f, indent=1, default=str)
+        print(f"wrote {args.export}_weights.npz and {args.export}_structure.json")
+    return 0 if v["ok"] else 1
 
 
 def cmd_hand_replace_evidence(args: argparse.Namespace) -> int:

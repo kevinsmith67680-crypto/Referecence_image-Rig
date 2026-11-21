@@ -388,10 +388,12 @@ def test_correction_triggers_have_hysteresis_and_report_missing_art(eng):
     cs.reset()
     sh = np.asarray(e.sk.bone("upper_arm_r").head)
     L = e.profile.arm("r")
-    ik = {"arm_r": {"enabled": True, "mode": "ik", "target": [float(sh[0] - 0.12 * L), float(sh[1] + 0.36 * L)]}}
+    # Phase 3.3: the elbow is read on the sleeve's anatomical axis (the garment-aligned shoulder pivot tilts the
+    # bone line by ~13 deg), so the target is placed where the *visible* elbow bend is deep (> 125 deg)
+    ik = {"arm_r": {"enabled": True, "mode": "ik", "target": [float(sh[0] - 0.08 * L), float(sh[1] + 0.24 * L)]}}
     r = e.pose("relaxed_standing", ik=ik, skeleton_only=True)
     on = {c["id"]: c for c in r["correction_switches"] if c["on"]}
-    assert "elbow_deep_r" in on and on["elbow_deep_r"]["needs_artwork"]
+    assert "elbow_deep_r" in on and on["elbow_deep_r"]["needs_artwork"] and on["elbow_deep_r"]["value_deg"] > 125
     assert r["feasibility"]["status"] == "NEEDS_ARTWORK", "a broken deep-elbow fold is not passed"
     r = e.pose("both_hands_raised", skeleton_only=True)
     on = {c["id"]: c for c in r["correction_switches"] if c["on"]}
@@ -536,7 +538,9 @@ def test_moderate_ik_reach_keeps_garments_continuous(eng):
     checks = {c["check"]: c for c in r["quality"]["checks"]}
     for k in ("bone_length_rel", "axial_scale", "ik_error_px", "ground_penetration_px", "planted_ankle_error_px"):
         assert checks[k]["pass"], checks[k]
-    # the IK result went through the garment engine (rotation-dependent bands are active at the bent elbow)
-    assert any("forearm_r" in str(c) or "upper_arm_r" in str(c) for c in r["corrections"])
+    # the IK result went through the garment engine: the bent elbow is drawn as rigid sleeve segments over the
+    # joint patch (Phase 3.3) and the garment evaluator graded the elbow fold
+    assert {"segment:sleeve_upper_r", "segment:sleeve_fore_r"} <= {p["piece"] for p in r["render"]["pieces"]}
+    assert "elbow_r" in r["garment_eval"]["parts"]
     seams = {k: checks[k]["value"] for k in ("exposed_gap_pairs", "visible_seam_pairs", "outline_break_pairs")}
     assert seams["exposed_gap_pairs"] <= checks["exposed_gap_pairs"]["threshold"] * 4, seams  # measured, reported

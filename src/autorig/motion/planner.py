@@ -112,6 +112,12 @@ def hands_on_hips(p, **_):
     arms = {}
     for s in SIDES:  # wrist on the side of the waist, a little above the hip line: the elbow must come out
         tgt = (p.midline_x + LAT[s] * (p.waist_half - 0.1 * p.hip_sep), p.waist_y - 0.35 * (p.hip_y - p.waist_y))
+        sh = p.shoulder.get(s)
+        if sh is not None:  # keep the wrist within 90 % of the arm's reach (the elbow comes out, the shoulder stays)
+            v = np.subtract(tgt, sh)
+            d, R = float(np.hypot(*v)), 0.9 * p.arm(s)
+            if d > R:
+                tgt = tuple(np.asarray(sh, float) + v * (R / d))
         arms[s] = ArmIntent(target=tgt, elbow="out", hand_dir=LAT[s] * 20.0, hand=["fist", "open"])
     return PoseIntent("hands_on_hips", "Hands on hips", "wrists on the hips, elbows out, chest open",
                       legs=_feet(p, p.stance_natural + 0.2 * p.hip_sep, knee_min=4.0), arms=arms,
@@ -239,7 +245,7 @@ ARM_STYLE = {"fist": {"flex": 80.0, "flex_amp": 38.0, "abd": 20.0, "abd_amp": 6.
 CYCLE_SECONDS = {"run": 0.75, "walk": 1.1}  # one gait cycle at speed 1
 ARM_SKEW = 0.28  # > 0: the forward arm swing is quicker than the return (phase warp)
 LIFT_SKEW = 0.22  # > 0: the foot lifts quickly and lowers more slowly into the next contact
-ARC = {"run": 5.0, "walk": 4.0}  # elbow moves out on the forward swing, in on the return: the hand travels an arc
+ARC = {"run": 5.0, "walk": 8.0}  # elbow moves out on the forward swing, in on the return: the hand travels an arc
 
 
 def warp(u: float, skew: float) -> float:

@@ -28,10 +28,12 @@ const PY = process.env.AUTORIG_PYTHON || "python3";
 const SHOTS = process.env.AUTORIG_SHOTS || path.join(repo, "docs/phase3/screenshots");
 const SHOTS32 = process.env.AUTORIG_SHOTS_P32 || path.join(repo, "docs/phase3_2/screenshots");
 const SHOTSHR = process.env.AUTORIG_SHOTS_HR || path.join(repo, "docs/hand_replacement/screenshots");
+const SHOTS33 = process.env.AUTORIG_SHOTS_P33 || path.join(repo, "docs/phase3_3/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
 mkdirSync(SHOTS32, { recursive: true });
+mkdirSync(SHOTS33, { recursive: true });
 
 const sha = (f) => createHash("sha256").update(readFileSync(f)).digest("hex");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -512,6 +514,35 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     hl = await api("/api/handstore");
     assert.equal(hl.libraries[NEW].status, "active");
     assert.equal(hl.libraries.schoolboy_hand_switches_v1.status, "archived");
+    await page.reload();
+    await page.waitForSelector("[data-testid=layers-panel]");
+
+    // 6f. Phase 3.3 garment weights: parts overlay, bone heatmap, a brush edit (project op), explain, undo
+    await page.click("[data-testid=layer-upper_arm_r]");
+    await page.click("[data-testid=tab-Weights]");
+    await page.waitForSelector("[data-testid=weights-panel]");
+    await page.waitForFunction(() => /validation: OK/.test(document.querySelector("[data-testid=weights-panel]").textContent), null, { timeout: 180000 });
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: path.join(SHOTS33, "01_weights_parts_overlay.png") });
+    await page.selectOption("[data-testid=weights-view]", "influence");
+    await page.selectOption("[data-testid=weights-bone]", "forearm_r");
+    await page.waitForTimeout(2500);
+    await page.screenshot({ path: path.join(SHOTS33, "02_weights_forearm_heatmap.png") });
+    const nOps = (await api("/api/project")).state.garment_weights.ops.length;
+    await post("/api/op", { type: "weights.smooth", layer: "upper_arm_r", center: [277, 474], radius: 20, strength: 0.4 });
+    let gw = (await api("/api/project")).state.garment_weights.ops;
+    assert.equal(gw.length, nOps + 1, "a weight edit is a project operation");
+    const ex = await post("/api/garments/explain", { layer: "upper_arm_r", x: 277, y: 474 });
+    assert.equal(ex.part, "elbow_r");
+    assert.ok(ex.allowed_bones.includes("forearm_r") && ex.user_edits >= 1, JSON.stringify(ex));
+    await post("/api/undo");
+    gw = (await api("/api/project")).state.garment_weights.ops;
+    assert.equal(gw.length, nOps, "undo removes the weight edit");
+    const gi = await api("/api/garments");
+    assert.ok(gi.available && gi.validation.ok, "garment rig and weight meshes valid");
+    // step 4 dragged the right shoulder pivot: the user's pivot is kept; the left one is garment-aligned
+    assert.ok(gi.pivots.some((p) => p.joint === "shoulder_r" && p.aligned === false && /editor/.test(p.reason)), JSON.stringify(gi.pivots.slice(0, 2)));
+    assert.ok(gi.pivots.some((p) => p.joint === "shoulder_l" && p.aligned));
     await page.reload();
     await page.waitForSelector("[data-testid=layers-panel]");
 

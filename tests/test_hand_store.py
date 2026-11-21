@@ -283,7 +283,10 @@ def test_every_stored_hand_stays_attached_under_ik_without_duplicate_cuffs(eng):
         sm = posed_seam(r, e, "r", v.layer)
         assert pa["sleeve_gap_px"] <= 2.0, (v.cid, pa)
         assert sm["own_white_px_near_wrist"] <= 60, (v.cid, sm)
-        assert sm["fill"] >= 0.6, (v.cid, sm)
+        # Phase 3.3: the sleeve cuff is rigid on the forearm (hand switches never displace it), so the cuff end no
+        # longer tilts with the wrist; the measured fill dropped from 0.63-0.77 to 0.565-0.70 with no visible change
+        # (natural_pose/garments/evidence: hand_cuff_before_after.png)
+        assert sm["fill"] >= 0.55, (v.cid, sm)
 
 
 @real
@@ -348,7 +351,7 @@ def test_switch_machinery_keeps_the_neutral_render(eng):
 def test_project_persists_hand_store_decisions_with_undo_redo(pkg):
     from autorig.editor.project import VERSION, EditorProject, OpError
     p = EditorProject(pkg)
-    assert VERSION == 4
+    assert VERSION == 5
     uid = "schoolboy_hand_switches_v1/left_point"
     p.submit({"type": "handstore.use", "side": "l", "pose": "pointing", "candidate": f"store:{uid}"})
     p.submit({"type": "approval.set", "item": approval_key(uid, 1), "status": "approved"})
@@ -379,7 +382,7 @@ def test_project_persists_hand_store_decisions_with_undo_redo(pkg):
     data["cursor"] = len(data["ops"])
     p.path.write_text(json.dumps(data))
     q = EditorProject(pkg)
-    assert q.data["schema_version"] == 4 and 2 in q.data["migrated_from"] and q.state()["hand_store"]["use"] == {}
+    assert q.data["schema_version"] == 5 and 2 in q.data["migrated_from"] and q.state()["hand_store"]["use"] == {}
 
 
 @real
