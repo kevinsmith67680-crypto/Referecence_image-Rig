@@ -90,8 +90,13 @@ approved by a person.
 - Changed:
   - schema-version pins 8 → 9, as each phase does;
   - the synthetic selection library in `test_hand_replacement.py` gained explicit metadata (what each test drawing
-    shows), because the engine now requires metadata for palm-specific actions. No assertion was weakened.
-- Full backend suite: see `- **Backend, full suite:** 589 passed, 2 skipped (the native Moho tests, NOT EXECUTED), 1 failed (19 min 38 s).
+    shows), because the engine now requires metadata for palm-specific actions. No assertion was weakened;
+  - one assertion in the e2e hand-replacement step changed meaning. It used to expect the left thumbs-up drawing on the
+    relaxed preset's hanging arm. Even after the maximum wrist aim that drawing stays turned 54° from how it was drawn
+    (tolerance 45°), so its thumb would not point up. The step now asserts that the engine follows the intention,
+    rejects the tilted drawing with the rotation reason and reports it. The positive case (forearm out, thumbs-up
+    shown) is in the regression evidence and the unit tests.
+- **Backend, full suite:** 589 passed, 2 skipped (the native Moho tests, NOT EXECUTED), 1 failed (19 min 38 s).
   The failure was a real validation gap (a metadata key `../etc` was accepted), fixed during the run and re-verified.
   The suite had loaded the code before several late fixes (production gesture substitution, raised-arm shoulder
   check, symmetric shoulder chord, metadata-key validation), so every affected file was re-run on the final code:
@@ -99,22 +104,20 @@ approved by a person.
   `test_p35_artistic`, with **139 passed**. Net result: 591 passed (546 before Phase 3.7, plus 45 new), 2 skipped,
   0 failing.
 - **Frontend:** vitest 11 passed. `tsc` clean; `editor/dist` rebuilt.
-- **Browser e2e** (Playwright, headless Chromium, real package copy): E2E_RESULT
-- **Native Moho tests:** 2 NOT EXECUTED (Moho not available).` below. Frontend vitest and the browser e2e (with steps 6j and 6k) are listed in
-  the same section. Native Moho tests: 2 NOT EXECUTED (Moho not available).
-
-FULL_SUITE
+- **Browser e2e** (Playwright, headless Chromium, real package copy, steps 6j Hand Inspector and 6k Ref Motion):
+  E2E_RESULT
+- **Native Moho tests:** 2 NOT EXECUTED (Moho not available).
 
 ## 5. Benchmarks (cloud sandbox CPU, x86_64; not the user's M1)
 
 | operation | time |
 |---|---|
-| hand selection, both sides (constraints + scoring + explanation) | 0.57 ms median |
-| skeleton solve with hand selection (performance frame) | 8.0 ms median |
-| full render (artwork, correctives) | 4.1 s |
-| reference analysis (2.8 s clip, 85 frames) | 5.1 ms |
-| retarget | 0.5 ms |
-| rule-based critic per rendered frame (incl. wrist seams) | 423 ms |
+| hand selection, both sides (constraints + scoring + explanation) | 0.44 ms median |
+| skeleton solve with hand selection (performance frame) | 5.8 ms median |
+| full render (artwork, correctives) | 4.5 s |
+| reference analysis (2.8 s clip, 85 frames) | 5.7 ms |
+| retarget | 0.55 ms |
+| rule-based critic per rendered frame (incl. wrist seams) | 337 ms |
 | MediaPipe Pose (full) per frame, CPU | 68 ms (import only, never during interactive animation) |
 | ffmpeg decode, 44 frames 720p | 0.27 s |
 
