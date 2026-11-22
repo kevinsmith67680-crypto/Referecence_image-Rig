@@ -374,8 +374,8 @@ faithful, editable **Moho Pro 14** character rig.
 - Inspection records keep a `revisions` log. Re-inspections never delete the previous reading.
 - Requested vs rendered: evidence renders pass the project's saved switches. `handcheck.switch_consistency` must be
   ok, and a substitution always carries a note.
-- Garment weights depend on the garment part, never on the Phase 1 layer: the torso family is smoothed on one canvas
-  field.
+- Garment weights depend on the garment part, never on the Phase 1 layer: the shoulder and sleeve-cap parts (which
+  the torso/upper-arm cut runs through) take one canvas field; the other torso parts keep their Phase 3.3 weights.
 - Gap fills (gussets) back the partly transparent edge pixels they border; they are still composited beneath.
 - Knee limits win over the soft-knee minimum. Static balance stops where the planted legs can hold the pose and
   reports `balance_limited_by_legs`. Never raise a knee limit to pass a test.

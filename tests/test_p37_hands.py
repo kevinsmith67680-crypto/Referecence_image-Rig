@@ -420,7 +420,10 @@ def test_http_inspector_and_metadata(tmp_path):
         warnings.simplefilter("ignore")
         c = TestClient(create_app(dst))
     m = c.get("/api/hands/metadata").json()
-    assert m["available"] and len(m["summary"]["reassigned"]) == 2
+    # the cupped pair (Phase 3.7) and, since the Phase 3.8.1 re-inspection, the relaxed pair (backs of the opposite
+    # hands) are offered on their anatomical sides
+    assert m["available"] and sorted(m["summary"]["reassigned"]) == sorted(
+        f"schoolboy_hands_sleeveless/{s}_{p}" for s in ("left", "right") for p in ("cupped", "relaxed"))
     out = c.post("/api/hands/inspect", json={"mode": "production"}).json()
     for s in "rl":
         x = out["sides"][s]

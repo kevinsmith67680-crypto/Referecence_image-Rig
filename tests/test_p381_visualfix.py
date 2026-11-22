@@ -139,7 +139,7 @@ def test_shoulder_candidate_changes_only_generated_pixels_and_keeps_the_t_pose()
     assert rep["changed_original_px"] == 0 and rep["changed_generated_px"] > 500
     eng.dfm.add_variant_layer("torso__alt_test_shoulder", rgba)
     eng.variants["torso__alt_test_shoulder"] = rgba
-    order = [c for c in eng.dfm.layer_order if c in vis]
+    order = list(vis)
     a = eng.dfm.render(PoseParams.identity(len(eng.sk.bones)), order, 0)["image"]
     b = eng.dfm.render(PoseParams.identity(len(eng.sk.bones)),
                        ["torso__alt_test_shoulder" if c == "torso" else c for c in order], 0)["image"]

@@ -176,10 +176,11 @@ class WeightSet:
         inside = (pts[:, 0] >= 0) & (pts[:, 0] < W) & (pts[:, 1] >= 0) & (pts[:, 1] < H)
         active = inside & dil[cy, cx]
         full, rule = self.auto_weights(cid, pts, part)
+        full = self._smooth_family(full, part, gh, gw)
         if self.cfg.get("family_smoothing", "canvas") == "canvas":
+            # Phase 3.8.1: the shoulder parts that a Phase 1 layer cut runs through take the canvas field, so the
+            # torso and upper-arm layers agree on them; every other family part keeps the Phase 3.3 per-layer result
             full = self._smooth_family_canvas(cid, full, part, pts, rule)
-        else:  # "layer": the Phase 3.3 per-layer smoothing, kept for before/after comparisons
-            full = self._smooth_family(full, part, gh, gw)
         # restrict to the layer's bones (union of its parts' allowed bones)
         used = sorted({int(b) for b in np.nonzero(full.sum(1) > EPS)[0]}, key=lambda b: sk.topo.index(b))
         names = [sk.bones[b].name for b in used]
@@ -274,12 +275,17 @@ class WeightSet:
         self._family_field = {"spacing": g, "field": field, "fam_ids": fam_ids}
         return self._family_field
 
+    SEAM_KINDS = ("blazer_shoulder_{s}", "sleeve_cap_{s}")
+
     def _smooth_family_canvas(self, cid: str, full: np.ndarray, part: np.ndarray, pts: np.ndarray,
                               rule: dict[str, np.ndarray]) -> np.ndarray:
-        """Family vertices of this layer take the canvas field (bilinear at the vertex); in arm layers the
-        shoulder/cap vertices then blend into the arm across the shoulder plane exactly as ``auto_weights`` does."""
+        """Shoulder and sleeve-cap vertices of this layer take the canvas field (bilinear at the vertex); in arm
+        layers they then blend into the arm across the shoulder plane exactly as ``auto_weights`` does. Those are
+        the parts the Phase 1 torso / upper-arm cut runs through; the other family parts (blazer body, lapels,
+        collar, opening) keep the per-layer result in ``full``, unchanged from Phase 3.3."""
         ff = self.family_field()
-        fam = np.isin(part, ff["fam_ids"])
+        seam_ids = [i for i, p in enumerate(self.structure.parts) if p.kind in self.SEAM_KINDS]
+        fam = np.isin(part, seam_ids)
         if not fam.any():
             return full
         g, field = ff["spacing"], ff["field"]
@@ -305,7 +311,7 @@ class WeightSet:
                 out[:, m] = (1.0 - ts[m]) * out[:, m] + ts[m] * arm
         # back inside each part's restriction, normalised (as the per-layer smoothing)
         st = self.structure
-        for pi in ff["fam_ids"]:
+        for pi in seam_ids:
             m = part == pi
             if not m.any():
                 continue

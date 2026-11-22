@@ -438,8 +438,9 @@ See [phase3_8_generalisation_report.md](phase3_8_generalisation_report.md) and
     (`HANG_DEG` 40°);
   - `handcheck.switch_consistency` compares requested, resolved and rendered switches;
   - the relaxed drawings are re-inspected as backs of the opposite hands (inspection records, `revisions` log).
-- **Garment weights**: `WeightSet.family_field` smooths the torso family on a canvas grid. Weights no longer depend
-  on the Phase 1 layer cut (`family_smoothing: "layer"` keeps the old per-layer smoothing for comparison).
+- **Garment weights**: `WeightSet.family_field` smooths the torso family on a canvas grid. The shoulder and sleeve-cap
+  parts take it, so their weights no longer depend on the Phase 1 layer cut; the other parts are unchanged
+  (`family_smoothing: "layer"` keeps the old per-layer smoothing for comparison).
 - **Correctives**: `armpit_fill` backs the partly transparent edge pixels it borders.
 - **Solver**:
   - `_pelvis_height` keeps the knee limits when they conflict with the soft-knee minimum;

@@ -63,7 +63,7 @@ Unchanged and still open:
 
 | fix | where | before → after |
 |---|---|---|
-| the torso family's weights are smoothed once on a canvas grid built from every layer's part labels, so a garment part's weights no longer depend on which Phase 1 layer holds a pixel (`family_smoothing: "layer"` keeps the old behaviour for comparison) | `garmentrig/weights.py` (`family_field`, `_smooth_family_canvas`) | clavicle weight across the left shoulder cut: torso 0.51 vs arm 0.99 → 0.62 / 0.75 / 0.84 / 0.86, monotone across the cut |
+| the shoulder and sleeve-cap parts, which the Phase 1 torso/upper-arm cut runs through, take one smoothed field computed on a canvas grid from every layer's part labels. Their weights no longer depend on which layer holds a pixel. The other torso parts (blazer body, lapels, collar, opening) keep their Phase 3.3 weights exactly; a first version that smoothed every torso part on the canvas pushed the schoolboy's standing lapel stretch to 0.2504, past its FAIL threshold (`test_p34`), and was narrowed. `family_smoothing: "layer"` keeps the old behaviour for comparison | `garmentrig/weights.py` (`family_field`, `_smooth_family_canvas`, `SEAM_KINDS`) | clavicle weight across the left shoulder cut: torso 0.51 vs arm 0.99 → 0.62 / 0.75 / 0.84 / 0.86, monotone across the cut |
 | the armpit gusset also backs the partly transparent edge pixels it borders | `garmentrig/correctives.armpit_fill` | unbacked seam pixels next to the gusset at 120°: 55 → 12 (the 12 are on the outer silhouette); the dashed light line is gone (`armpit_before_after.png`) |
 | **candidate (pending):** `ShoulderExtensionRounding`, a torso variant in which only the Phase 2 generated shoulder run under each arm changes, ending in a round shoulder outlined with the measured outline colour and width | `garmentrig/shoulder.py`; stored as `alternative:shoulder_rounding@v1` (`artwork/alternatives/torso/`) | the dark bar above the lowered shoulders is gone in review previews at 0, 30 and 60° on both arms (`shoulder_sweep_before_after.png`); 0 original pixels changed, 949 generated px; the T-pose composite is identical (test) |
 | **artwork request:** `art:arms_down_shoulder` (sloped shoulder line into a round sleeve cap, per side) | `artistic/alternatives.REQUEST_REGIONS` | the square shoulder itself is the T-pose drawing and stays NEEDS_ARTWORK |
@@ -155,12 +155,15 @@ New tests: `tests/test_p381_visualfix.py` (11), covering:
 - the garment semantics on both characters;
 - the candidates as proposals only.
 
-One existing test changed: `tests/test_hand_replacement.py::test_rules_choose_natural_hands_and_forbid_the_wrong_gestures`.
+Two existing tests changed. `tests/test_hand_replacement.py::test_rules_choose_natural_hands_and_forbid_the_wrong_gestures`:
 - Its synthetic relaxed drawing was a palm-forward hand on a hanging arm, and it asserted that production chooses
   the palm-forward original hand as the resting hand.
 - Both encoded the defect this phase fixes.
 - The fixture now uses the back-of-hand reading. The production assertion became stricter: no drawing is chosen,
   the relaxed hand is reported NEEDS_APPROVAL, and the palm-forward hand is rejected with the hanging-arm reason.
+- `tests/test_p37_hands.py::test_http_inspector_and_metadata` asserted exactly 2 reassigned drawings (the cupped
+  pair). It now asserts the exact set of 4 (cupped and relaxed pairs), because the re-inspection reassigns the
+  relaxed pair. The assertion is as strict as before.
 - No other assertion was changed or removed.
 
 | suite | Phase 3.8 | Phase 3.8.1 |
