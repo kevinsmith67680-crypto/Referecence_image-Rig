@@ -2,7 +2,9 @@
  "summary": {
   "assets": 18,
   "reassigned": [
+   "tough_student_hands_v1/right_relaxed",
    "tough_student_hands_v1/right_cupped",
+   "tough_student_hands_v1/left_relaxed",
    "tough_student_hands_v1/left_cupped"
   ],
   "label_disagrees": [],
@@ -33,14 +35,14 @@
    "schema": "autorig.hand_asset_metadata",
    "schema_version": 1,
    "gesture": "relaxed",
-   "handedness": "right",
+   "handedness": "left",
    "handedness_confidence": "medium",
-   "handedness_cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)",
-   "visible_surface": "palm",
+   "handedness_cues": "re-inspected in Phase 3.8.1: the fingers hang straight and together and the thumb is a short digit at the image-left edge, partly behind the hand outline; no palm-side cue is drawn (the palm drawings of the same sheet, e.g. the open palms and cupped hands, show palm creases). Read as the BACK of a left hand. The Phase 3.7 palm reading as a right hand put the palm toward the camera with the thumb outward on a hanging arm (a fully supinated forearm), which is not a resting hand; the artist's own arms-down front view (references/schoolboy/character_sheet.jpg) shows hanging hands from the back with the thumbs toward the body. Assistant's reading, not a person's review; correct it in the Hand Inspector if the palm reading was intended",
+   "visible_surface": "back",
    "palm_normal_sprite": [
     0.0,
     0.0,
-    1.0
+    -1.0
    ],
    "view_elevation": "level",
    "finger_dir_deg": 0.0,
@@ -84,8 +86,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 91.27,
-     "scale": 0.56277,
-     "wrist_fit": 0.767
+     "scale": 0.53823,
+     "wrist_fit": 0.733
     }
    },
    "provenance": {
@@ -116,11 +118,13 @@
    },
    "excluded": false,
    "note": null,
-   "use_side": "r",
-   "reassigned": false,
+   "use_side": "l",
+   "reassigned": true,
    "label_agrees": true,
    "rest_rotation_from_drawn_deg": 91.27,
-   "flags": [],
+   "flags": [
+    "drawn as a left hand but stored for the right side: offered on the left side only"
+   ],
    "errors": []
   },
   "original:r": {
@@ -134,17 +138,21 @@
    "approval_item": null,
    "schema": "autorig.hand_asset_metadata",
    "schema_version": 1,
-   "gesture": null,
-   "handedness": null,
-   "handedness_confidence": null,
-   "handedness_cues": null,
-   "visible_surface": null,
-   "palm_normal_sprite": null,
-   "view_elevation": null,
-   "finger_dir_deg": null,
-   "thumb": null,
-   "rotation_tolerance_deg": null,
-   "gesture_semantics": null,
+   "gesture": "open_palm",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "the character's own right hand in the T-pose (references/tough_student/tpose_front.jpg): open palm toward the viewer with palm creases, fingers outward (image left), thumb up",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera (reference pixels)",
    "viewing_direction": "front",
    "measured": {
     "wrist": {
@@ -172,15 +180,22 @@
     "state": "APPROVED",
     "item": null
    },
-   "field_sources": {},
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
    "excluded": false,
    "note": null,
    "use_side": "r",
    "reassigned": false,
    "label_agrees": true,
-   "flags": [
-    "no palm metadata: the drawing cannot satisfy a palm requirement"
-   ],
+   "flags": [],
    "errors": []
   },
   "tough_student_hands_v1/right_open_palm": {
@@ -246,8 +261,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 91.25,
-     "scale": 0.56277,
-     "wrist_fit": 0.759
+     "scale": 0.53823,
+     "wrist_fit": 0.725
     }
    },
    "provenance": {
@@ -348,8 +363,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 89.25,
-     "scale": 0.56277,
-     "wrist_fit": 0.85
+     "scale": 0.53823,
+     "wrist_fit": 0.813
     }
    },
    "provenance": {
@@ -455,8 +470,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 3.1,
-     "scale": 0.56277,
-     "wrist_fit": 0.762
+     "scale": 0.53823,
+     "wrist_fit": 0.729
     }
    },
    "provenance": {
@@ -564,8 +579,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 3.1,
-     "scale": 0.56277,
-     "wrist_fit": 0.742
+     "scale": 0.53823,
+     "wrist_fit": 0.709
     }
    },
    "provenance": {
@@ -671,8 +686,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 3.1,
-     "scale": 0.56277,
-     "wrist_fit": 0.779
+     "scale": 0.53823,
+     "wrist_fit": 0.745
     }
    },
    "provenance": {
@@ -775,8 +790,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 93.7,
-     "scale": 0.56277,
-     "wrist_fit": 0.774
+     "scale": 0.53823,
+     "wrist_fit": 0.741
     }
    },
    "provenance": {
@@ -882,8 +897,8 @@
     "rest_placement": {
      "side": "r",
      "angle_deg": 183.1,
-     "scale": 0.56277,
-     "wrist_fit": 0.762
+     "scale": 0.53823,
+     "wrist_fit": 0.729
     }
    },
    "provenance": {
@@ -937,14 +952,14 @@
    "schema": "autorig.hand_asset_metadata",
    "schema_version": 1,
    "gesture": "relaxed",
-   "handedness": "left",
+   "handedness": "right",
    "handedness_confidence": "medium",
-   "handedness_cues": "fingers hang down from an outlined wrist at the top, thumb on the image right; no palm creases are drawn, so it could also read as the back of a right hand. Read as a camera-facing left palm, consistent with the creased open palm r1c2 of the same row group",
-   "visible_surface": "palm",
+   "handedness_cues": "re-inspected in Phase 3.8.1: the fingers hang straight and together and the thumb is a short digit at the image-right edge, partly behind the hand outline; no palm-side cue is drawn (the palm drawings of the same sheet, e.g. the open palms and cupped hands, show palm creases). Read as the BACK of a right hand. The Phase 3.7 palm reading as a left hand put the palm toward the camera with the thumb outward on a hanging arm (a fully supinated forearm), which is not a resting hand; the artist's own arms-down front view (references/schoolboy/character_sheet.jpg) shows hanging hands from the back with the thumbs toward the body. Assistant's reading, not a person's review; correct it in the Hand Inspector if the palm reading was intended",
+   "visible_surface": "back",
    "palm_normal_sprite": [
     0.0,
     0.0,
-    1.0
+    -1.0
    ],
    "view_elevation": "level",
    "finger_dir_deg": 0.0,
@@ -988,8 +1003,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -89.79,
-     "scale": 0.56772,
-     "wrist_fit": 0.817
+     "scale": 0.53765,
+     "wrist_fit": 0.773
     }
    },
    "provenance": {
@@ -1020,11 +1035,13 @@
    },
    "excluded": false,
    "note": null,
-   "use_side": "l",
-   "reassigned": false,
+   "use_side": "r",
+   "reassigned": true,
    "label_agrees": true,
    "rest_rotation_from_drawn_deg": -89.79,
-   "flags": [],
+   "flags": [
+    "drawn as a right hand but stored for the left side: offered on the right side only"
+   ],
    "errors": []
   },
   "original:l": {
@@ -1038,17 +1055,21 @@
    "approval_item": null,
    "schema": "autorig.hand_asset_metadata",
    "schema_version": 1,
-   "gesture": null,
-   "handedness": null,
-   "handedness_confidence": null,
-   "handedness_cues": null,
-   "visible_surface": null,
-   "palm_normal_sprite": null,
-   "view_elevation": null,
-   "finger_dir_deg": null,
-   "thumb": null,
-   "rotation_tolerance_deg": null,
-   "gesture_semantics": null,
+   "gesture": "open_palm",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "the character's own left hand in the T-pose (references/tough_student/tpose_front.jpg): open palm toward the viewer with palm creases, fingers outward (image right), thumb up",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera (reference pixels)",
    "viewing_direction": "front",
    "measured": {
     "wrist": {
@@ -1076,15 +1097,22 @@
     "state": "APPROVED",
     "item": null
    },
-   "field_sources": {},
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
    "excluded": false,
    "note": null,
    "use_side": "l",
    "reassigned": false,
    "label_agrees": true,
-   "flags": [
-    "no palm metadata: the drawing cannot satisfy a palm requirement"
-   ],
+   "flags": [],
    "errors": []
   },
   "tough_student_hands_v1/left_open_palm": {
@@ -1150,8 +1178,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -94.75,
-     "scale": 0.56772,
-     "wrist_fit": 0.813
+     "scale": 0.53765,
+     "wrist_fit": 0.77
     }
    },
    "provenance": {
@@ -1252,8 +1280,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -91.42,
-     "scale": 0.56772,
-     "wrist_fit": 0.894
+     "scale": 0.53765,
+     "wrist_fit": 0.847
     }
    },
    "provenance": {
@@ -1359,8 +1387,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -5.38,
-     "scale": 0.56772,
-     "wrist_fit": 0.826
+     "scale": 0.53765,
+     "wrist_fit": 0.782
     }
    },
    "provenance": {
@@ -1469,8 +1497,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -7.38,
-     "scale": 0.56772,
-     "wrist_fit": 0.76
+     "scale": 0.53765,
+     "wrist_fit": 0.72
     }
    },
    "provenance": {
@@ -1576,8 +1604,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -5.38,
-     "scale": 0.56772,
-     "wrist_fit": 0.817
+     "scale": 0.53765,
+     "wrist_fit": 0.774
     }
    },
    "provenance": {
@@ -1680,8 +1708,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -94.77,
-     "scale": 0.56772,
-     "wrist_fit": 0.831
+     "scale": 0.53765,
+     "wrist_fit": 0.787
     }
    },
    "provenance": {
@@ -1787,8 +1815,8 @@
     "rest_placement": {
      "side": "l",
      "angle_deg": -185.38,
-     "scale": 0.56772,
-     "wrist_fit": 0.826
+     "scale": 0.53765,
+     "wrist_fit": 0.782
     }
    },
    "provenance": {

@@ -140,6 +140,17 @@ class SkeletalPoseSolver:
         info: dict[str, Any] = {}
         iters = 24 if it.balance == "static" and planted else 1
         clav: dict[str, float] = {}
+        legs_limited = False
+        if it.balance == "static" and planted and self._leg_infeasible(it, th, sx, planted):
+            # the starting lateral position is already past what the legs can hold: move it back toward the rest
+            # position (root shift 0, both feet under the hips) to the feasible boundary
+            safe = it.root[0]
+            if not self._leg_infeasible(it, th, safe, planted):
+                a, b = safe, sx
+                for _ in range(12):
+                    m = 0.5 * (a + b)
+                    a, b = (m, b) if not self._leg_infeasible(it, th, m, planted) else (a, m)
+                sx, legs_limited = a, True
         for _ in range(iters):
             sy, hinfo = self._pelvis_height(it, th, sx, planted)
             pose = PoseParams(th, np.ones(N), np.array([sx, sy + it.root[1]]))
@@ -154,8 +165,28 @@ class SkeletalPoseSolver:
             if abs(err) < BALANCE_TOL_PX:
                 break
             lim = 0.8 * self.p.hip_sep
-            sx = float(np.clip(sx + 0.9 * err, it.pelvis_dx - lim, it.pelvis_dx + lim))
+            sx_next = float(np.clip(sx + 0.9 * err, it.pelvis_dx - lim, it.pelvis_dx + lim))
+            if it.balance == "static" and planted and self._leg_infeasible(it, th, sx_next, planted) \
+                    and not self._leg_infeasible(it, th, sx, planted):
+                # Phase 3.8.1: the balance step would move the pelvis so far over the loaded foot that no pelvis
+                # height keeps every planted knee inside its limit while the other foot stays on the ground. The
+                # limits win over exact static balance: stop at the feasible boundary (bisection, continuous in
+                # the weight share) and report the remaining balance error.
+                a, b = sx, sx_next
+                for _ in range(12):
+                    m = 0.5 * (a + b)
+                    a, b = (m, b) if not self._leg_infeasible(it, th, m, planted) else (a, m)
+                legs_limited = True
+                if abs(a - sx) < 1e-6:
+                    break
+                sx = a
+                continue
+            sx = sx_next
         pose = PoseParams(th.copy(), np.ones(N), pose.shift.copy())
+        if legs_limited:
+            info["balance_limited_by_legs"] = True
+            notes.append("static balance limited by the legs: the pelvis stops where every planted knee stays inside "
+                         "its limit with both feet down (the remaining offset is balance_error_px)")
         notes += sorted(set(self._notes)) + [self._arm_notes[k] for k in sorted(self._arm_notes)]
         info.update(K.joints(pose))
         anat = self.anatomical(pose)
@@ -319,6 +350,13 @@ class SkeletalPoseSolver:
             return float(ankle[1] - hip[1])
         return float(ankle[1] - math.sqrt(chord * chord - dx * dx) - hip[1])
 
+    def _leg_infeasible(self, it: PoseIntent, th, sx: float, planted) -> bool:
+        """True when, at lateral root shift ``sx``, no pelvis height lets every planted leg reach its ankle with its
+        knee inside its limit (the straightest reach needs the pelvis lower than the most-bent allowed knee)."""
+        reach = max(self._need(s, th, sx, it.legs[s].ankle, MIN_FLEX) for s in planted)
+        lo = min(self._need(s, th, sx, it.legs[s].ankle, it.legs[s].knee_max) for s in planted)
+        return reach > lo + 0.05
+
     def _pelvis_height(self, it: PoseIntent, th, sx, planted) -> tuple[float, dict[str, Any]]:
         if it.balance == "dynamic":
             # gaits. Planted feet: every loaded foot must reach its ground target; a foot that is unloading or
@@ -347,10 +385,26 @@ class SkeletalPoseSolver:
         if planted:
             hi = max(self._need(s, th, sx, it.legs[s].ankle, it.legs[s].knee_min) for s in planted)
             lo = min(self._need(s, th, sx, it.legs[s].ankle, it.legs[s].knee_max) for s in planted)
-            want = hi + max(it.pelvis_dy, 0.0)
-            sy = float(np.clip(want, hi, max(lo, hi)))
-            rep = {"standing_shift_y": round(hi, 2), "requested_dy": round(it.pelvis_dy, 2),
-                   "applied_dy": round(sy - hi, 2), "limited": bool(abs(sy - want) > 0.5 or it.pelvis_dy < -0.5)}
+            conflict = None
+            if hi > lo + 1e-9:
+                # Phase 3.8.1: no height lets every planted leg keep its soft-knee minimum AND its knee limit (a wide
+                # weight shift with a softened free leg). The limit is anatomical and the minimum is a style
+                # preference, so the limit wins: the pelvis goes to the lowest height at which no planted knee passes
+                # its limit, and the legs that wanted a softer knee stand straighter. It never rises above the
+                # height at which every planted leg still reaches its ankle (no foot leaves the ground).
+                reach = max(self._need(s, th, sx, it.legs[s].ankle, MIN_FLEX) for s in planted)
+                base = max(lo, reach)
+                conflict = {"soft_knee_px": round(hi - lo, 3), "resolved_px": round(hi - base, 3),
+                            "rule": "knee limits kept; soft-knee minimum relaxed"}
+                hi_eff = base
+            else:
+                hi_eff = hi
+            want = hi_eff + max(it.pelvis_dy, 0.0)
+            sy = float(np.clip(want, hi_eff, max(lo, hi_eff)))
+            rep = {"standing_shift_y": round(hi_eff, 2), "requested_dy": round(it.pelvis_dy, 2),
+                   "applied_dy": round(sy - hi_eff, 2), "limited": bool(abs(sy - want) > 0.5 or it.pelvis_dy < -0.5)}
+            if conflict is not None:
+                rep["knee_conflict"] = conflict
             return sy, rep
         feet = it.standing_feet or {s: it.legs[s].ankle for s in SIDES if s in it.legs}
         ref = max(self._need(s, th, sx, feet[s], 3.0) for s in feet)

@@ -1134,12 +1134,15 @@ def section_reload(ctx: dict[str, Any]) -> dict[str, Any]:
     ver = p.save_version("phase 3.8 reload test")
     st1 = p.state()
     eng1, vis1 = engine(dst)
-    r1 = eng1.pose("pointing_speaking", visible=vis1, allow_pending=True)
+    # Phase 3.8.1: render with the project's saved switch state, as the editor does (the Phase 3.8 harness rendered
+    # without it, so the saved hand_r choice was persisted but not shown)
+    r1 = eng1.pose("pointing_speaking", visible=vis1, allow_pending=True, switches=st1.get("switches"))
     del p, eng1
     p2 = EditorProject(dst)
     st2 = p2.state()
+    from .motion.handcheck import switch_consistency
     eng2, vis2 = engine(dst)
-    r2 = eng2.pose("pointing_speaking", visible=vis2, allow_pending=True)
+    r2 = eng2.pose("pointing_speaking", visible=vis2, allow_pending=True, switches=st2.get("switches"))
     same_state = json.dumps(st1, sort_keys=True, default=str) == json.dumps(st2, sort_keys=True, default=str)
     same_px = bool(np.array_equal(r1["image"], r2["image"]))
     proj_json = json.loads((dst / "editor" / "project.json").read_text())
@@ -1163,6 +1166,7 @@ def section_reload(ctx: dict[str, Any]) -> dict[str, Any]:
                                                         for v in json.loads((dst / "editor" / "project.json")
                                                                             .read_text()).get("versions", []))},
            "approvals_after_reopen": {k: v.get("status") for k, v in st2["approvals"].items() if k.startswith("handstore:")},
+           "switch_consistency": switch_consistency(r2, eng2, True),
            "hands_shown": {s: r2["hands"][s]["pose"] + (" (pending)" if r2["hands"][s].get("pending_review") else "")
                            for s in ("r", "l")},
            "note": "scratch copy only: the committed package's editor project has no edits and no approvals"}

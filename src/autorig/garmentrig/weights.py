@@ -131,6 +131,7 @@ class WeightSet:
         self.meshes: dict[str, WeightMesh] = {}
         self.ops: list[dict[str, Any]] = []
         self.op_errors: list[dict[str, Any]] = []
+        self._family_field: dict[str, Any] | None = None
 
     # -- construction -------------------------------------------------------------------------------------
     def mesh_for(self, cid: str, rgba: np.ndarray) -> WeightMesh:
@@ -175,7 +176,10 @@ class WeightSet:
         inside = (pts[:, 0] >= 0) & (pts[:, 0] < W) & (pts[:, 1] >= 0) & (pts[:, 1] < H)
         active = inside & dil[cy, cx]
         full, rule = self.auto_weights(cid, pts, part)
-        full = self._smooth_family(full, part, gh, gw)
+        if self.cfg.get("family_smoothing", "canvas") == "canvas":
+            full = self._smooth_family_canvas(cid, full, part, pts, rule)
+        else:  # "layer": the Phase 3.3 per-layer smoothing, kept for before/after comparisons
+            full = self._smooth_family(full, part, gh, gw)
         # restrict to the layer's bones (union of its parts' allowed bones)
         used = sorted({int(b) for b in np.nonzero(full.sum(1) > EPS)[0]}, key=lambda b: sk.topo.index(b))
         names = [sk.bones[b].name for b in used]
@@ -219,6 +223,94 @@ class WeightSet:
                 continue
             allowed = np.zeros(nb, bool)
             allowed[[self.sk.idx[b] for b in st.parts[pi].bones if b in self.sk.idx]] = True
+            out[~allowed[:, None] & m[None, :]] = 0.0
+        out = np.clip(out, 0.0, None)
+        return out / np.maximum(out.sum(0), EPS)
+
+    # -- Phase 3.8.1: one smoothed family field for the whole canvas ------------------------------------------
+    def family_field(self) -> dict[str, Any]:
+        """The LIMITED torso family's body weights (blazer body, shoulders, sleeve caps, lapels, collar, sweater),
+        smoothed once on a canvas grid built from every layer's part labels.
+
+        The Phase 3.3 smoothing ran on each layer's own grid, so the same garment part got different weights on
+        either side of a Phase 1 layer cut: at the tough student's left shoulder the torso layer had 0.51 clavicle
+        next to 0.99 in the upper-arm layer, and the cut opened when the clavicle moved (a dark bar of the torso's
+        shoulder outline above the lowered sleeve). Garment parts are semantic, so their weights must not depend
+        on which layer holds a pixel. Body weights use the torso-layer rule (no arm share); arm layers add their
+        shoulder-plane blend on top in ``_smooth_family_canvas``."""
+        if self._family_field is not None:
+            return self._family_field
+        st = self.structure
+        H, W = st.shape
+        g = float(self.cfg.get("mesh_spacing_px", 6))
+        lab = np.full((H, W), -1, np.int16)
+        for cid in sorted(st.layer_parts, key=lambda c: ("__" in c, c)):  # originals first, then extensions/variants
+            m = st.full_map(cid)
+            put = (lab < 0) & (m >= 0)
+            lab[put] = m[put]
+        fam_ids = [i for i, p in enumerate(st.parts) if p.kind in self.SMOOTH_KINDS]
+        gw, gh = int(math.ceil(W / g)) + 1, int(math.ceil(H / g)) + 1
+        pts = np.stack(np.meshgrid(np.arange(gw) * g, np.arange(gh) * g), -1).reshape(-1, 2).astype(np.float64)
+        if (lab >= 0).any():
+            _, (iy, ix) = ndimage.distance_transform_edt(lab < 0, return_indices=True)
+            filled = lab[iy, ix]
+        else:
+            filled = np.zeros_like(lab)
+        xi = np.clip(np.rint(pts[:, 0]).astype(int), 0, W - 1)
+        yi = np.clip(np.rint(pts[:, 1]).astype(int), 0, H - 1)
+        part = filled[yi, xi].astype(np.int16)
+        near = ndimage.binary_dilation(lab >= 0, iterations=int(3 * g))[yi, xi]
+        body, _ = self.auto_weights("torso", pts, part)
+        F = (np.isin(part, fam_ids) & near).reshape(gh, gw)
+        sig = float(self.cfg.get("limited_smoothing_vertices", 2.5))
+        den = ndimage.gaussian_filter(F.astype(np.float64), sig) if sig > 0 else F.astype(np.float64)
+        field = np.zeros((body.shape[0], gh, gw))
+        for b in range(body.shape[0]):
+            row = body[b].reshape(gh, gw)
+            if not (row[F] > 0).any():
+                continue
+            num = ndimage.gaussian_filter(np.where(F, row, 0.0), sig) if sig > 0 else np.where(F, row, 0.0)
+            field[b] = np.where(den > 1e-9, num / np.maximum(den, 1e-9), row)
+        self._family_field = {"spacing": g, "field": field, "fam_ids": fam_ids}
+        return self._family_field
+
+    def _smooth_family_canvas(self, cid: str, full: np.ndarray, part: np.ndarray, pts: np.ndarray,
+                              rule: dict[str, np.ndarray]) -> np.ndarray:
+        """Family vertices of this layer take the canvas field (bilinear at the vertex); in arm layers the
+        shoulder/cap vertices then blend into the arm across the shoulder plane exactly as ``auto_weights`` does."""
+        ff = self.family_field()
+        fam = np.isin(part, ff["fam_ids"])
+        if not fam.any():
+            return full
+        g, field = ff["spacing"], ff["field"]
+        gy, gx = pts[fam, 1] / g, pts[fam, 0] / g
+        body = np.stack([_bilinear(field[b], gy, gx) for b in range(field.shape[0])])
+        out = full.copy()
+        out[:, fam] = body
+        I, sk = self.sk.idx, self.sk
+        nb = full.shape[0]
+        if layer_class(cid) != "torso":
+            names = np.array([self.structure.parts[p].name if p >= 0 else "" for p in part])
+            for s in SIDES:
+                ts = rule.get(f"shoulder_{s}")
+                if ts is None:
+                    continue
+                m = fam & np.isin(names, [f"sleeve_cap_{s}", f"blazer_shoulder_{s}"]) & ~np.isnan(ts)
+                if not m.any():
+                    continue
+                te = np.nan_to_num(rule.get(f"elbow_{s}", np.zeros(len(pts)))[m])
+                arm = np.zeros((nb, int(m.sum())))
+                arm[I[f"upper_arm_{s}"]] = 1.0 - te
+                arm[I[f"forearm_{s}"]] = te
+                out[:, m] = (1.0 - ts[m]) * out[:, m] + ts[m] * arm
+        # back inside each part's restriction, normalised (as the per-layer smoothing)
+        st = self.structure
+        for pi in ff["fam_ids"]:
+            m = part == pi
+            if not m.any():
+                continue
+            allowed = np.zeros(nb, bool)
+            allowed[[I[b] for b in st.parts[pi].bones if b in I]] = True
             out[~allowed[:, None] & m[None, :]] = 0.0
         out = np.clip(out, 0.0, None)
         return out / np.maximum(out.sum(0), EPS)
@@ -441,7 +533,8 @@ class WeightSet:
         infl = {self.sk.bones[b].name: round(float(m.influence(b, p)[0]), 4) for b in m.cum}
         rules = {k: (None if np.isnan(v[vy, vx]) else round(float(v[vy, vx]), 3)) for k, v in m.rule.items()}
         return {"layer": cid, "point": [float(xy[0]), float(xy[1])], "vertex": [vx, vy],
-                "part": part.name if part else None, "class": part.cls if part else None,
+                "part": part.name if part else None, "label": (part.label or part.name) if part else None,
+                "semantic": (part.semantic or part.kind) if part else None, "class": part.cls if part else None,
                 "allowed_bones": part.bones if part else [], "primary_bone": part.primary if part else None,
                 "weights": {b: round(float(v), 4) for b, v in zip(m.bones, w) if v > 1e-4},
                 "subtree_influence": {k: v for k, v in infl.items() if v > 1e-4},

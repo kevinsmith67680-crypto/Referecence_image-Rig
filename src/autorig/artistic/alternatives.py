@@ -211,6 +211,13 @@ REQUEST_REGIONS = {
                                "torso leaning toward the viewer: a 3/4 or foreshortened blazer front"),
     "corrective:raised_arm_armpit": (["torso", "upper_arm_r"], ["chest", "upper_arm_r"],
                                      "a lean raised-arm armpit (the stretched T-pose sleeve underside reads full)"),
+    # Phase 3.8.1: the T-pose shoulder line is horizontal and meets the sleeve top, which is the outer side of a
+    # hanging arm: an arms-down shoulder (sloped shoulder line into a round sleeve cap) is not in the reference
+    "art:arms_down_shoulder": (["torso", "upper_arm_r", "upper_arm_l"], ["clavicle_r", "upper_arm_r", "clavicle_l",
+                                                                         "upper_arm_l"],
+                               "arms-down shoulders: the shoulder line sloping into a round sleeve cap on each side "
+                               "(the T-pose drawing has a horizontal shoulder that turns a square corner when the "
+                               "arm hangs)"),
 }
 
 

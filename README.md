@@ -216,6 +216,17 @@ outlines are never deleted with the background.
 The second character exposed several schoolboy-specific assumptions. Some were fixed; the colour-based garment
 labelling is documented in [docs/phase3_8_generalisation_report.md](docs/phase3_8_generalisation_report.md).
 
+Phase 3.8.1 fixed the visual defects found on that character, generally and on both characters:
+- resting hands (re-inspected relaxed drawings and an anatomical rule for hanging arms);
+- requested vs rendered hand switches;
+- layer-independent garment weights at the shoulder;
+- the armpit seam;
+- knee limits during weight shifts;
+- measured garment semantics.
+
+Artwork problems became reviewable candidates, never applied or approved. Before/after evidence is in
+`docs/phase3_8_1/`, regenerated with `autorig visual-fix-evidence`.
+
 ```bash
 .venv/bin/python -m autorig analyze references/tough_student/tpose_front.jpg --out ../ts_project --character-id tough_student --complete-outline 5
 .venv/bin/python -m autorig prepare ../ts_project --out ../ts_pkg --provider flux-fill-dev --candidates 1
@@ -283,6 +294,9 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_8_rigging_quality_report.md](docs/phase3_8_rigging_quality_report.md) | Phase 3.8: skeleton, arm lowering, poses, garments, correctives, animation (technical vs artistic) |
 | [docs/phase3_8_generalisation_report.md](docs/phase3_8_generalisation_report.md) | Phase 3.8: schoolboy-specific assumptions found, fixed or documented |
 | [docs/phase3_8_export_readiness.md](docs/phase3_8_export_readiness.md) | Phase 3.8: the new character's Moho-ready package, what is tested and what needs Moho |
+| [docs/phase3_8_1_visual_defect_audit.md](docs/phase3_8_1_visual_defect_audit.md) | Phase 3.8.1: each visual defect traced to its cause (hands, shoulders, armpits, knees, artwork) |
+| [docs/phase3_8_1_fix_report.md](docs/phase3_8_1_fix_report.md) | Phase 3.8.1: fixes, candidates, before/after measurements, acceptance gates, verdict |
+| [docs/phase3_8_1_moho_readiness.md](docs/phase3_8_1_moho_readiness.md) | Phase 3.8.1: the smallest native Moho test (NOT EXECUTED) |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

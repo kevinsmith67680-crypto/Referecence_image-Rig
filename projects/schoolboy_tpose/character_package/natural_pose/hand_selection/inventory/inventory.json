@@ -2,7 +2,9 @@
  "summary": {
   "assets": 18,
   "reassigned": [
+   "schoolboy_hands_sleeveless/right_relaxed",
    "schoolboy_hands_sleeveless/right_cupped",
+   "schoolboy_hands_sleeveless/left_relaxed",
    "schoolboy_hands_sleeveless/left_cupped"
   ],
   "label_disagrees": [],
@@ -33,14 +35,14 @@
    "schema": "autorig.hand_asset_metadata",
    "schema_version": 1,
    "gesture": "relaxed",
-   "handedness": "right",
+   "handedness": "left",
    "handedness_confidence": "medium",
-   "handedness_cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)",
-   "visible_surface": "palm",
+   "handedness_cues": "re-inspected in Phase 3.8.1: the fingers hang straight and together and the thumb is a short digit at the image-left edge, partly behind the hand outline; no palm-side cue is drawn (the palm drawings of the same sheet, e.g. the open palms and cupped hands, show palm creases). Read as the BACK of a left hand. The Phase 3.7 palm reading as a right hand put the palm toward the camera with the thumb outward on a hanging arm (a fully supinated forearm), which is not a resting hand; the artist's own arms-down front view (references/schoolboy/character_sheet.jpg) shows hanging hands from the back with the thumbs toward the body. Assistant's reading, not a person's review; correct it in the Hand Inspector if the palm reading was intended",
+   "visible_surface": "back",
    "palm_normal_sprite": [
     0.0,
     0.0,
-    1.0
+    -1.0
    ],
    "view_elevation": "level",
    "finger_dir_deg": 0.0,
@@ -116,11 +118,13 @@
    },
    "excluded": false,
    "note": null,
-   "use_side": "r",
-   "reassigned": false,
+   "use_side": "l",
+   "reassigned": true,
    "label_agrees": true,
    "rest_rotation_from_drawn_deg": 88.98,
-   "flags": [],
+   "flags": [
+    "drawn as a left hand but stored for the right side: offered on the left side only"
+   ],
    "errors": []
   },
   "original:r": {
@@ -948,14 +952,14 @@
    "schema": "autorig.hand_asset_metadata",
    "schema_version": 1,
    "gesture": "relaxed",
-   "handedness": "left",
+   "handedness": "right",
    "handedness_confidence": "medium",
-   "handedness_cues": "fingers hang down, thumb on the image right; no palm creases are drawn, so the drawing could also read as the back of a right hand. Kept as a camera-facing left palm, consistent with the open palm r1c2 of the same row group",
-   "visible_surface": "palm",
+   "handedness_cues": "re-inspected in Phase 3.8.1: the fingers hang straight and together and the thumb is a short digit at the image-right edge, partly behind the hand outline; no palm-side cue is drawn (the palm drawings of the same sheet, e.g. the open palms and cupped hands, show palm creases). Read as the BACK of a right hand. The Phase 3.7 palm reading as a left hand put the palm toward the camera with the thumb outward on a hanging arm (a fully supinated forearm), which is not a resting hand; the artist's own arms-down front view (references/schoolboy/character_sheet.jpg) shows hanging hands from the back with the thumbs toward the body. Assistant's reading, not a person's review; correct it in the Hand Inspector if the palm reading was intended",
+   "visible_surface": "back",
    "palm_normal_sprite": [
     0.0,
     0.0,
-    1.0
+    -1.0
    ],
    "view_elevation": "level",
    "finger_dir_deg": 0.0,
@@ -1031,11 +1035,13 @@
    },
    "excluded": false,
    "note": null,
-   "use_side": "l",
-   "reassigned": false,
+   "use_side": "r",
+   "reassigned": true,
    "label_agrees": true,
    "rest_rotation_from_drawn_deg": -84.11,
-   "flags": [],
+   "flags": [
+    "drawn as a right hand but stored for the left side: offered on the right side only"
+   ],
    "errors": []
   },
   "original:l": {

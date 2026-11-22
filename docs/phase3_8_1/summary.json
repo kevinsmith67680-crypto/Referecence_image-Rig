@@ -1,0 +1,19 @@
+{
+ "made": [
+  "hands_before_after.png",
+  "shoulder_sweep_before_after.png",
+  "armpit_before_after.png",
+  "knee_before_after.png",
+  "full_character_before_after.png",
+  "acting_after_contact_sheet.png",
+  "acting_after.gif"
+ ],
+ "knee_violation_frames": [
+  248,
+  0
+ ],
+ "max_knee_l": [
+  17.888,
+  10.48
+ ]
+}

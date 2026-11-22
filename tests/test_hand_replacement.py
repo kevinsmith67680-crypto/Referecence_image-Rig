@@ -202,7 +202,9 @@ class _Lib:
 
 
 # Phase 3.7: explicit test metadata (what each synthetic drawing shows), not derived from the pose names
-_NORMAL = {"palm_down": [0.0, 0.74, -0.67], "cupped": [0.0, -0.8, 0.6], "gripping": [1.0, 0.0, 0.0]}
+# Phase 3.8.1: the relaxed drawings are the back of the hand (re-inspected); a palm-forward hanging hand is rejected
+_NORMAL = {"palm_down": [0.0, 0.74, -0.67], "cupped": [0.0, -0.8, 0.6], "gripping": [1.0, 0.0, 0.0],
+           "relaxed": [0.0, 0.0, -1.0]}
 _TOL = {"relaxed": 50.0, "thumbs_up": 45.0, "palm_down": 60.0, "cupped": 35.0, "gripping": 100.0}
 
 
@@ -234,8 +236,14 @@ def test_rules_choose_natural_hands_and_forbid_the_wrong_gestures():
     for a in ("walking", "running"):
         ranked = eng.rank(lib, _ctx(action=a), None, True)
         assert not {"pointing", "thumbs_up"} & {r["pose"] for r in ranked}, a
-    # pending drawings are candidates only when previewing: otherwise the original hand
-    assert pick("relaxed_standing", ap=False) == "open_palm"
+    # pending drawings are candidates only when previewing. In production nothing is approved, and the remaining
+    # open palm faces the camera on a hanging arm, which is not a resting hand (Phase 3.8.1): no drawing is chosen,
+    # the group default is shown and the missing resting hand is reported, never silently replaced
+    d = eng.select(lib, _ctx(action="relaxed_standing"), None, False)
+    assert d["chosen"] is None
+    assert {n["pose"]: n["status"] for n in d["needs_artwork"]}["relaxed"] == "NEEDS_APPROVAL"
+    assert any("not a resting hand" in v["reason"] for r in d["rejected"] if r["pose"] == "open_palm"
+               for v in r["violations"])
     approved = _Lib(ALL, "approved")
     assert eng.select(approved, _ctx(action="running"), None, False)["chosen"] == "fist"
     assert set(ACTIONS) >= {"relaxed_standing", "walking", "running", "pointing", "shrugging", "explaining", "angry",

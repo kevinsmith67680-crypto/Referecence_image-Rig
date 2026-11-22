@@ -1,0 +1,213 @@
+{
+ "eye_white": {
+  "r": {
+   "status": "candidate",
+   "layer": "eye_r_white",
+   "generated_px": 312,
+   "before_median_rgb": [
+    19,
+    13,
+    11
+   ],
+   "before_dark_fraction": 0.939,
+   "candidate_rgb": [
+    252,
+    248,
+    243
+   ],
+   "sclera_samples_px": 448,
+   "how": "reject the FLUX eye-white extension in review, then re-run the deterministic flat fill (or import this candidate as the replacement); pending review"
+  },
+  "l": {
+   "status": "candidate",
+   "layer": "eye_l_white",
+   "generated_px": 320,
+   "before_median_rgb": [
+    16,
+    10,
+    8
+   ],
+   "before_dark_fraction": 0.997,
+   "candidate_rgb": [
+    252,
+    247,
+    242
+   ],
+   "sclera_samples_px": 429,
+   "how": "reject the FLUX eye-white extension in review, then re-run the deterministic flat fill (or import this candidate as the replacement); pending review"
+  }
+ },
+ "wrist_scale": [
+  {
+   "side": "r",
+   "pose": "relaxed",
+   "uid": "tough_student_hands_v1/left_relaxed",
+   "wrist_fit": 0.721,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.054,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/left_relaxed",
+    "fields": {
+     "scale": 1.054
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  },
+  {
+   "side": "r",
+   "pose": "pointing",
+   "uid": "tough_student_hands_v1/right_pointing",
+   "wrist_fit": 0.729,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.043,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/right_pointing",
+    "fields": {
+     "scale": 1.043
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  },
+  {
+   "side": "r",
+   "pose": "thumbs_up",
+   "uid": "tough_student_hands_v1/right_thumbs_up",
+   "wrist_fit": 0.709,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.072,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/right_thumbs_up",
+    "fields": {
+     "scale": 1.072
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  },
+  {
+   "side": "r",
+   "pose": "gripping",
+   "uid": "tough_student_hands_v1/right_gripping",
+   "wrist_fit": 0.745,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.02,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/right_gripping",
+    "fields": {
+     "scale": 1.02
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  },
+  {
+   "side": "r",
+   "pose": "palm_down",
+   "uid": "tough_student_hands_v1/right_palm_down",
+   "wrist_fit": 0.741,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.026,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/right_palm_down",
+    "fields": {
+     "scale": 1.026
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  },
+  {
+   "side": "r",
+   "pose": "cupped",
+   "uid": "tough_student_hands_v1/left_cupped",
+   "wrist_fit": 0.729,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.043,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/left_cupped",
+    "fields": {
+     "scale": 1.043
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  },
+  {
+   "side": "l",
+   "pose": "thumbs_up",
+   "uid": "tough_student_hands_v1/left_thumbs_up",
+   "wrist_fit": 0.72,
+   "alignment_status": "MISMATCH",
+   "proposed_scale": 1.056,
+   "op": {
+    "type": "handstore.placement",
+    "uid": "tough_student_hands_v1/left_thumbs_up",
+    "fields": {
+     "scale": 1.056
+    }
+   },
+   "note": "uniform, fixed per drawing (never animated); review it in the Hand Inspector"
+  }
+ ],
+ "hem": {
+  "r": {
+   "pixels": 494,
+   "components": 2
+  },
+  "l": {
+   "pixels": 481,
+   "components": 2
+  }
+ },
+ "forearm_extension": {
+  "r": {
+   "generated_px": 1040,
+   "removed_beyond_cuff_px": 1040,
+   "review": "reject the generated forearm_r extension under the original hand"
+  },
+  "l": {
+   "generated_px": 1255,
+   "removed_beyond_cuff_px": 1255,
+   "review": "reject the generated forearm_l extension under the original hand"
+  }
+ },
+ "skin": {
+  "dir": "references/tough_student/hand_grid/candidates",
+  "files": [
+   "left_cupped__skin_matched.png",
+   "left_fist__skin_matched.png",
+   "left_gripping__skin_matched.png",
+   "left_open_palm__skin_matched.png",
+   "left_palm_down__skin_matched.png",
+   "left_pointing__skin_matched.png",
+   "left_relaxed__skin_matched.png",
+   "left_thumbs_up__skin_matched.png",
+   "right_cupped__skin_matched.png",
+   "right_fist__skin_matched.png",
+   "right_gripping__skin_matched.png",
+   "right_open_palm__skin_matched.png",
+   "right_palm_down__skin_matched.png",
+   "right_pointing__skin_matched.png",
+   "right_relaxed__skin_matched.png",
+   "right_thumbs_up__skin_matched.png"
+  ],
+  "count": 16,
+  "status": "candidates on disk, never imported or approved (Phase 3.8 hand compatibility report)"
+ },
+ "detached_marks_current_vs_candidates": {
+  "relaxed_standing/production": [
+   2,
+   0
+  ],
+  "pointing_speaking/production": [
+   1,
+   0
+  ],
+  "relaxed_standing/review": [
+   2,
+   0
+  ]
+ }
+}

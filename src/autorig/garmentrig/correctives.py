@@ -550,6 +550,12 @@ def armpit_fill(image: np.ndarray, gap: np.ndarray, anchor, params: dict[str, An
     convex = np.sign(cr(S - T, C - T)) != np.sign(cr(S - T, A - T))
     region = (gw | lens) if convex else (gw & ~lens)
     region = ndimage.binary_fill_holes(region) & ~ow
+    # Phase 3.8.1: also back the partly transparent edge pixels the gusset borders (the sleeve's anti-aliased
+    # underside, alpha ~0.5-0.9). They count as figure above (alpha > 0.5), so the gusset stopped next to them and
+    # the paper showed through as a dashed light line along the seam. The fill is still composited beneath them.
+    al = image[sl][..., 3]
+    seam = (al > 0.02) & (al < 0.98) & ndimage.binary_dilation(region, iterations=2)
+    region = region | seam
     curve = np.zeros_like(gw)
     bi = np.clip(np.rint(B).astype(int), 0, [ww - 1, hh - 1])
     curve[bi[:, 1], bi[:, 0]] = True

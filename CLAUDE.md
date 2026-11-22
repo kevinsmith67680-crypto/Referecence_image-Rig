@@ -93,6 +93,15 @@ faithful, editable **Moho Pro 14** character rig.
     priority (the loaded knee passes its limit in weight shifts, so the acting test is REVIEW on this character),
     the fixed front-view ratio for reference clips.
   - Nothing is approved; Moho was not run.
+- The user explicitly started **Phase 3.8.1** (critical visual defect remediation). It is implemented; verdict
+  **PARTIAL** (`docs/phase3_8_1_fix_report.md`, audit in `docs/phase3_8_1_visual_defect_audit.md`, Moho in
+  `docs/phase3_8_1_moho_readiness.md`).
+  - Fixed generally, on both characters: resting hands, switch consistency, shoulder weight continuity, the armpit
+    seam, knee limits, garment semantics.
+  - Candidates, all pending: `alternative:shoulder_rounding@v1`; hem, eye-white, forearm-extension, wrist-scale and
+    skin candidates in `docs/phase3_8_1/artwork_candidates.*`.
+  - Production still shows the original palm-forward hand as a reported fallback until a resting drawing is
+    approved. Moho not run.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -356,6 +365,26 @@ faithful, editable **Moho Pro 14** character rig.
   REVIEW PREVIEW / PENDING.
 - The browser test for the new character is `editor/e2e/newchar.e2e.mjs`. It runs on a scratch copy; its approvals are
   persistence tests, never artistic approvals.
+
+## Phase 3.8.1 rules (visual defect remediation)
+
+- A resting hand on a hanging arm (forearm within `HANG_DEG` of vertical) shows its back or its edge.
+  - A palm-forward drawing is rejected there and reported NEEDS_ARTWORK, never shown as a resting hand.
+  - The original hand needs inspection metadata (`original` in the inspection record) so the rule can check it.
+- Inspection records keep a `revisions` log. Re-inspections never delete the previous reading.
+- Requested vs rendered: evidence renders pass the project's saved switches. `handcheck.switch_consistency` must be
+  ok, and a substitution always carries a note.
+- Garment weights depend on the garment part, never on the Phase 1 layer: the torso family is smoothed on one canvas
+  field.
+- Gap fills (gussets) back the partly transparent edge pixels they border; they are still composited beneath.
+- Knee limits win over the soft-knee minimum. Static balance stops where the planted legs can hold the pose and
+  reports `balance_limited_by_legs`. Never raise a knee limit to pass a test.
+- Garment labels are measured (`Part.semantic` / `Part.label`). Rig slot names and kinds stay, so the rules are
+  unchanged.
+- Artwork fixes are candidates (`visualfix.py`, `garmentrig/shoulder.py`). They are applied only to scratch copies for
+  previews, stored only as pending alternatives, and never approved in code.
+- `autorig visual-fix-evidence <package> --before <dir>` composes `docs/phase3_8_1/`. The before set is rendered by
+  `visualfix_evidence.py render` run with the earlier commit's sources and package.
 
 ## Hand Pose Store rules
 

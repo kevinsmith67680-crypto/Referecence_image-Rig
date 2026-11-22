@@ -13,9 +13,9 @@
   "rotation_tolerance_deg": "how far the drawing may be turned in the image plane from how it was drawn before its reading changes (a cup tips, a thumb stops pointing up, relaxed fingers stop hanging). A camera-facing flat hand keeps its palm reading at any angle, so its tolerance is 180"
  },
  "cells": {
-  "r1c1": {"gesture": "relaxed", "handedness": "left", "confidence": "medium",
-           "cues": "fingers hang down, thumb on the image right; no palm creases are drawn, so the drawing could also read as the back of a right hand. Kept as a camera-facing left palm, consistent with the open palm r1c2 of the same row group",
-           "visible_surface": "palm", "palm_normal_sprite": [0.0, 0.0, 1.0], "view_elevation": "level",
+  "r1c1": {"gesture": "relaxed", "handedness": "right", "confidence": "medium",
+           "cues": "re-inspected in Phase 3.8.1: the fingers hang straight and together and the thumb is a short digit at the image-right edge, partly behind the hand outline; no palm-side cue is drawn (the palm drawings of the same sheet, e.g. the open palms and cupped hands, show palm creases). Read as the BACK of a right hand. The Phase 3.7 palm reading as a left hand put the palm toward the camera with the thumb outward on a hanging arm (a fully supinated forearm), which is not a resting hand; the artist's own arms-down front view (references/schoolboy/character_sheet.jpg) shows hanging hands from the back with the thumbs toward the body. Assistant's reading, not a person's review; correct it in the Hand Inspector if the palm reading was intended",
+           "visible_surface": "back", "palm_normal_sprite": [0.0, 0.0, -1.0], "view_elevation": "level",
            "finger_dir_deg": 0.0, "thumb": "image_right", "rotation_tolerance_deg": 50.0,
            "gesture_semantics": "a relaxed hanging hand: the fingers read as hanging under gravity only within about 50 deg of hanging"},
   "r1c2": {"gesture": "open_palm", "handedness": "left", "confidence": "high",
@@ -53,9 +53,9 @@
            "visible_surface": "palm", "palm_normal_sprite": [0.0, -0.8, 0.6], "view_elevation": "from_above",
            "finger_dir_deg": -90.0, "thumb": "top_far", "rotation_tolerance_deg": 35.0,
            "gesture_semantics": "cupped/offering palm-up hand; turned more than about 35 deg the cup tips, turned 180 deg it is palm-down"},
-  "r3c1": {"gesture": "relaxed", "handedness": "right", "confidence": "medium",
-           "cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)",
-           "visible_surface": "palm", "palm_normal_sprite": [0.0, 0.0, 1.0], "view_elevation": "level",
+  "r3c1": {"gesture": "relaxed", "handedness": "left", "confidence": "medium",
+           "cues": "re-inspected in Phase 3.8.1: the fingers hang straight and together and the thumb is a short digit at the image-left edge, partly behind the hand outline; no palm-side cue is drawn (the palm drawings of the same sheet, e.g. the open palms and cupped hands, show palm creases). Read as the BACK of a left hand. The Phase 3.7 palm reading as a right hand put the palm toward the camera with the thumb outward on a hanging arm (a fully supinated forearm), which is not a resting hand; the artist's own arms-down front view (references/schoolboy/character_sheet.jpg) shows hanging hands from the back with the thumbs toward the body. Assistant's reading, not a person's review; correct it in the Hand Inspector if the palm reading was intended",
+           "visible_surface": "back", "palm_normal_sprite": [0.0, 0.0, -1.0], "view_elevation": "level",
            "finger_dir_deg": 0.0, "thumb": "image_left", "rotation_tolerance_deg": 50.0,
            "gesture_semantics": "a relaxed hanging hand"},
   "r3c2": {"gesture": "open_palm", "handedness": "right", "confidence": "high",
@@ -105,5 +105,9 @@
         "visible_surface": "palm", "palm_normal_sprite": [0.0, 0.0, 1.0], "view_elevation": "level",
         "finger_dir_deg": 90.0, "thumb": "top", "rotation_tolerance_deg": 180.0,
         "gesture_semantics": "open hand, palm toward the camera (reference pixels)"}
- }
+ },
+ "revisions": [
+  {"phase": "3.8.1", "date": "2026-11-22", "cell": "r1c1", "by": "assistant", "change": "relaxed: palm of a left hand -> back of a right hand", "previous": {"handedness": "left", "visible_surface": "palm", "palm_normal_sprite": [0.0, 0.0, 1.0], "confidence": "medium", "cues": "fingers hang down, thumb on the image right; no palm creases are drawn, so the drawing could also read as the back of a right hand. Kept as a camera-facing left palm, consistent with the open palm r1c2 of the same row group"}},
+  {"phase": "3.8.1", "date": "2026-11-22", "cell": "r3c1", "by": "assistant", "change": "relaxed: palm of a right hand -> back of a left hand", "previous": {"handedness": "right", "visible_surface": "palm", "palm_normal_sprite": [0.0, 0.0, 1.0], "confidence": "medium", "cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)"}}
+ ]
 }

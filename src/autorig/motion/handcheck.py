@@ -69,3 +69,47 @@ def wrist_check(res: dict[str, Any], eng, side: str) -> dict[str, Any]:
 
 
 __all__ = ["wrist_check", "THRESHOLDS"]
+
+
+def switch_consistency(res: dict[str, Any], eng, allow_pending: bool) -> dict[str, Any]:
+    """Phase 3.8.1: the requested hand switch, the resolved switch and the rendered drawing agree, per side.
+
+    For each hand it compares:
+    - the switch group's resolution (``requested`` -> ``active``, with the reason in ``note``);
+    - the pose, cid and layer the render reports for the hand;
+    - the drawing the hand library holds for that pose on that side.
+
+    A substitution (requested != active) must carry a note, so it is never silent. A pending drawing may be shown
+    only when previewing (``allow_pending``). The shown drawing's handedness must be the side's (store drawings use
+    their metadata ``use_side``). ``ok`` is False on any mismatch; nothing is corrected here."""
+    out: dict[str, Any] = {"ok": True, "sides": {}}
+    for s in ("r", "l"):
+        g = (res.get("switches") or {}).get(f"hand_{s}") or {}
+        h = (res.get("hands") or {}).get(s) or {}
+        v = eng.hand_lib.hands[s].get(h.get("pose"))
+        hm = ((v.meta or {}).get("hand_meta") if v is not None else None) or {}
+        issues: list[str] = []
+        if g and g.get("active") != h.get("pose"):
+            issues.append(f"switch resolved to {g.get('active')!r} but the render shows {h.get('pose')!r}")
+        if v is None:
+            issues.append(f"no drawing for {h.get('pose')!r} on this side")
+        else:
+            if h.get("layer") != v.layer:
+                issues.append(f"rendered layer {h.get('layer')!r} is not the {h.get('pose')!r} drawing ({v.layer!r})")
+            if h.get("cid") != v.cid:
+                issues.append(f"rendered cid {h.get('cid')!r} != library cid {v.cid!r}")
+        substituted = bool(g) and g.get("requested") != g.get("active")
+        if substituted and not g.get("note"):
+            issues.append(f"silent substitution: {g.get('requested')!r} requested, {g.get('active')!r} shown")
+        if h.get("pending_review") and not allow_pending:
+            issues.append("a pending drawing is shown outside a review preview")
+        use = hm.get("use_side")
+        if use is not None and use != s:
+            issues.append(f"the shown drawing belongs to the {'right' if use == 'r' else 'left'} hand")
+        rec = {"requested": g.get("requested"), "active": g.get("active"), "source": g.get("source"),
+               "rendered_pose": h.get("pose"), "cid": h.get("cid"), "layer": h.get("layer"),
+               "pending_review": bool(h.get("pending_review")), "substituted": substituted, "note": g.get("note"),
+               "handedness": hm.get("handedness"), "issues": issues}
+        out["sides"][s] = rec
+        out["ok"] = out["ok"] and not issues
+    return out

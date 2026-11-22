@@ -1,0 +1,51 @@
+{
+ "schema": "autorig.alternative_artwork",
+ "version": "1.0.0",
+ "items": [
+  {
+   "art_id": "shoulder_rounding",
+   "layer": "torso",
+   "supported_poses": [
+    "relaxed_standing",
+    "hands_at_sides",
+    "pointing_speaking",
+    "conversational_gesture",
+    "hands_on_hips",
+    "one_hand_shrug",
+    "head_tilt_compensated",
+    "side_lean",
+    "leaning_backward",
+    "leaning_forward",
+    "casual_walk",
+    "running",
+    "natural_squat",
+    "sitting"
+   ],
+   "supported_views": [
+    "FRONT"
+   ],
+   "attach_bone": "chest",
+   "pivot": [],
+   "compatible_bones": [],
+   "draw_order": "same_as_base",
+   "scale": 1.0,
+   "orientation_deg": 0.0,
+   "provenance": "ORIGINAL_DERIVED",
+   "method": "geometric: ShoulderExtensionRounding",
+   "transition": {
+    "kind": "switch",
+    "hold_frames": 3
+   },
+   "requirement": "art:arms_down_shoulder",
+   "version": 1,
+   "file": "artwork/alternatives/torso/shoulder_rounding@v1.png",
+   "sha256": "7b33c21a5e9a705b57bdcc48e3e52a429120e6d4ddc76fcc4d27b682f419ceaf",
+   "created": "2026-11-22T20:00:31Z",
+   "notes": [
+    "only the Phase 2 generated shoulder run under each arm changes; every original pixel is copied",
+    "an approximation until an arms-down shoulder is drawn (artwork request art:arms_down_shoulder)",
+    "pending review: preview only until approved"
+   ]
+  }
+ ]
+}

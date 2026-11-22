@@ -63,7 +63,7 @@ export function WeightsPanel({ payload, layer, rev, brush, setBrush, explain, on
           <td>{p.aligned ? `lifted ${p.lift_px}px` : p.status ?? (p.reason ?? "")}</td></tr>))}</tbody></table>
       <p className="hint">Move a pivot in the Joints tab; an edited bone keeps your position.</p>
       <div className="panel-title">Parts ({parts.length})</div>
-      <div className="parts small">{parts.map((p) => <span key={p.name} className={`chip c-${p.class}`} title={`${p.description}; bones: ${p.allowed_bones.join(", ")}`}>{p.name}</span>)}</div>
+      <div className="parts small">{parts.map((p) => <span key={p.name} className={`chip c-${p.class}`} title={`${p.description}; rig slot: ${p.name}; bones: ${p.allowed_bones.join(", ")}`}>{p.label ?? p.name}</span>)}</div>
     </div>
   );
 }

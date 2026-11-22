@@ -1,0 +1,6189 @@
+{
+ "cases": {
+  "01_tpose": {
+   "title": "T-pose",
+   "review": {
+    "hands": {},
+    "note": "identity pose: the source pixels",
+    "joints_px": {
+     "pelvis": [
+      543.7,
+      774.1
+     ],
+     "spine": [
+      542.8,
+      649.3
+     ],
+     "chest": [
+      542.0,
+      524.6
+     ],
+     "neck": [
+      541.1,
+      396.0
+     ],
+     "head": [
+      541.9,
+      309.4
+     ],
+     "clavicle_r": [
+      503.4,
+      441.5
+     ],
+     "upper_arm_r": [
+      407.14957395444765,
+      425.11957168906116
+     ],
+     "forearm_r": [
+      278.2,
+      464.2
+     ],
+     "hand_r": [
+      155.9,
+      464.7
+     ],
+     "thigh_r": [
+      480.7,
+      771.3
+     ],
+     "shin_r": [
+      415.0,
+      1014.7
+     ],
+     "foot_r": [
+      348.4,
+      1257.9
+     ],
+     "clavicle_l": [
+      584.2,
+      443.4
+     ],
+     "upper_arm_l": [
+      680.4659105324207,
+      427.5097803740673
+     ],
+     "forearm_l": [
+      808.0,
+      464.9
+     ],
+     "hand_l": [
+      928.3,
+      467.6
+     ],
+     "thigh_l": [
+      606.7,
+      776.9
+     ],
+     "shin_l": [
+      669.6,
+      1017.6
+     ],
+     "foot_l": [
+      731.5,
+      1258.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {},
+    "note": "same render (no hand choice differs)",
+    "joints_px": {
+     "pelvis": [
+      543.7,
+      774.1
+     ],
+     "spine": [
+      542.8,
+      649.3
+     ],
+     "chest": [
+      542.0,
+      524.6
+     ],
+     "neck": [
+      541.1,
+      396.0
+     ],
+     "head": [
+      541.9,
+      309.4
+     ],
+     "clavicle_r": [
+      503.4,
+      441.5
+     ],
+     "upper_arm_r": [
+      407.14957395444765,
+      425.11957168906116
+     ],
+     "forearm_r": [
+      278.2,
+      464.2
+     ],
+     "hand_r": [
+      155.9,
+      464.7
+     ],
+     "thigh_r": [
+      480.7,
+      771.3
+     ],
+     "shin_r": [
+      415.0,
+      1014.7
+     ],
+     "foot_r": [
+      348.4,
+      1257.9
+     ],
+     "clavicle_l": [
+      584.2,
+      443.4
+     ],
+     "upper_arm_l": [
+      680.4659105324207,
+      427.5097803740673
+     ],
+     "forearm_l": [
+      808.0,
+      464.9
+     ],
+     "hand_l": [
+      928.3,
+      467.6
+     ],
+     "thigh_l": [
+      606.7,
+      776.9
+     ],
+     "shin_l": [
+      669.6,
+      1017.6
+     ],
+     "foot_l": [
+      731.5,
+      1258.5
+     ]
+    }
+   }
+  },
+  "02_relaxed_standing": {
+   "title": "relaxed standing",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [
+     "torso__alt_shoulder_rounding"
+    ],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.66,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.012114874412532117,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      708.03,
+      919.55
+     ],
+     "spine": [
+      707.13,
+      794.75
+     ],
+     "chest": [
+      706.33,
+      670.05
+     ],
+     "neck": [
+      705.43,
+      541.45
+     ],
+     "head": [
+      706.23,
+      454.85
+     ],
+     "clavicle_r": [
+      667.73,
+      586.95
+     ],
+     "upper_arm_r": [
+      570.3399999999999,
+      580.12
+     ],
+     "forearm_r": [
+      579.6700000000001,
+      714.54
+     ],
+     "hand_r": [
+      590.3299999999999,
+      836.37
+     ],
+     "thigh_r": [
+      645.03,
+      916.75
+     ],
+     "shin_r": [
+      605.53,
+      1165.75
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.53,
+      588.85
+     ],
+     "upper_arm_l": [
+      845.89,
+      582.51
+     ],
+     "forearm_l": [
+      837.39,
+      715.14
+     ],
+     "hand_l": [
+      826.9,
+      835.01
+     ],
+     "thigh_l": [
+      771.03,
+      922.35
+     ],
+     "shin_l": [
+      795.91,
+      1169.8899999999999
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "left",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.66,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.012114874412532117,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      708.03,
+      919.55
+     ],
+     "spine": [
+      707.13,
+      794.75
+     ],
+     "chest": [
+      706.33,
+      670.05
+     ],
+     "neck": [
+      705.43,
+      541.45
+     ],
+     "head": [
+      706.23,
+      454.85
+     ],
+     "clavicle_r": [
+      667.73,
+      586.95
+     ],
+     "upper_arm_r": [
+      570.3399999999999,
+      580.12
+     ],
+     "forearm_r": [
+      579.6700000000001,
+      714.54
+     ],
+     "hand_r": [
+      590.3299999999999,
+      836.37
+     ],
+     "thigh_r": [
+      645.03,
+      916.75
+     ],
+     "shin_r": [
+      605.53,
+      1165.75
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.53,
+      588.85
+     ],
+     "upper_arm_l": [
+      845.89,
+      582.51
+     ],
+     "forearm_l": [
+      837.39,
+      715.14
+     ],
+     "hand_l": [
+      826.9,
+      835.01
+     ],
+     "thigh_l": [
+      771.03,
+      922.35
+     ],
+     "shin_l": [
+      795.91,
+      1169.8899999999999
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   }
+  },
+  "03_right_pointing": {
+   "title": "right pointing",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "pointing",
+      "cid": "store:tough_student_hands_v1/right_pointing",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "pointing",
+      "active": "pointing",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [
+     "torso__alt_shoulder_rounding"
+    ],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 4.0,
+     "knee_l_flexion": 8.918
+    },
+    "balance_error_px": 0.01119836507200489,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:point",
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      768.72,
+      923.81
+     ],
+     "spine": [
+      761.29,
+      799.23
+     ],
+     "chest": [
+      753.96,
+      674.74
+     ],
+     "neck": [
+      751.71,
+      546.15
+     ],
+     "head": [
+      748.95,
+      459.59
+     ],
+     "clavicle_r": [
+      714.49,
+      592.05
+     ],
+     "upper_arm_r": [
+      622.49,
+      559.36
+     ],
+     "forearm_r": [
+      488.68,
+      543.5699999999999
+     ],
+     "hand_r": [
+      386.01,
+      477.1
+     ],
+     "thigh_r": [
+      705.66,
+      924.31
+     ],
+     "shin_r": [
+      646.2,
+      1169.31
+     ],
+     "foot_r": [
+      603.96,
+      1417.9
+     ],
+     "clavicle_l": [
+      795.31,
+      593.1
+     ],
+     "upper_arm_l": [
+      892.59,
+      585.6600000000001
+     ],
+     "forearm_l": [
+      886.4,
+      718.42
+     ],
+     "hand_l": [
+      873.82,
+      838.09
+     ],
+     "thigh_l": [
+      831.78,
+      923.31
+     ],
+     "shin_l": [
+      836.93,
+      1172.04
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "pointing:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "left",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 4.0,
+     "knee_l_flexion": 8.918
+    },
+    "balance_error_px": 0.01119836507200489,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:point"
+    ],
+    "joints_px": {
+     "pelvis": [
+      768.72,
+      923.81
+     ],
+     "spine": [
+      761.29,
+      799.23
+     ],
+     "chest": [
+      753.96,
+      674.74
+     ],
+     "neck": [
+      751.71,
+      546.15
+     ],
+     "head": [
+      748.95,
+      459.59
+     ],
+     "clavicle_r": [
+      714.49,
+      592.05
+     ],
+     "upper_arm_r": [
+      622.49,
+      559.36
+     ],
+     "forearm_r": [
+      488.68,
+      543.5699999999999
+     ],
+     "hand_r": [
+      386.01,
+      477.1
+     ],
+     "thigh_r": [
+      705.66,
+      924.31
+     ],
+     "shin_r": [
+      646.2,
+      1169.31
+     ],
+     "foot_r": [
+      603.96,
+      1417.9
+     ],
+     "clavicle_l": [
+      795.31,
+      593.1
+     ],
+     "upper_arm_l": [
+      892.59,
+      585.6600000000001
+     ],
+     "forearm_l": [
+      886.4,
+      718.42
+     ],
+     "hand_l": [
+      873.82,
+      838.09
+     ],
+     "thigh_l": [
+      831.78,
+      923.31
+     ],
+     "shin_l": [
+      836.93,
+      1172.04
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   }
+  },
+  "04_left_pointing": {
+   "title": "left pointing",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "pointing",
+      "cid": "store:tough_student_hands_v1/left_pointing",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "pointing",
+      "active": "pointing",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [
+     "torso__alt_shoulder_rounding"
+    ],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 10.125,
+     "knee_l_flexion": 1.6
+    },
+    "balance_error_px": -11.132203513357013,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:point",
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      699.96,
+      935.13
+     ],
+     "spine": [
+      699.06,
+      810.33
+     ],
+     "chest": [
+      698.26,
+      685.63
+     ],
+     "neck": [
+      697.36,
+      557.03
+     ],
+     "head": [
+      698.16,
+      470.43
+     ],
+     "clavicle_r": [
+      659.6600000000001,
+      602.53
+     ],
+     "upper_arm_r": [
+      562.27,
+      595.62
+     ],
+     "forearm_r": [
+      569.26,
+      730.18
+     ],
+     "hand_r": [
+      558.6,
+      852.02
+     ],
+     "thigh_r": [
+      636.96,
+      932.33
+     ],
+     "shin_r": [
+      551.1800000000001,
+      1169.4
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      740.46,
+      604.4300000000001
+     ],
+     "upper_arm_l": [
+      836.82,
+      589.13
+     ],
+     "forearm_l": [
+      968.54,
+      606.87
+     ],
+     "hand_l": [
+      1088.7,
+      613.1700000000001
+     ],
+     "thigh_l": [
+      762.96,
+      937.93
+     ],
+     "shin_l": [
+      830.59,
+      1177.35
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "user",
+      "approval": "ORIGINAL",
+      "requested": "pointing",
+      "active": "open_palm",
+      "note": "hand_l: 'pointing' is pending review (preview it with allow_pending); showing 'open_palm'",
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 10.125,
+     "knee_l_flexion": 1.6
+    },
+    "balance_error_px": -11.132203513357013,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      699.96,
+      935.13
+     ],
+     "spine": [
+      699.06,
+      810.33
+     ],
+     "chest": [
+      698.26,
+      685.63
+     ],
+     "neck": [
+      697.36,
+      557.03
+     ],
+     "head": [
+      698.16,
+      470.43
+     ],
+     "clavicle_r": [
+      659.6600000000001,
+      602.53
+     ],
+     "upper_arm_r": [
+      562.27,
+      595.62
+     ],
+     "forearm_r": [
+      569.26,
+      730.18
+     ],
+     "hand_r": [
+      558.6,
+      852.02
+     ],
+     "thigh_r": [
+      636.96,
+      932.33
+     ],
+     "shin_r": [
+      551.1800000000001,
+      1169.4
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      740.46,
+      604.4300000000001
+     ],
+     "upper_arm_l": [
+      836.82,
+      589.13
+     ],
+     "forearm_l": [
+      968.54,
+      606.87
+     ],
+     "hand_l": [
+      1088.7,
+      613.1700000000001
+     ],
+     "thigh_l": [
+      762.96,
+      937.93
+     ],
+     "shin_l": [
+      830.59,
+      1177.35
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   }
+  },
+  "05_both_arms_lowered": {
+   "title": "both arms lowered",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [
+     "torso__alt_shoulder_rounding"
+    ],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.982,
+     "knee_l_flexion": 3.0
+    },
+    "balance_error_px": 0.005718500095781565,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      708.28,
+      918.63
+     ],
+     "spine": [
+      707.38,
+      793.83
+     ],
+     "chest": [
+      706.58,
+      669.13
+     ],
+     "neck": [
+      705.68,
+      540.53
+     ],
+     "head": [
+      706.48,
+      453.93
+     ],
+     "clavicle_r": [
+      667.98,
+      586.03
+     ],
+     "upper_arm_r": [
+      570.47,
+      581.28
+     ],
+     "forearm_r": [
+      591.48,
+      714.38
+     ],
+     "hand_r": [
+      593.62,
+      836.66
+     ],
+     "thigh_r": [
+      645.28,
+      915.83
+     ],
+     "shin_r": [
+      612.78,
+      1165.8400000000001
+     ],
+     "foot_r": [
+      619.72,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.78,
+      587.9300000000001
+     ],
+     "upper_arm_l": [
+      846.26,
+      583.6700000000001
+     ],
+     "forearm_l": [
+      826.23,
+      715.06
+     ],
+     "hand_l": [
+      824.13,
+      835.37
+     ],
+     "thigh_l": [
+      771.28,
+      921.43
+     ],
+     "shin_l": [
+      786.01,
+      1169.78
+     ],
+     "foot_l": [
+      787.72,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "left",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.982,
+     "knee_l_flexion": 3.0
+    },
+    "balance_error_px": 0.005718500095781565,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      708.28,
+      918.63
+     ],
+     "spine": [
+      707.38,
+      793.83
+     ],
+     "chest": [
+      706.58,
+      669.13
+     ],
+     "neck": [
+      705.68,
+      540.53
+     ],
+     "head": [
+      706.48,
+      453.93
+     ],
+     "clavicle_r": [
+      667.98,
+      586.03
+     ],
+     "upper_arm_r": [
+      570.47,
+      581.28
+     ],
+     "forearm_r": [
+      591.48,
+      714.38
+     ],
+     "hand_r": [
+      593.62,
+      836.66
+     ],
+     "thigh_r": [
+      645.28,
+      915.83
+     ],
+     "shin_r": [
+      612.78,
+      1165.8400000000001
+     ],
+     "foot_r": [
+      619.72,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.78,
+      587.9300000000001
+     ],
+     "upper_arm_l": [
+      846.26,
+      583.6700000000001
+     ],
+     "forearm_l": [
+      826.23,
+      715.06
+     ],
+     "hand_l": [
+      824.13,
+      835.37
+     ],
+     "thigh_l": [
+      771.28,
+      921.43
+     ],
+     "shin_l": [
+      786.01,
+      1169.78
+     ],
+     "foot_l": [
+      787.72,
+      1418.5
+     ]
+    }
+   }
+  },
+  "06_both_arms_raised": {
+   "title": "both arms raised",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.509,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.01299916702248538,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      708.37,
+      919.53
+     ],
+     "spine": [
+      707.47,
+      794.73
+     ],
+     "chest": [
+      706.67,
+      670.03
+     ],
+     "neck": [
+      705.77,
+      541.4300000000001
+     ],
+     "head": [
+      706.57,
+      454.83
+     ],
+     "clavicle_r": [
+      668.0699999999999,
+      586.9300000000001
+     ],
+     "upper_arm_r": [
+      589.1800000000001,
+      529.4100000000001
+     ],
+     "forearm_r": [
+      511.95,
+      419.0
+     ],
+     "hand_r": [
+      490.71,
+      298.56
+     ],
+     "thigh_r": [
+      645.37,
+      916.73
+     ],
+     "shin_r": [
+      606.03,
+      1165.75
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.87,
+      588.8299999999999
+     ],
+     "upper_arm_l": [
+      827.99,
+      531.74
+     ],
+     "forearm_l": [
+      903.59,
+      422.44
+     ],
+     "hand_l": [
+      924.49,
+      303.93
+     ],
+     "thigh_l": [
+      771.37,
+      922.33
+     ],
+     "shin_l": [
+      796.08,
+      1169.88
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.509,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.01299916702248538,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "corrective:gusset"
+    ],
+    "joints_px": {
+     "pelvis": [
+      708.37,
+      919.53
+     ],
+     "spine": [
+      707.47,
+      794.73
+     ],
+     "chest": [
+      706.67,
+      670.03
+     ],
+     "neck": [
+      705.77,
+      541.4300000000001
+     ],
+     "head": [
+      706.57,
+      454.83
+     ],
+     "clavicle_r": [
+      668.0699999999999,
+      586.9300000000001
+     ],
+     "upper_arm_r": [
+      589.1800000000001,
+      529.4100000000001
+     ],
+     "forearm_r": [
+      511.95,
+      419.0
+     ],
+     "hand_r": [
+      490.71,
+      298.56
+     ],
+     "thigh_r": [
+      645.37,
+      916.73
+     ],
+     "shin_r": [
+      606.03,
+      1165.75
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.87,
+      588.8299999999999
+     ],
+     "upper_arm_l": [
+      827.99,
+      531.74
+     ],
+     "forearm_l": [
+      903.59,
+      422.44
+     ],
+     "hand_l": [
+      924.49,
+      303.93
+     ],
+     "thigh_l": [
+      771.37,
+      922.33
+     ],
+     "shin_l": [
+      796.08,
+      1169.88
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   }
+  },
+  "07_subtle_shrug": {
+   "title": "subtle shrug (acting t=5.6 s)",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 4.617,
+     "knee_l_flexion": 10.0
+    },
+    "balance_error_px": -0.005745737327060851,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      742.5,
+      921.31
+     ],
+     "spine": [
+      739.18,
+      796.55
+     ],
+     "chest": [
+      735.96,
+      671.89
+     ],
+     "neck": [
+      733.55,
+      543.31
+     ],
+     "head": [
+      736.04,
+      456.74
+     ],
+     "clavicle_r": [
+      696.39,
+      589.25
+     ],
+     "upper_arm_r": [
+      599.1700000000001,
+      580.25
+     ],
+     "forearm_r": [
+      601.8399999999999,
+      714.96
+     ],
+     "hand_r": [
+      575.26,
+      834.34
+     ],
+     "thigh_r": [
+      679.45,
+      919.73
+     ],
+     "shin_r": [
+      631.6700000000001,
+      1167.27
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      777.21,
+      590.2
+     ],
+     "upper_arm_l": [
+      873.99,
+      577.85
+     ],
+     "forearm_l": [
+      867.91,
+      710.61
+     ],
+     "hand_l": [
+      884.68,
+      829.77
+     ],
+     "thigh_l": [
+      805.54,
+      922.89
+     ],
+     "shin_l": [
+      826.18,
+      1170.81
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 4.617,
+     "knee_l_flexion": 10.0
+    },
+    "balance_error_px": -0.005745737327060851,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      742.5,
+      921.31
+     ],
+     "spine": [
+      739.18,
+      796.55
+     ],
+     "chest": [
+      735.96,
+      671.89
+     ],
+     "neck": [
+      733.55,
+      543.31
+     ],
+     "head": [
+      736.04,
+      456.74
+     ],
+     "clavicle_r": [
+      696.39,
+      589.25
+     ],
+     "upper_arm_r": [
+      599.1700000000001,
+      580.25
+     ],
+     "forearm_r": [
+      601.8399999999999,
+      714.96
+     ],
+     "hand_r": [
+      575.26,
+      834.34
+     ],
+     "thigh_r": [
+      679.45,
+      919.73
+     ],
+     "shin_r": [
+      631.6700000000001,
+      1167.27
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      777.21,
+      590.2
+     ],
+     "upper_arm_l": [
+      873.99,
+      577.85
+     ],
+     "forearm_l": [
+      867.91,
+      710.61
+     ],
+     "hand_l": [
+      884.68,
+      829.77
+     ],
+     "thigh_l": [
+      805.54,
+      922.89
+     ],
+     "shin_l": [
+      826.18,
+      1170.81
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    },
+    "note": "acting frame: the director renders a REVIEW PREVIEW (pending drawings labelled); no production render of the acting test exists"
+   }
+  },
+  "08_weight_shift": {
+   "title": "weight shift (acting t=2.33 s)",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "user",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 1.6,
+     "knee_l_flexion": 10.131
+    },
+    "balance_error_px": 7.684711915635148,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      782.7,
+      925.94
+     ],
+     "spine": [
+      773.9,
+      801.45
+     ],
+     "chest": [
+      766.7,
+      676.95
+     ],
+     "neck": [
+      766.03,
+      548.35
+     ],
+     "head": [
+      770.64,
+      461.87
+     ],
+     "clavicle_r": [
+      728.25,
+      593.78
+     ],
+     "upper_arm_r": [
+      632.95,
+      572.55
+     ],
+     "forearm_r": [
+      500.56,
+      597.61
+     ],
+     "hand_r": [
+      379.31,
+      613.6
+     ],
+     "thigh_r": [
+      719.65,
+      927.13
+     ],
+     "shin_r": [
+      658.39,
+      1171.69
+     ],
+     "foot_r": [
+      603.96,
+      1417.9
+     ],
+     "clavicle_l": [
+      809.05,
+      595.8299999999999
+     ],
+     "upper_arm_l": [
+      906.33,
+      588.3199999999999
+     ],
+     "forearm_l": [
+      903.48,
+      721.19
+     ],
+     "hand_l": [
+      909.71,
+      841.36
+     ],
+     "thigh_l": [
+      845.75,
+      924.74
+     ],
+     "shin_l": [
+      846.49,
+      1173.52
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "user",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 1.6,
+     "knee_l_flexion": 10.131
+    },
+    "balance_error_px": 7.684711915635148,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      782.7,
+      925.94
+     ],
+     "spine": [
+      773.9,
+      801.45
+     ],
+     "chest": [
+      766.7,
+      676.95
+     ],
+     "neck": [
+      766.03,
+      548.35
+     ],
+     "head": [
+      770.64,
+      461.87
+     ],
+     "clavicle_r": [
+      728.25,
+      593.78
+     ],
+     "upper_arm_r": [
+      632.95,
+      572.55
+     ],
+     "forearm_r": [
+      500.56,
+      597.61
+     ],
+     "hand_r": [
+      379.31,
+      613.6
+     ],
+     "thigh_r": [
+      719.65,
+      927.13
+     ],
+     "shin_r": [
+      658.39,
+      1171.69
+     ],
+     "foot_r": [
+      603.96,
+      1417.9
+     ],
+     "clavicle_l": [
+      809.05,
+      595.8299999999999
+     ],
+     "upper_arm_l": [
+      906.33,
+      588.3199999999999
+     ],
+     "forearm_l": [
+      903.48,
+      721.19
+     ],
+     "hand_l": [
+      909.71,
+      841.36
+     ],
+     "thigh_l": [
+      845.75,
+      924.74
+     ],
+     "shin_l": [
+      846.49,
+      1173.52
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    },
+    "note": "acting frame: the director renders a REVIEW PREVIEW (pending drawings labelled); no production render of the acting test exists"
+   }
+  },
+  "09_elbow_bend": {
+   "title": "elbow bend (right, 110 deg)",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "BACK_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "elbow_fold_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [
+     "torso__alt_shoulder_rounding"
+    ],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 9.615,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": -0.00977516042814841,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      700.83,
+      935.16
+     ],
+     "spine": [
+      699.93,
+      810.36
+     ],
+     "chest": [
+      699.13,
+      685.66
+     ],
+     "neck": [
+      698.23,
+      557.06
+     ],
+     "head": [
+      699.03,
+      470.46
+     ],
+     "clavicle_r": [
+      660.53,
+      602.56
+     ],
+     "upper_arm_r": [
+      563.3,
+      593.74
+     ],
+     "forearm_r": [
+      512.77,
+      718.65
+     ],
+     "hand_r": [
+      630.9,
+      750.3
+     ],
+     "thigh_r": [
+      637.8299999999999,
+      932.36
+     ],
+     "shin_r": [
+      552.7,
+      1169.67
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      741.33,
+      604.46
+     ],
+     "upper_arm_l": [
+      838.69,
+      598.04
+     ],
+     "forearm_l": [
+      832.5,
+      730.8
+     ],
+     "hand_l": [
+      842.99,
+      850.67
+     ],
+     "thigh_l": [
+      763.83,
+      937.96
+     ],
+     "shin_l": [
+      836.06,
+      1176.03
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "default",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": "left",
+      "palm": null,
+      "needs": [
+       "relaxed:NEEDS_APPROVAL",
+       "open_palm:NEEDS_ARTWORK",
+       "partially_closed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 9.615,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": -0.00977516042814841,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      700.83,
+      935.16
+     ],
+     "spine": [
+      699.93,
+      810.36
+     ],
+     "chest": [
+      699.13,
+      685.66
+     ],
+     "neck": [
+      698.23,
+      557.06
+     ],
+     "head": [
+      699.03,
+      470.46
+     ],
+     "clavicle_r": [
+      660.53,
+      602.56
+     ],
+     "upper_arm_r": [
+      563.3,
+      593.74
+     ],
+     "forearm_r": [
+      512.77,
+      718.65
+     ],
+     "hand_r": [
+      630.9,
+      750.3
+     ],
+     "thigh_r": [
+      637.8299999999999,
+      932.36
+     ],
+     "shin_r": [
+      552.7,
+      1169.67
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      741.33,
+      604.46
+     ],
+     "upper_arm_l": [
+      838.69,
+      598.04
+     ],
+     "forearm_l": [
+      832.5,
+      730.8
+     ],
+     "hand_l": [
+      842.99,
+      850.67
+     ],
+     "thigh_l": [
+      763.83,
+      937.96
+     ],
+     "shin_l": [
+      836.06,
+      1176.03
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   }
+  }
+ },
+ "sweep": {
+  "r_0": {
+   "pivot_px": [
+    563.89,
+    596.21
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "r_30": {
+   "pivot_px": [
+    569.8,
+    594.13
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "r_60": {
+   "pivot_px": [
+    570.03,
+    591.8399999999999
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "r_90": {
+   "pivot_px": [
+    570.31,
+    589.55
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "r_120": {
+   "pivot_px": [
+    573.99,
+    573.11
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "l_0": {
+   "pivot_px": [
+    843.25,
+    598.51
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "l_30": {
+   "pivot_px": [
+    837.71,
+    596.48
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "l_60": {
+   "pivot_px": [
+    837.49,
+    594.2
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "l_90": {
+   "pivot_px": [
+    837.23,
+    591.9100000000001
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  },
+  "l_120": {
+   "pivot_px": [
+    833.63,
+    575.46
+   ],
+   "variants": [
+    "torso__alt_shoulder_rounding"
+   ]
+  }
+ },
+ "acting": {
+  "0.0": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 2.811,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": -0.005911557665854161,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     745.61,
+     921.43
+    ],
+    "spine": [
+     742.1,
+     796.68
+    ],
+    "chest": [
+     738.69,
+     672.02
+    ],
+    "neck": [
+     736.17,
+     543.44
+    ],
+    "head": [
+     737.73,
+     456.85
+    ],
+    "clavicle_r": [
+     699.05,
+     589.4100000000001
+    ],
+    "upper_arm_r": [
+     601.5799999999999,
+     583.65
+    ],
+    "forearm_r": [
+     606.22,
+     718.31
+    ],
+    "hand_r": [
+     593.44,
+     839.94
+    ],
+    "thigh_r": [
+     682.57,
+     919.95
+    ],
+    "shin_r": [
+     637.1600000000001,
+     1167.94
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     779.86,
+     590.3
+    ],
+    "upper_arm_l": [
+     876.99,
+     581.03
+    ],
+    "forearm_l": [
+     868.49,
+     713.66
+    ],
+    "hand_l": [
+     870.59,
+     833.98
+    ],
+    "thigh_l": [
+     808.66,
+     922.91
+    ],
+    "shin_l": [
+     827.74,
+     1170.96
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "0.6": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 1.875,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": 0.0016631942881986106,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     748.98,
+     921.68
+    ],
+    "spine": [
+     745.06,
+     796.94
+    ],
+    "chest": [
+     740.92,
+     672.31
+    ],
+    "neck": [
+     737.64,
+     543.75
+    ],
+    "head": [
+     738.87,
+     457.15
+    ],
+    "clavicle_r": [
+     700.79,
+     589.94
+    ],
+    "upper_arm_r": [
+     603.3,
+     584.55
+    ],
+    "forearm_r": [
+     607.94,
+     719.21
+    ],
+    "hand_r": [
+     595.1600000000001,
+     840.84
+    ],
+    "thigh_r": [
+     685.93,
+     920.41
+    ],
+    "shin_r": [
+     640.88,
+     1168.46
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     781.61,
+     590.3399999999999
+    ],
+    "upper_arm_l": [
+     878.65,
+     580.27
+    ],
+    "forearm_l": [
+     870.95,
+     712.95
+    ],
+    "hand_l": [
+     873.74,
+     833.25
+    ],
+    "thigh_l": [
+     812.03,
+     922.96
+    ],
+    "shin_l": [
+     829.42,
+     1171.13
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "1.2": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 1.6,
+    "knee_l_flexion": 10.13
+   },
+   "balance_error_px": 0.7147558488142067,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     795.96,
+     928.26
+    ],
+    "spine": [
+     785.17,
+     803.92
+    ],
+    "chest": [
+     769.73,
+     680.18
+    ],
+    "neck": [
+     757.83,
+     552.12
+    ],
+    "head": [
+     752.51,
+     465.68
+    ],
+    "clavicle_r": [
+     724.16,
+     600.6800000000001
+    ],
+    "upper_arm_r": [
+     626.53,
+     601.5799999999999
+    ],
+    "forearm_r": [
+     631.1700000000001,
+     736.24
+    ],
+    "hand_r": [
+     618.39,
+     857.87
+    ],
+    "thigh_r": [
+     732.93,
+     930.46
+    ],
+    "shin_r": [
+     665.05,
+     1173.26
+    ],
+    "foot_r": [
+     603.96,
+     1417.9
+    ],
+    "clavicle_l": [
+     804.83,
+     595.6600000000001
+    ],
+    "upper_arm_l": [
+     900.86,
+     578.4100000000001
+    ],
+    "forearm_l": [
+     906.26,
+     711.2
+    ],
+    "hand_l": [
+     918.84,
+     830.87
+    ],
+    "thigh_l": [
+     858.98,
+     926.05
+    ],
+    "shin_l": [
+     853.04,
+     1174.77
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "1.8": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 7.0,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": 0.006485232393174556,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     787.28,
+     927.13
+    ],
+    "spine": [
+     776.84,
+     802.77
+    ],
+    "chest": [
+     761.74,
+     678.98
+    ],
+    "neck": [
+     749.91,
+     550.9200000000001
+    ],
+    "head": [
+     751.41,
+     464.33
+    ],
+    "clavicle_r": [
+     716.21,
+     599.46
+    ],
+    "upper_arm_r": [
+     618.5799999999999,
+     600.1
+    ],
+    "forearm_r": [
+     623.22,
+     734.77
+    ],
+    "hand_r": [
+     610.44,
+     856.4
+    ],
+    "thigh_r": [
+     724.25,
+     929.16
+    ],
+    "shin_r": [
+     649.1700000000001,
+     1169.83
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     796.88,
+     594.49
+    ],
+    "upper_arm_l": [
+     892.88,
+     577.0799999999999
+    ],
+    "forearm_l": [
+     898.29,
+     709.88
+    ],
+    "hand_l": [
+     910.87,
+     829.55
+    ],
+    "thigh_l": [
+     850.31,
+     925.1
+    ],
+    "shin_l": [
+     848.47,
+     1173.88
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "2.4": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 1.6,
+    "knee_l_flexion": 10.13
+   },
+   "balance_error_px": 6.374348889864564,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     780.04,
+     925.52
+    ],
+    "spine": [
+     771.63,
+     801.0
+    ],
+    "chest": [
+     766.67,
+     676.39
+    ],
+    "neck": [
+     769.36,
+     547.8199999999999
+    ],
+    "head": [
+     774.74,
+     461.38
+    ],
+    "clavicle_r": [
+     730.4,
+     592.25
+    ],
+    "upper_arm_r": [
+     641.3199999999999,
+     552.28
+    ],
+    "forearm_r": [
+     512.0699999999999,
+     514.23
+    ],
+    "hand_r": [
+     395.5,
+     477.23
+    ],
+    "thigh_r": [
+     716.99,
+     926.51
+    ],
+    "shin_r": [
+     657.05,
+     1171.4
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     811.12,
+     596.4100000000001
+    ],
+    "upper_arm_l": [
+     908.58,
+     591.9
+    ],
+    "forearm_l": [
+     902.99,
+     724.69
+    ],
+    "hand_l": [
+     907.22,
+     844.94
+    ],
+    "thigh_l": [
+     843.09,
+     924.52
+    ],
+    "shin_l": [
+     845.17,
+     1173.3
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "3.0": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 1.819,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": 0.0014470268985178336,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     777.35,
+     925.09
+    ],
+    "spine": [
+     769.28,
+     800.55
+    ],
+    "chest": [
+     766.98,
+     675.87
+    ],
+    "neck": [
+     774.05,
+     547.46
+    ],
+    "head": [
+     780.46,
+     461.09
+    ],
+    "clavicle_r": [
+     733.6,
+     590.54
+    ],
+    "upper_arm_r": [
+     655.7,
+     531.6800000000001
+    ],
+    "forearm_r": [
+     563.56,
+     433.37
+    ],
+    "hand_r": [
+     478.32,
+     345.65999999999997
+    ],
+    "thigh_r": [
+     714.3,
+     925.92
+    ],
+    "shin_r": [
+     655.23,
+     1171.01
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     814.13,
+     597.44
+    ],
+    "upper_arm_l": [
+     911.69,
+     596.9300000000001
+    ],
+    "forearm_l": [
+     903.19,
+     729.56
+    ],
+    "hand_l": [
+     905.29,
+     849.87
+    ],
+    "thigh_l": [
+     840.41,
+     924.26
+    ],
+    "shin_l": [
+     843.55,
+     1173.03
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "3.6": {
+   "hands": {
+    "r": {
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "pointing",
+     "active": "pointing",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 4.0,
+    "knee_l_flexion": 9.446
+   },
+   "balance_error_px": 0.014064830568031539,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:point",
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     701.51,
+     919.68
+    ],
+    "spine": [
+     704.06,
+     794.9
+    ],
+    "chest": [
+     700.73,
+     670.24
+    ],
+    "neck": [
+     690.19,
+     542.0699999999999
+    ],
+    "head": [
+     684.45,
+     455.66
+    ],
+    "clavicle_r": [
+     656.01,
+     590.27
+    ],
+    "upper_arm_r": [
+     560.25,
+     571.24
+    ],
+    "forearm_r": [
+     426.59,
+     588.28
+    ],
+    "hand_r": [
+     304.28999999999996,
+     588.12
+    ],
+    "thigh_r": [
+     638.61,
+     915.13
+    ],
+    "shin_r": [
+     612.51,
+     1165.8899999999999
+    ],
+    "foot_r": [
+     603.96,
+     1417.9
+    ],
+    "clavicle_l": [
+     736.72,
+     586.11
+    ],
+    "upper_arm_l": [
+     833.34,
+     572.47
+    ],
+    "forearm_l": [
+     824.83,
+     705.1
+    ],
+    "hand_l": [
+     822.73,
+     825.41
+    ],
+    "thigh_l": [
+     764.4,
+     924.22
+    ],
+    "shin_l": [
+     804.36,
+     1169.78
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "4.2": {
+   "hands": {
+    "r": {
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "pointing",
+     "active": "pointing",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 4.0,
+    "knee_l_flexion": 9.743
+   },
+   "balance_error_px": 0.016668579826273344,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:point",
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     710.83,
+     919.77
+    ],
+    "spine": [
+     712.13,
+     794.97
+    ],
+    "chest": [
+     708.44,
+     670.3199999999999
+    ],
+    "neck": [
+     699.1,
+     542.06
+    ],
+    "head": [
+     694.5,
+     455.58
+    ],
+    "clavicle_r": [
+     664.47,
+     589.94
+    ],
+    "upper_arm_r": [
+     568.36,
+     572.73
+    ],
+    "forearm_r": [
+     438.63,
+     609.13
+    ],
+    "hand_r": [
+     317.45,
+     625.61
+    ],
+    "thigh_r": [
+     647.89,
+     915.86
+    ],
+    "shin_r": [
+     617.1600000000001,
+     1166.0900000000001
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     745.22,
+     586.53
+    ],
+    "upper_arm_l": [
+     841.64,
+     571.6
+    ],
+    "forearm_l": [
+     834.63,
+     704.32
+    ],
+    "hand_l": [
+     836.06,
+     824.64
+    ],
+    "thigh_l": [
+     773.77,
+     923.68
+    ],
+    "shin_l": [
+     809.7,
+     1169.85
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "4.8": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 7.11,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": -0.010981711546605766,
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "missing_artwork": [],
+   "joints_px": {
+    "pelvis": [
+     733.89,
+     921.0
+    ],
+    "spine": [
+     731.27,
+     796.22
+    ],
+    "chest": [
+     728.74,
+     671.55
+    ],
+    "neck": [
+     726.63,
+     542.96
+    ],
+    "head": [
+     732.12,
+     456.53
+    ],
+    "clavicle_r": [
+     689.36,
+     588.81
+    ],
+    "upper_arm_r": [
+     593.9100000000001,
+     568.31
+    ],
+    "forearm_r": [
+     589.14,
+     702.96
+    ],
+    "hand_r": [
+     522.53,
+     805.53
+    ],
+    "thigh_r": [
+     670.86,
+     919.07
+    ],
+    "shin_r": [
+     621.9200000000001,
+     1166.3899999999999
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     770.18,
+     589.95
+    ],
+    "upper_arm_l": [
+     864.76,
+     565.98
+    ],
+    "forearm_l": [
+     867.84,
+     698.85
+    ],
+    "hand_l": [
+     928.01,
+     803.06
+    ],
+    "thigh_l": [
+     796.92,
+     922.93
+    ],
+    "shin_l": [
+     821.87,
+     1170.46
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "5.4": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 6.773,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": -0.008237823824174484,
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "missing_artwork": [],
+   "joints_px": {
+    "pelvis": [
+     735.54,
+     921.06
+    ],
+    "spine": [
+     732.77,
+     796.28
+    ],
+    "chest": [
+     730.09,
+     671.61
+    ],
+    "neck": [
+     727.92,
+     543.03
+    ],
+    "head": [
+     732.59,
+     456.55
+    ],
+    "clavicle_r": [
+     690.67,
+     588.9
+    ],
+    "upper_arm_r": [
+     594.6,
+     571.49
+    ],
+    "forearm_r": [
+     591.81,
+     706.2
+    ],
+    "hand_r": [
+     532.7,
+     813.26
+    ],
+    "thigh_r": [
+     672.51,
+     919.2
+    ],
+    "shin_r": [
+     623.48,
+     1166.5
+    ],
+    "foot_r": [
+     603.96,
+     1417.9
+    ],
+    "clavicle_l": [
+     771.49,
+     590.0
+    ],
+    "upper_arm_l": [
+     866.9,
+     569.6
+    ],
+    "forearm_l": [
+     867.55,
+     702.5
+    ],
+    "hand_l": [
+     919.46,
+     811.06
+    ],
+    "thigh_l": [
+     798.58,
+     922.91
+    ],
+    "shin_l": [
+     822.7,
+     1170.52
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "6.0": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 3.194,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": -0.0002127888942595746,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     745.0,
+     921.4
+    ],
+    "spine": [
+     741.53,
+     796.65
+    ],
+    "chest": [
+     738.16,
+     671.99
+    ],
+    "neck": [
+     735.68,
+     543.4100000000001
+    ],
+    "head": [
+     737.25,
+     456.82
+    ],
+    "clavicle_r": [
+     698.54,
+     589.37
+    ],
+    "upper_arm_r": [
+     601.0899999999999,
+     583.31
+    ],
+    "forearm_r": [
+     605.73,
+     717.98
+    ],
+    "hand_r": [
+     592.95,
+     839.61
+    ],
+    "thigh_r": [
+     681.95,
+     919.9
+    ],
+    "shin_r": [
+     636.02,
+     1167.79
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     779.36,
+     590.28
+    ],
+    "upper_arm_l": [
+     876.46,
+     580.76
+    ],
+    "forearm_l": [
+     867.95,
+     713.39
+    ],
+    "hand_l": [
+     870.05,
+     833.7
+    ],
+    "thigh_l": [
+     808.04,
+     922.91
+    ],
+    "shin_l": [
+     827.43,
+     1170.9299999999998
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "6.6": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "BACK_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 2.811,
+    "knee_l_flexion": 10.0
+   },
+   "balance_error_px": -0.005911557665854161,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     745.61,
+     921.43
+    ],
+    "spine": [
+     742.1,
+     796.68
+    ],
+    "chest": [
+     738.69,
+     672.02
+    ],
+    "neck": [
+     736.17,
+     543.44
+    ],
+    "head": [
+     737.73,
+     456.85
+    ],
+    "clavicle_r": [
+     699.05,
+     589.4100000000001
+    ],
+    "upper_arm_r": [
+     601.5799999999999,
+     583.65
+    ],
+    "forearm_r": [
+     606.22,
+     718.31
+    ],
+    "hand_r": [
+     593.44,
+     839.94
+    ],
+    "thigh_r": [
+     682.57,
+     919.95
+    ],
+    "shin_r": [
+     637.1600000000001,
+     1167.94
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     779.86,
+     590.3
+    ],
+    "upper_arm_l": [
+     876.99,
+     581.03
+    ],
+    "forearm_l": [
+     868.49,
+     713.66
+    ],
+    "hand_l": [
+     870.59,
+     833.98
+    ],
+    "thigh_l": [
+     808.66,
+     922.91
+    ],
+    "shin_l": [
+     827.74,
+     1170.96
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  }
+ },
+ "acting_knees": [
+  {
+   "t": 0.0,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.005911557665854161
+  },
+  {
+   "t": 0.0208,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.0059115769873869795
+  },
+  {
+   "t": 0.0417,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.005912119783943126
+  },
+  {
+   "t": 0.0625,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.005915424526619972
+  },
+  {
+   "t": 0.0833,
+   "knee_l": 10.0,
+   "knee_r": 2.81,
+   "violations": [],
+   "balance_error_px": -0.005926258437852994
+  },
+  {
+   "t": 0.1042,
+   "knee_l": 10.0,
+   "knee_r": 2.808,
+   "violations": [],
+   "balance_error_px": -0.00595183755740436
+  },
+  {
+   "t": 0.125,
+   "knee_l": 10.0,
+   "knee_r": 2.804,
+   "violations": [],
+   "balance_error_px": -0.006001039357215632
+  },
+  {
+   "t": 0.1458,
+   "knee_l": 10.0,
+   "knee_r": 2.797,
+   "violations": [],
+   "balance_error_px": -0.006083083793782862
+  },
+  {
+   "t": 0.1667,
+   "knee_l": 10.0,
+   "knee_r": 2.786,
+   "violations": [],
+   "balance_error_px": -0.006205877365573542
+  },
+  {
+   "t": 0.1875,
+   "knee_l": 10.0,
+   "knee_r": 2.771,
+   "violations": [],
+   "balance_error_px": -0.006374256659796629
+  },
+  {
+   "t": 0.2083,
+   "knee_l": 10.0,
+   "knee_r": 2.752,
+   "violations": [],
+   "balance_error_px": -0.0065884142393315415
+  },
+  {
+   "t": 0.2292,
+   "knee_l": 10.0,
+   "knee_r": 2.727,
+   "violations": [],
+   "balance_error_px": -0.006842823329748171
+  },
+  {
+   "t": 0.25,
+   "knee_l": 10.0,
+   "knee_r": 2.698,
+   "violations": [],
+   "balance_error_px": -0.007125982582920187
+  },
+  {
+   "t": 0.2708,
+   "knee_l": 10.0,
+   "knee_r": 2.665,
+   "violations": [],
+   "balance_error_px": -0.007421252994504357
+  },
+  {
+   "t": 0.2917,
+   "knee_l": 10.0,
+   "knee_r": 2.63,
+   "violations": [],
+   "balance_error_px": -0.0077089136788117685
+  },
+  {
+   "t": 0.3125,
+   "knee_l": 10.0,
+   "knee_r": 2.593,
+   "violations": [],
+   "balance_error_px": -0.007969274059405507
+  },
+  {
+   "t": 0.3333,
+   "knee_l": 10.0,
+   "knee_r": 2.555,
+   "violations": [],
+   "balance_error_px": -0.008186238357779985
+  },
+  {
+   "t": 0.3542,
+   "knee_l": 10.0,
+   "knee_r": 2.518,
+   "violations": [],
+   "balance_error_px": -0.00835022284400111
+  },
+  {
+   "t": 0.375,
+   "knee_l": 10.0,
+   "knee_r": 2.483,
+   "violations": [],
+   "balance_error_px": -0.008459005983013412
+  },
+  {
+   "t": 0.3958,
+   "knee_l": 10.0,
+   "knee_r": 2.449,
+   "violations": [],
+   "balance_error_px": -0.00851512311908209
+  },
+  {
+   "t": 0.4167,
+   "knee_l": 10.0,
+   "knee_r": 2.415,
+   "violations": [],
+   "balance_error_px": -0.008518601794889946
+  },
+  {
+   "t": 0.4375,
+   "knee_l": 10.0,
+   "knee_r": 2.38,
+   "violations": [],
+   "balance_error_px": -0.00846126733233632
+  },
+  {
+   "t": 0.4583,
+   "knee_l": 10.0,
+   "knee_r": 2.344,
+   "violations": [],
+   "balance_error_px": -0.008332043804784917
+  },
+  {
+   "t": 0.4792,
+   "knee_l": 10.0,
+   "knee_r": 2.307,
+   "violations": [],
+   "balance_error_px": -0.008118585386228006
+  },
+  {
+   "t": 0.5,
+   "knee_l": 10.0,
+   "knee_r": 2.27,
+   "violations": [],
+   "balance_error_px": -0.007807108953329589
+  },
+  {
+   "t": 0.5208,
+   "knee_l": 10.0,
+   "knee_r": 2.387,
+   "violations": [],
+   "balance_error_px": -0.00781906342115235
+  },
+  {
+   "t": 0.5417,
+   "knee_l": 10.0,
+   "knee_r": 2.838,
+   "violations": [],
+   "balance_error_px": 0.0028314793215713507
+  },
+  {
+   "t": 0.5625,
+   "knee_l": 10.0,
+   "knee_r": 3.069,
+   "violations": [],
+   "balance_error_px": 0.0038385517274264203
+  },
+  {
+   "t": 0.5833,
+   "knee_l": 10.0,
+   "knee_r": 2.7,
+   "violations": [],
+   "balance_error_px": 0.006387304304780628
+  },
+  {
+   "t": 0.6042,
+   "knee_l": 10.002,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.00021460335869960545
+  },
+  {
+   "t": 0.625,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.3627616141299086
+  },
+  {
+   "t": 0.6458,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.758775110437341
+  },
+  {
+   "t": 0.6667,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.0847927734753284
+  },
+  {
+   "t": 0.6875,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.3441810129439773
+  },
+  {
+   "t": 0.7083,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.5034822573439897
+  },
+  {
+   "t": 0.7292,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.54542200747278
+  },
+  {
+   "t": 0.75,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.4716132847242989
+  },
+  {
+   "t": 0.7708,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.302437214550423
+  },
+  {
+   "t": 0.7917,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.0741670304050785
+  },
+  {
+   "t": 0.8125,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.8304581331341296
+  },
+  {
+   "t": 0.8333,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6158119486387932
+  },
+  {
+   "t": 0.8542,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.46592800585119676
+  },
+  {
+   "t": 0.875,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.4004643132209367
+  },
+  {
+   "t": 0.8958,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.41848411354203563
+  },
+  {
+   "t": 0.9167,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.49630576341587584
+  },
+  {
+   "t": 0.9375,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.5879363433864455
+  },
+  {
+   "t": 0.9583,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6391881587052239
+  },
+  {
+   "t": 0.9792,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6567676882375508
+  },
+  {
+   "t": 1.0,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6637676375696628
+  },
+  {
+   "t": 1.0208,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6691542600104867
+  },
+  {
+   "t": 1.0417,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6743829674796871
+  },
+  {
+   "t": 1.0625,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6797704484969245
+  },
+  {
+   "t": 1.0833,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6851312320532088
+  },
+  {
+   "t": 1.1042,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6905182755579062
+  },
+  {
+   "t": 1.125,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.6957601965813183
+  },
+  {
+   "t": 1.1458,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7011434149716251
+  },
+  {
+   "t": 1.1667,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7063879406463229
+  },
+  {
+   "t": 1.1875,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7116352829847301
+  },
+  {
+   "t": 1.2083,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7168790863944423
+  },
+  {
+   "t": 1.2292,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7219922642061647
+  },
+  {
+   "t": 1.25,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7271038492947355
+  },
+  {
+   "t": 1.2708,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7320799368303597
+  },
+  {
+   "t": 1.2917,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7370513676988821
+  },
+  {
+   "t": 1.3125,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7420175108625244
+  },
+  {
+   "t": 1.3333,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7468417379567427
+  },
+  {
+   "t": 1.3542,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7513665216946492
+  },
+  {
+   "t": 1.375,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.7269178521222557
+  },
+  {
+   "t": 1.3958,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.5989745277964857
+  },
+  {
+   "t": 1.4167,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.32060477999618797
+  },
+  {
+   "t": 1.4375,
+   "knee_l": 10.066,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.01279654901225058
+  },
+  {
+   "t": 1.4583,
+   "knee_l": 10.0,
+   "knee_r": 2.41,
+   "violations": [],
+   "balance_error_px": 0.006821302643402305
+  },
+  {
+   "t": 1.4792,
+   "knee_l": 10.0,
+   "knee_r": 3.393,
+   "violations": [],
+   "balance_error_px": 0.016219586991496726
+  },
+  {
+   "t": 1.5,
+   "knee_l": 10.0,
+   "knee_r": 4.239,
+   "violations": [],
+   "balance_error_px": 0.004073546807717321
+  },
+  {
+   "t": 1.5208,
+   "knee_l": 10.0,
+   "knee_r": 4.99,
+   "violations": [],
+   "balance_error_px": 0.005220080119670456
+  },
+  {
+   "t": 1.5417,
+   "knee_l": 10.0,
+   "knee_r": 5.625,
+   "violations": [],
+   "balance_error_px": 0.005916970954103817
+  },
+  {
+   "t": 1.5625,
+   "knee_l": 10.0,
+   "knee_r": 6.138,
+   "violations": [],
+   "balance_error_px": 0.006283424240336899
+  },
+  {
+   "t": 1.5833,
+   "knee_l": 10.0,
+   "knee_r": 6.526,
+   "violations": [],
+   "balance_error_px": 0.006440973674102679
+  },
+  {
+   "t": 1.6042,
+   "knee_l": 10.0,
+   "knee_r": 6.79,
+   "violations": [],
+   "balance_error_px": 0.006488721212804194
+  },
+  {
+   "t": 1.625,
+   "knee_l": 10.0,
+   "knee_r": 6.941,
+   "violations": [],
+   "balance_error_px": 0.00649367600988171
+  },
+  {
+   "t": 1.6458,
+   "knee_l": 10.0,
+   "knee_r": 7.0,
+   "violations": [],
+   "balance_error_px": 0.006490381419212099
+  },
+  {
+   "t": 1.6667,
+   "knee_l": 10.0,
+   "knee_r": 7.007,
+   "violations": [],
+   "balance_error_px": 0.006488913257840068
+  },
+  {
+   "t": 1.6875,
+   "knee_l": 10.0,
+   "knee_r": 7.005,
+   "violations": [],
+   "balance_error_px": 0.006488155599072343
+  },
+  {
+   "t": 1.7083,
+   "knee_l": 10.0,
+   "knee_r": 7.004,
+   "violations": [],
+   "balance_error_px": 0.006487461974870712
+  },
+  {
+   "t": 1.7292,
+   "knee_l": 10.0,
+   "knee_r": 7.003,
+   "violations": [],
+   "balance_error_px": 0.006486834833481225
+  },
+  {
+   "t": 1.75,
+   "knee_l": 10.0,
+   "knee_r": 7.002,
+   "violations": [],
+   "balance_error_px": 0.006486276605755847
+  },
+  {
+   "t": 1.7708,
+   "knee_l": 10.0,
+   "knee_r": 7.001,
+   "violations": [],
+   "balance_error_px": 0.00648578970105973
+  },
+  {
+   "t": 1.7917,
+   "knee_l": 10.0,
+   "knee_r": 7.0,
+   "violations": [],
+   "balance_error_px": 0.006485376504656415
+  },
+  {
+   "t": 1.8125,
+   "knee_l": 10.0,
+   "knee_r": 6.999,
+   "violations": [],
+   "balance_error_px": 0.006485039372023493
+  },
+  {
+   "t": 1.8333,
+   "knee_l": 10.0,
+   "knee_r": 6.999,
+   "violations": [],
+   "balance_error_px": 0.006484778789740631
+  },
+  {
+   "t": 1.8542,
+   "knee_l": 10.0,
+   "knee_r": 6.998,
+   "violations": [],
+   "balance_error_px": 0.006484548827188519
+  },
+  {
+   "t": 1.875,
+   "knee_l": 10.0,
+   "knee_r": 6.998,
+   "violations": [],
+   "balance_error_px": 0.006484328589067445
+  },
+  {
+   "t": 1.8958,
+   "knee_l": 10.0,
+   "knee_r": 6.998,
+   "violations": [],
+   "balance_error_px": 0.006484117873128525
+  },
+  {
+   "t": 1.9167,
+   "knee_l": 10.0,
+   "knee_r": 6.997,
+   "violations": [],
+   "balance_error_px": 0.006483916475417573
+  },
+  {
+   "t": 1.9375,
+   "knee_l": 10.0,
+   "knee_r": 6.997,
+   "violations": [],
+   "balance_error_px": 0.00648372418982035
+  },
+  {
+   "t": 1.9583,
+   "knee_l": 10.0,
+   "knee_r": 6.997,
+   "violations": [],
+   "balance_error_px": 0.006483540808289945
+  },
+  {
+   "t": 1.9792,
+   "knee_l": 10.0,
+   "knee_r": 6.996,
+   "violations": [],
+   "balance_error_px": 0.006483366121415202
+  },
+  {
+   "t": 2.0,
+   "knee_l": 10.0,
+   "knee_r": 6.996,
+   "violations": [],
+   "balance_error_px": 0.006483199919102844
+  },
+  {
+   "t": 2.0208,
+   "knee_l": 10.0,
+   "knee_r": 7.095,
+   "violations": [],
+   "balance_error_px": 0.006466002787988145
+  },
+  {
+   "t": 2.0417,
+   "knee_l": 10.0,
+   "knee_r": 7.499,
+   "violations": [],
+   "balance_error_px": 0.006311157983986959
+  },
+  {
+   "t": 2.0625,
+   "knee_l": 10.0,
+   "knee_r": 7.985,
+   "violations": [],
+   "balance_error_px": 0.0059238389950451165
+  },
+  {
+   "t": 2.0833,
+   "knee_l": 10.0,
+   "knee_r": 8.204,
+   "violations": [],
+   "balance_error_px": 0.005570331376361537
+  },
+  {
+   "t": 2.1042,
+   "knee_l": 10.0,
+   "knee_r": 7.914,
+   "violations": [],
+   "balance_error_px": 0.005576066233970778
+  },
+  {
+   "t": 2.125,
+   "knee_l": 10.0,
+   "knee_r": 7.015,
+   "violations": [],
+   "balance_error_px": 0.005712372074867744
+  },
+  {
+   "t": 2.1458,
+   "knee_l": 10.0,
+   "knee_r": 5.533,
+   "violations": [],
+   "balance_error_px": 0.004994506522166375
+  },
+  {
+   "t": 2.1667,
+   "knee_l": 10.0,
+   "knee_r": 3.607,
+   "violations": [],
+   "balance_error_px": 0.014575834171296265
+  },
+  {
+   "t": 2.1875,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.028649960159327748
+  },
+  {
+   "t": 2.2083,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.5149504946747356
+  },
+  {
+   "t": 2.2292,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 3.0131612946341875
+  },
+  {
+   "t": 2.25,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 4.4350400349031815
+  },
+  {
+   "t": 2.2708,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 5.689471219528286
+  },
+  {
+   "t": 2.2917,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 6.6927631518185535
+  },
+  {
+   "t": 2.3125,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 7.387150074444207
+  },
+  {
+   "t": 2.3333,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 7.705257006946567
+  },
+  {
+   "t": 2.3542,
+   "knee_l": 10.13,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 7.62043446694463
+  },
+  {
+   "t": 2.375,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 7.208423995935618
+  },
+  {
+   "t": 2.3958,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 6.533819797231672
+  },
+  {
+   "t": 2.4167,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 5.6678261021621665
+  },
+  {
+   "t": 2.4375,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 4.687258764914304
+  },
+  {
+   "t": 2.4583,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 3.6707725630125196
+  },
+  {
+   "t": 2.4792,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 2.693837522398667
+  },
+  {
+   "t": 2.5,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.8215367489643768
+  },
+  {
+   "t": 2.5208,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.10202395348972
+  },
+  {
+   "t": 2.5417,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.5637134230133825
+  },
+  {
+   "t": 2.5625,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.1952969848198336
+  },
+  {
+   "t": 2.5833,
+   "knee_l": 10.1,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.019597956235770653
+  },
+  {
+   "t": 2.6042,
+   "knee_l": 10.028,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.012413568860438318
+  },
+  {
+   "t": 2.625,
+   "knee_l": 10.0,
+   "knee_r": 1.671,
+   "violations": [],
+   "balance_error_px": -0.0002750132561004648
+  },
+  {
+   "t": 2.6458,
+   "knee_l": 10.0,
+   "knee_r": 1.778,
+   "violations": [],
+   "balance_error_px": 0.0008179385336006817
+  },
+  {
+   "t": 2.6667,
+   "knee_l": 10.0,
+   "knee_r": 1.77,
+   "violations": [],
+   "balance_error_px": 0.000736034160354393
+  },
+  {
+   "t": 2.6875,
+   "knee_l": 10.0,
+   "knee_r": 1.646,
+   "violations": [],
+   "balance_error_px": -0.0005093877800845803
+  },
+  {
+   "t": 2.7083,
+   "knee_l": 10.037,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.013230820687908817
+  },
+  {
+   "t": 2.7292,
+   "knee_l": 10.115,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.005216069718358085
+  },
+  {
+   "t": 2.75,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.16461465054078417
+  },
+  {
+   "t": 2.7708,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.3785372215646703
+  },
+  {
+   "t": 2.7917,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.5995632861947797
+  },
+  {
+   "t": 2.8125,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.8139941241641964
+  },
+  {
+   "t": 2.8333,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.0086948673164216
+  },
+  {
+   "t": 2.8542,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.1731028513752335
+  },
+  {
+   "t": 2.875,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.299450152852046
+  },
+  {
+   "t": 2.8958,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.3838942700243706
+  },
+  {
+   "t": 2.9167,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.4282661268456422
+  },
+  {
+   "t": 2.9375,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.4407302943072864
+  },
+  {
+   "t": 2.9583,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.4172675785046067
+  },
+  {
+   "t": 2.9792,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.8450983077932506
+  },
+  {
+   "t": 3.0,
+   "knee_l": 10.0,
+   "knee_r": 1.819,
+   "violations": [],
+   "balance_error_px": 0.0014470268985178336
+  },
+  {
+   "t": 3.0208,
+   "knee_l": 10.0,
+   "knee_r": 3.362,
+   "violations": [],
+   "balance_error_px": 0.01660401197784722
+  },
+  {
+   "t": 3.0417,
+   "knee_l": 10.0,
+   "knee_r": 3.419,
+   "violations": [],
+   "balance_error_px": 0.003023910241267913
+  },
+  {
+   "t": 3.0625,
+   "knee_l": 10.0,
+   "knee_r": 2.026,
+   "violations": [],
+   "balance_error_px": 0.0071704793850813076
+  },
+  {
+   "t": 3.0833,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.8786773919376856
+  },
+  {
+   "t": 3.1042,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.723302816904038
+  },
+  {
+   "t": 3.125,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.8431441443959784
+  },
+  {
+   "t": 3.1458,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.6899520967953094
+  },
+  {
+   "t": 3.1667,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 1.3307991568151465
+  },
+  {
+   "t": 3.1875,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.803691003026529
+  },
+  {
+   "t": 3.2083,
+   "knee_l": 10.131,
+   "knee_r": 1.6,
+   "violations": [],
+   "balance_error_px": 0.20875134169864396
+  },
+  {
+   "t": 3.2292,
+   "knee_l": 10.0,
+   "knee_r": 1.669,
+   "violations": [],
+   "balance_error_px": -0.0005933929530783644
+  },
+  {
+   "t": 3.25,
+   "knee_l": 10.48,
+   "knee_r": 3.858,
+   "violations": [],
+   "balance_error_px": 0.01034777445340751
+  },
+  {
+   "t": 3.2708,
+   "knee_l": 10.236,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.018262515632045506
+  },
+  {
+   "t": 3.2917,
+   "knee_l": 9.928,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01735727508992113
+  },
+  {
+   "t": 3.3125,
+   "knee_l": 9.659,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.016353643780007587
+  },
+  {
+   "t": 3.3333,
+   "knee_l": 9.458,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.015020202302139296
+  },
+  {
+   "t": 3.3542,
+   "knee_l": 9.338,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01406258929409887
+  },
+  {
+   "t": 3.375,
+   "knee_l": 9.294,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013673599590902086
+  },
+  {
+   "t": 3.3958,
+   "knee_l": 9.31,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013635395593496469
+  },
+  {
+   "t": 3.4167,
+   "knee_l": 9.361,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01377962714525438
+  },
+  {
+   "t": 3.4375,
+   "knee_l": 9.408,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013947712662570666
+  },
+  {
+   "t": 3.4583,
+   "knee_l": 9.424,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014001796363118046
+  },
+  {
+   "t": 3.4792,
+   "knee_l": 9.429,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014018131873626771
+  },
+  {
+   "t": 3.5,
+   "knee_l": 9.433,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014028994243176385
+  },
+  {
+   "t": 3.5208,
+   "knee_l": 9.438,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014044730233763403
+  },
+  {
+   "t": 3.5417,
+   "knee_l": 9.441,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01405277177343578
+  },
+  {
+   "t": 3.5625,
+   "knee_l": 9.444,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014063078815183871
+  },
+  {
+   "t": 3.5833,
+   "knee_l": 9.446,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014063580081597138
+  },
+  {
+   "t": 3.6042,
+   "knee_l": 9.446,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014064599985658788
+  },
+  {
+   "t": 3.625,
+   "knee_l": 9.445,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014054404214903116
+  },
+  {
+   "t": 3.6458,
+   "knee_l": 9.442,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014043729558238738
+  },
+  {
+   "t": 3.6667,
+   "knee_l": 9.437,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.014021132197967745
+  },
+  {
+   "t": 3.6875,
+   "knee_l": 9.431,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013997283510548186
+  },
+  {
+   "t": 3.7083,
+   "knee_l": 9.423,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013966666013743634
+  },
+  {
+   "t": 3.7292,
+   "knee_l": 9.413,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013924015129532563
+  },
+  {
+   "t": 3.75,
+   "knee_l": 9.401,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013875471998517241
+  },
+  {
+   "t": 3.7708,
+   "knee_l": 9.388,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013827394619511324
+  },
+  {
+   "t": 3.7917,
+   "knee_l": 9.374,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013769426591352385
+  },
+  {
+   "t": 3.8125,
+   "knee_l": 9.358,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013713903639995806
+  },
+  {
+   "t": 3.8333,
+   "knee_l": 9.342,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013650730551148627
+  },
+  {
+   "t": 3.8542,
+   "knee_l": 9.326,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013592511077376912
+  },
+  {
+   "t": 3.875,
+   "knee_l": 9.31,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013529263147916026
+  },
+  {
+   "t": 3.8958,
+   "knee_l": 9.294,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01347365858248395
+  },
+  {
+   "t": 3.9167,
+   "knee_l": 9.279,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013415573892189059
+  },
+  {
+   "t": 3.9375,
+   "knee_l": 9.266,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013367440930096564
+  },
+  {
+   "t": 3.9583,
+   "knee_l": 9.253,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013318639791123132
+  },
+  {
+   "t": 3.9792,
+   "knee_l": 9.242,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013275251654818021
+  },
+  {
+   "t": 4.0,
+   "knee_l": 9.233,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013242897421832822
+  },
+  {
+   "t": 4.0208,
+   "knee_l": 9.225,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013209425856530288
+  },
+  {
+   "t": 4.0417,
+   "knee_l": 9.218,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013184885883674724
+  },
+  {
+   "t": 4.0625,
+   "knee_l": 9.211,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013158743606027201
+  },
+  {
+   "t": 4.0833,
+   "knee_l": 9.214,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013183360522589282
+  },
+  {
+   "t": 4.1042,
+   "knee_l": 9.246,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.013334915764744437
+  },
+  {
+   "t": 4.125,
+   "knee_l": 9.326,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01371861490952142
+  },
+  {
+   "t": 4.1458,
+   "knee_l": 9.44,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01435089245171639
+  },
+  {
+   "t": 4.1667,
+   "knee_l": 9.562,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.015238067860650517
+  },
+  {
+   "t": 4.1875,
+   "knee_l": 9.678,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.016421910337271584
+  },
+  {
+   "t": 4.2083,
+   "knee_l": 9.788,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.016841598102473654
+  },
+  {
+   "t": 4.2292,
+   "knee_l": 9.914,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01732739086685342
+  },
+  {
+   "t": 4.25,
+   "knee_l": 10.058,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.017887588633698215
+  },
+  {
+   "t": 4.2708,
+   "knee_l": 10.193,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01791047959716252
+  },
+  {
+   "t": 4.2917,
+   "knee_l": 10.071,
+   "knee_r": 3.478,
+   "violations": [],
+   "balance_error_px": 0.005307336240548466
+  },
+  {
+   "t": 4.3125,
+   "knee_l": 10.0,
+   "knee_r": 3.187,
+   "violations": [],
+   "balance_error_px": 0.002851213781241313
+  },
+  {
+   "t": 4.3333,
+   "knee_l": 10.0,
+   "knee_r": 3.056,
+   "violations": [],
+   "balance_error_px": 0.013731065255910835
+  },
+  {
+   "t": 4.3542,
+   "knee_l": 10.0,
+   "knee_r": 2.931,
+   "violations": [],
+   "balance_error_px": 0.008599837162705626
+  },
+  {
+   "t": 4.375,
+   "knee_l": 10.0,
+   "knee_r": 2.925,
+   "violations": [],
+   "balance_error_px": 0.00588609700548659
+  },
+  {
+   "t": 4.3958,
+   "knee_l": 10.0,
+   "knee_r": 3.097,
+   "violations": [],
+   "balance_error_px": 0.004374292335455721
+  },
+  {
+   "t": 4.4167,
+   "knee_l": 10.0,
+   "knee_r": 3.453,
+   "violations": [],
+   "balance_error_px": 0.0031208052674855935
+  },
+  {
+   "t": 4.4375,
+   "knee_l": 10.0,
+   "knee_r": 3.962,
+   "violations": [],
+   "balance_error_px": 0.010291404569215956
+  },
+  {
+   "t": 4.4583,
+   "knee_l": 10.0,
+   "knee_r": 4.52,
+   "violations": [],
+   "balance_error_px": -0.018383594805641224
+  },
+  {
+   "t": 4.4792,
+   "knee_l": 10.0,
+   "knee_r": 5.136,
+   "violations": [],
+   "balance_error_px": -0.011623767573610166
+  },
+  {
+   "t": 4.5,
+   "knee_l": 10.0,
+   "knee_r": 5.717,
+   "violations": [],
+   "balance_error_px": -0.004660390105300394
+  },
+  {
+   "t": 4.5208,
+   "knee_l": 10.0,
+   "knee_r": 6.204,
+   "violations": [],
+   "balance_error_px": -0.006783587350355447
+  },
+  {
+   "t": 4.5417,
+   "knee_l": 10.0,
+   "knee_r": 6.547,
+   "violations": [],
+   "balance_error_px": -0.008400934646601854
+  },
+  {
+   "t": 4.5625,
+   "knee_l": 10.0,
+   "knee_r": 6.732,
+   "violations": [],
+   "balance_error_px": -0.009335782563994144
+  },
+  {
+   "t": 4.5833,
+   "knee_l": 10.0,
+   "knee_r": 6.816,
+   "violations": [],
+   "balance_error_px": -0.009758343894532118
+  },
+  {
+   "t": 4.6042,
+   "knee_l": 10.0,
+   "knee_r": 6.854,
+   "violations": [],
+   "balance_error_px": -0.009932280658858872
+  },
+  {
+   "t": 4.625,
+   "knee_l": 10.0,
+   "knee_r": 6.887,
+   "violations": [],
+   "balance_error_px": -0.010079058720407374
+  },
+  {
+   "t": 4.6458,
+   "knee_l": 10.0,
+   "knee_r": 6.92,
+   "violations": [],
+   "balance_error_px": -0.010224760239452735
+  },
+  {
+   "t": 4.6667,
+   "knee_l": 10.0,
+   "knee_r": 6.952,
+   "violations": [],
+   "balance_error_px": -0.01036599772999125
+  },
+  {
+   "t": 4.6875,
+   "knee_l": 10.0,
+   "knee_r": 6.983,
+   "violations": [],
+   "balance_error_px": -0.010499549894916527
+  },
+  {
+   "t": 4.7083,
+   "knee_l": 10.0,
+   "knee_r": 7.012,
+   "violations": [],
+   "balance_error_px": -0.010622467094094645
+  },
+  {
+   "t": 4.7292,
+   "knee_l": 10.0,
+   "knee_r": 7.039,
+   "violations": [],
+   "balance_error_px": -0.01073216521649556
+  },
+  {
+   "t": 4.75,
+   "knee_l": 10.0,
+   "knee_r": 7.063,
+   "violations": [],
+   "balance_error_px": -0.0108265061541033
+  },
+  {
+   "t": 4.7708,
+   "knee_l": 10.0,
+   "knee_r": 7.085,
+   "violations": [],
+   "balance_error_px": -0.010903863177304629
+  },
+  {
+   "t": 4.7917,
+   "knee_l": 10.0,
+   "knee_r": 7.104,
+   "violations": [],
+   "balance_error_px": -0.0109631697569057
+  },
+  {
+   "t": 4.8125,
+   "knee_l": 10.0,
+   "knee_r": 7.119,
+   "violations": [],
+   "balance_error_px": -0.0110039506943167
+  },
+  {
+   "t": 4.8333,
+   "knee_l": 10.0,
+   "knee_r": 7.132,
+   "violations": [],
+   "balance_error_px": -0.011026334831285567
+  },
+  {
+   "t": 4.8542,
+   "knee_l": 10.0,
+   "knee_r": 7.142,
+   "violations": [],
+   "balance_error_px": -0.011031049024268214
+  },
+  {
+   "t": 4.875,
+   "knee_l": 10.0,
+   "knee_r": 7.15,
+   "violations": [],
+   "balance_error_px": -0.011019393480523831
+  },
+  {
+   "t": 4.8958,
+   "knee_l": 10.0,
+   "knee_r": 7.155,
+   "violations": [],
+   "balance_error_px": -0.010993198963774375
+  },
+  {
+   "t": 4.9167,
+   "knee_l": 10.0,
+   "knee_r": 7.158,
+   "violations": [],
+   "balance_error_px": -0.010954766695704166
+  },
+  {
+   "t": 4.9375,
+   "knee_l": 10.0,
+   "knee_r": 7.16,
+   "violations": [],
+   "balance_error_px": -0.010906792049240721
+  },
+  {
+   "t": 4.9583,
+   "knee_l": 10.0,
+   "knee_r": 7.16,
+   "violations": [],
+   "balance_error_px": -0.010852273280761437
+  },
+  {
+   "t": 4.9792,
+   "knee_l": 10.0,
+   "knee_r": 7.16,
+   "violations": [],
+   "balance_error_px": -0.010794406559170966
+  },
+  {
+   "t": 5.0,
+   "knee_l": 10.0,
+   "knee_r": 7.16,
+   "violations": [],
+   "balance_error_px": -0.010736468415416311
+  },
+  {
+   "t": 5.0208,
+   "knee_l": 10.0,
+   "knee_r": 7.161,
+   "violations": [],
+   "balance_error_px": -0.010681686427233217
+  },
+  {
+   "t": 5.0417,
+   "knee_l": 10.0,
+   "knee_r": 7.162,
+   "violations": [],
+   "balance_error_px": -0.010633098467337732
+  },
+  {
+   "t": 5.0625,
+   "knee_l": 10.0,
+   "knee_r": 7.165,
+   "violations": [],
+   "balance_error_px": -0.010593400245284101
+  },
+  {
+   "t": 5.0833,
+   "knee_l": 10.0,
+   "knee_r": 7.169,
+   "violations": [],
+   "balance_error_px": -0.010564780181312017
+  },
+  {
+   "t": 5.1042,
+   "knee_l": 10.0,
+   "knee_r": 7.176,
+   "violations": [],
+   "balance_error_px": -0.010548739983732958
+  },
+  {
+   "t": 5.125,
+   "knee_l": 10.0,
+   "knee_r": 7.184,
+   "violations": [],
+   "balance_error_px": -0.010545898824261712
+  },
+  {
+   "t": 5.1458,
+   "knee_l": 10.0,
+   "knee_r": 7.195,
+   "violations": [],
+   "balance_error_px": -0.0105557788385795
+  },
+  {
+   "t": 5.1667,
+   "knee_l": 10.0,
+   "knee_r": 7.206,
+   "violations": [],
+   "balance_error_px": -0.010576570068451474
+  },
+  {
+   "t": 5.1875,
+   "knee_l": 10.0,
+   "knee_r": 7.219,
+   "violations": [],
+   "balance_error_px": -0.010604874073578685
+  },
+  {
+   "t": 5.2083,
+   "knee_l": 10.0,
+   "knee_r": 7.232,
+   "violations": [],
+   "balance_error_px": -0.010635346013714297
+  },
+  {
+   "t": 5.2292,
+   "knee_l": 10.0,
+   "knee_r": 7.243,
+   "violations": [],
+   "balance_error_px": -0.010658006700396072
+  },
+  {
+   "t": 5.25,
+   "knee_l": 10.0,
+   "knee_r": 7.248,
+   "violations": [],
+   "balance_error_px": -0.010660504292332007
+  },
+  {
+   "t": 5.2708,
+   "knee_l": 10.0,
+   "knee_r": 7.246,
+   "violations": [],
+   "balance_error_px": -0.010629644683035622
+  },
+  {
+   "t": 5.2917,
+   "knee_l": 10.0,
+   "knee_r": 7.229,
+   "violations": [],
+   "balance_error_px": -0.010533888014379045
+  },
+  {
+   "t": 5.3125,
+   "knee_l": 10.0,
+   "knee_r": 7.193,
+   "violations": [],
+   "balance_error_px": -0.010342076401798295
+  },
+  {
+   "t": 5.3333,
+   "knee_l": 10.0,
+   "knee_r": 7.134,
+   "violations": [],
+   "balance_error_px": -0.010034565096134429
+  },
+  {
+   "t": 5.3542,
+   "knee_l": 10.0,
+   "knee_r": 7.05,
+   "violations": [],
+   "balance_error_px": -0.009602822543456568
+  },
+  {
+   "t": 5.375,
+   "knee_l": 10.0,
+   "knee_r": 6.94,
+   "violations": [],
+   "balance_error_px": -0.009048611233538395
+  },
+  {
+   "t": 5.3958,
+   "knee_l": 10.0,
+   "knee_r": 6.804,
+   "violations": [],
+   "balance_error_px": -0.008382843815979868
+  },
+  {
+   "t": 5.4167,
+   "knee_l": 10.0,
+   "knee_r": 6.643,
+   "violations": [],
+   "balance_error_px": -0.007624118538387847
+  },
+  {
+   "t": 5.4375,
+   "knee_l": 10.0,
+   "knee_r": 6.459,
+   "violations": [],
+   "balance_error_px": -0.006796970676646197
+  },
+  {
+   "t": 5.4583,
+   "knee_l": 10.0,
+   "knee_r": 6.256,
+   "violations": [],
+   "balance_error_px": -0.005929901770400647
+  },
+  {
+   "t": 5.4792,
+   "knee_l": 10.0,
+   "knee_r": 6.035,
+   "violations": [],
+   "balance_error_px": -0.005053269940162863
+  },
+  {
+   "t": 5.5,
+   "knee_l": 10.0,
+   "knee_r": 5.789,
+   "violations": [],
+   "balance_error_px": -0.01956715010805965
+  },
+  {
+   "t": 5.5208,
+   "knee_l": 10.0,
+   "knee_r": 5.547,
+   "violations": [],
+   "balance_error_px": -0.016107285284078898
+  },
+  {
+   "t": 5.5417,
+   "knee_l": 10.0,
+   "knee_r": 5.299,
+   "violations": [],
+   "balance_error_px": -0.012886823001963421
+  },
+  {
+   "t": 5.5625,
+   "knee_l": 10.0,
+   "knee_r": 5.05,
+   "violations": [],
+   "balance_error_px": -0.009987276285528424
+  },
+  {
+   "t": 5.5833,
+   "knee_l": 10.0,
+   "knee_r": 4.806,
+   "violations": [],
+   "balance_error_px": -0.007466872640748079
+  },
+  {
+   "t": 5.6042,
+   "knee_l": 10.0,
+   "knee_r": 4.571,
+   "violations": [],
+   "balance_error_px": -0.005357266135547434
+  },
+  {
+   "t": 5.625,
+   "knee_l": 10.0,
+   "knee_r": 4.35,
+   "violations": [],
+   "balance_error_px": -0.0036624926098056676
+  },
+  {
+   "t": 5.6458,
+   "knee_l": 10.0,
+   "knee_r": 4.138,
+   "violations": [],
+   "balance_error_px": -0.013338287717260755
+  },
+  {
+   "t": 5.6667,
+   "knee_l": 10.0,
+   "knee_r": 3.966,
+   "violations": [],
+   "balance_error_px": -0.008230394034285382
+  },
+  {
+   "t": 5.6875,
+   "knee_l": 10.0,
+   "knee_r": 3.82,
+   "violations": [],
+   "balance_error_px": -0.004524393413817052
+  },
+  {
+   "t": 5.7083,
+   "knee_l": 10.0,
+   "knee_r": 3.692,
+   "violations": [],
+   "balance_error_px": -0.012450570162059194
+  },
+  {
+   "t": 5.7292,
+   "knee_l": 10.0,
+   "knee_r": 3.596,
+   "violations": [],
+   "balance_error_px": -0.017438115701565948
+  },
+  {
+   "t": 5.75,
+   "knee_l": 10.0,
+   "knee_r": 3.571,
+   "violations": [],
+   "balance_error_px": 0.01795737368661321
+  },
+  {
+   "t": 5.7708,
+   "knee_l": 10.0,
+   "knee_r": 3.512,
+   "violations": [],
+   "balance_error_px": 0.00510476902377377
+  },
+  {
+   "t": 5.7917,
+   "knee_l": 10.0,
+   "knee_r": 3.483,
+   "violations": [],
+   "balance_error_px": 0.005335166820941595
+  },
+  {
+   "t": 5.8125,
+   "knee_l": 10.0,
+   "knee_r": 3.457,
+   "violations": [],
+   "balance_error_px": 0.004848385653076548
+  },
+  {
+   "t": 5.8333,
+   "knee_l": 10.0,
+   "knee_r": 3.43,
+   "violations": [],
+   "balance_error_px": 0.004328914823759078
+  },
+  {
+   "t": 5.8542,
+   "knee_l": 10.0,
+   "knee_r": 3.402,
+   "violations": [],
+   "balance_error_px": 0.0037974251988543983
+  },
+  {
+   "t": 5.875,
+   "knee_l": 10.0,
+   "knee_r": 3.373,
+   "violations": [],
+   "balance_error_px": 0.0032565851400931933
+  },
+  {
+   "t": 5.8958,
+   "knee_l": 10.0,
+   "knee_r": 3.363,
+   "violations": [],
+   "balance_error_px": 0.01857220635622525
+  },
+  {
+   "t": 5.9167,
+   "knee_l": 10.0,
+   "knee_r": 3.33,
+   "violations": [],
+   "balance_error_px": 0.01495054484450975
+  },
+  {
+   "t": 5.9375,
+   "knee_l": 10.0,
+   "knee_r": 3.296,
+   "violations": [],
+   "balance_error_px": 0.01124759575486678
+  },
+  {
+   "t": 5.9583,
+   "knee_l": 10.0,
+   "knee_r": 3.262,
+   "violations": [],
+   "balance_error_px": 0.007476487678673038
+  },
+  {
+   "t": 5.9792,
+   "knee_l": 10.0,
+   "knee_r": 3.228,
+   "violations": [],
+   "balance_error_px": 0.003651316620448597
+  },
+  {
+   "t": 6.0,
+   "knee_l": 10.0,
+   "knee_r": 3.194,
+   "violations": [],
+   "balance_error_px": -0.0002127888942595746
+  },
+  {
+   "t": 6.0208,
+   "knee_l": 10.0,
+   "knee_r": 3.159,
+   "violations": [],
+   "balance_error_px": -0.004156748460559356
+  },
+  {
+   "t": 6.0417,
+   "knee_l": 10.0,
+   "knee_r": 3.122,
+   "violations": [],
+   "balance_error_px": -0.008382567924627438
+  },
+  {
+   "t": 6.0625,
+   "knee_l": 10.0,
+   "knee_r": 3.081,
+   "violations": [],
+   "balance_error_px": -0.012987331519411782
+  },
+  {
+   "t": 6.0833,
+   "knee_l": 10.0,
+   "knee_r": 3.039,
+   "violations": [],
+   "balance_error_px": -0.017932978259409538
+  },
+  {
+   "t": 6.1042,
+   "knee_l": 10.0,
+   "knee_r": 3.021,
+   "violations": [],
+   "balance_error_px": -0.0029344406725613226
+  },
+  {
+   "t": 6.125,
+   "knee_l": 10.0,
+   "knee_r": 2.983,
+   "violations": [],
+   "balance_error_px": -0.0035214419256135443
+  },
+  {
+   "t": 6.1458,
+   "knee_l": 10.0,
+   "knee_r": 2.947,
+   "violations": [],
+   "balance_error_px": -0.004061160083892901
+  },
+  {
+   "t": 6.1667,
+   "knee_l": 10.0,
+   "knee_r": 2.914,
+   "violations": [],
+   "balance_error_px": -0.004535603662930043
+  },
+  {
+   "t": 6.1875,
+   "knee_l": 10.0,
+   "knee_r": 2.886,
+   "violations": [],
+   "balance_error_px": -0.004933874646212644
+  },
+  {
+   "t": 6.2083,
+   "knee_l": 10.0,
+   "knee_r": 2.862,
+   "violations": [],
+   "balance_error_px": -0.005252444993516292
+  },
+  {
+   "t": 6.2292,
+   "knee_l": 10.0,
+   "knee_r": 2.844,
+   "violations": [],
+   "balance_error_px": -0.005494232364526397
+  },
+  {
+   "t": 6.25,
+   "knee_l": 10.0,
+   "knee_r": 2.831,
+   "violations": [],
+   "balance_error_px": -0.005667047481779264
+  },
+  {
+   "t": 6.2708,
+   "knee_l": 10.0,
+   "knee_r": 2.822,
+   "violations": [],
+   "balance_error_px": -0.005781902217790957
+  },
+  {
+   "t": 6.2917,
+   "knee_l": 10.0,
+   "knee_r": 2.816,
+   "violations": [],
+   "balance_error_px": -0.005851439838465922
+  },
+  {
+   "t": 6.3125,
+   "knee_l": 10.0,
+   "knee_r": 2.813,
+   "violations": [],
+   "balance_error_px": -0.00588853040255799
+  },
+  {
+   "t": 6.3333,
+   "knee_l": 10.0,
+   "knee_r": 2.812,
+   "violations": [],
+   "balance_error_px": -0.005904988978613801
+  },
+  {
+   "t": 6.3542,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.005910440317052235
+  },
+  {
+   "t": 6.375,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.005911498114528513
+  },
+  {
+   "t": 6.3958,
+   "knee_l": 10.0,
+   "knee_r": 2.811,
+   "violations": [],
+   "balance_error_px": -0.005911557657100275
+  }
+ ]
+}

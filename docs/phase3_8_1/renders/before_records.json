@@ -1,0 +1,6697 @@
+{
+ "cases": {
+  "01_tpose": {
+   "title": "T-pose",
+   "review": {
+    "hands": {},
+    "note": "identity pose: the source pixels",
+    "joints_px": {
+     "pelvis": [
+      543.7,
+      774.1
+     ],
+     "spine": [
+      542.8,
+      649.3
+     ],
+     "chest": [
+      542.0,
+      524.6
+     ],
+     "neck": [
+      541.1,
+      396.0
+     ],
+     "head": [
+      541.9,
+      309.4
+     ],
+     "clavicle_r": [
+      503.4,
+      441.5
+     ],
+     "upper_arm_r": [
+      407.14957395444765,
+      425.11957168906116
+     ],
+     "forearm_r": [
+      278.2,
+      464.2
+     ],
+     "hand_r": [
+      155.9,
+      464.7
+     ],
+     "thigh_r": [
+      480.7,
+      771.3
+     ],
+     "shin_r": [
+      415.0,
+      1014.7
+     ],
+     "foot_r": [
+      348.4,
+      1257.9
+     ],
+     "clavicle_l": [
+      584.2,
+      443.4
+     ],
+     "upper_arm_l": [
+      680.4659105324207,
+      427.5097803740673
+     ],
+     "forearm_l": [
+      808.0,
+      464.9
+     ],
+     "hand_l": [
+      928.3,
+      467.6
+     ],
+     "thigh_l": [
+      606.7,
+      776.9
+     ],
+     "shin_l": [
+      669.6,
+      1017.6
+     ],
+     "foot_l": [
+      731.5,
+      1258.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {},
+    "note": "same render (no hand choice differs)",
+    "joints_px": {
+     "pelvis": [
+      543.7,
+      774.1
+     ],
+     "spine": [
+      542.8,
+      649.3
+     ],
+     "chest": [
+      542.0,
+      524.6
+     ],
+     "neck": [
+      541.1,
+      396.0
+     ],
+     "head": [
+      541.9,
+      309.4
+     ],
+     "clavicle_r": [
+      503.4,
+      441.5
+     ],
+     "upper_arm_r": [
+      407.14957395444765,
+      425.11957168906116
+     ],
+     "forearm_r": [
+      278.2,
+      464.2
+     ],
+     "hand_r": [
+      155.9,
+      464.7
+     ],
+     "thigh_r": [
+      480.7,
+      771.3
+     ],
+     "shin_r": [
+      415.0,
+      1014.7
+     ],
+     "foot_r": [
+      348.4,
+      1257.9
+     ],
+     "clavicle_l": [
+      584.2,
+      443.4
+     ],
+     "upper_arm_l": [
+      680.4659105324207,
+      427.5097803740673
+     ],
+     "forearm_l": [
+      808.0,
+      464.9
+     ],
+     "hand_l": [
+      928.3,
+      467.6
+     ],
+     "thigh_l": [
+      606.7,
+      776.9
+     ],
+     "shin_l": [
+      669.6,
+      1017.6
+     ],
+     "foot_l": [
+      731.5,
+      1258.5
+     ]
+    }
+   }
+  },
+  "02_relaxed_standing": {
+   "title": "relaxed standing",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.661,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.013565128230879964,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      708.03,
+      919.55
+     ],
+     "spine": [
+      707.13,
+      794.75
+     ],
+     "chest": [
+      706.33,
+      670.05
+     ],
+     "neck": [
+      705.43,
+      541.45
+     ],
+     "head": [
+      706.23,
+      454.85
+     ],
+     "clavicle_r": [
+      667.73,
+      586.95
+     ],
+     "upper_arm_r": [
+      570.3299999999999,
+      580.12
+     ],
+     "forearm_r": [
+      579.6700000000001,
+      714.54
+     ],
+     "hand_r": [
+      590.3299999999999,
+      836.37
+     ],
+     "thigh_r": [
+      645.03,
+      916.75
+     ],
+     "shin_r": [
+      605.52,
+      1165.75
+     ],
+     "foot_r": [
+      603.96,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.53,
+      588.85
+     ],
+     "upper_arm_l": [
+      845.89,
+      582.51
+     ],
+     "forearm_l": [
+      837.39,
+      715.14
+     ],
+     "hand_l": [
+      826.9,
+      835.01
+     ],
+     "thigh_l": [
+      771.03,
+      922.35
+     ],
+     "shin_l": [
+      795.91,
+      1169.8899999999999
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.661,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.013565128230879964,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      708.03,
+      919.55
+     ],
+     "spine": [
+      707.13,
+      794.75
+     ],
+     "chest": [
+      706.33,
+      670.05
+     ],
+     "neck": [
+      705.43,
+      541.45
+     ],
+     "head": [
+      706.23,
+      454.85
+     ],
+     "clavicle_r": [
+      667.73,
+      586.95
+     ],
+     "upper_arm_r": [
+      570.3299999999999,
+      580.12
+     ],
+     "forearm_r": [
+      579.6700000000001,
+      714.54
+     ],
+     "hand_r": [
+      590.3299999999999,
+      836.37
+     ],
+     "thigh_r": [
+      645.03,
+      916.75
+     ],
+     "shin_r": [
+      605.52,
+      1165.75
+     ],
+     "foot_r": [
+      603.96,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.53,
+      588.85
+     ],
+     "upper_arm_l": [
+      845.89,
+      582.51
+     ],
+     "forearm_l": [
+      837.39,
+      715.14
+     ],
+     "hand_l": [
+      826.9,
+      835.01
+     ],
+     "thigh_l": [
+      771.03,
+      922.35
+     ],
+     "shin_l": [
+      795.91,
+      1169.8899999999999
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    }
+   }
+  },
+  "03_right_pointing": {
+   "title": "right pointing",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "pointing",
+      "cid": "store:tough_student_hands_v1/right_pointing",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "pointing",
+      "active": "pointing",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 4.0,
+     "knee_l_flexion": 8.92
+    },
+    "balance_error_px": 0.011412671013658837,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:point",
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      768.72,
+      923.81
+     ],
+     "spine": [
+      761.29,
+      799.23
+     ],
+     "chest": [
+      753.96,
+      674.74
+     ],
+     "neck": [
+      751.72,
+      546.1600000000001
+     ],
+     "head": [
+      748.95,
+      459.6
+     ],
+     "clavicle_r": [
+      714.5,
+      592.05
+     ],
+     "upper_arm_r": [
+      622.5,
+      559.36
+     ],
+     "forearm_r": [
+      488.68,
+      543.5699999999999
+     ],
+     "hand_r": [
+      386.02,
+      477.11
+     ],
+     "thigh_r": [
+      705.66,
+      924.31
+     ],
+     "shin_r": [
+      646.2,
+      1169.31
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      795.31,
+      593.1
+     ],
+     "upper_arm_l": [
+      892.6,
+      585.6600000000001
+     ],
+     "forearm_l": [
+      886.4,
+      718.42
+     ],
+     "hand_l": [
+      873.83,
+      838.09
+     ],
+     "thigh_l": [
+      831.78,
+      923.31
+     ],
+     "shin_l": [
+      836.93,
+      1172.04
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "pointing:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 4.0,
+     "knee_l_flexion": 8.92
+    },
+    "balance_error_px": 0.011412671013658837,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:point"
+    ],
+    "joints_px": {
+     "pelvis": [
+      768.72,
+      923.81
+     ],
+     "spine": [
+      761.29,
+      799.23
+     ],
+     "chest": [
+      753.96,
+      674.74
+     ],
+     "neck": [
+      751.72,
+      546.1600000000001
+     ],
+     "head": [
+      748.95,
+      459.6
+     ],
+     "clavicle_r": [
+      714.5,
+      592.05
+     ],
+     "upper_arm_r": [
+      622.5,
+      559.36
+     ],
+     "forearm_r": [
+      488.68,
+      543.5699999999999
+     ],
+     "hand_r": [
+      386.02,
+      477.11
+     ],
+     "thigh_r": [
+      705.66,
+      924.31
+     ],
+     "shin_r": [
+      646.2,
+      1169.31
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      795.31,
+      593.1
+     ],
+     "upper_arm_l": [
+      892.6,
+      585.6600000000001
+     ],
+     "forearm_l": [
+      886.4,
+      718.42
+     ],
+     "hand_l": [
+      873.83,
+      838.09
+     ],
+     "thigh_l": [
+      831.78,
+      923.31
+     ],
+     "shin_l": [
+      836.93,
+      1172.04
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   }
+  },
+  "04_left_pointing": {
+   "title": "left pointing",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "pointing",
+      "cid": "store:tough_student_hands_v1/left_pointing",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "pointing",
+      "active": "pointing",
+      "note": null,
+      "handedness": "left",
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "knee_fold_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [
+     "knee_r_flexion 21.4 outside [-2.0, 10.0]"
+    ],
+    "knees": {
+     "knee_r_flexion": 21.421,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": -0.005059870099898944,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:point",
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      687.3,
+      938.97
+     ],
+     "spine": [
+      686.4,
+      814.17
+     ],
+     "chest": [
+      685.6,
+      689.47
+     ],
+     "neck": [
+      684.7,
+      560.87
+     ],
+     "head": [
+      685.5,
+      474.27
+     ],
+     "clavicle_r": [
+      647.0,
+      606.37
+     ],
+     "upper_arm_r": [
+      549.61,
+      599.46
+     ],
+     "forearm_r": [
+      556.6,
+      734.02
+     ],
+     "hand_r": [
+      545.94,
+      855.85
+     ],
+     "thigh_r": [
+      624.3,
+      936.17
+     ],
+     "shin_r": [
+      520.8,
+      1166.05
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      727.8,
+      608.27
+     ],
+     "upper_arm_l": [
+      824.16,
+      592.96
+     ],
+     "forearm_l": [
+      955.87,
+      610.7
+     ],
+     "hand_l": [
+      1076.04,
+      617.0
+     ],
+     "thigh_l": [
+      750.3,
+      941.77
+     ],
+     "shin_l": [
+      829.23,
+      1177.69
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "user",
+      "approval": "ORIGINAL",
+      "requested": "pointing",
+      "active": "open_palm",
+      "note": "hand_l: 'pointing' is pending review (preview it with allow_pending); showing 'open_palm'",
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [
+     "knee_r_flexion 21.4 outside [-2.0, 10.0]"
+    ],
+    "knees": {
+     "knee_r_flexion": 21.421,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": -0.005059870099898944,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      687.3,
+      938.97
+     ],
+     "spine": [
+      686.4,
+      814.17
+     ],
+     "chest": [
+      685.6,
+      689.47
+     ],
+     "neck": [
+      684.7,
+      560.87
+     ],
+     "head": [
+      685.5,
+      474.27
+     ],
+     "clavicle_r": [
+      647.0,
+      606.37
+     ],
+     "upper_arm_r": [
+      549.61,
+      599.46
+     ],
+     "forearm_r": [
+      556.6,
+      734.02
+     ],
+     "hand_r": [
+      545.94,
+      855.85
+     ],
+     "thigh_r": [
+      624.3,
+      936.17
+     ],
+     "shin_r": [
+      520.8,
+      1166.05
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      727.8,
+      608.27
+     ],
+     "upper_arm_l": [
+      824.16,
+      592.96
+     ],
+     "forearm_l": [
+      955.87,
+      610.7
+     ],
+     "hand_l": [
+      1076.04,
+      617.0
+     ],
+     "thigh_l": [
+      750.3,
+      941.77
+     ],
+     "shin_l": [
+      829.23,
+      1177.69
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   }
+  },
+  "05_both_arms_lowered": {
+   "title": "both arms lowered",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.983,
+     "knee_l_flexion": 3.0
+    },
+    "balance_error_px": 0.005776925313739412,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      708.28,
+      918.63
+     ],
+     "spine": [
+      707.38,
+      793.83
+     ],
+     "chest": [
+      706.58,
+      669.13
+     ],
+     "neck": [
+      705.68,
+      540.53
+     ],
+     "head": [
+      706.48,
+      453.93
+     ],
+     "clavicle_r": [
+      667.98,
+      586.03
+     ],
+     "upper_arm_r": [
+      570.46,
+      581.28
+     ],
+     "forearm_r": [
+      591.48,
+      714.38
+     ],
+     "hand_r": [
+      593.62,
+      836.66
+     ],
+     "thigh_r": [
+      645.28,
+      915.83
+     ],
+     "shin_r": [
+      612.78,
+      1165.8400000000001
+     ],
+     "foot_r": [
+      619.71,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.78,
+      587.9300000000001
+     ],
+     "upper_arm_l": [
+      846.26,
+      583.6700000000001
+     ],
+     "forearm_l": [
+      826.22,
+      715.06
+     ],
+     "hand_l": [
+      824.12,
+      835.37
+     ],
+     "thigh_l": [
+      771.28,
+      921.43
+     ],
+     "shin_l": [
+      786.01,
+      1169.78
+     ],
+     "foot_l": [
+      787.71,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.983,
+     "knee_l_flexion": 3.0
+    },
+    "balance_error_px": 0.005776925313739412,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      708.28,
+      918.63
+     ],
+     "spine": [
+      707.38,
+      793.83
+     ],
+     "chest": [
+      706.58,
+      669.13
+     ],
+     "neck": [
+      705.68,
+      540.53
+     ],
+     "head": [
+      706.48,
+      453.93
+     ],
+     "clavicle_r": [
+      667.98,
+      586.03
+     ],
+     "upper_arm_r": [
+      570.46,
+      581.28
+     ],
+     "forearm_r": [
+      591.48,
+      714.38
+     ],
+     "hand_r": [
+      593.62,
+      836.66
+     ],
+     "thigh_r": [
+      645.28,
+      915.83
+     ],
+     "shin_r": [
+      612.78,
+      1165.8400000000001
+     ],
+     "foot_r": [
+      619.71,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.78,
+      587.9300000000001
+     ],
+     "upper_arm_l": [
+      846.26,
+      583.6700000000001
+     ],
+     "forearm_l": [
+      826.22,
+      715.06
+     ],
+     "hand_l": [
+      824.12,
+      835.37
+     ],
+     "thigh_l": [
+      771.28,
+      921.43
+     ],
+     "shin_l": [
+      786.01,
+      1169.78
+     ],
+     "foot_l": [
+      787.71,
+      1418.5
+     ]
+    }
+   }
+  },
+  "06_both_arms_raised": {
+   "title": "both arms raised",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.511,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.014430540517309964,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      708.37,
+      919.53
+     ],
+     "spine": [
+      707.47,
+      794.73
+     ],
+     "chest": [
+      706.67,
+      670.03
+     ],
+     "neck": [
+      705.77,
+      541.4300000000001
+     ],
+     "head": [
+      706.57,
+      454.83
+     ],
+     "clavicle_r": [
+      668.0699999999999,
+      586.9300000000001
+     ],
+     "upper_arm_r": [
+      589.1800000000001,
+      529.4100000000001
+     ],
+     "forearm_r": [
+      511.94,
+      419.0
+     ],
+     "hand_r": [
+      490.71,
+      298.56
+     ],
+     "thigh_r": [
+      645.37,
+      916.73
+     ],
+     "shin_r": [
+      606.02,
+      1165.75
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.87,
+      588.8299999999999
+     ],
+     "upper_arm_l": [
+      827.99,
+      531.74
+     ],
+     "forearm_l": [
+      903.59,
+      422.44
+     ],
+     "hand_l": [
+      924.48,
+      303.93
+     ],
+     "thigh_l": [
+      771.37,
+      922.33
+     ],
+     "shin_l": [
+      796.08,
+      1169.88
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 8.511,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": 0.014430540517309964,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "corrective:gusset"
+    ],
+    "joints_px": {
+     "pelvis": [
+      708.37,
+      919.53
+     ],
+     "spine": [
+      707.47,
+      794.73
+     ],
+     "chest": [
+      706.67,
+      670.03
+     ],
+     "neck": [
+      705.77,
+      541.4300000000001
+     ],
+     "head": [
+      706.57,
+      454.83
+     ],
+     "clavicle_r": [
+      668.0699999999999,
+      586.9300000000001
+     ],
+     "upper_arm_r": [
+      589.1800000000001,
+      529.4100000000001
+     ],
+     "forearm_r": [
+      511.94,
+      419.0
+     ],
+     "hand_r": [
+      490.71,
+      298.56
+     ],
+     "thigh_r": [
+      645.37,
+      916.73
+     ],
+     "shin_r": [
+      606.02,
+      1165.75
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      748.87,
+      588.8299999999999
+     ],
+     "upper_arm_l": [
+      827.99,
+      531.74
+     ],
+     "forearm_l": [
+      903.59,
+      422.44
+     ],
+     "hand_l": [
+      924.48,
+      303.93
+     ],
+     "thigh_l": [
+      771.37,
+      922.33
+     ],
+     "shin_l": [
+      796.08,
+      1169.88
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    }
+   }
+  },
+  "07_subtle_shrug": {
+   "title": "subtle shrug (acting t=5.6 s)",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [
+     "knee_l_flexion 12.5 outside [-2.0, 10.0]"
+    ],
+    "knees": {
+     "knee_r_flexion": 8.519,
+     "knee_l_flexion": 12.454
+    },
+    "balance_error_px": -0.01278917676711444,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      742.82,
+      922.35
+     ],
+     "spine": [
+      739.5,
+      797.59
+     ],
+     "chest": [
+      736.29,
+      672.93
+     ],
+     "neck": [
+      733.87,
+      544.35
+     ],
+     "head": [
+      736.36,
+      457.79
+     ],
+     "clavicle_r": [
+      696.71,
+      590.29
+     ],
+     "upper_arm_r": [
+      599.49,
+      581.29
+     ],
+     "forearm_r": [
+      602.1600000000001,
+      716.01
+     ],
+     "hand_r": [
+      575.5799999999999,
+      835.39
+     ],
+     "thigh_r": [
+      679.78,
+      920.77
+     ],
+     "shin_r": [
+      623.36,
+      1166.49
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      777.53,
+      591.24
+     ],
+     "upper_arm_l": [
+      874.31,
+      578.89
+     ],
+     "forearm_l": [
+      868.23,
+      711.65
+     ],
+     "hand_l": [
+      885.0,
+      830.81
+     ],
+     "thigh_l": [
+      805.86,
+      923.93
+     ],
+     "shin_l": [
+      831.64,
+      1171.38
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "right",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [
+     "knee_l_flexion 12.5 outside [-2.0, 10.0]"
+    ],
+    "knees": {
+     "knee_r_flexion": 8.519,
+     "knee_l_flexion": 12.454
+    },
+    "balance_error_px": -0.01278917676711444,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      742.82,
+      922.35
+     ],
+     "spine": [
+      739.5,
+      797.59
+     ],
+     "chest": [
+      736.29,
+      672.93
+     ],
+     "neck": [
+      733.87,
+      544.35
+     ],
+     "head": [
+      736.36,
+      457.79
+     ],
+     "clavicle_r": [
+      696.71,
+      590.29
+     ],
+     "upper_arm_r": [
+      599.49,
+      581.29
+     ],
+     "forearm_r": [
+      602.1600000000001,
+      716.01
+     ],
+     "hand_r": [
+      575.5799999999999,
+      835.39
+     ],
+     "thigh_r": [
+      679.78,
+      920.77
+     ],
+     "shin_r": [
+      623.36,
+      1166.49
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      777.53,
+      591.24
+     ],
+     "upper_arm_l": [
+      874.31,
+      578.89
+     ],
+     "forearm_l": [
+      868.23,
+      711.65
+     ],
+     "hand_l": [
+      885.0,
+      830.81
+     ],
+     "thigh_l": [
+      805.86,
+      923.93
+     ],
+     "shin_l": [
+      831.64,
+      1171.38
+     ],
+     "foot_l": [
+      803.46,
+      1418.5
+     ]
+    },
+    "note": "acting frame: the director renders a REVIEW PREVIEW (pending drawings labelled); no production render of the acting test exists"
+   }
+  },
+  "08_weight_shift": {
+   "title": "weight shift (acting t=2.33 s)",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "user",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "knee_fold_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [
+     "knee_l_flexion 17.2 outside [-2.0, 10.0]"
+    ],
+    "knees": {
+     "knee_r_flexion": 10.376,
+     "knee_l_flexion": 17.162
+    },
+    "balance_error_px": 0.006301226742834842,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      793.08,
+      930.58
+     ],
+     "spine": [
+      784.28,
+      806.09
+     ],
+     "chest": [
+      777.08,
+      681.6
+     ],
+     "neck": [
+      776.41,
+      553.0
+     ],
+     "head": [
+      781.02,
+      466.52
+     ],
+     "clavicle_r": [
+      738.63,
+      598.4300000000001
+     ],
+     "upper_arm_r": [
+      643.3299999999999,
+      577.2
+     ],
+     "forearm_r": [
+      510.94,
+      602.25
+     ],
+     "hand_r": [
+      389.69,
+      618.25
+     ],
+     "thigh_r": [
+      730.03,
+      931.78
+     ],
+     "shin_r": [
+      644.9300000000001,
+      1169.1
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      819.43,
+      600.48
+     ],
+     "upper_arm_l": [
+      916.71,
+      592.97
+     ],
+     "forearm_l": [
+      913.86,
+      725.84
+     ],
+     "hand_l": [
+      920.09,
+      846.01
+     ],
+     "thigh_l": [
+      856.13,
+      929.39
+     ],
+     "shin_l": [
+      866.7,
+      1177.95
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "user",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "user",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "armpit_gusset_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "knee_fold_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [
+     "knee_l_flexion 17.2 outside [-2.0, 10.0]"
+    ],
+    "knees": {
+     "knee_r_flexion": 10.376,
+     "knee_l_flexion": 17.162
+    },
+    "balance_error_px": 0.006301226742834842,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      793.08,
+      930.58
+     ],
+     "spine": [
+      784.28,
+      806.09
+     ],
+     "chest": [
+      777.08,
+      681.6
+     ],
+     "neck": [
+      776.41,
+      553.0
+     ],
+     "head": [
+      781.02,
+      466.52
+     ],
+     "clavicle_r": [
+      738.63,
+      598.4300000000001
+     ],
+     "upper_arm_r": [
+      643.3299999999999,
+      577.2
+     ],
+     "forearm_r": [
+      510.94,
+      602.25
+     ],
+     "hand_r": [
+      389.69,
+      618.25
+     ],
+     "thigh_r": [
+      730.03,
+      931.78
+     ],
+     "shin_r": [
+      644.9300000000001,
+      1169.1
+     ],
+     "foot_r": [
+      603.97,
+      1417.9
+     ],
+     "clavicle_l": [
+      819.43,
+      600.48
+     ],
+     "upper_arm_l": [
+      916.71,
+      592.97
+     ],
+     "forearm_l": [
+      913.86,
+      725.84
+     ],
+     "hand_l": [
+      920.09,
+      846.01
+     ],
+     "thigh_l": [
+      856.13,
+      929.39
+     ],
+     "shin_l": [
+      866.7,
+      1177.95
+     ],
+     "foot_l": [
+      803.47,
+      1418.5
+     ]
+    },
+    "note": "acting frame: the director renders a REVIEW PREVIEW (pending drawings labelled); no production render of the acting test exists"
+   }
+  },
+  "09_elbow_bend": {
+   "title": "elbow bend (right, 110 deg)",
+   "review": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "source": "auto",
+      "approval": "PENDING_REVIEW",
+      "requested": "relaxed",
+      "active": "relaxed",
+      "note": null,
+      "handedness": "left",
+      "palm": "PALM_TO_CAMERA",
+      "needs": [],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [
+     {
+      "asset": "shoe_top_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "shoe_top_l",
+      "status": "pending_review"
+     },
+     {
+      "asset": "elbow_fold_r",
+      "status": "pending_review"
+     },
+     {
+      "asset": "edge_decontamination",
+      "status": "pending_review"
+     }
+    ],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 9.615,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": -0.009775547335834744,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing_artwork": [
+     "hand:relaxed"
+    ],
+    "joints_px": {
+     "pelvis": [
+      700.83,
+      935.16
+     ],
+     "spine": [
+      699.93,
+      810.36
+     ],
+     "chest": [
+      699.13,
+      685.66
+     ],
+     "neck": [
+      698.23,
+      557.06
+     ],
+     "head": [
+      699.03,
+      470.46
+     ],
+     "clavicle_r": [
+      660.53,
+      602.56
+     ],
+     "upper_arm_r": [
+      563.3,
+      593.74
+     ],
+     "forearm_r": [
+      512.77,
+      718.65
+     ],
+     "hand_r": [
+      630.9,
+      750.3
+     ],
+     "thigh_r": [
+      637.8299999999999,
+      932.36
+     ],
+     "shin_r": [
+      552.7,
+      1169.67
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      741.33,
+      604.46
+     ],
+     "upper_arm_l": [
+      838.69,
+      598.04
+     ],
+     "forearm_l": [
+      832.5,
+      730.8
+     ],
+     "hand_l": [
+      842.99,
+      850.67
+     ],
+     "thigh_l": [
+      763.83,
+      937.96
+     ],
+     "shin_l": [
+      836.06,
+      1176.03
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   },
+   "production": {
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_ARTWORK"
+      ],
+      "consistency_issues": []
+     },
+     "l": {
+      "pose": "open_palm",
+      "cid": "original",
+      "source": "auto",
+      "approval": "ORIGINAL",
+      "requested": "open_palm",
+      "active": "open_palm",
+      "note": null,
+      "handedness": null,
+      "palm": "AMBIGUOUS",
+      "needs": [
+       "relaxed:NEEDS_APPROVAL"
+      ],
+      "consistency_issues": []
+     }
+    },
+    "correctives": [],
+    "alternatives": [],
+    "violations": [],
+    "knees": {
+     "knee_r_flexion": 9.615,
+     "knee_l_flexion": 4.0
+    },
+    "balance_error_px": -0.009775547335834744,
+    "feasibility": "SUPPORTED",
+    "missing_artwork": [],
+    "joints_px": {
+     "pelvis": [
+      700.83,
+      935.16
+     ],
+     "spine": [
+      699.93,
+      810.36
+     ],
+     "chest": [
+      699.13,
+      685.66
+     ],
+     "neck": [
+      698.23,
+      557.06
+     ],
+     "head": [
+      699.03,
+      470.46
+     ],
+     "clavicle_r": [
+      660.53,
+      602.56
+     ],
+     "upper_arm_r": [
+      563.3,
+      593.74
+     ],
+     "forearm_r": [
+      512.77,
+      718.65
+     ],
+     "hand_r": [
+      630.9,
+      750.3
+     ],
+     "thigh_r": [
+      637.8299999999999,
+      932.36
+     ],
+     "shin_r": [
+      552.7,
+      1169.67
+     ],
+     "foot_r": [
+      508.4,
+      1417.9
+     ],
+     "clavicle_l": [
+      741.33,
+      604.46
+     ],
+     "upper_arm_l": [
+      838.69,
+      598.04
+     ],
+     "forearm_l": [
+      832.5,
+      730.8
+     ],
+     "hand_l": [
+      842.99,
+      850.67
+     ],
+     "thigh_l": [
+      763.83,
+      937.96
+     ],
+     "shin_l": [
+      836.06,
+      1176.03
+     ],
+     "foot_l": [
+      891.5,
+      1418.5
+     ]
+    }
+   }
+  }
+ },
+ "sweep": {
+  "r_0": {
+   "pivot_px": [
+    563.88,
+    596.21
+   ],
+   "variants": []
+  },
+  "r_30": {
+   "pivot_px": [
+    571.48,
+    594.87
+   ],
+   "variants": []
+  },
+  "r_60": {
+   "pivot_px": [
+    578.7,
+    594.62
+   ],
+   "variants": []
+  },
+  "r_90": {
+   "pivot_px": [
+    582.62,
+    593.44
+   ],
+   "variants": []
+  },
+  "r_120": {
+   "pivot_px": [
+    585.0,
+    576.6
+   ],
+   "variants": []
+  },
+  "l_0": {
+   "pivot_px": [
+    843.25,
+    598.51
+   ],
+   "variants": []
+  },
+  "l_30": {
+   "pivot_px": [
+    835.65,
+    597.3
+   ],
+   "variants": []
+  },
+  "l_60": {
+   "pivot_px": [
+    828.51,
+    596.95
+   ],
+   "variants": []
+  },
+  "l_90": {
+   "pivot_px": [
+    824.7,
+    595.7
+   ],
+   "variants": []
+  },
+  "l_120": {
+   "pivot_px": [
+    822.47,
+    578.85
+   ],
+   "variants": []
+  }
+ },
+ "acting": {
+  "0.0": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 8.723,
+    "knee_l_flexion": 13.208
+   },
+   "balance_error_px": 0.005614791382186013,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     746.17,
+     922.85
+    ],
+    "spine": [
+     742.66,
+     798.09
+    ],
+    "chest": [
+     739.25,
+     673.44
+    ],
+    "neck": [
+     736.73,
+     544.86
+    ],
+    "head": [
+     738.3,
+     458.27
+    ],
+    "clavicle_r": [
+     699.61,
+     590.8299999999999
+    ],
+    "upper_arm_r": [
+     602.14,
+     585.0699999999999
+    ],
+    "forearm_r": [
+     606.78,
+     719.73
+    ],
+    "hand_r": [
+     594.0,
+     841.36
+    ],
+    "thigh_r": [
+     683.13,
+     921.37
+    ],
+    "shin_r": [
+     624.62,
+     1166.5900000000001
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     780.43,
+     591.71
+    ],
+    "upper_arm_l": [
+     877.55,
+     582.45
+    ],
+    "forearm_l": [
+     869.05,
+     715.08
+    ],
+    "hand_l": [
+     871.15,
+     835.39
+    ],
+    "thigh_l": [
+     809.22,
+     924.33
+    ],
+    "shin_l": [
+     834.95,
+     1171.77
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "0.6": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 13.8 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 9.297,
+    "knee_l_flexion": 13.828
+   },
+   "balance_error_px": 0.005534000127227046,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     749.74,
+     923.42
+    ],
+    "spine": [
+     745.82,
+     798.68
+    ],
+    "chest": [
+     741.67,
+     674.05
+    ],
+    "neck": [
+     738.4,
+     545.49
+    ],
+    "head": [
+     739.63,
+     458.89
+    ],
+    "clavicle_r": [
+     701.54,
+     591.6800000000001
+    ],
+    "upper_arm_r": [
+     604.06,
+     586.29
+    ],
+    "forearm_r": [
+     608.7,
+     720.95
+    ],
+    "hand_r": [
+     595.9200000000001,
+     842.58
+    ],
+    "thigh_r": [
+     686.69,
+     922.15
+    ],
+    "shin_r": [
+     625.1700000000001,
+     1166.6399999999999
+    ],
+    "foot_r": [
+     603.96,
+     1417.9
+    ],
+    "clavicle_l": [
+     782.37,
+     592.0799999999999
+    ],
+    "upper_arm_l": [
+     879.41,
+     582.01
+    ],
+    "forearm_l": [
+     871.71,
+     714.69
+    ],
+    "hand_l": [
+     874.49,
+     834.99
+    ],
+    "thigh_l": [
+     812.79,
+     924.7
+    ],
+    "shin_l": [
+     838.06,
+     1172.19
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "1.2": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "knee_fold_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 14.0,
+    "knee_l_flexion": 17.877
+   },
+   "balance_error_px": 0.0064295789383095325,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     797.83,
+     932.6
+    ],
+    "spine": [
+     787.04,
+     808.26
+    ],
+    "chest": [
+     771.6,
+     684.52
+    ],
+    "neck": [
+     759.7,
+     556.47
+    ],
+    "head": [
+     754.38,
+     470.03
+    ],
+    "clavicle_r": [
+     726.03,
+     605.03
+    ],
+    "upper_arm_r": [
+     628.4,
+     605.9200000000001
+    ],
+    "forearm_r": [
+     633.04,
+     740.58
+    ],
+    "hand_r": [
+     620.26,
+     862.21
+    ],
+    "thigh_r": [
+     734.81,
+     934.8
+    ],
+    "shin_r": [
+     639.73,
+     1168.3
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     806.7,
+     600.0
+    ],
+    "upper_arm_l": [
+     902.73,
+     582.75
+    ],
+    "forearm_l": [
+     908.13,
+     715.54
+    ],
+    "hand_l": [
+     920.71,
+     835.21
+    ],
+    "thigh_l": [
+     860.86,
+     930.4
+    ],
+    "shin_l": [
+     870.54,
+     1178.99
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "1.8": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "knee_fold_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 14.0,
+    "knee_l_flexion": 15.954
+   },
+   "balance_error_px": 0.012288235678511228,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     787.49,
+     930.09
+    ],
+    "spine": [
+     777.05,
+     805.72
+    ],
+    "chest": [
+     761.94,
+     681.94
+    ],
+    "neck": [
+     750.11,
+     553.88
+    ],
+    "head": [
+     751.62,
+     467.29
+    ],
+    "clavicle_r": [
+     716.42,
+     602.4200000000001
+    ],
+    "upper_arm_r": [
+     618.79,
+     603.06
+    ],
+    "forearm_r": [
+     623.4300000000001,
+     737.72
+    ],
+    "hand_r": [
+     610.64,
+     859.35
+    ],
+    "thigh_r": [
+     724.46,
+     932.11
+    ],
+    "shin_r": [
+     634.39,
+     1167.5900000000001
+    ],
+    "foot_r": [
+     603.96,
+     1417.9
+    ],
+    "clavicle_l": [
+     797.09,
+     597.44
+    ],
+    "upper_arm_l": [
+     893.09,
+     580.04
+    ],
+    "forearm_l": [
+     898.49,
+     712.83
+    ],
+    "hand_l": [
+     911.07,
+     832.5
+    ],
+    "thigh_l": [
+     850.52,
+     928.06
+    ],
+    "shin_l": [
+     861.35,
+     1176.6
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "2.4": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": null,
+     "palm": "AMBIGUOUS",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "knee_fold_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 16.2 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 9.478,
+    "knee_l_flexion": 16.191
+   },
+   "balance_error_px": 0.017429226391072916,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     788.71,
+     929.32
+    ],
+    "spine": [
+     780.31,
+     804.8
+    ],
+    "chest": [
+     775.34,
+     680.2
+    ],
+    "neck": [
+     778.04,
+     551.62
+    ],
+    "head": [
+     783.42,
+     465.19
+    ],
+    "clavicle_r": [
+     739.08,
+     596.05
+    ],
+    "upper_arm_r": [
+     650.0,
+     556.0899999999999
+    ],
+    "forearm_r": [
+     520.74,
+     518.03
+    ],
+    "hand_r": [
+     404.16999999999996,
+     481.04
+    ],
+    "thigh_r": [
+     725.66,
+     930.32
+    ],
+    "shin_r": [
+     644.61,
+     1169.04
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     819.79,
+     600.21
+    ],
+    "upper_arm_l": [
+     917.26,
+     595.71
+    ],
+    "forearm_l": [
+     911.67,
+     728.49
+    ],
+    "hand_l": [
+     915.89,
+     848.75
+    ],
+    "thigh_l": [
+     851.77,
+     928.32
+    ],
+    "shin_l": [
+     862.48,
+     1176.88
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "3.0": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": null,
+     "palm": "AMBIGUOUS",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 9.0,
+    "knee_l_flexion": 13.651
+   },
+   "balance_error_px": 0.005405599136565797,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     778.08,
+     926.78
+    ],
+    "spine": [
+     770.01,
+     802.24
+    ],
+    "chest": [
+     767.71,
+     677.56
+    ],
+    "neck": [
+     774.78,
+     549.15
+    ],
+    "head": [
+     781.19,
+     462.79
+    ],
+    "clavicle_r": [
+     734.33,
+     592.23
+    ],
+    "upper_arm_r": [
+     656.4300000000001,
+     533.37
+    ],
+    "forearm_r": [
+     564.29,
+     435.06
+    ],
+    "hand_r": [
+     479.05,
+     347.35
+    ],
+    "thigh_r": [
+     715.02,
+     927.61
+    ],
+    "shin_r": [
+     640.21,
+     1168.3600000000001
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     814.86,
+     599.13
+    ],
+    "upper_arm_l": [
+     912.42,
+     598.62
+    ],
+    "forearm_l": [
+     903.92,
+     731.25
+    ],
+    "hand_l": [
+     906.02,
+     851.56
+    ],
+    "thigh_l": [
+     841.14,
+     925.96
+    ],
+    "shin_l": [
+     851.78,
+     1174.51
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "3.6": {
+   "hands": {
+    "r": {
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "pointing",
+     "active": "pointing",
+     "note": null,
+     "handedness": "right",
+     "palm": "AMBIGUOUS",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 4.0,
+    "knee_l_flexion": 9.452
+   },
+   "balance_error_px": 0.005433786471144231,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:point",
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     701.52,
+     919.68
+    ],
+    "spine": [
+     704.08,
+     794.9
+    ],
+    "chest": [
+     700.75,
+     670.24
+    ],
+    "neck": [
+     690.2,
+     542.0699999999999
+    ],
+    "head": [
+     684.46,
+     455.66
+    ],
+    "clavicle_r": [
+     656.02,
+     590.27
+    ],
+    "upper_arm_r": [
+     560.26,
+     571.24
+    ],
+    "forearm_r": [
+     426.6,
+     588.28
+    ],
+    "hand_r": [
+     304.3,
+     588.12
+    ],
+    "thigh_r": [
+     638.62,
+     915.13
+    ],
+    "shin_r": [
+     612.52,
+     1165.8899999999999
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     736.74,
+     586.11
+    ],
+    "upper_arm_l": [
+     833.35,
+     572.47
+    ],
+    "forearm_l": [
+     824.84,
+     705.1
+    ],
+    "hand_l": [
+     822.74,
+     825.42
+    ],
+    "thigh_l": [
+     764.42,
+     924.22
+    ],
+    "shin_l": [
+     804.38,
+     1169.78
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "4.2": {
+   "hands": {
+    "r": {
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "pointing",
+     "active": "pointing",
+     "note": null,
+     "handedness": "right",
+     "palm": "AMBIGUOUS",
+     "needs": [
+      "relaxed:NEEDS_ARTWORK"
+     ],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "armpit_gusset_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [],
+   "knees": {
+    "knee_r_flexion": 4.0,
+    "knee_l_flexion": 9.75
+   },
+   "balance_error_px": 0.005433969354498913,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:point",
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     710.84,
+     919.77
+    ],
+    "spine": [
+     712.14,
+     794.97
+    ],
+    "chest": [
+     708.45,
+     670.3299999999999
+    ],
+    "neck": [
+     699.12,
+     542.06
+    ],
+    "head": [
+     694.51,
+     455.58
+    ],
+    "clavicle_r": [
+     664.49,
+     589.94
+    ],
+    "upper_arm_r": [
+     568.38,
+     572.73
+    ],
+    "forearm_r": [
+     438.65,
+     609.13
+    ],
+    "hand_r": [
+     317.46000000000004,
+     625.61
+    ],
+    "thigh_r": [
+     647.9,
+     915.86
+    ],
+    "shin_r": [
+     617.1700000000001,
+     1166.0900000000001
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     745.24,
+     586.53
+    ],
+    "upper_arm_l": [
+     841.66,
+     571.6
+    ],
+    "forearm_l": [
+     834.64,
+     704.32
+    ],
+    "hand_l": [
+     836.07,
+     824.64
+    ],
+    "thigh_l": [
+     773.78,
+     923.68
+    ],
+    "shin_l": [
+     809.73,
+     1169.85
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "4.8": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": null,
+     "palm": "AMBIGUOUS",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": null,
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 10.7 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 7.965,
+    "knee_l_flexion": 10.659
+   },
+   "balance_error_px": -0.019292977188001714,
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "missing_artwork": [],
+   "joints_px": {
+    "pelvis": [
+     733.95,
+     921.26
+    ],
+    "spine": [
+     731.32,
+     796.48
+    ],
+    "chest": [
+     728.8,
+     671.8
+    ],
+    "neck": [
+     726.69,
+     543.22
+    ],
+    "head": [
+     732.17,
+     456.79
+    ],
+    "clavicle_r": [
+     689.42,
+     589.0699999999999
+    ],
+    "upper_arm_r": [
+     593.96,
+     568.56
+    ],
+    "forearm_r": [
+     589.2,
+     703.22
+    ],
+    "hand_r": [
+     522.5899999999999,
+     805.79
+    ],
+    "thigh_r": [
+     670.9100000000001,
+     919.33
+    ],
+    "shin_r": [
+     620.0899999999999,
+     1166.26
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     770.23,
+     590.21
+    ],
+    "upper_arm_l": [
+     864.81,
+     566.24
+    ],
+    "forearm_l": [
+     867.9,
+     699.11
+    ],
+    "hand_l": [
+     928.06,
+     803.32
+    ],
+    "thigh_l": [
+     796.98,
+     923.18
+    ],
+    "shin_l": [
+     823.32,
+     1170.5700000000002
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "5.4": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": null,
+     "palm": "AMBIGUOUS",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "approval": "ORIGINAL",
+     "requested": "open_palm",
+     "active": "open_palm",
+     "note": null,
+     "handedness": null,
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 10.9 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 8.034,
+    "knee_l_flexion": 10.942
+   },
+   "balance_error_px": -0.015135330689872717,
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "missing_artwork": [],
+   "joints_px": {
+    "pelvis": [
+     735.62,
+     921.43
+    ],
+    "spine": [
+     732.85,
+     796.66
+    ],
+    "chest": [
+     730.17,
+     671.98
+    ],
+    "neck": [
+     728.0,
+     543.4
+    ],
+    "head": [
+     732.67,
+     456.92
+    ],
+    "clavicle_r": [
+     690.75,
+     589.27
+    ],
+    "upper_arm_r": [
+     594.6800000000001,
+     571.86
+    ],
+    "forearm_r": [
+     591.89,
+     706.57
+    ],
+    "hand_r": [
+     532.78,
+     813.64
+    ],
+    "thigh_r": [
+     672.59,
+     919.58
+    ],
+    "shin_r": [
+     620.78,
+     1166.31
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     771.57,
+     590.37
+    ],
+    "upper_arm_l": [
+     866.98,
+     569.98
+    ],
+    "forearm_l": [
+     867.63,
+     702.88
+    ],
+    "hand_l": [
+     919.54,
+     811.44
+    ],
+    "thigh_l": [
+     798.66,
+     923.28
+    ],
+    "shin_l": [
+     824.78,
+     1170.69
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  },
+  "6.0": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 8.666,
+    "knee_l_flexion": 13.062
+   },
+   "balance_error_px": 0.005522701686459186,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     745.5,
+     922.74
+    ],
+    "spine": [
+     742.04,
+     797.99
+    ],
+    "chest": [
+     738.67,
+     673.33
+    ],
+    "neck": [
+     736.18,
+     544.75
+    ],
+    "head": [
+     737.75,
+     458.16
+    ],
+    "clavicle_r": [
+     699.05,
+     590.71
+    ],
+    "upper_arm_r": [
+     601.6,
+     584.6600000000001
+    ],
+    "forearm_r": [
+     606.24,
+     719.32
+    ],
+    "hand_r": [
+     593.46,
+     840.95
+    ],
+    "thigh_r": [
+     682.46,
+     921.24
+    ],
+    "shin_r": [
+     624.4,
+     1166.58
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     779.86,
+     591.62
+    ],
+    "upper_arm_l": [
+     876.97,
+     582.1
+    ],
+    "forearm_l": [
+     868.46,
+     714.73
+    ],
+    "hand_l": [
+     870.56,
+     835.04
+    ],
+    "thigh_l": [
+     808.55,
+     924.25
+    ],
+    "shin_l": [
+     834.3,
+     1171.69
+    ],
+    "foot_l": [
+     803.46,
+     1418.5
+    ]
+   }
+  },
+  "6.6": {
+   "hands": {
+    "r": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "right",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    },
+    "l": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "user",
+     "approval": "PENDING_REVIEW",
+     "requested": "relaxed",
+     "active": "relaxed",
+     "note": null,
+     "handedness": "left",
+     "palm": "PALM_TO_CAMERA",
+     "needs": [],
+     "consistency_issues": []
+    }
+   },
+   "correctives": [
+    {
+     "asset": "shoe_top_r",
+     "status": "pending_review"
+    },
+    {
+     "asset": "shoe_top_l",
+     "status": "pending_review"
+    },
+    {
+     "asset": "edge_decontamination",
+     "status": "pending_review"
+    }
+   ],
+   "alternatives": [],
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "knees": {
+    "knee_r_flexion": 8.723,
+    "knee_l_flexion": 13.208
+   },
+   "balance_error_px": 0.005614791382186013,
+   "feasibility": "NEEDS_ARTWORK",
+   "missing_artwork": [
+    "hand:relaxed"
+   ],
+   "joints_px": {
+    "pelvis": [
+     746.17,
+     922.85
+    ],
+    "spine": [
+     742.66,
+     798.09
+    ],
+    "chest": [
+     739.25,
+     673.44
+    ],
+    "neck": [
+     736.73,
+     544.86
+    ],
+    "head": [
+     738.3,
+     458.27
+    ],
+    "clavicle_r": [
+     699.61,
+     590.8299999999999
+    ],
+    "upper_arm_r": [
+     602.14,
+     585.0699999999999
+    ],
+    "forearm_r": [
+     606.78,
+     719.73
+    ],
+    "hand_r": [
+     594.0,
+     841.36
+    ],
+    "thigh_r": [
+     683.13,
+     921.37
+    ],
+    "shin_r": [
+     624.62,
+     1166.5900000000001
+    ],
+    "foot_r": [
+     603.97,
+     1417.9
+    ],
+    "clavicle_l": [
+     780.43,
+     591.71
+    ],
+    "upper_arm_l": [
+     877.55,
+     582.45
+    ],
+    "forearm_l": [
+     869.05,
+     715.08
+    ],
+    "hand_l": [
+     871.15,
+     835.39
+    ],
+    "thigh_l": [
+     809.22,
+     924.33
+    ],
+    "shin_l": [
+     834.95,
+     1171.77
+    ],
+    "foot_l": [
+     803.47,
+     1418.5
+    ]
+   }
+  }
+ },
+ "acting_knees": [
+  {
+   "t": 0.0,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614791382186013
+  },
+  {
+   "t": 0.0208,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614791802940999
+  },
+  {
+   "t": 0.0417,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614803626485809
+  },
+  {
+   "t": 0.0625,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614875626520188
+  },
+  {
+   "t": 0.0833,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005615111799784245
+  },
+  {
+   "t": 0.1042,
+   "knee_l": 13.209,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005615670163820141
+  },
+  {
+   "t": 0.125,
+   "knee_l": 13.21,
+   "knee_r": 8.724,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005616747133331046
+  },
+  {
+   "t": 0.1458,
+   "knee_l": 13.213,
+   "knee_r": 8.725,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00561855187436322
+  },
+  {
+   "t": 0.1667,
+   "knee_l": 13.217,
+   "knee_r": 8.726,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005621275121029612
+  },
+  {
+   "t": 0.1875,
+   "knee_l": 13.222,
+   "knee_r": 8.728,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0056250572422413825
+  },
+  {
+   "t": 0.2083,
+   "knee_l": 13.229,
+   "knee_r": 8.731,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005629960577834936
+  },
+  {
+   "t": 0.2292,
+   "knee_l": 13.237,
+   "knee_r": 8.734,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0056359508371315314
+  },
+  {
+   "t": 0.25,
+   "knee_l": 13.247,
+   "knee_r": 8.738,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005642891450975185
+  },
+  {
+   "t": 0.2708,
+   "knee_l": 13.258,
+   "knee_r": 8.742,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005650553098575983
+  },
+  {
+   "t": 0.2917,
+   "knee_l": 13.27,
+   "knee_r": 8.747,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005658638552745288
+  },
+  {
+   "t": 0.3125,
+   "knee_l": 13.283,
+   "knee_r": 8.751,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005666820902433756
+  },
+  {
+   "t": 0.3333,
+   "knee_l": 13.295,
+   "knee_r": 8.756,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005674791914543675
+  },
+  {
+   "t": 0.3542,
+   "knee_l": 13.307,
+   "knee_r": 8.76,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00568231718170864
+  },
+  {
+   "t": 0.375,
+   "knee_l": 13.319,
+   "knee_r": 8.765,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005689295998308808
+  },
+  {
+   "t": 0.3958,
+   "knee_l": 13.329,
+   "knee_r": 8.769,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005695825714383318
+  },
+  {
+   "t": 0.4167,
+   "knee_l": 13.34,
+   "knee_r": 8.772,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00570221197938281
+  },
+  {
+   "t": 0.4375,
+   "knee_l": 13.351,
+   "knee_r": 8.776,
+   "violations": [
+    "knee_l_flexion 13.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005708570828346637
+  },
+  {
+   "t": 0.4583,
+   "knee_l": 13.362,
+   "knee_r": 8.78,
+   "violations": [
+    "knee_l_flexion 13.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005714874860814234
+  },
+  {
+   "t": 0.4792,
+   "knee_l": 13.374,
+   "knee_r": 8.785,
+   "violations": [
+    "knee_l_flexion 13.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005721097590935642
+  },
+  {
+   "t": 0.5,
+   "knee_l": 13.385,
+   "knee_r": 8.789,
+   "violations": [
+    "knee_l_flexion 13.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005727214336616271
+  },
+  {
+   "t": 0.5208,
+   "knee_l": 13.353,
+   "knee_r": 8.782,
+   "violations": [
+    "knee_l_flexion 13.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005874306628129489
+  },
+  {
+   "t": 0.5417,
+   "knee_l": 13.232,
+   "knee_r": 8.764,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006832452191247285
+  },
+  {
+   "t": 0.5625,
+   "knee_l": 13.209,
+   "knee_r": 8.823,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0093704660637286
+  },
+  {
+   "t": 0.5833,
+   "knee_l": 13.459,
+   "knee_r": 9.036,
+   "violations": [
+    "knee_l_flexion 13.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0143766179234035
+  },
+  {
+   "t": 0.6042,
+   "knee_l": 13.928,
+   "knee_r": 9.367,
+   "violations": [
+    "knee_l_flexion 13.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006040492425427146
+  },
+  {
+   "t": 0.625,
+   "knee_l": 14.389,
+   "knee_r": 9.708,
+   "violations": [
+    "knee_l_flexion 14.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.009082196996018865
+  },
+  {
+   "t": 0.6458,
+   "knee_l": 14.756,
+   "knee_r": 10.035,
+   "violations": [
+    "knee_l_flexion 14.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012977369700706731
+  },
+  {
+   "t": 0.6667,
+   "knee_l": 15.131,
+   "knee_r": 10.407,
+   "violations": [
+    "knee_l_flexion 15.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01780821467627902
+  },
+  {
+   "t": 0.6875,
+   "knee_l": 15.521,
+   "knee_r": 10.818,
+   "violations": [
+    "knee_l_flexion 15.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006430208634242263
+  },
+  {
+   "t": 0.7083,
+   "knee_l": 15.896,
+   "knee_r": 11.252,
+   "violations": [
+    "knee_l_flexion 15.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.008215059899043808
+  },
+  {
+   "t": 0.7292,
+   "knee_l": 16.247,
+   "knee_r": 11.695,
+   "violations": [
+    "knee_l_flexion 16.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01015057007600717
+  },
+  {
+   "t": 0.75,
+   "knee_l": 16.565,
+   "knee_r": 12.131,
+   "violations": [
+    "knee_l_flexion 16.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012163849689727613
+  },
+  {
+   "t": 0.7708,
+   "knee_l": 16.842,
+   "knee_r": 12.545,
+   "violations": [
+    "knee_l_flexion 16.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.014173809759427058
+  },
+  {
+   "t": 0.7917,
+   "knee_l": 17.08,
+   "knee_r": 12.922,
+   "violations": [
+    "knee_l_flexion 17.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.016098659011390737
+  },
+  {
+   "t": 0.8125,
+   "knee_l": 17.279,
+   "knee_r": 13.251,
+   "violations": [
+    "knee_l_flexion 17.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.017863178196535046
+  },
+  {
+   "t": 0.8333,
+   "knee_l": 17.441,
+   "knee_r": 13.522,
+   "violations": [
+    "knee_l_flexion 17.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.019404887264727222
+  },
+  {
+   "t": 0.8542,
+   "knee_l": 17.577,
+   "knee_r": 13.729,
+   "violations": [
+    "knee_l_flexion 17.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0057310755728394724
+  },
+  {
+   "t": 0.875,
+   "knee_l": 17.679,
+   "knee_r": 13.872,
+   "violations": [
+    "knee_l_flexion 17.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006006472473586655
+  },
+  {
+   "t": 0.8958,
+   "knee_l": 17.756,
+   "knee_r": 13.957,
+   "violations": [
+    "knee_l_flexion 17.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006200289403977877
+  },
+  {
+   "t": 0.9167,
+   "knee_l": 17.809,
+   "knee_r": 13.993,
+   "violations": [
+    "knee_l_flexion 17.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006319731184248667
+  },
+  {
+   "t": 0.9375,
+   "knee_l": 17.841,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0063804655623016515
+  },
+  {
+   "t": 0.9583,
+   "knee_l": 17.855,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006405369143635653
+  },
+  {
+   "t": 0.9792,
+   "knee_l": 17.86,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006413052123320995
+  },
+  {
+   "t": 1.0,
+   "knee_l": 17.862,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006415415628453047
+  },
+  {
+   "t": 1.0208,
+   "knee_l": 17.864,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006416892079300851
+  },
+  {
+   "t": 1.0417,
+   "knee_l": 17.865,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00641837321040839
+  },
+  {
+   "t": 1.0625,
+   "knee_l": 17.867,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006419857074661195
+  },
+  {
+   "t": 1.0833,
+   "knee_l": 17.868,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006421341721988938
+  },
+  {
+   "t": 1.1042,
+   "knee_l": 17.87,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006422825204367655
+  },
+  {
+   "t": 1.125,
+   "knee_l": 17.871,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0064243055707038366
+  },
+  {
+   "t": 1.1458,
+   "knee_l": 17.873,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006425780871040843
+  },
+  {
+   "t": 1.1667,
+   "knee_l": 17.875,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006427249153489356
+  },
+  {
+   "t": 1.1875,
+   "knee_l": 17.876,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006428708467410615
+  },
+  {
+   "t": 1.2083,
+   "knee_l": 17.878,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006430156859892122
+  },
+  {
+   "t": 1.2292,
+   "knee_l": 17.879,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006431592378135065
+  },
+  {
+   "t": 1.25,
+   "knee_l": 17.881,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0064330130695680054
+  },
+  {
+   "t": 1.2708,
+   "knee_l": 17.882,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006434416979459456
+  },
+  {
+   "t": 1.2917,
+   "knee_l": 17.884,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006435802154101111
+  },
+  {
+   "t": 1.3125,
+   "knee_l": 17.885,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006437166637738301
+  },
+  {
+   "t": 1.3333,
+   "knee_l": 17.886,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006438508476321658
+  },
+  {
+   "t": 1.3542,
+   "knee_l": 17.888,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0064397520619650095
+  },
+  {
+   "t": 1.375,
+   "knee_l": 17.881,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006426761225384325
+  },
+  {
+   "t": 1.3958,
+   "knee_l": 17.845,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006363011625580839
+  },
+  {
+   "t": 1.4167,
+   "knee_l": 17.766,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0062258728787583095
+  },
+  {
+   "t": 1.4375,
+   "knee_l": 17.64,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0060090404047059565
+  },
+  {
+   "t": 1.4583,
+   "knee_l": 17.469,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005719547188732577
+  },
+  {
+   "t": 1.4792,
+   "knee_l": 17.258,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.019439431521846018
+  },
+  {
+   "t": 1.5,
+   "knee_l": 17.026,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 17.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01810594680966915
+  },
+  {
+   "t": 1.5208,
+   "knee_l": 16.786,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01675224510950102
+  },
+  {
+   "t": 1.5417,
+   "knee_l": 16.554,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.015473067889047343
+  },
+  {
+   "t": 1.5625,
+   "knee_l": 16.346,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01435269684384366
+  },
+  {
+   "t": 1.5833,
+   "knee_l": 16.176,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.013455823033837078
+  },
+  {
+   "t": 1.6042,
+   "knee_l": 16.054,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01281970469949556
+  },
+  {
+   "t": 1.625,
+   "knee_l": 15.983,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012446851572121886
+  },
+  {
+   "t": 1.6458,
+   "knee_l": 15.954,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012297116227273364
+  },
+  {
+   "t": 1.6667,
+   "knee_l": 15.951,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012278454505121772
+  },
+  {
+   "t": 1.6875,
+   "knee_l": 15.952,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01228049154940436
+  },
+  {
+   "t": 1.7083,
+   "knee_l": 15.952,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012282349086035538
+  },
+  {
+   "t": 1.7292,
+   "knee_l": 15.953,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012284021036862214
+  },
+  {
+   "t": 1.75,
+   "knee_l": 15.953,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01228550132464079
+  },
+  {
+   "t": 1.7708,
+   "knee_l": 15.954,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012286783874856155
+  },
+  {
+   "t": 1.7917,
+   "knee_l": 15.954,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012287862611628952
+  },
+  {
+   "t": 1.8125,
+   "knee_l": 15.955,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01228873146328624
+  },
+  {
+   "t": 1.8333,
+   "knee_l": 15.955,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012289388881640662
+  },
+  {
+   "t": 1.8542,
+   "knee_l": 15.955,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012289947742601726
+  },
+  {
+   "t": 1.875,
+   "knee_l": 15.955,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012290460177041496
+  },
+  {
+   "t": 1.8958,
+   "knee_l": 15.955,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012290927545336672
+  },
+  {
+   "t": 1.9167,
+   "knee_l": 15.956,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01229135120513547
+  },
+  {
+   "t": 1.9375,
+   "knee_l": 15.956,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012291732516700904
+  },
+  {
+   "t": 1.9583,
+   "knee_l": 15.956,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012292072839500179
+  },
+  {
+   "t": 1.9792,
+   "knee_l": 15.956,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012292373533909995
+  },
+  {
+   "t": 2.0,
+   "knee_l": 15.956,
+   "knee_r": 14.0,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012292635959056497
+  },
+  {
+   "t": 2.0208,
+   "knee_l": 15.905,
+   "knee_r": 13.997,
+   "violations": [
+    "knee_l_flexion 15.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01202871595353372
+  },
+  {
+   "t": 2.0417,
+   "knee_l": 15.682,
+   "knee_r": 13.978,
+   "violations": [
+    "knee_l_flexion 15.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.010896673845991245
+  },
+  {
+   "t": 2.0625,
+   "knee_l": 15.373,
+   "knee_r": 13.931,
+   "violations": [
+    "knee_l_flexion 15.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.009403537801745188
+  },
+  {
+   "t": 2.0833,
+   "knee_l": 15.167,
+   "knee_r": 13.847,
+   "violations": [
+    "knee_l_flexion 15.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.008512236404385476
+  },
+  {
+   "t": 2.1042,
+   "knee_l": 15.214,
+   "knee_r": 13.721,
+   "violations": [
+    "knee_l_flexion 15.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.008908474759778073
+  },
+  {
+   "t": 2.125,
+   "knee_l": 15.534,
+   "knee_r": 13.55,
+   "violations": [
+    "knee_l_flexion 15.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.010718853181629129
+  },
+  {
+   "t": 2.1458,
+   "knee_l": 16.001,
+   "knee_r": 13.335,
+   "violations": [
+    "knee_l_flexion 16.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.013421955782064288
+  },
+  {
+   "t": 2.1667,
+   "knee_l": 16.418,
+   "knee_r": 13.078,
+   "violations": [
+    "knee_l_flexion 16.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.016024622054828797
+  },
+  {
+   "t": 2.1875,
+   "knee_l": 16.672,
+   "knee_r": 12.784,
+   "violations": [
+    "knee_l_flexion 16.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01782048653512902
+  },
+  {
+   "t": 2.2083,
+   "knee_l": 16.853,
+   "knee_r": 12.459,
+   "violations": [
+    "knee_l_flexion 16.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01924168627135714
+  },
+  {
+   "t": 2.2292,
+   "knee_l": 17.029,
+   "knee_r": 12.111,
+   "violations": [
+    "knee_l_flexion 17.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005697893517663033
+  },
+  {
+   "t": 2.25,
+   "knee_l": 17.172,
+   "knee_r": 11.748,
+   "violations": [
+    "knee_l_flexion 17.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006040054240884274
+  },
+  {
+   "t": 2.2708,
+   "knee_l": 17.269,
+   "knee_r": 11.379,
+   "violations": [
+    "knee_l_flexion 17.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006297151050148386
+  },
+  {
+   "t": 2.2917,
+   "knee_l": 17.303,
+   "knee_r": 11.012,
+   "violations": [
+    "knee_l_flexion 17.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006435141440533698
+  },
+  {
+   "t": 2.3125,
+   "knee_l": 17.262,
+   "knee_r": 10.658,
+   "violations": [
+    "knee_l_flexion 17.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0064307577721365305
+  },
+  {
+   "t": 2.3333,
+   "knee_l": 17.135,
+   "knee_r": 10.324,
+   "violations": [
+    "knee_l_flexion 17.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006260111048732142
+  },
+  {
+   "t": 2.3542,
+   "knee_l": 16.912,
+   "knee_r": 10.019,
+   "violations": [
+    "knee_l_flexion 16.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0059178933033763315
+  },
+  {
+   "t": 2.375,
+   "knee_l": 16.614,
+   "knee_r": 9.749,
+   "violations": [
+    "knee_l_flexion 16.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.019773596336335686
+  },
+  {
+   "t": 2.3958,
+   "knee_l": 16.266,
+   "knee_r": 9.519,
+   "violations": [
+    "knee_l_flexion 16.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.017838746957409057
+  },
+  {
+   "t": 2.4167,
+   "knee_l": 15.882,
+   "knee_r": 9.333,
+   "violations": [
+    "knee_l_flexion 15.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.015754788409708453
+  },
+  {
+   "t": 2.4375,
+   "knee_l": 15.484,
+   "knee_r": 9.191,
+   "violations": [
+    "knee_l_flexion 15.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.013664061610029421
+  },
+  {
+   "t": 2.4583,
+   "knee_l": 15.094,
+   "knee_r": 9.093,
+   "violations": [
+    "knee_l_flexion 15.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01169531232085319
+  },
+  {
+   "t": 2.4792,
+   "knee_l": 14.734,
+   "knee_r": 9.034,
+   "violations": [
+    "knee_l_flexion 14.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.009952136016181612
+  },
+  {
+   "t": 2.5,
+   "knee_l": 14.423,
+   "knee_r": 9.007,
+   "violations": [
+    "knee_l_flexion 14.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.008503511211529258
+  },
+  {
+   "t": 2.5208,
+   "knee_l": 14.173,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007378177099667482
+  },
+  {
+   "t": 2.5417,
+   "knee_l": 13.987,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00656326099533544
+  },
+  {
+   "t": 2.5625,
+   "knee_l": 13.858,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006012418514160345
+  },
+  {
+   "t": 2.5833,
+   "knee_l": 13.772,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00565317570692514
+  },
+  {
+   "t": 2.6042,
+   "knee_l": 13.716,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005419895585191625
+  },
+  {
+   "t": 2.625,
+   "knee_l": 13.673,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01960222691832314
+  },
+  {
+   "t": 2.6458,
+   "knee_l": 13.654,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.019316284734827605
+  },
+  {
+   "t": 2.6667,
+   "knee_l": 13.656,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01933752706179348
+  },
+  {
+   "t": 2.6875,
+   "knee_l": 13.677,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01966472916683415
+  },
+  {
+   "t": 2.7083,
+   "knee_l": 13.723,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005447204745792078
+  },
+  {
+   "t": 2.7292,
+   "knee_l": 13.779,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0056809893071658735
+  },
+  {
+   "t": 2.75,
+   "knee_l": 13.847,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005966746352783048
+  },
+  {
+   "t": 2.7708,
+   "knee_l": 13.922,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006286063554171051
+  },
+  {
+   "t": 2.7917,
+   "knee_l": 13.999,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006618539364353637
+  },
+  {
+   "t": 2.8125,
+   "knee_l": 14.074,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.006943276519905339
+  },
+  {
+   "t": 2.8333,
+   "knee_l": 14.141,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0072405067799081735
+  },
+  {
+   "t": 2.8542,
+   "knee_l": 14.198,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007493274306170861
+  },
+  {
+   "t": 2.875,
+   "knee_l": 14.241,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0076891287067155645
+  },
+  {
+   "t": 2.8958,
+   "knee_l": 14.27,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007821889214028488
+  },
+  {
+   "t": 2.9167,
+   "knee_l": 14.285,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007893627375437973
+  },
+  {
+   "t": 2.9375,
+   "knee_l": 14.289,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007917045872090966
+  },
+  {
+   "t": 2.9583,
+   "knee_l": 14.281,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00788684998917688
+  },
+  {
+   "t": 2.9792,
+   "knee_l": 14.084,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007064878991513979
+  },
+  {
+   "t": 3.0,
+   "knee_l": 13.651,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005405599136565797
+  },
+  {
+   "t": 3.0208,
+   "knee_l": 13.272,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.015954345007344273
+  },
+  {
+   "t": 3.0417,
+   "knee_l": 13.247,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01780761031579914
+  },
+  {
+   "t": 3.0625,
+   "knee_l": 13.608,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 13.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007053793592604052
+  },
+  {
+   "t": 3.0833,
+   "knee_l": 14.085,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.010281146275588071
+  },
+  {
+   "t": 3.1042,
+   "knee_l": 14.369,
+   "knee_r": 9.0,
+   "violations": [
+    "knee_l_flexion 14.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.013048770972886814
+  },
+  {
+   "t": 3.125,
+   "knee_l": 14.332,
+   "knee_r": 8.892,
+   "violations": [
+    "knee_l_flexion 14.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.014891322466837664
+  },
+  {
+   "t": 3.1458,
+   "knee_l": 13.829,
+   "knee_r": 8.203,
+   "violations": [
+    "knee_l_flexion 13.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.016110425462784406
+  },
+  {
+   "t": 3.1667,
+   "knee_l": 12.978,
+   "knee_r": 7.025,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.016594669663277273
+  },
+  {
+   "t": 3.1875,
+   "knee_l": 12.025,
+   "knee_r": 5.667,
+   "violations": [
+    "knee_l_flexion 12.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.016277229975116825
+  },
+  {
+   "t": 3.2083,
+   "knee_l": 11.228,
+   "knee_r": 4.531,
+   "violations": [
+    "knee_l_flexion 11.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01630995878599606
+  },
+  {
+   "t": 3.2292,
+   "knee_l": 10.771,
+   "knee_r": 4.007,
+   "violations": [
+    "knee_l_flexion 10.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01701269826605767
+  },
+  {
+   "t": 3.25,
+   "knee_l": 10.539,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01824904613920353
+  },
+  {
+   "t": 3.2708,
+   "knee_l": 10.238,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01922707340281704
+  },
+  {
+   "t": 3.2917,
+   "knee_l": 9.928,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.019966091339369996
+  },
+  {
+   "t": 3.3125,
+   "knee_l": 9.666,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005073223466979471
+  },
+  {
+   "t": 3.3333,
+   "knee_l": 9.458,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.019883060813072007
+  },
+  {
+   "t": 3.3542,
+   "knee_l": 9.344,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005041932222638934
+  },
+  {
+   "t": 3.375,
+   "knee_l": 9.3,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.0051335634670977015
+  },
+  {
+   "t": 3.3958,
+   "knee_l": 9.316,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005232093750805689
+  },
+  {
+   "t": 3.4167,
+   "knee_l": 9.367,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005318472840031063
+  },
+  {
+   "t": 3.4375,
+   "knee_l": 9.414,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005374986497599821
+  },
+  {
+   "t": 3.4583,
+   "knee_l": 9.43,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005394791726871517
+  },
+  {
+   "t": 3.4792,
+   "knee_l": 9.435,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005401876172072662
+  },
+  {
+   "t": 3.5,
+   "knee_l": 9.439,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005408988716453678
+  },
+  {
+   "t": 3.5208,
+   "knee_l": 9.443,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.0054159126410695535
+  },
+  {
+   "t": 3.5417,
+   "knee_l": 9.447,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.0054222039398155175
+  },
+  {
+   "t": 3.5625,
+   "knee_l": 9.45,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005427528169434481
+  },
+  {
+   "t": 3.5833,
+   "knee_l": 9.451,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005431596743278533
+  },
+  {
+   "t": 3.6042,
+   "knee_l": 9.452,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005434172702621254
+  },
+  {
+   "t": 3.625,
+   "knee_l": 9.451,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.0054350737353843215
+  },
+  {
+   "t": 3.6458,
+   "knee_l": 9.448,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005434173321305025
+  },
+  {
+   "t": 3.6667,
+   "knee_l": 9.443,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005431388631109257
+  },
+  {
+   "t": 3.6875,
+   "knee_l": 9.437,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005426616554245811
+  },
+  {
+   "t": 3.7083,
+   "knee_l": 9.429,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005419878443717607
+  },
+  {
+   "t": 3.7292,
+   "knee_l": 9.419,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005411268229181587
+  },
+  {
+   "t": 3.75,
+   "knee_l": 9.407,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005400935182592548
+  },
+  {
+   "t": 3.7708,
+   "knee_l": 9.394,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005389083318846133
+  },
+  {
+   "t": 3.7917,
+   "knee_l": 9.379,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005375969652845924
+  },
+  {
+   "t": 3.8125,
+   "knee_l": 9.364,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.0053619004975189455
+  },
+  {
+   "t": 3.8333,
+   "knee_l": 9.348,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005347224937395367
+  },
+  {
+   "t": 3.8542,
+   "knee_l": 9.332,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005332324687401524
+  },
+  {
+   "t": 3.875,
+   "knee_l": 9.316,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.00531759972227519
+  },
+  {
+   "t": 3.8958,
+   "knee_l": 9.3,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005303449344069122
+  },
+  {
+   "t": 3.9167,
+   "knee_l": 9.285,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005262985774152185
+  },
+  {
+   "t": 3.9375,
+   "knee_l": 9.271,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005212598615912611
+  },
+  {
+   "t": 3.9583,
+   "knee_l": 9.259,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005167281033436666
+  },
+  {
+   "t": 3.9792,
+   "knee_l": 9.248,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.00512723654878755
+  },
+  {
+   "t": 4.0,
+   "knee_l": 9.239,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005092240273597781
+  },
+  {
+   "t": 4.0208,
+   "knee_l": 9.23,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005061563259914692
+  },
+  {
+   "t": 4.0417,
+   "knee_l": 9.223,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005033896319673659
+  },
+  {
+   "t": 4.0625,
+   "knee_l": 9.217,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005010928452520602
+  },
+  {
+   "t": 4.0833,
+   "knee_l": 9.22,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005046739427484681
+  },
+  {
+   "t": 4.1042,
+   "knee_l": 9.251,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005247919679618462
+  },
+  {
+   "t": 4.125,
+   "knee_l": 9.331,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005288478749889691
+  },
+  {
+   "t": 4.1458,
+   "knee_l": 9.445,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005339907580605541
+  },
+  {
+   "t": 4.1667,
+   "knee_l": 9.568,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005377917394298493
+  },
+  {
+   "t": 4.1875,
+   "knee_l": 9.685,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005404819718251019
+  },
+  {
+   "t": 4.2083,
+   "knee_l": 9.795,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005482437952423425
+  },
+  {
+   "t": 4.2292,
+   "knee_l": 9.92,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.005300224527672981
+  },
+  {
+   "t": 4.25,
+   "knee_l": 10.058,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01978051449953
+  },
+  {
+   "t": 4.2708,
+   "knee_l": 10.193,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.018321473805258393
+  },
+  {
+   "t": 4.2917,
+   "knee_l": 10.287,
+   "knee_r": 4.0,
+   "violations": [],
+   "balance_error_px": 0.01648374325122859
+  },
+  {
+   "t": 4.3125,
+   "knee_l": 10.359,
+   "knee_r": 4.07,
+   "violations": [],
+   "balance_error_px": 0.01441778633420654
+  },
+  {
+   "t": 4.3333,
+   "knee_l": 10.6,
+   "knee_r": 4.48,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.012613671896815504
+  },
+  {
+   "t": 4.3542,
+   "knee_l": 10.957,
+   "knee_r": 5.117,
+   "violations": [
+    "knee_l_flexion 11.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.011086500617579986
+  },
+  {
+   "t": 4.375,
+   "knee_l": 11.342,
+   "knee_r": 5.831,
+   "violations": [
+    "knee_l_flexion 11.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.009304746442694523
+  },
+  {
+   "t": 4.3958,
+   "knee_l": 11.679,
+   "knee_r": 6.505,
+   "violations": [
+    "knee_l_flexion 11.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.007038660383614115
+  },
+  {
+   "t": 4.4167,
+   "knee_l": 11.903,
+   "knee_r": 7.067,
+   "violations": [
+    "knee_l_flexion 11.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.017459935450347075
+  },
+  {
+   "t": 4.4375,
+   "knee_l": 12.0,
+   "knee_r": 7.49,
+   "violations": [
+    "knee_l_flexion 12.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.008332195754178429
+  },
+  {
+   "t": 4.4583,
+   "knee_l": 11.957,
+   "knee_r": 7.777,
+   "violations": [
+    "knee_l_flexion 12.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.008901777410642353
+  },
+  {
+   "t": 4.4792,
+   "knee_l": 11.805,
+   "knee_r": 7.948,
+   "violations": [
+    "knee_l_flexion 11.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.006578824221264767
+  },
+  {
+   "t": 4.5,
+   "knee_l": 11.572,
+   "knee_r": 8.03,
+   "violations": [
+    "knee_l_flexion 11.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01166463010690677
+  },
+  {
+   "t": 4.5208,
+   "knee_l": 11.313,
+   "knee_r": 8.052,
+   "violations": [
+    "knee_l_flexion 11.3 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.015119492177177563
+  },
+  {
+   "t": 4.5417,
+   "knee_l": 11.1,
+   "knee_r": 8.049,
+   "violations": [
+    "knee_l_flexion 11.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01719764220183606
+  },
+  {
+   "t": 4.5625,
+   "knee_l": 10.977,
+   "knee_r": 8.043,
+   "violations": [
+    "knee_l_flexion 11.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01827040629189014
+  },
+  {
+   "t": 4.5833,
+   "knee_l": 10.917,
+   "knee_r": 8.037,
+   "violations": [
+    "knee_l_flexion 10.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.018701234767604547
+  },
+  {
+   "t": 4.6042,
+   "knee_l": 10.887,
+   "knee_r": 8.031,
+   "violations": [
+    "knee_l_flexion 10.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.018834476410575007
+  },
+  {
+   "t": 4.625,
+   "knee_l": 10.86,
+   "knee_r": 8.025,
+   "violations": [
+    "knee_l_flexion 10.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01893257375832036
+  },
+  {
+   "t": 4.6458,
+   "knee_l": 10.833,
+   "knee_r": 8.018,
+   "violations": [
+    "knee_l_flexion 10.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019026118476858755
+  },
+  {
+   "t": 4.6667,
+   "knee_l": 10.806,
+   "knee_r": 8.012,
+   "violations": [
+    "knee_l_flexion 10.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019111587077873082
+  },
+  {
+   "t": 4.6875,
+   "knee_l": 10.779,
+   "knee_r": 8.005,
+   "violations": [
+    "knee_l_flexion 10.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019185745781783226
+  },
+  {
+   "t": 4.7083,
+   "knee_l": 10.753,
+   "knee_r": 7.998,
+   "violations": [
+    "knee_l_flexion 10.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019245748494995496
+  },
+  {
+   "t": 4.7292,
+   "knee_l": 10.729,
+   "knee_r": 7.991,
+   "violations": [
+    "knee_l_flexion 10.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019289214904461005
+  },
+  {
+   "t": 4.75,
+   "knee_l": 10.706,
+   "knee_r": 7.983,
+   "violations": [
+    "knee_l_flexion 10.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019314290001716472
+  },
+  {
+   "t": 4.7708,
+   "knee_l": 10.685,
+   "knee_r": 7.976,
+   "violations": [
+    "knee_l_flexion 10.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019319686453627583
+  },
+  {
+   "t": 4.7917,
+   "knee_l": 10.666,
+   "knee_r": 7.968,
+   "violations": [
+    "knee_l_flexion 10.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019304711206814318
+  },
+  {
+   "t": 4.8125,
+   "knee_l": 10.648,
+   "knee_r": 7.96,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019269277530042928
+  },
+  {
+   "t": 4.8333,
+   "knee_l": 10.633,
+   "knee_r": 7.952,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019213903435115753
+  },
+  {
+   "t": 4.8542,
+   "knee_l": 10.62,
+   "knee_r": 7.944,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019139697043556225
+  },
+  {
+   "t": 4.875,
+   "knee_l": 10.608,
+   "knee_r": 7.936,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.019048329055181057
+  },
+  {
+   "t": 4.8958,
+   "knee_l": 10.598,
+   "knee_r": 7.928,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01894199209675662
+  },
+  {
+   "t": 4.9167,
+   "knee_l": 10.59,
+   "knee_r": 7.92,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.018823346352178305
+  },
+  {
+   "t": 4.9375,
+   "knee_l": 10.582,
+   "knee_r": 7.912,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01869545061788358
+  },
+  {
+   "t": 4.9583,
+   "knee_l": 10.575,
+   "knee_r": 7.904,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.018561677788170527
+  },
+  {
+   "t": 4.9792,
+   "knee_l": 10.569,
+   "knee_r": 7.896,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.018425613751219316
+  },
+  {
+   "t": 5.0,
+   "knee_l": 10.563,
+   "knee_r": 7.889,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.018290938841232673
+  },
+  {
+   "t": 5.0208,
+   "knee_l": 10.557,
+   "knee_r": 7.881,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01816129125995758
+  },
+  {
+   "t": 5.0417,
+   "knee_l": 10.55,
+   "knee_r": 7.873,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01804011231183722
+  },
+  {
+   "t": 5.0625,
+   "knee_l": 10.542,
+   "knee_r": 7.866,
+   "violations": [
+    "knee_l_flexion 10.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.017930473777710176
+  },
+  {
+   "t": 5.0833,
+   "knee_l": 10.533,
+   "knee_r": 7.858,
+   "violations": [
+    "knee_l_flexion 10.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01783488829005364
+  },
+  {
+   "t": 5.1042,
+   "knee_l": 10.522,
+   "knee_r": 7.851,
+   "violations": [
+    "knee_l_flexion 10.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.017755104075490635
+  },
+  {
+   "t": 5.125,
+   "knee_l": 10.511,
+   "knee_r": 7.844,
+   "violations": [
+    "knee_l_flexion 10.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.017691885769863802
+  },
+  {
+   "t": 5.1458,
+   "knee_l": 10.498,
+   "knee_r": 7.837,
+   "violations": [],
+   "balance_error_px": -0.017644783153400567
+  },
+  {
+   "t": 5.1667,
+   "knee_l": 10.484,
+   "knee_r": 7.831,
+   "violations": [],
+   "balance_error_px": -0.017611889338013498
+  },
+  {
+   "t": 5.1875,
+   "knee_l": 10.47,
+   "knee_r": 7.825,
+   "violations": [],
+   "balance_error_px": -0.01758958905691088
+  },
+  {
+   "t": 5.2083,
+   "knee_l": 10.456,
+   "knee_r": 7.819,
+   "violations": [],
+   "balance_error_px": -0.01757230911221086
+  },
+  {
+   "t": 5.2292,
+   "knee_l": 10.445,
+   "knee_r": 7.814,
+   "violations": [],
+   "balance_error_px": -0.01755322984513441
+  },
+  {
+   "t": 5.25,
+   "knee_l": 10.441,
+   "knee_r": 7.814,
+   "violations": [],
+   "balance_error_px": -0.01752659968030912
+  },
+  {
+   "t": 5.2708,
+   "knee_l": 10.448,
+   "knee_r": 7.821,
+   "violations": [],
+   "balance_error_px": -0.017483847915627848
+  },
+  {
+   "t": 5.2917,
+   "knee_l": 10.471,
+   "knee_r": 7.834,
+   "violations": [],
+   "balance_error_px": -0.01739407982404373
+  },
+  {
+   "t": 5.3125,
+   "knee_l": 10.514,
+   "knee_r": 7.857,
+   "violations": [
+    "knee_l_flexion 10.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01722311071000604
+  },
+  {
+   "t": 5.3333,
+   "knee_l": 10.58,
+   "knee_r": 7.887,
+   "violations": [
+    "knee_l_flexion 10.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.016944310030339693
+  },
+  {
+   "t": 5.3542,
+   "knee_l": 10.67,
+   "knee_r": 7.926,
+   "violations": [
+    "knee_l_flexion 10.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.016537732474944278
+  },
+  {
+   "t": 5.375,
+   "knee_l": 10.782,
+   "knee_r": 7.972,
+   "violations": [
+    "knee_l_flexion 10.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.0159896809127531
+  },
+  {
+   "t": 5.3958,
+   "knee_l": 10.914,
+   "knee_r": 8.023,
+   "violations": [
+    "knee_l_flexion 10.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01529276481414854
+  },
+  {
+   "t": 5.4167,
+   "knee_l": 11.062,
+   "knee_r": 8.079,
+   "violations": [
+    "knee_l_flexion 11.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.014446235762534343
+  },
+  {
+   "t": 5.4375,
+   "knee_l": 11.222,
+   "knee_r": 8.137,
+   "violations": [
+    "knee_l_flexion 11.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.013456334801503544
+  },
+  {
+   "t": 5.4583,
+   "knee_l": 11.391,
+   "knee_r": 8.197,
+   "violations": [
+    "knee_l_flexion 11.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.012336414194464851
+  },
+  {
+   "t": 5.4792,
+   "knee_l": 11.563,
+   "knee_r": 8.256,
+   "violations": [
+    "knee_l_flexion 11.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.011106671891639053
+  },
+  {
+   "t": 5.5,
+   "knee_l": 11.735,
+   "knee_r": 8.312,
+   "violations": [
+    "knee_l_flexion 11.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.00979346385986446
+  },
+  {
+   "t": 5.5208,
+   "knee_l": 11.903,
+   "knee_r": 8.365,
+   "violations": [
+    "knee_l_flexion 11.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.00842811430322854
+  },
+  {
+   "t": 5.5417,
+   "knee_l": 12.063,
+   "knee_r": 8.414,
+   "violations": [
+    "knee_l_flexion 12.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.007045249527322994
+  },
+  {
+   "t": 5.5625,
+   "knee_l": 12.213,
+   "knee_r": 8.457,
+   "violations": [
+    "knee_l_flexion 12.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.0056811862700669735
+  },
+  {
+   "t": 5.5833,
+   "knee_l": 12.356,
+   "knee_r": 8.494,
+   "violations": [
+    "knee_l_flexion 12.4 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.016530267455436842
+  },
+  {
+   "t": 5.6042,
+   "knee_l": 12.478,
+   "knee_r": 8.525,
+   "violations": [
+    "knee_l_flexion 12.5 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.011896369327473622
+  },
+  {
+   "t": 5.625,
+   "knee_l": 12.584,
+   "knee_r": 8.55,
+   "violations": [
+    "knee_l_flexion 12.6 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.007726590114316423
+  },
+  {
+   "t": 5.6458,
+   "knee_l": 12.679,
+   "knee_r": 8.569,
+   "violations": [
+    "knee_l_flexion 12.7 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.015458883369774412
+  },
+  {
+   "t": 5.6667,
+   "knee_l": 12.754,
+   "knee_r": 8.582,
+   "violations": [
+    "knee_l_flexion 12.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": -0.01546013232155019
+  },
+  {
+   "t": 5.6875,
+   "knee_l": 12.801,
+   "knee_r": 8.592,
+   "violations": [
+    "knee_l_flexion 12.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01820801237613523
+  },
+  {
+   "t": 5.7083,
+   "knee_l": 12.849,
+   "knee_r": 8.598,
+   "violations": [
+    "knee_l_flexion 12.8 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.011465845877182801
+  },
+  {
+   "t": 5.7292,
+   "knee_l": 12.881,
+   "knee_r": 8.602,
+   "violations": [
+    "knee_l_flexion 12.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.01596864560224276
+  },
+  {
+   "t": 5.75,
+   "knee_l": 12.904,
+   "knee_r": 8.606,
+   "violations": [
+    "knee_l_flexion 12.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.018693925160505387
+  },
+  {
+   "t": 5.7708,
+   "knee_l": 12.921,
+   "knee_r": 8.611,
+   "violations": [
+    "knee_l_flexion 12.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.019999404884060823
+  },
+  {
+   "t": 5.7917,
+   "knee_l": 12.94,
+   "knee_r": 8.615,
+   "violations": [
+    "knee_l_flexion 12.9 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005427085762562456
+  },
+  {
+   "t": 5.8125,
+   "knee_l": 12.951,
+   "knee_r": 8.62,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005438699523665491
+  },
+  {
+   "t": 5.8333,
+   "knee_l": 12.963,
+   "knee_r": 8.625,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005448185744626244
+  },
+  {
+   "t": 5.8542,
+   "knee_l": 12.975,
+   "knee_r": 8.63,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005457745589410479
+  },
+  {
+   "t": 5.875,
+   "knee_l": 12.987,
+   "knee_r": 8.635,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005467327329483851
+  },
+  {
+   "t": 5.8958,
+   "knee_l": 13.0,
+   "knee_r": 8.64,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005476881664094435
+  },
+  {
+   "t": 5.9167,
+   "knee_l": 13.012,
+   "knee_r": 8.645,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005486361858743294
+  },
+  {
+   "t": 5.9375,
+   "knee_l": 13.025,
+   "knee_r": 8.651,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005495723852504852
+  },
+  {
+   "t": 5.9583,
+   "knee_l": 13.037,
+   "knee_r": 8.656,
+   "violations": [
+    "knee_l_flexion 13.0 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0055049263436330875
+  },
+  {
+   "t": 5.9792,
+   "knee_l": 13.05,
+   "knee_r": 8.661,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005513930840379544
+  },
+  {
+   "t": 6.0,
+   "knee_l": 13.062,
+   "knee_r": 8.666,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005522701686459186
+  },
+  {
+   "t": 6.0208,
+   "knee_l": 13.074,
+   "knee_r": 8.671,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005531328759275311
+  },
+  {
+   "t": 6.0417,
+   "knee_l": 13.087,
+   "knee_r": 8.676,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005540221421028946
+  },
+  {
+   "t": 6.0625,
+   "knee_l": 13.101,
+   "knee_r": 8.681,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005549514186895976
+  },
+  {
+   "t": 6.0833,
+   "knee_l": 13.116,
+   "knee_r": 8.687,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005559052461990177
+  },
+  {
+   "t": 6.1042,
+   "knee_l": 13.13,
+   "knee_r": 8.693,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005568528076878465
+  },
+  {
+   "t": 6.125,
+   "knee_l": 13.145,
+   "knee_r": 8.699,
+   "violations": [
+    "knee_l_flexion 13.1 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005577586114213773
+  },
+  {
+   "t": 6.1458,
+   "knee_l": 13.158,
+   "knee_r": 8.704,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005585900804476296
+  },
+  {
+   "t": 6.1667,
+   "knee_l": 13.17,
+   "knee_r": 8.709,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005593221642016033
+  },
+  {
+   "t": 6.1875,
+   "knee_l": 13.181,
+   "knee_r": 8.713,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005599394307751027
+  },
+  {
+   "t": 6.2083,
+   "knee_l": 13.189,
+   "knee_r": 8.716,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005604362984058753
+  },
+  {
+   "t": 6.2292,
+   "knee_l": 13.196,
+   "knee_r": 8.718,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005608160731867429
+  },
+  {
+   "t": 6.25,
+   "knee_l": 13.201,
+   "knee_r": 8.72,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005610893236735137
+  },
+  {
+   "t": 6.2708,
+   "knee_l": 13.204,
+   "knee_r": 8.722,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005612719212081174
+  },
+  {
+   "t": 6.2917,
+   "knee_l": 13.206,
+   "knee_r": 8.722,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.0056138290490252984
+  },
+  {
+   "t": 6.3125,
+   "knee_l": 13.207,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614422452595136
+  },
+  {
+   "t": 6.3333,
+   "knee_l": 13.207,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614686101012012
+  },
+  {
+   "t": 6.3542,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.00561477347116579
+  },
+  {
+   "t": 6.375,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614790427216576
+  },
+  {
+   "t": 6.3958,
+   "knee_l": 13.208,
+   "knee_r": 8.723,
+   "violations": [
+    "knee_l_flexion 13.2 outside [-2.0, 10.0]"
+   ],
+   "balance_error_px": 0.005614791381844952
+  }
+ ]
+}

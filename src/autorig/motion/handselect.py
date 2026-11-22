@@ -74,6 +74,11 @@ from ..phase2.skeleton import SIDE_SIGN, SIDES
 WEIGHTS: dict[str, float] = {"gesture": 0.32, "palm": 0.08, "anatomy": 0.08, "wrist": 0.10, "silhouette": 0.08,
                              "view": 0.08, "proportion": 0.04, "continuity": 0.10, "fidelity": 0.04, "approval": 0.08}
 CAMERA_PALMS = ["PALM_TO_CAMERA", "BACK_TO_CAMERA", "EDGE_ON"]  # what a hanging/forward hand may show
+# Phase 3.8.1: a resting hand on a hanging arm (forearm within HANG_DEG of straight down) shows its back or its edge.
+# A palm toward the camera there means a fully supinated forearm with the thumb pointing away from the body: an
+# anatomically possible but held pose that never reads as a resting hand (the "extended-finger" defect).
+HANGING_REST_PALMS = ["BACK_TO_CAMERA", "EDGE_ON"]
+HANG_DEG = 40.0
 
 # Step 6 rules. prefer: best first; forbid: never chosen automatically for the action; aim: the feature the wrist
 # turns toward the goal (within the wrist limit); max_turn: largest extra wrist rotation the action allows;
@@ -81,7 +86,8 @@ CAMERA_PALMS = ["PALM_TO_CAMERA", "BACK_TO_CAMERA", "EDGE_ON"]  # what a hanging
 ACTIONS: dict[str, dict[str, Any]] = {
     "relaxed_standing": {"prefer": ["relaxed", "open_palm", "partially_closed"],
                          "forbid": ["pointing", "thumbs_up", "gripping", "fist"], "max_turn": 0.0, "palm": CAMERA_PALMS,
-                         "why": "relaxed hands, neutral wrists"},
+                         "hanging_palm": HANGING_REST_PALMS,
+                         "why": "relaxed hands, neutral wrists; a hanging arm shows the back or the edge of the hand"},
     "walking": {"prefer": ["relaxed", "partially_closed", "open_palm"],
                 "forbid": ["pointing", "thumbs_up", "gripping", "palm_down"], "max_turn": 0.0, "symmetric": True,
                 "palm": CAMERA_PALMS,
@@ -392,6 +398,13 @@ class NaturalHandSelectionEngine:
                     if not reach:
                         why += " - no flat rotation of this drawing shows that (needs a different drawing)"
                     add("palm", why)
+        hang = rule.get("hanging_palm")
+        if hang and ctx.forearm_deg is not None and abs(_wrap(ctx.forearm_deg)) <= HANG_DEG:
+            cls = (pa or {}).get("palm_class")
+            if cls not in (None, "AMBIGUOUS") and cls not in hang:
+                add("palm", f"shows {cls} on a hanging arm (forearm {abs(_wrap(ctx.forearm_deg)):.0f} deg from vertical): "
+                            f"a palm toward the camera turns the thumb away from the body, which is not a resting hand; "
+                            f"{ctx.action} needs {' or '.join(hang)} while the arm hangs")
         return out, pa
 
     def score(self, v, ctx: HandContext, rule: dict[str, Any], state: HandSelectionState | None,

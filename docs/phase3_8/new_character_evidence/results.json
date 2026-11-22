@@ -4711,12 +4711,43 @@
    "handstore:tough_student_hands_v1/right_pointing@v1": "approved",
    "handstore:tough_student_hands_v1/left_fist@v1": "rejected"
   },
+  "switch_consistency": {
+   "ok": true,
+   "sides": {
+    "r": {
+     "requested": "fist",
+     "active": "fist",
+     "source": "user",
+     "rendered_pose": "fist",
+     "cid": "store:tough_student_hands_v1/right_fist",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+     "pending_review": true,
+     "substituted": false,
+     "note": null,
+     "handedness": "right",
+     "issues": []
+    },
+    "l": {
+     "requested": "relaxed",
+     "active": "relaxed",
+     "source": "auto",
+     "rendered_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "layer": "hand_l__hs.tough_student_hands_v1.right_relaxed.v1",
+     "pending_review": true,
+     "substituted": false,
+     "note": null,
+     "handedness": "left",
+     "issues": []
+    }
+   }
+  },
   "hands_shown": {
-   "r": "pointing",
+   "r": "fist (pending)",
    "l": "relaxed (pending)"
   },
   "note": "scratch copy only: the committed package's editor project has no edits and no approvals",
-  "wall_s": 35.4
+  "wall_s": 31.9
  },
  "export": {
   "images": [

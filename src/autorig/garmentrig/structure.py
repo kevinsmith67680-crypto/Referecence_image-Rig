@@ -137,12 +137,19 @@ class Part:
     layers: dict[str, int] = field(default_factory=dict)
     centroid: list[float] | None = None
     fold: bool = False
+    # Phase 3.8.1: what the part is on this character (measured), shown in reports and the editor. ``name`` and
+    # ``kind`` stay the mechanical slot the rig rules use (e.g. the rigid centre piece "tie").
+    semantic: str = ""
+    label: str = ""
+    semantic_evidence: dict[str, Any] = field(default_factory=dict)
 
     def to_json(self) -> dict[str, Any]:
         return {"name": self.name, "kind": self.kind, "garment": self.garment, "class": self.cls,
                 "allowed_bones": self.bones, "primary_bone": self.primary, "side": self.side,
                 "description": self.description, "pixels": self.pixels, "layers": self.layers,
-                "centroid": self.centroid, "fold_region": self.fold}
+                "centroid": self.centroid, "fold_region": self.fold,
+                "semantic": self.semantic or self.kind, "label": self.label or self.name,
+                "semantic_evidence": self.semantic_evidence}
 
 
 @dataclass
@@ -403,8 +410,55 @@ class GarmentStructureAnalyzer:
                     cy += float(ys.sum() + lp.origin[1] * len(ys))
             p.pixels, p.layers = tot, lay
             p.centroid = [round(cx / tot, 1), round(cy / tot, 1)] if tot else None
+        self._semantics(decor, layer_parts)
         return GarmentStructure(self.parts, layer_parts, self._attachments(), pivot_report or validate_pivots(
             sk, {c: a[..., 3] > 0 for c, a in self.layers.items()}), self.cfg, decor, self.shape, notes)
+
+    # -- Phase 3.8.1: what the generic slots are on this character ------------------------------------------
+    NECKWEAR_ASPECT = 1.5   # height/width of a tie hanging down the shirt front; a necklace is about as wide as tall
+    NECKWEAR_HOLES = 3      # enclosed gaps between chain links
+    SHIRT_WHITE_FRAC = 0.4  # share of near-white, low-saturation pixels in the opening for a shirt front
+
+    def _semantics(self, decor: dict[str, np.ndarray], layer_parts: dict[str, LayerParts]) -> None:
+        """Measured semantics of the slots the rig names after the schoolboy's uniform. The centre piece in the
+        opening ("tie" slot) is a tie when it hangs as a solid strip (tall, no enclosed gaps) and a necklace when it
+        is about as wide as tall or made of links (enclosed gaps). The opening ("sweater" slot) is a shirt front
+        when it is mostly near-white and a sweater otherwise. Only labels, descriptions and garment groups change;
+        the rig rules keep using the slot."""
+        src = self.source[..., :3].astype(np.float32)
+        for p in self.parts:
+            p.semantic, p.label = p.semantic or p.kind, p.label or p.name
+        m = decor.get("tie")
+        if m is not None and m.any() and "tie" in self.index:
+            ys, xs = np.nonzero(m)
+            h, w = int(ys.max() - ys.min() + 1), int(xs.max() - xs.min() + 1)
+            holes = int(ndimage.label(ndimage.binary_fill_holes(m) & ~m)[1])
+            ev = {"height_px": h, "width_px": w, "aspect_h_w": round(h / max(w, 1), 2), "enclosed_gaps": holes,
+                  "rule": f"necklace if aspect < {self.NECKWEAR_ASPECT} or enclosed gaps >= {self.NECKWEAR_HOLES}"}
+            p = self.parts[self.index["tie"]]
+            if h / max(w, 1) < self.NECKWEAR_ASPECT or holes >= self.NECKWEAR_HOLES:
+                p.semantic, p.label, p.garment = "necklace", "necklace", "jewellery"
+                p.description = "chain necklace on the shirt front (rigid on the chest; rig slot 'tie')"
+            p.semantic_evidence = ev
+        if "sweater" in self.index:
+            si = self.index["sweater"]
+            px = []
+            for cid, lp in layer_parts.items():
+                if "__" in cid:
+                    continue
+                yy, xx = np.nonzero(lp.ids == si)
+                if len(yy):
+                    px.append(src[yy + lp.origin[1], xx + lp.origin[0]])
+            if px:
+                c = np.concatenate(px)
+                lum = c @ np.array([0.299, 0.587, 0.114], np.float32)
+                white = float(((lum > 200) & (c.max(1) - c.min(1) < 40)).mean())
+                p = self.parts[si]
+                p.semantic_evidence = {"near_white_fraction": round(white, 3),
+                                       "rule": f"shirt front if near-white fraction >= {self.SHIRT_WHITE_FRAC}"}
+                if white >= self.SHIRT_WHITE_FRAC:
+                    p.semantic, p.label, p.garment = "shirt_front", "shirt front", "shirt"
+                    p.description = "open shirt front in the jacket opening (rig slot 'sweater')"
 
     def label_variant(self, structure: GarmentStructure, cid: str, rgba: np.ndarray) -> None:
         """Part map for a switch drawing registered after the analysis (hand drawings, trimmed forearms)."""

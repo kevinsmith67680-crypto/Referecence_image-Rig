@@ -616,6 +616,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sections", nargs="*", help="subset of sections (default: all)")
     p.set_defaults(func=cmd_newchar_evidence)
 
+    p = sub.add_parser("visual-fix-evidence", help="Phase 3.8.1: render the cases, compose before/after sheets and "
+                                                   "the artwork-candidate previews")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--before", help="a render folder made by visualfix_evidence.py render with an earlier commit's "
+                                    "sources and package (omit to render and keep only the current set)")
+    p.add_argument("--renders", default=None, help="where to write the current render set (default: <out>/renders/after)")
+    p.add_argument("--hand-grid", default=None, help="hand-sheet output folder (skin-matched candidates)")
+    p.add_argument("--out", default="docs/phase3_8_1")
+    p.set_defaults(func=cmd_visual_fix_evidence)
+
     p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
     p.add_argument("package", help="Phase 2 character package")
     p.add_argument("--out", help="output directory (default <package>/natural_pose/garments)")
@@ -887,6 +897,22 @@ def cmd_newchar_evidence(args: argparse.Namespace) -> int:
     r = newchar_evidence(args.package, args.project, {"character": args.character, "hand_sheet": args.hand_sheet},
                          args.hand_grid, args.out, args.sections, progress=lambda m: print(m, flush=True))
     print(json.dumps({k: v.get("images") for k, v in r.items() if isinstance(v, dict) and "images" in v}, indent=1))
+    return 0
+
+
+def cmd_visual_fix_evidence(args: argparse.Namespace) -> int:
+    from .visualfix_evidence import candidates_sheet, compose, render_cases
+
+    out = Path(args.out)
+    renders = Path(args.renders) if args.renders else out / "renders" / "after"
+    render_cases(args.package, renders, progress=lambda m: print(m, flush=True))
+    res: dict = {"renders": str(renders)}
+    if args.before:
+        res["compose"] = compose(args.before, renders, out)
+    if args.hand_grid:
+        rep = candidates_sheet(args.package, args.hand_grid, out)
+        res["candidates"] = {k: rep[k] for k in ("hem", "forearm_extension", "detached_marks_current_vs_candidates")}
+    print(json.dumps(res, indent=1, default=str))
     return 0
 
 

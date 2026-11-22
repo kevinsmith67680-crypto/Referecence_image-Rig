@@ -15,6 +15,9 @@
 
 **Verdict: PARTIAL** (§25).
 
+*Phase 3.8.1 follow-up: the resting hands, switch consistency, shoulder seam, armpit line, knee limits and garment
+labels were fixed afterwards; see [`phase3_8_1_fix_report.md`](phase3_8_1_fix_report.md).*
+
 Companion reports:
 - [hand library](phase3_8_hand_library_report.md);
 - [segmentation](phase3_8_segmentation_report.md);

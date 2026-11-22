@@ -54,7 +54,8 @@ Each fix was checked against the schoolboy, so that its committed data and tests
    - the darker blazer (luminance ≈ 33) falls *also* under the outline threshold, which is harmless because the garment code reads "navy", not "outline".
 
    A general fix is a palette measured from the character's own layers: the sleeve's dominant fabric colour, light lines inside the jacket region, the trouser colour. That touches every Phase 3.1–3.4 consumer, and it would change the committed schoolboy evidence, so it is listed as Phase 3.9 work.
-2. **Fixed uniform vocabulary.** The garment parts are named for the schoolboy: `tie`, `badge`, `sweater`, `pocket_flap`, `button`. On the new character:
+2. **Fixed uniform vocabulary.** *(Phase 3.8.1: the chain and the shirt now carry measured labels, necklace and
+   shirt front; the slot names are unchanged.)* The garment parts are named for the schoolboy: `tie`, `badge`, `sweater`, `pocket_flap`, `button`. On the new character:
    - the gold chain becomes the rigid `tie` slot (rigid on the chest, which is the right behaviour, with the wrong name);
    - the open white shirt becomes `sweater`;
    - pocket flaps are not found.
@@ -71,7 +72,8 @@ Each fix was checked against the schoolboy, so that its committed data and tests
 4. **Phase 2 fills the hidden wrist with the forearm's visible colour.** Under the original hand, the flat fill continued the white cuff and its outline: `forearm_*__under__hand_*` is a deterministic flat fill of 1,040 / 1,255 px. On the schoolboy the same region was a skin-coloured FLUX fill. A wrist under a hand should be skin, which needs a semantic rule (the region a hand covers is skin) or a region-specific prompt; the generative prompt is also still generic (known open item). Fix #4 removes the extension from under library hands. It is pending review, and a reviewer can reject it for the original hand.
 5. **Phase 1 arm/hand split.** The forearm layer holds **199 dark pixels of the hand's own outline** beyond the cuff. 53 more came from the opt-in outline completion's nearest-layer rule. With the original hand, they show as a dotted arc over the palm when the wrist bends (production pointing, `14_pointing.png`). Library hands do not show them, because `cuff_cover` removes them. The fix today is the editor's mask tool (move them to `hand_r`). A general fix would move forearm pixels beyond the cuff that connect to the hand outline into the hand layer.
 6. **Trouser cuffs over white trainers.** The inner corners of the trouser hems (shin layer) separate as small outline marks beside the shoes when the stance narrows. The garment evaluator grades the shoes FAIL (schoolboy: WARNING). The cause is segmentation: hem-outline pixels at the shoe boundary, owned by the shin layer. The shoe-top extension does not cover them. The fix is a mask edit, or a hem-boundary rule.
-7. **Pelvis height when the soft knee and the knee limit conflict.** The Phase 3.6 acting test grades **REVIEW** on
+7. **Pelvis height when the soft knee and the knee limit conflict.** *(Fixed in Phase 3.8.1: the knee limits win and
+   the static balance stops where the legs can hold the pose; see `phase3_8_1_fix_report.md` §3.)* The Phase 3.6 acting test grades **REVIEW** on
    the new character (schoolboy: PASS). Every review flag is `knee_l_flexion` outside its standing limit:
    13.2° at the start, up to 17.9° during the weight shift, against a 10° stance limit. These are 65 distinct
    readings, and 248 of 308 frames are affected. Foot sliding (0.01 px), velocity jumps (0) and solver events (0)

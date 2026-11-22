@@ -430,3 +430,26 @@ Documented, not fixed:
 
 See [phase3_8_generalisation_report.md](phase3_8_generalisation_report.md) and
 [phase3_8_new_character_report.md](phase3_8_new_character_report.md).
+
+## 22. Phase 3.8.1: visual defect remediation
+
+- **Hands**:
+  - `handselect.ACTIONS["relaxed_standing"]["hanging_palm"]` rejects a palm-forward hand on a hanging arm
+    (`HANG_DEG` 40°);
+  - `handcheck.switch_consistency` compares requested, resolved and rendered switches;
+  - the relaxed drawings are re-inspected as backs of the opposite hands (inspection records, `revisions` log).
+- **Garment weights**: `WeightSet.family_field` smooths the torso family on a canvas grid. Weights no longer depend
+  on the Phase 1 layer cut (`family_smoothing: "layer"` keeps the old per-layer smoothing for comparison).
+- **Correctives**: `armpit_fill` backs the partly transparent edge pixels it borders.
+- **Solver**:
+  - `_pelvis_height` keeps the knee limits when they conflict with the soft-knee minimum;
+  - the static balance stops where the planted legs can still hold the pose (`balance_limited_by_legs`).
+- **Garment structure**: `Part.semantic` and `Part.label` are measured: necklace vs tie, shirt front vs sweater.
+  The rig slot names are unchanged.
+- **New modules**:
+  - `garmentrig/shoulder.py`: `ShoulderExtensionRounding`, a pending torso alternative;
+  - `visualfix.py`: non-destructive artwork candidates;
+  - `visualfix_evidence.py`: before/after renders, runnable on another commit's sources.
+
+See [phase3_8_1_fix_report.md](phase3_8_1_fix_report.md).
+
