@@ -462,14 +462,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 5.83,
-  "corrections": 0.17,
-  "switches": 0.14,
-  "garment_eval": 543.3,
-  "render_and_tears": 2252.1,
-  "total": 2822.7
+  "solve": 6.24,
+  "corrections": 0.2,
+  "switches": 0.12,
+  "garment_eval": 403.6,
+  "render_and_tears": 2206.9,
+  "total": 2639.1
  },
- "wall_s": 2.823,
+ "wall_s": 2.639,
  "visual_review_required": true,
  "before": {
   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
@@ -479,7 +479,7 @@
    "outline_break": 0
   },
   "generated_visible_px": 2465,
-  "wall_s": 1.637
+  "wall_s": 2.1
  },
  "title": "right arm raised 90 deg"
 }

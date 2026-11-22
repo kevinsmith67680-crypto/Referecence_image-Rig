@@ -521,14 +521,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 4.71,
-  "corrections": 0.14,
-  "switches": 0.09,
-  "garment_eval": 542.7,
-  "render_and_tears": 2795.0,
-  "total": 3364.8
+  "solve": 5.98,
+  "corrections": 0.18,
+  "switches": 0.11,
+  "garment_eval": 606.1,
+  "render_and_tears": 3047.1,
+  "total": 3682.8
  },
- "wall_s": 3.365,
+ "wall_s": 3.683,
  "visual_review_required": true,
  "before": {
   "feasibility": "NEEDS_ARTWORK",
@@ -538,7 +538,7 @@
    "outline_break": 18
   },
   "generated_visible_px": 2360,
-  "wall_s": 2.733
+  "wall_s": 2.761
  },
  "title": "leaning backward"
 }

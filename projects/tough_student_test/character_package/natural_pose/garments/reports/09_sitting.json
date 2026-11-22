@@ -601,14 +601,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 5.67,
-  "corrections": 0.19,
-  "switches": 0.09,
-  "garment_eval": 450.6,
-  "render_and_tears": 2309.3,
-  "total": 2787.8
+  "solve": 5.13,
+  "corrections": 0.26,
+  "switches": 0.1,
+  "garment_eval": 468.3,
+  "render_and_tears": 2497.2,
+  "total": 2994.2
  },
- "wall_s": 2.788,
+ "wall_s": 2.994,
  "visual_review_required": true,
  "before": {
   "feasibility": "NEEDS_ARTWORK",
@@ -618,7 +618,7 @@
    "outline_break": 13
   },
   "generated_visible_px": 2347,
-  "wall_s": 2.121
+  "wall_s": 2.141
  },
  "title": "sitting"
 }

@@ -483,14 +483,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 10.41,
-  "corrections": 0.17,
-  "switches": 0.1,
-  "garment_eval": 451.1,
-  "render_and_tears": 3289.2,
-  "total": 3770.2
+  "solve": 13.51,
+  "corrections": 0.32,
+  "switches": 0.15,
+  "garment_eval": 499.0,
+  "render_and_tears": 3516.3,
+  "total": 4054.1
  },
- "wall_s": 3.77,
+ "wall_s": 4.054,
  "visual_review_required": true,
  "before": {
   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
@@ -500,7 +500,7 @@
    "outline_break": 8
   },
   "generated_visible_px": 2452,
-  "wall_s": 3.071
+  "wall_s": 3.509
  },
  "title": "running (phase 0.25)"
 }

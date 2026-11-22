@@ -517,14 +517,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 7.36,
-  "corrections": 0.25,
-  "switches": 0.12,
-  "garment_eval": 647.1,
-  "render_and_tears": 3189.0,
-  "total": 3872.1
+  "solve": 10.35,
+  "corrections": 0.28,
+  "switches": 0.25,
+  "garment_eval": 555.5,
+  "render_and_tears": 3201.4,
+  "total": 3790.6
  },
- "wall_s": 3.872,
+ "wall_s": 3.791,
  "visual_review_required": true,
  "before": {
   "feasibility": "NEEDS_ARTWORK",
@@ -534,7 +534,7 @@
    "outline_break": 17
   },
   "generated_visible_px": 2368,
-  "wall_s": 2.854
+  "wall_s": 3.247
  },
  "title": "leaning forward"
 }

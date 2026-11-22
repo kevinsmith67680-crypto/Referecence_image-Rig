@@ -460,14 +460,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 4.53,
-  "corrections": 0.19,
-  "switches": 0.09,
-  "garment_eval": 438.7,
-  "render_and_tears": 2080.8,
-  "total": 2547.0
+  "solve": 5.73,
+  "corrections": 0.23,
+  "switches": 0.13,
+  "garment_eval": 439.1,
+  "render_and_tears": 2241.0,
+  "total": 2704.3
  },
- "wall_s": 2.547,
+ "wall_s": 2.704,
  "visual_review_required": true,
  "before": {
   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
@@ -477,7 +477,7 @@
    "outline_break": 4
   },
   "generated_visible_px": 2577,
-  "wall_s": 1.946
+  "wall_s": 2.584
  },
  "title": "neutral standing"
 }

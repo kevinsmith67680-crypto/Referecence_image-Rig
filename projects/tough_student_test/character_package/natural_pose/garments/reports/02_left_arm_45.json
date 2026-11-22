@@ -469,14 +469,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 8.84,
-  "corrections": 0.51,
-  "switches": 0.28,
-  "garment_eval": 427.1,
-  "render_and_tears": 1978.3,
-  "total": 2436.2
+  "solve": 10.46,
+  "corrections": 0.22,
+  "switches": 0.12,
+  "garment_eval": 506.5,
+  "render_and_tears": 2466.8,
+  "total": 3006.8
  },
- "wall_s": 2.436,
+ "wall_s": 3.007,
  "visual_review_required": true,
  "before": {
   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
@@ -486,7 +486,7 @@
    "outline_break": 3
   },
   "generated_visible_px": 2449,
-  "wall_s": 1.832
+  "wall_s": 2.136
  },
  "title": "left arm raised 45 deg"
 }

@@ -602,14 +602,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 7.09,
-  "corrections": 0.3,
-  "switches": 0.13,
-  "garment_eval": 467.6,
-  "render_and_tears": 2060.7,
-  "total": 2557.8
+  "solve": 5.21,
+  "corrections": 0.21,
+  "switches": 0.1,
+  "garment_eval": 562.9,
+  "render_and_tears": 2876.2,
+  "total": 3472.7
  },
- "wall_s": 2.558,
+ "wall_s": 3.473,
  "visual_review_required": true,
  "before": {
   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
@@ -619,7 +619,7 @@
    "outline_break": 16
   },
   "generated_visible_px": 2347,
-  "wall_s": 2.254
+  "wall_s": 2.681
  },
  "title": "squatting"
 }

@@ -506,20 +506,19 @@
   },
   "forearm_r__hscuff": {
    "origin": [
-    115.0,
+    132.0,
     399.0
    ],
    "grid": [
     24,
-    31
+    29
    ],
    "bones": [
     "upper_arm_r",
-    "forearm_r",
-    "hand_r"
+    "forearm_r"
    ],
-   "active_vertices": 477,
-   "locked_vertices": 264,
+   "active_vertices": 441,
+   "locked_vertices": 178,
    "edited_vertices": 0
   },
   "forearm_l__hscuff": {
@@ -529,271 +528,270 @@
    ],
    "grid": [
     24,
-    31
+    28
    ],
    "bones": [
     "upper_arm_l",
-    "forearm_l",
-    "hand_l"
+    "forearm_l"
    ],
-   "active_vertices": 473,
-   "locked_vertices": 281,
+   "active_vertices": 437,
+   "locked_vertices": 199,
    "edited_vertices": 0
   },
   "hand_r__hs.tough_student_hands_v1.left_cupped.v1": {
    "origin": [
-    25.0,
-    411.0
+    31.0,
+    413.0
    ],
    "grid": [
     22,
-    29
+    28
    ],
    "bones": [
     "hand_r"
    ],
-   "active_vertices": 343,
-   "locked_vertices": 638,
+   "active_vertices": 320,
+   "locked_vertices": 616,
    "edited_vertices": 0
   },
   "hand_l__hs.tough_student_hands_v1.left_fist.v1": {
    "origin": [
     896.0,
-    389.0
-   ],
-   "grid": [
-    25,
-    26
-   ],
-   "bones": [
-    "hand_l"
-   ],
-   "active_vertices": 388,
-   "locked_vertices": 650,
-   "edited_vertices": 0
-  },
-  "hand_l__hs.tough_student_hands_v1.left_gripping.v1": {
-   "origin": [
-    893.0,
-    386.0
-   ],
-   "grid": [
-    27,
-    28
-   ],
-   "bones": [
-    "hand_l"
-   ],
-   "active_vertices": 391,
-   "locked_vertices": 756,
-   "edited_vertices": 0
-  },
-  "hand_l__hs.tough_student_hands_v1.left_open_palm.v1": {
-   "origin": [
-    895.0,
-    369.0
-   ],
-   "grid": [
-    32,
-    31
-   ],
-   "bones": [
-    "hand_l"
-   ],
-   "active_vertices": 534,
-   "locked_vertices": 992,
-   "edited_vertices": 0
-  },
-  "hand_l__hs.tough_student_hands_v1.left_palm_down.v1": {
-   "origin": [
-    895.0,
-    358.0
-   ],
-   "grid": [
-    35,
-    24
-   ],
-   "bones": [
-    "hand_l"
-   ],
-   "active_vertices": 405,
-   "locked_vertices": 840,
-   "edited_vertices": 0
-  },
-  "hand_l__hs.tough_student_hands_v1.left_pointing.v1": {
-   "origin": [
-    892.0,
-    412.0
+    392.0
    ],
    "grid": [
     24,
-    31
-   ],
-   "bones": [
-    "hand_l"
-   ],
-   "active_vertices": 374,
-   "locked_vertices": 744,
-   "edited_vertices": 0
-  },
-  "hand_l__hs.tough_student_hands_v1.left_relaxed.v1": {
-   "origin": [
-    896.0,
-    389.0
-   ],
-   "grid": [
-    24,
-    31
-   ],
-   "bones": [
-    "hand_l"
-   ],
-   "active_vertices": 418,
-   "locked_vertices": 744,
-   "edited_vertices": 0
-  },
-  "hand_l__hs.tough_student_hands_v1.left_thumbs_up.v1": {
-   "origin": [
-    895.0,
-    350.0
-   ],
-   "grid": [
-    31,
     25
    ],
    "bones": [
     "hand_l"
    ],
-   "active_vertices": 407,
-   "locked_vertices": 775,
+   "active_vertices": 352,
+   "locked_vertices": 600,
    "edited_vertices": 0
   },
-  "hand_l__hs.tough_student_hands_v1.right_cupped.v1": {
+  "hand_l__hs.tough_student_hands_v1.left_gripping.v1": {
    "origin": [
-    892.0,
-    411.0
+    893.0,
+    389.0
    ],
    "grid": [
-    23,
-    31
+    26,
+    27
    ],
    "bones": [
     "hand_l"
    ],
-   "active_vertices": 380,
-   "locked_vertices": 713,
+   "active_vertices": 358,
+   "locked_vertices": 702,
    "edited_vertices": 0
   },
-  "hand_r__hs.tough_student_hands_v1.right_fist.v1": {
+  "hand_l__hs.tough_student_hands_v1.left_open_palm.v1": {
    "origin": [
-    40.0,
-    388.0
+    896.0,
+    373.0
    ],
    "grid": [
-    25,
-    26
+    30,
+    30
    ],
    "bones": [
-    "hand_r"
+    "hand_l"
    ],
-   "active_vertices": 391,
-   "locked_vertices": 650,
+   "active_vertices": 486,
+   "locked_vertices": 900,
    "edited_vertices": 0
   },
-  "hand_r__hs.tough_student_hands_v1.right_gripping.v1": {
+  "hand_l__hs.tough_student_hands_v1.left_palm_down.v1": {
    "origin": [
-    29.0,
-    386.0
+    896.0,
+    364.0
    ],
    "grid": [
-    28,
-    29
+    33,
+    23
    ],
    "bones": [
-    "hand_r"
+    "hand_l"
    ],
-   "active_vertices": 400,
-   "locked_vertices": 812,
+   "active_vertices": 373,
+   "locked_vertices": 759,
    "edited_vertices": 0
   },
-  "hand_r__hs.tough_student_hands_v1.right_open_palm.v1": {
+  "hand_l__hs.tough_student_hands_v1.left_pointing.v1": {
    "origin": [
-    12.0,
-    365.0
-   ],
-   "grid": [
-    32,
-    31
-   ],
-   "bones": [
-    "hand_r"
-   ],
-   "active_vertices": 548,
-   "locked_vertices": 992,
-   "edited_vertices": 0
-  },
-  "hand_r__hs.tough_student_hands_v1.right_palm_down.v1": {
-   "origin": [
-    53.0,
-    354.0
-   ],
-   "grid": [
-    35,
-    24
-   ],
-   "bones": [
-    "hand_r"
-   ],
-   "active_vertices": 418,
-   "locked_vertices": 840,
-   "edited_vertices": 0
-  },
-  "hand_r__hs.tough_student_hands_v1.right_pointing.v1": {
-   "origin": [
-    14.0,
-    408.0
-   ],
-   "grid": [
-    24,
-    31
-   ],
-   "bones": [
-    "hand_r"
-   ],
-   "active_vertices": 378,
-   "locked_vertices": 744,
-   "edited_vertices": 0
-  },
-  "hand_r__hs.tough_student_hands_v1.right_relaxed.v1": {
-   "origin": [
-    16.0,
-    385.0
+    892.0,
+    414.0
    ],
    "grid": [
     24,
     30
    ],
    "bones": [
-    "hand_r"
+    "hand_l"
    ],
-   "active_vertices": 408,
+   "active_vertices": 342,
    "locked_vertices": 720,
    "edited_vertices": 0
   },
-  "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1": {
+  "hand_l__hs.tough_student_hands_v1.left_relaxed.v1": {
    "origin": [
-    48.0,
-    346.0
+    896.0,
+    392.0
    ],
    "grid": [
-    31,
+    23,
+    29
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 378,
+   "locked_vertices": 667,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.tough_student_hands_v1.left_thumbs_up.v1": {
+   "origin": [
+    895.0,
+    355.0
+   ],
+   "grid": [
+    30,
+    24
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 365,
+   "locked_vertices": 720,
+   "edited_vertices": 0
+  },
+  "hand_l__hs.tough_student_hands_v1.right_cupped.v1": {
+   "origin": [
+    892.0,
+    413.0
+   ],
+   "grid": [
+    22,
+    30
+   ],
+   "bones": [
+    "hand_l"
+   ],
+   "active_vertices": 345,
+   "locked_vertices": 660,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_fist.v1": {
+   "origin": [
+    45.0,
+    390.0
+   ],
+   "grid": [
+    24,
     25
    ],
    "bones": [
     "hand_r"
    ],
-   "active_vertices": 408,
-   "locked_vertices": 775,
+   "active_vertices": 360,
+   "locked_vertices": 600,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_gripping.v1": {
+   "origin": [
+    35.0,
+    388.0
+   ],
+   "grid": [
+    27,
+    28
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 372,
+   "locked_vertices": 756,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_open_palm.v1": {
+   "origin": [
+    17.0,
+    368.0
+   ],
+   "grid": [
+    31,
+    30
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 502,
+   "locked_vertices": 930,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_palm_down.v1": {
+   "origin": [
+    57.0,
+    358.0
+   ],
+   "grid": [
+    34,
+    23
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 384,
+   "locked_vertices": 782,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_pointing.v1": {
+   "origin": [
+    20.0,
+    410.0
+   ],
+   "grid": [
+    23,
+    30
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 352,
+   "locked_vertices": 690,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_relaxed.v1": {
+   "origin": [
+    21.0,
+    387.0
+   ],
+   "grid": [
+    24,
+    29
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 384,
+   "locked_vertices": 696,
+   "edited_vertices": 0
+  },
+  "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1": {
+   "origin": [
+    52.0,
+    351.0
+   ],
+   "grid": [
+    30,
+    24
+   ],
+   "bones": [
+    "hand_r"
+   ],
+   "active_vertices": 379,
+   "locked_vertices": 720,
    "edited_vertices": 0
   }
  }
