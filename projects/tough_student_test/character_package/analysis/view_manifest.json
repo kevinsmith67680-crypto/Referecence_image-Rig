@@ -52,7 +52,7 @@
    "approved_pose_range": null,
    "layer_order_rules": [],
    "alternative_limbs": [],
-   "source_drawing": "references/schoolboy/character_sheet.jpg (3/4 full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "source_drawing": null,
    "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
   },
   "FRONT_THREE_QUARTER_RIGHT": {
@@ -65,7 +65,7 @@
    "approved_pose_range": null,
    "layer_order_rules": [],
    "alternative_limbs": [],
-   "source_drawing": "references/schoolboy/character_sheet.jpg (3/4 full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "source_drawing": null,
    "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
   },
   "SIDE_LEFT": {
@@ -78,7 +78,7 @@
    "approved_pose_range": null,
    "layer_order_rules": [],
    "alternative_limbs": [],
-   "source_drawing": "references/schoolboy/character_sheet.jpg (side full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "source_drawing": null,
    "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
   },
   "SIDE_RIGHT": {
@@ -91,7 +91,7 @@
    "approved_pose_range": null,
    "layer_order_rules": [],
    "alternative_limbs": [],
-   "source_drawing": "references/schoolboy/character_sheet.jpg (side full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "source_drawing": null,
    "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
   },
   "BACK_THREE_QUARTER": {
@@ -117,7 +117,7 @@
    "approved_pose_range": null,
    "layer_order_rules": [],
    "alternative_limbs": [],
-   "source_drawing": "references/schoolboy/character_sheet.jpg (back full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "source_drawing": null,
    "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
   }
  },

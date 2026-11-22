@@ -2374,6 +2374,160 @@
     "artwork/correctives/armpits/armpit_gusset_l__abd160@v2.png": "89685ada14354ca7a3d09a4571c037d7d187c91ca6a92b628143f304fb8dfbe6",
     "artwork/correctives/armpits/armpit_gusset_l__abd175@v2.png": "6c90f16b6faffbb8cf7e4cc449047deee77cddc0159d7d4c8376b1afa348462d"
    }
+  },
+  {
+   "asset_id": "shoe_top_r",
+   "category": "shoes",
+   "body_part": "shoe_r",
+   "side": "r",
+   "method": "ShoeTopRecovery",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "foot_r",
+   "placement": {
+    "mode": "before",
+    "layer": "foot_r"
+   },
+   "drivers": [
+    "ankle_r"
+   ],
+   "activation": {
+    "kind": "always"
+   },
+   "keys": [],
+   "file": "artwork/correctives/shoes/shoe_top_r@v2.png",
+   "origin": [
+    284.0,
+    1195.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "pose": "any (static extension)"
+   },
+   "compatible_layers": [
+    "foot_r"
+   ],
+   "params": {
+    "depth_px": 57,
+    "columns": 131,
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     7,
+     6,
+     6
+    ]
+   },
+   "source_refs": [
+    "layer:foot_r (visible top band)",
+    "layer:shin_r (hiding region)",
+    "Phase 3.8: regenerated with the shoe's dominant tone (light trainers)"
+   ],
+   "requirement_id": "REQ-shoe_top_r",
+   "priority": 1,
+   "exclusive_group": null,
+   "moho": {
+    "class": "direct",
+    "mapping": "extra image layer bound to the foot bone, under the trouser",
+    "status": "proposed_unverified"
+   },
+   "version": 2,
+   "character": "front",
+   "created": "2026-11-22T15:58:42Z",
+   "sha256": {
+    "artwork/correctives/shoes/shoe_top_r@v2.png": "dc66af227416fcf67a260fc8edc7f7f7481ea00fda9bb110b6b9f699f4fc321f"
+   }
+  },
+  {
+   "asset_id": "shoe_top_l",
+   "category": "shoes",
+   "body_part": "shoe_l",
+   "side": "l",
+   "method": "ShoeTopRecovery",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "attach_bone": "foot_l",
+   "placement": {
+    "mode": "before",
+    "layer": "foot_l"
+   },
+   "drivers": [
+    "ankle_l"
+   ],
+   "activation": {
+    "kind": "always"
+   },
+   "keys": [],
+   "file": "artwork/correctives/shoes/shoe_top_l@v2.png",
+   "origin": [
+    668.0,
+    1195.0
+   ],
+   "bind_matrix": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "target_pose": {
+    "pose": "any (static extension)"
+   },
+   "compatible_layers": [
+    "foot_l"
+   ],
+   "params": {
+    "depth_px": 57,
+    "columns": 129,
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     7,
+     6,
+     6
+    ]
+   },
+   "source_refs": [
+    "layer:foot_l (visible top band)",
+    "layer:shin_l (hiding region)",
+    "Phase 3.8: regenerated with the shoe's dominant tone (light trainers)"
+   ],
+   "requirement_id": "REQ-shoe_top_l",
+   "priority": 1,
+   "exclusive_group": null,
+   "moho": {
+    "class": "direct",
+    "mapping": "extra image layer bound to the foot bone, under the trouser",
+    "status": "proposed_unverified"
+   },
+   "version": 2,
+   "character": "front",
+   "created": "2026-11-22T15:58:42Z",
+   "sha256": {
+    "artwork/correctives/shoes/shoe_top_l@v2.png": "262092f7be688679b3ee4db36454ed1349100a0b93f147564ae97bf400ee921d"
+   }
   }
  ]
 }

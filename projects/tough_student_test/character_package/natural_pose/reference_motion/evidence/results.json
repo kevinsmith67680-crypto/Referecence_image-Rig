@@ -1,0 +1,631 @@
+{
+ "machine": {
+  "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "python": "3.12.3"
+ },
+ "library": "/home/user/Referecence_image-Rig/motion_references",
+ "references": {
+  "pointing": {
+   "ref_id": "synthetic_pointing",
+   "keys": 12,
+   "feasibility": {
+    "class": "SUPPORTED",
+    "items": [],
+    "locomotion": false
+   },
+   "errors": {
+    "arm_r_abduction": {
+     "rms": 2.076,
+     "max": 6.764
+    },
+    "arm_r_flexion": {
+     "rms": 0.028,
+     "max": 0.129
+    },
+    "arm_r_wrist": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_abduction": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_flexion": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_wrist": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "clavicle_r": {
+     "rms": 0.003,
+     "max": 0.014
+    },
+    "clavicle_l": {
+     "rms": 0.003,
+     "max": 0.014
+    },
+    "head": {
+     "rms": 0.13,
+     "max": 0.437
+    },
+    "line_of_action": {
+     "rms": 0.197,
+     "max": 0.645
+    },
+    "weight_left": {
+     "rms": 0.004,
+     "max": 0.012
+    },
+    "contrapposto": {
+     "rms": 0.0,
+     "max": 0.0
+    }
+   },
+   "critic": [
+    {
+     "t": 0.0,
+     "defects": []
+    },
+    {
+     "t": 0.7,
+     "defects": [
+      [
+       "hand_r",
+       "needs artwork: relaxed",
+       "major"
+      ]
+     ]
+    },
+    {
+     "t": 1.5,
+     "defects": [
+      [
+       "hand_r",
+       "needs artwork: relaxed",
+       "major"
+      ]
+     ]
+    }
+   ],
+   "depth_segments": [],
+   "timing_s": {
+    "analysis": 0.002,
+    "retarget_and_compare": 0.103
+   },
+   "accents": {
+    "arm_r_abduction": {
+     "main_move_t": 0.667,
+     "direction": 1,
+     "anticipation": 5.775,
+     "overshoot": 2.728,
+     "settle_value": 87.685
+    },
+    "clavicle_r": {
+     "main_move_t": 0.567,
+     "direction": -1,
+     "anticipation": -0.0,
+     "overshoot": 0.014,
+     "settle_value": -0.0
+    },
+    "head": {
+     "main_move_t": 0.667,
+     "direction": 1,
+     "anticipation": 0.0,
+     "overshoot": 0.862,
+     "settle_value": 4.0
+    }
+   },
+   "holds": [
+    [
+     0.0,
+     0.433
+    ],
+    [
+     1.1,
+     1.9
+    ],
+    [
+     2.533,
+     2.8
+    ]
+   ],
+   "head_lead_s": 0.0,
+   "coordination": {
+    "arm_speed_correlation": 0.0,
+    "arm_lag_s": 0.3,
+    "asymmetry_deg": {
+     "abduction": 44.26,
+     "flexion": 0.01
+    }
+   }
+  },
+  "shrug": {
+   "ref_id": "synthetic_shrug",
+   "keys": 8,
+   "feasibility": {
+    "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "items": [
+     {
+      "segment": "forearm_l",
+      "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+      "needs": "art:forearm_foreshortened_l",
+      "frames_frac": 0.552,
+      "handling": "in-plane component transferred; the limb is not stretched or shortened"
+     },
+     {
+      "segment": "forearm_r",
+      "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+      "needs": "art:forearm_foreshortened_r",
+      "frames_frac": 0.552,
+      "handling": "in-plane component transferred; the limb is not stretched or shortened"
+     }
+    ],
+    "locomotion": false
+   },
+   "errors": {
+    "arm_r_abduction": {
+     "rms": 0.229,
+     "max": 0.774
+    },
+    "arm_r_flexion": {
+     "rms": 2.674,
+     "max": 7.343
+    },
+    "arm_r_wrist": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_abduction": {
+     "rms": 0.229,
+     "max": 0.774
+    },
+    "arm_l_flexion": {
+     "rms": 2.674,
+     "max": 7.343
+    },
+    "arm_l_wrist": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "clavicle_r": {
+     "rms": 0.577,
+     "max": 1.75
+    },
+    "clavicle_l": {
+     "rms": 0.577,
+     "max": 1.75
+    },
+    "head": {
+     "rms": 0.221,
+     "max": 0.553
+    },
+    "line_of_action": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "weight_left": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "contrapposto": {
+     "rms": 0.0,
+     "max": 0.0
+    }
+   },
+   "critic": [
+    {
+     "t": 0.0,
+     "defects": []
+    },
+    {
+     "t": 0.55,
+     "defects": [
+      [
+       "hand_r",
+       "needs artwork: palm_up",
+       "major"
+      ],
+      [
+       "hand_r",
+       "explicit hand choice violates a hard constraint",
+       "major"
+      ],
+      [
+       "wrist_r",
+       "wrist check failed: rotation",
+       "major"
+      ],
+      [
+       "hand_l",
+       "needs artwork: palm_up",
+       "major"
+      ],
+      [
+       "hand_l",
+       "explicit hand choice violates a hard constraint",
+       "major"
+      ],
+      [
+       "wrist_l",
+       "wrist check failed: rotation",
+       "major"
+      ]
+     ]
+    },
+    {
+     "t": 1.05,
+     "defects": [
+      [
+       "hand_r",
+       "needs artwork: palm_up",
+       "major"
+      ],
+      [
+       "hand_l",
+       "needs artwork: palm_up",
+       "major"
+      ],
+      [
+       "shoulder_l",
+       "shoulder rises 9 px (inflated pad)",
+       "major"
+      ]
+     ]
+    }
+   ],
+   "depth_segments": [
+    "forearm_l",
+    "forearm_r"
+   ],
+   "timing_s": {
+    "analysis": 0.003,
+    "retarget_and_compare": 0.118
+   },
+   "accents": {
+    "arm_r_abduction": {
+     "main_move_t": 0.5,
+     "direction": 1,
+     "anticipation": 0.0,
+     "overshoot": 0.0,
+     "settle_value": 14.0
+    },
+    "clavicle_r": {
+     "main_move_t": 0.5,
+     "direction": 1,
+     "anticipation": 1.865,
+     "overshoot": 1.127,
+     "settle_value": 10.888
+    },
+    "head": {
+     "main_move_t": 0.5,
+     "direction": -1,
+     "anticipation": -0.0,
+     "overshoot": -0.0,
+     "settle_value": -6.0
+    }
+   },
+   "holds": [
+    [
+     0.0,
+     0.333
+    ],
+    [
+     0.733,
+     1.367
+    ],
+    [
+     1.9,
+     2.2
+    ]
+   ],
+   "head_lead_s": 0.033,
+   "coordination": {
+    "arm_speed_correlation": 1.0,
+    "arm_lag_s": 0.0,
+    "asymmetry_deg": {
+     "abduction": 0.0,
+     "flexion": 0.0
+    }
+   }
+  },
+  "walking": {
+   "ref_id": "synthetic_walking",
+   "keys": 19,
+   "feasibility": {
+    "class": "REQUIRES_NEW_VIEW",
+    "items": [
+     {
+      "segment": "forearm_l",
+      "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+      "needs": "art:forearm_foreshortened_l",
+      "frames_frac": 0.176,
+      "handling": "in-plane component transferred; the limb is not stretched or shortened"
+     },
+     {
+      "segment": "forearm_r",
+      "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+      "needs": "art:forearm_foreshortened_r",
+      "frames_frac": 0.165,
+      "handling": "in-plane component transferred; the limb is not stretched or shortened"
+     },
+     {
+      "segment": "shin_l",
+      "class": "REQUIRES_NEW_VIEW",
+      "needs": "view:leg_sagittal (knee drive / stride)",
+      "frames_frac": 0.198,
+      "handling": "in-plane component transferred; the limb is not stretched or shortened"
+     },
+     {
+      "segment": "shin_r",
+      "class": "REQUIRES_NEW_VIEW",
+      "needs": "view:leg_sagittal (knee drive / stride)",
+      "frames_frac": 0.198,
+      "handling": "in-plane component transferred; the limb is not stretched or shortened"
+     },
+     {
+      "segment": "legs",
+      "class": "REQUIRES_NEW_VIEW",
+      "needs": "view:leg_sagittal (stride)",
+      "frames_frac": 1.0,
+      "handling": "only the in-place weight shift and pelvis roll are transferred; the stride is not rendered"
+     }
+    ],
+    "locomotion": true
+   },
+   "errors": {
+    "arm_r_abduction": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_r_flexion": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_r_wrist": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_abduction": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_flexion": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "arm_l_wrist": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "clavicle_r": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "clavicle_l": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "head": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "line_of_action": {
+     "rms": 0.0,
+     "max": 0.0
+    },
+    "weight_left": {
+     "rms": 0.013,
+     "max": 0.047
+    },
+    "contrapposto": {
+     "rms": 0.058,
+     "max": 0.147
+    }
+   },
+   "critic": [
+    {
+     "t": 0.0,
+     "defects": []
+    },
+    {
+     "t": 0.75,
+     "defects": []
+    },
+    {
+     "t": 1.2,
+     "defects": []
+    }
+   ],
+   "depth_segments": [
+    "forearm_l",
+    "forearm_r",
+    "shin_l",
+    "shin_r"
+   ],
+   "timing_s": {
+    "analysis": 0.452,
+    "retarget_and_compare": 0.116
+   },
+   "accents": {
+    "arm_r_abduction": {
+     "main_move_t": 0.0,
+     "direction": -1,
+     "anticipation": -0.0,
+     "overshoot": 0.0,
+     "settle_value": 8.0
+    },
+    "clavicle_r": {
+     "main_move_t": 0.9,
+     "direction": -1,
+     "anticipation": -0.0,
+     "overshoot": 0.0,
+     "settle_value": -0.0
+    },
+    "head": {
+     "main_move_t": 0.0,
+     "direction": 1,
+     "anticipation": 0.0,
+     "overshoot": 0.0,
+     "settle_value": -0.0
+    }
+   },
+   "holds": [
+    [
+     0.0,
+     3.0
+    ]
+   ],
+   "head_lead_s": null,
+   "coordination": {
+    "arm_speed_correlation": 0.0,
+    "arm_lag_s": 0.0,
+    "asymmetry_deg": {
+     "abduction": 0.0,
+     "flexion": 0.0
+    }
+   }
+  }
+ },
+ "roundtrip": {
+  "status": "RUN",
+  "frames": 44,
+  "fps": 12.0,
+  "segment": [
+   2.4,
+   6.0
+  ],
+  "quality": {
+   "mean_visibility": 0.983,
+   "occluded_frac": {
+    "shoulder_r": 0.0,
+    "shoulder_l": 0.0,
+    "elbow_r": 0.0,
+    "elbow_l": 0.0,
+    "wrist_r": 0.0,
+    "wrist_l": 0.0,
+    "hip_r": 0.0,
+    "hip_l": 0.0
+   },
+   "shoulder_torso_ratio": 0.641,
+   "view": "three_quarter",
+   "subject_px": 459.6,
+   "flags": [
+    "unsupported view: three_quarter (the rig is a front view)"
+   ],
+   "usable": false
+  },
+  "errors_vs_known_params": {
+   "arm_r_abduction": {
+    "rms_deg": 12.21,
+    "max_deg": 18.65,
+    "truth_range": 145.21,
+    "est_range": 134.51
+   },
+   "arm_r_flexion": {
+    "rms_deg": 15.62,
+    "max_deg": 24.88,
+    "truth_range": 32.54,
+    "est_range": 20.36
+   },
+   "arm_l_abduction": {
+    "rms_deg": 2.61,
+    "max_deg": 6.06,
+    "truth_range": 5.0,
+    "est_range": 8.03
+   },
+   "clavicle_r": {
+    "rms_deg": 22.54,
+    "max_deg": 29.36,
+    "truth_range": 8.21,
+    "est_range": 29.41
+   },
+   "clavicle_l": {
+    "rms_deg": 9.37,
+    "max_deg": 15.55,
+    "truth_range": 10.18,
+    "est_range": 14.04
+   },
+   "head": {
+    "rms_deg": 6.37,
+    "max_deg": 9.37,
+    "truth_range": 11.94,
+    "est_range": 8.51
+   },
+   "line_of_action": {
+    "rms_deg": 5.5,
+    "max_deg": 9.21,
+    "truth_range": 9.34,
+    "est_range": 2.04
+   }
+  },
+  "provider": {
+   "name": "mediapipe_pose_landmarker",
+   "local": true,
+   "model": "pose_landmarker_full",
+   "hands": true,
+   "mediapipe_version": "1.2.3",
+   "timing": {
+    "frames": 44,
+    "total_s": 2.866,
+    "per_frame_s": 0.0651
+   }
+  },
+  "timing_s": {
+   "render_per_frame": 3.165,
+   "decode_total": 0.226,
+   "pose_per_frame": 0.0651,
+   "analysis": 0.006
+  },
+  "note": "a cartoon render, not a human: errors show the provider/analysis chain on this character's proportions; they are not human-reference accuracy"
+ },
+ "revision_loop": {
+  "status": "PROPOSED_NEEDS_APPROVAL",
+  "attempts": [
+   {
+    "defect": "shoulder rises 9 px (inflated pad)",
+    "param": "clavicle_l",
+    "step": -2.0,
+    "metric": "rise_l",
+    "before": 8.7,
+    "after": 0.0,
+    "new_blocking": false,
+    "result": "kept"
+   }
+  ],
+  "changed": true,
+  "approved": false,
+  "original_untouched": true,
+  "initial_defects": [
+   [
+    "hand_r",
+    "needs artwork: palm_up",
+    "major"
+   ],
+   [
+    "hand_l",
+    "needs artwork: palm_up",
+    "major"
+   ],
+   [
+    "shoulder_l",
+    "shoulder rises 9 px (inflated pad)",
+    "major"
+   ]
+  ],
+  "final_defects": [
+   [
+    "hand_r",
+    "needs artwork: palm_up",
+    "major"
+   ],
+   [
+    "hand_l",
+    "needs artwork: palm_up",
+    "major"
+   ]
+  ]
+ }
+}

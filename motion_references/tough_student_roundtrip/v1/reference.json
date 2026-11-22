@@ -1,0 +1,77 @@
+{
+ "schema": "autorig.motion_reference",
+ "version": 1,
+ "id": "tough_student_roundtrip",
+ "v": 1,
+ "name": "tough_student_roundtrip",
+ "tags": {
+  "gesture": "pointing+shrug",
+  "movement": "gesture",
+  "emotion": null,
+  "view": null,
+  "intensity": null,
+  "duration_s": 3.583,
+  "required_artwork": [
+   "art:forearm_foreshortened_l",
+   "art:forearm_foreshortened_r",
+   "art:upper_arm_foreshortened_l",
+   "art:upper_arm_foreshortened_r",
+   "view:leg_sagittal (knee drive / stride)"
+  ]
+ },
+ "provenance": {
+  "kind": "autorig_render",
+  "source": "AutoRig render of the user's tough_student character (Phase 3.7 acting test, t 2.4-6.0 s)",
+  "usage_permission": "the user's own character, rendered by this project"
+ },
+ "usage_permission": "the user's own character, rendered by this project",
+ "fps": 12.0,
+ "frames": 44,
+ "size": [
+  572,
+  720
+ ],
+ "hand_actions": {
+  "r": "pointing"
+ },
+ "palm": null,
+ "category": "gesture",
+ "quality": {
+  "mean_visibility": 0.983,
+  "occluded_frac": {
+   "shoulder_r": 0.0,
+   "shoulder_l": 0.0,
+   "elbow_r": 0.0,
+   "elbow_l": 0.0,
+   "wrist_r": 0.0,
+   "wrist_l": 0.0,
+   "hip_r": 0.0,
+   "hip_l": 0.0
+  },
+  "shoulder_torso_ratio": 0.641,
+  "view": "three_quarter",
+  "subject_px": 459.6,
+  "flags": [
+   "unsupported view: three_quarter (the rig is a front view)"
+  ],
+  "usable": false
+ },
+ "provider": {
+  "name": "mediapipe_pose_landmarker",
+  "local": true,
+  "model": "pose_landmarker_full",
+  "hands": true,
+  "mediapipe_version": "1.2.3",
+  "timing": {
+   "frames": 44,
+   "total_s": 2.866,
+   "per_frame_s": 0.0651
+  }
+ },
+ "sha256": {
+  "track": "7888ece76195ec43e3485acc38c7141828829da2763918abf527a6fecf10a121",
+  "analysis": "d9a5ec1d002b206a8dadc1639b3e87ac4b6955f7da1a59e5d789bdc8d97f34ac"
+ },
+ "created_at": "2026-11-22T15:58:07Z",
+ "character_independent": true
+}
