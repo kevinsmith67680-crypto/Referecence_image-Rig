@@ -5,8 +5,8 @@
   "acting": {
    "frames": 78,
    "fps": 12.0,
-   "baseline_render_s_per_frame": 2.82,
-   "upgrade_render_s_per_frame": 2.95,
+   "baseline_render_s_per_frame": 2.83,
+   "upgrade_render_s_per_frame": 3.23,
    "baseline_motion": {
     "feet": {
      "r": {
@@ -33,7 +33,7 @@
      "param_step_s": 0.001,
      "jump_fraction_of_range_per_s": 0.1,
      "velocity_jumps": [],
-     "fast_smooth_samples": 48,
+     "fast_smooth_samples": 46,
      "velocity_jump_count": 0,
      "solver_events": [],
      "solver_event_count": 0,
@@ -73,7 +73,7 @@
       "residual_at_hold_end": 0.0
      },
      {
-      "key": "shrug (hands low)",
+      "key": "shrug (subtle)",
       "residual_at_hold_end": 0.0
      }
     ],
@@ -128,11 +128,11 @@
      ]
     },
     "hands": {
-     "pending_frames": 78,
+     "pending_frames": 64,
      "missing_frames": 0,
      "poses": {
-      "relaxed:pending_review": 132,
-      "open_palm:original": 11,
+      "relaxed:pending_review": 104,
+      "open_palm:original": 39,
       "pointing:pending_review": 13
      }
     },
@@ -148,6 +148,8 @@
        "hand:pointing (r)"
       ],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": ""
      },
@@ -159,6 +161,8 @@
        "hand:cupped/palm_up (l)"
       ],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": ""
      },
@@ -170,22 +174,53 @@
       ],
       "pending": [],
       "production_ready": false,
+      "palm_required": "PALM_UP",
+      "palm_capable_drawings": [
+       {
+        "pose": "gripping",
+        "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+        "status": "pending_review",
+        "side": "r"
+       },
+       {
+        "pose": "cupped",
+        "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+        "status": "pending_review",
+        "side": "r"
+       },
+       {
+        "pose": "gripping",
+        "cid": "store:schoolboy_hands_sleeveless/left_gripping",
+        "status": "pending_review",
+        "side": "l"
+       },
+       {
+        "pose": "cupped",
+        "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+        "status": "pending_review",
+        "side": "l"
+       }
+      ],
       "alternative": "shrug_low",
-      "note": "palm-up hands do not exist: NEEDS_ARTWORK. Not disguised by wrist rotation; see shrug_low"
+      "note": "needs approved palm-up hands: an open palm-up drawing is missing; the cupped drawings (pending, handedness corrected in Phase 3.7) are a review-only approximation. Never disguised by wrist rotation"
      },
      "shrug_low": {
       "status": "SUPPORTED",
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
-      "note": "supported alternative: the shoulders carry the shrug, the hands stay relaxed at the sides"
+      "note": "supported: the shoulders and forearms carry the shrug; palms face the camera (original hand in production)"
      },
      "wave": {
       "status": "SUPPORTED",
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      },
@@ -196,6 +231,8 @@
        "hand:palm_down (r)"
       ],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "the head tilts side to side; a real head shake is a yaw and needs turned-head drawings"
      },
@@ -214,6 +251,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      },
@@ -222,6 +261,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "lateral lean (front view); a lean toward the viewer needs art:torso_lean_forward (REQUIRES_NEW_VIEW)"
      },
@@ -230,6 +271,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      },
@@ -238,6 +281,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      }
@@ -248,15 +293,15 @@
    "geometric": {
     "frames": 78,
     "exposed_gaps_max": 20,
-    "clipped_open_px_max": 98
+    "clipped_open_px_max": 99
    },
    "shrug": {
     "status": "NEEDS_ARTWORK",
-    "shown": "shrug_low",
-    "review_preview": "shrug_review_preview.png (cupped, pending)"
+    "shown": "SHRUG_SUBTLE (shrug_low)",
+    "review_preview": "shrug_review_preview.png (SHRUG_EXPRESSIVE review: r:cupped (pending)/l:cupped (pending))"
    },
    "timing": {
-    "secondary_simulate_s": 0.48
+    "secondary_simulate_s": 0.4
    },
    "calibration": {
     "pelvis_dx_at_0.5": -1.68,
@@ -265,7 +310,7 @@
   },
   "classroom": {
    "frames": 75,
-   "render_s_per_frame": 3.11,
+   "render_s_per_frame": 3.15,
    "motion": {
     "fps": 48.0,
     "frames": 299,
@@ -383,6 +428,8 @@
        "hand:pointing (r)"
       ],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": ""
      },
@@ -394,6 +441,8 @@
        "hand:cupped/palm_up (l)"
       ],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": ""
      },
@@ -405,22 +454,53 @@
       ],
       "pending": [],
       "production_ready": false,
+      "palm_required": "PALM_UP",
+      "palm_capable_drawings": [
+       {
+        "pose": "gripping",
+        "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+        "status": "pending_review",
+        "side": "r"
+       },
+       {
+        "pose": "cupped",
+        "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+        "status": "pending_review",
+        "side": "r"
+       },
+       {
+        "pose": "gripping",
+        "cid": "store:schoolboy_hands_sleeveless/left_gripping",
+        "status": "pending_review",
+        "side": "l"
+       },
+       {
+        "pose": "cupped",
+        "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+        "status": "pending_review",
+        "side": "l"
+       }
+      ],
       "alternative": "shrug_low",
-      "note": "palm-up hands do not exist: NEEDS_ARTWORK. Not disguised by wrist rotation; see shrug_low"
+      "note": "needs approved palm-up hands: an open palm-up drawing is missing; the cupped drawings (pending, handedness corrected in Phase 3.7) are a review-only approximation. Never disguised by wrist rotation"
      },
      "shrug_low": {
       "status": "SUPPORTED",
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
-      "note": "supported alternative: the shoulders carry the shrug, the hands stay relaxed at the sides"
+      "note": "supported: the shoulders and forearms carry the shrug; palms face the camera (original hand in production)"
      },
      "wave": {
       "status": "SUPPORTED",
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      },
@@ -431,6 +511,8 @@
        "hand:palm_down (r)"
       ],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "the head tilts side to side; a real head shake is a yaw and needs turned-head drawings"
      },
@@ -449,6 +531,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      },
@@ -457,6 +541,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "lateral lean (front view); a lean toward the viewer needs art:torso_lean_forward (REQUIRES_NEW_VIEW)"
      },
@@ -465,6 +551,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      },
@@ -473,6 +561,8 @@
       "missing": [],
       "pending": [],
       "production_ready": false,
+      "palm_required": null,
+      "palm_capable_drawings": [],
       "alternative": null,
       "note": "uses only original artwork; still needs a person to approve the performance"
      }
@@ -482,7 +572,7 @@
    },
    "geometric": {
     "frames": 75,
-    "exposed_gaps_max": 20,
+    "exposed_gaps_max": 19,
     "clipped_open_px_max": 45
    },
    "interactions": [
@@ -566,6 +656,8 @@
       "hand:pointing (l)"
      ],
      "production_ready": false,
+     "palm_required": null,
+     "palm_capable_drawings": [],
      "alternative": null,
      "note": ""
     }
@@ -573,7 +665,7 @@
   },
   "secondary": {
    "frames": 49,
-   "render_s_per_frame": 2.85,
+   "render_s_per_frame": 2.73,
    "max_changed_px": 41809,
    "max_changed_at_s": 0.917,
    "settled_at_end_deg": {
@@ -629,20 +721,20 @@
    "rigid_parts": "badge, buttons, tie, lapels, collar: unchanged (test)"
   },
   "benchmark": {
-   "A_full_render_s": 3.1638,
-   "B_interactive_pose_eval_s": 0.0203,
-   "B_layers_eval_s": 0.0001,
-   "C_timeline_preview_track_s_per_frame": 0.0159,
-   "D_quality_motion_check_s": 9.33,
-   "secondary_simulate_s": 0.332,
-   "director_init_s": 0.391,
+   "A_full_render_s": 3.3969,
+   "B_interactive_pose_eval_s": 0.0296,
+   "B_layers_eval_s": 0.0002,
+   "C_timeline_preview_track_s_per_frame": 0.0151,
+   "D_quality_motion_check_s": 9.48,
+   "secondary_simulate_s": 0.308,
+   "director_init_s": 0.305,
    "secondary_lookup_s": 0.0,
    "render_breakdown_ms": {
-    "solve": 21.77,
-    "corrections": 0.32,
-    "switches": 0.18,
-    "render_and_tears": 3215.7,
-    "total": 3258.7
+    "solve": 17.07,
+    "corrections": 0.2,
+    "switches": 0.11,
+    "render_and_tears": 2924.5,
+    "total": 2963.5
    },
    "hardware": {
     "machine": "x86_64",
@@ -653,7 +745,7 @@
     "note": "cloud sandbox measurements; no Apple M1 figures are claimed"
    },
    "note": "cloud sandbox; skeleton-only evaluation (contacts include one extra free solve) is the interactive path; full artwork renders are offline. No Apple M1 or real-time figure is claimed: run `autorig performance-bench <package>` on the Mac.",
-   "evidence_total_s": 1060.5
+   "evidence_total_s": 1082.4
   }
  },
  "compatibility": {

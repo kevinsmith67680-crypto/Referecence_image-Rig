@@ -2552,6 +2552,8 @@
      "hand:pointing (l)"
     ],
     "production_ready": false,
+    "palm_required": null,
+    "palm_capable_drawings": [],
     "alternative": null,
     "note": ""
    }
