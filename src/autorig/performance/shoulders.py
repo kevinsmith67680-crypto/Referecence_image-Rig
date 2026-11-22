@@ -60,7 +60,9 @@ def measure(image: np.ndarray, joints: dict[str, Any], pad: int) -> dict[str, An
         m = (u > 0.15) & (u < 0.85)
         k = float(np.polyfit(xs[m] * sg, ys[m], 1)[0])
         i0, i1 = int(np.argmin(abs(u - 0.1))), int(np.argmin(abs(u - 0.95)))
-        chord = ys[i0] + (ys[i1] - ys[i0]) * (xs - xs[i0]) / max(xs[i1] - xs[i0], 1e-6)
+        dx = float(xs[i1] - xs[i0])  # negative on the character's right side (profile runs right to left)
+        dx = dx if abs(dx) > 1e-6 else 1e-6
+        chord = ys[i0] + (ys[i1] - ys[i0]) * (xs - xs[i0]) / dx
         sel = (u >= 0.1) & (u <= 0.95)
         out[s] = {"status": "OK", "slope_deg": round(float(np.degrees(np.arctan(k))), 2),
                   "hump_px": round(float(np.max(chord[sel] - ys[sel])), 2),

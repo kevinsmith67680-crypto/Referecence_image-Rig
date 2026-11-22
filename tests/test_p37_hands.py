@@ -442,3 +442,19 @@ def test_metadata_file_matches_the_json_schema():
     next(iter(bad["assets"].values()))["approval"]["state"] = "AUTO_APPROVED"
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.validate(bad, schema)
+
+
+def test_shoulder_measure_is_symmetric():
+    """Regression: the right side's chord ran right-to-left and its hump was clamped to nonsense."""
+    from autorig.performance import shoulders
+
+    H, W = 400, 600
+    img = np.zeros((H, W, 4), np.uint8)
+    yy, xx = np.mgrid[0:H, 0:W]
+    top = 120 + 0.25 * np.abs(xx - 300)  # sloped shoulders, symmetric about x = 300
+    img[..., 3] = np.where((yy >= top) & (np.abs(xx - 300) < 200), 255, 0)
+    J = {"neck": (300.0, 110.0), "clavicle_r": (270.0, 140.0), "clavicle_l": (330.0, 140.0),
+         "upper_arm_r": (160.0, 160.0), "upper_arm_l": (440.0, 160.0)}
+    m = shoulders.measure(img, J, 0)
+    assert m["r"]["slope_deg"] == pytest.approx(m["l"]["slope_deg"], abs=0.5) and m["r"]["slope_deg"] > 10
+    assert m["r"]["hump_px"] == pytest.approx(m["l"]["hump_px"], abs=1.0) and abs(m["r"]["hump_px"]) < 3
