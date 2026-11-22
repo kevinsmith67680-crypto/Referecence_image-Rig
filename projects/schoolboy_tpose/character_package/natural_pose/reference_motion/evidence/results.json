@@ -4,7 +4,7 @@
   "processor": "x86_64",
   "python": "3.12.3"
  },
- "library": "motion_references",
+ "library": "/home/user/Referecence_image-Rig/motion_references",
  "references": {
   "pointing": {
    "ref_id": "synthetic_pointing",
@@ -92,8 +92,8 @@
    ],
    "depth_segments": [],
    "timing_s": {
-    "analysis": 0.026,
-    "retarget_and_compare": 0.11
+    "analysis": 0.004,
+    "retarget_and_compare": 0.174
    },
    "accents": {
     "arm_r_abduction": {
@@ -281,8 +281,8 @@
     "forearm_r"
    ],
    "timing_s": {
-    "analysis": 0.023,
-    "retarget_and_compare": 0.131
+    "analysis": 0.002,
+    "retarget_and_compare": 0.09
    },
    "accents": {
     "arm_r_abduction": {
@@ -446,8 +446,8 @@
     "shin_r"
    ],
    "timing_s": {
-    "analysis": 0.026,
-    "retarget_and_compare": 0.115
+    "analysis": 0.003,
+    "retarget_and_compare": 0.125
    },
    "accents": {
     "arm_r_abduction": {
@@ -567,14 +567,14 @@
    "mediapipe_version": "1.2.3",
    "timing": {
     "frames": 44,
-    "total_s": 2.968,
-    "per_frame_s": 0.0675
+    "total_s": 3.126,
+    "per_frame_s": 0.071
    }
   },
   "timing_s": {
-   "render_per_frame": 3.126,
-   "decode_total": 0.273,
-   "pose_per_frame": 0.0675,
+   "render_per_frame": 3.15,
+   "decode_total": 0.234,
+   "pose_per_frame": 0.071,
    "analysis": 0.005
   },
   "note": "a cartoon render, not a human: errors show the provider/analysis chain on this character's proportions; they are not human-reference accuracy"
