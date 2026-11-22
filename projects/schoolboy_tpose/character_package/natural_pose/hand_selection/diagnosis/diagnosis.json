@@ -146,7 +146,7 @@
     "r": {
      "status": "OK",
      "slope_deg": -6.26,
-     "hump_px": 0.0,
+     "hump_px": 9.8,
      "top_y": 370.66,
      "outer_x": 398.0,
      "applies": true,
@@ -168,7 +168,7 @@
      "r": {
       "status": "OK",
       "slope_deg": -6.26,
-      "hump_px": 0.0,
+      "hump_px": 9.8,
       "top_y": 370.66,
       "outer_x": 398.0,
       "applies": true,
@@ -414,7 +414,7 @@
     "r": {
      "status": "OK",
      "slope_deg": -5.27,
-     "hump_px": 0.0,
+     "hump_px": 11.12,
      "top_y": 370.62,
      "outer_x": 395.0,
      "applies": true,
@@ -436,7 +436,7 @@
      "r": {
       "status": "OK",
       "slope_deg": -5.27,
-      "hump_px": 0.0,
+      "hump_px": 11.12,
       "top_y": 370.62,
       "outer_x": 395.0,
       "applies": true,
@@ -626,7 +626,7 @@
     "r": {
      "status": "OK",
      "slope_deg": -5.27,
-     "hump_px": 0.0,
+     "hump_px": 11.12,
      "top_y": 370.62,
      "outer_x": 395.0,
      "applies": true,
@@ -648,7 +648,7 @@
      "r": {
       "status": "OK",
       "slope_deg": -5.27,
-      "hump_px": 0.0,
+      "hump_px": 11.12,
       "top_y": 370.62,
       "outer_x": 395.0,
       "applies": true,
@@ -818,7 +818,7 @@
     "r": {
      "status": "OK",
      "slope_deg": -0.03,
-     "hump_px": -12000000.0,
+     "hump_px": 8.62,
      "top_y": 379.65,
      "outer_x": 394.0,
      "applies": true,
@@ -840,7 +840,7 @@
      "r": {
       "status": "OK",
       "slope_deg": -0.03,
-      "hump_px": -12000000.0,
+      "hump_px": 8.62,
       "top_y": 379.65,
       "outer_x": 394.0,
       "applies": true,
@@ -1061,7 +1061,7 @@
     "r": {
      "status": "OK",
      "slope_deg": -0.51,
-     "hump_px": -14000000.0,
+     "hump_px": 12.13,
      "top_y": 379.61,
      "outer_x": 391.0,
      "applies": true,
@@ -1083,7 +1083,7 @@
      "r": {
       "status": "OK",
       "slope_deg": -0.51,
-      "hump_px": -14000000.0,
+      "hump_px": 12.13,
       "top_y": 379.61,
       "outer_x": 391.0,
       "applies": true,
@@ -1250,7 +1250,7 @@
     "r": {
      "status": "OK",
      "slope_deg": -0.03,
-     "hump_px": -12000000.0,
+     "hump_px": 8.62,
      "top_y": 379.65,
      "outer_x": 394.0,
      "applies": true,
@@ -1272,7 +1272,7 @@
      "r": {
       "status": "OK",
       "slope_deg": -0.03,
-      "hump_px": -12000000.0,
+      "hump_px": 8.62,
       "top_y": 379.65,
       "outer_x": 394.0,
       "applies": true,
@@ -1307,7 +1307,7 @@
   "r": {
    "status": "OK",
    "slope_deg": 8.89,
-   "hump_px": 0.0,
+   "hump_px": 5.76,
    "top_y": 381.59,
    "outer_x": 402.0
   },

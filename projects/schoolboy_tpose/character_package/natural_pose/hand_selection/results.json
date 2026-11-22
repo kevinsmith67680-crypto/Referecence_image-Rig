@@ -110,7 +110,7 @@
    "palm_up",
    "partially_closed"
   ],
-  "wall_s": 130.3
+  "wall_s": 124.5
  },
  "findings": [
   "the Phase 3.6 resolver wrote {user: pose, auto: True}; the switch controller honours user only when auto is False, so every performance hand request was replaced by the automatic choice for the base preset (relaxed_standing). The 3.6 review frame labelled 'cupped' shows the relaxed drawings.",
