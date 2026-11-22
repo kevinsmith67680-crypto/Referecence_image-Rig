@@ -315,7 +315,7 @@ The approvals in this test are persistence checks on a scratch copy, not artisti
 
 | suite | before (clean e80bc4f) | after (Phase 3.8) |
 |---|---|---|
-| backend `pytest` | 591 passed, 2 skipped (native Moho: NOT EXECUTED), 18 min 14 s | FINAL_SUITE |
+| backend `pytest` | 591 passed, 2 skipped (native Moho: NOT EXECUTED), 18 min 14 s | **606 passed**, 2 skipped (native Moho: NOT EXECUTED), 19 min 32 s: the 591 plus 15 new |
 | frontend `vitest` | 11 passed | 11 passed (editor sources unchanged; `dist` not rebuilt) |
 | schoolboy editor e2e (`e2e/editor.e2e.mjs`, Playwright, headless Chromium) | passed (Phase 3.7) | **passed** (583 s; screenshots written to scratch, so the committed ones are unchanged) |
 | new-character editor e2e (`e2e/newchar.e2e.mjs`) | — | **passed** (147 s) |
@@ -432,7 +432,7 @@ Acceptance criteria (step 26):
 | 17 | acting sequence generated | **PARTIAL** | generated and rendered; the motion check is REVIEW for the loaded knee (10.8–18.5° vs 10°), visible in the weight-shift frames (§16) |
 | 18 | editor modifies the new project | PASS | `newchar.e2e.mjs` passed (§18) |
 | 19 | save and reload | PASS | state and render identical after reopen (§19) |
-| 20 | schoolboy functionality intact | PASS | FINAL_SUITE; schoolboy e2e passed; schoolboy outputs pinned (§20) |
+| 20 | schoolboy functionality intact | PASS | 606 passed / 2 skipped (native); schoolboy e2e passed; schoolboy outputs pinned (§20) |
 | 21 | Moho-ready metadata exported | PASS | 0 validation errors; mappings `proposed_unverified`; no `.moho` (§22) |
 | 22 | tests pass without weakening | PASS | no assertion weakened; 15 new tests (§20) |
 | 23 | real visual evidence | PASS | `new_character_evidence/01–20`, browser screenshots; no placeholders |
