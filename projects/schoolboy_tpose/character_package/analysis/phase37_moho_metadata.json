@@ -1,0 +1,995 @@
+{
+ "schema": "autorig.phase37_moho_metadata",
+ "version": "1.0.0",
+ "status": "proposed_unverified",
+ "switches": {
+  "status": "proposed_unverified",
+  "native_moho": "not_implemented",
+  "sides": {
+   "r": {
+    "group": "hand_r",
+    "variants": [
+     {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 50.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        114.0,
+        13.0
+       ],
+       "rest_angle_deg": 88.982
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": null,
+       "rest_angle_deg": null
+      },
+      "production_eligible": true
+     },
+     {
+      "pose": "open_palm",
+      "cid": "store:schoolboy_hands_sleeveless/right_open_palm",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_open_palm.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        145.5,
+        12.5
+       ],
+       "rest_angle_deg": 90.674
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "fist",
+      "cid": "store:schoolboy_hands_sleeveless/right_fist",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_fist.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        108.0,
+        13.0
+       ],
+       "rest_angle_deg": 90.358
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "pointing",
+      "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_pointing.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        246.5,
+        70.03
+       ],
+       "rest_angle_deg": 2.559
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "thumbs_up",
+      "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_thumbs_up.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 45.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        188.0,
+        175.5
+       ],
+       "rest_angle_deg": 2.559
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "gripping",
+      "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_gripping.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "EDGE_ON",
+      "rotation_tolerance_deg": 100.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        220.5,
+        105.09
+       ],
+       "rest_angle_deg": 2.559
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "palm_down",
+      "cid": "store:schoolboy_hands_sleeveless/right_palm_down",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_palm_down.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": false,
+      "palm_at_rest": "BACK_TO_CAMERA",
+      "rotation_tolerance_deg": 60.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        161.5,
+        13.5
+       ],
+       "rest_angle_deg": 93.149
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.left_cupped.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "right",
+      "reassigned": true,
+      "palm_at_rest": "PALM_UP",
+      "rotation_tolerance_deg": 35.0,
+      "attachment": {
+       "bone": "hand_r",
+       "wrist_px": [
+        157.8,
+        474.5
+       ],
+       "wrist_moho": [
+        -0.53204,
+        0.34461
+       ],
+       "drawing_pivot_px": [
+        220.5,
+        62.51
+       ],
+       "rest_angle_deg": 2.559
+      },
+      "production_eligible": false
+     }
+    ],
+    "production_switch": [
+     "open_palm"
+    ],
+    "override": null
+   },
+   "l": {
+    "group": "hand_l",
+    "variants": [
+     {
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 50.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        68.0,
+        13.5
+       ],
+       "rest_angle_deg": -84.109
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": null,
+       "rest_angle_deg": null
+      },
+      "production_eligible": true
+     },
+     {
+      "pose": "open_palm",
+      "cid": "store:schoolboy_hands_sleeveless/left_open_palm",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_open_palm.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        130.5,
+        13.5
+       ],
+       "rest_angle_deg": -90.098
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "fist",
+      "cid": "store:schoolboy_hands_sleeveless/left_fist",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_fist.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        85.0,
+        12.5
+       ],
+       "rest_angle_deg": -88.055
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "pointing",
+      "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_pointing.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 180.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        19.5,
+        67.0
+       ],
+       "rest_angle_deg": -1.983
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "thumbs_up",
+      "cid": "store:schoolboy_hands_sleeveless/left_thumbs_up",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_thumbs_up.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "PALM_TO_CAMERA",
+      "rotation_tolerance_deg": 45.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        13.5,
+        168.5
+       ],
+       "rest_angle_deg": -3.96
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "gripping",
+      "cid": "store:schoolboy_hands_sleeveless/left_gripping",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_gripping.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "EDGE_ON",
+      "rotation_tolerance_deg": 100.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        17.5,
+        107.66
+       ],
+       "rest_angle_deg": -1.983
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "palm_down",
+      "cid": "store:schoolboy_hands_sleeveless/left_palm_down",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_palm_down.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": false,
+      "palm_at_rest": "BACK_TO_CAMERA",
+      "rotation_tolerance_deg": 60.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        145.0,
+        13.5
+       ],
+       "rest_angle_deg": -91.376
+      },
+      "production_eligible": false
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.right_cupped.v1",
+      "approval": "PENDING_REVIEW",
+      "handedness": "left",
+      "reassigned": true,
+      "palm_at_rest": "PALM_UP",
+      "rotation_tolerance_deg": 35.0,
+      "attachment": {
+       "bone": "hand_l",
+       "wrist_px": [
+        925.4,
+        474.7
+       ],
+       "wrist_moho": [
+        0.52818,
+        0.34434
+       ],
+       "drawing_pivot_px": [
+        18.5,
+        67.15
+       ],
+       "rest_angle_deg": -1.983
+      },
+      "production_eligible": false
+     }
+    ],
+    "production_switch": [
+     "open_palm"
+    ],
+    "override": null
+   }
+  }
+ },
+ "actions": {
+  "shrug_subtle": {
+   "action": "AR_shrug_subtle",
+   "status": "proposed_unverified",
+   "keys": [
+    {
+     "t": 0.0,
+     "frame_24fps": 0,
+     "bones_deg": {
+      "pelvis": -1.2,
+      "chest": 0.48,
+      "neck": 1.224,
+      "head": 1.496,
+      "clavicle_r": -5.555,
+      "upper_arm_r": -69.304,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": -7.31,
+      "shin_r": -6.421,
+      "foot_r": 9.264,
+      "clavicle_l": 4.645,
+      "upper_arm_l": 74.18,
+      "forearm_l": 10.944,
+      "hand_l": 5.933,
+      "thigh_l": 15.59,
+      "shin_l": 7.886,
+      "foot_l": -22.276
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 1.0,
+     "frame_24fps": 24,
+     "bones_deg": {
+      "pelvis": -4.524,
+      "spine": -2.2,
+      "chest": 1.819,
+      "neck": 0.857,
+      "head": 1.048,
+      "clavicle_r": -5.33,
+      "upper_arm_r": -65.344,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": 3.48,
+      "shin_r": -11.698,
+      "foot_r": 6.742,
+      "clavicle_l": 4.15,
+      "upper_arm_l": 72.861,
+      "forearm_l": 11.944,
+      "hand_l": 5.933,
+      "thigh_l": 23.203,
+      "shin_l": 8.728,
+      "foot_l": -27.407
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 1.7,
+     "frame_24fps": 41,
+     "bones_deg": {
+      "pelvis": -4.385,
+      "spine": -2.2,
+      "chest": 1.708,
+      "neck": 5.345,
+      "head": 6.532,
+      "clavicle_r": -5.162,
+      "upper_arm_r": -65.54,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": 2.443,
+      "shin_r": -11.698,
+      "foot_r": 7.64,
+      "clavicle_l": 3.982,
+      "upper_arm_l": 73.0,
+      "forearm_l": 11.944,
+      "hand_l": 5.933,
+      "thigh_l": 22.925,
+      "shin_l": 7.234,
+      "foot_l": -25.774
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 2.6,
+     "frame_24fps": 62,
+     "bones_deg": {
+      "pelvis": -3.354,
+      "spine": 2.2,
+      "chest": 3.947,
+      "neck": 0.543,
+      "head": 0.664,
+      "clavicle_r": 26.125,
+      "upper_arm_r": 39.896,
+      "forearm_r": -17.811,
+      "hand_r": -2.655,
+      "thigh_r": -1.585,
+      "shin_r": -6.698,
+      "foot_r": 5.638,
+      "clavicle_l": 5.424,
+      "upper_arm_l": 69.889,
+      "forearm_l": 10.944,
+      "hand_l": 5.933,
+      "thigh_l": 23.044,
+      "shin_l": 4.051,
+      "foot_l": -23.741
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 3.5,
+     "frame_24fps": 84,
+     "bones_deg": {
+      "pelvis": 1.58,
+      "spine": -2.75,
+      "chest": -3.135,
+      "neck": 0.039,
+      "head": 0.048,
+      "clavicle_r": 6.202,
+      "upper_arm_r": 8.164,
+      "forearm_r": -9.108,
+      "hand_r": 1.454,
+      "thigh_r": -16.058,
+      "shin_r": -1.698,
+      "foot_r": 16.176,
+      "clavicle_l": 5.634,
+      "upper_arm_l": 76.776,
+      "forearm_l": 12.944,
+      "hand_l": 5.933,
+      "thigh_l": 7.969,
+      "shin_l": 10.358,
+      "foot_l": -14.496
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 4.6,
+     "frame_24fps": 110,
+     "bones_deg": {
+      "pelvis": -0.804,
+      "chest": 0.257,
+      "neck": 3.516,
+      "head": 4.297,
+      "clavicle_r": 2.905,
+      "upper_arm_r": -73.936,
+      "forearm_r": 14.675,
+      "hand_r": 1.345,
+      "thigh_r": -9.102,
+      "shin_r": -5.731,
+      "foot_r": 10.799,
+      "clavicle_l": -4.029,
+      "upper_arm_l": 77.682,
+      "forearm_l": -13.056,
+      "hand_l": -2.067,
+      "thigh_l": 14.747,
+      "shin_l": 6.691,
+      "foot_l": -20.634
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 5.8,
+     "frame_24fps": 139,
+     "bones_deg": {
+      "pelvis": -1.163,
+      "chest": 0.465,
+      "neck": 1.214,
+      "head": 1.484,
+      "clavicle_r": -5.266,
+      "upper_arm_r": -69.615,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": -7.511,
+      "shin_r": -6.316,
+      "foot_r": 9.449,
+      "clavicle_l": 4.356,
+      "upper_arm_l": 74.447,
+      "forearm_l": 10.944,
+      "hand_l": 5.933,
+      "thigh_l": 15.532,
+      "shin_l": 7.708,
+      "foot_l": -22.077
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    }
+   ],
+   "baking": "per-frame theta_deg via Phase 3.6 animation_metadata; switch keys at the decided frames",
+   "convention": "degrees relative to rest, about the bone head (rig 'ang' convention; Moho sign and units to be verified in Phase 4)"
+  },
+  "shrug_expressive": {
+   "action": "AR_shrug_expressive",
+   "status": "proposed_unverified",
+   "keys": [
+    {
+     "t": 0.0,
+     "frame_24fps": 0,
+     "bones_deg": {
+      "pelvis": -1.2,
+      "chest": 0.48,
+      "neck": 1.224,
+      "head": 1.496,
+      "clavicle_r": -5.555,
+      "upper_arm_r": -69.304,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": -7.31,
+      "shin_r": -6.421,
+      "foot_r": 9.264,
+      "clavicle_l": 4.645,
+      "upper_arm_l": 74.18,
+      "forearm_l": 10.944,
+      "hand_l": 5.933,
+      "thigh_l": 15.59,
+      "shin_l": 7.886,
+      "foot_l": -22.276
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 1.0,
+     "frame_24fps": 24,
+     "bones_deg": {
+      "pelvis": -4.524,
+      "spine": -2.2,
+      "chest": 1.819,
+      "neck": 0.857,
+      "head": 1.048,
+      "clavicle_r": -5.33,
+      "upper_arm_r": -65.344,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": 3.48,
+      "shin_r": -11.698,
+      "foot_r": 6.742,
+      "clavicle_l": 4.15,
+      "upper_arm_l": 72.861,
+      "forearm_l": 11.944,
+      "hand_l": 5.933,
+      "thigh_l": 23.203,
+      "shin_l": 8.728,
+      "foot_l": -27.407
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 1.7,
+     "frame_24fps": 41,
+     "bones_deg": {
+      "pelvis": -4.385,
+      "spine": -2.2,
+      "chest": 1.708,
+      "neck": 5.345,
+      "head": 6.532,
+      "clavicle_r": -5.162,
+      "upper_arm_r": -65.54,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": 2.443,
+      "shin_r": -11.698,
+      "foot_r": 7.64,
+      "clavicle_l": 3.982,
+      "upper_arm_l": 73.0,
+      "forearm_l": 11.944,
+      "hand_l": 5.933,
+      "thigh_l": 22.925,
+      "shin_l": 7.234,
+      "foot_l": -25.774
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 2.6,
+     "frame_24fps": 62,
+     "bones_deg": {
+      "pelvis": -3.354,
+      "spine": 2.2,
+      "chest": 3.947,
+      "neck": 0.543,
+      "head": 0.664,
+      "clavicle_r": 26.125,
+      "upper_arm_r": 39.896,
+      "forearm_r": -17.811,
+      "hand_r": -2.655,
+      "thigh_r": -1.585,
+      "shin_r": -6.698,
+      "foot_r": 5.638,
+      "clavicle_l": 5.424,
+      "upper_arm_l": 69.889,
+      "forearm_l": 10.944,
+      "hand_l": 5.933,
+      "thigh_l": 23.044,
+      "shin_l": 4.051,
+      "foot_l": -23.741
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 3.5,
+     "frame_24fps": 84,
+     "bones_deg": {
+      "pelvis": 1.58,
+      "spine": -2.75,
+      "chest": -3.135,
+      "neck": 0.039,
+      "head": 0.048,
+      "clavicle_r": 6.202,
+      "upper_arm_r": 8.164,
+      "forearm_r": -9.108,
+      "hand_r": 1.454,
+      "thigh_r": -16.058,
+      "shin_r": -1.698,
+      "foot_r": 16.176,
+      "clavicle_l": 5.634,
+      "upper_arm_l": 76.776,
+      "forearm_l": 12.944,
+      "hand_l": 5.933,
+      "thigh_l": 7.969,
+      "shin_l": 10.358,
+      "foot_l": -14.496
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 4.6,
+     "frame_24fps": 110,
+     "bones_deg": {
+      "pelvis": -0.804,
+      "chest": 0.257,
+      "neck": 3.516,
+      "head": 4.297,
+      "clavicle_r": 4.154,
+      "upper_arm_r": -70.186,
+      "forearm_r": 36.675,
+      "hand_r": 5.345,
+      "thigh_r": -9.147,
+      "shin_r": -5.731,
+      "foot_r": 10.843,
+      "clavicle_l": -5.323,
+      "upper_arm_l": 72.976,
+      "forearm_l": -37.056,
+      "hand_l": -6.067,
+      "thigh_l": 14.768,
+      "shin_l": 6.562,
+      "foot_l": -20.525
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    },
+    {
+     "t": 5.8,
+     "frame_24fps": 139,
+     "bones_deg": {
+      "pelvis": -1.163,
+      "chest": 0.465,
+      "neck": 1.214,
+      "head": 1.484,
+      "clavicle_r": -5.266,
+      "upper_arm_r": -69.615,
+      "forearm_r": -8.325,
+      "hand_r": -5.655,
+      "thigh_r": -7.511,
+      "shin_r": -6.316,
+      "foot_r": 9.449,
+      "clavicle_l": 4.356,
+      "upper_arm_l": 74.447,
+      "forearm_l": 10.944,
+      "hand_l": 5.933,
+      "thigh_l": 15.532,
+      "shin_l": 7.708,
+      "foot_l": -22.077
+     },
+     "hands": {
+      "r": "open_palm",
+      "l": "open_palm"
+     },
+     "hand_status": {
+      "r": "MISSING",
+      "l": "MISSING"
+     }
+    }
+   ],
+   "baking": "per-frame theta_deg via Phase 3.6 animation_metadata; switch keys at the decided frames",
+   "convention": "degrees relative to rest, about the bone head (rig 'ang' convention; Moho sign and units to be verified in Phase 4)"
+  }
+ },
+ "pose_specific_art": {
+  "needs_artwork": [
+   "hand:palm_up_r",
+   "hand:palm_up_l",
+   "hand:relaxed_partially_closed",
+   "art:forearm_foreshortened_{r,l}",
+   "view:leg_sagittal",
+   "art:shoulder_arms_down_{r,l} (optional: sloped shoulder line)"
+  ],
+  "needs_approval": "every stored hand drawing (16) is PENDING_REVIEW"
+ },
+ "disclaimer": "no Moho API names, no Moho file; nothing here has run in Moho"
+}

@@ -1,0 +1,3916 @@
+{
+ "neutral": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/right_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): turned 87 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for relaxed_standing; turned 87 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.571
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 8.0,
+        "cuff_width_px": 97.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.5,
+       "fill": 0.571,
+       "own_cloth_px": 157,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 1.74,
+       "cuff_center_q_px": -6.26,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.577
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 9.25,
+        "cuff_width_px": 97.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.5,
+       "fill": 0.577,
+       "own_cloth_px": 136,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.69,
+       "cuff_center_q_px": 7.56,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 11.37,
+     "hump_px": 0.0,
+     "top_y": 383.12,
+     "outer_x": 402.0,
+     "applies": true,
+     "rise_px": 0.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.54,
+     "hump_px": 7.0,
+     "top_y": 379.12,
+     "outer_x": 740.0,
+     "applies": true,
+     "rise_px": 0.0
+    }
+   },
+   "wall_s": 2.884,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 11.37,
+      "hump_px": 0.0,
+      "top_y": 383.12,
+      "outer_x": 402.0,
+      "applies": true,
+      "rise_px": 0.0
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.54,
+      "hump_px": 7.0,
+      "top_y": 379.12,
+      "outer_x": 740.0,
+      "applies": true,
+      "rise_px": 0.0
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/right_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 87 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 87 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 32.0,
+       "fill": 1.0,
+       "own_cloth_px": 345,
+       "own_white_px": 26,
+       "overhang_px": [
+        36.5,
+        35.0
+       ],
+       "hand_center_q_px": 6.74,
+       "cuff_center_q_px": 7.49,
+       "own_white_px_near_wrist": 5
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.5,
+       "fill": 1.0,
+       "own_cloth_px": 323,
+       "own_white_px": 15,
+       "overhang_px": [
+        112.5,
+        1.0
+       ],
+       "hand_center_q_px": -13.19,
+       "cuff_center_q_px": 42.56,
+       "own_white_px_near_wrist": 6
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 11.66,
+     "hump_px": 0.0,
+     "top_y": 383.12,
+     "outer_x": 402.0,
+     "applies": true,
+     "rise_px": 0.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.45,
+     "hump_px": 7.5,
+     "top_y": 379.12,
+     "outer_x": 741.0,
+     "applies": true,
+     "rise_px": 0.0
+    }
+   },
+   "wall_s": 3.146,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 11.66,
+      "hump_px": 0.0,
+      "top_y": 383.12,
+      "outer_x": 402.0,
+      "applies": true,
+      "rise_px": 0.0
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.45,
+      "hump_px": 7.5,
+      "top_y": 379.12,
+      "outer_x": 741.0,
+      "applies": true,
+      "rise_px": 0.0
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "left_point": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/right_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for relaxed_standing; turned 95 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.569
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 8.5,
+        "cuff_width_px": 97.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.0,
+       "fill": 0.569,
+       "own_cloth_px": 161,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 1.49,
+       "cuff_center_q_px": -7.01,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "pointing",
+     "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+     "source": "auto",
+     "pending_review": true,
+     "note": "pointing: pointing (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 4,
+     "override_check": null,
+     "explanation": [
+      "l: pointing -> pointing (store:schoolboy_hands_sleeveless/left_pointing) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): turned 121 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): turned 113 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "pointing",
+      "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_pointing.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.804
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 11.0,
+        "cuff_width_px": 94.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 94.0,
+       "fill": 0.804,
+       "own_cloth_px": 111,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        3.5
+       ],
+       "hand_center_q_px": 15.81,
+       "cuff_center_q_px": 4.81,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 3.08,
+     "hump_px": 0.0,
+     "top_y": 377.32,
+     "outer_x": 394.0,
+     "applies": true,
+     "rise_px": 5.8
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": -7.05,
+     "hump_px": 9.9,
+     "top_y": 364.32,
+     "outer_x": 1009.0,
+     "applies": false,
+     "note": "arm raised (102 deg): the arm forms the outer shoulder"
+    }
+   },
+   "wall_s": 2.806,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 3.08,
+      "hump_px": 0.0,
+      "top_y": 377.32,
+      "outer_x": 394.0,
+      "applies": true,
+      "rise_px": 5.8
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": -7.05,
+      "hump_px": 9.9,
+      "top_y": 364.32,
+      "outer_x": 1009.0,
+      "applies": false,
+      "note": "arm raised (102 deg): the arm forms the outer shoulder"
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/right_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 95 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 30.5,
+       "fill": 1.0,
+       "own_cloth_px": 326,
+       "own_white_px": 21,
+       "overhang_px": [
+        38.0,
+        35.5
+       ],
+       "hand_center_q_px": 6.49,
+       "cuff_center_q_px": 7.74,
+       "own_white_px_near_wrist": 8
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "pointing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "pointing",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:schoolboy_hands_sleeveless/left_pointing"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: pointing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 121 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 113 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: pointing - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 0.5,
+       "fill": 1.0,
+       "own_cloth_px": 317,
+       "own_white_px": 22,
+       "overhang_px": [
+        18.5,
+        98.5
+       ],
+       "hand_center_q_px": -14.44,
+       "cuff_center_q_px": -54.44,
+       "own_white_px_near_wrist": 7
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 3.32,
+     "hump_px": 0.0,
+     "top_y": 377.32,
+     "outer_x": 394.0,
+     "applies": true,
+     "rise_px": 5.8
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": -7.2,
+     "hump_px": 9.5,
+     "top_y": 364.32,
+     "outer_x": 998.0,
+     "applies": false,
+     "note": "arm raised (102 deg): the arm forms the outer shoulder"
+    }
+   },
+   "wall_s": 2.916,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 3.32,
+      "hump_px": 0.0,
+      "top_y": 377.32,
+      "outer_x": 394.0,
+      "applies": true,
+      "rise_px": 5.8
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": -7.2,
+      "hump_px": 9.5,
+      "top_y": 364.32,
+      "outer_x": 998.0,
+      "applies": false,
+      "note": "arm raised (102 deg): the arm forms the outer shoulder"
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "right_point": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "pointing",
+     "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+     "source": "auto",
+     "pending_review": true,
+     "note": "pointing: pointing (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 4,
+     "override_check": null,
+     "explanation": [
+      "r: pointing -> pointing (store:schoolboy_hands_sleeveless/right_pointing) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): turned 122 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): turned 118 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "pointing",
+      "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_pointing.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.67
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 2.0,
+        "cuff_width_px": 95.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 95.0,
+       "fill": 0.67,
+       "own_cloth_px": 86,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -6.51,
+       "cuff_center_q_px": -8.51,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 93 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.569
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 9.75,
+        "cuff_width_px": 98.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.0,
+       "fill": 0.569,
+       "own_cloth_px": 139,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.94,
+       "cuff_center_q_px": 7.81,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -6.15,
+     "hump_px": 6320000020.0,
+     "top_y": 363.59,
+     "outer_x": 69.0,
+     "applies": false,
+     "note": "arm raised (102 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 10.92,
+     "hump_px": 8.74,
+     "top_y": 377.59,
+     "outer_x": 693.0,
+     "applies": true,
+     "rise_px": 1.53
+    }
+   },
+   "wall_s": 2.954,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -6.15,
+      "hump_px": 6320000020.0,
+      "top_y": 363.59,
+      "outer_x": 69.0,
+      "applies": false,
+      "note": "arm raised (102 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 10.92,
+      "hump_px": 8.74,
+      "top_y": 377.59,
+      "outer_x": 693.0,
+      "applies": true,
+      "rise_px": 1.53
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "pointing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "pointing",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:schoolboy_hands_sleeveless/right_pointing"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: pointing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 122 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 118 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: pointing - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 31.0,
+       "fill": 1.0,
+       "own_cloth_px": 299,
+       "own_white_px": 27,
+       "overhang_px": [
+        36.5,
+        36.0
+       ],
+       "hand_center_q_px": 7.24,
+       "cuff_center_q_px": 7.49,
+       "own_white_px_near_wrist": 9
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 93 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.0,
+       "fill": 1.0,
+       "own_cloth_px": 325,
+       "own_white_px": 18,
+       "overhang_px": [
+        17.5,
+        97.5
+       ],
+       "hand_center_q_px": -14.19,
+       "cuff_center_q_px": -54.19,
+       "own_white_px_near_wrist": 5
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -6.51,
+     "hump_px": 6040000020.0,
+     "top_y": 363.59,
+     "outer_x": 86.0,
+     "applies": false,
+     "note": "arm raised (102 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 10.77,
+     "hump_px": 9.25,
+     "top_y": 377.59,
+     "outer_x": 694.0,
+     "applies": true,
+     "rise_px": 1.53
+    }
+   },
+   "wall_s": 3.401,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -6.51,
+      "hump_px": 6040000020.0,
+      "top_y": 363.59,
+      "outer_x": 86.0,
+      "applies": false,
+      "note": "arm raised (102 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 10.77,
+      "hump_px": 9.25,
+      "top_y": 377.59,
+      "outer_x": 694.0,
+      "applies": true,
+      "rise_px": 1.53
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "shrug_subtle": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": -55.56
+     },
+     "explanation": [
+      "r: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): cupped is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): fist is not used for shrug_subtle",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": -55.56,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 56.0,
+       "fill": 1.0,
+       "own_cloth_px": 256,
+       "own_white_px": 30,
+       "overhang_px": [
+        22.0,
+        17.5
+       ],
+       "hand_center_q_px": 5.24,
+       "cuff_center_q_px": 7.49,
+       "own_white_px_near_wrist": 4
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": 57.98
+     },
+     "explanation": [
+      "l: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): cupped is not used for shrug_subtle; turned 56 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for shrug_subtle",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for shrug_subtle; turned 54 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 57.98,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 3.5,
+       "fill": 1.0,
+       "own_cloth_px": 235,
+       "own_white_px": 14,
+       "overhang_px": [
+        110.5,
+        1.5
+       ],
+       "hand_center_q_px": -12.44,
+       "cuff_center_q_px": 42.06,
+       "own_white_px_near_wrist": 4
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -0.03,
+     "hump_px": -12000000.0,
+     "top_y": 379.65,
+     "outer_x": 394.0,
+     "applies": true,
+     "rise_px": 3.47
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 0.8,
+     "hump_px": 9.77,
+     "top_y": 377.65,
+     "outer_x": 733.0,
+     "applies": true,
+     "rise_px": 1.47
+    }
+   },
+   "wall_s": 3.595,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -0.03,
+      "hump_px": -12000000.0,
+      "top_y": 379.65,
+      "outer_x": 394.0,
+      "applies": true,
+      "rise_px": 3.47
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 0.8,
+      "hump_px": 9.77,
+      "top_y": 377.65,
+      "outer_x": 733.0,
+      "applies": true,
+      "rise_px": 1.47
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": -55.56
+     },
+     "explanation": [
+      "r: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": -55.56,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 33.0,
+       "fill": 1.0,
+       "own_cloth_px": 308,
+       "own_white_px": 32,
+       "overhang_px": [
+        33.5,
+        33.5
+       ],
+       "hand_center_q_px": 8.49,
+       "cuff_center_q_px": 8.49,
+       "own_white_px_near_wrist": 13
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": 57.98
+     },
+     "explanation": [
+      "l: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 56 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 54 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 57.98,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 0.5,
+       "fill": 1.0,
+       "own_cloth_px": 315,
+       "own_white_px": 20,
+       "overhang_px": [
+        18.0,
+        99.0
+       ],
+       "hand_center_q_px": -13.44,
+       "cuff_center_q_px": -53.94,
+       "own_white_px_near_wrist": 7
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -0.03,
+     "hump_px": -12000000.0,
+     "top_y": 379.65,
+     "outer_x": 394.0,
+     "applies": true,
+     "rise_px": 3.47
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 0.49,
+     "hump_px": 9.77,
+     "top_y": 377.65,
+     "outer_x": 733.0,
+     "applies": true,
+     "rise_px": 1.47
+    }
+   },
+   "wall_s": 2.755,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -0.03,
+      "hump_px": -12000000.0,
+      "top_y": 379.65,
+      "outer_x": 394.0,
+      "applies": true,
+      "rise_px": 3.47
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 0.49,
+      "hump_px": 9.77,
+      "top_y": 377.65,
+      "outer_x": 733.0,
+      "applies": true,
+      "rise_px": 1.47
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "shrug_expressive": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "shrugging",
+     "kind": "action",
+     "shown_pose": "cupped",
+     "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+     "source": "user",
+     "pending_review": true,
+     "note": null,
+     "needs_artwork": [
+      {
+       "pose": "palm_up",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_UP"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "cupped",
+      "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_UP",
+      "rotation_from_drawn_deg": -22.0
+     },
+     "explanation": [
+      "r: shrugging -> cupped (store:schoolboy_hands_sleeveless/left_cupped) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): fist is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): gripping is not used for shrugging; shows EDGE_ON in this pose; shrugging needs PALM_UP",
+      "  rejected open_palm (original): shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): turned 69 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective; shows BACK_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): turned 64 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  NEEDS_ARTWORK: palm_up - no drawing"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "cupped",
+      "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.left_cupped.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.75
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 12.5,
+        "cuff_width_px": 85.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": -22.0,
+        "tolerance_deg": 35.0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 85.5,
+       "fill": 0.75,
+       "own_cloth_px": 91,
+       "own_white_px": 1,
+       "overhang_px": [
+        3.5,
+        0.0
+       ],
+       "hand_center_q_px": -11.26,
+       "cuff_center_q_px": 1.24,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrugging",
+     "kind": "action",
+     "shown_pose": "cupped",
+     "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+     "source": "user",
+     "pending_review": true,
+     "note": null,
+     "needs_artwork": [
+      {
+       "pose": "palm_up",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_UP"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "cupped",
+      "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_UP",
+      "rotation_from_drawn_deg": 22.0
+     },
+     "explanation": [
+      "l: shrugging -> cupped (store:schoolboy_hands_sleeveless/right_cupped) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for shrugging; shows EDGE_ON in this pose; shrugging needs PALM_UP",
+      "  rejected open_palm (original): shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): turned 67 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective; shows BACK_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): turned 60 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  NEEDS_ARTWORK: palm_up - no drawing"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "cupped",
+      "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.right_cupped.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.744
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 9.0,
+        "cuff_width_px": 81.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 22.0,
+        "tolerance_deg": 35.0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 81.5,
+       "fill": 0.744,
+       "own_cloth_px": 112,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        6.0
+       ],
+       "hand_center_q_px": 6.56,
+       "cuff_center_q_px": -2.44,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -0.51,
+     "hump_px": -14000000.0,
+     "top_y": 379.61,
+     "outer_x": 391.0,
+     "applies": true,
+     "rise_px": 3.51
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 1.32,
+     "hump_px": 13.56,
+     "top_y": 375.61,
+     "outer_x": 736.0,
+     "applies": true,
+     "rise_px": 3.51
+    }
+   },
+   "wall_s": 3.322,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -0.51,
+      "hump_px": -14000000.0,
+      "top_y": 379.61,
+      "outer_x": 391.0,
+      "applies": true,
+      "rise_px": 3.51
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 1.32,
+      "hump_px": 13.56,
+      "top_y": 375.61,
+      "outer_x": 736.0,
+      "applies": true,
+      "rise_px": 3.51
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": -55.56
+     },
+     "explanation": [
+      "r: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": -55.56,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 33.0,
+       "fill": 1.0,
+       "own_cloth_px": 308,
+       "own_white_px": 32,
+       "overhang_px": [
+        33.5,
+        33.5
+       ],
+       "hand_center_q_px": 8.49,
+       "cuff_center_q_px": 8.49,
+       "own_white_px_near_wrist": 13
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": 57.98
+     },
+     "explanation": [
+      "l: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 56 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 54 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 57.98,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 0.5,
+       "fill": 1.0,
+       "own_cloth_px": 315,
+       "own_white_px": 20,
+       "overhang_px": [
+        18.0,
+        99.0
+       ],
+       "hand_center_q_px": -13.44,
+       "cuff_center_q_px": -53.94,
+       "own_white_px_near_wrist": 7
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -0.03,
+     "hump_px": -12000000.0,
+     "top_y": 379.65,
+     "outer_x": 394.0,
+     "applies": true,
+     "rise_px": 3.47
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 0.49,
+     "hump_px": 9.77,
+     "top_y": 377.65,
+     "outer_x": 733.0,
+     "applies": true,
+     "rise_px": 1.47
+    }
+   },
+   "wall_s": 3.033,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -0.03,
+      "hump_px": -12000000.0,
+      "top_y": 379.65,
+      "outer_x": 394.0,
+      "applies": true,
+      "rise_px": 3.47
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 0.49,
+      "hump_px": 9.77,
+      "top_y": 377.65,
+      "outer_x": 733.0,
+      "applies": true,
+      "rise_px": 1.47
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "thumbs_up": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "thumbs_up",
+     "kind": "action",
+     "shown_pose": "thumbs_up",
+     "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up",
+     "source": "auto",
+     "pending_review": true,
+     "note": "thumbs_up: thumbs_up (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 4,
+     "override_check": null,
+     "explanation": [
+      "r: thumbs_up -> thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): turned 86 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): turned 81 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "thumbs_up",
+      "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_thumbs_up.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.762
+       },
+       "centred": {
+        "ok": false,
+        "offset_px": 20.5,
+        "cuff_width_px": 52.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 52.0,
+       "fill": 0.762,
+       "own_cloth_px": 119,
+       "own_white_px": 0,
+       "overhang_px": [
+        36.0,
+        0.0
+       ],
+       "hand_center_q_px": 2.99,
+       "cuff_center_q_px": 23.49,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "FAIL",
+      "failed": [
+       "centred"
+      ]
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.569
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 9.25,
+        "cuff_width_px": 98.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.0,
+       "fill": 0.569,
+       "own_cloth_px": 131,
+       "own_white_px": 2,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.94,
+       "cuff_center_q_px": 7.31,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 48.24,
+     "hump_px": 0.0,
+     "top_y": 383.26,
+     "outer_x": 278.0,
+     "applies": true,
+     "rise_px": -0.14
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.69,
+     "hump_px": 7.83,
+     "top_y": 381.26,
+     "outer_x": 752.0,
+     "applies": true,
+     "rise_px": -2.14
+    }
+   },
+   "wall_s": 3.572,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 48.24,
+      "hump_px": 0.0,
+      "top_y": 383.26,
+      "outer_x": 278.0,
+      "applies": true,
+      "rise_px": -0.14
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.69,
+      "hump_px": 7.83,
+      "top_y": 381.26,
+      "outer_x": 752.0,
+      "applies": true,
+      "rise_px": -2.14
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "thumbs_up",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "thumbs_up: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "thumbs_up",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: thumbs_up -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 86 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 81 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: thumbs_up - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 36.0,
+       "fill": 1.0,
+       "own_cloth_px": 301,
+       "own_white_px": 23,
+       "overhang_px": [
+        31.5,
+        31.5
+       ],
+       "hand_center_q_px": 8.49,
+       "cuff_center_q_px": 8.49,
+       "own_white_px_near_wrist": 8
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.5,
+       "fill": 1.0,
+       "own_cloth_px": 333,
+       "own_white_px": 17,
+       "overhang_px": [
+        17.5,
+        98.0
+       ],
+       "hand_center_q_px": -13.69,
+       "cuff_center_q_px": -53.94,
+       "own_white_px_near_wrist": 8
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 11.71,
+     "hump_px": -42000001.0,
+     "top_y": 383.26,
+     "outer_x": 404.0,
+     "applies": true,
+     "rise_px": -0.14
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.67,
+     "hump_px": 7.16,
+     "top_y": 381.26,
+     "outer_x": 753.0,
+     "applies": true,
+     "rise_px": -2.14
+    }
+   },
+   "wall_s": 3.21,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 11.71,
+      "hump_px": -42000001.0,
+      "top_y": 383.26,
+      "outer_x": 404.0,
+      "applies": true,
+      "rise_px": -0.14
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.67,
+      "hump_px": 7.16,
+      "top_y": 381.26,
+      "outer_x": 753.0,
+      "applies": true,
+      "rise_px": -2.14
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "gripping": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "gripping",
+     "kind": "action",
+     "shown_pose": "gripping",
+     "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+     "source": "auto",
+     "pending_review": true,
+     "note": "gripping: gripping (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "r: gripping -> gripping (store:schoolboy_hands_sleeveless/right_gripping) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): turned 48 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected open_palm (original): open_palm is not used for gripping",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): turned 138 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for gripping",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): turned 134 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for gripping; turned 48 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "gripping",
+      "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_gripping.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.764
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 0.5,
+        "cuff_width_px": 97.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.0,
+       "fill": 0.764,
+       "own_cloth_px": 128,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -4.51,
+       "cuff_center_q_px": -5.01,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.582
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 9.0,
+        "cuff_width_px": 97.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.5,
+       "fill": 0.582,
+       "own_cloth_px": 133,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.94,
+       "cuff_center_q_px": 7.06,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -13.21,
+     "hump_px": 4305000015.0,
+     "top_y": 365.81,
+     "outer_x": 167.0,
+     "applies": false,
+     "note": "arm raised (68 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.72,
+     "hump_px": 7.38,
+     "top_y": 381.81,
+     "outer_x": 757.0,
+     "applies": true,
+     "rise_px": -2.69
+    }
+   },
+   "wall_s": 3.291,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -13.21,
+      "hump_px": 4305000015.0,
+      "top_y": 365.81,
+      "outer_x": 167.0,
+      "applies": false,
+      "note": "arm raised (68 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.72,
+      "hump_px": 7.38,
+      "top_y": 381.81,
+      "outer_x": 757.0,
+      "applies": true,
+      "rise_px": -2.69
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "gripping",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "default",
+     "pending_review": false,
+     "note": "gripping: no eligible drawing, showing the default",
+     "needs_artwork": [
+      {
+       "pose": "gripping",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:schoolboy_hands_sleeveless/right_gripping"
+      },
+      {
+       "pose": "fist",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:schoolboy_hands_sleeveless/right_fist"
+      }
+     ],
+     "fallback": null,
+     "rejected": 10,
+     "override_check": null,
+     "explanation": [
+      "r: gripping -> no drawing passes the hard constraints [mode: production]",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 48 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected open_palm (original): open_palm is not used for gripping",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 138 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for gripping",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 134 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for gripping; turned 48 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: gripping - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: fist - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 34.5,
+       "fill": 1.0,
+       "own_cloth_px": 294,
+       "own_white_px": 28,
+       "overhang_px": [
+        35.5,
+        32.5
+       ],
+       "hand_center_q_px": 7.24,
+       "cuff_center_q_px": 8.74,
+       "own_white_px_near_wrist": 10
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.5,
+       "fill": 1.0,
+       "own_cloth_px": 330,
+       "own_white_px": 17,
+       "overhang_px": [
+        18.0,
+        98.0
+       ],
+       "hand_center_q_px": -13.94,
+       "cuff_center_q_px": -53.94,
+       "own_white_px_near_wrist": 8
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -15.43,
+     "hump_px": 9610000031.0,
+     "top_y": 365.81,
+     "outer_x": 139.0,
+     "applies": false,
+     "note": "arm raised (68 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.63,
+     "hump_px": 7.38,
+     "top_y": 381.81,
+     "outer_x": 758.0,
+     "applies": true,
+     "rise_px": -2.69
+    }
+   },
+   "wall_s": 2.769,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -15.43,
+      "hump_px": 9610000031.0,
+      "top_y": 365.81,
+      "outer_x": 139.0,
+      "applies": false,
+      "note": "arm raised (68 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.63,
+      "hump_px": 7.38,
+      "top_y": 381.81,
+      "outer_x": 758.0,
+      "applies": true,
+      "rise_px": -2.69
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "open_hand_conversation": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "explaining",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "explaining: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 6,
+     "override_check": null,
+     "explanation": [
+      "r: explaining -> open_palm (original) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): turned 40 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): gripping is not used for explaining; shows PALM_DOWN in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): shows BACK_TO_CAMERA in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for explaining"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 55.5,
+       "fill": 1.0,
+       "own_cloth_px": 256,
+       "own_white_px": 24,
+       "overhang_px": [
+        23.0,
+        17.5
+       ],
+       "hand_center_q_px": 4.99,
+       "cuff_center_q_px": 7.74,
+       "own_white_px_near_wrist": 3
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.571
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 9.5,
+        "cuff_width_px": 97.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 97.5,
+       "fill": 0.571,
+       "own_cloth_px": 133,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.94,
+       "cuff_center_q_px": 7.56,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 11.19,
+     "hump_px": 0.0,
+     "top_y": 383.87,
+     "outer_x": 405.0,
+     "applies": true,
+     "rise_px": -0.75
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.56,
+     "hump_px": 7.62,
+     "top_y": 380.87,
+     "outer_x": 748.0,
+     "applies": true,
+     "rise_px": -1.75
+    }
+   },
+   "wall_s": 2.877,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 11.19,
+      "hump_px": 0.0,
+      "top_y": 383.87,
+      "outer_x": 405.0,
+      "applies": true,
+      "rise_px": -0.75
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.56,
+      "hump_px": 7.62,
+      "top_y": 380.87,
+      "outer_x": 748.0,
+      "applies": true,
+      "rise_px": -1.75
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "explaining",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "explaining: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: explaining -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 40 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for explaining; shows PALM_DOWN in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for explaining"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 28.5,
+       "fill": 1.0,
+       "own_cloth_px": 298,
+       "own_white_px": 30,
+       "overhang_px": [
+        39.0,
+        36.0
+       ],
+       "hand_center_q_px": 6.74,
+       "cuff_center_q_px": 8.24,
+       "own_white_px_near_wrist": 6
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.5,
+       "fill": 1.0,
+       "own_cloth_px": 333,
+       "own_white_px": 15,
+       "overhang_px": [
+        17.0,
+        98.0
+       ],
+       "hand_center_q_px": -13.94,
+       "cuff_center_q_px": -54.44,
+       "own_white_px_near_wrist": 8
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 11.67,
+     "hump_px": 0.0,
+     "top_y": 383.87,
+     "outer_x": 404.0,
+     "applies": true,
+     "rise_px": -0.75
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.45,
+     "hump_px": 7.0,
+     "top_y": 380.87,
+     "outer_x": 749.0,
+     "applies": true,
+     "rise_px": -1.75
+    }
+   },
+   "wall_s": 3.322,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 11.67,
+      "hump_px": 0.0,
+      "top_y": 383.87,
+      "outer_x": 404.0,
+      "applies": true,
+      "rise_px": -0.75
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.45,
+      "hump_px": 7.0,
+      "top_y": 380.87,
+      "outer_x": 749.0,
+      "applies": true,
+      "rise_px": -1.75
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "hand_on_desk": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "hand_on_desk",
+     "kind": "action",
+     "shown_pose": "palm_down",
+     "cid": "store:schoolboy_hands_sleeveless/right_palm_down",
+     "source": "user",
+     "pending_review": true,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 5,
+     "override_check": {
+      "pose": "palm_down",
+      "cid": "store:schoolboy_hands_sleeveless/right_palm_down",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_DOWN",
+      "rotation_from_drawn_deg": 0.59
+     },
+     "explanation": [
+      "r: hand_on_desk -> palm_down (store:schoolboy_hands_sleeveless/right_palm_down) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): cupped is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for hand_on_desk",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "palm_down",
+      "cid": "store:schoolboy_hands_sleeveless/right_palm_down",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_palm_down.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.981
+       },
+       "centred": {
+        "ok": false,
+        "offset_px": 33.5,
+        "cuff_width_px": 51.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 0.59,
+        "tolerance_deg": 60.0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 51.5,
+       "fill": 0.981,
+       "own_cloth_px": 116,
+       "own_white_px": 0,
+       "overhang_px": [
+        3.0,
+        70.0
+       ],
+       "hand_center_q_px": -2.26,
+       "cuff_center_q_px": -35.76,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "FAIL",
+      "failed": [
+       "centred"
+      ]
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:schoolboy_hands_sleeveless/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): turned 72 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 70 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.591
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 7.5,
+        "cuff_width_px": 98.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 98.5,
+       "fill": 0.591,
+       "own_cloth_px": 125,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -0.44,
+       "cuff_center_q_px": 7.06,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 17.2,
+     "hump_px": -29000001.0,
+     "top_y": 386.62,
+     "outer_x": 335.0,
+     "applies": true,
+     "rise_px": -3.5
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 9.11,
+     "hump_px": 29.21,
+     "top_y": 376.62,
+     "outer_x": 688.0,
+     "applies": true,
+     "rise_px": 2.5
+    }
+   },
+   "wall_s": 3.987,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 17.2,
+      "hump_px": -29000001.0,
+      "top_y": 386.62,
+      "outer_x": 335.0,
+      "applies": true,
+      "rise_px": -3.5
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 9.11,
+      "hump_px": 29.21,
+      "top_y": 376.62,
+      "outer_x": 688.0,
+      "applies": true,
+      "rise_px": 2.5
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 29 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "hand_on_desk",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [
+      {
+       "pose": "palm_down",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_DOWN",
+        "BACK_TO_CAMERA",
+        "PALM_TO_CAMERA"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/right_palm_down"
+      },
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_DOWN",
+        "BACK_TO_CAMERA",
+        "PALM_TO_CAMERA"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/right_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_TO_CAMERA",
+      "rotation_from_drawn_deg": -92.56
+     },
+     "explanation": [
+      "r: hand_on_desk -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for hand_on_desk",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: palm_down - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": -92.56,
+        "tolerance_deg": 180.0
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 0.5,
+       "fill": 1.0,
+       "own_cloth_px": 300,
+       "own_white_px": 31,
+       "overhang_px": [
+        99.0,
+        12.0
+       ],
+       "hand_center_q_px": 9.24,
+       "cuff_center_q_px": 52.74,
+       "own_white_px_near_wrist": 14
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 72 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 70 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.5,
+       "fill": 1.0,
+       "own_cloth_px": 325,
+       "own_white_px": 23,
+       "overhang_px": [
+        113.0,
+        0.5
+       ],
+       "hand_center_q_px": -13.69,
+       "cuff_center_q_px": 42.56,
+       "own_white_px_near_wrist": 7
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 15.88,
+     "hump_px": -29000001.0,
+     "top_y": 386.62,
+     "outer_x": 335.0,
+     "applies": true,
+     "rise_px": -3.5
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.67,
+     "hump_px": 29.6,
+     "top_y": 376.62,
+     "outer_x": 688.0,
+     "applies": true,
+     "rise_px": 2.5
+    }
+   },
+   "wall_s": 3.837,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 15.88,
+      "hump_px": -29000001.0,
+      "top_y": 386.62,
+      "outer_x": 335.0,
+      "applies": true,
+      "rise_px": -3.5
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.67,
+      "hump_px": 29.6,
+      "top_y": 376.62,
+      "outer_x": 688.0,
+      "applies": true,
+      "rise_px": 2.5
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 30 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "running": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "fist",
+     "cid": "store:schoolboy_hands_sleeveless/right_fist",
+     "source": "auto",
+     "pending_review": true,
+     "note": "running: fist (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 7,
+     "override_check": null,
+     "explanation": [
+      "r: running -> fist (store:schoolboy_hands_sleeveless/right_fist) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pointing is not used for running",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): thumbs_up is not used for running; turned 114 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "fist",
+      "cid": "store:schoolboy_hands_sleeveless/right_fist",
+      "layer": "hand_r__hs.schoolboy_hands_sleeveless.right_fist.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.665
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 4.25,
+        "cuff_width_px": 96.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.5424,
+        "side_scale": 0.5424
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 96.5,
+       "fill": 0.665,
+       "own_cloth_px": 134,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -1.51,
+       "cuff_center_q_px": -5.76,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "fist",
+     "cid": "store:schoolboy_hands_sleeveless/left_fist",
+     "source": "auto",
+     "pending_review": true,
+     "note": "running: fist (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 7,
+     "override_check": null,
+     "explanation": [
+      "l: running -> fist (store:schoolboy_hands_sleeveless/left_fist) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pointing is not used for running",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): thumbs_up is not used for running; turned 112 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "fist",
+      "cid": "store:schoolboy_hands_sleeveless/left_fist",
+      "layer": "hand_l__hs.schoolboy_hands_sleeveless.left_fist.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.608
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 4.75,
+        "cuff_width_px": 96.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.54323,
+        "side_scale": 0.54323
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 96.5,
+       "fill": 0.608,
+       "own_cloth_px": 111,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 1.31,
+       "cuff_center_q_px": 6.06,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 6.08,
+     "hump_px": 0.0,
+     "top_y": 375.51,
+     "outer_x": 333.0,
+     "applies": true,
+     "rise_px": 7.61
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 9.11,
+     "hump_px": 21.91,
+     "top_y": 375.51,
+     "outer_x": 688.0,
+     "applies": true,
+     "rise_px": 3.61
+    }
+   },
+   "wall_s": 3.866,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 6.08,
+      "hump_px": 0.0,
+      "top_y": 375.51,
+      "outer_x": 333.0,
+      "applies": true,
+      "rise_px": 7.61
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 9.11,
+      "hump_px": 21.91,
+      "top_y": 375.51,
+      "outer_x": 688.0,
+      "applies": true,
+      "rise_px": 3.61
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 22 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "running: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "fist",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/right_fist"
+      },
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/right_relaxed"
+      },
+      {
+       "pose": "partially_closed",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: running -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected fist (store:schoolboy_hands_sleeveless/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/right_palm_down): pending review: production mode uses approved drawings and the original hand only; palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for running",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for running; turned 114 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: fist - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_ARTWORK: partially_closed - no drawing"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 31.0,
+       "fill": 1.0,
+       "own_cloth_px": 293,
+       "own_white_px": 16,
+       "overhang_px": [
+        37.0,
+        35.5
+       ],
+       "hand_center_q_px": 6.74,
+       "cuff_center_q_px": 7.49,
+       "own_white_px_near_wrist": 7
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "running: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "fist",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_fist"
+      },
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:schoolboy_hands_sleeveless/left_relaxed"
+      },
+      {
+       "pose": "partially_closed",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: running -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected fist (store:schoolboy_hands_sleeveless/left_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:schoolboy_hands_sleeveless/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:schoolboy_hands_sleeveless/right_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:schoolboy_hands_sleeveless/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:schoolboy_hands_sleeveless/left_palm_down): pending review: production mode uses approved drawings and the original hand only; palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:schoolboy_hands_sleeveless/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for running",
+      "  rejected thumbs_up (store:schoolboy_hands_sleeveless/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for running; turned 112 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: fist - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_ARTWORK: partially_closed - no drawing"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.0,
+       "fill": 1.0,
+       "own_cloth_px": 321,
+       "own_white_px": 10,
+       "overhang_px": [
+        19.5,
+        99.0
+       ],
+       "hand_center_q_px": -15.44,
+       "cuff_center_q_px": -55.19,
+       "own_white_px_near_wrist": 6
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 6.17,
+     "hump_px": 0.0,
+     "top_y": 375.51,
+     "outer_x": 333.0,
+     "applies": true,
+     "rise_px": 7.61
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 8.87,
+     "hump_px": 19.26,
+     "top_y": 375.51,
+     "outer_x": 688.0,
+     "applies": true,
+     "rise_px": 3.61
+    }
+   },
+   "wall_s": 3.35,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 6.17,
+      "hump_px": 0.0,
+      "top_y": 375.51,
+      "outer_x": 333.0,
+      "applies": true,
+      "rise_px": 7.61
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 8.87,
+      "hump_px": 19.26,
+      "top_y": 375.51,
+      "outer_x": 688.0,
+      "applies": true,
+      "rise_px": 3.61
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 19 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ }
+}

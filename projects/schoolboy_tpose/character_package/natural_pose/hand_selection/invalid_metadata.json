@@ -1,0 +1,95 @@
+{
+ "baseline": {
+  "chosen": "cupped",
+  "cid": "store:schoolboy_hands_sleeveless/left_cupped"
+ },
+ "wrong_handedness": {
+  "chosen": "open_palm",
+  "fallback": true,
+  "cupped_violations": [
+   {
+    "constraint": "handedness",
+    "reason": "drawn as a left hand (metadata); this is the right hand"
+   }
+  ]
+ },
+ "invalid_metadata": {
+  "chosen": "open_palm",
+  "cupped_violations": [
+   {
+    "constraint": "metadata",
+    "reason": "invalid metadata: palm_normal_sprite must be three numbers with length ~1"
+   },
+   {
+    "constraint": "palm",
+    "reason": "palm view unknown (no metadata); shrugging needs PALM_UP"
+   }
+  ]
+ },
+ "excluded_by_user": {
+  "chosen": "open_palm",
+  "needs_artwork": [
+   {
+    "pose": "palm_up",
+    "status": "NEEDS_ARTWORK",
+    "reason": "no drawing",
+    "palm": [
+     "PALM_UP"
+    ]
+   },
+   {
+    "pose": "cupped",
+    "status": "NEEDS_ARTWORK",
+    "reason": "excluded by the user in the hand inspector",
+    "palm": [
+     "PALM_UP"
+    ],
+    "cid": "store:schoolboy_hands_sleeveless/left_cupped"
+   }
+  ],
+  "fallback": {
+   "action": "shrug_subtle",
+   "chosen": "open_palm",
+   "cid": "original",
+   "reason": "shrugging: no drawing passes the hard constraints (NEEDS_ARTWORK: palm_up, cupped); showing the shrug_subtle choice"
+  }
+ },
+ "camera_facing_claimed": {
+  "chosen": "open_palm",
+  "note": "a camera-facing drawing never passes palm-up",
+  "cupped_violations": [
+   {
+    "constraint": "palm",
+    "reason": "shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)"
+   }
+  ]
+ },
+ "production_missing_art": {
+  "chosen": "open_palm",
+  "needs_artwork": [
+   {
+    "pose": "palm_up",
+    "status": "NEEDS_ARTWORK",
+    "reason": "no drawing",
+    "palm": [
+     "PALM_UP"
+    ]
+   },
+   {
+    "pose": "cupped",
+    "status": "NEEDS_APPROVAL",
+    "reason": "pending review: production mode uses approved drawings and the original hand only",
+    "palm": [
+     "PALM_UP"
+    ],
+    "cid": "store:schoolboy_hands_sleeveless/left_cupped"
+   }
+  ],
+  "fallback": {
+   "action": "shrug_subtle",
+   "chosen": "open_palm",
+   "cid": "original",
+   "reason": "shrugging: no drawing passes the hard constraints (NEEDS_ARTWORK: palm_up; NEEDS_APPROVAL: cupped); showing the shrug_subtle choice"
+  }
+ }
+}
