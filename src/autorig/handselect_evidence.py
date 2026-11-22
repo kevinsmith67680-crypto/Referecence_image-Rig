@@ -191,12 +191,16 @@ def diagnosis(pkg: Path, eng, vis, out: Path, progress) -> dict[str, Any]:
 
     out.mkdir(parents=True, exist_ok=True)
     src = "projects/schoolboy_tpose/character_package/natural_pose/performance/acting/shrug_review_preview.png"
-    try:
-        data = subprocess.run(["git", "show", f"043de36:{src}"], capture_output=True, check=True,
-                              cwd=Path(__file__).resolve().parents[2]).stdout
-        (out / "phase3_6_shrug_review_preview.png").write_bytes(data)
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        pass
+    repo = Path(__file__).resolve().parents[2]
+    # the historical Phase 3.6 screenshot belongs to the schoolboy package only (Phase 3.8: a new character's
+    # diagnosis must not carry another character's image)
+    if Path(pkg).resolve() == (repo / Path(src).parents[3]).resolve():
+        try:
+            data = subprocess.run(["git", "show", f"043de36:{src}"], capture_output=True, check=True,
+                                  cwd=repo).stdout
+            (out / "phase3_6_shrug_review_preview.png").write_bytes(data)
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            pass
     t = _shrug_t()
     frames: dict[str, Any] = {}
     # 1 + 2: the Phase 3.6 parameters and switch state (user choice with auto=True -> overridden)

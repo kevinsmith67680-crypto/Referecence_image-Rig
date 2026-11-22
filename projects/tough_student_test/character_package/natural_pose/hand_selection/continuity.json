@@ -1,0 +1,194 @@
+{
+ "subtle": {
+  "frames": 78,
+  "switches": {
+   "r": [
+    {
+     "t": 2.333,
+     "from": "relaxed",
+     "to": "open_palm"
+    },
+    {
+     "t": 3.25,
+     "from": "open_palm",
+     "to": "pointing"
+    },
+    {
+     "t": 4.333,
+     "from": "pointing",
+     "to": "open_palm"
+    },
+    {
+     "t": 5.5,
+     "from": "open_palm",
+     "to": "relaxed"
+    }
+   ],
+   "l": [
+    {
+     "t": 4.333,
+     "from": "relaxed",
+     "to": "open_palm"
+    },
+    {
+     "t": 5.5,
+     "from": "open_palm",
+     "to": "relaxed"
+    }
+   ]
+  },
+  "min_hold_s": 0.917,
+  "plan": {
+   "r": [
+    {
+     "value": "relaxed",
+     "t0": 0.0,
+     "t1": 2.2916666666666665,
+     "kind": "pose"
+    },
+    {
+     "value": "open_palm",
+     "t0": 2.3125,
+     "t1": 3.208333333333333,
+     "kind": "pose"
+    },
+    {
+     "value": "pointing",
+     "t0": 3.2291666666666665,
+     "t1": 4.3125,
+     "kind": "pose"
+    },
+    {
+     "value": "shrug_subtle",
+     "t0": 4.333333333333333,
+     "t1": 5.479166666666666,
+     "kind": "action",
+     "chosen": "open_palm"
+    },
+    {
+     "value": "relaxed",
+     "t0": 5.5,
+     "t1": 6.395833333333333,
+     "kind": "pose"
+    }
+   ],
+   "l": [
+    {
+     "value": "relaxed",
+     "t0": 0.0,
+     "t1": 4.3125,
+     "kind": "pose"
+    },
+    {
+     "value": "shrug_subtle",
+     "t0": 4.333333333333333,
+     "t1": 5.479166666666666,
+     "kind": "action",
+     "chosen": "open_palm"
+    },
+    {
+     "value": "relaxed",
+     "t0": 5.5,
+     "t1": 6.395833333333333,
+     "kind": "pose"
+    }
+   ]
+  }
+ },
+ "expressive": {
+  "frames": 78,
+  "switches": {
+   "r": [
+    {
+     "t": 2.333,
+     "from": "relaxed",
+     "to": "open_palm"
+    },
+    {
+     "t": 3.25,
+     "from": "open_palm",
+     "to": "pointing"
+    },
+    {
+     "t": 4.333,
+     "from": "pointing",
+     "to": "cupped"
+    },
+    {
+     "t": 5.5,
+     "from": "cupped",
+     "to": "relaxed"
+    }
+   ],
+   "l": [
+    {
+     "t": 4.333,
+     "from": "relaxed",
+     "to": "cupped"
+    },
+    {
+     "t": 5.5,
+     "from": "cupped",
+     "to": "relaxed"
+    }
+   ]
+  },
+  "min_hold_s": 0.917,
+  "plan": {
+   "r": [
+    {
+     "value": "relaxed",
+     "t0": 0.0,
+     "t1": 2.2916666666666665,
+     "kind": "pose"
+    },
+    {
+     "value": "open_palm",
+     "t0": 2.3125,
+     "t1": 3.208333333333333,
+     "kind": "pose"
+    },
+    {
+     "value": "pointing",
+     "t0": 3.2291666666666665,
+     "t1": 4.3125,
+     "kind": "pose"
+    },
+    {
+     "value": "shrugging",
+     "t0": 4.333333333333333,
+     "t1": 5.479166666666666,
+     "kind": "action",
+     "chosen": "cupped"
+    },
+    {
+     "value": "relaxed",
+     "t0": 5.5,
+     "t1": 6.395833333333333,
+     "kind": "pose"
+    }
+   ],
+   "l": [
+    {
+     "value": "relaxed",
+     "t0": 0.0,
+     "t1": 4.3125,
+     "kind": "pose"
+    },
+    {
+     "value": "shrugging",
+     "t0": 4.333333333333333,
+     "t1": 5.479166666666666,
+     "kind": "action",
+     "chosen": "cupped"
+    },
+    {
+     "value": "relaxed",
+     "t0": 5.5,
+     "t1": 6.395833333333333,
+     "kind": "pose"
+    }
+   ]
+  }
+ }
+}

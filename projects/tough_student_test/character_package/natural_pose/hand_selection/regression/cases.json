@@ -1,0 +1,3879 @@
+{
+ "neutral": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> relaxed (store:tough_student_hands_v1/right_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): turned 87 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for relaxed_standing; turned 87 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.787
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 6.25,
+        "cuff_width_px": 77.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 77.0,
+       "fill": 0.787,
+       "own_cloth_px": 24,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 2.33,
+       "cuff_center_q_px": -3.92,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:tough_student_hands_v1/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.812
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 5.75,
+        "cuff_width_px": 76.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 76.5,
+       "fill": 0.812,
+       "own_cloth_px": 26,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.64,
+       "cuff_center_q_px": 2.11,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 17.97,
+     "hump_px": 9.59,
+     "top_y": 380.72,
+     "outer_x": 417.0,
+     "applies": true,
+     "rise_px": 0.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 12.19,
+     "hump_px": 8.33,
+     "top_y": 375.72,
+     "outer_x": 743.0,
+     "applies": true,
+     "rise_px": 0.0
+    }
+   },
+   "wall_s": 2.995,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 17.97,
+      "hump_px": 9.59,
+      "top_y": 380.72,
+      "outer_x": 417.0,
+      "applies": true,
+      "rise_px": 0.0
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 12.19,
+      "hump_px": 8.33,
+      "top_y": 375.72,
+      "outer_x": 743.0,
+      "applies": true,
+      "rise_px": 0.0
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/right_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 87 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 87 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 3.5,
+       "fill": 0.25,
+       "own_cloth_px": 275,
+       "own_white_px": 48,
+       "overhang_px": [
+        0.0,
+        106.0
+       ],
+       "hand_center_q_px": 12.33,
+       "cuff_center_q_px": -42.17,
+       "own_white_px_near_wrist": 21
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.0,
+       "fill": 0.636,
+       "own_cloth_px": 253,
+       "own_white_px": 28,
+       "overhang_px": [
+        97.0,
+        0.0
+       ],
+       "hand_center_q_px": -9.14,
+       "cuff_center_q_px": 40.36,
+       "own_white_px_near_wrist": 18
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 17.94,
+     "hump_px": 8.92,
+     "top_y": 379.72,
+     "outer_x": 417.0,
+     "applies": true,
+     "rise_px": 1.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.38,
+     "hump_px": 8.33,
+     "top_y": 375.72,
+     "outer_x": 743.0,
+     "applies": true,
+     "rise_px": 0.0
+    }
+   },
+   "wall_s": 2.536,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 17.94,
+      "hump_px": 8.92,
+      "top_y": 379.72,
+      "outer_x": 417.0,
+      "applies": true,
+      "rise_px": 1.0
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.38,
+      "hump_px": 8.33,
+      "top_y": 375.72,
+      "outer_x": 743.0,
+      "applies": true,
+      "rise_px": 0.0
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "left_point": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> relaxed (store:tough_student_hands_v1/right_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for relaxed_standing; turned 95 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/right_relaxed",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.805
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 7.0,
+        "cuff_width_px": 76.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 76.5,
+       "fill": 0.805,
+       "own_cloth_px": 41,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 2.83,
+       "cuff_center_q_px": -4.17,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "pointing",
+     "cid": "store:tough_student_hands_v1/left_pointing",
+     "source": "auto",
+     "pending_review": true,
+     "note": "pointing: pointing (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 4,
+     "override_check": null,
+     "explanation": [
+      "l: pointing -> pointing (store:tough_student_hands_v1/left_pointing) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): turned 120 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): turned 115 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "pointing",
+      "cid": "store:tough_student_hands_v1/left_pointing",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_pointing.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.854
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 13.5,
+        "cuff_width_px": 78.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 78.5,
+       "fill": 0.854,
+       "own_cloth_px": 6,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        17.0
+       ],
+       "hand_center_q_px": 12.11,
+       "cuff_center_q_px": -1.39,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 12.46,
+     "hump_px": 9.23,
+     "top_y": 372.81,
+     "outer_x": 414.0,
+     "applies": true,
+     "rise_px": 7.91
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": -9.05,
+     "hump_px": 10.39,
+     "top_y": 357.81,
+     "outer_x": 1016.0,
+     "applies": false,
+     "note": "arm raised (101 deg): the arm forms the outer shoulder"
+    }
+   },
+   "wall_s": 2.85,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 12.46,
+      "hump_px": 9.23,
+      "top_y": 372.81,
+      "outer_x": 414.0,
+      "applies": true,
+      "rise_px": 7.91
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": -9.05,
+      "hump_px": 10.39,
+      "top_y": 357.81,
+      "outer_x": 1016.0,
+      "applies": false,
+      "note": "arm raised (101 deg): the arm forms the outer shoulder"
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/right_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 95 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.5,
+       "fill": 0.0,
+       "own_cloth_px": 285,
+       "own_white_px": 26,
+       "overhang_px": [
+        0.0,
+        108.0
+       ],
+       "hand_center_q_px": 12.83,
+       "cuff_center_q_px": -42.67,
+       "own_white_px_near_wrist": 12
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "pointing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "pointing",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:tough_student_hands_v1/left_pointing"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: pointing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 120 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 115 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: pointing - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.0,
+       "fill": 0.636,
+       "own_cloth_px": 278,
+       "own_white_px": 42,
+       "overhang_px": [
+        97.0,
+        0.0
+       ],
+       "hand_center_q_px": -8.64,
+       "cuff_center_q_px": 40.86,
+       "own_white_px_near_wrist": 17
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 12.33,
+     "hump_px": 8.56,
+     "top_y": 371.81,
+     "outer_x": 413.0,
+     "applies": true,
+     "rise_px": 8.91
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": -9.12,
+     "hump_px": 10.05,
+     "top_y": 357.81,
+     "outer_x": 1008.0,
+     "applies": false,
+     "note": "arm raised (101 deg): the arm forms the outer shoulder"
+    }
+   },
+   "wall_s": 2.967,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 12.33,
+      "hump_px": 8.56,
+      "top_y": 371.81,
+      "outer_x": 413.0,
+      "applies": true,
+      "rise_px": 8.91
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": -9.12,
+      "hump_px": 10.05,
+      "top_y": 357.81,
+      "outer_x": 1008.0,
+      "applies": false,
+      "note": "arm raised (101 deg): the arm forms the outer shoulder"
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "right_point": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "source": "auto",
+     "pending_review": true,
+     "note": "pointing: pointing (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 4,
+     "override_check": null,
+     "explanation": [
+      "r: pointing -> pointing (store:tough_student_hands_v1/right_pointing) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): turned 122 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): turned 119 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "pointing",
+      "cid": "store:tough_student_hands_v1/right_pointing",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_pointing.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.884
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 2.25,
+        "cuff_width_px": 77.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 77.0,
+       "fill": 0.884,
+       "own_cloth_px": 10,
+       "own_white_px": 0,
+       "overhang_px": [
+        6.0,
+        1.5
+       ],
+       "hand_center_q_px": -7.17,
+       "cuff_center_q_px": -4.92,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:tough_student_hands_v1/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 93 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.81
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 5.75,
+        "cuff_width_px": 76.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 76.0,
+       "fill": 0.81,
+       "own_cloth_px": 28,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.89,
+       "cuff_center_q_px": 1.86,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -8.41,
+     "hump_px": 10.13,
+     "top_y": 356.78,
+     "outer_x": 76.0,
+     "applies": false,
+     "note": "arm raised (102 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 14.37,
+     "hump_px": 11.17,
+     "top_y": 371.78,
+     "outer_x": 684.0,
+     "applies": true,
+     "rise_px": 3.94
+    }
+   },
+   "wall_s": 2.919,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -8.41,
+      "hump_px": 10.13,
+      "top_y": 356.78,
+      "outer_x": 76.0,
+      "applies": false,
+      "note": "arm raised (102 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 14.37,
+      "hump_px": 11.17,
+      "top_y": 371.78,
+      "outer_x": 684.0,
+      "applies": true,
+      "rise_px": 3.94
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "pointing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "pointing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "pointing",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:tough_student_hands_v1/right_pointing"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: pointing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 122 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 119 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: pointing - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.0,
+       "fill": 0.0,
+       "own_cloth_px": 292,
+       "own_white_px": 47,
+       "overhang_px": [
+        0.0,
+        110.0
+       ],
+       "hand_center_q_px": 12.83,
+       "cuff_center_q_px": -43.92,
+       "own_white_px_near_wrist": 17
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 95 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 93 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.5,
+       "fill": 0.583,
+       "own_cloth_px": 269,
+       "own_white_px": 30,
+       "overhang_px": [
+        97.0,
+        0.0
+       ],
+       "hand_center_q_px": -9.14,
+       "cuff_center_q_px": 40.61,
+       "own_white_px_near_wrist": 21
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -8.47,
+     "hump_px": 10.28,
+     "top_y": 356.78,
+     "outer_x": 84.0,
+     "applies": false,
+     "note": "arm raised (102 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 13.67,
+     "hump_px": 10.58,
+     "top_y": 370.78,
+     "outer_x": 684.0,
+     "applies": true,
+     "rise_px": 4.94
+    }
+   },
+   "wall_s": 2.852,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -8.47,
+      "hump_px": 10.28,
+      "top_y": 356.78,
+      "outer_x": 84.0,
+      "applies": false,
+      "note": "arm raised (102 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 13.67,
+      "hump_px": 10.58,
+      "top_y": 370.78,
+      "outer_x": 684.0,
+      "applies": true,
+      "rise_px": 4.94
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "shrug_subtle": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "AMBIGUOUS",
+      "rotation_from_drawn_deg": -56.1
+     },
+     "explanation": [
+      "r: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): cupped is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): fist is not used for shrug_subtle",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 4.5,
+       "fill": 0.7,
+       "own_cloth_px": 203,
+       "own_white_px": 24,
+       "overhang_px": [
+        0.0,
+        104.5
+       ],
+       "hand_center_q_px": 9.58,
+       "cuff_center_q_px": -42.67,
+       "own_white_px_near_wrist": 11
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "AMBIGUOUS",
+      "rotation_from_drawn_deg": 61.38
+     },
+     "explanation": [
+      "l: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): cupped is not used for shrug_subtle; turned 56 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for shrug_subtle",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for shrug_subtle; turned 54 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.5,
+       "fill": 0.583,
+       "own_cloth_px": 164,
+       "own_white_px": 28,
+       "overhang_px": [
+        96.5,
+        0.0
+       ],
+       "hand_center_q_px": -8.89,
+       "cuff_center_q_px": 40.61,
+       "own_white_px_near_wrist": 20
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.74,
+     "hump_px": 8.47,
+     "top_y": 376.19,
+     "outer_x": 408.0,
+     "applies": true,
+     "rise_px": 4.53
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 3.01,
+     "hump_px": 11.44,
+     "top_y": 375.19,
+     "outer_x": 732.0,
+     "applies": true,
+     "rise_px": 0.53
+    }
+   },
+   "wall_s": 3.165,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 1.74,
+      "hump_px": 8.47,
+      "top_y": 376.19,
+      "outer_x": 408.0,
+      "applies": true,
+      "rise_px": 4.53
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 3.01,
+      "hump_px": 11.44,
+      "top_y": 375.19,
+      "outer_x": 732.0,
+      "applies": true,
+      "rise_px": 0.53
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "AMBIGUOUS",
+      "rotation_from_drawn_deg": -56.1
+     },
+     "explanation": [
+      "r: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.0,
+       "fill": 0.0,
+       "own_cloth_px": 315,
+       "own_white_px": 53,
+       "overhang_px": [
+        0.0,
+        108.0
+       ],
+       "hand_center_q_px": 12.83,
+       "cuff_center_q_px": -42.42,
+       "own_white_px_near_wrist": 12
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "AMBIGUOUS",
+      "rotation_from_drawn_deg": 61.38
+     },
+     "explanation": [
+      "l: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 56 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 54 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.5,
+       "fill": 0.583,
+       "own_cloth_px": 269,
+       "own_white_px": 45,
+       "overhang_px": [
+        96.5,
+        0.0
+       ],
+       "hand_center_q_px": -8.89,
+       "cuff_center_q_px": 40.61,
+       "own_white_px_near_wrist": 19
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.44,
+     "hump_px": 9.34,
+     "top_y": 376.19,
+     "outer_x": 407.0,
+     "applies": true,
+     "rise_px": 4.53
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 2.26,
+     "hump_px": 12.13,
+     "top_y": 374.19,
+     "outer_x": 732.0,
+     "applies": true,
+     "rise_px": 1.53
+    }
+   },
+   "wall_s": 3.527,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 1.44,
+      "hump_px": 9.34,
+      "top_y": 376.19,
+      "outer_x": 407.0,
+      "applies": true,
+      "rise_px": 4.53
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 2.26,
+      "hump_px": 12.13,
+      "top_y": 374.19,
+      "outer_x": 732.0,
+      "applies": true,
+      "rise_px": 1.53
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "shrug_expressive": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "shrugging",
+     "kind": "action",
+     "shown_pose": "cupped",
+     "cid": "store:tough_student_hands_v1/left_cupped",
+     "source": "user",
+     "pending_review": true,
+     "note": null,
+     "needs_artwork": [
+      {
+       "pose": "palm_up",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_UP"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/left_cupped",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_UP",
+      "rotation_from_drawn_deg": -22.0
+     },
+     "explanation": [
+      "r: shrugging -> cupped (store:tough_student_hands_v1/left_cupped) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): fist is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): gripping is not used for shrugging; shows EDGE_ON in this pose; shrugging needs PALM_UP",
+      "  rejected open_palm (original): palm view unknown (no metadata); shrugging needs PALM_UP",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): turned 69 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective; shows BACK_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): turned 66 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  NEEDS_ARTWORK: palm_up - no drawing"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/left_cupped",
+      "layer": "hand_r__hs.tough_student_hands_v1.left_cupped.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.775
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 10.5,
+        "cuff_width_px": 84.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": -22.0,
+        "tolerance_deg": 35.0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 84.0,
+       "fill": 0.775,
+       "own_cloth_px": 8,
+       "own_white_px": 0,
+       "overhang_px": [
+        2.0,
+        0.0
+       ],
+       "hand_center_q_px": -9.42,
+       "cuff_center_q_px": 1.08,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrugging",
+     "kind": "action",
+     "shown_pose": "cupped",
+     "cid": "store:tough_student_hands_v1/right_cupped",
+     "source": "user",
+     "pending_review": true,
+     "note": null,
+     "needs_artwork": [
+      {
+       "pose": "palm_up",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_UP"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/right_cupped",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_UP",
+      "rotation_from_drawn_deg": 22.0
+     },
+     "explanation": [
+      "l: shrugging -> cupped (store:tough_student_hands_v1/right_cupped) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for shrugging; shows EDGE_ON in this pose; shrugging needs PALM_UP",
+      "  rejected open_palm (original): palm view unknown (no metadata); shrugging needs PALM_UP",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): turned 67 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective; shows BACK_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): turned 62 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for shrugging; shows PALM_TO_CAMERA in this pose; shrugging needs PALM_UP - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  NEEDS_ARTWORK: palm_up - no drawing"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/right_cupped",
+      "layer": "hand_l__hs.tough_student_hands_v1.right_cupped.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.811
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 12.0,
+        "cuff_width_px": 81.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 22.0,
+        "tolerance_deg": 35.0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 81.5,
+       "fill": 0.811,
+       "own_cloth_px": 5,
+       "own_white_px": 1,
+       "overhang_px": [
+        0.0,
+        8.5
+       ],
+       "hand_center_q_px": 8.61,
+       "cuff_center_q_px": -3.39,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.59,
+     "hump_px": 11.62,
+     "top_y": 376.12,
+     "outer_x": 405.0,
+     "applies": true,
+     "rise_px": 4.6
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 4.01,
+     "hump_px": 15.45,
+     "top_y": 373.12,
+     "outer_x": 734.0,
+     "applies": true,
+     "rise_px": 2.6
+    }
+   },
+   "wall_s": 3.312,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 1.59,
+      "hump_px": 11.62,
+      "top_y": 376.12,
+      "outer_x": 405.0,
+      "applies": true,
+      "rise_px": 4.6
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 4.01,
+      "hump_px": 15.45,
+      "top_y": 373.12,
+      "outer_x": 734.0,
+      "applies": true,
+      "rise_px": 2.6
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "AMBIGUOUS",
+      "rotation_from_drawn_deg": -56.1
+     },
+     "explanation": [
+      "r: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 53 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.0,
+       "fill": 0.0,
+       "own_cloth_px": 315,
+       "own_white_px": 53,
+       "overhang_px": [
+        0.0,
+        108.0
+       ],
+       "hand_center_q_px": 12.83,
+       "cuff_center_q_px": -42.42,
+       "own_white_px_near_wrist": 12
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "shrug_subtle",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "user",
+     "pending_review": false,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": {
+      "pose": "open_palm",
+      "cid": "original",
+      "ok": true,
+      "violations": [],
+      "palm": "AMBIGUOUS",
+      "rotation_from_drawn_deg": 61.38
+     },
+     "explanation": [
+      "l: shrug_subtle -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for shrug_subtle; turned 56 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for shrug_subtle",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for shrug_subtle; shows PALM_DOWN in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; shrug_subtle needs PALM_TO_CAMERA or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for shrug_subtle",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for shrug_subtle; turned 54 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.5,
+       "fill": 0.583,
+       "own_cloth_px": 269,
+       "own_white_px": 45,
+       "overhang_px": [
+        96.5,
+        0.0
+       ],
+       "hand_center_q_px": -8.89,
+       "cuff_center_q_px": 40.61,
+       "own_white_px_near_wrist": 19
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.44,
+     "hump_px": 9.34,
+     "top_y": 376.19,
+     "outer_x": 407.0,
+     "applies": true,
+     "rise_px": 4.53
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 2.26,
+     "hump_px": 12.13,
+     "top_y": 374.19,
+     "outer_x": 732.0,
+     "applies": true,
+     "rise_px": 1.53
+    }
+   },
+   "wall_s": 3.399,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 1.44,
+      "hump_px": 9.34,
+      "top_y": 376.19,
+      "outer_x": 407.0,
+      "applies": true,
+      "rise_px": 4.53
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 2.26,
+      "hump_px": 12.13,
+      "top_y": 374.19,
+      "outer_x": 732.0,
+      "applies": true,
+      "rise_px": 1.53
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "thumbs_up": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "thumbs_up",
+     "kind": "action",
+     "shown_pose": "thumbs_up",
+     "cid": "store:tough_student_hands_v1/right_thumbs_up",
+     "source": "auto",
+     "pending_review": true,
+     "note": "thumbs_up: thumbs_up (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 4,
+     "override_check": null,
+     "explanation": [
+      "r: thumbs_up -> thumbs_up (store:tough_student_hands_v1/right_thumbs_up) - highest score after the hard constraints [mode: review]",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): turned 86 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): turned 83 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "thumbs_up",
+      "cid": "store:tough_student_hands_v1/right_thumbs_up",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.895
+       },
+       "centred": {
+        "ok": false,
+        "offset_px": 18.25,
+        "cuff_width_px": 47.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 47.0,
+       "fill": 0.895,
+       "own_cloth_px": 8,
+       "own_white_px": 1,
+       "overhang_px": [
+        39.0,
+        2.5
+       ],
+       "hand_center_q_px": 8.33,
+       "cuff_center_q_px": 26.58,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "FAIL",
+      "failed": [
+       "centred"
+      ]
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:tough_student_hands_v1/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.787
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 5.25,
+        "cuff_width_px": 77.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 77.0,
+       "fill": 0.787,
+       "own_cloth_px": 34,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.39,
+       "cuff_center_q_px": 1.86,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 18.33,
+     "hump_px": 14.23,
+     "top_y": 381.16,
+     "outer_x": 419.0,
+     "applies": true,
+     "rise_px": -0.44
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.53,
+     "hump_px": 8.73,
+     "top_y": 376.16,
+     "outer_x": 752.0,
+     "applies": true,
+     "rise_px": -0.44
+    }
+   },
+   "wall_s": 3.395,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 18.33,
+      "hump_px": 14.23,
+      "top_y": 381.16,
+      "outer_x": 419.0,
+      "applies": true,
+      "rise_px": -0.44
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.53,
+      "hump_px": 8.73,
+      "top_y": 376.16,
+      "outer_x": 752.0,
+      "applies": true,
+      "rise_px": -0.44
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "thumbs_up",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "thumbs_up: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "thumbs_up",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:tough_student_hands_v1/right_thumbs_up"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: thumbs_up -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 86 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 83 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: thumbs_up - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 3.5,
+       "fill": 0.125,
+       "own_cloth_px": 308,
+       "own_white_px": 54,
+       "overhang_px": [
+        0.0,
+        108.0
+       ],
+       "hand_center_q_px": 13.08,
+       "cuff_center_q_px": -42.67,
+       "own_white_px_near_wrist": 19
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 4.5,
+       "fill": 0.6,
+       "own_cloth_px": 275,
+       "own_white_px": 41,
+       "overhang_px": [
+        97.5,
+        0.0
+       ],
+       "hand_center_q_px": -9.14,
+       "cuff_center_q_px": 40.61,
+       "own_white_px_near_wrist": 22
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 18.4,
+     "hump_px": 13.92,
+     "top_y": 380.16,
+     "outer_x": 418.0,
+     "applies": true,
+     "rise_px": 0.56
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.1,
+     "hump_px": 8.04,
+     "top_y": 376.16,
+     "outer_x": 753.0,
+     "applies": true,
+     "rise_px": -0.44
+    }
+   },
+   "wall_s": 3.244,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 18.4,
+      "hump_px": 13.92,
+      "top_y": 380.16,
+      "outer_x": 418.0,
+      "applies": true,
+      "rise_px": 0.56
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.1,
+      "hump_px": 8.04,
+      "top_y": 376.16,
+      "outer_x": 753.0,
+      "applies": true,
+      "rise_px": -0.44
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "gripping": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "gripping",
+     "kind": "action",
+     "shown_pose": "gripping",
+     "cid": "store:tough_student_hands_v1/right_gripping",
+     "source": "auto",
+     "pending_review": true,
+     "note": "gripping: gripping (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "r: gripping -> gripping (store:tough_student_hands_v1/right_gripping) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): turned 48 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected open_palm (original): open_palm is not used for gripping",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): turned 138 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for gripping",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): turned 136 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for gripping; turned 48 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/right_gripping",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_gripping.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.904
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 1.25,
+        "cuff_width_px": 78.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 78.0,
+       "fill": 0.904,
+       "own_cloth_px": 5,
+       "own_white_px": 0,
+       "overhang_px": [
+        1.0,
+        3.5
+       ],
+       "hand_center_q_px": -1.17,
+       "cuff_center_q_px": -2.42,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:tough_student_hands_v1/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.81
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 5.25,
+        "cuff_width_px": 76.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 76.0,
+       "fill": 0.81,
+       "own_cloth_px": 38,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.39,
+       "cuff_center_q_px": 1.86,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -13.75,
+     "hump_px": 25.57,
+     "top_y": 360.87,
+     "outer_x": 183.0,
+     "applies": false,
+     "note": "arm raised (68 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.95,
+     "hump_px": 8.73,
+     "top_y": 377.87,
+     "outer_x": 757.0,
+     "applies": true,
+     "rise_px": -2.15
+    }
+   },
+   "wall_s": 3.139,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -13.75,
+      "hump_px": 25.57,
+      "top_y": 360.87,
+      "outer_x": 183.0,
+      "applies": false,
+      "note": "arm raised (68 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.95,
+      "hump_px": 8.73,
+      "top_y": 377.87,
+      "outer_x": 757.0,
+      "applies": true,
+      "rise_px": -2.15
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "gripping",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "default",
+     "pending_review": false,
+     "note": "gripping: no eligible drawing, showing the default",
+     "needs_artwork": [
+      {
+       "pose": "gripping",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:tough_student_hands_v1/right_gripping"
+      },
+      {
+       "pose": "fist",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": null,
+       "cid": "store:tough_student_hands_v1/right_fist"
+      }
+     ],
+     "fallback": null,
+     "rejected": 10,
+     "override_check": null,
+     "explanation": [
+      "r: gripping -> no drawing passes the hard constraints [mode: production]",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 48 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected open_palm (original): open_palm is not used for gripping",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; turned 138 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for gripping",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only; turned 136 deg from how it was drawn (tolerance 50 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for gripping; turned 48 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: gripping - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: fist - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 0.0,
+       "fill": 0.0,
+       "own_cloth_px": 291,
+       "own_white_px": 46,
+       "overhang_px": [
+        0.0,
+        111.0
+       ],
+       "hand_center_q_px": 13.08,
+       "cuff_center_q_px": -43.92,
+       "own_white_px_near_wrist": 13
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.5,
+       "fill": 0.583,
+       "own_cloth_px": 273,
+       "own_white_px": 37,
+       "overhang_px": [
+        96.5,
+        0.0
+       ],
+       "hand_center_q_px": -8.89,
+       "cuff_center_q_px": 40.61,
+       "own_white_px_near_wrist": 24
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": -14.98,
+     "hump_px": 8.01,
+     "top_y": 360.87,
+     "outer_x": 173.0,
+     "applies": false,
+     "note": "arm raised (68 deg): the arm forms the outer shoulder"
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.56,
+     "hump_px": 8.89,
+     "top_y": 377.87,
+     "outer_x": 758.0,
+     "applies": true,
+     "rise_px": -2.15
+    }
+   },
+   "wall_s": 2.928,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": -14.98,
+      "hump_px": 8.01,
+      "top_y": 360.87,
+      "outer_x": 173.0,
+      "applies": false,
+      "note": "arm raised (68 deg): the arm forms the outer shoulder"
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.56,
+      "hump_px": 8.89,
+      "top_y": 377.87,
+      "outer_x": 758.0,
+      "applies": true,
+      "rise_px": -2.15
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "open_hand_conversation": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "explaining",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "explaining: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 6,
+     "override_check": null,
+     "explanation": [
+      "r: explaining -> open_palm (original) - highest score after the hard constraints [mode: review]",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): turned 40 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): gripping is not used for explaining; shows PALM_DOWN in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): shows BACK_TO_CAMERA in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for explaining"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 2.0,
+       "fill": 0.8,
+       "own_cloth_px": 207,
+       "own_white_px": 29,
+       "overhang_px": [
+        2.5,
+        102.5
+       ],
+       "hand_center_q_px": 8.08,
+       "cuff_center_q_px": -41.92,
+       "own_white_px_near_wrist": 15
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:tough_student_hands_v1/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.81
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 6.25,
+        "cuff_width_px": 76.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 76.0,
+       "fill": 0.81,
+       "own_cloth_px": 24,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.89,
+       "cuff_center_q_px": 2.36,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 17.93,
+     "hump_px": 11.24,
+     "top_y": 380.68,
+     "outer_x": 420.0,
+     "applies": true,
+     "rise_px": 0.04
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.89,
+     "hump_px": 8.17,
+     "top_y": 376.68,
+     "outer_x": 749.0,
+     "applies": true,
+     "rise_px": -0.96
+    }
+   },
+   "wall_s": 2.917,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 17.93,
+      "hump_px": 11.24,
+      "top_y": 380.68,
+      "outer_x": 420.0,
+      "applies": true,
+      "rise_px": 0.04
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.89,
+      "hump_px": 8.17,
+      "top_y": 376.68,
+      "outer_x": 749.0,
+      "applies": true,
+      "rise_px": -0.96
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "explaining",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "explaining: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: explaining -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; turned 40 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for explaining; shows PALM_DOWN in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; shows BACK_TO_CAMERA in this pose; explaining needs PALM_TO_CAMERA or PALM_UP or EDGE_ON - no flat rotation of this drawing shows that (needs a different drawing)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for explaining"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.0,
+       "fill": 0.091,
+       "own_cloth_px": 309,
+       "own_white_px": 56,
+       "overhang_px": [
+        0.0,
+        106.5
+       ],
+       "hand_center_q_px": 12.83,
+       "cuff_center_q_px": -42.92,
+       "own_white_px_near_wrist": 18
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 94 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 92 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.5,
+       "fill": 0.583,
+       "own_cloth_px": 265,
+       "own_white_px": 32,
+       "overhang_px": [
+        97.5,
+        0.0
+       ],
+       "hand_center_q_px": -8.89,
+       "cuff_center_q_px": 41.11,
+       "own_white_px_near_wrist": 17
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 17.9,
+     "hump_px": 11.28,
+     "top_y": 380.68,
+     "outer_x": 419.0,
+     "applies": true,
+     "rise_px": 0.04
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.55,
+     "hump_px": 8.33,
+     "top_y": 376.68,
+     "outer_x": 750.0,
+     "applies": true,
+     "rise_px": -0.96
+    }
+   },
+   "wall_s": 2.609,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 17.9,
+      "hump_px": 11.28,
+      "top_y": 380.68,
+      "outer_x": 419.0,
+      "applies": true,
+      "rise_px": 0.04
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.55,
+      "hump_px": 8.33,
+      "top_y": 376.68,
+      "outer_x": 750.0,
+      "applies": true,
+      "rise_px": -0.96
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "hand_on_desk": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "hand_on_desk",
+     "kind": "action",
+     "shown_pose": "palm_down",
+     "cid": "store:tough_student_hands_v1/right_palm_down",
+     "source": "user",
+     "pending_review": true,
+     "note": null,
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 6,
+     "override_check": {
+      "pose": "palm_down",
+      "cid": "store:tough_student_hands_v1/right_palm_down",
+      "ok": true,
+      "violations": [],
+      "palm": "PALM_DOWN",
+      "rotation_from_drawn_deg": 0.6
+     },
+     "explanation": [
+      "r: hand_on_desk -> palm_down (store:tough_student_hands_v1/right_palm_down) - highest score after the hard constraints [mode: review]",
+      "  rejected open_palm (original): palm view unknown (no metadata); hand_on_desk needs PALM_DOWN or BACK_TO_CAMERA or PALM_TO_CAMERA",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): cupped is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for hand_on_desk",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "palm_down",
+      "cid": "store:tough_student_hands_v1/right_palm_down",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_palm_down.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.922
+       },
+       "centred": {
+        "ok": false,
+        "offset_px": 40.0,
+        "cuff_width_px": 50.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 1
+       },
+       "rotation": {
+        "ok": true,
+        "rotation_from_drawn_deg": 0.6,
+        "tolerance_deg": 60.0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 50.5,
+       "fill": 0.922,
+       "own_cloth_px": 9,
+       "own_white_px": 4,
+       "overhang_px": [
+        3.0,
+        83.0
+       ],
+       "hand_center_q_px": 0.33,
+       "cuff_center_q_px": -39.67,
+       "own_white_px_near_wrist": 1
+      },
+      "status": "FAIL",
+      "failed": [
+       "centred"
+      ]
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 8,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> relaxed (store:tough_student_hands_v1/left_relaxed) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): turned 72 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for relaxed_standing; turned 70 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "relaxed",
+      "cid": "store:tough_student_hands_v1/left_relaxed",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.784
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 4.75,
+        "cuff_width_px": 76.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 76.0,
+       "fill": 0.784,
+       "own_cloth_px": 4,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -2.89,
+       "cuff_center_q_px": 1.86,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 20.56,
+     "hump_px": 9.59,
+     "top_y": 379.86,
+     "outer_x": 342.0,
+     "applies": true,
+     "rise_px": 0.86
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.91,
+     "hump_px": 22.44,
+     "top_y": 369.86,
+     "outer_x": 679.0,
+     "applies": true,
+     "rise_px": 5.86
+    }
+   },
+   "wall_s": 3.273,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 20.56,
+      "hump_px": 9.59,
+      "top_y": 379.86,
+      "outer_x": 342.0,
+      "applies": true,
+      "rise_px": 0.86
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.91,
+      "hump_px": 22.44,
+      "top_y": 369.86,
+      "outer_x": 679.0,
+      "applies": true,
+      "rise_px": 5.86
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 22 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "hand_on_desk",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "default",
+     "pending_review": false,
+     "note": "hand_on_desk: no drawing passes the hard constraints; showing the reference open palm",
+     "needs_artwork": [
+      {
+       "pose": "palm_down",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_DOWN",
+        "BACK_TO_CAMERA",
+        "PALM_TO_CAMERA"
+       ],
+       "cid": "store:tough_student_hands_v1/right_palm_down"
+      },
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_DOWN",
+        "BACK_TO_CAMERA",
+        "PALM_TO_CAMERA"
+       ],
+       "cid": "store:tough_student_hands_v1/right_relaxed"
+      },
+      {
+       "pose": "open_palm",
+       "status": "NEEDS_ARTWORK",
+       "reason": "palm view unknown (no metadata); hand_on_desk needs PALM_DOWN or BACK_TO_CAMERA or PALM_TO_CAMERA",
+       "palm": [
+        "PALM_DOWN",
+        "BACK_TO_CAMERA",
+        "PALM_TO_CAMERA"
+       ],
+       "cid": "original"
+      }
+     ],
+     "fallback": null,
+     "rejected": 10,
+     "override_check": null,
+     "explanation": [
+      "r: hand_on_desk -> no drawing passes the hard constraints [mode: production]",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected open_palm (original): palm view unknown (no metadata); hand_on_desk needs PALM_DOWN or BACK_TO_CAMERA or PALM_TO_CAMERA",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for hand_on_desk",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for hand_on_desk; turned 90 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: palm_down - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_ARTWORK: open_palm - palm view unknown (no metadata); hand_on_desk needs PALM_DOWN or BACK_TO_CAMERA or PALM_TO_CAMERA"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 0.5,
+       "fill": 0.0,
+       "own_cloth_px": 294,
+       "own_white_px": 50,
+       "overhang_px": [
+        0.0,
+        114.0
+       ],
+       "hand_center_q_px": 14.33,
+       "cuff_center_q_px": -44.67,
+       "own_white_px_near_wrist": 16
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "relaxed_standing",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: relaxed_standing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; turned 72 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only; fist is not used for relaxed_standing",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for relaxed_standing; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; shows PALM_DOWN in this pose; relaxed_standing needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for relaxed_standing",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for relaxed_standing; turned 70 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.0,
+       "fill": 0.727,
+       "own_cloth_px": 273,
+       "own_white_px": 46,
+       "overhang_px": [
+        97.0,
+        0.0
+       ],
+       "hand_center_q_px": -8.39,
+       "cuff_center_q_px": 40.86,
+       "own_white_px_near_wrist": 22
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 20.51,
+     "hump_px": 9.48,
+     "top_y": 379.86,
+     "outer_x": 342.0,
+     "applies": true,
+     "rise_px": 0.86
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 11.71,
+     "hump_px": 24.0,
+     "top_y": 369.86,
+     "outer_x": 680.0,
+     "applies": true,
+     "rise_px": 5.86
+    }
+   },
+   "wall_s": 3.089,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 20.51,
+      "hump_px": 9.48,
+      "top_y": 379.86,
+      "outer_x": 342.0,
+      "applies": true,
+      "rise_px": 0.86
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 11.71,
+      "hump_px": 24.0,
+      "top_y": 369.86,
+      "outer_x": 680.0,
+      "applies": true,
+      "rise_px": 5.86
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 24 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ },
+ "running": {
+  "review": {
+   "sides": {
+    "r": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "fist",
+     "cid": "store:tough_student_hands_v1/right_fist",
+     "source": "auto",
+     "pending_review": true,
+     "note": "running: fist (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 7,
+     "override_check": null,
+     "explanation": [
+      "r: running -> fist (store:tough_student_hands_v1/right_fist) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pointing is not used for running",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): thumbs_up is not used for running; turned 114 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "fist",
+      "cid": "store:tough_student_hands_v1/right_fist",
+      "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.804
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 5.5,
+        "cuff_width_px": 78.5
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53823,
+        "side_scale": 0.53823
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 78.5,
+       "fill": 0.804,
+       "own_cloth_px": 27,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": 3.33,
+       "cuff_center_q_px": -2.17,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "fist",
+     "cid": "store:tough_student_hands_v1/left_fist",
+     "source": "auto",
+     "pending_review": true,
+     "note": "running: fist (highest score after the hard constraints)",
+     "needs_artwork": [],
+     "fallback": null,
+     "rejected": 7,
+     "override_check": null,
+     "explanation": [
+      "l: running -> fist (store:tough_student_hands_v1/left_fist) - highest score after the hard constraints [mode: review]",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pointing is not used for running",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): thumbs_up is not used for running; turned 112 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "fist",
+      "cid": "store:tough_student_hands_v1/left_fist",
+      "layer": "hand_l__hs.tough_student_hands_v1.left_fist.v1",
+      "approval": "PENDING_REVIEW",
+      "checks": {
+       "attached": {
+        "ok": true,
+        "fill": 0.8
+       },
+       "centred": {
+        "ok": true,
+        "offset_px": 4.25,
+        "cuff_width_px": 77.0
+       },
+       "no_duplicate_cuff": {
+        "ok": true,
+        "own_white_px": 0
+       },
+       "proportion": {
+        "ok": true,
+        "scale": 0.53765,
+        "side_scale": 0.53765
+       }
+      },
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 77.0,
+       "fill": 0.8,
+       "own_cloth_px": 50,
+       "own_white_px": 0,
+       "overhang_px": [
+        0.0,
+        0.0
+       ],
+       "hand_center_q_px": -3.89,
+       "cuff_center_q_px": 0.36,
+       "own_white_px_near_wrist": 0
+      },
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 10.24,
+     "hump_px": 12.61,
+     "top_y": 370.35,
+     "outer_x": 333.0,
+     "applies": true,
+     "rise_px": 10.37
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 10.75,
+     "hump_px": 14.46,
+     "top_y": 368.35,
+     "outer_x": 671.0,
+     "applies": true,
+     "rise_px": 7.37
+    }
+   },
+   "wall_s": 3.202,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 10.24,
+      "hump_px": 12.61,
+      "top_y": 370.35,
+      "outer_x": 333.0,
+      "applies": true,
+      "rise_px": 10.37
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 10.75,
+      "hump_px": 14.46,
+      "top_y": 368.35,
+      "outer_x": 671.0,
+      "applies": true,
+      "rise_px": 7.37
+     }
+    },
+    "flags": [],
+    "status": "PASS",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  },
+  "production": {
+   "sides": {
+    "r": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "running: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "fist",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/right_fist"
+      },
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/right_relaxed"
+      },
+      {
+       "pose": "partially_closed",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "r: running -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected fist (store:tough_student_hands_v1/right_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:tough_student_hands_v1/right_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:tough_student_hands_v1/right_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): pending review: production mode uses approved drawings and the original hand only; palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for running",
+      "  rejected thumbs_up (store:tough_student_hands_v1/right_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for running; turned 114 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: fist - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_ARTWORK: partially_closed - no drawing"
+     ],
+     "wrist": {
+      "side": "r",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_r",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 1.0,
+       "fill": 0.0,
+       "own_cloth_px": 288,
+       "own_white_px": 29,
+       "overhang_px": [
+        0.0,
+        108.0
+       ],
+       "hand_center_q_px": 12.83,
+       "cuff_center_q_px": -41.92,
+       "own_white_px_near_wrist": 12
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    },
+    "l": {
+     "requested": "running",
+     "kind": "action",
+     "shown_pose": "open_palm",
+     "cid": "original",
+     "source": "auto",
+     "pending_review": false,
+     "note": "running: open_palm (highest score after the hard constraints)",
+     "needs_artwork": [
+      {
+       "pose": "fist",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_fist"
+      },
+      {
+       "pose": "relaxed",
+       "status": "NEEDS_APPROVAL",
+       "reason": "pending review: production mode uses approved drawings and the original hand only",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ],
+       "cid": "store:tough_student_hands_v1/left_relaxed"
+      },
+      {
+       "pose": "partially_closed",
+       "status": "NEEDS_ARTWORK",
+       "reason": "no drawing",
+       "palm": [
+        "PALM_TO_CAMERA",
+        "BACK_TO_CAMERA",
+        "EDGE_ON"
+       ]
+      }
+     ],
+     "fallback": null,
+     "rejected": 9,
+     "override_check": null,
+     "explanation": [
+      "l: running -> open_palm (original) - highest score after the hard constraints [mode: production]",
+      "  rejected fist (store:tough_student_hands_v1/left_fist): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected relaxed (store:tough_student_hands_v1/left_relaxed): pending review: production mode uses approved drawings and the original hand only",
+      "  rejected partially_closed (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only; cupped is not used for running; turned 114 deg from how it was drawn (tolerance 35 deg): a flat rotation does not change the drawing's perspective",
+      "  rejected gripping (store:tough_student_hands_v1/left_gripping): pending review: production mode uses approved drawings and the original hand only; gripping is not used for running; turned 114 deg from how it was drawn (tolerance 100 deg): a flat rotation does not change the drawing's perspective; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): pending review: production mode uses approved drawings and the original hand only; palm_down is not used for running; shows PALM_DOWN in this pose; running needs PALM_TO_CAMERA or BACK_TO_CAMERA or EDGE_ON",
+      "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)",
+      "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only; pointing is not used for running",
+      "  rejected thumbs_up (store:tough_student_hands_v1/left_thumbs_up): pending review: production mode uses approved drawings and the original hand only; thumbs_up is not used for running; turned 112 deg from how it was drawn (tolerance 45 deg): a flat rotation does not change the drawing's perspective",
+      "  NEEDS_APPROVAL: fist - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_APPROVAL: relaxed - pending review: production mode uses approved drawings and the original hand only",
+      "  NEEDS_ARTWORK: partially_closed - no drawing"
+     ],
+     "wrist": {
+      "side": "l",
+      "pose": "open_palm",
+      "cid": "original",
+      "layer": "hand_l",
+      "approval": "APPROVED",
+      "checks": {},
+      "seam": {
+       "status": "OK",
+       "covered": true,
+       "cuff_width_px": 5.0,
+       "fill": 0.545,
+       "own_cloth_px": 262,
+       "own_white_px": 21,
+       "overhang_px": [
+        97.0,
+        0.0
+       ],
+       "hand_center_q_px": -9.39,
+       "cuff_center_q_px": 40.36,
+       "own_white_px_near_wrist": 10
+      },
+      "note": "original reference pixels: hand and cuff are drawn together (attachment not re-measured)",
+      "status": "PASS",
+      "failed": []
+     }
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 10.28,
+     "hump_px": 11.99,
+     "top_y": 369.35,
+     "outer_x": 332.0,
+     "applies": true,
+     "rise_px": 11.37
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 10.49,
+     "hump_px": 16.43,
+     "top_y": 367.35,
+     "outer_x": 672.0,
+     "applies": true,
+     "rise_px": 8.37
+    }
+   },
+   "wall_s": 3.038,
+   "shoulder_check": {
+    "sides": {
+     "r": {
+      "status": "OK",
+      "slope_deg": 10.28,
+      "hump_px": 11.99,
+      "top_y": 369.35,
+      "outer_x": 332.0,
+      "applies": true,
+      "rise_px": 11.37
+     },
+     "l": {
+      "status": "OK",
+      "slope_deg": 10.49,
+      "hump_px": 16.43,
+      "top_y": 367.35,
+      "outer_x": 672.0,
+      "applies": true,
+      "rise_px": 8.37
+     }
+    },
+    "flags": [
+     "l: shoulder cap bulges 16 px above the shoulder line"
+    ],
+    "status": "WARNING",
+    "thresholds": {
+     "min_slope_deg": -1.0,
+     "max_rise_px": 8.0,
+     "max_hump_px": 16.0
+    },
+    "reference_front_view_slope_deg": {
+     "r": 30.7,
+     "l": 47.5
+    },
+    "artistic_review_required": true
+   }
+  }
+ }
+}

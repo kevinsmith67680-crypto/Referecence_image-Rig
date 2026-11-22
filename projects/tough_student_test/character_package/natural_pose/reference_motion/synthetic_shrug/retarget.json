@@ -1,0 +1,424 @@
+{
+ "settings": {
+  "intensity": 1.0,
+  "timing_scale": 1.0,
+  "segment": null,
+  "hand_actions": {},
+  "offsets": {}
+ },
+ "feasibility": {
+  "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+  "items": [
+   {
+    "segment": "forearm_l",
+    "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "needs": "art:forearm_foreshortened_l",
+    "frames_frac": 0.552,
+    "handling": "in-plane component transferred; the limb is not stretched or shortened"
+   },
+   {
+    "segment": "forearm_r",
+    "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "needs": "art:forearm_foreshortened_r",
+    "frames_frac": 0.552,
+    "handling": "in-plane component transferred; the limb is not stretched or shortened"
+   }
+  ],
+  "locomotion": false
+ },
+ "errors": {
+  "arm_r_abduction": {
+   "rms": 0.229,
+   "max": 0.774
+  },
+  "arm_r_flexion": {
+   "rms": 2.674,
+   "max": 7.343
+  },
+  "arm_r_wrist": {
+   "rms": 0.0,
+   "max": 0.0
+  },
+  "arm_l_abduction": {
+   "rms": 0.229,
+   "max": 0.774
+  },
+  "arm_l_flexion": {
+   "rms": 2.674,
+   "max": 7.343
+  },
+  "arm_l_wrist": {
+   "rms": 0.0,
+   "max": 0.0
+  },
+  "clavicle_r": {
+   "rms": 0.577,
+   "max": 1.75
+  },
+  "clavicle_l": {
+   "rms": 0.577,
+   "max": 1.75
+  },
+  "head": {
+   "rms": 0.221,
+   "max": 0.553
+  },
+  "line_of_action": {
+   "rms": 0.0,
+   "max": 0.0
+  },
+  "weight_left": {
+   "rms": 0.0,
+   "max": 0.0
+  },
+  "contrapposto": {
+   "rms": 0.0,
+   "max": 0.0
+  }
+ },
+ "performance": {
+  "schema": "autorig.performance",
+  "version": "1.0.0",
+  "name": "reference_shrug",
+  "fps": 12.0,
+  "style": "neutral",
+  "style_overrides": {},
+  "template": {},
+  "base_keys": [
+   {
+    "id": "r0",
+    "t": 0.0,
+    "params": {
+     "arm_r_abduction": 11.0,
+     "arm_r_flexion": 5.0,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 9.0,
+     "arm_l_flexion": 6.0,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": -2.0,
+     "clavicle_l": -1.0,
+     "head": 0.0,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "relaxed_standing",
+     "l": "relaxed_standing"
+    },
+    "label": "ref 0",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r1",
+    "t": 0.267,
+    "params": {
+     "arm_r_abduction": 11.006,
+     "arm_r_flexion": 4.99,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 9.006,
+     "arm_l_flexion": 5.99,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": -3.862,
+     "clavicle_l": -2.862,
+     "head": -0.006,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "relaxed_standing",
+     "l": "relaxed_standing"
+    },
+    "label": "ref 1",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r2",
+    "t": 0.733,
+    "params": {
+     "arm_r_abduction": 16.994,
+     "arm_r_flexion": -60.951,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 14.994,
+     "arm_l_flexion": -59.951,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": 9.247,
+     "clavicle_l": 10.247,
+     "head": -5.994,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "shrugging",
+     "l": "shrugging"
+    },
+    "label": "ref 2",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r3",
+    "t": 1.133,
+    "params": {
+     "arm_r_abduction": 17.0,
+     "arm_r_flexion": -61.043,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 15.0,
+     "arm_l_flexion": -60.043,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": 8.854,
+     "clavicle_l": 9.854,
+     "head": -6.0,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "shrugging",
+     "l": "shrugging"
+    },
+    "label": "ref 3",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r4",
+    "t": 1.367,
+    "params": {
+     "arm_r_abduction": 16.981,
+     "arm_r_flexion": -60.77,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 14.981,
+     "arm_l_flexion": -59.77,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": 8.821,
+     "clavicle_l": 9.821,
+     "head": -5.981,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "shrugging",
+     "l": "shrugging"
+    },
+    "label": "ref 4",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r5",
+    "t": 1.9,
+    "params": {
+     "arm_r_abduction": 11.23,
+     "arm_r_flexion": 4.543,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 9.23,
+     "arm_l_flexion": 5.543,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": -1.555,
+     "clavicle_l": -0.555,
+     "head": -0.23,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "relaxed_standing",
+     "l": "relaxed_standing"
+    },
+    "label": "ref 5",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r6",
+    "t": 2.167,
+    "params": {
+     "arm_r_abduction": 11.0,
+     "arm_r_flexion": 5.0,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 9.0,
+     "arm_l_flexion": 6.0,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": -1.975,
+     "clavicle_l": -0.975,
+     "head": 0.0,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "relaxed_standing",
+     "l": "relaxed_standing"
+    },
+    "label": "ref 6",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   },
+   {
+    "id": "r7",
+    "t": 2.2,
+    "params": {
+     "arm_r_abduction": 11.0,
+     "arm_r_flexion": 5.0,
+     "arm_r_wrist": 3.0,
+     "arm_l_abduction": 9.0,
+     "arm_l_flexion": 6.0,
+     "arm_l_wrist": 4.0,
+     "clavicle_r": -1.975,
+     "clavicle_l": -0.975,
+     "head": 0.0,
+     "line_of_action": 0.0,
+     "weight_left": 0.5,
+     "contrapposto": 0.3,
+     "free_knee": 6.0
+    },
+    "hands": {
+     "r": "relaxed_standing",
+     "l": "relaxed_standing"
+    },
+    "label": "ref 7",
+    "hold": 0.0,
+    "curve": {
+     "kind": "ease_in_out",
+     "params": []
+    },
+    "curves": {},
+    "anticipation": "none",
+    "anticipation_intensity": 1.0,
+    "overshoot": 0.0,
+    "side": null,
+    "offsets": {},
+    "head_lead": false,
+    "interp": "stop",
+    "hand_switch_at": 0.5,
+    "pose": {}
+   }
+  ],
+  "gestures": [],
+  "clips": [],
+  "contacts": [],
+  "objects": {},
+  "steps": [],
+  "props": {},
+  "offsets": {},
+  "secondary": {},
+  "layers": {},
+  "hand_markers": [],
+  "corrections": {
+   "mode": "all",
+   "overrides": {}
+  },
+  "events": [],
+  "turns": [],
+  "idle": 0.0,
+  "allow_pending": true,
+  "notes": [
+   "retargeted from reference 'shrug' (synthetic provenance); intensity 1.0, timing x1.0",
+   "joint angles only: the character's proportions, pivots and neutral are kept"
+  ]
+ }
+}
