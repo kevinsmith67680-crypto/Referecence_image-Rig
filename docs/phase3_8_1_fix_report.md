@@ -143,7 +143,7 @@ Every case: requested = rendered on both hands, no silent substitution, no pendi
 
 ## 6. Tests and regression (Task 6)
 
-New tests: `tests/test_p381_visualfix.py` (11), covering:
+New tests: `tests/test_p381_visualfix.py` (10), covering:
 - the hanging resting-hand rule;
 - the re-inspected relaxed hands and the production fallback report;
 - requested = rendered in full renders, with wrist checks;
@@ -168,10 +168,18 @@ Two existing tests changed. `tests/test_hand_replacement.py::test_rules_choose_n
 
 | suite | Phase 3.8 | Phase 3.8.1 |
 |---|---|---|
-| backend `pytest` | 606 passed, 2 skipped (native) | FINAL_SUITE |
+| backend `pytest` | 606 passed, 2 skipped (native) | **616 passed**, 2 skipped (native Moho: NOT EXECUTED), 0 failed, 19 min 17 s (606 + 10 new) |
 | frontend `vitest` | 11 | 11 (editor rebuilt for the label) |
 | schoolboy editor e2e | passed | SCHOOLBOY_E2E |
-| new-character editor e2e | passed | NEWCHAR_E2E |
+| new-character editor e2e | passed | **passed** (136 s, screenshots to scratch) |
+
+The first full run after the changes had **3 failures**, each handled without weakening an assertion:
+- `test_p34_correctives::test_standing_collar_is_not_a_failure_and_categories_are_recorded`: the schoolboy's standing
+  lapel stretch reached 0.2504, past its FAIL threshold. This was a real regression from the first version of the
+  weight fix, which smoothed every torso part on the canvas. It was narrowed to the shoulder parts, and the test
+  passes unchanged.
+- `test_p37_hands::test_http_inspector_and_metadata`: the reassigned set grew by the relaxed pair (see above).
+- `test_p381_visualfix`: a bug in the new test itself (a renderer attribute that does not exist).
 
 Schoolboy areas covered:
 - IK and hand switching: `test_p32_ik_switch`, `test_hand_replacement`, `test_p37_hands`;
