@@ -579,6 +579,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--quick", action="store_true", help="a few poses only (smoke run)")
     p.set_defaults(func=cmd_corrective_evidence)
 
+    p = sub.add_parser("artistic-evidence",
+                       help="Phase 3.5: artistic poses, candidates, silhouettes, folds, layer order, acting test")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", help="output directory (default <package>/natural_pose/artistic)")
+    p.add_argument("--quick", action="store_true", help="three poses, no acting test (smoke run)")
+    p.set_defaults(func=cmd_artistic_evidence)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -737,6 +744,17 @@ def cmd_garment_evidence(args: argparse.Namespace) -> int:
     res = garment_evidence(args.package, args.out, progress=print)
     print(f"garment evidence: {len(res['tests'])} tests, mean pose {res['performance']['pose_wall_s_mean']} s; "
           "visual review required")
+    return 0
+
+
+def cmd_artistic_evidence(args: argparse.Namespace) -> int:
+    from .artistic.evidence import artistic_evidence
+
+    rep = artistic_evidence(args.package, args.out, quick=args.quick, progress=print)
+    poses = rep["results"]["poses"]
+    print(json.dumps({k: {"action": v["action"], "class": v["feasibility"]["class"], "variant": v["recommended"]}
+                      for k, v in poses.items()}, indent=1))
+    print("Human artistic review is still required: approve poses in the editor's Artistic Review tab. Moho was not run.")
     return 0
 
 

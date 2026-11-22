@@ -136,6 +136,15 @@ Each asset shows its provenance, versions and approval state, with a before/afte
 .venv/bin/python -m autorig corrective-evidence ../schoolboy_pkg
 ```
 
+The **Artistic** tab (Phase 3.5) lets you compare pose candidates as clean renders and silhouettes, and see the
+artwork each one uses. You can approve, reject or choose a pose, save templates, and give feedback ("Move the hand
+farther from the torso"); the feedback is stored as structured constraints. To build the before/after evidence and
+the acting test:
+
+```bash
+.venv/bin/python -m autorig artistic-evidence ../schoolboy_pkg
+```
+
 ![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
 
 *Real browser screenshot of the editor (headless Chromium), not a Moho render.*
@@ -181,6 +190,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_3_clothing_deformation_report.md](docs/phase3_3_clothing_deformation_report.md) | Phase 3.3 garment rig: parts, pivots, weights, rigid segments, correctives, evaluator, Weights tab, before/after, Moho matrix, verdict |
 | [docs/phase3_4_baseline_audit.md](docs/phase3_4_baseline_audit.md) | Phase 3.3 defects reproduced on the real character before Phase 3.4 |
 | [docs/phase3_4_corrective_artwork_report.md](docs/phase3_4_corrective_artwork_report.md) | Phase 3.4: corrective artwork, original-pixel safety, pose-space activation, Correctives tab, before/after, verdict |
+| [docs/phase3_5_artistic_quality_audit.md](docs/phase3_5_artistic_quality_audit.md) | Phase 3.4 renders audited as character animation (causes of unnatural poses) |
+| [docs/phase3_5_artistic_animation_report.md](docs/phase3_5_artistic_animation_report.md) | Phase 3.5: artistic pose planning, silhouettes, feasibility, alternatives, layer order, acting test, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

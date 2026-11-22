@@ -1,0 +1,125 @@
+{
+ "schema": "autorig.view_manifest",
+ "version": "1.0.0",
+ "views": {
+  "FRONT": {
+   "available": true,
+   "artwork": [
+    "brow_l",
+    "brow_r",
+    "eye_l_iris",
+    "eye_l_white",
+    "eye_r_iris",
+    "eye_r_white",
+    "foot_l",
+    "foot_r",
+    "forearm_l",
+    "forearm_r",
+    "hair",
+    "hand_l",
+    "hand_r",
+    "head_base",
+    "mouth",
+    "neck",
+    "nose",
+    "pelvis",
+    "shin_l",
+    "shin_r",
+    "thigh_l",
+    "thigh_r",
+    "torso",
+    "upper_arm_l",
+    "upper_arm_r"
+   ],
+   "missing": [
+    "turned head drawings (head turn)",
+    "deep-elbow, seated-thigh, knee-drive drawings"
+   ],
+   "rig_compatible": true,
+   "approved_pose_range": "in-plane posing; depth motion NEEDS_ARTWORK",
+   "layer_order_rules": [
+    "DynamicLayerOrderController built-ins"
+   ],
+   "alternative_limbs": []
+  },
+  "FRONT_THREE_QUARTER_LEFT": {
+   "available": false,
+   "artwork": [],
+   "missing": [
+    "every body part (not segmented or rigged)"
+   ],
+   "rig_compatible": false,
+   "approved_pose_range": null,
+   "layer_order_rules": [],
+   "alternative_limbs": [],
+   "source_drawing": "references/schoolboy/character_sheet.jpg (3/4 full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
+  },
+  "FRONT_THREE_QUARTER_RIGHT": {
+   "available": false,
+   "artwork": [],
+   "missing": [
+    "every body part (not segmented or rigged)"
+   ],
+   "rig_compatible": false,
+   "approved_pose_range": null,
+   "layer_order_rules": [],
+   "alternative_limbs": [],
+   "source_drawing": "references/schoolboy/character_sheet.jpg (3/4 full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
+  },
+  "SIDE_LEFT": {
+   "available": false,
+   "artwork": [],
+   "missing": [
+    "every body part (not segmented or rigged)"
+   ],
+   "rig_compatible": false,
+   "approved_pose_range": null,
+   "layer_order_rules": [],
+   "alternative_limbs": [],
+   "source_drawing": "references/schoolboy/character_sheet.jpg (side full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
+  },
+  "SIDE_RIGHT": {
+   "available": false,
+   "artwork": [],
+   "missing": [
+    "every body part (not segmented or rigged)"
+   ],
+   "rig_compatible": false,
+   "approved_pose_range": null,
+   "layer_order_rules": [],
+   "alternative_limbs": [],
+   "source_drawing": "references/schoolboy/character_sheet.jpg (side full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
+  },
+  "BACK_THREE_QUARTER": {
+   "available": false,
+   "artwork": [],
+   "missing": [
+    "every body part (not segmented or rigged)"
+   ],
+   "rig_compatible": false,
+   "approved_pose_range": null,
+   "layer_order_rules": [],
+   "alternative_limbs": [],
+   "source_drawing": null,
+   "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
+  },
+  "BACK": {
+   "available": false,
+   "artwork": [],
+   "missing": [
+    "every body part (not segmented or rigged)"
+   ],
+   "rig_compatible": false,
+   "approved_pose_range": null,
+   "layer_order_rules": [],
+   "alternative_limbs": [],
+   "source_drawing": "references/schoolboy/character_sheet.jpg (back full-body drawing, not segmented; one side only, the other would be a mirror)",
+   "workflow": "segment the sheet drawing (Phase 1) -> rig -> review; or request new art"
+  }
+ },
+ "note": "only FRONT has rigged artwork; no view is claimed without artwork"
+}

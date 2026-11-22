@@ -1,0 +1,237 @@
+{
+ "A_relaxed": {
+  "preset": "relaxed_standing",
+  "feasibility": "SUPPORTED",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 0,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.933,
+  "hand_over_body_fraction": {
+   "r": 0.89,
+   "l": 0.8
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": []
+ },
+ "B_weight_shift": {
+  "preset": "relaxed_standing",
+  "feasibility": "SUPPORTED",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 0,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.933,
+  "hand_over_body_fraction": {
+   "r": 0.89,
+   "l": 0.8
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": []
+ },
+ "C_point_right": {
+  "preset": "pointing_speaking",
+  "feasibility": "NEEDS_ARTWORK",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 408,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.57,
+  "hand_over_body_fraction": {
+   "r": 0.0,
+   "l": 0.91
+  },
+  "weight_left": 0.6,
+  "pelvis_roll": -3.0,
+  "missing": [
+   "hand:point"
+  ]
+ },
+ "D_point_left": {
+  "available": false,
+  "note": "no left-hand pointing preset in Phase 3.4"
+ },
+ "E_shrug": {
+  "preset": "one_hand_shrug",
+  "feasibility": "SUPPORTED",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 216,
+   "l": 175
+  },
+  "silhouette_symmetry_iou": 0.902,
+  "hand_over_body_fraction": {
+   "r": 0.0,
+   "l": 0.0
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": []
+ },
+ "F_arm_raised": {
+  "preset": "relaxed_standing",
+  "feasibility": "SUPPORTED",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 315,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.768,
+  "hand_over_body_fraction": {
+   "r": 0.0,
+   "l": 0.8
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": []
+ },
+ "G_deep_elbow": {
+  "preset": "relaxed_standing",
+  "feasibility": "NEEDS_ARTWORK",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 0,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.897,
+  "hand_over_body_fraction": {
+   "r": 1.0,
+   "l": 0.8
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": [
+   "corrective:elbow_deep_r"
+  ]
+ },
+ "H_walk": {
+  "preset": "casual_walk",
+  "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 23,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.584,
+  "hand_over_body_fraction": {
+   "r": 0.37,
+   "l": 1.0
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": -1.9021130325903073,
+  "missing": []
+ },
+ "I_run": {
+  "preset": "running",
+  "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 95,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.638,
+  "hand_over_body_fraction": {
+   "r": 0.32,
+   "l": 1.0
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": -4.045084971874737,
+  "missing": []
+ },
+ "J_sit": {
+  "preset": "sitting",
+  "feasibility": "NEEDS_ARTWORK",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 0,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.94,
+  "hand_over_body_fraction": {
+   "r": 1.0,
+   "l": 1.0
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": [
+   "art:thigh_foreshortened",
+   "art:seat",
+   "corrective:trousers_seated"
+  ]
+ },
+ "K_squat": {
+  "preset": "natural_squat",
+  "feasibility": "SUPPORTED",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 28,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.94,
+  "hand_over_body_fraction": {
+   "r": 1.0,
+   "l": 1.0
+  },
+  "weight_left": 0.5,
+  "pelvis_roll": 0.0,
+  "missing": []
+ },
+ "L_lean_forward": {
+  "preset": "leaning_forward",
+  "feasibility": "NEEDS_ARTWORK",
+  "hands": {
+   "r": "open",
+   "l": "open"
+  },
+  "arm_body_gap_px": {
+   "r": 96,
+   "l": 0
+  },
+  "silhouette_symmetry_iou": 0.672,
+  "hand_over_body_fraction": {
+   "r": 0.08,
+   "l": 1.0
+  },
+  "weight_left": 0.35,
+  "pelvis_roll": 0.0,
+  "missing": [
+   "art:torso_lean_forward",
+   "corrective:torso_lean_3q"
+  ]
+ }
+}

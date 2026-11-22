@@ -308,3 +308,29 @@ engine in place (`MotionEngine.set_hand_store`). See [hand_pose_store_integratio
 
 See [phase3_4_corrective_artwork_report.md](phase3_4_corrective_artwork_report.md).
 
+## 18. Phase 3.5: artistic posing
+
+`src/autorig/artistic/` sits on top of the motion pipeline; it adds no second solver.
+
+- **Posing and assessment:**
+  - `poses.py`: `ArtisticPose` and `ArtisticPosePlanner` reshape a preset's `PoseIntent` through
+    `MotionEngine.pose(intent_fn=...)`: weight leg, contrapposto, line of action, head counterbalance, gestures with
+    hand actions. It also holds the action library with candidate variants.
+  - `silhouette.py`: `SilhouetteQualityEvaluator`, solid-silhouette readability.
+  - `feasibility.py`: `ArtworkFeasibilityEngine`, five classes, decided before deformation.
+  - `candidates.py`: `PoseCandidateGenerator`, explicit ranking.
+- **Artwork and draw order:**
+  - `joint_art.py`: procedural elbow and knee fold corrections.
+  - `layer_order.py`: `DynamicLayerOrderController` with sublayer splits; `MotionEngine.pose(layer_order=..., depth=...)`.
+  - `alternatives.py`: alternative drawing store and controller (`MotionEngine.pose(layer_variants=...)`), artwork
+    requests, view manifest, limb configurations.
+  - The `ShoulderSilhouetteController` gusset recipe lives in `garmentrig/correctives.py`.
+- **Motion and review:**
+  - `transitions.py`: acting sequences with eased, overlapping, anticipated and settled transitions.
+  - `evaluate.py`: `ArtisticAnimationEvaluator`.
+  - `feedback.py`: the phrase table that turns notes into constraints.
+  - `evidence.py`: `autorig artistic-evidence`.
+- **Editor:** the Artistic tab (`ArtisticReviewPanel.tsx`), `/api/artistic*`, and `artistic.*` ops (schema v7).
+
+See [phase3_5_artistic_animation_report.md](phase3_5_artistic_animation_report.md).
+

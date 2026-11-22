@@ -27,9 +27,9 @@ from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
 from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 6  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
+VERSION = 7  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
 # hand selection settings (sleeve-free hand replacement); 5: garment weight edits (Phase 3.3); 6: corrective
-# artwork settings (Phase 3.4). Older projects migrate unchanged
+# artwork settings (Phase 3.4); 7: artistic review (Phase 3.5). Older projects migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -143,7 +143,80 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "pose": {"preset": "relaxed_standing", "overrides": {}},
             "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state(),
             "hand_selection": default_selection_state(), "garment_weights": {"ops": []},
-            "correctives": default_corrective_state()}
+            "correctives": default_corrective_state(), "artistic": default_artistic_state()}
+
+
+def default_artistic_state() -> dict[str, Any]:
+    """Phase 3.5 Artistic Review: per-action choice (variant or template), saved templates, structured feedback
+    constraints, notes, motion-cycle revision requests, artist layer-order rules, alternative-artwork choices.
+    Pose approvals are ``approval.set`` on ``artistic_pose:<action>/<variant>``; nothing is approved automatically."""
+    return {"selections": {}, "templates": [], "constraints": [], "notes": [], "cycle_revisions": [],
+            "layer_rules": [], "alternatives": {}}
+
+
+def _apply_artistic(st: dict[str, Any], op: dict[str, Any]) -> None:
+    A = st.setdefault("artistic", default_artistic_state())
+    for k, v in default_artistic_state().items():
+        A.setdefault(k, v)
+    t = op["type"]
+    if t == "artistic.select":
+        act = op.get("action")
+        if not isinstance(act, str) or not act:
+            raise OpError("artistic.select needs an action")
+        if op.get("variant") is None and op.get("template") is None:
+            A["selections"].pop(act, None)
+        else:
+            A["selections"][act] = {k: op[k] for k in ("variant", "template") if op.get(k) is not None}
+    elif t == "artistic.feedback":
+        cons = op.get("constraints") or []
+        if not isinstance(cons, list):
+            raise OpError("constraints must be a list")
+        for c in cons:
+            if not isinstance(c, dict) or not isinstance(c.get("param"), str):
+                raise OpError("each constraint needs a param")
+            if "delta" in c and not isinstance(c["delta"], (int, float)):
+                raise OpError("delta must be a number")
+        A["constraints"] += [dict(c) for c in cons if c.get("kind", "pose") == "pose"]
+        if op.get("text"):
+            A["notes"].append({"action": op.get("action", "*"), "text": str(op["text"])[:500],
+                               "constraints": len(cons)})
+    elif t == "artistic.constraint.remove":
+        i = op.get("index")
+        if not isinstance(i, int) or not 0 <= i < len(A["constraints"]):
+            raise OpError("index out of range")
+        A["constraints"].pop(i)
+    elif t == "artistic.template.save":
+        name, pose = op.get("name"), op.get("pose")
+        if not isinstance(name, str) or not name.strip() or not isinstance(pose, dict) or "action" not in pose:
+            raise OpError("artistic.template.save needs a name and a pose (ArtisticPose JSON)")
+        A["templates"] = [x for x in A["templates"] if x["name"] != name] + [{"name": name, "action": pose["action"],
+                                                                              "pose": pose}]
+    elif t == "artistic.template.delete":
+        A["templates"] = [x for x in A["templates"] if x["name"] != op.get("name")]
+    elif t == "artistic.cycle.revise":
+        if not op.get("cycle"):
+            raise OpError("artistic.cycle.revise needs a cycle")
+        A["cycle_revisions"].append({"cycle": str(op["cycle"]), "note": str(op.get("note", ""))[:500],
+                                     "status": "needs_revision"})
+    elif t == "artistic.layer_rule":
+        r = op.get("rule")
+        if r is None:
+            A["layer_rules"] = [x for x in A["layer_rules"] if x.get("id") != op.get("id")]
+        else:
+            if not isinstance(r, dict) or r.get("relation") not in ("front", "behind") or not r.get("move") \
+                    or not r.get("target") or not r.get("id"):
+                raise OpError("a layer rule needs id, move, target and relation front|behind")
+            A["layer_rules"] = [x for x in A["layer_rules"] if x.get("id") != r["id"]] + [dict(r)]
+    elif t == "artistic.alternative":
+        layer = op.get("layer")
+        if not isinstance(layer, str):
+            raise OpError("artistic.alternative needs a layer")
+        if op.get("art_id", "auto") == "auto":
+            A["alternatives"].pop(layer, None)
+        else:
+            A["alternatives"][layer] = op.get("art_id")
+    else:
+        raise OpError(f"unknown operation type {t!r}")
 
 
 def default_corrective_state() -> dict[str, Any]:
@@ -457,6 +530,8 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
         _apply_handselect(st, op)
     elif t.startswith("correctives."):
         _apply_correctives(st, op)
+    elif t.startswith("artistic."):
+        _apply_artistic(st, op)
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
     else:
@@ -584,7 +659,13 @@ def _v5_to_v6(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {5})}
 
 
-MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5, 5: _v5_to_v6}  # from -> fn
+def _v6_to_v7(data: dict[str, Any]) -> dict[str, Any]:
+    """Artistic review (Phase 3.5): the base state gains ``artistic``; earlier ops replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {6})}
+
+
+MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5, 5: _v5_to_v6,
+                              6: _v6_to_v7}  # from -> fn
 
 
 def _apply_handselect(st: dict[str, Any], op: dict[str, Any]) -> None:

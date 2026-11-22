@@ -1,0 +1,100 @@
+{
+ "schema": "autorig.limb_configurations",
+ "version": "1.0.0",
+ "configurations": {
+  "arm_straight": {
+   "bones": [
+    "upper_arm",
+    "forearm",
+    "hand"
+   ],
+   "artwork": "original layers",
+   "status": "available"
+  },
+  "arm_bent_deep": {
+   "bones": [
+    "upper_arm",
+    "forearm",
+    "hand"
+   ],
+   "artwork": "alternative forearm+sleeve fold drawing (> 125 deg)",
+   "status": "missing",
+   "keeps": [
+    "elbow pivot",
+    "wrist IK target",
+    "bone names"
+   ]
+  },
+  "arm_forward_reach": {
+   "bones": [
+    "upper_arm",
+    "forearm",
+    "hand"
+   ],
+   "artwork": "foreshortened sleeve + hand toward the viewer",
+   "status": "missing",
+   "keeps": [
+    "shoulder pivot",
+    "wrist IK target"
+   ]
+  },
+  "leg_standing": {
+   "bones": [
+    "thigh",
+    "shin",
+    "foot"
+   ],
+   "artwork": "original layers",
+   "status": "available"
+  },
+  "leg_seated": {
+   "bones": [
+    "thigh",
+    "shin",
+    "foot"
+   ],
+   "artwork": "foreshortened thigh + knee top",
+   "status": "missing",
+   "keeps": [
+    "hip pivot",
+    "ankle IK target",
+    "foot contact"
+   ]
+  },
+  "leg_running": {
+   "bones": [
+    "thigh",
+    "shin",
+    "foot"
+   ],
+   "artwork": "knee-up thigh + tucked shin",
+   "status": "missing",
+   "keeps": [
+    "hip pivot",
+    "ankle IK target",
+    "gait phase"
+   ]
+  }
+ },
+ "rules": [
+  "one semantic rig: bone names, hierarchy and IK targets never change between configurations",
+  "a configuration swaps drawings (AlternativeArtworkController), never bone lengths",
+  "attachment joints and wrist/ankle positions are preserved at the switch"
+ ],
+ "moho": {
+  "switch_layer": {
+   "use": "swap a limb's drawings per configuration",
+   "status": "proposed_unverified"
+  },
+  "vitruvian_bones": {
+   "use": "alternative bone sets for a limb (e.g. seated leg)",
+   "status": "proposed_unverified",
+   "note": "not exercised; no Lua API member is assumed"
+  },
+  "smart_bone_action": {
+   "use": "drive the switch from a joint angle",
+   "status": "proposed_unverified"
+  }
+ },
+ "verified": []
+}

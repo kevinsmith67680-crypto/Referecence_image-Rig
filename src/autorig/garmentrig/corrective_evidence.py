@@ -118,8 +118,13 @@ class CorrectiveQualityEvaluator:
         beneath = (an >= ao - 0.012) & (d >= -3).all(-1) & (d <= (1 - ao)[..., None] * 255 + 3).all(-1)
         changed = ~beneath
         patch = Ro["piece_top"] == Ro["piece_codes"]["patch"]
-        viol = int((orig & changed & ~patch).sum())
-        patch_cov = int((orig & changed & patch).sum())
+        # Phase 3.5 fold overlays: approval-gated strokes over the limb's own fabric, reported separately
+        ovl = np.zeros(orig.shape, bool)
+        for m_ in (Rn.get("overlay_masks") or {}).values():
+            ovl |= m_
+        viol = int((orig & changed & ~patch & ~ovl).sum())
+        patch_cov = int((orig & changed & patch & ~ovl).sum())
+        fold_overlay = int((orig & changed & ovl).sum())
         T = THRESHOLDS
         g_off, g_on = len(off["tears"]["exposed_gap"]), len(on["tears"]["exposed_gap"])
         s_off, s_on = len(off["tears"]["visible_seam"]), len(on["tears"]["visible_seam"])
@@ -135,6 +140,7 @@ class CorrectiveQualityEvaluator:
             "A_gaps": {"exposed_gap_points": [g_off, g_on], "clipped_open_px": [c_off, c_on],
                        "pass": g_on <= T["exposed_gap_points"][0] and c_on <= T["clipped_open_px"][0]},
             "B_leakage": {"protected_violation_px": viol, "joint_patch_covered_px": patch_cov,
+                          "fold_overlay_px": fold_overlay,
                           "prevented_overlap_px": int(Rn.get("protected_overlap_prevented_px", 0)), "pass": viol == 0},
             "C_seams": {"visible_seam_points": [s_off, s_on], "pass": s_on <= T["visible_seam_points"][0]},
             "D_fringe": {"light_specks": [f_on, f_dc], "pass": f_dc is None or f_dc <= f_on},

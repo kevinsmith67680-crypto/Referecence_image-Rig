@@ -383,7 +383,7 @@ class MotionEngine:
         return self.solver.K.point(self.sk.idx[f"hand_{side}"], rest, pose)
 
     def _grip_ik(self, name, phase, speed, exaggeration, travel, overrides, live_head, allow_pending, fluid, ik,
-                 switches, switch_time, actions, targets) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+                 switches, switch_time, actions, targets, intent_fn=None) -> tuple[dict[str, Any] | None, dict[str, Any]]:
         """Gripping with an interaction target: the arm's IK target is moved so the grip drawing's grip centre
         (not the wrist) lands on the target (two fixed-point passes). Uses the one arm IK (TwoBoneIKSolver)."""
         report: dict[str, Any] = {}
@@ -403,7 +403,7 @@ class MotionEngine:
         # hold each gripping arm's current bend side: near a hanging, almost straight arm the default elbow pole is
         # nearly collinear with the shoulder->hand line and the IK could bend the elbow the other way
         _, pose0, info0 = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
-                                              allow_pending, fluid, ik)
+                                              allow_pending, fluid, ik, intent_fn)
         for s in sides:
             ctl = self.limb(f"arm_{s}")
             r0 = ctl.root(pose0)
@@ -414,7 +414,7 @@ class MotionEngine:
                 ik2[f"arm_{s}"]["bend"] = 1 if c > 0 else -1
         for k in range(16):
             it, pose, _info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
-                                                  allow_pending, fluid, ik2)
+                                                  allow_pending, fluid, ik2, intent_fn)
             gain = 1.0 if k < 2 else 0.5  # damped after two full steps (the hand turns with the forearm)
             done = True
             for s in sides:
@@ -436,8 +436,10 @@ class MotionEngine:
     def plan_and_solve(self, name: str, phase: float | None = None, speed: float = 1.0, exaggeration: float = 1.0,
                        travel: float = 0.0, overrides: dict[str, float] | None = None,
                        live_head: dict[str, float] | None = None, allow_pending: bool = False, fluid: bool = True,
-                       ik: dict[str, Any] | None = None):
+                       ik: dict[str, Any] | None = None, intent_fn: Any = None):
         it = self.planner.plan(name, phase, speed, exaggeration, travel, self.arm_style(name, allow_pending), fluid)
+        if intent_fn is not None:  # Phase 3.5: the artistic planner reshapes the preset's intent (stage 1 only)
+            it = intent_fn(it)
         ik_notes = self.apply_ik(it, ik)
         pose, info = self.solver.solve(it)
         info["ik_notes"] = ik_notes
@@ -535,7 +537,9 @@ class MotionEngine:
              previous_wrists: dict[str, Any] | None = None, evaluate_garments: bool = True,
              corrective_mode: str = "auto", corrective_overrides: dict[str, Any] | None = None,
              _preview_assets: list[Any] | None = None,
-             corrective_settings: dict[str, Any] | None = None) -> dict[str, Any]:
+             corrective_settings: dict[str, Any] | None = None, intent_fn: Any = None,
+             layer_order: Any = None, depth: dict[str, str] | None = None,
+             layer_variants: dict[str, str] | None = None) -> dict[str, Any]:
         """Processing order: intent -> contact/IK targets -> skeletal solve -> hand selection (+ wrist aim) ->
         correction selection -> garment deformation -> switch resolution -> composition -> evaluation.
 
@@ -549,9 +553,9 @@ class MotionEngine:
         spec = SPEC_BY_NAME[name]
         t0 = time.perf_counter()
         ik, grip_report = self._grip_ik(name, phase, speed, exaggeration, travel, overrides, live_head, allow_pending,
-                                        fluid, ik, switches, switch_time, hand_actions, hand_targets)
+                                        fluid, ik, switches, switch_time, hand_actions, hand_targets, intent_fn)
         it, pose, info = self.plan_and_solve(name, phase, speed, exaggeration, travel, overrides, live_head,
-                                             allow_pending, fluid, ik)
+                                             allow_pending, fluid, ik, intent_fn)
         hsel = self.select_hands(name, it, pose, allow_pending, switches,
                                  switch_time if switch_time is not None else it.phase, hand_actions, hand_targets,
                                  hand_state, hand_time, hand_beat, hand_aim, previous_wrists)
@@ -609,6 +613,13 @@ class MotionEngine:
             if base in order and any(abs(off[k]) > 1e-9 for k in ("dx", "dy", "rot")):
                 pivot = self.sk.bone(f"hand_{s}").head
                 order[order.index(base)] = self._offset_layer(base, pivot, off)
+        if layer_variants:  # Phase 3.5 alternative drawings replace their base layer (the hand-switch mechanism)
+            from ..artistic.alternatives import substitute  # noqa: PLC0415
+
+            order = substitute(order, {k: v for k, v in layer_variants.items() if v in self.dfm.info})
+            res["layer_variants"] = dict(layer_variants)
+        if layer_order is not None:  # Phase 3.5 dynamic draw order from the posed skeleton (before deformation)
+            order, res["layer_order"] = layer_order.apply(order, info, it, self, depth, name)
         t1 = time.perf_counter()
         cplan = {"pieces": [], "fills": [], "report": []}
         if self.correctives is not None:
@@ -631,10 +642,11 @@ class MotionEngine:
                             self.dfm.info[c]["pre"] = pre
         res["correctives"] = creport
         self.dfm.correctives, self.dfm.gap_fills = cplan["pieces"], cplan["fills"]
+        self.dfm.joint_folds = cplan.get("joint_folds", [])
         try:
             r = self.dfm.render_with(pose, order, corr, pad)
         finally:
-            self.dfm.correctives, self.dfm.gap_fills = [], []
+            self.dfm.correctives, self.dfm.gap_fills, self.dfm.joint_folds = [], [], []
             for c, pre in swapped.items():
                 self.dfm.info[c]["pre"] = pre
         tears = self.dfm.tears_with(pose, r, corr, self.dark)
@@ -644,7 +656,9 @@ class MotionEngine:
                      if np.hypot(x - pad - info["joints_posed"][f"upper_arm_{s}"][0],
                                  y - pad - info["joints_posed"][f"upper_arm_{s}"][1])
                      <= 2.2 * self.sk.bone(f"upper_arm_{s}").h)
-        if armpit >= 6 and not any(c["shown"] and c["category"] == "armpits" for c in creport):
+        # Phase 2 per-preset gussets are corrective artwork too: never drawn with corrective_mode="off"
+        if armpit >= 6 and corrective_mode != "off" and not any(c["shown"] and c["category"] == "armpits"
+                                                                for c in creport):
             gusset_need = True
             states = [self.inventory.correctives.get(f"gusset__{name}__{s}", "missing") for s in SIDES]
             if all(st == "approved" for st in states if st != "missing") and any(st != "missing" for st in states) \

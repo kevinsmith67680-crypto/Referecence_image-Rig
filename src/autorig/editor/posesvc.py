@@ -294,6 +294,62 @@ class PoseService:
             load_rules(self.pkg), (st.get("hand_selection") or {}).get("weights"))
         return eng
 
+    # -- Phase 3.5 Artistic Review -----------------------------------------------------------------------------
+    def artistic_info(self, st: dict[str, Any]) -> dict[str, Any]:
+        from ..artistic.poses import action_library  # noqa: PLC0415
+
+        lib = action_library()
+        A = st.get("artistic") or {}
+        acts = {a: {"title": e["base"].title, "intention": e["base"].intention, "variants": list(e["variants"]),
+                    "requires": e["base"].requires} for a, e in lib.items()}
+        appr = {k: v for k, v in st["approvals"].items() if k.startswith(("artistic_pose:", "alternative:"))}
+        return {"actions": acts, "selections": A.get("selections", {}), "templates": A.get("templates", []),
+                "constraints": A.get("constraints", []), "notes": A.get("notes", []),
+                "cycle_revisions": A.get("cycle_revisions", []), "layer_rules": A.get("layer_rules", []),
+                "approvals": appr,
+                "note": "Candidates are previews (pending hand drawings and correctives are shown, labelled). A pose is "
+                        "approved only by you; automatic rankings are recommendations, never verdicts."}
+
+    def artistic_candidates(self, st, masks, rejected, action: str) -> dict[str, Any]:
+        from ..artistic.candidates import PoseCandidateGenerator, assess, render_pose  # noqa: PLC0415
+        from ..artistic.layer_order import DynamicLayerOrderController  # noqa: PLC0415
+        from ..artistic.poses import ArtisticPose, action_library  # noqa: PLC0415
+
+        if action not in action_library():
+            raise PoseError(f"unknown action {action!r}")
+        A = st.get("artistic") or {}
+        eng = self.motion_engine(st, masks, rejected)
+        vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+        cst = st.get("correctives") or {}
+        gen = PoseCandidateGenerator(eng, vis, constraints=A.get("constraints", []))
+        rules = A.get("layer_rules", [])
+        out = []
+        variants = list(gen.lib[action]["variants"])
+        from ..artistic.poses import apply_constraints, variant  # noqa: PLC0415
+
+        items = [(v, apply_constraints(variant(action, v, gen.lib), gen.constraints)) for v in variants]
+        items += [(f"template:{t['name']}", ArtisticPose.from_json(t["pose"])) for t in A.get("templates", [])
+                  if t.get("action") == action]
+        for name, ap in items:
+            r = render_pose(eng, vis, ap, planner=gen.planner, corrective_mode=cst.get("mode", "auto"),
+                            extra={"corrective_settings": cst.get("settings") or {}},
+                            layer_order=DynamicLayerOrderController(rules))
+            a = assess(eng, ap, r)
+            key = f"artistic_pose:{action}/{name}"
+            out.append({"variant": name, "image": r["image"], "silhouette": a["silhouette_image"],
+                        "feasibility": a["feasibility"], "warnings": a["silhouette"]["warnings"],
+                        "metrics": a["silhouette"]["metrics"], "hands": a["hands"], "pending_hands": a["pending_hands"],
+                        "layer_order": r.get("layer_order"), "correctives": [c["asset_id"] for c in r.get("correctives", [])
+                                                                             if c.get("shown")],
+                        "pose": ap.to_json(), "approval_key": key,
+                        "state": (st["approvals"].get(key) or {}).get("status", "pending_review")})
+        from ..artistic.candidates import rank_key  # noqa: PLC0415
+
+        ranked = sorted(out, key=lambda c: rank_key({"feasibility": c["feasibility"], "silhouette": {
+            "warnings": c["warnings"]}, "deformation_risk": 0}))
+        return {"action": action, "candidates": out, "recommended": ranked[0]["variant"] if ranked else None,
+                "selected": (A.get("selections") or {}).get(action)}
+
     # -- Phase 3.4 Correctives tab ------------------------------------------------------------------------
     def correctives(self, st: dict[str, Any]) -> dict[str, Any]:
         """Assets (latest versions, all versions listed), approval state, requirements, settings, quality summary."""

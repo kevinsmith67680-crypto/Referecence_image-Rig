@@ -369,6 +369,37 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
             st = S.project.state()
             return png(S.pose.garment_compare(st, S.masks(), rejected_ids(st), preset))
 
+    # -- Phase 3.5 Artistic Review -----------------------------------------------------------------------------
+    @app.get("/api/artistic")
+    def artistic_info():
+        with S.lock:
+            return jsonable(S.pose.artistic_info(S.project.state()))
+
+    @app.post("/api/artistic/candidates")
+    def artistic_candidates(body: dict = Body(...)):
+        import numpy as np  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            try:
+                r = S.pose.artistic_candidates(st, S.masks(), rejected_ids(st), str(body.get("action")))
+            except PoseError as exc:
+                raise HTTPException(400, str(exc))
+        for c in r["candidates"]:
+            img = c["image"]
+            ys, xs = np.nonzero(img[..., 3] > 0)
+            box = (max(0, ys.min() - 8), ys.max() + 9, max(0, xs.min() - 8), xs.max() + 9)
+            c["image"] = b64(img[box[0]:box[1], box[2]:box[3]])
+            sil = c["silhouette"][box[0]:box[1], box[2]:box[3]]
+            c["silhouette"] = b64(np.dstack([sil, sil, sil, np.full(sil.shape, 255, np.uint8)]))
+        return JSONResponse(jsonable(r))
+
+    @app.post("/api/artistic/feedback/parse")
+    def artistic_feedback_parse(body: dict = Body(...)):
+        from ..artistic.feedback import parse_feedback  # noqa: PLC0415
+
+        return jsonable(parse_feedback(str(body.get("text", "")), str(body.get("action", ""))))
+
     # -- Phase 3.4 Correctives tab ------------------------------------------------------------------------
     @app.get("/api/correctives")
     def correctives_info():

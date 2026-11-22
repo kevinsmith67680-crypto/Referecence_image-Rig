@@ -1,0 +1,77 @@
+{
+ "asset": "art:torso_lean_forward",
+ "why": "torso leaning toward the viewer: a 3/4 or foreshortened blazer front",
+ "layers_to_redraw": [
+  "torso",
+  "pelvis"
+ ],
+ "bones": {
+  "spine": {
+   "posed_head": [
+    565.0,
+    617.5
+   ],
+   "rest_head": [
+    541.6,
+    641.1
+   ],
+   "posed_rotation_deg": -8.0
+  },
+  "chest": {
+   "posed_head": [
+    548.9,
+    505.9
+   ],
+   "rest_head": [
+    541.1,
+    528.4
+   ],
+   "posed_rotation_deg": -6.0
+  }
+ },
+ "canvas": {
+  "width": 1086,
+  "height": 1448,
+  "crop": [
+   380,
+   42,
+   704,
+   814
+  ]
+ },
+ "style": {
+  "outline_rgb": [
+   18,
+   16,
+   17
+  ],
+  "outline_width_px": 5.0,
+  "fabric_rgb": [
+   41,
+   38,
+   47
+  ],
+  "rules": [
+   "same outline colour and width",
+   "same flat-with-soft-shade colouring",
+   "draw at the character's scale (never scaled later)",
+   "only the named region: no new full-character illustration"
+  ]
+ },
+ "alignment": {
+  "attach_bone": "spine",
+  "pivot": [
+   541.6,
+   641.1
+  ],
+  "draw_order": "same as the replaced layer"
+ },
+ "provider": "none (request a drawing)",
+ "candidates": 0,
+ "files": {
+  "reference": "art_torso_lean_forward__reference.png",
+  "mask": "art_torso_lean_forward__mask.png",
+  "target_pose": "art_torso_lean_forward__target_pose.png"
+ },
+ "next": "import the drawing as an alternative (Artistic Review or AlternativeArtworkStore.add); it stays pending until approved"
+}

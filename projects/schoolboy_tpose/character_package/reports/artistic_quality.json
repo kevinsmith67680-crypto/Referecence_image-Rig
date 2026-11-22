@@ -1,0 +1,6985 @@
+{
+ "schema": "autorig.artistic_quality",
+ "version": "1.0.0",
+ "results": {
+  "poses": {
+   "A": {
+    "letter": "A",
+    "action": "relaxed_standing",
+    "title": "Relaxed standing",
+    "intention": "at ease; weight a little on the left leg, arms hanging free of the body, relaxed hands",
+    "recommended": "arms_freer",
+    "reason": "arms_freer: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 5",
+    "ranking": [
+     "arms_freer",
+     "default",
+     "symmetric_reference"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:relaxed (r)",
+      "hand:relaxed (l)"
+     ],
+     "missing": [],
+     "reasons": [
+      "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+      "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:relaxed (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      }
+     ],
+     "render": "render",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.659,
+      "hand_contour_l": 0.501,
+      "arm_separation_r_px": 81,
+      "arm_separation_l_px": 66,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.736,
+      "weight_left": 0.6,
+      "pelvis_roll": -1.0,
+      "shoulder_tilt_deg": -2.13,
+      "head_tilt_deg": 2.5,
+      "thigh_overlap_px": 59,
+      "elbow_to_torso_edge_r_px": 34.0,
+      "elbow_to_torso_edge_l_px": 24.7,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.231,
+      "hand_contour_l": 0.253,
+      "arm_separation_r_px": 61,
+      "arm_separation_l_px": 52,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.933,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 0.8,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 16.1,
+      "elbow_to_torso_edge_l_px": 24.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "r",
+       "severity": "medium",
+       "message": "r hand reads inside the body silhouette (23% of its outline on the edge)"
+      },
+      {
+       "code": "mannequin_symmetry",
+       "severity": "medium",
+       "message": "silhouette is almost symmetric (IoU 0.93): stiff, mannequin-like"
+      },
+      {
+       "code": "unclear_weight_leg",
+       "severity": "low",
+       "message": "even weight and a level pelvis: no weight-bearing leg reads"
+      }
+     ],
+     "penalty": 5,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 4,
+     "seams": 0,
+     "clipped_open_px": 41,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 0
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 18.4
+   },
+   "B": {
+    "letter": "B",
+    "action": "weight_shift",
+    "title": "Weight-shifted standing",
+    "intention": "classic contrapposto: weight on the left leg, left hip up, right knee soft, shoulders countering",
+    "recommended": "exaggerated",
+    "reason": "exaggerated: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 2",
+    "ranking": [
+     "exaggerated",
+     "both_hanging",
+     "default"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:relaxed (r)",
+      "hand:relaxed (l)"
+     ],
+     "missing": [],
+     "reasons": [
+      "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+      "corrections: hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, shoe_top_l, shoe_top_r, trouser_fold_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:relaxed (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      }
+     ],
+     "render": "render",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.797,
+      "hand_contour_l": 0.0,
+      "arm_separation_r_px": 93,
+      "arm_separation_l_px": 0,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.481,
+      "weight_left": 0.85,
+      "pelvis_roll": -10.36,
+      "shoulder_tilt_deg": -8.75,
+      "head_tilt_deg": -5.92,
+      "thigh_overlap_px": 392,
+      "elbow_to_torso_edge_r_px": 48.0,
+      "elbow_to_torso_edge_l_px": 12.2,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.231,
+      "hand_contour_l": 0.253,
+      "arm_separation_r_px": 61,
+      "arm_separation_l_px": 52,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.933,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 0.8,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 16.1,
+      "elbow_to_torso_edge_l_px": 24.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "r",
+       "severity": "medium",
+       "message": "r hand reads inside the body silhouette (23% of its outline on the edge)"
+      },
+      {
+       "code": "mannequin_symmetry",
+       "severity": "medium",
+       "message": "silhouette is almost symmetric (IoU 0.93): stiff, mannequin-like"
+      },
+      {
+       "code": "unclear_weight_leg",
+       "severity": "low",
+       "message": "even weight and a level pelvis: no weight-bearing leg reads"
+      }
+     ],
+     "penalty": 5,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "knee_fold_r"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 2,
+     "seams": 4,
+     "clipped_open_px": 19,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 96
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 18.9
+   },
+   "C": {
+    "letter": "C",
+    "action": "point_right",
+    "title": "Pointing (right hand)",
+    "intention": "points at someone to his right: arm extended, weight toward the target, head turned with it",
+    "recommended": "bent_elbow",
+    "reason": "bent_elbow: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 3",
+    "ranking": [
+     "bent_elbow",
+     "raised_shoulder",
+     "default",
+     "lean_in"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:point (r)",
+      "hand:relaxed (l)"
+     ],
+     "missing": [],
+     "reasons": [
+      "pending review (previewed): hand:point (r); hand:relaxed (l)",
+      "corrections: armpit_gusset_r, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:point (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      }
+     ],
+     "render": "render",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.781,
+      "hand_contour_l": 0.371,
+      "arm_separation_r_px": 375,
+      "arm_separation_l_px": 54,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.731,
+      "weight_left": 0.35,
+      "pelvis_roll": 1.8,
+      "shoulder_tilt_deg": 0.69,
+      "head_tilt_deg": -4.0,
+      "thigh_overlap_px": 60,
+      "elbow_to_torso_edge_r_px": 180.3,
+      "elbow_to_torso_edge_l_px": 16.3,
+      "components": 1,
+      "pointing_hand": "point"
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.659,
+      "hand_contour_l": 0.207,
+      "arm_separation_r_px": 408,
+      "arm_separation_l_px": 49,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.57,
+      "weight_left": 0.6,
+      "pelvis_roll": -3.0,
+      "shoulder_tilt_deg": 5.74,
+      "head_tilt_deg": -5.0,
+      "thigh_overlap_px": 57,
+      "elbow_to_torso_edge_r_px": 173.4,
+      "elbow_to_torso_edge_l_px": 23.0,
+      "components": 1,
+      "pointing_hand": "open"
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "l",
+       "severity": "medium",
+       "message": "l hand reads inside the body silhouette (21% of its outline on the edge)"
+      },
+      {
+       "code": "gesture_hand_wrong",
+       "side": "r",
+       "severity": "high",
+       "message": "pointing pose shows the 'open' hand: reads as a wave, not a point"
+      }
+     ],
+     "penalty": 5,
+     "readable": false,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "point",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "armpit_gusset_r",
+     "shoe_top_l",
+     "elbow_fold_r"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 2,
+     "seams": 6,
+     "clipped_open_px": 36,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 42
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 22.0
+   },
+   "D": {
+    "letter": "D",
+    "action": "point_left",
+    "title": "Pointing (left hand)",
+    "intention": "points at someone to his left; the left pointing drawing is a mirrored copy (flagged)",
+    "recommended": "default",
+    "reason": "default: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 6",
+    "ranking": [
+     "default",
+     "bent_elbow",
+     "lean_in"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:relaxed (r)",
+      "hand:point (l)"
+     ],
+     "missing": [],
+     "reasons": [
+      "pending review (previewed): hand:relaxed (r); hand:point (l)",
+      "corrections: armpit_gusset_l, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:relaxed (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:point (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      }
+     ],
+     "render": "render",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.329,
+      "hand_contour_l": 0.799,
+      "arm_separation_r_px": 61,
+      "arm_separation_l_px": 420,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.754,
+      "weight_left": 0.65,
+      "pelvis_roll": -1.8,
+      "shoulder_tilt_deg": 0.02,
+      "head_tilt_deg": 4.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 11.7,
+      "elbow_to_torso_edge_l_px": 145.8,
+      "components": 1,
+      "pointing_hand": "point"
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": null,
+    "hands": {
+     "r": "relaxed",
+     "l": "point"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "armpit_gusset_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 5,
+     "seams": 9,
+     "clipped_open_px": 36,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 0
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 15.8
+   },
+   "E": {
+    "letter": "E",
+    "action": "shrug",
+    "title": "Shrugging",
+    "intention": "'I don't know': shoulders up (one higher), elbows in, forearms out, palms up, head sinks and tilts",
+    "recommended": "default",
+    "reason": "default: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 8",
+    "ranking": [
+     "default",
+     "symmetric",
+     "big"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS",
+     "pending_approval": [],
+     "missing": [],
+     "reasons": [
+      "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_l"
+     ],
+     "needs": [],
+     "render": "render",
+     "base_feasibility": "SUPPORTED",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.662,
+      "hand_contour_l": 0.66,
+      "arm_separation_r_px": 197,
+      "arm_separation_l_px": 167,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.764,
+      "weight_left": 0.6,
+      "pelvis_roll": -0.8,
+      "shoulder_tilt_deg": -1.78,
+      "head_tilt_deg": 7.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 28.2,
+      "elbow_to_torso_edge_l_px": 6.0,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.662,
+      "hand_contour_l": 0.665,
+      "arm_separation_r_px": 216,
+      "arm_separation_l_px": 175,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.902,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 1.17,
+      "head_tilt_deg": 6.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 47.9,
+      "elbow_to_torso_edge_l_px": 35.4,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "open",
+     "l": "open"
+    },
+    "pending_hands": [],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "elbow_fold_r",
+     "elbow_fold_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 6,
+     "seams": 25,
+     "clipped_open_px": 51,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 1001
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 17.5
+   },
+   "F": {
+    "letter": "F",
+    "action": "arm_raised",
+    "title": "Arm raised above the shoulder",
+    "intention": "raises the right hand high (asking a question): weight on the left leg, torso leans away from the arm",
+    "recommended": "no_lean",
+    "reason": "no_lean: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 2",
+    "ranking": [
+     "no_lean",
+     "default",
+     "straight_arm"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 1 drawing)",
+     "pending_approval": [
+      "hand:relaxed (l)"
+     ],
+     "missing": [],
+     "reasons": [
+      "pending review (previewed): hand:relaxed (l)",
+      "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_r, shoulder_raise_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      }
+     ],
+     "render": "render",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.65,
+      "hand_contour_l": 0.446,
+      "arm_separation_r_px": 432,
+      "arm_separation_l_px": 62,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.619,
+      "weight_left": 0.68,
+      "pelvis_roll": -1.08,
+      "shoulder_tilt_deg": 10.0,
+      "head_tilt_deg": 3.0,
+      "thigh_overlap_px": 57,
+      "elbow_to_torso_edge_r_px": 100.3,
+      "elbow_to_torso_edge_l_px": 21.4,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.651,
+      "hand_contour_l": 0.259,
+      "arm_separation_r_px": 315,
+      "arm_separation_l_px": 48,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.768,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 7.7,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 59,
+      "elbow_to_torso_edge_r_px": 125.5,
+      "elbow_to_torso_edge_l_px": 24.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "unclear_weight_leg",
+       "severity": "low",
+       "message": "even weight and a level pelvis: no weight-bearing leg reads"
+      }
+     ],
+     "penalty": 1,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "open",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "armpit_gusset_r",
+     "shoe_top_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 2,
+     "seams": 0,
+     "clipped_open_px": 20,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 0
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 17.7
+   },
+   "G": {
+    "letter": "G",
+    "action": "deep_elbow",
+    "title": "Deep elbow bend (hand to chin)",
+    "intention": "thinking: right hand toward the chin; the forearm folds well past 125 deg",
+    "recommended": "default",
+    "reason": "default: REQUIRES_ALTERNATIVE_ARTWORK, 0 silhouette warning(s), deformation risk 6",
+    "ranking": [
+     "default"
+    ],
+    "feasibility": {
+     "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+     "label": "REQUIRES_ALTERNATIVE_ARTWORK (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:palm_down (r)",
+      "hand:relaxed (l)"
+     ],
+     "missing": [
+      "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+      "hand:fist or thinking hand (approved)"
+     ],
+     "reasons": [
+      "missing: corrective:elbow_deep_r (sleeve fold for > 125 deg); hand:fist or thinking hand (approved)",
+      "pending review (previewed): hand:palm_down (r); hand:relaxed (l)",
+      "corrections: elbow_deep_r, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, sleeve_crease_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:palm_down (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+       "state": "missing",
+       "why": "declared by the pose"
+      },
+      {
+       "asset": "hand:fist or thinking hand (approved)",
+       "state": "missing",
+       "why": "declared by the pose"
+      }
+     ],
+     "render": "preview_with_labels",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.0,
+      "hand_contour_l": 0.421,
+      "arm_separation_r_px": 0,
+      "arm_separation_l_px": 60,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.754,
+      "weight_left": 0.6,
+      "pelvis_roll": -0.8,
+      "shoulder_tilt_deg": 0.46,
+      "head_tilt_deg": -3.0,
+      "thigh_overlap_px": 57,
+      "elbow_to_torso_edge_r_px": 48.2,
+      "elbow_to_torso_edge_l_px": 22.0,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.0,
+      "hand_contour_l": 0.26,
+      "arm_separation_r_px": 0,
+      "arm_separation_l_px": 48,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.897,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 0.89,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 30.1,
+      "elbow_to_torso_edge_l_px": 24.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "unclear_weight_leg",
+       "severity": "low",
+       "message": "even weight and a level pelvis: no weight-bearing leg reads"
+      }
+     ],
+     "penalty": 1,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "palm_down",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "elbow_fold_r"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 3,
+     "seams": 0,
+     "clipped_open_px": 90,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 477
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 9.9
+   },
+   "H": {
+    "letter": "H",
+    "action": "walk",
+    "title": "Walking",
+    "intention": "front-view walk: arms swing beside the body, relaxed hands",
+    "recommended": "default",
+    "reason": "default: REQUIRES_NEW_VIEW, 0 silhouette warning(s), deformation risk 1",
+    "ranking": [
+     "default",
+     "phase_0.75"
+    ],
+    "feasibility": {
+     "class": "REQUIRES_NEW_VIEW",
+     "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:relaxed (r)",
+      "hand:relaxed (l)"
+     ],
+     "missing": [
+      "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+     ],
+     "reasons": [
+      "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+      "missing: side or 3/4 view for a readable stride (front view: in-plane motion only)",
+      "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+      "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:relaxed (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "side or 3/4 view for a readable stride (front view: in-plane motion only)",
+       "state": "missing",
+       "why": "declared by the pose"
+      }
+     ],
+     "render": "preview_with_labels",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.438,
+      "hand_contour_l": 0.326,
+      "arm_separation_r_px": 71,
+      "arm_separation_l_px": 61,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.648,
+      "weight_left": 0.5,
+      "pelvis_roll": -1.9,
+      "shoulder_tilt_deg": 0.14,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 21.2,
+      "elbow_to_torso_edge_l_px": 22.0,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.434,
+      "hand_contour_l": 0.0,
+      "arm_separation_r_px": 85,
+      "arm_separation_l_px": 0,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.584,
+      "weight_left": 0.5,
+      "pelvis_roll": -1.9,
+      "shoulder_tilt_deg": 0.4,
+      "head_tilt_deg": -0.26,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 37.9,
+      "elbow_to_torso_edge_l_px": 3.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "l",
+       "severity": "high",
+       "message": "l hand reads inside the body silhouette (0% of its outline on the edge)"
+      }
+     ],
+     "penalty": 3,
+     "readable": false,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 1,
+     "seams": 0,
+     "clipped_open_px": 22,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 0
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 16.2
+   },
+   "I": {
+    "letter": "I",
+    "action": "run",
+    "title": "Running",
+    "intention": "front-view jog: elbows bent, fists pumping beside the body",
+    "recommended": "phase_0.6",
+    "reason": "phase_0.6: REQUIRES_NEW_VIEW, 1 silhouette warning(s), deformation risk 1",
+    "ranking": [
+     "phase_0.6",
+     "default"
+    ],
+    "feasibility": {
+     "class": "REQUIRES_NEW_VIEW",
+     "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:fist (r)",
+      "hand:fist (l)"
+     ],
+     "missing": [
+      "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+      "side or 3/4 view for a readable sprint"
+     ],
+     "reasons": [
+      "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+      "missing: art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer); side or 3/4 view for a readable sprint",
+      "pending review (previewed): hand:fist (r); hand:fist (l)",
+      "corrections: elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, running_knee_drive, shoe_top_l, shoe_top_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:fist (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:fist (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+       "state": "missing",
+       "why": "declared by the pose"
+      },
+      {
+       "asset": "side or 3/4 view for a readable sprint",
+       "state": "missing",
+       "why": "declared by the pose"
+      }
+     ],
+     "render": "preview_with_labels",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.0,
+      "hand_contour_l": 0.369,
+      "arm_separation_r_px": 22,
+      "arm_separation_l_px": 15,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.629,
+      "weight_left": 0.5,
+      "pelvis_roll": 4.76,
+      "shoulder_tilt_deg": 4.4,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 42.4,
+      "elbow_to_torso_edge_l_px": 59.9,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "r",
+       "severity": "high",
+       "message": "r hand reads inside the body silhouette (0% of its outline on the edge)"
+      }
+     ],
+     "penalty": 3,
+     "readable": false,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.432,
+      "hand_contour_l": 0.0,
+      "arm_separation_r_px": 95,
+      "arm_separation_l_px": 0,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.638,
+      "weight_left": 0.5,
+      "pelvis_roll": -4.05,
+      "shoulder_tilt_deg": -0.01,
+      "head_tilt_deg": -0.87,
+      "thigh_overlap_px": 55,
+      "elbow_to_torso_edge_r_px": 46.8,
+      "elbow_to_torso_edge_l_px": 15.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "l",
+       "severity": "high",
+       "message": "l hand reads inside the body silhouette (0% of its outline on the edge)"
+      }
+     ],
+     "penalty": 3,
+     "readable": false,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "fist",
+     "l": "fist"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "elbow_fold_r",
+     "knee_fold_r"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": true,
+     "fired": [
+      {
+       "rule": "leg_forward_r",
+       "why": "r leg swings toward the viewer"
+      }
+     ],
+     "ambiguous": [],
+     "moved": [
+      "thigh_l",
+      "foot_l",
+      "shin_l",
+      "thigh_r",
+      "foot_r",
+      "shin_r"
+     ]
+    },
+    "diagnostics": {
+     "gaps": 0,
+     "seams": 0,
+     "clipped_open_px": 41,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 297
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 16.1
+   },
+   "J": {
+    "letter": "J",
+    "action": "sit",
+    "title": "Sitting",
+    "intention": "sits upright on a chair, hands resting on the knees (fallback: front squat-sit)",
+    "recommended": "default",
+    "reason": "default: REQUIRES_ALTERNATIVE_ARTWORK, 0 silhouette warning(s), deformation risk 13",
+    "ranking": [
+     "default"
+    ],
+    "feasibility": {
+     "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+     "label": "REQUIRES_ALTERNATIVE_ARTWORK (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:palm_down (r)",
+      "hand:palm_down (l)"
+     ],
+     "missing": [
+      "art:thigh_foreshortened",
+      "art:seat",
+      "corrective:trousers_seated"
+     ],
+     "reasons": [
+      "missing: art:thigh_foreshortened; art:seat; corrective:trousers_seated",
+      "pending review (previewed): hand:palm_down (r); hand:palm_down (l)",
+      "corrections: hem_on_shoe_l, hem_on_shoe_r, hip_flexion_l, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, sitting_trousers, trouser_fold_l, trouser_fold_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:palm_down (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:palm_down (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "art:thigh_foreshortened",
+       "state": "missing",
+       "why": "thighs pointing at the viewer (front-view sitting)"
+      },
+      {
+       "asset": "art:seat",
+       "state": "missing",
+       "why": "a seat or chair"
+      },
+      {
+       "asset": "corrective:trousers_seated",
+       "state": "missing",
+       "why": "seated trousers (thighs toward the viewer) triggered at 1 deg; band-rule deformation used instead"
+      }
+     ],
+     "render": "preview_with_labels",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.077,
+      "hand_contour_l": 0.115,
+      "arm_separation_r_px": 94,
+      "arm_separation_l_px": 1,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.939,
+      "weight_left": 0.5,
+      "pelvis_roll": -0.0,
+      "shoulder_tilt_deg": 0.76,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 42.6,
+      "elbow_to_torso_edge_l_px": 47.4,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.0,
+      "hand_contour_l": 0.0,
+      "arm_separation_r_px": 11,
+      "arm_separation_l_px": 3,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.94,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 0.76,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 57,
+      "elbow_to_torso_edge_r_px": 42.4,
+      "elbow_to_torso_edge_l_px": 47.4,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "palm_down",
+     "l": "palm_down"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "knee_fold_r",
+     "knee_fold_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 10,
+     "seams": 5,
+     "clipped_open_px": 86,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 2481
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 10.4
+   },
+   "K": {
+    "letter": "K",
+    "action": "squat",
+    "title": "Squatting",
+    "intention": "squats with forearms resting on the knees, weight slightly to one side",
+    "recommended": "default",
+    "reason": "default: SUPPORTED_WITH_CORRECTIONS, 0 silhouette warning(s), deformation risk 8",
+    "ranking": [
+     "default",
+     "hands_hanging"
+    ],
+    "feasibility": {
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:palm_down (r)",
+      "hand:palm_down (l)"
+     ],
+     "missing": [],
+     "reasons": [
+      "pending review (previewed): hand:palm_down (r); hand:palm_down (l)",
+      "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, trouser_fold_l, trouser_fold_r"
+     ],
+     "needs": [
+      {
+       "asset": "hand:palm_down (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:palm_down (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      }
+     ],
+     "render": "render",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.019,
+      "hand_contour_l": 0.032,
+      "arm_separation_r_px": 15,
+      "arm_separation_l_px": 5,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.867,
+      "weight_left": 0.56,
+      "pelvis_roll": -0.24,
+      "shoulder_tilt_deg": 0.53,
+      "head_tilt_deg": 2.0,
+      "thigh_overlap_px": 57,
+      "elbow_to_torso_edge_r_px": 47.3,
+      "elbow_to_torso_edge_l_px": 49.7,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.0,
+      "hand_contour_l": 0.0,
+      "arm_separation_r_px": 28,
+      "arm_separation_l_px": 14,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.94,
+      "weight_left": 0.5,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": 0.73,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 51.4,
+      "elbow_to_torso_edge_l_px": 54.3,
+      "components": 1
+     },
+     "warnings": [],
+     "penalty": 0,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "palm_down",
+     "l": "palm_down"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l",
+     "elbow_fold_r",
+     "knee_fold_r",
+     "elbow_fold_l",
+     "knee_fold_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 4,
+     "seams": 2,
+     "clipped_open_px": 111,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 2462
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 15.7
+   },
+   "L": {
+    "letter": "L",
+    "action": "lean_forward",
+    "title": "Leaning forward",
+    "intention": "leans toward the viewer (curious); front-view art can only lean sideways",
+    "recommended": "default",
+    "reason": "default: REQUIRES_NEW_VIEW, 3 silhouette warning(s), deformation risk 11",
+    "ranking": [
+     "default"
+    ],
+    "feasibility": {
+     "class": "REQUIRES_NEW_VIEW",
+     "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+     "pending_approval": [
+      "hand:relaxed (r)",
+      "hand:relaxed (l)"
+     ],
+     "missing": [
+      "art:torso_lean_forward",
+      "corrective:torso_lean_3q"
+     ],
+     "reasons": [
+      "the intended motion goes toward the viewer: needs FRONT_THREE_QUARTER_LEFT artwork (front view shows an in-plane approximation)",
+      "missing: art:torso_lean_forward; corrective:torso_lean_3q",
+      "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+      "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, torso_lean_sagittal"
+     ],
+     "needs": [
+      {
+       "asset": "hand:relaxed (r)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "hand:relaxed (l)",
+       "state": "pending_review",
+       "why": "the gesture's hand drawing is not approved; shown as a preview"
+      },
+      {
+       "asset": "art:torso_lean_forward",
+       "state": "missing",
+       "why": "3/4 or foreshortened torso leaning toward the viewer"
+      },
+      {
+       "asset": "corrective:torso_lean_3q",
+       "state": "missing",
+       "why": "torso lean toward/away from the viewer (3/4 torso drawing) triggered at 1 deg; band-rule deformation used instead"
+      }
+     ],
+     "render": "preview_with_labels",
+     "base_feasibility": "NEEDS_ARTWORK",
+     "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+    },
+    "silhouette_after": {
+     "metrics": {
+      "hand_contour_r": 0.563,
+      "hand_contour_l": 0.214,
+      "arm_separation_r_px": 87,
+      "arm_separation_l_px": 34,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.649,
+      "weight_left": 0.5,
+      "pelvis_roll": -0.0,
+      "shoulder_tilt_deg": -13.23,
+      "head_tilt_deg": 0.0,
+      "thigh_overlap_px": 59,
+      "elbow_to_torso_edge_r_px": 46.0,
+      "elbow_to_torso_edge_l_px": 4.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "l",
+       "severity": "medium",
+       "message": "l hand reads inside the body silhouette (21% of its outline on the edge)"
+      },
+      {
+       "code": "unclear_weight_leg",
+       "severity": "low",
+       "message": "even weight and a level pelvis: no weight-bearing leg reads"
+      },
+      {
+       "code": "elbow_on_torso_contour",
+       "side": "l",
+       "severity": "low",
+       "message": "l elbow sits on the torso outline (confusing contour)"
+      }
+     ],
+     "penalty": 4,
+     "readable": true,
+     "artistic_review_required": true
+    },
+    "silhouette_before": {
+     "metrics": {
+      "hand_contour_r": 0.49,
+      "hand_contour_l": 0.0,
+      "arm_separation_r_px": 96,
+      "arm_separation_l_px": 0,
+      "tangency_px": {
+       "r": 0,
+       "l": 0
+      },
+      "symmetry_iou": 0.672,
+      "weight_left": 0.35,
+      "pelvis_roll": 0.0,
+      "shoulder_tilt_deg": -13.04,
+      "head_tilt_deg": 4.0,
+      "thigh_overlap_px": 58,
+      "elbow_to_torso_edge_r_px": 58.0,
+      "elbow_to_torso_edge_l_px": 19.0,
+      "components": 1
+     },
+     "warnings": [
+      {
+       "code": "hand_inside_silhouette",
+       "side": "l",
+       "severity": "high",
+       "message": "l hand reads inside the body silhouette (0% of its outline on the edge)"
+      },
+      {
+       "code": "arm_merged_with_body",
+       "side": "l",
+       "severity": "medium",
+       "message": "no negative space between the l arm and the body"
+      },
+      {
+       "code": "head_follows_shoulders",
+       "severity": "low",
+       "message": "head tilts with the shoulder line instead of countering it"
+      }
+     ],
+     "penalty": 6,
+     "readable": false,
+     "artistic_review_required": true
+    },
+    "hands": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "pending_hands": [
+     "r",
+     "l"
+    ],
+    "correctives_shown": [
+     "shoe_top_r",
+     "shoe_top_l"
+    ],
+    "alternatives": [],
+    "layer_order": {
+     "changed": false,
+     "fired": [],
+     "ambiguous": [],
+     "moved": []
+    },
+    "diagnostics": {
+     "gaps": 9,
+     "seams": 0,
+     "clipped_open_px": 54,
+     "protected_violation_px": 0,
+     "fold_overlay_px": 0
+    },
+    "human_review": "pending (no person has approved this pose)",
+    "wall_s": 11.1
+   }
+  },
+  "candidates": {
+   "relaxed_standing": [
+    {
+     "action": "relaxed_standing",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.533,
+       "hand_contour_l": 0.356,
+       "arm_separation_r_px": 72,
+       "arm_separation_l_px": 59,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.745,
+       "weight_left": 0.6,
+       "pelvis_roll": -1.0,
+       "shoulder_tilt_deg": -2.13,
+       "head_tilt_deg": 2.5,
+       "thigh_overlap_px": 59,
+       "elbow_to_torso_edge_r_px": 27.0,
+       "elbow_to_torso_edge_l_px": 19.0,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 7,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.138,
+     "human_review": "pending",
+     "pose": {
+      "action": "relaxed_standing",
+      "title": "Relaxed standing",
+      "base": "relaxed_standing",
+      "intention": "at ease; weight a little on the left leg, arms hanging free of the body, relaxed hands",
+      "weight_left": 0.6,
+      "contrapposto": 0.5,
+      "line_of_action": -2.0,
+      "head": 2.5,
+      "clavicle": {
+       "r": -2.0,
+       "l": -1.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 11.0,
+        "flexion": 5.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 9.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "relaxed_standing",
+     "variant": "arms_freer",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.659,
+       "hand_contour_l": 0.501,
+       "arm_separation_r_px": 81,
+       "arm_separation_l_px": 66,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.736,
+       "weight_left": 0.6,
+       "pelvis_roll": -1.0,
+       "shoulder_tilt_deg": -2.13,
+       "head_tilt_deg": 2.5,
+       "thigh_overlap_px": 59,
+       "elbow_to_torso_edge_r_px": 34.0,
+       "elbow_to_torso_edge_l_px": 24.7,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 5,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.511,
+     "human_review": "pending",
+     "pose": {
+      "action": "relaxed_standing",
+      "title": "Relaxed standing",
+      "base": "relaxed_standing",
+      "intention": "at ease; weight a little on the left leg, arms hanging free of the body, relaxed hands",
+      "weight_left": 0.6,
+      "contrapposto": 0.5,
+      "line_of_action": -2.0,
+      "head": 2.5,
+      "clavicle": {
+       "r": -2.0,
+       "l": -1.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 14.0,
+        "flexion": 3.0,
+        "wrist": 2.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 12.0,
+        "flexion": 6.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "arms_freer",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "relaxed_standing",
+     "variant": "symmetric_reference",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.268,
+       "hand_contour_l": 0.275,
+       "arm_separation_r_px": 63,
+       "arm_separation_l_px": 66,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.938,
+       "weight_left": 0.5,
+       "pelvis_roll": -0.0,
+       "shoulder_tilt_deg": 0.44,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 16.1,
+       "elbow_to_torso_edge_l_px": 24.0,
+       "components": 1
+      },
+      "warnings": [
+       {
+        "code": "mannequin_symmetry",
+        "severity": "medium",
+        "message": "silhouette is almost symmetric (IoU 0.94): stiff, mannequin-like"
+       },
+       {
+        "code": "unclear_weight_leg",
+        "severity": "low",
+        "message": "even weight and a level pelvis: no weight-bearing leg reads"
+       }
+      ],
+      "penalty": 3,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 7,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.223,
+     "human_review": "pending",
+     "pose": {
+      "action": "relaxed_standing",
+      "title": "Relaxed standing",
+      "base": "relaxed_standing",
+      "intention": "at ease; weight a little on the left leg, arms hanging free of the body, relaxed hands",
+      "weight_left": 0.5,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {
+       "r": -2.0,
+       "l": -1.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 14.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 14.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "symmetric_reference",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "weight_shift": [
+    {
+     "action": "weight_shift",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.655,
+       "hand_contour_l": 0.0,
+       "arm_separation_r_px": 82,
+       "arm_separation_l_px": 0,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.551,
+       "weight_left": 0.8,
+       "pelvis_roll": -6.0,
+       "shoulder_tilt_deg": -4.32,
+       "head_tilt_deg": -4.0,
+       "thigh_overlap_px": 102,
+       "elbow_to_torso_edge_r_px": 39.1,
+       "elbow_to_torso_edge_l_px": 17.7,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 8,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.394,
+     "human_review": "pending",
+     "pose": {
+      "action": "weight_shift",
+      "title": "Weight-shifted standing",
+      "base": "relaxed_standing",
+      "intention": "classic contrapposto: weight on the left leg, left hip up, right knee soft, shoulders countering",
+      "weight_left": 0.8,
+      "contrapposto": 1.0,
+      "line_of_action": -4.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": -3.0,
+       "l": 2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 12.0,
+        "flexion": 8.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hip",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": 2.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "hand_on_hip",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 14.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "weight_shift",
+     "variant": "both_hanging",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.696,
+       "hand_contour_l": 0.482,
+       "arm_separation_r_px": 85,
+       "arm_separation_l_px": 62,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.501,
+       "weight_left": 0.8,
+       "pelvis_roll": -6.0,
+       "shoulder_tilt_deg": -6.22,
+       "head_tilt_deg": -4.0,
+       "thigh_overlap_px": 102,
+       "elbow_to_torso_edge_r_px": 39.1,
+       "elbow_to_torso_edge_l_px": 20.0,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 6,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.81,
+     "human_review": "pending",
+     "pose": {
+      "action": "weight_shift",
+      "title": "Weight-shifted standing",
+      "base": "relaxed_standing",
+      "intention": "classic contrapposto: weight on the left leg, left hip up, right knee soft, shoulders countering",
+      "weight_left": 0.8,
+      "contrapposto": 1.0,
+      "line_of_action": -4.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": -3.0,
+       "l": 2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 12.0,
+        "flexion": 6.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 14.0,
+        "flexion": 4.0,
+        "wrist": 2.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 14.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "both_hanging",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "weight_shift",
+     "variant": "exaggerated",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, shoe_top_l, shoe_top_r, trouser_fold_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.797,
+       "hand_contour_l": 0.0,
+       "arm_separation_r_px": 93,
+       "arm_separation_l_px": 0,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.481,
+       "weight_left": 0.85,
+       "pelvis_roll": -10.36,
+       "shoulder_tilt_deg": -8.75,
+       "head_tilt_deg": -5.92,
+       "thigh_overlap_px": 392,
+       "elbow_to_torso_edge_r_px": 48.0,
+       "elbow_to_torso_edge_l_px": 12.2,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 2,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.164,
+     "human_review": "pending",
+     "pose": {
+      "action": "weight_shift",
+      "title": "Weight-shifted standing",
+      "base": "relaxed_standing",
+      "intention": "classic contrapposto: weight on the left leg, left hip up, right knee soft, shoulders countering",
+      "weight_left": 0.8,
+      "contrapposto": 1.0,
+      "line_of_action": -4.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": -3.0,
+       "l": 2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 12.0,
+        "flexion": 8.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hip",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": 2.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "hand_on_hip",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 14.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.8,
+      "front": [],
+      "depth": {},
+      "variant": "exaggerated",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "point_right": [
+    {
+     "action": "point_right",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:point (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:point (r); hand:relaxed (l)",
+       "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:point (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.806,
+       "hand_contour_l": 0.36,
+       "arm_separation_r_px": 393,
+       "arm_separation_l_px": 53,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.74,
+       "weight_left": 0.35,
+       "pelvis_roll": 1.8,
+       "shoulder_tilt_deg": 1.4,
+       "head_tilt_deg": -4.0,
+       "thigh_overlap_px": 59,
+       "elbow_to_torso_edge_r_px": 177.5,
+       "elbow_to_torso_edge_l_px": 15.5,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 4,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.002,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_right",
+      "title": "Pointing (right hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his right: arm extended, weight toward the target, head turned with it",
+      "weight_left": 0.35,
+      "contrapposto": 0.6,
+      "line_of_action": -5.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": 4.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -2.0,
+        "reach": [
+         0.94,
+         0.22
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "point_right",
+     "variant": "bent_elbow",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:point (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:point (r); hand:relaxed (l)",
+       "corrections: armpit_gusset_r, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:point (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.781,
+       "hand_contour_l": 0.371,
+       "arm_separation_r_px": 375,
+       "arm_separation_l_px": 54,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.731,
+       "weight_left": 0.35,
+       "pelvis_roll": 1.8,
+       "shoulder_tilt_deg": 0.69,
+       "head_tilt_deg": -4.0,
+       "thigh_overlap_px": 60,
+       "elbow_to_torso_edge_r_px": 180.3,
+       "elbow_to_torso_edge_l_px": 16.3,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 3,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.022,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_right",
+      "title": "Pointing (right hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his right: arm extended, weight toward the target, head turned with it",
+      "weight_left": 0.35,
+      "contrapposto": 0.6,
+      "line_of_action": -5.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": 4.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -6.0,
+        "reach": [
+         0.82,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "bent_elbow",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "point_right",
+     "variant": "lean_in",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:point (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:point (r); hand:relaxed (l)",
+       "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, knee_fold_l, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:point (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.798,
+       "hand_contour_l": 0.243,
+       "arm_separation_r_px": 381,
+       "arm_separation_l_px": 45,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.618,
+       "weight_left": 0.276,
+       "pelvis_roll": 3.33,
+       "shoulder_tilt_deg": -3.71,
+       "head_tilt_deg": -4.96,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 176.8,
+       "elbow_to_torso_edge_l_px": 5.0,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [
+       {
+        "code": "hand_inside_silhouette",
+        "side": "l",
+        "severity": "medium",
+        "message": "l hand reads inside the body silhouette (24% of its outline on the edge)"
+       },
+       {
+        "code": "elbow_on_torso_contour",
+        "side": "l",
+        "severity": "low",
+        "message": "l elbow sits on the torso outline (confusing contour)"
+       }
+      ],
+      "penalty": 3,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 3,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.96,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_right",
+      "title": "Pointing (right hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his right: arm extended, weight toward the target, head turned with it",
+      "weight_left": 0.3,
+      "contrapposto": 0.6,
+      "line_of_action": -9.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": 4.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -2.0,
+        "reach": [
+         0.94,
+         0.22
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.4,
+      "front": [],
+      "depth": {},
+      "variant": "lean_in",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "point_right",
+     "variant": "raised_shoulder",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:point (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:point (r); hand:relaxed (l)",
+       "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:point (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.805,
+       "hand_contour_l": 0.362,
+       "arm_separation_r_px": 407,
+       "arm_separation_l_px": 53,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.74,
+       "weight_left": 0.35,
+       "pelvis_roll": 1.8,
+       "shoulder_tilt_deg": 3.44,
+       "head_tilt_deg": -4.0,
+       "thigh_overlap_px": 59,
+       "elbow_to_torso_edge_r_px": 175.6,
+       "elbow_to_torso_edge_l_px": 15.5,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 3,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.07,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_right",
+      "title": "Pointing (right hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his right: arm extended, weight toward the target, head turned with it",
+      "weight_left": 0.35,
+      "contrapposto": 0.6,
+      "line_of_action": -5.0,
+      "head": -4.0,
+      "clavicle": {
+       "r": 10.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -2.0,
+        "reach": [
+         0.94,
+         0.22
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "raised_shoulder",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "point_left": [
+    {
+     "action": "point_left",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:point (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:point (l)",
+       "corrections: armpit_gusset_l, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:point (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.329,
+       "hand_contour_l": 0.799,
+       "arm_separation_r_px": 61,
+       "arm_separation_l_px": 420,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.754,
+       "weight_left": 0.65,
+       "pelvis_roll": -1.8,
+       "shoulder_tilt_deg": 0.02,
+       "head_tilt_deg": 4.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 11.7,
+       "elbow_to_torso_edge_l_px": 145.8,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 6,
+     "hands": {
+      "r": "relaxed",
+      "l": "point"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.743,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_left",
+      "title": "Pointing (left hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his left; the left pointing drawing is a mirrored copy (flagged)",
+      "weight_left": 0.65,
+      "contrapposto": 0.6,
+      "line_of_action": 5.0,
+      "head": 4.0,
+      "clavicle": {
+       "l": 4.0,
+       "r": -2.0
+      },
+      "arms": {
+       "l": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -2.0,
+        "reach": [
+         0.94,
+         0.22
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "r": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "point_left",
+     "variant": "bent_elbow",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:point (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:point (l)",
+       "corrections: armpit_gusset_l, elbow_fold_l, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:point (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.325,
+       "hand_contour_l": 0.779,
+       "arm_separation_r_px": 60,
+       "arm_separation_l_px": 379,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.744,
+       "weight_left": 0.65,
+       "pelvis_roll": -1.8,
+       "shoulder_tilt_deg": 0.77,
+       "head_tilt_deg": 4.0,
+       "thigh_overlap_px": 60,
+       "elbow_to_torso_edge_r_px": 12.1,
+       "elbow_to_torso_edge_l_px": 145.3,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 6,
+     "hands": {
+      "r": "relaxed",
+      "l": "point"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.428,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_left",
+      "title": "Pointing (left hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his left; the left pointing drawing is a mirrored copy (flagged)",
+      "weight_left": 0.65,
+      "contrapposto": 0.6,
+      "line_of_action": 5.0,
+      "head": 4.0,
+      "clavicle": {
+       "l": 4.0,
+       "r": -2.0
+      },
+      "arms": {
+       "l": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -6.0,
+        "reach": [
+         0.82,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "r": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "bent_elbow",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "point_left",
+     "variant": "lean_in",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:point (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:point (l)",
+       "corrections: armpit_gusset_l, hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:point (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.222,
+       "hand_contour_l": 0.801,
+       "arm_separation_r_px": 49,
+       "arm_separation_l_px": 375,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.628,
+       "weight_left": 0.724,
+       "pelvis_roll": -3.33,
+       "shoulder_tilt_deg": 5.13,
+       "head_tilt_deg": 4.96,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 6.7,
+       "elbow_to_torso_edge_l_px": 144.5,
+       "components": 1,
+       "pointing_hand": "point"
+      },
+      "warnings": [
+       {
+        "code": "hand_inside_silhouette",
+        "side": "r",
+        "severity": "medium",
+        "message": "r hand reads inside the body silhouette (22% of its outline on the edge)"
+       }
+      ],
+      "penalty": 2,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 5,
+     "hands": {
+      "r": "relaxed",
+      "l": "point"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.28,
+     "human_review": "pending",
+     "pose": {
+      "action": "point_left",
+      "title": "Pointing (left hand)",
+      "base": "pointing_speaking",
+      "intention": "points at someone to his left; the left pointing drawing is a mirrored copy (flagged)",
+      "weight_left": 0.7,
+      "contrapposto": 0.6,
+      "line_of_action": 9.0,
+      "head": 4.0,
+      "clavicle": {
+       "l": 4.0,
+       "r": -2.0
+      },
+      "arms": {
+       "l": {
+        "kind": "reach",
+        "abduction": 10.0,
+        "flexion": 4.0,
+        "wrist": -2.0,
+        "reach": [
+         0.94,
+         0.22
+        ],
+        "elbow": "down",
+        "hand": "pointing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "r": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.4,
+      "front": [],
+      "depth": {},
+      "variant": "lean_in",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "shrug": [
+    {
+     "action": "shrug",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS",
+      "pending_approval": [],
+      "missing": [],
+      "reasons": [
+       "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_l"
+      ],
+      "needs": [],
+      "render": "render",
+      "base_feasibility": "SUPPORTED",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.662,
+       "hand_contour_l": 0.66,
+       "arm_separation_r_px": 197,
+       "arm_separation_l_px": 167,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.764,
+       "weight_left": 0.6,
+       "pelvis_roll": -0.8,
+       "shoulder_tilt_deg": -1.78,
+       "head_tilt_deg": 7.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 28.2,
+       "elbow_to_torso_edge_l_px": 6.0,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 8,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "pending_hands": [],
+     "wall_s": 2.927,
+     "human_review": "pending",
+     "pose": {
+      "action": "shrug",
+      "title": "Shrugging",
+      "base": "one_hand_shrug",
+      "intention": "'I don't know': shoulders up (one higher), elbows in, forearms out, palms up, head sinks and tilts",
+      "weight_left": 0.6,
+      "contrapposto": 0.4,
+      "line_of_action": 0.0,
+      "head": 7.0,
+      "clavicle": {
+       "r": 13.0,
+       "l": 18.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 10.0,
+        "flexion": -58.0,
+        "wrist": -18.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "shrugging",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": -50.0,
+        "wrist": -16.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "shrugging",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "shrug",
+     "variant": "big",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS",
+      "pending_approval": [],
+      "missing": [],
+      "reasons": [
+       "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_l, shoulder_lift_collar_r"
+      ],
+      "needs": [],
+      "render": "render",
+      "base_feasibility": "SUPPORTED",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.652,
+       "hand_contour_l": 0.659,
+       "arm_separation_r_px": 198,
+       "arm_separation_l_px": 165,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.705,
+       "weight_left": 0.624,
+       "pelvis_roll": -1.47,
+       "shoulder_tilt_deg": -2.68,
+       "head_tilt_deg": 10.36,
+       "thigh_overlap_px": 57,
+       "elbow_to_torso_edge_r_px": 29.5,
+       "elbow_to_torso_edge_l_px": 1.0,
+       "components": 1
+      },
+      "warnings": [
+       {
+        "code": "elbow_on_torso_contour",
+        "side": "l",
+        "severity": "low",
+        "message": "l elbow sits on the torso outline (confusing contour)"
+       }
+      ],
+      "penalty": 1,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 8,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "pending_hands": [],
+     "wall_s": 2.908,
+     "human_review": "pending",
+     "pose": {
+      "action": "shrug",
+      "title": "Shrugging",
+      "base": "one_hand_shrug",
+      "intention": "'I don't know': shoulders up (one higher), elbows in, forearms out, palms up, head sinks and tilts",
+      "weight_left": 0.6,
+      "contrapposto": 0.4,
+      "line_of_action": 0.0,
+      "head": 7.0,
+      "clavicle": {
+       "r": 13.0,
+       "l": 18.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 10.0,
+        "flexion": -58.0,
+        "wrist": -18.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "shrugging",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": -50.0,
+        "wrist": -16.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "shrugging",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.8,
+      "front": [],
+      "depth": {},
+      "variant": "big",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "shrug",
+     "variant": "symmetric",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS",
+      "pending_approval": [],
+      "missing": [],
+      "reasons": [
+       "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_l, shoulder_lift_collar_r"
+      ],
+      "needs": [],
+      "render": "render",
+      "base_feasibility": "SUPPORTED",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.651,
+       "hand_contour_l": 0.661,
+       "arm_separation_r_px": 195,
+       "arm_separation_l_px": 170,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.75,
+       "weight_left": 0.6,
+       "pelvis_roll": -0.8,
+       "shoulder_tilt_deg": -0.07,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 60,
+       "elbow_to_torso_edge_r_px": 28.2,
+       "elbow_to_torso_edge_l_px": 8.5,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 9,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "pending_hands": [],
+     "wall_s": 3.003,
+     "human_review": "pending",
+     "pose": {
+      "action": "shrug",
+      "title": "Shrugging",
+      "base": "one_hand_shrug",
+      "intention": "'I don't know': shoulders up (one higher), elbows in, forearms out, palms up, head sinks and tilts",
+      "weight_left": 0.6,
+      "contrapposto": 0.4,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {
+       "r": 16.0,
+       "l": 16.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 10.0,
+        "flexion": -58.0,
+        "wrist": -18.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "shrugging",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": -50.0,
+        "wrist": -16.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "shrugging",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "symmetric",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "arm_raised": [
+    {
+     "action": "arm_raised",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 1 drawing)",
+      "pending_approval": [
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (l)",
+       "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_r, shoulder_raise_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.659,
+       "hand_contour_l": 0.465,
+       "arm_separation_r_px": 425,
+       "arm_separation_l_px": 67,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.588,
+       "weight_left": 0.68,
+       "pelvis_roll": -2.52,
+       "shoulder_tilt_deg": 13.71,
+       "head_tilt_deg": 3.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 101.4,
+       "elbow_to_torso_edge_l_px": 28.1,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 4,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "l"
+     ],
+     "wall_s": 3.454,
+     "human_review": "pending",
+     "pose": {
+      "action": "arm_raised",
+      "title": "Arm raised above the shoulder",
+      "base": "relaxed_standing",
+      "intention": "raises the right hand high (asking a question): weight on the left leg, torso leans away from the arm",
+      "weight_left": 0.68,
+      "contrapposto": 0.7,
+      "line_of_action": 4.0,
+      "head": 3.0,
+      "clavicle": {
+       "r": 4.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 150.0,
+        "flexion": 14.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "raised",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 8.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "arm_raised",
+     "variant": "straight_arm",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 1 drawing)",
+      "pending_approval": [
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (l)",
+       "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_r, shoulder_raise_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.647,
+       "hand_contour_l": 0.462,
+       "arm_separation_r_px": 356,
+       "arm_separation_l_px": 71,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.585,
+       "weight_left": 0.68,
+       "pelvis_roll": -2.52,
+       "shoulder_tilt_deg": 14.8,
+       "head_tilt_deg": 3.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 80.6,
+       "elbow_to_torso_edge_l_px": 28.0,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 5,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "l"
+     ],
+     "wall_s": 2.937,
+     "human_review": "pending",
+     "pose": {
+      "action": "arm_raised",
+      "title": "Arm raised above the shoulder",
+      "base": "relaxed_standing",
+      "intention": "raises the right hand high (asking a question): weight on the left leg, torso leans away from the arm",
+      "weight_left": 0.68,
+      "contrapposto": 0.7,
+      "line_of_action": 4.0,
+      "head": 3.0,
+      "clavicle": {
+       "r": 4.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 160.0,
+        "flexion": 4.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "raised",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 8.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "straight_arm",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "arm_raised",
+     "variant": "no_lean",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 1 drawing)",
+      "pending_approval": [
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (l)",
+       "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, shoulder_lift_collar_r, shoulder_raise_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.65,
+       "hand_contour_l": 0.446,
+       "arm_separation_r_px": 432,
+       "arm_separation_l_px": 62,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.619,
+       "weight_left": 0.68,
+       "pelvis_roll": -1.08,
+       "shoulder_tilt_deg": 10.0,
+       "head_tilt_deg": 3.0,
+       "thigh_overlap_px": 57,
+       "elbow_to_torso_edge_r_px": 100.3,
+       "elbow_to_torso_edge_l_px": 21.4,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 2,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "l"
+     ],
+     "wall_s": 2.592,
+     "human_review": "pending",
+     "pose": {
+      "action": "arm_raised",
+      "title": "Arm raised above the shoulder",
+      "base": "relaxed_standing",
+      "intention": "raises the right hand high (asking a question): weight on the left leg, torso leans away from the arm",
+      "weight_left": 0.68,
+      "contrapposto": 0.3,
+      "line_of_action": 0.0,
+      "head": 3.0,
+      "clavicle": {
+       "r": 4.0,
+       "l": -2.0
+      },
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 150.0,
+        "flexion": 14.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "raised",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 8.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "no_lean",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "deep_elbow": [
+    {
+     "action": "deep_elbow",
+     "variant": "default",
+     "feasibility": {
+      "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+      "label": "REQUIRES_ALTERNATIVE_ARTWORK (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:palm_down (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [
+       "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+       "hand:fist or thinking hand (approved)"
+      ],
+      "reasons": [
+       "missing: corrective:elbow_deep_r (sleeve fold for > 125 deg); hand:fist or thinking hand (approved)",
+       "pending review (previewed): hand:palm_down (r); hand:relaxed (l)",
+       "corrections: elbow_deep_r, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, sleeve_crease_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:palm_down (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+        "state": "missing",
+        "why": "declared by the pose"
+       },
+       {
+        "asset": "hand:fist or thinking hand (approved)",
+        "state": "missing",
+        "why": "declared by the pose"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.0,
+       "hand_contour_l": 0.421,
+       "arm_separation_r_px": 0,
+       "arm_separation_l_px": 60,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.754,
+       "weight_left": 0.6,
+       "pelvis_roll": -0.8,
+       "shoulder_tilt_deg": 0.46,
+       "head_tilt_deg": -3.0,
+       "thigh_overlap_px": 57,
+       "elbow_to_torso_edge_r_px": 48.2,
+       "elbow_to_torso_edge_l_px": 22.0,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 6,
+     "hands": {
+      "r": "palm_down",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.537,
+     "human_review": "pending",
+     "pose": {
+      "action": "deep_elbow",
+      "title": "Deep elbow bend (hand to chin)",
+      "base": "relaxed_standing",
+      "intention": "thinking: right hand toward the chin; the forearm folds well past 125 deg",
+      "weight_left": 0.6,
+      "contrapposto": 0.4,
+      "line_of_action": 0.0,
+      "head": -3.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "chin",
+        "abduction": 22.0,
+        "flexion": 118.0,
+        "wrist": -6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "resting",
+        "hand_dir": null,
+        "max_flex": 120.0
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 9.0,
+        "flexion": 10.0,
+        "wrist": 4.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [
+       "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+       "hand:fist or thinking hand (approved)"
+      ],
+      "notes": [
+       "rendered at the supported limit (118-120 deg); the intended 140 deg needs the deep-elbow drawing"
+      ]
+     }
+    }
+   ],
+   "walk": [
+    {
+     "action": "walk",
+     "variant": "default",
+     "feasibility": {
+      "class": "REQUIRES_NEW_VIEW",
+      "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [
+       "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+      ],
+      "reasons": [
+       "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+       "missing: side or 3/4 view for a readable stride (front view: in-plane motion only)",
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "side or 3/4 view for a readable stride (front view: in-plane motion only)",
+        "state": "missing",
+        "why": "declared by the pose"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.438,
+       "hand_contour_l": 0.326,
+       "arm_separation_r_px": 71,
+       "arm_separation_l_px": 61,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.648,
+       "weight_left": 0.5,
+       "pelvis_roll": -1.9,
+       "shoulder_tilt_deg": 0.14,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 21.2,
+       "elbow_to_torso_edge_l_px": 22.0,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 1,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.332,
+     "human_review": "pending",
+     "pose": {
+      "action": "walk",
+      "title": "Walking",
+      "base": "casual_walk",
+      "intention": "front-view walk: arms swing beside the body, relaxed hands",
+      "weight_left": null,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "gait",
+        "abduction": 9.0,
+        "flexion": 6.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "walking",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "gait",
+        "abduction": 9.0,
+        "flexion": 6.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "walking",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": 0.25,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [
+       "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+      ],
+      "notes": []
+     }
+    },
+    {
+     "action": "walk",
+     "variant": "phase_0.75",
+     "feasibility": {
+      "class": "REQUIRES_NEW_VIEW",
+      "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [
+       "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+      ],
+      "reasons": [
+       "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+       "missing: side or 3/4 view for a readable stride (front view: in-plane motion only)",
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "side or 3/4 view for a readable stride (front view: in-plane motion only)",
+        "state": "missing",
+        "why": "declared by the pose"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.285,
+       "hand_contour_l": 0.448,
+       "arm_separation_r_px": 62,
+       "arm_separation_l_px": 70,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.643,
+       "weight_left": 0.5,
+       "pelvis_roll": 1.9,
+       "shoulder_tilt_deg": 1.39,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 59,
+       "elbow_to_torso_edge_r_px": 15.5,
+       "elbow_to_torso_edge_l_px": 26.5,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 3,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.791,
+     "human_review": "pending",
+     "pose": {
+      "action": "walk",
+      "title": "Walking",
+      "base": "casual_walk",
+      "intention": "front-view walk: arms swing beside the body, relaxed hands",
+      "weight_left": null,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "gait",
+        "abduction": 9.0,
+        "flexion": 6.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "walking",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "gait",
+        "abduction": 9.0,
+        "flexion": 6.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "walking",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": 0.75,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "phase_0.75",
+      "requires": [
+       "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+      ],
+      "notes": []
+     }
+    }
+   ],
+   "run": [
+    {
+     "action": "run",
+     "variant": "default",
+     "feasibility": {
+      "class": "REQUIRES_NEW_VIEW",
+      "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:fist (r)",
+       "hand:fist (l)"
+      ],
+      "missing": [
+       "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+       "side or 3/4 view for a readable sprint"
+      ],
+      "reasons": [
+       "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+       "missing: art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer); side or 3/4 view for a readable sprint",
+       "pending review (previewed): hand:fist (r); hand:fist (l)",
+       "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, knee_fold_l, running_knee_drive, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:fist (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:fist (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+        "state": "missing",
+        "why": "declared by the pose"
+       },
+       {
+        "asset": "side or 3/4 view for a readable sprint",
+        "state": "missing",
+        "why": "declared by the pose"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.202,
+       "hand_contour_l": 0.0,
+       "arm_separation_r_px": 19,
+       "arm_separation_l_px": 4,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.692,
+       "weight_left": 0.5,
+       "pelvis_roll": -4.05,
+       "shoulder_tilt_deg": -0.21,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 55,
+       "elbow_to_torso_edge_r_px": 53.9,
+       "elbow_to_torso_edge_l_px": 49.0,
+       "components": 1
+      },
+      "warnings": [
+       {
+        "code": "hand_inside_silhouette",
+        "side": "r",
+        "severity": "medium",
+        "message": "r hand reads inside the body silhouette (20% of its outline on the edge)"
+       },
+       {
+        "code": "hand_inside_silhouette",
+        "side": "l",
+        "severity": "high",
+        "message": "l hand reads inside the body silhouette (0% of its outline on the edge)"
+       }
+      ],
+      "penalty": 5,
+      "readable": false,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 9,
+     "hands": {
+      "r": "fist",
+      "l": "fist"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.137,
+     "human_review": "pending",
+     "pose": {
+      "action": "run",
+      "title": "Running",
+      "base": "running",
+      "intention": "front-view jog: elbows bent, fists pumping beside the body",
+      "weight_left": null,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "gait",
+        "abduction": 22.0,
+        "flexion": 40.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "running",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "gait",
+        "abduction": 22.0,
+        "flexion": 40.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "running",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": 0.25,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [
+       "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+       "side or 3/4 view for a readable sprint"
+      ],
+      "notes": []
+     }
+    },
+    {
+     "action": "run",
+     "variant": "phase_0.6",
+     "feasibility": {
+      "class": "REQUIRES_NEW_VIEW",
+      "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:fist (r)",
+       "hand:fist (l)"
+      ],
+      "missing": [
+       "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+       "side or 3/4 view for a readable sprint"
+      ],
+      "reasons": [
+       "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+       "missing: art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer); side or 3/4 view for a readable sprint",
+       "pending review (previewed): hand:fist (r); hand:fist (l)",
+       "corrections: elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, knee_fold_r, running_knee_drive, shoe_top_l, shoe_top_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:fist (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:fist (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+        "state": "missing",
+        "why": "declared by the pose"
+       },
+       {
+        "asset": "side or 3/4 view for a readable sprint",
+        "state": "missing",
+        "why": "declared by the pose"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.0,
+       "hand_contour_l": 0.369,
+       "arm_separation_r_px": 22,
+       "arm_separation_l_px": 15,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.629,
+       "weight_left": 0.5,
+       "pelvis_roll": 4.76,
+       "shoulder_tilt_deg": 4.4,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 42.4,
+       "elbow_to_torso_edge_l_px": 59.9,
+       "components": 1
+      },
+      "warnings": [
+       {
+        "code": "hand_inside_silhouette",
+        "side": "r",
+        "severity": "high",
+        "message": "r hand reads inside the body silhouette (0% of its outline on the edge)"
+       }
+      ],
+      "penalty": 3,
+      "readable": false,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 1,
+     "hands": {
+      "r": "fist",
+      "l": "fist"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.953,
+     "human_review": "pending",
+     "pose": {
+      "action": "run",
+      "title": "Running",
+      "base": "running",
+      "intention": "front-view jog: elbows bent, fists pumping beside the body",
+      "weight_left": null,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "gait",
+        "abduction": 22.0,
+        "flexion": 40.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "running",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "gait",
+        "abduction": 22.0,
+        "flexion": 40.0,
+        "wrist": 0.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "running",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": 0.6,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "phase_0.6",
+      "requires": [
+       "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+       "side or 3/4 view for a readable sprint"
+      ],
+      "notes": []
+     }
+    }
+   ],
+   "sit": [
+    {
+     "action": "sit",
+     "variant": "default",
+     "feasibility": {
+      "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+      "label": "REQUIRES_ALTERNATIVE_ARTWORK (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:palm_down (r)",
+       "hand:palm_down (l)"
+      ],
+      "missing": [
+       "art:thigh_foreshortened",
+       "art:seat",
+       "corrective:trousers_seated"
+      ],
+      "reasons": [
+       "missing: art:thigh_foreshortened; art:seat; corrective:trousers_seated",
+       "pending review (previewed): hand:palm_down (r); hand:palm_down (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, hip_flexion_l, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, sitting_trousers, trouser_fold_l, trouser_fold_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:palm_down (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:palm_down (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "art:thigh_foreshortened",
+        "state": "missing",
+        "why": "thighs pointing at the viewer (front-view sitting)"
+       },
+       {
+        "asset": "art:seat",
+        "state": "missing",
+        "why": "a seat or chair"
+       },
+       {
+        "asset": "corrective:trousers_seated",
+        "state": "missing",
+        "why": "seated trousers (thighs toward the viewer) triggered at 1 deg; band-rule deformation used instead"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.077,
+       "hand_contour_l": 0.115,
+       "arm_separation_r_px": 94,
+       "arm_separation_l_px": 1,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.939,
+       "weight_left": 0.5,
+       "pelvis_roll": -0.0,
+       "shoulder_tilt_deg": 0.76,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 58,
+       "elbow_to_torso_edge_r_px": 42.6,
+       "elbow_to_torso_edge_l_px": 47.4,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 13,
+     "hands": {
+      "r": "palm_down",
+      "l": "palm_down"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.264,
+     "human_review": "pending",
+     "pose": {
+      "action": "sit",
+      "title": "Sitting",
+      "base": "sitting",
+      "intention": "sits upright on a chair, hands resting on the knees (fallback: front squat-sit)",
+      "weight_left": 0.5,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "knee",
+        "abduction": 20.0,
+        "flexion": 40.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "resting",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "knee",
+        "abduction": 20.0,
+        "flexion": 40.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "resting",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.6,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [
+       "art:thigh_foreshortened (seated thighs toward the viewer)",
+       "art:seat",
+       "corrective:trousers_seated"
+      ],
+      "notes": []
+     }
+    }
+   ],
+   "squat": [
+    {
+     "action": "squat",
+     "variant": "default",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:palm_down (r)",
+       "hand:palm_down (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:palm_down (r); hand:palm_down (l)",
+       "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, trouser_fold_l, trouser_fold_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:palm_down (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:palm_down (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.019,
+       "hand_contour_l": 0.032,
+       "arm_separation_r_px": 15,
+       "arm_separation_l_px": 5,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.867,
+       "weight_left": 0.56,
+       "pelvis_roll": -0.24,
+       "shoulder_tilt_deg": 0.53,
+       "head_tilt_deg": 2.0,
+       "thigh_overlap_px": 57,
+       "elbow_to_torso_edge_r_px": 47.3,
+       "elbow_to_torso_edge_l_px": 49.7,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 8,
+     "hands": {
+      "r": "palm_down",
+      "l": "palm_down"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.797,
+     "human_review": "pending",
+     "pose": {
+      "action": "squat",
+      "title": "Squatting",
+      "base": "natural_squat",
+      "intention": "squats with forearms resting on the knees, weight slightly to one side",
+      "weight_left": 0.56,
+      "contrapposto": 0.2,
+      "line_of_action": 0.0,
+      "head": 2.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "knee",
+        "abduction": 22.0,
+        "flexion": 48.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "resting",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "knee",
+        "abduction": 22.0,
+        "flexion": 48.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "resting",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.3,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": 0.17,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [],
+      "notes": []
+     }
+    },
+    {
+     "action": "squat",
+     "variant": "hands_hanging",
+     "feasibility": {
+      "class": "SUPPORTED_WITH_CORRECTIONS",
+      "label": "SUPPORTED_WITH_CORRECTIONS (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [],
+      "reasons": [
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, trouser_fold_l, trouser_fold_r"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       }
+      ],
+      "render": "render",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.347,
+       "hand_contour_l": 0.372,
+       "arm_separation_r_px": 111,
+       "arm_separation_l_px": 98,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.87,
+       "weight_left": 0.56,
+       "pelvis_roll": -0.24,
+       "shoulder_tilt_deg": 0.53,
+       "head_tilt_deg": 2.0,
+       "thigh_overlap_px": 57,
+       "elbow_to_torso_edge_r_px": 56.5,
+       "elbow_to_torso_edge_l_px": 58.1,
+       "components": 1
+      },
+      "warnings": [],
+      "penalty": 0,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 10,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 3.223,
+     "human_review": "pending",
+     "pose": {
+      "action": "squat",
+      "title": "Squatting",
+      "base": "natural_squat",
+      "intention": "squats with forearms resting on the knees, weight slightly to one side",
+      "weight_left": 0.56,
+      "contrapposto": 0.2,
+      "line_of_action": 0.0,
+      "head": 2.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 26.0,
+        "flexion": 30.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 26.0,
+        "flexion": 30.0,
+        "wrist": 6.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.3,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": 0.17,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "hands_hanging",
+      "requires": [],
+      "notes": []
+     }
+    }
+   ],
+   "lean_forward": [
+    {
+     "action": "lean_forward",
+     "variant": "default",
+     "feasibility": {
+      "class": "REQUIRES_NEW_VIEW",
+      "label": "REQUIRES_NEW_VIEW (pending approval: 2 drawings)",
+      "pending_approval": [
+       "hand:relaxed (r)",
+       "hand:relaxed (l)"
+      ],
+      "missing": [
+       "art:torso_lean_forward",
+       "corrective:torso_lean_3q"
+      ],
+      "reasons": [
+       "the intended motion goes toward the viewer: needs FRONT_THREE_QUARTER_LEFT artwork (front view shows an in-plane approximation)",
+       "missing: art:torso_lean_forward; corrective:torso_lean_3q",
+       "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+       "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, torso_lean_sagittal"
+      ],
+      "needs": [
+       {
+        "asset": "hand:relaxed (r)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "hand:relaxed (l)",
+        "state": "pending_review",
+        "why": "the gesture's hand drawing is not approved; shown as a preview"
+       },
+       {
+        "asset": "art:torso_lean_forward",
+        "state": "missing",
+        "why": "3/4 or foreshortened torso leaning toward the viewer"
+       },
+       {
+        "asset": "corrective:torso_lean_3q",
+        "state": "missing",
+        "why": "torso lean toward/away from the viewer (3/4 torso drawing) triggered at 1 deg; band-rule deformation used instead"
+       }
+      ],
+      "render": "preview_with_labels",
+      "base_feasibility": "NEEDS_ARTWORK",
+      "note": "pending drawings are previewed only; a REQUIRES_* pose is never counted as a success"
+     },
+     "silhouette": {
+      "metrics": {
+       "hand_contour_r": 0.563,
+       "hand_contour_l": 0.214,
+       "arm_separation_r_px": 87,
+       "arm_separation_l_px": 34,
+       "tangency_px": {
+        "r": 0,
+        "l": 0
+       },
+       "symmetry_iou": 0.649,
+       "weight_left": 0.5,
+       "pelvis_roll": -0.0,
+       "shoulder_tilt_deg": -13.23,
+       "head_tilt_deg": 0.0,
+       "thigh_overlap_px": 59,
+       "elbow_to_torso_edge_r_px": 46.0,
+       "elbow_to_torso_edge_l_px": 4.0,
+       "components": 1
+      },
+      "warnings": [
+       {
+        "code": "hand_inside_silhouette",
+        "side": "l",
+        "severity": "medium",
+        "message": "l hand reads inside the body silhouette (21% of its outline on the edge)"
+       },
+       {
+        "code": "unclear_weight_leg",
+        "severity": "low",
+        "message": "even weight and a level pelvis: no weight-bearing leg reads"
+       },
+       {
+        "code": "elbow_on_torso_contour",
+        "side": "l",
+        "severity": "low",
+        "message": "l elbow sits on the torso outline (confusing contour)"
+       }
+      ],
+      "penalty": 4,
+      "readable": true,
+      "artistic_review_required": true
+     },
+     "com_outside_support_px": 0.0,
+     "deformation_risk": 11,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "pending_hands": [
+      "r",
+      "l"
+     ],
+     "wall_s": 2.536,
+     "human_review": "pending",
+     "pose": {
+      "action": "lean_forward",
+      "title": "Leaning forward",
+      "base": "leaning_forward",
+      "intention": "leans toward the viewer (curious); front-view art can only lean sideways",
+      "weight_left": 0.5,
+      "contrapposto": 0.0,
+      "line_of_action": 0.0,
+      "head": 0.0,
+      "clavicle": {},
+      "arms": {
+       "r": {
+        "kind": "hang",
+        "abduction": 10.0,
+        "flexion": 8.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       },
+       "l": {
+        "kind": "hang",
+        "abduction": 10.0,
+        "flexion": 8.0,
+        "wrist": 3.0,
+        "reach": [
+         0.9,
+         0.3
+        ],
+        "elbow": "down",
+        "hand": "relaxed_standing",
+        "hand_dir": null,
+        "max_flex": null
+       }
+      },
+      "stance": 1.0,
+      "free_knee": 9.0,
+      "free_foot_in": 0.12,
+      "pelvis_dy": null,
+      "knee_max": null,
+      "phase": null,
+      "view": "FRONT",
+      "exaggeration": 0.0,
+      "front": [],
+      "depth": {},
+      "variant": "default",
+      "requires": [
+       "art:torso_lean_forward / corrective:torso_lean_3q (3/4 or foreshortened torso)"
+      ],
+      "notes": []
+     }
+    }
+   ]
+  },
+  "generated_assets": [],
+  "closeups": {
+   "elbow 95": {
+    "elbow_fold_r": {
+     "bend_deg": 81.9,
+     "fill_px": 1654,
+     "overlay_px": 198,
+     "folds": 2,
+     "fold_in_fill_px": 0,
+     "notch_px": 16,
+     "corner": [
+      502.4,
+      753.0
+     ]
+    }
+   },
+   "elbow 120": {
+    "elbow_fold_r": {
+     "bend_deg": 106.9,
+     "fill_px": 2284,
+     "overlay_px": 219,
+     "folds": 2,
+     "fold_in_fill_px": 0,
+     "notch_px": 14,
+     "corner": [
+      508.6,
+      767.0
+     ]
+    }
+   },
+   "squat knee": {
+    "knee_fold_r": {
+     "bend_deg": 74.0,
+     "fill_px": 2276,
+     "overlay_px": 310,
+     "folds": 3,
+     "fold_in_fill_px": 0,
+     "notch_px": 20,
+     "corner": [
+      375.8,
+      1180.8
+     ]
+    },
+    "knee_fold_l": {
+     "bend_deg": 73.5,
+     "fill_px": 2385,
+     "overlay_px": 311,
+     "folds": 3,
+     "fold_in_fill_px": 0,
+     "notch_px": 60,
+     "corner": [
+      1025.4,
+      1178.0
+     ]
+    },
+    "elbow_fold_r": {
+     "bend_deg": 48.9,
+     "fill_px": 934,
+     "overlay_px": 100,
+     "folds": 2,
+     "fold_in_fill_px": 0,
+     "notch_px": 125,
+     "corner": [
+      486.2,
+      829.0
+     ]
+    },
+    "elbow_fold_l": {
+     "bend_deg": 49.2,
+     "fill_px": 978,
+     "overlay_px": 104,
+     "folds": 2,
+     "fold_in_fill_px": 0,
+     "notch_px": 0,
+     "corner": [
+      919.5,
+      828.1
+     ]
+    }
+   },
+   "sit knee": {
+    "knee_fold_r": {
+     "bend_deg": 90.0,
+     "fill_px": 2728,
+     "overlay_px": 370,
+     "folds": 3,
+     "fold_in_fill_px": 0,
+     "notch_px": 53,
+     "corner": [
+      333.0,
+      1174.7
+     ]
+    },
+    "knee_fold_l": {
+     "bend_deg": 89.3,
+     "fill_px": 2893,
+     "overlay_px": 403,
+     "folds": 3,
+     "fold_in_fill_px": 0,
+     "notch_px": 69,
+     "corner": [
+      1067.7,
+      1171.0
+     ]
+    },
+    "elbow_fold_r": {
+     "bend_deg": 36.9,
+     "fill_px": 727,
+     "overlay_px": 59,
+     "folds": 2,
+     "fold_in_fill_px": 0,
+     "notch_px": 1,
+     "corner": [
+      496.4,
+      890.8
+     ]
+    },
+    "elbow_fold_l": {
+     "bend_deg": 37.2,
+     "fill_px": 720,
+     "overlay_px": 60,
+     "folds": 2,
+     "fold_in_fill_px": 0,
+     "notch_px": 0,
+     "corner": [
+      909.3,
+      890.0
+     ]
+    }
+   },
+   "armpit 135": {}
+  },
+  "layer_order_demo": {
+   "hand_behind_back_static": {
+    "changed": false,
+    "fired": [],
+    "ambiguous": [],
+    "moved": []
+   },
+   "hand_behind_back_dynamic": {
+    "changed": true,
+    "fired": [
+     {
+      "rule": "hand_behind_body_r",
+      "why": "pose places the arm behind the body",
+      "sublayers": [
+       "upper_arm_r__front",
+       "upper_arm_r__back"
+      ]
+     }
+    ],
+    "ambiguous": [],
+    "moved": [
+     "upper_arm_r__back",
+     "hand_r__hs.schoolboy_hands_sleeveless.right_relaxed.v1",
+     "forearm_r__hscuff",
+     "pelvis",
+     "neck",
+     "torso",
+     "upper_arm_r__front",
+     "upper_arm_l",
+     "hand_l__hs.schoolboy_hands_sleeveless.left_relaxed.v1",
+     "forearm_l__hscuff",
+     "head_base",
+     "nose"
+    ]
+   }
+  },
+  "acting_test": {
+   "fps": 12.0,
+   "duration_s": 6.3999999999999995,
+   "frames": [
+    {
+     "frame": 0,
+     "t": 0.0,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 1,
+     "t": 0.083,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 2,
+     "t": 0.167,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 3,
+     "t": 0.25,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 4,
+     "t": 0.333,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 5,
+     "t": 0.417,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 6,
+     "t": 0.5,
+     "key": "stand -> weight shift",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 7,
+     "t": 0.583,
+     "key": "stand -> weight shift",
+     "u": 0.167,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 8,
+     "t": 0.667,
+     "key": "stand -> weight shift",
+     "u": 0.333,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 9,
+     "t": 0.75,
+     "key": "stand -> weight shift",
+     "u": 0.5,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 10,
+     "t": 0.833,
+     "key": "stand -> weight shift",
+     "u": 0.667,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 11,
+     "t": 0.917,
+     "key": "stand -> weight shift",
+     "u": 0.833,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 12,
+     "t": 1.0,
+     "key": "weight shift -> head",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 13,
+     "t": 1.083,
+     "key": "weight shift -> head",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 14,
+     "t": 1.167,
+     "key": "weight shift -> head",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 15,
+     "t": 1.25,
+     "key": "weight shift -> head",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 16,
+     "t": 1.333,
+     "key": "weight shift -> head",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 17,
+     "t": 1.417,
+     "key": "weight shift -> head",
+     "u": 0.19,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 18,
+     "t": 1.5,
+     "key": "weight shift -> head",
+     "u": 0.429,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 19,
+     "t": 1.583,
+     "key": "weight shift -> head",
+     "u": 0.667,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 20,
+     "t": 1.667,
+     "key": "weight shift -> head",
+     "u": 0.905,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 21,
+     "t": 1.75,
+     "key": "head -> raise arm",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 22,
+     "t": 1.833,
+     "key": "head -> raise arm",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 23,
+     "t": 1.917,
+     "key": "head -> raise arm",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 24,
+     "t": 2.0,
+     "key": "head -> raise arm",
+     "u": 0.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 25,
+     "t": 2.083,
+     "key": "head -> raise arm",
+     "u": 0.139,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 26,
+     "t": 2.167,
+     "key": "head -> raise arm",
+     "u": 0.278,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 27,
+     "t": 2.25,
+     "key": "head -> raise arm",
+     "u": 0.417,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 28,
+     "t": 2.333,
+     "key": "head -> raise arm",
+     "u": 0.556,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 29,
+     "t": 2.417,
+     "key": "head -> raise arm",
+     "u": 0.694,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 30,
+     "t": 2.5,
+     "key": "head -> raise arm",
+     "u": 0.833,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 31,
+     "t": 2.583,
+     "key": "head -> raise arm",
+     "u": 0.972,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 32,
+     "t": 2.667,
+     "key": "raise arm -> point",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 33,
+     "t": 2.75,
+     "key": "raise arm -> point",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 34,
+     "t": 2.833,
+     "key": "raise arm -> point",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 35,
+     "t": 2.917,
+     "key": "raise arm -> point",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 36,
+     "t": 3.0,
+     "key": "raise arm -> point",
+     "u": 0.091,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 37,
+     "t": 3.083,
+     "key": "raise arm -> point",
+     "u": 0.242,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 38,
+     "t": 3.167,
+     "key": "raise arm -> point",
+     "u": 0.394,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "relaxed"
+     },
+     "warnings": [
+      "unclear_weight_leg"
+     ],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 39,
+     "t": 3.25,
+     "key": "raise arm -> point",
+     "u": 0.545,
+     "settle": false,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [
+      "unclear_weight_leg"
+     ],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 40,
+     "t": 3.333,
+     "key": "raise arm -> point",
+     "u": 0.697,
+     "settle": false,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 41,
+     "t": 3.417,
+     "key": "raise arm -> point",
+     "u": 0.848,
+     "settle": false,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 42,
+     "t": 3.5,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 43,
+     "t": 3.583,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 44,
+     "t": 3.667,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 45,
+     "t": 3.75,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 46,
+     "t": 3.833,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 47,
+     "t": 3.917,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 48,
+     "t": 4.0,
+     "key": "point -> shrug",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 49,
+     "t": 4.083,
+     "key": "point -> shrug",
+     "u": 0.061,
+     "settle": false,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 50,
+     "t": 4.167,
+     "key": "point -> shrug",
+     "u": 0.212,
+     "settle": false,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 51,
+     "t": 4.25,
+     "key": "point -> shrug",
+     "u": 0.364,
+     "settle": false,
+     "hands": {
+      "r": "point",
+      "l": "relaxed"
+     },
+     "warnings": [
+      "unclear_weight_leg"
+     ],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 52,
+     "t": 4.333,
+     "key": "point -> shrug",
+     "u": 0.515,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [
+      "unclear_weight_leg"
+     ],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 53,
+     "t": 4.417,
+     "key": "point -> shrug",
+     "u": 0.667,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 54,
+     "t": 4.5,
+     "key": "point -> shrug",
+     "u": 0.818,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 55,
+     "t": 4.583,
+     "key": "point -> shrug",
+     "u": 0.97,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 56,
+     "t": 4.667,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 57,
+     "t": 4.75,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 58,
+     "t": 4.833,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 59,
+     "t": 4.917,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 60,
+     "t": 5.0,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 61,
+     "t": 5.083,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 62,
+     "t": 5.167,
+     "key": "shrug -> relax",
+     "u": 0.0,
+     "settle": true,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 63,
+     "t": 5.25,
+     "key": "shrug -> relax",
+     "u": 0.083,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 64,
+     "t": 5.333,
+     "key": "shrug -> relax",
+     "u": 0.222,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 65,
+     "t": 5.417,
+     "key": "shrug -> relax",
+     "u": 0.361,
+     "settle": false,
+     "hands": {
+      "r": "open",
+      "l": "open"
+     },
+     "warnings": [],
+     "feasibility": "SUPPORTED",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 66,
+     "t": 5.5,
+     "key": "shrug -> relax",
+     "u": 0.5,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 67,
+     "t": 5.583,
+     "key": "shrug -> relax",
+     "u": 0.639,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 68,
+     "t": 5.667,
+     "key": "shrug -> relax",
+     "u": 0.778,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 69,
+     "t": 5.75,
+     "key": "shrug -> relax",
+     "u": 0.917,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 70,
+     "t": 5.833,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 71,
+     "t": 5.917,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 72,
+     "t": 6.0,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 73,
+     "t": 6.083,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 74,
+     "t": 6.167,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 75,
+     "t": 6.25,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 76,
+     "t": 6.333,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    },
+    {
+     "frame": 77,
+     "t": 6.417,
+     "key": "relax",
+     "u": 1.0,
+     "settle": false,
+     "hands": {
+      "r": "relaxed",
+      "l": "relaxed"
+     },
+     "warnings": [],
+     "feasibility": "NEEDS_ARTWORK",
+     "bone_length_change": 0.0001,
+     "com_outside_support_px": 0.0
+    }
+   ],
+   "sequence": {
+    "frames": 78,
+    "fps": 12.0,
+    "max_speed_px_s": 1868.5,
+    "median_accel_px_s2": 206.0,
+    "accel_peaks": [
+     [
+      24,
+      "forearm_r",
+      1852.5
+     ],
+     [
+      24,
+      "hand_r",
+      3843.9
+     ],
+     [
+      25,
+      "chest",
+      1530.9
+     ],
+     [
+      25,
+      "clavicle_l",
+      1686.8
+     ],
+     [
+      25,
+      "clavicle_r",
+      1676.3
+     ],
+     [
+      25,
+      "forearm_r",
+      7862.4
+     ],
+     [
+      25,
+      "hand_r",
+      16246.3
+     ],
+     [
+      25,
+      "head",
+      1844.0
+     ],
+     [
+      25,
+      "neck",
+      1763.4
+     ],
+     [
+      25,
+      "upper_arm_l",
+      1761.7
+     ],
+     [
+      25,
+      "upper_arm_r",
+      1817.0
+     ],
+     [
+      26,
+      "forearm_r",
+      5628.5
+     ],
+     [
+      26,
+      "hand_r",
+      9909.4
+     ],
+     [
+      27,
+      "forearm_r",
+      6608.6
+     ],
+     [
+      27,
+      "hand_r",
+      11666.3
+     ],
+     [
+      28,
+      "forearm_r",
+      6285.2
+     ],
+     [
+      28,
+      "hand_r",
+      11111.4
+     ],
+     [
+      28,
+      "upper_arm_r",
+      1611.7
+     ],
+     [
+      29,
+      "forearm_r",
+      6064.8
+     ],
+     [
+      29,
+      "hand_r",
+      10105.2
+     ]
+    ],
+    "accel_peak_count": 121,
+    "max_jerk_px_s3": 240532.7,
+    "hand_switch_flicker": [],
+    "hand_switches": {
+     "r": 4,
+     "l": 2
+    },
+    "drawing_switch_area_changes": [
+     {
+      "frame": 28,
+      "layer": "forearm_r",
+      "from": 0.886,
+      "to": 1.04
+     },
+     {
+      "frame": 39,
+      "layer": "forearm_r",
+      "from": 1.042,
+      "to": 0.888
+     },
+     {
+      "frame": 52,
+      "layer": "forearm_l",
+      "from": 0.873,
+      "to": 1.041
+     },
+     {
+      "frame": 52,
+      "layer": "forearm_r",
+      "from": 0.876,
+      "to": 1.044
+     },
+     {
+      "frame": 66,
+      "layer": "forearm_l",
+      "from": 1.077,
+      "to": 0.903
+     },
+     {
+      "frame": 66,
+      "layer": "forearm_r",
+      "from": 1.067,
+      "to": 0.9
+     }
+    ],
+    "garment_volume_motion": [
+     {
+      "frame": 27,
+      "layer": "upper_arm_r",
+      "from": 0.83,
+      "to": 0.944
+     },
+     {
+      "frame": 28,
+      "layer": "upper_arm_r",
+      "from": 0.944,
+      "to": 1.041
+     },
+     {
+      "frame": 53,
+      "layer": "upper_arm_r",
+      "from": 0.927,
+      "to": 0.837
+     }
+    ],
+    "garment_volume_jumps": [],
+    "continuity_check": {
+     "param_step_s": 0.001,
+     "jump_fraction_of_range_per_s": 0.1,
+     "velocity_jumps": [],
+     "velocity_jump_count": 0,
+     "solver_events": [],
+     "solver_event_count": 0,
+     "solver_fps": 48.0
+    },
+    "continuity": "PASS",
+    "artistic_review_required": true,
+    "note": "deterministic checks only; artistic quality needs a person"
+   },
+   "render_s_per_frame": 2.95,
+   "keys": [
+    {
+     "t": 0.0,
+     "label": "stand",
+     "hold": 0.5,
+     "anticipation": 0.0,
+     "overshoot": 0.0
+    },
+    {
+     "t": 1.0,
+     "label": "weight shift",
+     "hold": 0.35,
+     "anticipation": 0.0,
+     "overshoot": 0.0
+    },
+    {
+     "t": 1.7,
+     "label": "head",
+     "hold": 0.3,
+     "anticipation": 0.0,
+     "overshoot": 0.0
+    },
+    {
+     "t": 2.6,
+     "label": "raise arm",
+     "hold": 0.35,
+     "anticipation": 0.08,
+     "overshoot": 0.06
+    },
+    {
+     "t": 3.5,
+     "label": "point",
+     "hold": 0.55,
+     "anticipation": 0.0,
+     "overshoot": 0.05
+    },
+    {
+     "t": 4.6,
+     "label": "shrug",
+     "hold": 0.6,
+     "anticipation": 0.06,
+     "overshoot": 0.05
+    },
+    {
+     "t": 5.8,
+     "label": "relax",
+     "hold": 0.6,
+     "anticipation": 0.0,
+     "overshoot": 0.0
+    }
+   ],
+   "head_turn": "approximated by a head tilt toward the target (turned-head drawings: REQUIRES_NEW_VIEW)"
+  },
+  "artwork_requests": [
+   {
+    "asset": "corrective:elbow_deep_r",
+    "pose": "G",
+    "files": {
+     "reference": "corrective_elbow_deep_r__reference.png",
+     "mask": "corrective_elbow_deep_r__mask.png",
+     "target_pose": "corrective_elbow_deep_r__target_pose.png"
+    },
+    "provider": "none (request a drawing)"
+   },
+   {
+    "asset": "art:thigh_foreshortened",
+    "pose": "J",
+    "files": {
+     "reference": "art_thigh_foreshortened__reference.png",
+     "mask": "art_thigh_foreshortened__mask.png",
+     "target_pose": "art_thigh_foreshortened__target_pose.png"
+    },
+    "provider": "none (request a drawing)"
+   },
+   {
+    "asset": "art:thigh_knee_up",
+    "pose": "I",
+    "files": {
+     "reference": "art_thigh_knee_up__reference.png",
+     "mask": "art_thigh_knee_up__mask.png",
+     "target_pose": "art_thigh_knee_up__target_pose.png"
+    },
+    "provider": "none (request a drawing)"
+   },
+   {
+    "asset": "art:torso_lean_forward",
+    "pose": "L",
+    "files": {
+     "reference": "art_torso_lean_forward__reference.png",
+     "mask": "art_torso_lean_forward__mask.png",
+     "target_pose": "art_torso_lean_forward__target_pose.png"
+    },
+    "provider": "none (request a drawing)"
+   },
+   {
+    "asset": "corrective:raised_arm_armpit",
+    "pose": "F",
+    "files": {
+     "reference": "corrective_raised_arm_armpit__reference.png",
+     "mask": "corrective_raised_arm_armpit__mask.png",
+     "target_pose": "corrective_raised_arm_armpit__target_pose.png"
+    },
+    "provider": "none (request a drawing)"
+   }
+  ],
+  "benchmark": {
+   "B1_skeleton_only_s": 0.013,
+   "B2_interactive_preview_s": 2.797,
+   "C_offline_render_s": 2.752,
+   "D_full_evaluation_s": 3.679,
+   "note": "cloud sandbox; the interactive editor uses B1 while dragging and B2 on release; evaluation runs on request only. No Apple M1 figure is claimed.",
+   "hardware": {
+    "machine": "x86_64",
+    "system": "Linux",
+    "python": "3.12.3",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "note": "cloud sandbox measurements; no Apple M1 figures are claimed"
+   },
+   "A_offline_evidence_s": 517.4
+  }
+ },
+ "moho": {
+  "rows": {
+   "pose presets / artistic poses": {
+    "class": "baked",
+    "mapping": "keyframed bone angles per pose (actions)",
+    "status": "proposed_unverified"
+   },
+   "hand switches (gesture -> drawing)": {
+    "class": "switch_layer",
+    "mapping": "switch layer keys driven by a Smart Bone action or keys",
+    "status": "proposed_unverified"
+   },
+   "alternative limb drawings": {
+    "class": "switch_layer",
+    "mapping": "switch layer per limb, keyed per pose",
+    "status": "proposed_unverified"
+   },
+   "limb configurations": {
+    "class": "vitruvian_bones",
+    "mapping": "alternative bone sets per limb (not exercised)",
+    "status": "proposed_unverified"
+   },
+   "dynamic draw order": {
+    "class": "layer_order_keys",
+    "mapping": "Moho layer reordering is not assumed scriptable: bake order per pose as separate layer stacks or switch layers",
+    "status": "proposed_unverified"
+   },
+   "elbow/knee fold corrections": {
+    "class": "baked",
+    "mapping": "bake key drawings into a switch layer driven by a Smart Bone action",
+    "status": "proposed_unverified"
+   },
+   "armpit gusset (procedural)": {
+    "class": "baked",
+    "mapping": "keyed gusset drawings (5 keys) in a switch layer",
+    "status": "proposed_unverified"
+   },
+   "transitions (anticipation, overshoot)": {
+    "class": "baked",
+    "mapping": "keyframes on bones; Moho interpolation is not the AutoRig easing",
+    "status": "proposed_unverified"
+   },
+   "mesh deformation (weights)": {
+    "class": "not_assumed",
+    "mapping": "per-vertex weights are not assumed to import",
+    "status": "proposed_unverified"
+   },
+   "artwork selection engine": {
+    "class": "custom_script_or_baked",
+    "mapping": "AutoRig's selection does not run inside Moho; export decisions as keys",
+    "status": "proposed_unverified"
+   }
+  },
+  "verified": [],
+  "notes": [
+   "Moho was not run; no Lua API member is used or invented; no exporter in this phase"
+  ]
+ },
+ "live": {
+  "semantic_hand_triggers": "hand actions (pointing, shrugging, raised, relaxed) map to switch drawings",
+  "pose_presets_reusable": "ArtisticPose JSON templates (project templates)",
+  "ik_stability": "artistic poses only reshape the intent; the one IK solver clamps unreachable targets",
+  "channels_independent": "body poses never touch facial layers (face rig unchanged)",
+  "deterministic_selection": "hand, alternative and corrective choices are pure functions of the pose",
+  "no_generative_inference_at_playback": true,
+  "correctives_prepared_before_performance": true,
+  "safe_fallbacks": "REQUIRES_* poses render a labelled fallback, never a forced deformation",
+  "unsupported_reported": "feasibility classes per pose",
+  "webcam_tracking": "not implemented",
+  "showtime_mapping": "proposed_unverified"
+ },
+ "artistic_review_required": true,
+ "artistic_approval": "not recorded",
+ "production_ready": false
+}

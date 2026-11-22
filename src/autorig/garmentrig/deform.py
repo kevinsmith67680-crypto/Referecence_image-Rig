@@ -465,21 +465,64 @@ class StructuredDeformer(ArtworkDeformationEngine):
             a_[cy0:cy1, cx0:cx1] |= on
             drawn.append({"layer": it["cid"], "piece": it["kind"]})
 
+        fold_group: dict[str, list] = {}
+        for f in (getattr(self, "joint_folds", None) or []):
+            fold_group.setdefault(f["group"], []).append(f)
+        overlay_masks: dict[str, np.ndarray] = {}
+        fold_info: dict[str, Any] = {}
+
+        def jfold(f, gidx):
+            """Phase 3.5 art-directed joint correction: mitred outer corner + compression folds (see
+            ``artistic/joint_art.py``); the fill goes over empty pixels and the limb's own joint patch, the fold strokes
+            over the limb's own fabric layers only."""
+            from ..artistic.joint_art import joint_fold_fill  # noqa: PLC0415
+
+            P = np.asarray(f["P"], float) + pad
+            r = int(math.ceil(3.2 * f["w"])) + 4
+            x0, y0 = max(0, int(P[0]) - r), max(0, int(P[1]) - r)
+            x1, y1 = min(canvas.shape[1], int(P[0]) + r), min(canvas.shape[0], int(P[1]) + r)
+            if x1 <= x0 or y1 <= y0:
+                return
+            dst = canvas[y0:y1, x0:x1]
+            pt, tp = piece_top[y0:y1, x0:x1], top[y0:y1, x0:x1]
+            fab_idx = [k for k in gidx if order[k].split("__")[0] in f["fabric_layers"]]
+            over = ((pt == 0) & (dst[..., 3] < 0.02)) | ((pt == PIECE_CODES["patch"]) & np.isin(tp, gidx))
+            fabric = np.isin(tp, fab_idx) & (dst[..., 3] > 0.5)
+            F, ov, inf = joint_fold_fill(dst, (x0, y0), P, f["a"], f["b"], float(f["w"]), f["params"],
+                                         float(f["weight"]), fabric, over)
+            dst[:] = F + dst * (1.0 - F[..., 3:4])
+            on = over & (F[..., 3] > 0.5)
+            pt[on] = PIECE_CODES["corrective"]
+            tp[on] = -2
+            gen_vis[y0:y1, x0:x1] |= on
+            full = np.zeros(canvas.shape[:2], bool)
+            full[y0:y1, x0:x1] = ov & (F[..., 3] > 0.02)
+            overlay_masks[f["asset_id"]] = full
+            fold_info[f["asset_id"]] = inf
+            drawn.append({"layer": f"corrective:{f['asset_id']}", "piece": f"corrective:{f['asset_id']}"})
+
+        deferred: list[tuple[str, list[int]]] = []
         i = 0
         while i < len(order):
             cid = order[i]
             g = group_of(cid)
             j = i + 1
-            if g and g in corr_group:  # the whole limb group, then its joint caps
+            if g and (g in corr_group or g in fold_group):  # the whole limb group, then its joint corrections
                 while j < len(order) and group_of(order[j]) == g:
                     j += 1
             for c in order[i:j]:
                 for it in corr_before.get(c, []) + before.get(c, []) + items.get(c, []) + corr_after.get(c, []):
                     draw(it, pos[it["cid"]] if it["cid"] in pos else pos[c])
-            if g and g in corr_group:
-                for it in corr_group[g]:
-                    cap(it, list(range(i, j)))
+            if g and (g in corr_group or g in fold_group):
+                deferred.append((g, list(range(i, j))))
             i = j
+        # joint caps and fold corrections are applied once everything is drawn: "beneath every other piece" then
+        # also holds for pieces drawn after the limb (semi-transparent edges of later layers included)
+        for g, gidx in deferred:
+            for it in corr_group.get(g, []):
+                cap(it, gidx)
+            for f in fold_group.get(g, []):
+                jfold(f, gidx)
         # clipped patch pixels that nothing else covers: the visible conflicts, per garment part
         clipped_map = np.full(canvas.shape[:2], -1, np.int16)  # part id of each uncovered clipped pixel
         for cid, (ox, oy), cm, src in clip_masks:
@@ -529,6 +572,7 @@ class StructuredDeformer(ArtworkDeformationEngine):
         return {"image": img, "alphas": alphas, "stats": stats, "generated_visible": gen_vis, "pad": pad,
                 "clipped_uncovered": clipped_uncovered, "clipped_map": clipped_map,
                 "corrective_masks": corrective_masks, "gap_fill_info": fill_info,
+                "overlay_masks": overlay_masks, "joint_fold_info": fold_info,
                 # original pixels a corrective would have covered (it was composited beneath them instead)
                 "protected_overlap_prevented_px": int(protected.sum()),
                 "corrective_px": int((piece_top == PIECE_CODES["corrective"]).sum()),

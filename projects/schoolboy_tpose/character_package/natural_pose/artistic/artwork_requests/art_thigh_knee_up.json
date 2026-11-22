@@ -1,0 +1,77 @@
+{
+ "asset": "art:thigh_knee_up",
+ "why": "running knee drive toward the viewer: a lifted, foreshortened thigh",
+ "layers_to_redraw": [
+  "thigh_r",
+  "shin_r"
+ ],
+ "bones": {
+  "thigh_r": {
+   "posed_head": [
+    508.7,
+    720.8
+   ],
+   "rest_head": [
+    486.4,
+    753.6
+   ],
+   "posed_rotation_deg": -10.03
+  },
+  "shin_r": {
+   "posed_head": [
+    444.3,
+    985.4
+   ],
+   "rest_head": [
+    398.0,
+    1011.2
+   ],
+   "posed_rotation_deg": -15.23
+  }
+ },
+ "canvas": {
+  "width": 1086,
+  "height": 1448,
+  "crop": [
+   241,
+   701,
+   562,
+   1323
+  ]
+ },
+ "style": {
+  "outline_rgb": [
+   6,
+   5,
+   5
+  ],
+  "outline_width_px": 5.0,
+  "fabric_rgb": [
+   46,
+   39,
+   37
+  ],
+  "rules": [
+   "same outline colour and width",
+   "same flat-with-soft-shade colouring",
+   "draw at the character's scale (never scaled later)",
+   "only the named region: no new full-character illustration"
+  ]
+ },
+ "alignment": {
+  "attach_bone": "thigh_r",
+  "pivot": [
+   486.4,
+   753.6
+  ],
+  "draw_order": "same as the replaced layer"
+ },
+ "provider": "none (request a drawing)",
+ "candidates": 0,
+ "files": {
+  "reference": "art_thigh_knee_up__reference.png",
+  "mask": "art_thigh_knee_up__mask.png",
+  "target_pose": "art_thigh_knee_up__target_pose.png"
+ },
+ "next": "import the drawing as an alternative (Artistic Review or AlternativeArtworkStore.add); it stays pending until approved"
+}

@@ -61,7 +61,12 @@ faithful, editable **Moho Pro 14** character rig.
   `projects/schoolboy_tpose/character_package/artwork/correctives/`, and all **pending review**. Evidence is in
   `natural_pose/correctives/`. Still NEEDS_ARTWORK: the deep elbow, the pointing hand (pending), sitting and
   leaning forward. Optional drawings: squat knee folds, running knee drive, raised-shoulder collar.
-- **Do not start Phase 3.5 or Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
+- The user explicitly started **Phase 3.5** (natural posing, artwork-aware feasibility, alternative drawings, dynamic
+  layer order, artistic quality control). It is implemented; verdict **PARTIAL** (`docs/phase3_5_artistic_animation_report.md`,
+  audit in `docs/phase3_5_artistic_quality_audit.md`). Code is in `src/autorig/artistic/`; evidence in
+  `natural_pose/artistic/`; the acting test is in `natural_pose/artistic/acting_test.gif`. No pose or drawing has been approved
+  by a person; the previews use pending hand drawings (labelled).
+- **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
 ## Phase 2 rules (reconstruction)
@@ -178,6 +183,55 @@ faithful, editable **Moho Pro 14** character rig.
   overrides, extrapolation flagged. The user's per-asset settings are `correctives.set|mode|reset` ops (schema v6).
 - `autorig corrective-evidence <package>` regenerates `natural_pose/correctives/` and the analysis/report JSON
   (~10 min); `--regenerate` adds new asset versions.
+
+## Phase 3.5 rules (artistic posing)
+
+- Poses are planned as whole bodies first (`artistic/poses.py` `ArtisticPose` -> `ArtisticPosePlanner`):
+  - weight leg, contrapposto, line of action, head counterbalance, per-arm gestures with their hand action, view.
+
+  They reach the one solver only through `MotionEngine.pose(intent_fn=...)`, which reshapes the preset's intent in
+  stage 1. Never add a second solver and never scale a bone.
+- Silhouette warnings (`SilhouetteQualityEvaluator`) and animation checks (`ArtisticAnimationEvaluator`) are kept
+  separate from the geometric garment evaluator. None of them claims artistic quality: `artistic_review_required` is
+  always true.
+- Candidates (`PoseCandidateGenerator`) are ranked by an explicit ordering:
+  - feasibility class;
+  - no high-severity silhouette warning;
+  - silhouette penalty;
+  - deformation risk.
+
+  The ranking is a recommendation; the artist's choice (`artistic.select`) wins.
+- Feasibility (`ArtworkFeasibilityEngine`) runs on the skeleton-only solve, before deformation. Classes: SUPPORTED,
+  SUPPORTED_WITH_CORRECTIONS, REQUIRES_ALTERNATIVE_ARTWORK, REQUIRES_NEW_VIEW, UNSUPPORTED.
+  - Pending drawings are listed as `pending_approval`, never counted as approved.
+  - Depth motion (forward lean, stride, knee drive) is REQUIRES_NEW_VIEW, rendered only as a labelled fallback.
+- Alternative drawings (`artistic/alternatives.py`):
+  - append-only store in `<package>/artwork/alternatives/`;
+  - approvals via `approval.set` on `alternative:<id>@v<N>`;
+  - full-canvas, never scaled;
+  - selected through the same variant-layer substitution as hand switches (`MotionEngine.pose(layer_variants=...)`),
+    with no second switch engine.
+
+  Missing drawings become artwork requests (`PoseAwareArtworkGenerator`; the default provider calls no model).
+- Dynamic draw order (`DynamicLayerOrderController`, `MotionEngine.pose(layer_order=..., depth=...)`):
+  - rules on the posed skeleton with hysteresis; the neutral order is unchanged;
+  - sublayer splits by garment part partition a layer exactly.
+- Art-directed joint corrections (`artistic/joint_art.py`):
+  - procedural `joint_fold` corrective assets that supersede the Phase 3.4 caps;
+  - fold strokes are an overlay allowed only over the same limb's own fabric, reported as `fold_overlay_px`;
+  - caps and folds are applied after all pieces are drawn;
+  - `corrective_mode="off"` also disables the Phase 2 gussets.
+- Transitions (`artistic/transitions.py`) are deterministic: easing, leads and trails, anticipation, overshoot and
+  settle, held hand switches. There is no cloth simulation and no head turn without turned-head drawings.
+  - Easing is quintic; anticipation and overshoot are C2 bumps (a plain sine starts with a velocity jump).
+  - The continuity verdict comes from `ArtisticAnimationEvaluator.continuity_check` (parameter velocity jumps, solver
+    clamp and balance-saturation events), not from acceleration peaks, which are reported for information only.
+  - Keep key weights below the static-balance saturation (about 0.73 on the schoolboy): beyond it the pelvis stops
+    mid-move.
+- Editor Artistic tab: project schema v7 `artistic.*` ops; feedback becomes constraints through a phrase table
+  (`artistic/feedback.py`), not a language model.
+- `autorig artistic-evidence <package>` regenerates `natural_pose/artistic/`, `reports/artistic_quality.json` and
+  `analysis/{view_manifest,limb_configurations}.json` (~15 min).
 
 ## Hand Pose Store rules
 
@@ -313,6 +367,8 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig garment-weights <package_dir> [--explain LAYER X Y] [--export prefix]
 # Phase 3.4 corrective artwork
 .venv/bin/python -m autorig corrective-evidence <package_dir> [--regenerate] [--quick]  # assets (pending) + evidence (~10 min)
+# Phase 3.5 artistic posing
+.venv/bin/python -m autorig artistic-evidence <package_dir> [--quick]  # poses, candidates, acting test (~15 min)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -349,6 +405,10 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   joint caps, edge decontamination), PoseSpaceCorrectionEngine, CorrectiveRuntime, planner;
   `garmentrig/corrective_evidence.py` (CorrectiveQualityEvaluator, sequences, benchmark);
   `editor/src/components/CorrectivesPanel.tsx`
+- `src/autorig/artistic/` — Phase 3.5: poses (ArtisticPose, planner, action library), silhouette, feasibility,
+  candidates, joint_art (fold corrections), layer_order, alternatives (store, controller, artwork requests, views,
+  limb configs), transitions (acting sequences), evaluate (ArtisticAnimationEvaluator), feedback, evidence;
+  `editor/src/components/ArtisticReviewPanel.tsx`
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

@@ -30,12 +30,14 @@ const SHOTS32 = process.env.AUTORIG_SHOTS_P32 || path.join(repo, "docs/phase3_2/
 const SHOTSHR = process.env.AUTORIG_SHOTS_HR || path.join(repo, "docs/hand_replacement/screenshots");
 const SHOTS33 = process.env.AUTORIG_SHOTS_P33 || path.join(repo, "docs/phase3_3/screenshots");
 const SHOTS34 = process.env.AUTORIG_SHOTS_P34 || path.join(repo, "docs/phase3_4/screenshots");
+const SHOTS35 = process.env.AUTORIG_SHOTS_P35 || path.join(repo, "docs/phase3_5/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
 mkdirSync(SHOTS32, { recursive: true });
 mkdirSync(SHOTS33, { recursive: true });
 mkdirSync(SHOTS34, { recursive: true });
+mkdirSync(SHOTS35, { recursive: true });
 
 const sha = (f) => createHash("sha256").update(readFileSync(f)).digest("hex");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -596,6 +598,47 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     r0 = await rev(page);
     await page.selectOption("[data-testid=correctives-mode]", "auto");
     await waitRev(page, r0);
+
+    // 6h. Phase 3.5 artistic review: candidates (render + silhouette), approve and choose one, structured feedback,
+    // template, persistence after a reload
+    await page.click("[data-testid=tab-Artistic]");
+    await page.waitForSelector("[data-testid=artistic-panel] [data-testid=artistic-action]", { timeout: 60000 });
+    await page.selectOption("[data-testid=artistic-action]", "point_right");
+    await page.click("[data-testid=artistic-render]");
+    await page.waitForSelector("[data-testid=artistic-candidates]", { timeout: 240000 });
+    const nCand = await page.locator("[data-testid=artistic-candidates] .cand").count();
+    assert.ok(nCand >= 3, `pose candidates: ${nCand}`);
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: path.join(SHOTS35, "01_artistic_candidates_point_right.png") });
+    await page.click("[data-testid=artistic-view]");
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: path.join(SHOTS35, "02_artistic_candidates_silhouettes.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=cand-approve-default]");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.click("[data-testid=cand-use-default]");
+    await waitRev(page, r0);
+    let sa = (await api("/api/project")).state;
+    assert.equal(sa.approvals["artistic_pose:point_right/default"].status, "approved", "pose approval is a user action");
+    assert.equal(sa.artistic.selections.point_right.variant, "default");
+    await page.fill("[data-testid=artistic-feedback]", "Move the hand farther from the torso");
+    await page.click("[data-testid=artistic-interpret]");
+    await page.waitForSelector("[data-testid=artistic-parsed]");
+    assert.match(await page.textContent("[data-testid=artistic-parsed]"), /arm_r_abduction \+5/);
+    r0 = await rev(page);
+    await page.click("[data-testid=artistic-apply]");
+    await waitRev(page, r0);
+    sa = (await api("/api/project")).state;
+    assert.equal(sa.artistic.constraints.length, 1, "feedback stored as a structured constraint");
+    await post("/api/op", { type: "artistic.template.save", name: "e2e point", pose: { action: "point_right", title: "t",
+      base: "pointing_speaking", intention: "e2e", arms: {} } });
+    await page.reload();
+    await page.waitForSelector("[data-testid=layers-panel]");
+    await page.click("[data-testid=tab-Artistic]");
+    await page.waitForSelector("[data-testid=artistic-constraints]", { timeout: 60000 });
+    assert.match(await page.textContent("[data-testid=artistic-constraints]"), /constraints \(1\)/, "persists after reload");
+    await page.screenshot({ path: path.join(SHOTS35, "03_artistic_after_reload.png") });
 
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");

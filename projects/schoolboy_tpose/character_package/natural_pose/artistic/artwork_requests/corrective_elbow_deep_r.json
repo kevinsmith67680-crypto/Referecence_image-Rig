@@ -1,0 +1,77 @@
+{
+ "asset": "corrective:elbow_deep_r",
+ "why": "sleeve folding on itself at > 125 deg: inner-elbow compression folds, cuff unchanged",
+ "layers_to_redraw": [
+  "upper_arm_r",
+  "forearm_r"
+ ],
+ "bones": {
+  "upper_arm_r": {
+   "posed_head": [
+    426.6,
+    422.8
+   ],
+   "rest_head": [
+    404.2,
+    436.7
+   ],
+   "posed_rotation_deg": -58.97
+  },
+  "forearm_r": {
+   "posed_head": [
+    406.1,
+    553.7
+   ],
+   "rest_head": [
+    277.2,
+    474.3
+   ],
+   "posed_rotation_deg": -121.33
+  }
+ },
+ "canvas": {
+  "width": 1086,
+  "height": 1448,
+  "crop": [
+   4,
+   388,
+   486,
+   600
+  ]
+ },
+ "style": {
+  "outline_rgb": [
+   8,
+   7,
+   8
+  ],
+  "outline_width_px": 2.5,
+  "fabric_rgb": [
+   44,
+   40,
+   50
+  ],
+  "rules": [
+   "same outline colour and width",
+   "same flat-with-soft-shade colouring",
+   "draw at the character's scale (never scaled later)",
+   "only the named region: no new full-character illustration"
+  ]
+ },
+ "alignment": {
+  "attach_bone": "upper_arm_r",
+  "pivot": [
+   404.2,
+   436.7
+  ],
+  "draw_order": "same as the replaced layer"
+ },
+ "provider": "none (request a drawing)",
+ "candidates": 0,
+ "files": {
+  "reference": "corrective_elbow_deep_r__reference.png",
+  "mask": "corrective_elbow_deep_r__mask.png",
+  "target_pose": "corrective_elbow_deep_r__target_pose.png"
+ },
+ "next": "import the drawing as an alternative (Artistic Review or AlternativeArtworkStore.add); it stays pending until approved"
+}

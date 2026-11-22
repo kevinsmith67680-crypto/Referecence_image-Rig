@@ -465,6 +465,8 @@ def armpit_fill(image: np.ndarray, gap: np.ndarray, anchor, params: dict[str, An
     if n > 1:
         sizes = ndimage.sum(g, lab, range(1, n + 1))
         g = np.isin(lab, 1 + np.nonzero(sizes >= max(20, 0.1 * sizes.max()))[0])
+    if not g.any():
+        return None
     ys, xs = np.nonzero(g)
     y0, y1, x0, x1 = max(0, ys.min() - 40), min(H, ys.max() + 41), max(0, xs.min() - 40), min(W, xs.max() + 41)
     sl = (slice(y0, y1), slice(x0, x1))
@@ -498,6 +500,19 @@ def armpit_fill(image: np.ndarray, gap: np.ndarray, anchor, params: dict[str, An
     lim = params.get("max_bulge", 0.45) * chord
     if np.hypot(*off) > lim:
         C = mid + off * lim / np.hypot(*off)
+    if params.get("sag"):  # Phase 3.5 ShoulderSilhouetteController: a concave armhole hollow instead of a fuller fill
+        A_ = np.asarray(anchor, float) - [x0, y0]
+        v_ = A_ - mid
+        if np.hypot(*v_) > 1e-6:
+            C = mid + v_ / np.hypot(*v_) * float(params["sag"]) * chord
+    elif "max_bulge_convex" in params:  # an outward bulge reads as a full armpit
+        A_ = np.asarray(anchor, float) - [x0, y0]
+        cr_ = lambda u, v: float(u[0] * v[1] - u[1] * v[0])  # noqa: E731
+        off = C - mid
+        if np.sign(cr_(S - T, C - T)) != np.sign(cr_(S - T, A_ - T)):
+            lim_c = float(params["max_bulge_convex"]) * chord
+            if np.hypot(*off) > lim_c:
+                C = mid + off * lim_c / max(float(np.hypot(*off)), 1e-9)
     t = np.linspace(0, 1, max(24, int(chord)))[:, None]
     B = (1 - t) ** 2 * T + 2 * (1 - t) * t * C + t ** 2 * S
     from PIL import Image as _I, ImageDraw as _D  # noqa: PLC0415
@@ -529,6 +544,19 @@ def armpit_fill(image: np.ndarray, gap: np.ndarray, anchor, params: dict[str, An
     a = np.clip(np.maximum(a_fill, a_out), 0, 1) * float(weight)
     rgb = fill * shade[..., None]
     rgb = rgb * (1 - k_out[..., None]) + outline[None, None] * k_out[..., None]
+    if params.get("crease") and region.any():  # a short armpit crease from the open edge toward the armpit
+        from ..artistic.joint_art import _stroke  # noqa: PLC0415
+
+        p0 = B[int(0.4 * (len(B) - 1))]
+        dvec = A - p0
+        dn = float(np.hypot(*dvec))
+        if dn > 1:
+            p1 = p0 + dvec / dn * min(0.45 * chord, 0.8 * dn)
+            ctrl = (p0 + p1) / 2 + np.array([-dvec[1], dvec[0]]) / dn * 0.08 * chord
+            ss = np.linspace(0, 1, 10)[:, None]
+            cpts = (1 - ss) ** 2 * p0 + 2 * (1 - ss) * ss * ctrl + ss ** 2 * p1
+            kc = _stroke(region.shape, cpts, 2.0, 0.5) * 0.6 * region
+            rgb = rgb * (1 - kc[..., None]) + outline[None, None] * kc[..., None]
     out = np.zeros((H, W, 4), np.float32)
     out[sl][..., :3] = rgb / 255.0 * a[..., None]
     out[sl][..., 3] = a
@@ -607,6 +635,27 @@ class ArmpitCorrectionGenerator:
             asset.keys.append({"key_id": key_id, "values": {f"abduction_{side}": float(k)}, "origin": origin,
                                "bind_matrix": bind.tolist(), "gap_fill_px": int(gm.sum()), "curve": curve,
                                "role": "baked preview (review + Moho bake candidate)"})
+        return asset, images
+
+
+class ShoulderSilhouetteController:
+    """Phase 3.5: a leaner armpit gusset recipe (a new version of ``armpit_gusset_<side>``). The outward bulge is
+    capped at 6 % of the open edge (18 % with the arm near vertical), a short crease runs from the open edge toward the
+    armpit, and the fill still goes beneath everything (shoulder, lapels and blazer body stay as drawn).
+
+    Measured limit: most of the raised-arm fullness is the stretched T-pose sleeve's own underside outline, which lies
+    outside the gap. A concave sag (``params["sag"]``, kept as an option) opens a white crescent inside that outline,
+    so a lean raised-arm armpit needs a drawing (REQUIRES_ALTERNATIVE_ARTWORK), not more or less fill."""
+
+    def generate(self, eng, side: str, vis: list[str] | None = None):
+        g = ArmpitCorrectionGenerator().generate(eng, side, vis=vis)
+        if g is None:
+            return None
+        asset, images = g
+        asset.method = "ShoulderSilhouetteController"
+        asset.params = {**asset.params, "shoulder_controller": True, "crease": True, "max_bulge": 0.35,
+                        "max_bulge_convex": 0.06}
+        asset.source_refs = list(asset.source_refs) + ["Phase 3.5 audit: the v1 gusset read as an inflated armpit"]
         return asset, images
 
 
@@ -816,8 +865,17 @@ class CorrectiveRuntime:
         acts = self.engine.activate([a for a in assets if a.placement.get("mode") != "derived_layers"],
                                     readings, overrides)
         by = {a.asset_id: a for a in assets}
+
+        def _shown(a, w):
+            st_ = self.status(a, approvals)
+            return w > 0 and st_ != "rejected" and (st_ == "approved" or allow_pending or mode == "all" or only is not None)
+        superseded = {x for r0 in acts for x in by[r0["asset_id"]].params.get("supersedes", [])
+                      if _shown(by[r0["asset_id"]], r0["weight"])}
         for r in acts:
             a = by[r["asset_id"]]
+            if a.asset_id in superseded:
+                r["weight"] = 0.0
+                r["flags"].append("superseded")
             sv = (settings or {}).get(a.asset_id, {})
             if "strength" in sv and r["weight"] > 0:
                 r["weight"] *= float(sv["strength"])
@@ -830,12 +888,30 @@ class CorrectiveRuntime:
             out["report"].append(rec)
             if not shown or r["weight"] <= 0 or a.attach_bone not in sk.idx:
                 continue
+            if a.placement.get("mode") == "joint_fold":
+                pr = a.params
+                Wp, Wc = dfm.world(sk.idx[pr["parent"]], pose), dfm.world(sk.idx[pr["child"]], pose)
+                bp, bc = sk.bone(pr["parent"]), sk.bone(pr["child"])
+                P = Wp[:2, :2] @ np.asarray(bc.head, float) + Wp[:2, 2]
+                ph = Wp[:2, :2] @ np.asarray(bp.head, float) + Wp[:2, 2]
+                ct = Wc[:2, :2] @ np.asarray(bc.tail, float) + Wc[:2, 2]
+                out.setdefault("joint_folds", []).append(
+                    {"asset_id": a.asset_id, "group": a.placement["group"], "P": P.tolist(),
+                     "a": (ph - P).tolist(), "b": (ct - P).tolist(), "w": float(pr["half_width_px"]),
+                     "params": pr, "weight": r["weight"], "fabric_layers": pr.get("fabric_layers", [])})
+                rec["fold"] = True
+                continue
             if a.placement.get("mode") == "gap_fill_beneath":
                 bone = a.params.get("anchor_bone", a.attach_bone)
                 Wb = dfm.world(sk.idx[bone], pose)
                 h0 = sk.bone(bone).head
                 anchor = Wb[:2, :2] @ np.asarray(h0, float) + Wb[:2, 2]
-                out["fills"].append({"asset_id": a.asset_id, "parts": a.params["parts"], "params": a.params,
+                prm = a.params
+                if prm.get("shoulder_controller"):  # pose-dependent fullness: lean unless the arm is near vertical
+                    ab = float(readings.get(a.activation.get("driver", ""), 0.0))
+                    u = float(np.clip((ab - 135.0) / 35.0, 0.0, 1.0))
+                    prm = {**prm, "max_bulge_convex": 0.06 + 0.12 * u * u * (3 - 2 * u)}
+                out["fills"].append({"asset_id": a.asset_id, "parts": a.params["parts"], "params": prm,
                                      "anchor": [float(anchor[0]), float(anchor[1])], "weight": r["weight"],
                                      "radius": float(a.params.get("radius_h", 2.6)) * sk.bone(bone).h})
                 rec["fill"] = True
