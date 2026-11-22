@@ -216,8 +216,8 @@ def _character_id(pkg: Path) -> str:
 
 
 def roundtrip(eng, vis, pkg: Path, store: MotionReferenceStore, out: Path, progress, quick: bool = False) -> dict[str, Any]:
-    """AutoRig render of the schoolboy -> MP4 -> ffmpeg -> MediaPipe -> analysis -> retarget; compared with the
-    known parameters."""
+    """AutoRig render of the package's character -> MP4 -> ffmpeg -> MediaPipe -> analysis -> retarget; compared with
+    the known parameters."""
     from ..performance import scenarios  # noqa: PLC0415
     from ..performance.director import PerformanceDirector  # noqa: PLC0415
     from .pose import MediaPipePoseProvider, mediapipe_available  # noqa: PLC0415
@@ -284,7 +284,7 @@ def roundtrip(eng, vis, pkg: Path, store: MotionReferenceStore, out: Path, progr
                 dr.line([tuple(P[J[a_], :2]), tuple(P[J[b_], :2])], fill=(220, 0, 0), width=3)
         dr.text((6, 6), f"t={ts[k]:.2f}s MediaPipe on an AutoRig render", fill=(0, 0, 160))
         tiles.append(im)
-    _row(tiles[:6], h=420, title="Round trip: MediaPipe Pose (local CPU) on the rendered schoolboy; red = detected "
+    _row(tiles[:6], h=420, title=f"Round trip: MediaPipe Pose (local CPU) on the rendered {cid}; red = detected "
                                  "skeleton").save(out / "roundtrip.png")
     return {"status": "RUN", "frames": len(frames), "fps": fps, "segment": list(seg), "quality": q,
             "errors_vs_known_params": comp, "provider": prov.info(),

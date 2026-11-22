@@ -131,7 +131,7 @@ NEEDS_ARTWORK (the raised-shoulder collar drawing).
 
 The corrective planner generated assets from the new character's own pixels. All are GEOMETRIC_CORRECTION and
 **PENDING REVIEW**:
-- shoe tops r/l (**v2** with the light-shoe fix; v1 was dark grey);
+- shoe tops r/l (**v3** with the light-shoe fix decided per shoe; v1 was dark grey, v2 kept dark streaks);
 - elbow caps r/l, knee caps r/l;
 - armpit gussets r/l (v1, plus v2 from the Phase 3.5 shoulder controller);
 - elbow folds r/l, knee folds r/l;
@@ -150,7 +150,10 @@ Effect, review preview, exposed gap points off → on:
 
 **Artefacts a reviewer will see:**
 - a thin light diagonal line in the armpit with the pending gusset in the raised-arm preview;
-- fold strokes at the deep elbow that do not hide the missing fold drawing.
+- fold strokes at the deep elbow that do not hide the missing fold drawing; the filled notch also keeps a stray
+  dark dot;
+- a ragged, speckled outer outline along the squat knee fold (left close-up of the squat row), where the fold
+  meets the trouser silhouette.
 
 Still missing: deep elbow, raised-shoulder collar, seated trousers, torso lean, knee-drive drawings.
 
@@ -159,7 +162,7 @@ Still missing: deep elbow, raised-shoulder collar, seated trousers, torso lean, 
 | defect | where | cause | status |
 |---|---|---|---|
 | white rounded cuff end over every library hand | first hand renders | Phase 2 flat fill under the original hand, kept by the stored-hand cuff cover | **fixed** (`cuff_cover`) |
-| dark shoe-top extension under white trainers | shoe_top v1 | shoe colour sampled only from dark pixels | **fixed** (v2 pending) |
+| dark shoe-top extension under white trainers | shoe_top v1 | shoe colour sampled only from dark pixels | **fixed** (v3 pending) |
 | crest attached to the spine as a "button" | garment structure | badge rule needed a solid gold area | **fixed** (outline-emblem rule) |
 | square, padded shoulders when the arms are down; cap bulge 16–21 px in transit | §2 | rotating a horizontal T-pose shoulder seam | NEEDS_ARTWORK (arms-down shoulder drawing) |
 | small dark marks beside the inner trainers | relaxed stance, most poses | trouser-hem outline pixels owned by the shin layer separate when the ankle angle changes | segmentation; fix with a mask edit; reported as shoe FAIL |
@@ -172,6 +175,12 @@ Still missing: deep elbow, raised-shoulder collar, seated trousers, torso lean, 
 See the main report §16 for the acting sequence: T-pose → lower both arms → shift weight → raise the right arm →
 point → hold → shrug → relax. It includes the per-segment production / review status and the motion-quality checks.
 
+The motion is continuous: 0 velocity jumps, 0 solver events, and planted feet move 0.01 px. The verdict is **REVIEW**
+because the loaded left knee bends 10.8–18.5° against the 10° standing limit. This is visible as an inward knee in
+the weight-shift frames. The standard Phase 3.6 acting test gives the same result on this character (schoolboy:
+PASS). The cause is the solver's pelvis-height priority when the free leg's soft knee and the loaded leg's limit
+cannot both hold (generalisation report §3.7).
+
 ## 8. Summary
 
 Technically, the rig generalises:
@@ -181,9 +190,10 @@ Technically, the rig generalises:
 - correctives are generated from the new character's pixels;
 - every pose is classified honestly.
 
-Artistically, three things stop it from being convincing yet:
+Artistically, four things stop it from being convincing yet:
 - the shoulders with the arms down;
 - the trouser-cuff marks;
-- the unreviewed hand palette.
+- the unreviewed hand palette;
+- the bent loaded knee during weight shifts (a solver priority, not artwork).
 
-None of these is hidden by stretching. Each is named as missing artwork or a mask edit.
+None of these is hidden by stretching. Each is named as missing artwork, a mask edit or an open solver issue.

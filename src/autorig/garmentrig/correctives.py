@@ -257,6 +257,23 @@ class ShoeTopRecovery:
     def __init__(self, depth_frac: float = 0.42):
         self.depth_frac = depth_frac
 
+    @staticmethod
+    def _light_shoe(lum: np.ndarray, foot: np.ndarray, trouser: np.ndarray, xs: np.ndarray) -> bool:
+        """True when light pixels (luminance >= 160) outnumber the mid-tone fabric pixels in the sampled band under
+        the hem, counted over the whole shoe (one decision per shoe, so edge columns cannot flip their colour)."""
+        n_light = n_fabric = 0
+        for x in range(xs.min(), xs.max() + 1):
+            fy = np.nonzero(foot[:, x])[0]
+            if not len(fy):
+                continue
+            y_top = int(fy.min())
+            if y_top < 1 or not trouser[y_top - 1, x]:
+                continue
+            bl = lum[y_top + 2:y_top + 10, x]
+            n_light += int((bl >= 160).sum())
+            n_fabric += int(((bl > 25) & (bl < 160)).sum())
+        return n_light > n_fabric
+
     def generate(self, eng, side: str) -> tuple[CorrectiveAsset, dict[str, np.ndarray]] | None:
         src, masks, gen = eng.source, eng.masks, eng.generated
         foot = masks[f"foot_{side}"] & ~gen.get(f"foot_{side}", np.zeros_like(masks[f"foot_{side}"]))
@@ -272,6 +289,10 @@ class ShoeTopRecovery:
         region = np.zeros((H, W), bool)
         colour = np.zeros((H, W, 3), np.float32)
         lum = src[..., :3].astype(np.float32) @ np.array([0.299, 0.587, 0.114], np.float32)
+        light_shoe = self._light_shoe(lum, foot, trouser, xs)
+        fallback = np.array([35, 33, 36], np.float32)
+        if light_shoe:  # a column without light pixels (outline, laces) takes the shoe's light tone, not dark grey
+            fallback = np.median(src[..., :3][foot & (lum >= 160)].astype(np.float32), 0)
         cols = []
         for x in range(xs.min(), xs.max() + 1):
             fy = np.nonzero(foot[:, x])[0]
@@ -282,13 +303,11 @@ class ShoeTopRecovery:
                 continue  # the shoe's top is visible here (not under the trouser)
             band = src[y_top + 2:y_top + 10, x, :3].astype(np.float32)
             bl = lum[y_top + 2:y_top + 10, x]
-            fabric = band[(bl > 25) & (bl < 160)]
-            light = band[bl >= 160]
-            # Phase 3.8: the shoe's own dominant tone. A dark shoe (the schoolboy) keeps the dark rule; a light shoe
-            # (white trainers) was sampled from its laces and outline only and drawn dark grey under the hem
-            if len(light) > len(fabric):
-                fabric = light
-            c = np.median(fabric, 0) if len(fabric) else np.array([35, 33, 36], np.float32)
+            # Phase 3.8: the shoe's own dominant tone, decided once per shoe. A dark shoe (the schoolboy) keeps the
+            # dark rule exactly; a light shoe (white trainers) was sampled from its laces and outline only and drawn
+            # dark grey under the hem
+            fabric = band[bl >= 160] if light_shoe else band[(bl > 25) & (bl < 160)]
+            c = np.median(fabric, 0) if len(fabric) else fallback
             y0 = max(0, y_top - depth)
             hidden = trouser[y0:y_top, x]
             region[y0:y_top, x] = hidden

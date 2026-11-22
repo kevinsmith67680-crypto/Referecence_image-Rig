@@ -221,6 +221,22 @@ def test_cuff_cover_drops_generated_pixels_beyond_the_cuff_and_shoe_tops_take_th
         assert np.median(lum) > 150, "white trainers get a light shoe-top extension"
 
 
+def test_dark_shoes_keep_the_original_shoe_top_rule():
+    """The light-shoe rule is decided once per shoe, so the schoolboy's black shoes regenerate their committed
+    shoe-top assets pixel for pixel (a per-column rule changed 2 px at the sole's edge)."""
+    from autorig.garmentrig.correctives import ShoeTopRecovery
+    from autorig.motion.pipeline import engine_for_package
+
+    shoes = SCHOOLBOY / "artwork" / "correctives" / "shoes"
+    if not (SCHOOLBOY / "natural_pose" / "rig.json").is_file() or not shoes.is_dir():
+        pytest.skip("schoolboy package absent")
+    eng, _ = engine_for_package(SCHOOLBOY)
+    for s in ("r", "l"):
+        _, imgs = ShoeTopRecovery().generate(eng, s)
+        committed = np.asarray(Image.open(shoes / f"shoe_top_{s}@v1.png").convert("RGBA"))
+        assert committed.shape == imgs["main"].shape and (committed == imgs["main"]).all()
+
+
 def test_character_scoped_names_and_view_sources():
     from autorig.artistic.alternatives import ViewAwareRigController
     from autorig.refmotion.evidence import _character_id

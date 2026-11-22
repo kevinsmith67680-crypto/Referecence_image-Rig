@@ -1125,8 +1125,11 @@ def section_reload(ctx: dict[str, Any]) -> dict[str, Any]:
             applied.append(op["type"])
         except Exception as exc:  # an op this package cannot take is reported, not hidden
             refused.append({"op": op["type"], "error": str(exc)[:160]})
+    cur0 = p.cursor
     p.undo()
+    cur_undo = p.cursor
     p.redo()
+    undo_redo = {"cursor": cur0, "after_undo": cur_undo, "after_redo": p.cursor}
     ver = p.save_version("phase 3.8 reload test")
     st1 = p.state()
     eng1, vis1 = engine(dst)
@@ -1153,7 +1156,11 @@ def section_reload(ctx: dict[str, Any]) -> dict[str, Any]:
            "code_schema_version": VERSION, "state_equal_after_reopen": same_state,
            "render_identical_after_reopen": same_px, "absolute_paths_in_project": absolute[:5],
            "files_present": files, "source_sha256": src_sha, "hand_store_verify": verify,
-           "saved_version": ver if isinstance(ver, (str, int)) else (ver or {}).get("id"),
+           "undo_redo": undo_redo,
+           "saved_version": {"n": ver.get("n"), "label": ver.get("label"), "cursor": ver.get("cursor"),
+                             "listed_after_reopen": any(v.get("n") == ver.get("n")
+                                                        for v in json.loads((dst / "editor" / "project.json")
+                                                                            .read_text()).get("versions", []))},
            "approvals_after_reopen": {k: v.get("status") for k, v in st2["approvals"].items() if k.startswith("handstore:")},
            "hands_shown": {s: r2["hands"][s]["pose"] + (" (pending)" if r2["hands"][s].get("pending_review") else "")
                            for s in ("r", "l")},

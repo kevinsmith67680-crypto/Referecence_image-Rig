@@ -89,7 +89,9 @@ faithful, editable **Moho Pro 14** character rig.
   - Generalisation defects fixed: Phase 1 spatial paper rule, black-background hand sheets, generated pixels in the
     stored-hand cuff cover, light shoes, outline-emblem badge, `ik-demo` fist layer, character-scoped round-trip and
     view sources.
-  - Documented, not fixed: fixed garment palette and vocabulary, absolute pixel thresholds.
+  - Documented, not fixed: fixed garment palette and vocabulary, absolute pixel thresholds, the pelvis-height
+    priority (the loaded knee passes its limit in weight shifts, so the acting test is REVIEW on this character),
+    the fixed front-view ratio for reference clips.
   - Nothing is approved; Moho was not run.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
@@ -347,7 +349,8 @@ faithful, editable **Moho Pro 14** character rig.
     outline width;
   - the white path must stay byte-identical (the committed v2 pack rebuild test).
 - A rule that depends on a character's colours or names needs a check that the schoolboy's outputs are unchanged.
-  Examples: shoe tone, emblem shape, round-trip name, view sources.
+  Examples: shoe tone (decided once per shoe; the schoolboy's shoe tops regenerate pixel for pixel), emblem shape,
+  round-trip name and title, view sources.
 - `autorig newchar-evidence <package> --project ... --character ... --hand-sheet ... --hand-grid ...` regenerates
   `docs/phase3_8/new_character_evidence/` (`--sections` for a subset). Pending drawings appear only in images labelled
   REVIEW PREVIEW / PENDING.
