@@ -170,7 +170,7 @@ Two existing tests changed. `tests/test_hand_replacement.py::test_rules_choose_n
 |---|---|---|
 | backend `pytest` | 606 passed, 2 skipped (native) | **616 passed**, 2 skipped (native Moho: NOT EXECUTED), 0 failed, 19 min 17 s (606 + 10 new) |
 | frontend `vitest` | 11 | 11 (editor rebuilt for the label) |
-| schoolboy editor e2e | passed | SCHOOLBOY_E2E |
+| schoolboy editor e2e | passed | **passed** (488 s, screenshots to scratch) |
 | new-character editor e2e | passed | **passed** (136 s, screenshots to scratch) |
 
 The first full run after the changes had **3 failures**, each handled without weakening an assertion:
@@ -213,7 +213,7 @@ reopen, move the arm, about 10 minutes on the Mac with the existing Phase 0 inst
 | 9 | save/reload identical | PASS |
 | 10 | rendered comparisons show improvement | PASS (`docs/phase3_8_1/*_before_after.png`) |
 | 11 | pending artwork unapproved | PASS (nothing approved; every candidate pending) |
-| 12 | all regression tests pass | FINAL_GATE |
+| 12 | all regression tests pass | PASS: 616 passed / 2 skipped (native) / 0 failed; vitest 11; both editor e2e tests passed |
 
 Visual quality has **not** been judged by a person. The statements above are measurements and an assistant's
 reading of the renders, not artistic approval.
