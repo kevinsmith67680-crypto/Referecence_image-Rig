@@ -1,0 +1,639 @@
+{
+ "schema": "autorig.hand_compatibility_report",
+ "version": 1,
+ "character_hands": {
+  "r": {
+   "skin_median_rgb": [
+    253,
+    166,
+    97
+   ],
+   "skin_p10_p90_lum": [
+    156.3,
+    187.4
+   ],
+   "tone_clusters": 2,
+   "outline_px": 3.0,
+   "area_px": 11485,
+   "bbox_px": [
+    149,
+    120
+   ],
+   "hand_bone_px": 66.6,
+   "forearm_bone_px": 122.3
+  },
+  "l": {
+   "skin_median_rgb": [
+    253,
+    166,
+    97
+   ],
+   "skin_p10_p90_lum": [
+    153.9,
+    188.0
+   ],
+   "tone_clusters": 2,
+   "outline_px": 3.0,
+   "area_px": 11428,
+   "bbox_px": [
+    149,
+    120
+   ],
+   "hand_bone_px": 67.2,
+   "forearm_bone_px": 120.3
+  }
+ },
+ "library": {
+  "store:tough_student_hands_v1/left_cupped": {
+   "sheet_cell": "r2c4",
+   "skin_median_rgb": [
+    253,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 93.5,
+   "wrist_width_px_on_character": 53.1,
+   "area_px_on_character": 7897,
+   "view": "palm",
+   "orientation": -90.0,
+   "wrist_opening": "closed_outline",
+   "skin_delta_rgb": [
+    0,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  },
+  "store:tough_student_hands_v1/left_fist": {
+   "sheet_cell": "r1c3",
+   "skin_median_rgb": [
+    253,
+    194,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 101.24,
+   "wrist_width_px_on_character": 57.5,
+   "area_px_on_character": 9417,
+   "view": "palm_side_curled",
+   "orientation": 0.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    28,
+    51
+   ],
+   "skin_delta_e_approx": 58.2
+  },
+  "store:tough_student_hands_v1/left_gripping": {
+   "sheet_cell": "r2c2",
+   "skin_median_rgb": [
+    253,
+    194,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 92.5,
+   "wrist_width_px_on_character": 52.5,
+   "area_px_on_character": 8503,
+   "view": "edge",
+   "orientation": 90.0,
+   "wrist_opening": "closed_outline",
+   "skin_delta_rgb": [
+    0,
+    28,
+    51
+   ],
+   "skin_delta_e_approx": 58.2
+  },
+  "store:tough_student_hands_v1/left_open_palm": {
+   "sheet_cell": "r1c2",
+   "skin_median_rgb": [
+    253,
+    194,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 92.01,
+   "wrist_width_px_on_character": 52.2,
+   "area_px_on_character": 12348,
+   "view": "palm",
+   "orientation": 0.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    28,
+    51
+   ],
+   "skin_delta_e_approx": 58.2
+  },
+  "store:tough_student_hands_v1/left_palm_down": {
+   "sheet_cell": "r2c3",
+   "skin_median_rgb": [
+    253,
+    194,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 94.01,
+   "wrist_width_px_on_character": 53.4,
+   "area_px_on_character": 9654,
+   "view": "back",
+   "orientation": -35.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    28,
+    51
+   ],
+   "skin_delta_e_approx": 58.2
+  },
+  "store:tough_student_hands_v1/left_pointing": {
+   "sheet_cell": "r1c4",
+   "skin_median_rgb": [
+    253,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 93.5,
+   "wrist_width_px_on_character": 53.1,
+   "area_px_on_character": 8577,
+   "view": "palm_side_curled",
+   "orientation": 90.0,
+   "wrist_opening": "closed_outline",
+   "skin_delta_rgb": [
+    0,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  },
+  "store:tough_student_hands_v1/left_relaxed": {
+   "sheet_cell": "r1c1",
+   "skin_median_rgb": [
+    253,
+    194,
+    149
+   ],
+   "tone_clusters": 1,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 92.44,
+   "wrist_width_px_on_character": 52.5,
+   "area_px_on_character": 10140,
+   "view": "palm",
+   "orientation": 0.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    28,
+    52
+   ],
+   "skin_delta_e_approx": 59.1
+  },
+  "store:tough_student_hands_v1/left_thumbs_up": {
+   "sheet_cell": "r2c1",
+   "skin_median_rgb": [
+    253,
+    194,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.97,
+   "scale_on_character": 0.56772,
+   "wrist_width_px_sheet": 86.05,
+   "wrist_width_px_on_character": 48.9,
+   "area_px_on_character": 9470,
+   "view": "palm_side_curled",
+   "orientation": 90.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    28,
+    51
+   ],
+   "skin_delta_e_approx": 58.2
+  },
+  "store:tough_student_hands_v1/right_cupped": {
+   "sheet_cell": "r4c4",
+   "skin_median_rgb": [
+    253,
+    193,
+    147
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 93.5,
+   "wrist_width_px_on_character": 52.6,
+   "area_px_on_character": 8761,
+   "view": "palm",
+   "orientation": 90.0,
+   "wrist_opening": "closed_outline",
+   "skin_delta_rgb": [
+    0,
+    27,
+    50
+   ],
+   "skin_delta_e_approx": 56.8
+  },
+  "store:tough_student_hands_v1/right_fist": {
+   "sheet_cell": "r3c3",
+   "skin_median_rgb": [
+    253,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 104.24,
+   "wrist_width_px_on_character": 58.7,
+   "area_px_on_character": 9501,
+   "view": "palm_side_curled",
+   "orientation": 0.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  },
+  "store:tough_student_hands_v1/right_gripping": {
+   "sheet_cell": "r4c2",
+   "skin_median_rgb": [
+    253,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 95.5,
+   "wrist_width_px_on_character": 53.7,
+   "area_px_on_character": 8594,
+   "view": "edge",
+   "orientation": -90.0,
+   "wrist_opening": "closed_outline",
+   "skin_delta_rgb": [
+    0,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  },
+  "store:tough_student_hands_v1/right_open_palm": {
+   "sheet_cell": "r3c2",
+   "skin_median_rgb": [
+    253,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 93.05,
+   "wrist_width_px_on_character": 52.4,
+   "area_px_on_character": 12369,
+   "view": "palm",
+   "orientation": 0.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  },
+  "store:tough_student_hands_v1/right_palm_down": {
+   "sheet_cell": "r4c3",
+   "skin_median_rgb": [
+    254,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.25,
+   "outline_px_on_character": 4.08,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 95.01,
+   "wrist_width_px_on_character": 53.5,
+   "area_px_on_character": 9851,
+   "view": "back",
+   "orientation": 35.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    1,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  },
+  "store:tough_student_hands_v1/right_pointing": {
+   "sheet_cell": "r3c4",
+   "skin_median_rgb": [
+    253,
+    193,
+    147
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 93.5,
+   "wrist_width_px_on_character": 52.6,
+   "area_px_on_character": 8812,
+   "view": "palm_side_curled",
+   "orientation": -90.0,
+   "wrist_opening": "closed_outline",
+   "skin_delta_rgb": [
+    0,
+    27,
+    50
+   ],
+   "skin_delta_e_approx": 56.8
+  },
+  "store:tough_student_hands_v1/right_relaxed": {
+   "sheet_cell": "r3c1",
+   "skin_median_rgb": [
+    253,
+    194,
+    148
+   ],
+   "tone_clusters": 1,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 94.05,
+   "wrist_width_px_on_character": 52.9,
+   "area_px_on_character": 10021,
+   "view": "palm",
+   "orientation": 0.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    0,
+    28,
+    51
+   ],
+   "skin_delta_e_approx": 58.2
+  },
+  "store:tough_student_hands_v1/right_thumbs_up": {
+   "sheet_cell": "r4c1",
+   "skin_median_rgb": [
+    254,
+    193,
+    148
+   ],
+   "tone_clusters": 2,
+   "outline_px_sheet": 7.0,
+   "outline_px_on_character": 3.94,
+   "scale_on_character": 0.56277,
+   "wrist_width_px_sheet": 91.0,
+   "wrist_width_px_on_character": 51.2,
+   "area_px_on_character": 9634,
+   "view": "palm_side_curled",
+   "orientation": -90.0,
+   "wrist_opening": "open_cut",
+   "skin_delta_rgb": [
+    1,
+    27,
+    51
+   ],
+   "skin_delta_e_approx": 57.7
+  }
+ },
+ "candidates": {
+  "store:tough_student_hands_v1/left_cupped": {
+   "skin_matched": "candidates/left_cupped__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.655
+   ],
+   "changed_px": 17984,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_fist": {
+   "skin_matched": "candidates/left_fist__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.655
+   ],
+   "changed_px": 22173,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_gripping": {
+   "skin_matched": "candidates/left_gripping__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.655
+   ],
+   "changed_px": 19355,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_open_palm": {
+   "skin_matched": "candidates/left_open_palm__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.655
+   ],
+   "changed_px": 28809,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_palm_down": {
+   "skin_matched": "candidates/left_palm_down__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.655
+   ],
+   "changed_px": 23169,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_pointing": {
+   "skin_matched": "candidates/left_pointing__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.655
+   ],
+   "changed_px": 19178,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_relaxed": {
+   "skin_matched": "candidates/left_relaxed__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.651
+   ],
+   "changed_px": 24339,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/left_thumbs_up": {
+   "skin_matched": "candidates/left_thumbs_up__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.655
+   ],
+   "changed_px": 23083,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_cupped": {
+   "skin_matched": "candidates/right_cupped__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.66
+   ],
+   "changed_px": 20658,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_fist": {
+   "skin_matched": "candidates/right_fist__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.655
+   ],
+   "changed_px": 22858,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_gripping": {
+   "skin_matched": "candidates/right_gripping__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.655
+   ],
+   "changed_px": 19936,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_open_palm": {
+   "skin_matched": "candidates/right_open_palm__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.655
+   ],
+   "changed_px": 29371,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_palm_down": {
+   "skin_matched": "candidates/right_palm_down__skin_matched.png",
+   "gain_rgb": [
+    0.996,
+    0.86,
+    0.655
+   ],
+   "changed_px": 24303,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_pointing": {
+   "skin_matched": "candidates/right_pointing__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.86,
+    0.66
+   ],
+   "changed_px": 20297,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_relaxed": {
+   "skin_matched": "candidates/right_relaxed__skin_matched.png",
+   "gain_rgb": [
+    1.0,
+    0.856,
+    0.655
+   ],
+   "changed_px": 24588,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  },
+  "store:tough_student_hands_v1/right_thumbs_up": {
+   "skin_matched": "candidates/right_thumbs_up__skin_matched.png",
+   "gain_rgb": [
+    0.996,
+    0.86,
+    0.655
+   ],
+   "changed_px": 23966,
+   "status": "CANDIDATE_NOT_IMPORTED",
+   "approval": "none (a person must review, then import it as a new version)"
+  }
+ },
+ "findings": [
+  "skin tone differs: library median [253, 193, 148] vs character [253, 166, 97] (approx. RGB distance 57.7); the library hands read paler/pinker than the character's own hands and face",
+  "shading: library hands use two-tone cel shading (highlight + shadow); compare the tone-cluster counts above"
+ ],
+ "artistic_review_required": true,
+ "summary": {
+  "character_skin_rgb": [
+   253,
+   166,
+   97
+  ],
+  "library_skin_rgb_median": [
+   253,
+   193,
+   148
+  ],
+  "skin_delta_e_approx_median": 57.7,
+  "character_outline_px": 3.0,
+  "library_outline_px_on_character_median": 3.97,
+  "scale_on_character": [
+   0.56277,
+   0.56772
+  ],
+  "character_tone_clusters": [
+   2,
+   2
+  ],
+  "library_tone_clusters_median": 2.0
+ }
+}

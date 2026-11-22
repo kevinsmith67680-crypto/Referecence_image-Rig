@@ -1,0 +1,644 @@
+{
+ "schema": "autorig.corrective_requirements",
+ "version": "1.0.0",
+ "requirements": [
+  {
+   "id": "REQ-shoe_top_r",
+   "category": "shoes",
+   "garment_region": "shoe_r",
+   "triggering_poses": [
+    "arm45",
+    "arm90",
+    "arm120",
+    "elbow45",
+    "elbow95",
+    "elbow135",
+    "pointing",
+    "walk",
+    "run",
+    "sit",
+    "squat",
+    "lean",
+    "head_tilt"
+   ],
+   "target_joint_angles": {
+    "arm45": {
+     "abduction_r": 45.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 8.0,
+     "knee_r": 4.0
+    },
+    "arm90": {
+     "abduction_r": 90.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 8.9,
+     "knee_r": 4.0
+    },
+    "arm120": {
+     "abduction_r": 120.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 8.8,
+     "knee_r": 4.0
+    },
+    "elbow45": {
+     "abduction_r": 15.0,
+     "elbow_r": 45.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.2,
+     "knee_r": 9.5
+    },
+    "elbow95": {
+     "abduction_r": 15.0,
+     "elbow_r": 95.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.5,
+     "knee_r": 10.8
+    },
+    "elbow135": {
+     "abduction_r": 15.0,
+     "elbow_r": 135.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.4,
+     "knee_r": 10.4
+    },
+    "pointing": {
+     "abduction_r": 109.7,
+     "elbow_r": 13.2,
+     "wrist_r": 4.0,
+     "hip_r": 13.6,
+     "knee_r": 4.0
+    },
+    "walk": {
+     "abduction_r": 16.9,
+     "elbow_r": 16.1,
+     "wrist_r": 2.9,
+     "hip_r": 1.1,
+     "knee_r": 3.0
+    },
+    "run": {
+     "abduction_r": 19.3,
+     "elbow_r": 21.0,
+     "wrist_r": 6.2,
+     "hip_r": 3.4,
+     "knee_r": 5.9
+    },
+    "sit": {
+     "abduction_r": 20.0,
+     "elbow_r": 50.0,
+     "wrist_r": 8.0,
+     "hip_r": 67.5,
+     "knee_r": 89.1
+    },
+    "squat": {
+     "abduction_r": 24.0,
+     "elbow_r": 62.0,
+     "wrist_r": 8.0,
+     "hip_r": 50.1,
+     "knee_r": 72.9
+    },
+    "lean": {
+     "abduction_r": 15.0,
+     "elbow_r": 12.0,
+     "wrist_r": 4.0,
+     "hip_r": 9.7,
+     "knee_r": 12.5
+    },
+    "head_tilt": {
+     "abduction_r": 9.0,
+     "elbow_r": 14.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.5,
+     "knee_r": 11.1
+    }
+   },
+   "required_hidden_area": {
+    "arm45:ankle_gap_points": 1,
+    "arm90:ankle_gap_points": 2,
+    "arm120:ankle_gap_points": 2,
+    "elbow45:ankle_gap_points": 1,
+    "elbow95:ankle_gap_points": 2,
+    "elbow135:ankle_gap_points": 2,
+    "pointing:ankle_gap_points": 6,
+    "walk:ankle_gap_points": 5,
+    "run:ankle_gap_points": 4,
+    "sit:ankle_gap_points": 60,
+    "squat:ankle_gap_points": 59,
+    "lean:ankle_gap_points": 4,
+    "head_tilt:ankle_gap_points": 3
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the shoe's top under the hem was never drawn: extend the shoe upward under the trouser",
+   "source_artwork": [],
+   "confidence": 0.8,
+   "required_approval": "user approval",
+   "expected_moho": "direct: extra layer bound to the foot",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "shoe_top_r",
+     "version": 1,
+     "approval_key": "corrective:shoe_top_r@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-shoe_top_l",
+   "category": "shoes",
+   "garment_region": "shoe_l",
+   "triggering_poses": [
+    "arm45",
+    "arm90",
+    "arm120",
+    "elbow45",
+    "elbow95",
+    "elbow135",
+    "pointing",
+    "walk",
+    "run",
+    "sit",
+    "squat",
+    "lean",
+    "head_tilt"
+   ],
+   "target_joint_angles": {
+    "arm45": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 5.8,
+     "knee_l": 6.7
+    },
+    "arm90": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 6.7,
+     "knee_l": 10.3
+    },
+    "arm120": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 6.6,
+     "knee_l": 9.9
+    },
+    "elbow45": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 6.0,
+     "knee_l": 4.0
+    },
+    "elbow95": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 6.4,
+     "knee_l": 4.0
+    },
+    "elbow135": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 6.2,
+     "knee_l": 4.0
+    },
+    "pointing": {
+     "abduction_l": 10.0,
+     "elbow_l": 16.0,
+     "wrist_l": 6.0,
+     "hip_l": 1.2,
+     "knee_l": 8.9
+    },
+    "walk": {
+     "abduction_l": 0.8,
+     "elbow_l": 22.3,
+     "wrist_l": 7.5,
+     "hip_l": 16.2,
+     "knee_l": 11.1
+    },
+    "run": {
+     "abduction_l": 7.1,
+     "elbow_l": 34.1,
+     "wrist_l": 17.2,
+     "hip_l": 14.8,
+     "knee_l": 16.1
+    },
+    "sit": {
+     "abduction_l": 20.0,
+     "elbow_l": 50.0,
+     "wrist_l": 8.0,
+     "hip_l": 67.2,
+     "knee_l": 90.0
+    },
+    "squat": {
+     "abduction_l": 24.0,
+     "elbow_l": 62.0,
+     "wrist_l": 8.0,
+     "hip_l": 49.4,
+     "knee_l": 73.4
+    },
+    "lean": {
+     "abduction_l": 3.0,
+     "elbow_l": 12.0,
+     "wrist_l": 4.0,
+     "hip_l": 7.0,
+     "knee_l": 4.0
+    },
+    "head_tilt": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 6.5,
+     "knee_l": 4.0
+    }
+   },
+   "required_hidden_area": {
+    "arm45:ankle_gap_points": 1,
+    "arm90:ankle_gap_points": 2,
+    "arm120:ankle_gap_points": 2,
+    "elbow45:ankle_gap_points": 1,
+    "elbow95:ankle_gap_points": 2,
+    "elbow135:ankle_gap_points": 2,
+    "pointing:ankle_gap_points": 6,
+    "walk:ankle_gap_points": 5,
+    "run:ankle_gap_points": 4,
+    "sit:ankle_gap_points": 60,
+    "squat:ankle_gap_points": 59,
+    "lean:ankle_gap_points": 4,
+    "head_tilt:ankle_gap_points": 3
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the shoe's top under the hem was never drawn: extend the shoe upward under the trouser",
+   "source_artwork": [],
+   "confidence": 0.8,
+   "required_approval": "user approval",
+   "expected_moho": "direct: extra layer bound to the foot",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "shoe_top_l",
+     "version": 1,
+     "approval_key": "corrective:shoe_top_l@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-armpit_r",
+   "category": "armpits",
+   "garment_region": "armpit_r",
+   "triggering_poses": [
+    "arm120",
+    "both_raised",
+    "pointing"
+   ],
+   "target_joint_angles": {
+    "arm120": {
+     "abduction_r": 120.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 8.8,
+     "knee_r": 4.0
+    },
+    "both_raised": {
+     "abduction_r": 158.0,
+     "elbow_r": 12.0,
+     "wrist_r": 0.0,
+     "hip_r": 9.0,
+     "knee_r": 8.5
+    },
+    "pointing": {
+     "abduction_r": 109.7,
+     "elbow_r": 13.2,
+     "wrist_r": 4.0,
+     "hip_r": 13.6,
+     "knee_r": 4.0
+    }
+   },
+   "required_hidden_area": {
+    "arm120:gap_px": 1515,
+    "both_raised:gap_px": 4341,
+    "pointing:gap_px": 891
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the joint patch refuses the stretch; a gusset drawn beneath torso and sleeve fills it",
+   "source_artwork": [],
+   "confidence": 0.7,
+   "required_approval": "user approval (GEOMETRIC_CORRECTION)",
+   "expected_moho": "conversion: keyed switch layer",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "armpit_gusset_r",
+     "version": 1,
+     "approval_key": "corrective:armpit_gusset_r@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-armpit_l",
+   "category": "armpits",
+   "garment_region": "armpit_l",
+   "triggering_poses": [
+    "both_raised"
+   ],
+   "target_joint_angles": {
+    "both_raised": {
+     "abduction_l": 158.0,
+     "elbow_l": 12.0,
+     "wrist_l": 0.0,
+     "hip_l": 5.7,
+     "knee_l": 4.0
+    }
+   },
+   "required_hidden_area": {
+    "both_raised:gap_px": 3841
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the joint patch refuses the stretch; a gusset drawn beneath torso and sleeve fills it",
+   "source_artwork": [],
+   "confidence": 0.7,
+   "required_approval": "user approval (GEOMETRIC_CORRECTION)",
+   "expected_moho": "conversion: keyed switch layer",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "armpit_gusset_l",
+     "version": 1,
+     "approval_key": "corrective:armpit_gusset_l@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-elbow_cap_r",
+   "category": "elbows",
+   "garment_region": "elbow_r",
+   "triggering_poses": [
+    "elbow95"
+   ],
+   "target_joint_angles": {
+    "elbow95": {
+     "abduction_r": 15.0,
+     "elbow_r": 95.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.5,
+     "knee_r": 10.8,
+     "elbow_l": 14.0
+    }
+   },
+   "required_hidden_area": {
+    "elbow95:gap_px": 530
+   },
+   "correction_type": "geometric_extension",
+   "decision": "round joint cap beneath the segments",
+   "source_artwork": [],
+   "confidence": 0.75,
+   "required_approval": "user approval",
+   "expected_moho": "conversion: image layer + Smart Bone action",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "elbow_cap_r",
+     "version": 1,
+     "approval_key": "corrective:elbow_cap_r@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-elbow_deep_r",
+   "category": "elbows",
+   "garment_region": "elbow_r",
+   "triggering_poses": [
+    "elbow135"
+   ],
+   "target_joint_angles": {
+    "elbow135": {
+     "abduction_r": 15.0,
+     "elbow_r": 135.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.4,
+     "knee_r": 10.4,
+     "elbow_l": 14.0
+    }
+   },
+   "required_hidden_area": {
+    "elbow135:gap_px": 973
+   },
+   "correction_type": "replacement_drawing",
+   "decision": "a deep bend folds the sleeve: an inner-elbow drawing is needed",
+   "source_artwork": [],
+   "confidence": 0.3,
+   "required_approval": "artist drawing + approval",
+   "expected_moho": "conversion: image layer + Smart Bone action",
+   "ai_generation": "not used: needs a view-specific drawing; an AI candidate would require review",
+   "treated_as_original": false,
+   "assets": [],
+   "state": "NEEDS_ARTWORK (no drawing; none is invented)"
+  },
+  {
+   "id": "REQ-corrective_elbow_deep_r",
+   "category": "elbows",
+   "garment_region": "corrective:elbow_deep_r",
+   "triggering_poses": [
+    "elbow135"
+   ],
+   "target_joint_angles": {
+    "elbow135": {
+     "abduction_r": 15.0,
+     "elbow_r": 135.0,
+     "wrist_r": 6.0,
+     "hip_r": 9.4,
+     "knee_r": 10.4
+    }
+   },
+   "required_hidden_area": {},
+   "correction_type": "replacement_drawing",
+   "decision": "deep elbow bend (inner-elbow drawing) triggered at 135 deg; band-rule deformation used instead",
+   "source_artwork": [],
+   "confidence": 0.2,
+   "required_approval": "artist drawing (or reviewed AI candidate) + approval",
+   "expected_moho": "switch layer / Smart Bone action",
+   "ai_generation": "not used: needs a view-specific drawing; an AI candidate would require review",
+   "treated_as_original": false,
+   "assets": [],
+   "state": "NEEDS_ARTWORK (no drawing; none is invented)"
+  },
+  {
+   "id": "REQ-hand_point",
+   "category": "shoulders",
+   "garment_region": "hand:point",
+   "triggering_poses": [
+    "pointing"
+   ],
+   "target_joint_angles": {},
+   "required_hidden_area": {},
+   "correction_type": "replacement_drawing",
+   "decision": "index-finger pointing hand; hand drawing from the character sheet (pending review until approved)",
+   "source_artwork": [],
+   "confidence": 0.2,
+   "required_approval": "artist drawing (or reviewed AI candidate) + approval",
+   "expected_moho": "switch layer / Smart Bone action",
+   "ai_generation": "not used: needs a view-specific drawing; an AI candidate would require review",
+   "treated_as_original": false,
+   "assets": [],
+   "state": "NEEDS_ARTWORK (no drawing; none is invented)"
+  },
+  {
+   "id": "REQ-knee_cap_r",
+   "category": "knees",
+   "garment_region": "knee_r",
+   "triggering_poses": [
+    "sit",
+    "squat"
+   ],
+   "target_joint_angles": {
+    "sit": {
+     "abduction_r": 20.0,
+     "elbow_r": 50.0,
+     "wrist_r": 8.0,
+     "hip_r": 67.5,
+     "knee_r": 89.1,
+     "knee_l": 90.0
+    },
+    "squat": {
+     "abduction_r": 24.0,
+     "elbow_r": 62.0,
+     "wrist_r": 8.0,
+     "hip_r": 50.1,
+     "knee_r": 72.9,
+     "knee_l": 73.4
+    }
+   },
+   "required_hidden_area": {
+    "sit:gap_px": 62,
+    "squat:gap_px": 77
+   },
+   "correction_type": "geometric_extension",
+   "decision": "round knee cap beneath the segments",
+   "source_artwork": [],
+   "confidence": 0.6,
+   "required_approval": "user approval",
+   "expected_moho": "conversion: image layer + Smart Bone action",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "knee_cap_r",
+     "version": 1,
+     "approval_key": "corrective:knee_cap_r@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-knee_cap_l",
+   "category": "knees",
+   "garment_region": "knee_l",
+   "triggering_poses": [
+    "sit"
+   ],
+   "target_joint_angles": {
+    "sit": {
+     "knee_r": 89.1,
+     "abduction_l": 20.0,
+     "elbow_l": 50.0,
+     "wrist_l": 8.0,
+     "hip_l": 67.2,
+     "knee_l": 90.0
+    }
+   },
+   "required_hidden_area": {
+    "sit:gap_px": 684
+   },
+   "correction_type": "geometric_extension",
+   "decision": "round knee cap beneath the segments",
+   "source_artwork": [],
+   "confidence": 0.6,
+   "required_approval": "user approval",
+   "expected_moho": "conversion: image layer + Smart Bone action",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "knee_cap_l",
+     "version": 1,
+     "approval_key": "corrective:knee_cap_l@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-art_thigh_foreshortened",
+   "category": "shoulders",
+   "garment_region": "art:thigh_foreshortened",
+   "triggering_poses": [
+    "sit"
+   ],
+   "target_joint_angles": {},
+   "required_hidden_area": {},
+   "correction_type": "replacement_drawing",
+   "decision": "thighs pointing at the viewer (front-view sitting)",
+   "source_artwork": [],
+   "confidence": 0.2,
+   "required_approval": "artist drawing (or reviewed AI candidate) + approval",
+   "expected_moho": "switch layer / Smart Bone action",
+   "ai_generation": "not used: needs a view-specific drawing; an AI candidate would require review",
+   "treated_as_original": false,
+   "assets": [],
+   "state": "NEEDS_ARTWORK (no drawing; none is invented)"
+  },
+  {
+   "id": "REQ-art_seat",
+   "category": "hips",
+   "garment_region": "art:seat",
+   "triggering_poses": [
+    "sit"
+   ],
+   "target_joint_angles": {},
+   "required_hidden_area": {},
+   "correction_type": "replacement_drawing",
+   "decision": "a seat or chair",
+   "source_artwork": [],
+   "confidence": 0.2,
+   "required_approval": "artist drawing (or reviewed AI candidate) + approval",
+   "expected_moho": "switch layer / Smart Bone action",
+   "ai_generation": "not used: needs a view-specific drawing; an AI candidate would require review",
+   "treated_as_original": false,
+   "assets": [],
+   "state": "NEEDS_ARTWORK (no drawing; none is invented)"
+  },
+  {
+   "id": "REQ-corrective_trousers_seated",
+   "category": "hips",
+   "garment_region": "corrective:trousers_seated",
+   "triggering_poses": [
+    "sit"
+   ],
+   "target_joint_angles": {},
+   "required_hidden_area": {},
+   "correction_type": "replacement_drawing",
+   "decision": "seated trousers (thighs toward the viewer) triggered at 1 deg; band-rule deformation used instead",
+   "source_artwork": [],
+   "confidence": 0.2,
+   "required_approval": "artist drawing (or reviewed AI candidate) + approval",
+   "expected_moho": "switch layer / Smart Bone action",
+   "ai_generation": "not used: needs a view-specific drawing; an AI candidate would require review",
+   "treated_as_original": false,
+   "assets": [],
+   "state": "NEEDS_ARTWORK (no drawing; none is invented)"
+  }
+ ]
+}

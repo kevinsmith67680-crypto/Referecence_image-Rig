@@ -72,6 +72,7 @@ class AnalysisConfig:
     manual_landmarks: str | None = None
     character_id: str = "character"
     overwrite: bool = False
+    complete_outline_px: int = 0  # opt-in silhouette outline completion (Phase 3.8); 0 = off
 
 
 @dataclass
@@ -233,6 +234,22 @@ def analyze_character(image_path: str | Path, out_dir: str | Path, provider, con
     ordered = [n for n in Z_ORDER if n in layer_masks]
     # keep the anti-aliased linework fringe with the character (original colours)
     fg, fg_info = C.estimate_foreground(source.rgba)
+    paper, paper_info = C.border_paper(source.rgba)
+    if paper is not None:
+        # Phase 3.8: on a uniform paper the character is everything not connected to the border through
+        # paper-coloured pixels. The colour estimate's opening dropped the 1-2 px outline strip a mask clips, so the
+        # fringe below never reached it; enclosed white clothing is character whatever its colour.
+        layer_masks, removed = C.remove_border_paper(layer_masks, paper)
+        fg = ~paper
+        fg_info = {**fg_info, "method": "border_connected_paper", "colour_heuristic": fg_info.get("method"),
+                   "tolerance": paper_info["tolerance"]}
+        steps.append({"step": "silhouette_refinement", **paper_info, "background_pixels_removed": removed,
+                      "note": "background = paper-coloured pixels connected to the border; the 2 px fringe is "
+                              "measured against it. Colours stay original."})
+        if cfg.complete_outline_px > 0:
+            layer_masks, oc = C.complete_outline(layer_masks, source.rgba, paper, int(cfg.complete_outline_px))
+            steps.append({"step": "outline_completion", "opt_in": True, **oc,
+                          "note": "dark silhouette outline clipped by a mask, given to the nearest layer"})
     layer_masks, fringe_px = C.absorb_fringe(layer_masks, fg, max_px=2.0)
     for p in parts:
         if p != "head":

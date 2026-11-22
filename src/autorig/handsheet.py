@@ -80,6 +80,114 @@ def background(rgb: np.ndarray) -> tuple[np.ndarray, dict[str, int]]:
     return bg, {"enclosed_gap_px": holes}
 
 
+# -- dark sheets (Phase 3.8) ---------------------------------------------------------------------------------
+# A drawing with a black outline on a near-black sheet: colour alone cannot tell the outline from the background, so
+# a global "delete dark pixels" rule would delete every outline and finger line. The drawing is found spatially:
+# its coloured pixels (skin, shading, highlights) are the seed, and the outline is the dark band grown from them,
+# never through the sheet's light "sticker" rim (a thin grey line traced around each drawing), and never wider than
+# the outline width measured where that rim exists. Enclosed dark regions the band does not reach are background
+# seen between fingers. The rim itself is a sheet artefact (the character's own hands have none): pixels of it that
+# end up inside the drawing take the outline colour, and the rim just outside the outline becomes a 1 px half-alpha
+# outline edge, so no light halo remains.
+DARK_SHEET_LUM = 60.0  # a sheet whose border median luminance is below this is a dark-background sheet
+DARK_LIGHT_LUM = 28.0  # pixels at least this bright are drawing colour or rim (the black background's JPEG noise is below)
+RIM_SAT, RIM_LUM_MAX = 40, 170.0  # rim: grey (low saturation) and not bright; brighter grey is a highlight (colour)
+OUTLINE_PCTL = 90  # outline band width = this percentile of the measured colour-to-rim distance, rounded up
+OUTLINE_DEFAULT_PX = 8  # used when the sheet has too little rim to measure
+RIM_EDGE_ALPHA = 128  # the rim just outside the outline: 1 px antialiased outline edge
+
+
+def sheet_polarity(rgb: np.ndarray) -> str:
+    """'light' or 'dark' from the median luminance of the sheet border (the background is what touches the border)."""
+    border = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]])
+    return "dark" if float(np.median(_lum(border))) < DARK_SHEET_LUM else "light"
+
+
+def _octagon_grow(seed: np.ndarray, passable: np.ndarray, steps: int) -> np.ndarray:
+    """Geodesic growth of ``seed`` inside ``passable`` for ``steps`` steps, alternating the 4- and 8-neighbourhood
+    so the reach is close to a Euclidean distance (an octagon) rather than a square or a diamond."""
+    cross = ndimage.generate_binary_structure(2, 1)
+    square = ndimage.generate_binary_structure(2, 2)
+    out = seed.copy()
+    for i in range(steps):
+        out = ndimage.binary_dilation(out, structure=square if i % 2 else cross) & (passable | seed)
+    return out
+
+
+def background_dark(rgb: np.ndarray) -> tuple[np.ndarray, dict[str, Any], np.ndarray]:
+    """Background mask of a dark sheet, its info, and the rim mask (see the section comment)."""
+    lum = _lum(rgb)
+    sat = rgb.max(-1).astype(np.int16) - rgb.min(-1).astype(np.int16)
+    light = lum >= DARK_LIGHT_LUM
+    rim = light & (sat < RIM_SAT) & (lum < RIM_LUM_MAX)
+    colour = light & ~rim
+    deep = ndimage.distance_transform_edt(~light) > 3  # background well away from anything drawn
+    rim_out = rim & ndimage.binary_dilation(deep, iterations=4)  # rim pixels facing the background
+    dist = ndimage.distance_transform_edt(~colour)
+    d = dist[rim_out]
+    if d.size >= 50:
+        width = int(math.ceil(float(np.percentile(d, OUTLINE_PCTL))))
+        pcts = [round(float(v), 2) for v in np.percentile(d, [10, 50, 90])]
+    else:
+        width, pcts = OUTLINE_DEFAULT_PX, None
+    drawing = _octagon_grow(colour, ~light, width)
+    holes = ndimage.binary_fill_holes(drawing) & ~drawing
+    lab, n = ndimage.label(holes)
+    sizes = ndimage.sum(np.ones_like(lab), lab, range(1, n + 1)) if n else []
+    gap = np.zeros_like(holes)
+    small = np.zeros_like(holes)
+    for i in range(1, n + 1):
+        (gap if sizes[i - 1] >= HOLE_MIN_PX else small)[lab == i] = True
+    drawing |= small  # tiny enclosed pockets (rim squeezed between two outlines): part of the drawing, recoloured
+    bg = ~drawing
+    info = {"mode": "dark", "polarity_rule": f"border median luminance < {DARK_SHEET_LUM}",
+            "outline_band_px": width, "colour_to_rim_px_p10_p50_p90": pcts,
+            "rim_px": int(rim.sum()), "rim_px_facing_background": int(rim_out.sum()),
+            "enclosed_gap_px": int(gap.sum()), "enclosed_pockets_kept_px": int(small.sum())}
+    return bg, info, rim
+
+
+def unmatte_dark(rgb: np.ndarray, comp: np.ndarray, bg: np.ndarray, rim: np.ndarray
+                 ) -> tuple[np.ndarray, dict[str, Any]]:
+    """RGBA of one drawing on a dark sheet. Interior pixels keep their colour (alpha 255), including every dark
+    outline and finger line. Rim pixels inside the drawing take the outline colour; rim pixels in the 1 px ring just
+    outside it become the outline colour at alpha RIM_EDGE_ALPHA (the antialiased outer edge of the outline); other
+    ring pixels (black background) stay transparent."""
+    lum = _lum(rgb)
+    dark = comp & (lum < 60) & ~rim
+    F = np.median(rgb[dark], 0) if dark.sum() >= 20 else np.array([8.0, 6.0, 4.0])
+    ring = bg & ndimage.binary_dilation(comp, structure=ndimage.generate_binary_structure(2, 2))
+    out = np.zeros(rgb.shape[:2] + (4,), np.uint8)
+    out[..., :3] = rgb[..., :3]
+    out[comp, 3] = 255
+    inner_rim = comp & rim
+    edge_rim = ring & rim
+    out[inner_rim | edge_rim, :3] = np.round(F).astype(np.uint8)
+    out[edge_rim, 3] = RIM_EDGE_ALPHA
+    # quality: the visible boundary must be dark outline all around (a cut-off finger shows skin on the edge); no
+    # light pixel may remain on the boundary (light halo); the outline must not be wider than the band (dark halo)
+    vis = out[..., 3] >= 128
+    bd = vis & ~ndimage.binary_erosion(vis)
+    rgb16 = rgb.astype(np.int16)
+    skin = (rgb16[..., 0] - rgb16[..., 2] > 60) & (lum > 90)
+    outlined = ndimage.binary_dilation((lum < 110) & comp, iterations=2)
+    cov = float((bd & outlined).sum()) / max(int(bd.sum()), 1)
+    colour = comp & (lum >= DARK_LIGHT_LUM) & ~rim
+    dcol = ndimage.distance_transform_edt(~colour)
+    shown = out[..., :3].astype(np.float32) @ np.array([0.299, 0.587, 0.114], np.float32)
+    light_on_edge = bd & ~colour & (shown >= DARK_LIGHT_LUM)
+    info = {"outline_rgb": [round(float(v), 1) for v in F], "outline_coverage": round(cov, 4),
+            "skin_on_edge_px": int((bd & ~outlined & skin).sum()), "edge_px_unmatted": int(edge_rim.sum()),
+            "ring_px_with_alpha": int(edge_rim.sum()), "rim_px_recoloured_inside": int(inner_rim.sum()),
+            "dark_px": int(dark.sum()), "dark_px_kept": int(dark.sum()), "dark_px_lost": 0,
+            "light_px_on_edge": int(light_on_edge.sum()),
+            "outline_width_on_edge_p50_p95_max": [round(float(v), 2) for v in
+                                                   (np.percentile(dcol[bd], [50, 95]).tolist() + [float(dcol[bd].max())])]
+            if bd.any() else None,
+            "edge_band_px": int((ndimage.binary_dilation(bd, iterations=2) & vis).sum())}
+    return out, info
+
+
 def grid_cells(fg: np.ndarray, rows: int, cols: int) -> tuple[list[dict[str, Any]], list[str]]:
     """The drawings in reading order, one per cell. Errors when a cell is empty, shared or holds two drawings."""
     lab, n = ndimage.label(fg)
@@ -484,12 +592,19 @@ def extract_sheet(sheet: str | Path, inspection: dict[str, Any]) -> dict[str, An
     data = Path(sheet).read_bytes()
     rgb = np.asarray(Image.open(io.BytesIO(data)).convert("RGB"))
     g = inspection["grid"]
-    bg, bginfo = background(rgb)
+    polarity = sheet_polarity(rgb)
+    rim = None
+    if polarity == "dark":
+        bg, bginfo, rim = background_dark(rgb)
+    else:
+        bg, bginfo = background(rgb)
     fg = ~bg
     cells, errs = grid_cells(fg, int(g["rows"]), int(g["cols"]))
     lab, _ = ndimage.label(fg)
     out: dict[str, Any] = {"sheet_sha256": _sha(data), "size": [rgb.shape[1], rgb.shape[0]], "errors": errs,
                            "background": bginfo, "cells": {}}
+    if polarity == "dark":
+        out["polarity"] = polarity
     for c in cells:
         x0, y0, x1, y1 = c["bbox"]
         pad = MARGIN + 3
@@ -497,7 +612,10 @@ def extract_sheet(sheet: str | Path, inspection: dict[str, Any]) -> dict[str, An
         sub_lab = lab[Y0:Y1, X0:X1]
         comp = sub_lab == c["label"]
         stray = (sub_lab != c["label"]) & (sub_lab != 0)
-        rgba, q = unmatte(rgb[Y0:Y1, X0:X1], comp, bg[Y0:Y1, X0:X1] | stray)
+        if rim is None:
+            rgba, q = unmatte(rgb[Y0:Y1, X0:X1], comp, bg[Y0:Y1, X0:X1] | stray)
+        else:
+            rgba, q = unmatte_dark(rgb[Y0:Y1, X0:X1], comp, bg[Y0:Y1, X0:X1] | stray, rim[Y0:Y1, X0:X1])
         rgba[stray] = 0
         spr, off = crop(rgba)
         ins = inspection["cells"].get(c["cell"], {})
@@ -508,6 +626,8 @@ def extract_sheet(sheet: str | Path, inspection: dict[str, Any]) -> dict[str, An
             flags.append(f"outline covers only {q['outline_coverage']:.1%} of the edge")
         if q["skin_on_edge_px"] > QUALITY["skin_on_edge_max_px"]:
             flags.append(f"{q['skin_on_edge_px']} skin pixels on the edge without outline (cut-off part?)")
+        if q.get("light_px_on_edge"):
+            flags.append(f"{q['light_px_on_edge']} light pixels on the edge (halo)")
         out["cells"][c["cell"]] = {**c, "sprite": spr, "crop_origin_in_sheet": [X0 + off[0], Y0 + off[1]],
                                    "quality": {**q, "stray_px_removed": int(stray.sum())}, "inspection": ins,
                                    "flags": flags}
@@ -640,7 +760,8 @@ def build_pack(sheet: str | Path, inspection_path: str | Path, out_dir: str | Pa
              "handedness": {"anatomical": r["hand"] if slot["derived"] is None else side,
                             "drawn_as": r["hand"], "row_group_side": group_side.get(r["group"])},
              "sprite_sha256": _sha(png), "sleeve": "none", "approval_status": "NEEDS_REVIEW",
-             "artwork_source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+             "artwork_source": inspection.get("artwork_source",
+                                              "user-supplied sleeve-free hand sheet (AI-generated concept drawings)"),
              "flags": flags, "manual_review": bool(flags)}
         assets.append(a)
         report_assets.append({k: a[k] for k in ("id", "sheet_cell", "derived", "wrist_opening", "wrist_confidence",
@@ -651,11 +772,21 @@ def build_pack(sheet: str | Path, inspection_path: str | Path, out_dir: str | Pa
                 "all_variants_require_review": True,
                 "source_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted "
                                      "by autorig handsheet, not drawn from the original reference artwork",
-                "intended_use": "sleeve-free hand switch drawings for the schoolboy character",
+                "intended_use": inspection.get("intended_use", "sleeve-free hand switch drawings for the schoolboy character"),
                 "sheet": {"file": sheet.name, "sha256": ex["sheet_sha256"], "size": ex["size"]},
-                "extraction": {"tool": "autorig.handsheet", "background": f"lum > {BG_LUM}, saturation < {BG_SAT}, connected to the border",
-                               "unmatte": "alpha from luminance against white, colour = outline colour",
-                               "scale": 1.0, "margin_px": MARGIN},
+                "extraction": ({"tool": "autorig.handsheet", "background": f"lum > {BG_LUM}, saturation < {BG_SAT}, connected to the border",
+                                "unmatte": "alpha from luminance against white, colour = outline colour",
+                                "scale": 1.0, "margin_px": MARGIN} if ex.get("polarity") != "dark" else
+                               {"tool": "autorig.handsheet", "polarity": "dark",
+                                "background": "dark sheet: drawing = coloured pixels (lum >= "
+                                              f"{DARK_LIGHT_LUM}, not grey rim) + the dark outline band grown from them "
+                                              f"(at most {ex['background']['outline_band_px']} px, never through the rim); "
+                                              "enclosed unreached regions >= "
+                                              f"{HOLE_MIN_PX} px are background gaps",
+                                "unmatte": "rim pixels -> outline colour; rim ring outside the outline -> outline colour "
+                                           f"at alpha {RIM_EDGE_ALPHA}; no luminance unmatting (the outline is as dark "
+                                           "as the background)",
+                                "scale": 1.0, "margin_px": MARGIN}),
                 "assets": assets}
     files["manifest.json"] = json.dumps(manifest, indent=1).encode()
     files["README.md"] = (

@@ -309,6 +309,28 @@ def validate_pivots(sk: Skeleton, masks: dict[str, np.ndarray]) -> list[dict[str
     return out
 
 
+def _hull_mask(m: np.ndarray, shape: tuple[int, int], pad: int = 0) -> np.ndarray:
+    """Filled convex hull of a mask's pixels (dilated by ``pad``), full canvas."""
+    from PIL import Image as _Image, ImageDraw as _Draw
+    from scipy.spatial import ConvexHull
+
+    ys, xs = np.nonzero(m)
+    out = np.zeros(shape, bool)
+    if len(xs) < 3:
+        out[m] = True
+        return out
+    pts = np.c_[xs, ys].astype(float)
+    try:
+        hull = pts[ConvexHull(pts).vertices]
+    except Exception:  # degenerate (collinear) pixels
+        out[m] = True
+        return out
+    im = _Image.new("L", (shape[1], shape[0]), 0)
+    _Draw.Draw(im).polygon([tuple(p) for p in hull], fill=255)
+    out = np.asarray(im) > 0
+    return ndimage.binary_dilation(out, iterations=pad) if pad else out
+
+
 def _union(masks: dict[str, np.ndarray], names: list[str]) -> np.ndarray:
     shape = next(iter(masks.values())).shape
     out = np.zeros(shape, bool)
@@ -413,6 +435,11 @@ class GarmentStructureAnalyzer:
                 tie |= m
             elif a >= 600 and cy < p.waist_y:
                 out["badge"] = ndimage.binary_fill_holes(ndimage.binary_dilation(m, iterations=3)) & body
+            elif "badge" not in out and cy < p.waist_y and a >= 200 and w * h >= 900 and 0.5 <= w / h <= 2.0:
+                # Phase 3.8: an emblem drawn as a gold *outline* around a coloured field (the tough_student crest)
+                # has few gold pixels and an open ring; its extent, not its pixel count, makes it a badge. The
+                # whole emblem (outline + field) is the convex hull of the outline, inside the body.
+                out["badge"] = _hull_mask(m, (H, W), pad=3) & body
             elif 40 <= a <= 600 and 0.6 <= w / h <= 1.6:
                 buttons.append((cy, ndimage.binary_dilation(ndimage.binary_fill_holes(m), iterations=3) & body))
         for k, (_, m) in enumerate(sorted(buttons, key=lambda t: t[0])):

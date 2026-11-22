@@ -193,7 +193,8 @@ def cmd_analyze(args: argparse.Namespace) -> int:
     from .segmentation.replicate_client import ReplicateError
 
     cfg = AnalysisConfig(character_id=args.character_id, manual_landmarks=args.manual_landmarks,
-                         overwrite=args.overwrite, min_score=args.min_score)
+                         overwrite=args.overwrite, min_score=args.min_score,
+                         complete_outline_px=args.complete_outline)
     try:
         res = analyze_character(args.image, args.out, _provider(args), cfg)
     except (ProjectExistsError, BudgetExceeded, ReplicateError) as exc:
@@ -452,7 +453,7 @@ def build_parser() -> argparse.ArgumentParser:
     def replicate_opts(p):
         p.add_argument("--cache-dir", default=".autorig_cache/replicate", help="prediction cache + spend ledger")
         p.add_argument("--budget-usd", type=float, default=None,
-                       help="cumulative spending ceiling (default: AUTORIG_REPLICATE_BUDGET_USD or $1.00)")
+                       help="cumulative spending ceiling (default: AUTORIG_REPLICATE_BUDGET_USD or $5.00)")
 
     p = sub.add_parser("analyze", help="Phase 1: analyse a reference image into a character project")
     p.add_argument("image")
@@ -463,6 +464,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--manual-landmarks", help="JSON {\"joints\": {name: [x, y]}} overriding estimated joints")
     p.add_argument("--min-score", type=float, default=0.5)
     p.add_argument("--overwrite", action="store_true", help="replace an existing AutoRig project at --out")
+    p.add_argument("--complete-outline", type=int, default=0, metavar="PX",
+                   help="opt-in: give dark silhouette outline clipped by the masks (up to PX px deep) back to the "
+                        "nearest layer (opaque images on a uniform paper only; recorded in the pipeline steps)")
     replicate_opts(p)
     p.set_defaults(func=cmd_analyze)
 
@@ -540,7 +544,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_hand_evidence)
 
     p = sub.add_parser("hand-sheet", help="Extract a sheet of sleeve-free hand drawings into a validated hand pack")
-    p.add_argument("sheet", help="sheet image (hands on a white background, in a grid)")
+    p.add_argument("sheet", help="sheet image (hands in a grid on a white, or near-black, background)")
     p.add_argument("--inspection", required=True, help="inspection record (gesture, wrist side, view per cell)")
     p.add_argument("--out", required=True, help="output directory (sprites, pack zip, extraction report, QA sheet)")
     p.add_argument("--library-id", required=True, help="library id of the pack")
@@ -600,6 +604,17 @@ def build_parser() -> argparse.ArgumentParser:
                                              "metadata (proposed_unverified)")
     p.add_argument("package", help="Phase 2 character package")
     p.set_defaults(func=cmd_phase37_bench)
+
+    p = sub.add_parser("newchar-evidence", help="Phase 3.8: new-character end-to-end evidence (numbered images, "
+                                                "results.json)")
+    p.add_argument("package", help="Phase 2 character package of the new character")
+    p.add_argument("--project", required=True, help="its Phase 1 character project")
+    p.add_argument("--character", required=True, help="the character reference image as imported")
+    p.add_argument("--hand-sheet", required=True, help="the hand sheet image as imported")
+    p.add_argument("--hand-grid", required=True, help="the hand-sheet output folder (sprites, extraction report)")
+    p.add_argument("--out", default="docs/phase3_8/new_character_evidence")
+    p.add_argument("--sections", nargs="*", help="subset of sections (default: all)")
+    p.set_defaults(func=cmd_newchar_evidence)
 
     p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
     p.add_argument("package", help="Phase 2 character package")
@@ -864,6 +879,15 @@ def cmd_garment_weights(args: argparse.Namespace) -> int:
             json.dump(eng.structure.to_json(), f, indent=1, default=str)
         print(f"wrote {args.export}_weights.npz and {args.export}_structure.json")
     return 0 if v["ok"] else 1
+
+
+def cmd_newchar_evidence(args: argparse.Namespace) -> int:
+    from .newchar_evidence import newchar_evidence
+
+    r = newchar_evidence(args.package, args.project, {"character": args.character, "hand_sheet": args.hand_sheet},
+                         args.hand_grid, args.out, args.sections, progress=lambda m: print(m, flush=True))
+    print(json.dumps({k: v.get("images") for k, v in r.items() if isinstance(v, dict) and "images" in v}, indent=1))
+    return 0
 
 
 def cmd_hand_audit(args: argparse.Namespace) -> int:

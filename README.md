@@ -204,6 +204,25 @@ applied or approved without you.
 .venv/bin/python -m autorig phase37-bench ../schoolboy_pkg
 ```
 
+Phase 3.8 runs the whole workflow on a second, previously unseen character and a new hand library.
+- Inputs: the T-pose "tough student" in `references/tough_student/`, and a 16-hand gesture grid on a black
+  background.
+- Project: `projects/tough_student_test/`.
+- Evidence: `docs/phase3_8/new_character_evidence/`.
+
+Hand sheets on a dark background are now supported. The outline is grown from the drawing's colours, so black
+outlines are never deleted with the background.
+
+The second character exposed several schoolboy-specific assumptions. Some were fixed; the colour-based garment
+labelling is documented in [docs/phase3_8_generalisation_report.md](docs/phase3_8_generalisation_report.md).
+
+```bash
+.venv/bin/python -m autorig analyze references/tough_student/tpose_front.jpg --out ../ts_project --character-id tough_student --complete-outline 5
+.venv/bin/python -m autorig prepare ../ts_project --out ../ts_pkg --provider flux-fill-dev --candidates 1
+.venv/bin/python -m autorig hand-sheet references/tough_student/hand_grid/hand_grid_black.jpg --inspection references/tough_student/hand_grid/inspection.json --out ../ts_hands --library-id tough_student_hands_v1
+.venv/bin/python -m autorig newchar-evidence ../ts_pkg --project ../ts_project --character references/tough_student/tpose_front.jpg --hand-sheet references/tough_student/hand_grid/hand_grid_black.jpg --hand-grid ../ts_hands --out ../ts_evidence
+```
+
 ![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
 
 *Real browser screenshot of the editor (headless Chromium), not a Moho render.*
@@ -258,6 +277,12 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_7_reference_motion_architecture.md](docs/phase3_7_reference_motion_architecture.md) | Phase 3.7: reference import, pose estimation, analysis, retargeting, store, critic |
 | [docs/phase3_7_visual_quality_report.md](docs/phase3_7_visual_quality_report.md) | Phase 3.7: shrug comparisons, wrist/shoulder close-ups, 10 hand cases, reference comparisons |
 | [docs/phase3_7_completion_report.md](docs/phase3_7_completion_report.md) | Phase 3.7: acceptance criteria, verified results, pending approvals, blockers, verdict |
+| [docs/phase3_8_new_character_report.md](docs/phase3_8_new_character_report.md) | Phase 3.8: a new character rigged end to end; 26 acceptance criteria; verdict |
+| [docs/phase3_8_hand_library_report.md](docs/phase3_8_hand_library_report.md) | Phase 3.8: black-background hand grid extraction, handedness, compatibility, 16 drawings on the character |
+| [docs/phase3_8_segmentation_report.md](docs/phase3_8_segmentation_report.md) | Phase 3.8: import, background extraction, anatomy, garment parts, detail preservation |
+| [docs/phase3_8_rigging_quality_report.md](docs/phase3_8_rigging_quality_report.md) | Phase 3.8: skeleton, arm lowering, poses, garments, correctives, animation (technical vs artistic) |
+| [docs/phase3_8_generalisation_report.md](docs/phase3_8_generalisation_report.md) | Phase 3.8: schoolboy-specific assumptions found, fixed or documented |
+| [docs/phase3_8_export_readiness.md](docs/phase3_8_export_readiness.md) | Phase 3.8: the new character's Moho-ready package, what is tested and what needs Moho |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

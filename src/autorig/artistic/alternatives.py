@@ -308,8 +308,17 @@ class ViewAwareRigController:
         self.pkg = Path(pkg)
         self.layers = layers
 
+    def _sheet(self) -> Path | None:
+        """The character's own multi-view sheet, if the user supplied one (references/<character id>/
+        character_sheet.jpg). Phase 3.8: a new character without a sheet must not cite the schoolboy's."""
+        from ..refmotion.evidence import _character_id  # noqa: PLC0415
+
+        p = Path("references") / _character_id(self.pkg) / "character_sheet.jpg"
+        root = Path(__file__).resolve().parents[3]
+        return p if (root / p).is_file() else None
+
     def manifest(self, alternatives: list[AlternativeArtwork] | None = None) -> dict[str, Any]:
-        sheet = Path("references/schoolboy/character_sheet.jpg")
+        sheet = self._sheet()
         views = {}
         for v in VIEWS:
             if v == "FRONT":
@@ -320,7 +329,8 @@ class ViewAwareRigController:
                     "alternative_limbs": [a.art_id for a in (alternatives or []) if "FRONT" in a.supported_views]}
             else:
                 src = None
-                if v in ("FRONT_THREE_QUARTER_LEFT", "FRONT_THREE_QUARTER_RIGHT", "SIDE_LEFT", "SIDE_RIGHT", "BACK"):
+                if sheet is not None and v in ("FRONT_THREE_QUARTER_LEFT", "FRONT_THREE_QUARTER_RIGHT", "SIDE_LEFT",
+                                               "SIDE_RIGHT", "BACK"):
                     src = f"{sheet} ({'3/4' if 'QUARTER' in v else 'side' if 'SIDE' in v else 'back'} full-body drawing, "\
                           "not segmented; one side only, the other would be a mirror)"
                 views[v] = {"available": False, "artwork": [], "missing": ["every body part (not segmented or rigged)"],

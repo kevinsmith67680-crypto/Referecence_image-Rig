@@ -1,0 +1,158 @@
+{
+ "schema": "autorig.hand_sheet_inspection",
+ "schema_version": 1,
+ "sheet": "hand_grid_black.jpg",
+ "sheet_sha256": "47c59800a641a86e3c54ddd8355b16082d2471e7369af17984835896e6663b88",
+ "inspected_by": "assistant (visual inspection of the black-background sheet and of the extracted sprites on white at 1-4x zoom); this is not a person's review",
+ "inspected_at": "2026-11-22",
+ "source_note": "the user's 'Cartoon Hand Gesture Grid(1).png', received in this session only as a chat attachment re-encoded to JPEG (1254x1254, opaque black background, no alpha)",
+ "intended_use": "sleeve-free hand switch drawings for the tough_student character (Phase 3.8 generalisation test)",
+ "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+ "user_labels": {
+  "rows_1_2": "one side (not trusted: checked below)",
+  "rows_3_4": "the other side (not trusted: checked below)",
+  "gesture_order": [
+   "relaxed",
+   "open_palm",
+   "fist",
+   "pointing",
+   "thumbs_up",
+   "gripping",
+   "palm_down",
+   "cupped"
+  ]
+ },
+ "grid": {
+  "rows": 4,
+  "cols": 4,
+  "groups": [
+   [
+    1,
+    2
+   ],
+   [
+    3,
+    4
+   ]
+  ]
+ },
+ "fields": {
+  "gesture": "what the drawing shows",
+  "wrist_side": "where the wrist opening is, as seen in the drawing: top | left | right",
+  "view": "palm | back | side",
+  "thumb": "direction of the thumb from the hand's centre, as drawn (only where unambiguous)",
+  "feature": "the gesture's readable feature, located automatically: index_tip, thumb_tip, grip_center, palm_center"
+ },
+ "cells": {
+  "r1c1": {
+   "gesture": "relaxed",
+   "wrist_side": "top",
+   "view": "palm",
+   "note": "wrist at the top (outlined, flat); four fingers hang down; the separate digit on the image right is the thumb; no palm creases; peach skin with a darker cel shadow down the image-left edge"
+  },
+  "r1c2": {
+   "gesture": "open_palm",
+   "wrist_side": "top",
+   "view": "palm",
+   "note": "two palm creases drawn; five spread fingers; the thumb sticks out to the image right"
+  },
+  "r1c3": {
+   "gesture": "fist",
+   "wrist_side": "top",
+   "view": "palm",
+   "thumb": "right",
+   "note": "the fronts of the four curled fingers face the viewer; the thumb wraps across them from the image right"
+  },
+  "r1c4": {
+   "gesture": "pointing",
+   "wrist_side": "right",
+   "view": "palm",
+   "thumb": "top",
+   "feature": "index_tip",
+   "note": "index points image-left; the thumb lies on top, folded over the curled middle/ring/little fingers whose fronts face the viewer; the wrist side (image right) is a closed rounded outline"
+  },
+  "r2c1": {
+   "gesture": "thumbs_up",
+   "wrist_side": "left",
+   "view": "palm",
+   "thumb": "top",
+   "feature": "thumb_tip",
+   "note": "thumb straight up; curled fingers point image-right with their fronts to the viewer; flat outlined wrist on the image left"
+  },
+  "r2c2": {
+   "gesture": "gripping",
+   "wrist_side": "left",
+   "view": "side",
+   "feature": "grip_center",
+   "note": "C-shaped grip in profile, opening to the image right; upper digit = thumb tip region, lower = curled fingers; wrist on the image left"
+  },
+  "r2c3": {
+   "gesture": "palm_down",
+   "wrist_side": "top",
+   "view": "back",
+   "note": "back of the hand seen from above, fingers down and to the image right, thumb pointing image-left; flat wrist at the top"
+  },
+  "r2c4": {
+   "gesture": "cupped",
+   "wrist_side": "right",
+   "view": "side",
+   "feature": "palm_center",
+   "note": "palm up, seen from the front and slightly above (palm creases visible), fingers to the image left curling up; the large rounded shape on top is the thumb on the far side; wrist side on the image right is closed"
+  },
+  "r3c1": {
+   "gesture": "relaxed",
+   "wrist_side": "top",
+   "view": "palm",
+   "note": "mirror of r1c1: thumb on the image left"
+  },
+  "r3c2": {
+   "gesture": "open_palm",
+   "wrist_side": "top",
+   "view": "palm",
+   "note": "mirror of r1c2: palm creases, thumb to the image left"
+  },
+  "r3c3": {
+   "gesture": "fist",
+   "wrist_side": "top",
+   "view": "palm",
+   "thumb": "left",
+   "note": "mirror of r1c3: thumb across the curled fingers from the image left"
+  },
+  "r3c4": {
+   "gesture": "pointing",
+   "wrist_side": "right",
+   "view": "palm",
+   "thumb": "top",
+   "feature": "index_tip",
+   "note": "NOT a mirror of r1c4: also points image-left with the thumb on top and the wrist on the image right, i.e. the same hand as r1c4"
+  },
+  "r4c1": {
+   "gesture": "thumbs_up",
+   "wrist_side": "right",
+   "view": "palm",
+   "thumb": "top",
+   "feature": "thumb_tip",
+   "note": "mirror of r2c1: wrist on the image right, curled fingers point image-left"
+  },
+  "r4c2": {
+   "gesture": "gripping",
+   "wrist_side": "right",
+   "view": "side",
+   "feature": "grip_center",
+   "note": "mirror of r2c2: C opening to the image left"
+  },
+  "r4c3": {
+   "gesture": "palm_down",
+   "wrist_side": "top",
+   "view": "back",
+   "note": "mirror of r2c3: fingers down and to the image left, thumb pointing image-right"
+  },
+  "r4c4": {
+   "gesture": "cupped",
+   "wrist_side": "left",
+   "view": "side",
+   "feature": "palm_center",
+   "note": "mirror of r2c4: fingers to the image right, thumb on the far side, wrist on the image left"
+  }
+ }
+}

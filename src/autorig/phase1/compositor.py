@@ -47,6 +47,70 @@ def estimate_foreground(rgba: np.ndarray) -> tuple[np.ndarray, dict[str, Any]]:
                 "threshold": 24, "note": "heuristic; unreliable on busy or gradient backgrounds"}
 
 
+PAPER_TOL = 24  # max channel difference from the border median for a pixel to be paper-coloured
+
+
+def border_paper(rgba: np.ndarray) -> tuple[np.ndarray | None, dict[str, Any]]:
+    """Spatial background of an opaque image on a uniform paper: paper-coloured pixels (within PAPER_TOL of the
+    border median) *connected to the image border*. Paper-coloured regions enclosed by the drawing (white shirt,
+    white shoes, eye whites) are not background, whatever their colour. Returns (None, info) when the image has
+    real transparency or a non-uniform border (no such rule applies)."""
+    if (rgba[..., 3] < 255).any():
+        return None, {"method": "alpha_channel"}
+    rgb = rgba[..., :3].astype(np.int16)
+    border = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]])
+    bg = np.median(border, axis=0)
+    dev95 = float(np.percentile(np.abs(border - bg).max(axis=1), 95))
+    if dev95 > PAPER_TOL:
+        return None, {"method": "none", "reason": f"border not uniform (p95 deviation {dev95:.0f})"}
+    paper = np.abs(rgb - bg).max(axis=2) <= PAPER_TOL
+    lab, _ = ndimage.label(paper)
+    edge = set(np.unique(np.r_[lab[0], lab[-1], lab[:, 0], lab[:, -1]])) - {0}
+    return np.isin(lab, sorted(edge)), {"method": "border_connected_paper", "paper_rgb": [int(v) for v in bg],
+                                        "tolerance": PAPER_TOL}
+
+
+def remove_border_paper(layer_masks: dict[str, np.ndarray], paper: np.ndarray
+                        ) -> tuple[dict[str, np.ndarray], int]:
+    """Remove border-connected paper from the layers (background seen between hair strands or fingers that a
+    segmentation mask swallowed). Colours stay original; nothing is added."""
+    removed = int(sum(int((m & paper).sum()) for m in layer_masks.values()))
+    return {n: m & ~paper for n, m in layer_masks.items()}, removed
+
+
+OUTLINE_LUM = 60.0  # source pixels darker than this are outline (cartoon linework)
+
+
+def complete_outline(layer_masks: dict[str, np.ndarray], rgba: np.ndarray, paper: np.ndarray, max_px: int
+                     ) -> tuple[dict[str, np.ndarray], dict[str, Any]]:
+    """Opt-in (``analyze --complete-outline PX``): give the *silhouette* outline a segmentation mask clipped back to
+    the nearest layer. Candidates are dark source pixels (luminance < OUTLINE_LUM) that are not border paper, that
+    no layer owns, and that lie within ``max_px`` + 1 of the paper; they are taken only when they connect to the
+    layer union through other candidates within ``max_px`` (octagonal) steps. Colours stay original and the
+    partition is preserved. Off by default: it would also repair a uniformly eroded segmentation at the silhouette,
+    which the default pipeline must report as uncovered."""
+    names = list(layer_masks)
+    label = np.zeros(paper.shape, dtype=np.int32)
+    for i, n in enumerate(names, start=1):
+        label[layer_masks[n]] = i
+    union = label > 0
+    lum = rgba[..., :3].astype(np.float32) @ np.array([0.299, 0.587, 0.114], np.float32)
+    near_paper = ndimage.distance_transform_edt(~paper) <= max_px + 1
+    cand = (lum < OUTLINE_LUM) & ~paper & ~union & near_paper
+    reach = union.copy()
+    cross, square = ndimage.generate_binary_structure(2, 1), ndimage.generate_binary_structure(2, 2)
+    for i in range(max_px):
+        reach = ndimage.binary_dilation(reach, structure=square if i % 2 else cross) & (cand | union)
+    added = reach & ~union
+    out = dict(layer_masks)
+    if added.any():
+        _, (iy, ix) = ndimage.distance_transform_edt(~union, return_indices=True)
+        nearest = label[iy, ix]
+        out = {n: layer_masks[n] | (added & (nearest == i)) for i, n in enumerate(names, start=1)}
+    return out, {"outline_pixels_completed": int(added.sum()), "max_distance_px": max_px,
+                 "outline_luminance_below": OUTLINE_LUM}
+
+
 def absorb_fringe(layer_masks: dict[str, np.ndarray], foreground: np.ndarray, max_px: float = 2.0
                   ) -> tuple[dict[str, np.ndarray], int]:
     """Give character pixels that no layer owns but that lie within ``max_px``

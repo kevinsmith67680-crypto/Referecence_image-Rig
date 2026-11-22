@@ -333,10 +333,13 @@ def ik_demo(pkg, out=None, progress=print) -> dict[str, Any]:
         rows.append(_row(cells))
     # auto-aligned right fist (alignment tool): the suggested offset applied, re-measured at rest
     aa = lib.auto_align("r", "fist")
-    if aa is not None:
+    fist_layer = lib.hands["r"]["fist"].layer if lib.hands["r"].get("fist") else None
+    # the active fist drawing's own layer (Phase 3.8: a store drawing on a new character, not only the schoolboy's
+    # Phase 2 sheet fist ``hand_r__fist``); store drawings are measured by the library against their own cover
+    if aa is not None and fist_layer in e.variants and not lib.hands["r"]["fist"].cid.startswith("store:"):
         dx, dy = aa["offset_px"]
         piv = e.sk.bone("hand_r").head
-        moved = offset_layer(e.variants["hand_r__fist"], piv, dx, dy, 0.0)
+        moved = offset_layer(e.variants[fist_layer], piv, dx, dy, 0.0)
         cover = e.variants.get("forearm_r__trim", e.layers["forearm_r"])[..., 3] > 127
         m2 = lib.measure(moved, "r", cover)
         ref = lib.hands["r"]["open_palm"].measure
@@ -346,6 +349,11 @@ def ik_demo(pkg, out=None, progress=print) -> dict[str, Any]:
                                         "rest_error_after_px": round(err2, 2),
                                         "area_before_px": lib.hands["r"]["fist"].measure["area_px"] + lib.hands["r"]["fist"].measure["hidden_px"],
                                         "area_after_px": m2["area_px"] + m2["hidden_px"]}
+    elif aa is not None:
+        res["auto_align_right_fist"] = {"offset_px": aa["offset_px"], "rest_error_before_px": aa["error_before_px"],
+                                        "search_error_after_px": aa["error_after_px"], "layer": fist_layer,
+                                        "note": "store drawing: placed by the WristAlignmentController; the "
+                                                "suggested translation is reported, not re-rendered"}
     sheet = _col(rows)
     head = Image.new("RGB", (sheet.width, 40), (34, 40, 60))
     ImageDraw.Draw(head).text((8, 6), "Hand switch comparison (relaxed standing; PREVIEW of pending drawings; right | left). "

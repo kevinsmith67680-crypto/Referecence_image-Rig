@@ -1,0 +1,87 @@
+{
+  "gates": [
+    {
+      "id": 1,
+      "check": "original source image preserved",
+      "level": "PASS",
+      "detail": "source/original.jpg sha256 matches the Phase 1 record"
+    },
+    {
+      "id": 2,
+      "check": "artwork layer dimensions",
+      "level": "PASS",
+      "detail": "all layers 1086x1448 (full canvas)"
+    },
+    {
+      "id": 3,
+      "check": "coordinate alignment",
+      "level": "PASS",
+      "detail": "layers full-canvas; vectors and bones in source px"
+    },
+    {
+      "id": 4,
+      "check": "no missing referenced assets",
+      "level": "PASS",
+      "detail": "60 files present"
+    },
+    {
+      "id": 5,
+      "check": "valid bone hierarchy",
+      "level": "PASS",
+      "detail": "19 bones, single root, no cycles, no zero-length bones"
+    },
+    {
+      "id": 6,
+      "check": "valid joint positions",
+      "level": "PASS",
+      "detail": "ok"
+    },
+    {
+      "id": 7,
+      "check": "valid layer bindings",
+      "level": "PASS",
+      "detail": "every visible layer is bound to an existing bone"
+    },
+    {
+      "id": 8,
+      "check": "no unexpected neutral-pose gaps",
+      "level": "PASS",
+      "detail": "neutral composite covers every character pixel"
+    },
+    {
+      "id": 9,
+      "check": "original artwork preservation verified",
+      "level": "PASS",
+      "detail": "originals hash-verified; neutral composite equals the source where covered"
+    },
+    {
+      "id": 10,
+      "check": "unresolved deformation defects reported",
+      "level": "NEEDS_REVIEW",
+      "detail": "open: ['both_hands_raised', 'casual_walk', 'conversational_gesture', 'hands_at_sides', 'hands_on_hips', 'head_tilt_compensated', 'leaning_backward', 'leaning_forward', 'natural_squat', 'one_hand_shrug', 'pointing_speaking', 'relaxed_standing', 'running', 'side_lean', 'sitting']"
+    },
+    {
+      "id": 11,
+      "check": "facial artwork completeness reported",
+      "level": "NEEDS_REVIEW",
+      "detail": "REQUIRES_NEW_ARTWORK: ['left_eye_blink', 'right_eye_blink', 'mouth_opening', 'mouth_narrowing', 'smile_frown', 'head_turn']"
+    },
+    {
+      "id": 12,
+      "check": "mandatory user approvals recorded",
+      "level": "NEEDS_REVIEW",
+      "detail": "32 pending, e.g. ['corrective:gusset__both_hands_raised__l', 'corrective:gusset__both_hands_raised__r', 'corrective:gusset__conversational_gesture__r', 'corrective:gusset__head_tilt_compensated__l', 'corrective:gusset__pointing_speaking__r', 'corrective:hand__palm_up']"
+    }
+  ],
+  "overall": "NEEDS_REVIEW",
+  "production_ready": false,
+  "fidelity": {
+    "footprint_px": 429227,
+    "covered_px": 429227,
+    "gap_px": 0,
+    "max_abs_error_in_covered": 0,
+    "mean_abs_error_in_covered": 0.0,
+    "neutral_exact": true
+  },
+  "rejected_generated_excluded": []
+}

@@ -1,0 +1,290 @@
+{
+ "schema": "autorig.hand_semantic_inspection",
+ "schema_version": 1,
+ "sheet": "hand_grid_black.jpg",
+ "sheet_sha256": "47c59800a641a86e3c54ddd8355b16082d2471e7369af17984835896e6663b88",
+ "inspected_by": "assistant (Phase 3.8 visual inspection of the 16 sprites extracted from the black-background sheet, on white at 1-2x zoom); this is not a person's review",
+ "inspected_at": "2026-11-22",
+ "conventions": {
+  "sprite_axes": "x = image right, y = image down, z = toward the viewer (front camera)",
+  "palm_normal_sprite": "unit vector out of the palm surface, in the sprite as drawn",
+  "angles": "degrees from sprite-down, + toward image left (the rig's 'ang' convention)",
+  "handedness_rule": "with fingers f and palm normal n (sprite axes), a right hand has its thumb along f x n, a left hand along n x f",
+  "rotation_tolerance_deg": "how far the drawing may be turned in the image plane from how it was drawn before its reading changes (a cup tips, a thumb stops pointing up, relaxed fingers stop hanging). A camera-facing flat hand keeps its palm reading at any angle, so its tolerance is 180"
+ },
+ "geometry_note": "the 16 drawings have the same outlines as the schoolboy sleeve-free sheet (silhouette IoU 0.979-0.989 per cell, measured), recoloured with peach skin and two-tone cel shading on a black background; the reading below was made on this sheet and agrees with the Phase 3.7 reading of those outlines",
+ "cells": {
+  "r1c1": {
+   "gesture": "relaxed",
+   "handedness": "left",
+   "confidence": "medium",
+   "cues": "fingers hang down from an outlined wrist at the top, thumb on the image right; no palm creases are drawn, so it could also read as the back of a right hand. Read as a camera-facing left palm, consistent with the creased open palm r1c2 of the same row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 50.0,
+   "gesture_semantics": "a relaxed hanging hand: the fingers read as hanging under gravity only within about 50 deg of hanging"
+  },
+  "r1c2": {
+   "gesture": "open_palm",
+   "handedness": "left",
+   "confidence": "high",
+   "cues": "two palm creases, thumb to the image right, fingers down: the palm of a left hand faces the viewer",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera, fingers spread"
+  },
+  "r1c3": {
+   "gesture": "fist",
+   "handedness": "left",
+   "confidence": "medium",
+   "cues": "the fronts of the curled fingers face the viewer, the thumb crosses them from the image right, wrist at the top: left hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "closed fist seen from the finger side"
+  },
+  "r1c4": {
+   "gesture": "pointing",
+   "handedness": "right",
+   "confidence": "high",
+   "cues": "index points image-left from a closed wrist on the image right, thumb on top, curled finger fronts toward the viewer: f = -x, n = +z, f x n = +y (up) -> RIGHT hand, although it sits in the left row group (same finding as the schoolboy sheet)",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "index extended, other fingers curled; aimed by the wrist"
+  },
+  "r2c1": {
+   "gesture": "thumbs_up",
+   "handedness": "left",
+   "confidence": "high",
+   "cues": "wrist on the image left, curled fingers point image-right with their fronts to the viewer, thumb up: f = +x, n = +z, n x f = +y -> left hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 45.0,
+   "gesture_semantics": "thumbs-up: reads only while the thumb points up"
+  },
+  "r2c2": {
+   "gesture": "gripping",
+   "handedness": "left",
+   "confidence": "low",
+   "cues": "C-shaped grip in profile, opening to the image right, wrist on the image left; a profile of a left hand and a mirrored right hand look the same, so handedness follows the row group and the outward wrist side (low confidence)",
+   "visible_surface": "edge",
+   "palm_normal_sprite": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 100.0,
+   "gesture_semantics": "grip around an object in front of the fingers (contact gesture)"
+  },
+  "r2c3": {
+   "gesture": "palm_down",
+   "handedness": "left",
+   "confidence": "high",
+   "cues": "back of the hand seen from above (no creases, knuckle shading), fingers down-right, thumb to the image left: n = (0, +0.74, -0.67), n x f has a -x component -> left hand",
+   "visible_surface": "back",
+   "palm_normal_sprite": [
+    0.0,
+    0.74,
+    -0.67
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": -35.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 60.0,
+   "gesture_semantics": "flat hand resting palm-down on a surface below eye level"
+  },
+  "r2c4": {
+   "gesture": "cupped",
+   "handedness": "right",
+   "confidence": "medium",
+   "cues": "palm up, seen from the front and slightly above (palm creases visible), fingers to the image left curling up, the big rounded shape on top is the thumb on the far side, wrist on the image right: f = -x, n = up, f x n points away from the viewer -> thumb behind -> RIGHT hand, although it sits in the left row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    -0.8,
+    0.6
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": -90.0,
+   "thumb": "top_far",
+   "rotation_tolerance_deg": 35.0,
+   "gesture_semantics": "cupped/offering palm-up hand; turned more than about 35 deg the cup tips, turned 180 deg it is palm-down"
+  },
+  "r3c1": {
+   "gesture": "relaxed",
+   "handedness": "right",
+   "confidence": "medium",
+   "cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 50.0,
+   "gesture_semantics": "a relaxed hanging hand"
+  },
+  "r3c2": {
+   "gesture": "open_palm",
+   "handedness": "right",
+   "confidence": "high",
+   "cues": "mirror of r1c2: palm creases, thumb to the image left -> right hand",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera"
+  },
+  "r3c3": {
+   "gesture": "fist",
+   "handedness": "right",
+   "confidence": "medium",
+   "cues": "mirror of r1c3: thumb across the curled fingers from the image left -> right hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "closed fist seen from the finger side"
+  },
+  "r3c4": {
+   "gesture": "pointing",
+   "handedness": "right",
+   "confidence": "high",
+   "cues": "points image-left with the thumb on top and the curled fingers toward the viewer: RIGHT hand, the same hand as r1c4 (the sheet has no left pointing hand)",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "index extended; aimed by the wrist"
+  },
+  "r4c1": {
+   "gesture": "thumbs_up",
+   "handedness": "right",
+   "confidence": "high",
+   "cues": "mirror of r2c1: wrist on the image right, f = -x, n = +z, f x n = +y -> right hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 45.0,
+   "gesture_semantics": "thumbs-up: reads only while the thumb points up"
+  },
+  "r4c2": {
+   "gesture": "gripping",
+   "handedness": "right",
+   "confidence": "low",
+   "cues": "mirror of r2c2 (profile view: handedness follows the row group and the outward wrist side, low confidence)",
+   "visible_surface": "edge",
+   "palm_normal_sprite": [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 100.0,
+   "gesture_semantics": "grip around an object in front of the fingers"
+  },
+  "r4c3": {
+   "gesture": "palm_down",
+   "handedness": "right",
+   "confidence": "high",
+   "cues": "mirror of r2c3: back of the hand from above, fingers down-left, thumb to the image right -> right hand",
+   "visible_surface": "back",
+   "palm_normal_sprite": [
+    0.0,
+    0.74,
+    -0.67
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": 35.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 60.0,
+   "gesture_semantics": "flat hand resting palm-down on a surface below eye level"
+  },
+  "r4c4": {
+   "gesture": "cupped",
+   "handedness": "left",
+   "confidence": "medium",
+   "cues": "mirror of r2c4: palm up, fingers to the image right, thumb on the far side, wrist on the image left -> LEFT hand, although it sits in the right row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    -0.8,
+    0.6
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": 90.0,
+   "thumb": "top_far",
+   "rotation_tolerance_deg": 35.0,
+   "gesture_semantics": "cupped/offering palm-up hand"
+  }
+ }
+}

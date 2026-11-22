@@ -1,0 +1,1289 @@
+{
+  "schema": "autorig.hybrid_artwork",
+  "schema_version": "1.0.0",
+  "contract_version": "1.0.0",
+  "coordinate_system": {
+    "units": "source pixels",
+    "origin": "top-left, +y down",
+    "width": 1086,
+    "height": 1448,
+    "note": "every layer is full-canvas; no per-layer scaling"
+  },
+  "original_bitmap": {
+    "path": "source/original.jpg",
+    "sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+    "role": "reference_only_never_modified"
+  },
+  "layers": [
+    {
+      "id": "foot_r",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/foot_r.png",
+      "mask": "masks/body/foot_r.png",
+      "bbox_xyxy": [
+        235,
+        1254,
+        423,
+        1391
+      ],
+      "z_index": 0,
+      "pixels": 19304,
+      "pivot": {
+        "position": [
+          348.37,
+          1257.87
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:ankle_r"
+      },
+      "bone": {
+        "name": "foot_r",
+        "parent_bone": "shin_r"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "direct_mask",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "shin_r",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/shin_r.png",
+      "mask": "masks/body/shin_r.png",
+      "bbox_xyxy": [
+        281,
+        997,
+        480,
+        1325
+      ],
+      "z_index": 1,
+      "pixels": 36441,
+      "pivot": {
+        "position": [
+          414.78,
+          1013.27
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:knee_r"
+      },
+      "bone": {
+        "name": "shin_r",
+        "parent_bone": "thigh_r"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "thigh_r",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/thigh_r.png",
+      "mask": "masks/body/thigh_r.png",
+      "bbox_xyxy": [
+        280,
+        748,
+        544,
+        1285
+      ],
+      "z_index": 2,
+      "pixels": 36588,
+      "pivot": {
+        "position": [
+          480.73,
+          771.26
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:hip_r"
+      },
+      "bone": {
+        "name": "thigh_r",
+        "parent_bone": "pelvis"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "foot_l",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/foot_l.png",
+      "mask": "masks/body/foot_l.png",
+      "bbox_xyxy": [
+        662,
+        1254,
+        850,
+        1391
+      ],
+      "z_index": 3,
+      "pixels": 19396,
+      "pivot": {
+        "position": [
+          731.55,
+          1258.51
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:ankle_l"
+      },
+      "bone": {
+        "name": "foot_l",
+        "parent_bone": "shin_l"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "direct_mask",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "shin_l",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/shin_l.png",
+      "mask": "masks/body/shin_l.png",
+      "bbox_xyxy": [
+        604,
+        1001,
+        804,
+        1326
+      ],
+      "z_index": 4,
+      "pixels": 35773,
+      "pivot": {
+        "position": [
+          669.71,
+          1017.56
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:knee_l"
+      },
+      "bone": {
+        "name": "shin_l",
+        "parent_bone": "thigh_l"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "thigh_l",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/thigh_l.png",
+      "mask": "masks/body/thigh_l.png",
+      "bbox_xyxy": [
+        544,
+        758,
+        801,
+        1284
+      ],
+      "z_index": 5,
+      "pixels": 36010,
+      "pivot": {
+        "position": [
+          606.7,
+          776.92
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:hip_l"
+      },
+      "bone": {
+        "name": "thigh_l",
+        "parent_bone": "pelvis"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "pelvis",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/pelvis.png",
+      "mask": "masks/body/pelvis.png",
+      "bbox_xyxy": [
+        389,
+        628,
+        697,
+        820
+      ],
+      "z_index": 6,
+      "pixels": 26733,
+      "pivot": {
+        "position": [
+          543.71,
+          774.09
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:pelvis"
+      },
+      "bone": {
+        "name": "pelvis",
+        "parent_bone": null
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "neck",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/neck.png",
+      "mask": "masks/body/neck.png",
+      "bbox_xyxy": [
+        506,
+        348,
+        578,
+        420
+      ],
+      "z_index": 7,
+      "pixels": 4060,
+      "pivot": {
+        "position": [
+          541.91,
+          350.6
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:neck"
+      },
+      "bone": {
+        "name": "neck",
+        "parent_bone": "torso"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "direct_mask",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "head_roll"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "torso",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/torso.png",
+      "mask": "masks/body/torso.png",
+      "bbox_xyxy": [
+        421,
+        41,
+        666,
+        732
+      ],
+      "z_index": 8,
+      "pixels": 56945,
+      "pivot": {
+        "position": [
+          543.71,
+          774.09
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:pelvis"
+      },
+      "bone": {
+        "name": "torso",
+        "parent_bone": "pelvis"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "upper_arm_r",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/upper_arm_r.png",
+      "mask": "masks/body/upper_arm_r.png",
+      "bbox_xyxy": [
+        268,
+        394,
+        467,
+        573
+      ],
+      "z_index": 9,
+      "pixels": 20755,
+      "pivot": {
+        "position": [
+          390.25,
+          466.81
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:shoulder_r"
+      },
+      "bone": {
+        "name": "upper_arm_r",
+        "parent_bone": "torso"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "forearm_r",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/forearm_r.png",
+      "mask": "masks/body/forearm_r.png",
+      "bbox_xyxy": [
+        34,
+        416,
+        278,
+        516
+      ],
+      "z_index": 10,
+      "pixels": 11116,
+      "pivot": {
+        "position": [
+          273.94,
+          465.98
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:elbow_r"
+      },
+      "bone": {
+        "name": "forearm_r",
+        "parent_bone": "upper_arm_r"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "hand_r",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/hand_r.png",
+      "mask": "masks/body/hand_r.png",
+      "bbox_xyxy": [
+        9,
+        391,
+        158,
+        511
+      ],
+      "z_index": 11,
+      "pixels": 11485,
+      "pivot": {
+        "position": [
+          158.04,
+          448.38
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:wrist_r"
+      },
+      "bone": {
+        "name": "hand_r",
+        "parent_bone": "forearm_r"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "direct_mask",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "upper_arm_l",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/upper_arm_l.png",
+      "mask": "masks/body/upper_arm_l.png",
+      "bbox_xyxy": [
+        619,
+        394,
+        816,
+        572
+      ],
+      "z_index": 12,
+      "pixels": 20746,
+      "pivot": {
+        "position": [
+          695.51,
+          466.84
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:shoulder_l"
+      },
+      "bone": {
+        "name": "upper_arm_l",
+        "parent_bone": "torso"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "forearm_l",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/forearm_l.png",
+      "mask": "masks/body/forearm_l.png",
+      "bbox_xyxy": [
+        811,
+        407,
+        1071,
+        516
+      ],
+      "z_index": 13,
+      "pixels": 11078,
+      "pivot": {
+        "position": [
+          812.06,
+          464.62
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:elbow_l"
+      },
+      "bone": {
+        "name": "forearm_l",
+        "parent_bone": "upper_arm_l"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "nearest_bone_segment_within_region",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "hand_l",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/hand_l.png",
+      "mask": "masks/body/hand_l.png",
+      "bbox_xyxy": [
+        928,
+        391,
+        1077,
+        511
+      ],
+      "z_index": 14,
+      "pixels": 11428,
+      "pivot": {
+        "position": [
+          927.48,
+          456.15
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:wrist_l"
+      },
+      "bone": {
+        "name": "hand_l",
+        "parent_bone": "forearm_l"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "direct_mask",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "head_base",
+      "kind": "extracted_original_pixels",
+      "role": "head_base",
+      "image": "artwork/bitmap/head_base.png",
+      "mask": "masks/face/head_base.png",
+      "bbox_xyxy": [
+        422,
+        150,
+        662,
+        362
+      ],
+      "z_index": 15,
+      "pixels": 30735,
+      "pivot": {
+        "position": [
+          541.91,
+          350.6
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:neck"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "head minus carved facial features",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "head_yaw",
+        "head_pitch",
+        "head_roll",
+        "jaw_open"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "nose",
+      "kind": "extracted_original_pixels",
+      "role": "facial_feature",
+      "image": "artwork/bitmap/nose.png",
+      "mask": "masks/face/nose.png",
+      "bbox_xyxy": [
+        527,
+        253,
+        562,
+        284
+      ],
+      "z_index": 16,
+      "pixels": 617,
+      "pivot": {
+        "position": [
+          545.57,
+          270.69
+        ],
+        "status": "proposed",
+        "source": "feature_centroid:nose"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "facial feature mask within head",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "mouth",
+      "kind": "extracted_original_pixels",
+      "role": "facial_feature",
+      "image": "artwork/bitmap/mouth.png",
+      "mask": "masks/face/mouth.png",
+      "bbox_xyxy": [
+        520,
+        300,
+        570,
+        308
+      ],
+      "z_index": 17,
+      "pixels": 166,
+      "pivot": {
+        "position": [
+          543.98,
+          302.81
+        ],
+        "status": "proposed",
+        "source": "feature_centroid:mouth"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "facial feature mask within head",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "jaw_open",
+        "mouth_width",
+        "mouth_pucker",
+        "smile_left",
+        "smile_right"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "eye_r",
+      "kind": "extracted_original_pixels",
+      "role": "facial_feature",
+      "image": "artwork/bitmap/eye_r.png",
+      "mask": "masks/face/eye_r.png",
+      "bbox_xyxy": [
+        472,
+        228,
+        525,
+        252
+      ],
+      "z_index": 18,
+      "pixels": 975,
+      "pivot": {
+        "position": [
+          498.82,
+          239.18
+        ],
+        "status": "proposed",
+        "source": "feature_centroid:eye_r"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "facial feature mask within head",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "eye_blink_right",
+        "eye_look_x",
+        "eye_look_y"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "eye_l",
+      "kind": "extracted_original_pixels",
+      "role": "facial_feature",
+      "image": "artwork/bitmap/eye_l.png",
+      "mask": "masks/face/eye_l.png",
+      "bbox_xyxy": [
+        562,
+        228,
+        613,
+        252
+      ],
+      "z_index": 19,
+      "pixels": 939,
+      "pivot": {
+        "position": [
+          586.45,
+          239.32
+        ],
+        "status": "proposed",
+        "source": "feature_centroid:eye_l"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "facial feature mask within head",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "eye_blink_left",
+        "eye_look_x",
+        "eye_look_y"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "brow_r",
+      "kind": "extracted_original_pixels",
+      "role": "facial_feature",
+      "image": "artwork/bitmap/brow_r.png",
+      "mask": "masks/face/brow_r.png",
+      "bbox_xyxy": [
+        462,
+        202,
+        536,
+        234
+      ],
+      "z_index": 20,
+      "pixels": 1153,
+      "pivot": {
+        "position": [
+          500.22,
+          217.75
+        ],
+        "status": "proposed",
+        "source": "feature_centroid:brow_r"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "facial feature mask within head",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "brow_raise_right",
+        "brow_frown"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "brow_l",
+      "kind": "extracted_original_pixels",
+      "role": "facial_feature",
+      "image": "artwork/bitmap/brow_l.png",
+      "mask": "masks/face/brow_l.png",
+      "bbox_xyxy": [
+        552,
+        202,
+        624,
+        234
+      ],
+      "z_index": 21,
+      "pixels": 1126,
+      "pivot": {
+        "position": [
+          585.4,
+          217.86
+        ],
+        "status": "proposed",
+        "source": "feature_centroid:brow_l"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "facial feature mask within head",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "brow_raise_left",
+        "brow_frown"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    },
+    {
+      "id": "hair",
+      "kind": "extracted_original_pixels",
+      "role": "body_part",
+      "image": "artwork/bitmap/hair.png",
+      "mask": "masks/body/hair.png",
+      "bbox_xyxy": [
+        373,
+        19,
+        682,
+        230
+      ],
+      "z_index": 22,
+      "pixels": 35658,
+      "pivot": {
+        "position": [
+          541.91,
+          350.6
+        ],
+        "status": "proposed",
+        "source": "anatomy_joint:neck"
+      },
+      "bone": {
+        "name": "head",
+        "parent_bone": "neck"
+      },
+      "provenance": {
+        "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+        "method": "direct_mask",
+        "segmentation_runs": [
+          "0dvcadwsgnrmy0d20epr74c3bc",
+          "ey9r4dyecdrmt0d20eps4qxgkr"
+        ]
+      },
+      "transform": {
+        "scale": 1.0,
+        "offset": [
+          0,
+          0
+        ],
+        "note": "pixels copied 1:1 from the source"
+      },
+      "facial_control_dependencies": [
+        "head_yaw",
+        "head_pitch",
+        "head_roll"
+      ],
+      "vector_replacement": null,
+      "status": "extracted"
+    }
+  ],
+  "masks": [
+    {
+      "id": "body/hair",
+      "path": "masks/body/hair.png",
+      "kind": "anatomical_part",
+      "pixels": 35658
+    },
+    {
+      "id": "body/head",
+      "path": "masks/body/head.png",
+      "kind": "anatomical_part",
+      "pixels": 35711
+    },
+    {
+      "id": "body/neck",
+      "path": "masks/body/neck.png",
+      "kind": "anatomical_part",
+      "pixels": 4060
+    },
+    {
+      "id": "body/torso",
+      "path": "masks/body/torso.png",
+      "kind": "anatomical_part",
+      "pixels": 56945
+    },
+    {
+      "id": "body/pelvis",
+      "path": "masks/body/pelvis.png",
+      "kind": "anatomical_part",
+      "pixels": 26733
+    },
+    {
+      "id": "body/upper_arm_r",
+      "path": "masks/body/upper_arm_r.png",
+      "kind": "anatomical_part",
+      "pixels": 20755
+    },
+    {
+      "id": "body/forearm_r",
+      "path": "masks/body/forearm_r.png",
+      "kind": "anatomical_part",
+      "pixels": 11116
+    },
+    {
+      "id": "body/hand_r",
+      "path": "masks/body/hand_r.png",
+      "kind": "anatomical_part",
+      "pixels": 11485
+    },
+    {
+      "id": "body/upper_arm_l",
+      "path": "masks/body/upper_arm_l.png",
+      "kind": "anatomical_part",
+      "pixels": 20746
+    },
+    {
+      "id": "body/forearm_l",
+      "path": "masks/body/forearm_l.png",
+      "kind": "anatomical_part",
+      "pixels": 11078
+    },
+    {
+      "id": "body/hand_l",
+      "path": "masks/body/hand_l.png",
+      "kind": "anatomical_part",
+      "pixels": 11428
+    },
+    {
+      "id": "body/thigh_r",
+      "path": "masks/body/thigh_r.png",
+      "kind": "anatomical_part",
+      "pixels": 36588
+    },
+    {
+      "id": "body/shin_r",
+      "path": "masks/body/shin_r.png",
+      "kind": "anatomical_part",
+      "pixels": 36441
+    },
+    {
+      "id": "body/foot_r",
+      "path": "masks/body/foot_r.png",
+      "kind": "anatomical_part",
+      "pixels": 19304
+    },
+    {
+      "id": "body/thigh_l",
+      "path": "masks/body/thigh_l.png",
+      "kind": "anatomical_part",
+      "pixels": 36010
+    },
+    {
+      "id": "body/shin_l",
+      "path": "masks/body/shin_l.png",
+      "kind": "anatomical_part",
+      "pixels": 35773
+    },
+    {
+      "id": "body/foot_l",
+      "path": "masks/body/foot_l.png",
+      "kind": "anatomical_part",
+      "pixels": 19396
+    },
+    {
+      "id": "face/brow_l",
+      "path": "masks/face/brow_l.png",
+      "kind": "facial_feature",
+      "pixels": 1126
+    },
+    {
+      "id": "face/brow_r",
+      "path": "masks/face/brow_r.png",
+      "kind": "facial_feature",
+      "pixels": 1153
+    },
+    {
+      "id": "face/ear_l",
+      "path": "masks/face/ear_l.png",
+      "kind": "facial_feature",
+      "pixels": 1996
+    },
+    {
+      "id": "face/ear_r",
+      "path": "masks/face/ear_r.png",
+      "kind": "facial_feature",
+      "pixels": 1968
+    },
+    {
+      "id": "face/eye_l",
+      "path": "masks/face/eye_l.png",
+      "kind": "facial_feature",
+      "pixels": 939
+    },
+    {
+      "id": "face/eye_r",
+      "path": "masks/face/eye_r.png",
+      "kind": "facial_feature",
+      "pixels": 975
+    },
+    {
+      "id": "face/head_base",
+      "path": "masks/face/head_base.png",
+      "kind": "facial_feature",
+      "pixels": 30735
+    },
+    {
+      "id": "face/mouth",
+      "path": "masks/face/mouth.png",
+      "kind": "facial_feature",
+      "pixels": 166
+    },
+    {
+      "id": "face/nose",
+      "path": "masks/face/nose.png",
+      "kind": "facial_feature",
+      "pixels": 617
+    },
+    {
+      "id": "face/pupil_l",
+      "path": "masks/face/pupil_l.png",
+      "kind": "facial_feature",
+      "pixels": 320
+    },
+    {
+      "id": "face/pupil_r",
+      "path": "masks/face/pupil_r.png",
+      "kind": "facial_feature",
+      "pixels": 312
+    }
+  ],
+  "generated_artwork": [],
+  "vector_corrections": [],
+  "categories": {
+    "original_bitmap": "source/ - the untouched reference",
+    "extracted_original_pixel_layers": "layers[] with kind extracted_original_pixels (artwork/bitmap/)",
+    "generated_or_reconstructed_artwork": "generated_artwork[] - empty in Phase 1 (no reconstruction yet)",
+    "editable_vector_correction_layers": "vector_corrections[] - empty; files go to artwork/vector/",
+    "masks": "masks[] (masks/body, masks/face)",
+    "bone_attachment_metadata": "layers[].bone and layers[].pivot",
+    "facial_control_dependencies": "layers[].facial_control_dependencies + analysis/live_controls.json"
+  }
+}

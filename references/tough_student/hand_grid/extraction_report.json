@@ -1,0 +1,2150 @@
+{
+ "schema": "autorig.hand_sheet_extraction",
+ "sheet": "hand_grid_black.jpg",
+ "sheet_sha256": "47c59800a641a86e3c54ddd8355b16082d2471e7369af17984835896e6663b88",
+ "inspection": "inspection.json",
+ "library_id": "tough_student_hands_v1",
+ "zip": "AutoRig_Hand_Library_ToughStudent_v1.zip",
+ "zip_sha256": "28c0791f985599e172be2b4eb60d72f3235ebc24200d9b8c4b0ef572c7164687",
+ "background": {
+  "mode": "dark",
+  "polarity_rule": "border median luminance < 60.0",
+  "outline_band_px": 8,
+  "colour_to_rim_px_p10_p50_p90": [
+   6.4,
+   7.21,
+   8.0
+  ],
+  "rim_px": 18917,
+  "rim_px_facing_background": 12832,
+  "enclosed_gap_px": 0,
+  "enclosed_pockets_kept_px": 1575
+ },
+ "quality_thresholds": {
+  "outline_coverage_min": 0.95,
+  "skin_on_edge_max_px": 12
+ },
+ "open_cut_min": 0.22,
+ "search_deg": 40,
+ "cells": {
+  "r1c1": {
+   "cell": "r1c1",
+   "row": 1,
+   "col": 1,
+   "bbox": [
+    90,
+    56,
+    268,
+    300
+   ],
+   "area_px": 30615,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    86,
+    51
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 847,
+    "ring_px_with_alpha": 847,
+    "rim_px_recoloured_inside": 91,
+    "dark_px": 6185,
+    "dark_px_kept": 6185,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 2047,
+    "stray_px_removed": 21
+   },
+   "inspection": {
+    "gesture": "relaxed",
+    "wrist_side": "top",
+    "view": "palm",
+    "note": "wrist at the top (outlined, flat); four fingers hang down; the separate digit on the image right is the thumb; no palm creases; peach skin with a darker cel shadow down the image-left edge"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     27.0,
+     17.0
+    ],
+    "p1": [
+     119.0,
+     8.0
+    ],
+    "centre": [
+     73.0,
+     12.5
+    ],
+    "axis": [
+     0.09736132506539928,
+     0.995249100668526
+    ],
+    "width_px": 92.43916918709297,
+    "corner_turns_deg": [
+     72.1,
+     65.8
+    ],
+    "search_direction_deg": 264.0,
+    "size_px": 177.38,
+    "direction_deg": 264.41,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     86.39,
+     119.55
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    186,
+    253
+   ]
+  },
+  "r1c2": {
+   "cell": "r1c2",
+   "row": 1,
+   "col": 2,
+   "bbox": [
+    343,
+    54,
+    608,
+    302
+   ],
+   "area_px": 36844,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    338,
+    49
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 1469,
+    "ring_px_with_alpha": 1469,
+    "rim_px_recoloured_inside": 123,
+    "dark_px": 7912,
+    "dark_px_kept": 7912,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 3328,
+    "stray_px_removed": 30
+   },
+   "inspection": {
+    "gesture": "open_palm",
+    "wrist_side": "top",
+    "view": "palm",
+    "note": "two palm creases drawn; five spread fingers; the thumb sticks out to the image right"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     86.0,
+     13.0
+    ],
+    "p1": [
+     178.0,
+     12.0
+    ],
+    "centre": [
+     132.0,
+     12.5
+    ],
+    "axis": [
+     0.01086892316858733,
+     0.9999409315100344
+    ],
+    "width_px": 92.00543462209176,
+    "corner_turns_deg": [
+     73.1,
+     63.1
+    ],
+    "search_direction_deg": 270.0,
+    "size_px": 195.74,
+    "direction_deg": 269.38,
+    "confidence": 0.961,
+    "manual_review": false
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     135.38,
+     124.57
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    274,
+    257
+   ]
+  },
+  "r1c3": {
+   "cell": "r1c3",
+   "row": 1,
+   "col": 3,
+   "bbox": [
+    696,
+    65,
+    881,
+    262
+   ],
+   "area_px": 28509,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    692,
+    60
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 0.995,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 711,
+    "ring_px_with_alpha": 711,
+    "rim_px_recoloured_inside": 130,
+    "dark_px": 6206,
+    "dark_px_kept": 6206,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.06,
+     9.85
+    ],
+    "edge_band_px": 1774,
+    "stray_px_removed": 14
+   },
+   "inspection": {
+    "gesture": "fist",
+    "wrist_side": "top",
+    "view": "palm",
+    "thumb": "right",
+    "note": "the fronts of the four curled fingers face the viewer; the thumb wraps across them from the image right"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     34.0,
+     16.0
+    ],
+    "p1": [
+     135.0,
+     9.0
+    ],
+    "centre": [
+     84.5,
+     12.5
+    ],
+    "axis": [
+     0.06914107176547127,
+     0.9976068926160855
+    ],
+    "width_px": 101.24228365658294,
+    "corner_turns_deg": [
+     76.6,
+     64.2
+    ],
+    "search_direction_deg": 266.0,
+    "size_px": 170.94,
+    "direction_deg": 266.04,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     92.64,
+     104.55
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    193,
+    206
+   ]
+  },
+  "r1c4": {
+   "cell": "r1c4",
+   "row": 1,
+   "col": 4,
+   "bbox": [
+    944,
+    79,
+    1188,
+    256
+   ],
+   "area_px": 25796,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    939,
+    74
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 816,
+    "ring_px_with_alpha": 816,
+    "rim_px_recoloured_inside": 92,
+    "dark_px": 6526,
+    "dark_px_kept": 6526,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 1965,
+    "stray_px_removed": 25
+   },
+   "inspection": {
+    "gesture": "pointing",
+    "wrist_side": "right",
+    "view": "palm",
+    "thumb": "top",
+    "feature": "index_tip",
+    "note": "index points image-left; the thumb lies on top, folded over the curled middle/ring/little fingers whose fronts face the viewer; the wrist side (image right) is a closed rounded outline"
+   },
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+    "drawn as a right hand, but its row group is the left side"
+   ],
+   "wrist": {
+    "opening": "closed_outline",
+    "method": "chord_at_wrist_width",
+    "p0": [
+     234.5,
+     17.553302819207047
+    ],
+    "p1": [
+     234.5,
+     111.05330281920705
+    ],
+    "centre": [
+     234.5,
+     64.30330281920705
+    ],
+    "axis": [
+     -1.0,
+     -0.0
+    ],
+    "width_px": 93.5,
+    "depth_px": 14.5,
+    "target_width_px": 92.01,
+    "why_closed": "widest cap 119 px turns only 37/48 deg into the sides",
+    "size_px": 163.13,
+    "direction_deg": 0.0,
+    "confidence": 0.35,
+    "manual_review": true
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     150.18,
+     83.32
+    ],
+    "index_tip": [
+     4.0,
+     76.0
+    ],
+    "index_tip_dir": [
+     -0.9987,
+     0.0507
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    254,
+    187
+   ]
+  },
+  "r2c1": {
+   "cell": "r2c1",
+   "row": 2,
+   "col": 1,
+   "bbox": [
+    78,
+    347,
+    265,
+    596
+   ],
+   "area_px": 28524,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    73,
+    342
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 860,
+    "ring_px_with_alpha": 860,
+    "rim_px_recoloured_inside": 63,
+    "dark_px": 5378,
+    "dark_px_kept": 5378,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 1991,
+    "stray_px_removed": 21
+   },
+   "inspection": {
+    "gesture": "thumbs_up",
+    "wrist_side": "left",
+    "view": "palm",
+    "thumb": "top",
+    "feature": "thumb_tip",
+    "note": "thumb straight up; curled fingers point image-right with their fronts to the viewer; flat outlined wrist on the image left"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     11.0,
+     211.0
+    ],
+    "p1": [
+     14.0,
+     125.0
+    ],
+    "centre": [
+     12.5,
+     168.0
+    ],
+    "axis": [
+     0.9993921177378896,
+     0.03486251573504266
+    ],
+    "width_px": 86.05230967266364,
+    "corner_turns_deg": [
+     70.6,
+     65.4
+    ],
+    "search_direction_deg": 182.0,
+    "size_px": 171.42,
+    "direction_deg": 182.0,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     101.46,
+     148.89
+    ],
+    "thumb_tip": [
+     118.0,
+     4.65
+    ],
+    "thumb_tip_dir": [
+     0.5425,
+     -0.84
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    197,
+    258
+   ]
+  },
+  "r2c2": {
+   "cell": "r2c2",
+   "row": 2,
+   "col": 2,
+   "bbox": [
+    340,
+    372,
+    564,
+    575
+   ],
+   "area_px": 25432,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    336,
+    367
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 950,
+    "ring_px_with_alpha": 950,
+    "rim_px_recoloured_inside": 111,
+    "dark_px": 5966,
+    "dark_px_kept": 5966,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.06,
+     8.94
+    ],
+    "edge_band_px": 2262,
+    "stray_px_removed": 26
+   },
+   "inspection": {
+    "gesture": "gripping",
+    "wrist_side": "left",
+    "view": "side",
+    "feature": "grip_center",
+    "note": "C-shaped grip in profile, opening to the image right; upper digit = thumb tip region, lower = curled fingers; wrist on the image left"
+   },
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "wrist": {
+    "opening": "closed_outline",
+    "method": "chord_at_wrist_width",
+    "p0": [
+     18.500000000000007,
+     151.3970544140011
+    ],
+    "p1": [
+     18.499999999999996,
+     58.89705441400109
+    ],
+    "centre": [
+     18.5,
+     105.1470544140011
+    ],
+    "axis": [
+     1.0,
+     -1.2246467991473532e-16
+    ],
+    "width_px": 92.5,
+    "depth_px": 14.5,
+    "target_width_px": 92.01,
+    "why_closed": "widest cap 93 px turns only 42/43 deg into the sides",
+    "size_px": 162.43,
+    "direction_deg": 180.0,
+    "confidence": 0.35,
+    "manual_review": true
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     101.15,
+     97.55
+    ],
+    "grip_cavity_px": 6848,
+    "grip_center": [
+     157.45,
+     108.66
+    ],
+    "grip_center_dir": [
+     0.9997,
+     0.0253
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    232,
+    213
+   ]
+  },
+  "r2c3": {
+   "cell": "r2c3",
+   "row": 2,
+   "col": 3,
+   "bbox": [
+    632,
+    389,
+    919,
+    571
+   ],
+   "area_px": 29173,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    627,
+    384
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 0.997,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 781,
+    "ring_px_with_alpha": 781,
+    "rim_px_recoloured_inside": 117,
+    "dark_px": 5887,
+    "dark_px_kept": 5887,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 1979,
+    "stray_px_removed": 18
+   },
+   "inspection": {
+    "gesture": "palm_down",
+    "wrist_side": "top",
+    "view": "back",
+    "note": "back of the hand seen from above, fingers down and to the image right, thumb pointing image-left; flat wrist at the top"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     94.0,
+     13.0
+    ],
+    "p1": [
+     188.0,
+     12.0
+    ],
+    "centre": [
+     141.0,
+     12.5
+    ],
+    "axis": [
+     0.010637695937359757,
+     0.9999434181118172
+    ],
+    "width_px": 94.00531899844816,
+    "corner_turns_deg": [
+     60.8,
+     76.6
+    ],
+    "search_direction_deg": 270.0,
+    "size_px": 173.07,
+    "direction_deg": 269.39,
+    "confidence": 0.866,
+    "manual_review": false
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     156.59,
+     97.18
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    296,
+    191
+   ]
+  },
+  "r2c4": {
+   "cell": "r2c4",
+   "row": 2,
+   "col": 4,
+   "bbox": [
+    964,
+    396,
+    1197,
+    555
+   ],
+   "area_px": 23692,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    960,
+    391
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 812,
+    "ring_px_with_alpha": 812,
+    "rim_px_recoloured_inside": 71,
+    "dark_px": 5637,
+    "dark_px_kept": 5637,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.0,
+     9.9
+    ],
+    "edge_band_px": 1810,
+    "stray_px_removed": 4
+   },
+   "inspection": {
+    "gesture": "cupped",
+    "wrist_side": "right",
+    "view": "side",
+    "feature": "palm_center",
+    "note": "palm up, seen from the front and slightly above (palm creases visible), fingers to the image left curling up; the large rounded shape on top is the thumb on the far side; wrist side on the image right is closed"
+   },
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "wrist": {
+    "opening": "closed_outline",
+    "method": "chord_at_wrist_width",
+    "p0": [
+     220.5,
+     15.923990508142339
+    ],
+    "p1": [
+     220.5,
+     109.42399050814234
+    ],
+    "centre": [
+     220.5,
+     62.67399050814234
+    ],
+    "axis": [
+     -1.0,
+     -0.0
+    ],
+    "width_px": 93.5,
+    "depth_px": 15.5,
+    "target_width_px": 92.01,
+    "why_closed": "widest cap 96 px turns only 37/30 deg into the sides",
+    "size_px": 156.54,
+    "direction_deg": 0.0,
+    "confidence": 0.35,
+    "manual_review": true
+   },
+   "group": 0,
+   "features": {
+    "centroid": [
+     134.21,
+     89.5
+    ],
+    "palm_center": [
+     134.21,
+     89.5
+    ],
+    "palm_center_dir": [
+     -0.9549,
+     0.2968
+    ]
+   },
+   "hand": "left",
+   "sprite_px": [
+    241,
+    169
+   ]
+  },
+  "r3c1": {
+   "cell": "r3c1",
+   "row": 3,
+   "col": 1,
+   "bbox": [
+    74,
+    660,
+    252,
+    902
+   ],
+   "area_px": 30802,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    69,
+    655
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 839,
+    "ring_px_with_alpha": 839,
+    "rim_px_recoloured_inside": 95,
+    "dark_px": 6119,
+    "dark_px_kept": 6119,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.25
+    ],
+    "edge_band_px": 2059,
+    "stray_px_removed": 31
+   },
+   "inspection": {
+    "gesture": "relaxed",
+    "wrist_side": "top",
+    "view": "palm",
+    "note": "mirror of r1c1: thumb on the image left"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     63.0,
+     11.0
+    ],
+    "p1": [
+     157.0,
+     14.0
+    ],
+    "centre": [
+     110.0,
+     12.5
+    ],
+    "axis": [
+     -0.0318986523990091,
+     0.9994911085022853
+    ],
+    "width_px": 94.04786015641186,
+    "corner_turns_deg": [
+     69.2,
+     68.2
+    ],
+    "search_direction_deg": 272.0,
+    "size_px": 177.88,
+    "direction_deg": 271.83,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     99.61,
+     120.88
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    187,
+    252
+   ]
+  },
+  "r3c2": {
+   "cell": "r3c2",
+   "row": 3,
+   "col": 2,
+   "bbox": [
+    331,
+    656,
+    598,
+    906
+   ],
+   "area_px": 37645,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    326,
+    651
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 1412,
+    "ring_px_with_alpha": 1412,
+    "rim_px_recoloured_inside": 137,
+    "dark_px": 8137,
+    "dark_px_kept": 8137,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 3415,
+    "stray_px_removed": 29
+   },
+   "inspection": {
+    "gesture": "open_palm",
+    "wrist_side": "top",
+    "view": "palm",
+    "note": "mirror of r1c2: palm creases, thumb to the image left"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     101.0,
+     11.0
+    ],
+    "p1": [
+     194.0,
+     14.0
+    ],
+    "centre": [
+     147.5,
+     12.5
+    ],
+    "axis": [
+     -0.03224129401095805,
+     0.9994801143396995
+    ],
+    "width_px": 93.04837451562494,
+    "corner_turns_deg": [
+     63.0,
+     78.7
+    ],
+    "search_direction_deg": 272.0,
+    "size_px": 197.63,
+    "direction_deg": 271.85,
+    "confidence": 0.96,
+    "manual_review": false
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     137.4,
+     124.37
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    277,
+    260
+   ]
+  },
+  "r3c3": {
+   "cell": "r3c3",
+   "row": 3,
+   "col": 3,
+   "bbox": [
+    686,
+    673,
+    870,
+    872
+   ],
+   "area_px": 29261,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    681,
+    668
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 741,
+    "ring_px_with_alpha": 741,
+    "rim_px_recoloured_inside": 97,
+    "dark_px": 6306,
+    "dark_px_kept": 6306,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 1780,
+    "stray_px_removed": 19
+   },
+   "inspection": {
+    "gesture": "fist",
+    "wrist_side": "top",
+    "view": "palm",
+    "thumb": "left",
+    "note": "mirror of r1c3: thumb across the curled fingers from the image left"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     57.0,
+     9.0
+    ],
+    "p1": [
+     161.0,
+     16.0
+    ],
+    "centre": [
+     109.0,
+     12.5
+    ],
+    "axis": [
+     -0.06715574551403125,
+     0.9977425047798929
+    ],
+    "width_px": 104.23531071570709,
+    "corner_turns_deg": [
+     66.2,
+     76.7
+    ],
+    "search_direction_deg": 274.0,
+    "size_px": 173.21,
+    "direction_deg": 273.85,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     101.64,
+     105.21
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    194,
+    208
+   ]
+  },
+  "r3c4": {
+   "cell": "r3c4",
+   "row": 3,
+   "col": 4,
+   "bbox": [
+    946,
+    693,
+    1201,
+    864
+   ],
+   "area_px": 26973,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    941,
+    688
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 851,
+    "ring_px_with_alpha": 851,
+    "rim_px_recoloured_inside": 92,
+    "dark_px": 6584,
+    "dark_px_kept": 6584,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 2014,
+    "stray_px_removed": 14
+   },
+   "inspection": {
+    "gesture": "pointing",
+    "wrist_side": "right",
+    "view": "palm",
+    "thumb": "top",
+    "feature": "index_tip",
+    "note": "NOT a mirror of r1c4: also points image-left with the thumb on top and the wrist on the image right, i.e. the same hand as r1c4"
+   },
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "wrist": {
+    "opening": "closed_outline",
+    "method": "chord_at_wrist_width",
+    "p0": [
+     244.5,
+     21.51782698648968
+    ],
+    "p1": [
+     244.5,
+     115.01782698648968
+    ],
+    "centre": [
+     244.5,
+     68.26782698648968
+    ],
+    "axis": [
+     -1.0,
+     -0.0
+    ],
+    "width_px": 93.5,
+    "depth_px": 15.5,
+    "target_width_px": 93.05,
+    "why_closed": "widest cap 107 px turns only 34/42 deg into the sides",
+    "size_px": 166.81,
+    "direction_deg": 0.0,
+    "confidence": 0.35,
+    "manual_review": true
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     153.09,
+     77.13
+    ],
+    "index_tip": [
+     4.0,
+     36.0
+    ],
+    "index_tip_dir": [
+     -0.9911,
+     -0.133
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    265,
+    181
+   ]
+  },
+  "r4c1": {
+   "cell": "r4c1",
+   "row": 4,
+   "col": 1,
+   "bbox": [
+    62,
+    951,
+    251,
+    1205
+   ],
+   "area_px": 29511,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    57,
+    946
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     3.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 910,
+    "ring_px_with_alpha": 910,
+    "rim_px_recoloured_inside": 50,
+    "dark_px": 5495,
+    "dark_px_kept": 5495,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.07,
+     8.0,
+     8.94
+    ],
+    "edge_band_px": 2080,
+    "stray_px_removed": 13
+   },
+   "inspection": {
+    "gesture": "thumbs_up",
+    "wrist_side": "right",
+    "view": "palm",
+    "thumb": "top",
+    "feature": "thumb_tip",
+    "note": "mirror of r2c1: wrist on the image right, curled fingers point image-left"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     185.0,
+     131.0
+    ],
+    "p1": [
+     185.0,
+     222.0
+    ],
+    "centre": [
+     185.0,
+     176.5
+    ],
+    "axis": [
+     -1.0,
+     0.0
+    ],
+    "width_px": 91.0,
+    "corner_turns_deg": [
+     65.4,
+     78.2
+    ],
+    "search_direction_deg": 0.0,
+    "size_px": 174.42,
+    "direction_deg": 0.0,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     96.46,
+     152.79
+    ],
+    "thumb_tip": [
+     92.5,
+     4.44
+    ],
+    "thumb_tip_dir": [
+     -0.4735,
+     -0.8808
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    199,
+    263
+   ]
+  },
+  "r4c2": {
+   "cell": "r4c2",
+   "row": 4,
+   "col": 2,
+   "bbox": [
+    348,
+    977,
+    575,
+    1190
+   ],
+   "area_px": 26140,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    343,
+    972
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 997,
+    "ring_px_with_alpha": 997,
+    "rim_px_recoloured_inside": 88,
+    "dark_px": 6116,
+    "dark_px_kept": 6116,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.06,
+     9.22
+    ],
+    "edge_band_px": 2313,
+    "stray_px_removed": 27
+   },
+   "inspection": {
+    "gesture": "gripping",
+    "wrist_side": "right",
+    "view": "side",
+    "feature": "grip_center",
+    "note": "mirror of r2c2: C opening to the image left"
+   },
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "wrist": {
+    "opening": "closed_outline",
+    "method": "chord_at_wrist_width",
+    "p0": [
+     217.0,
+     56.930271622287435
+    ],
+    "p1": [
+     217.0,
+     152.43027162228742
+    ],
+    "centre": [
+     217.0,
+     104.68027162228742
+    ],
+    "axis": [
+     -1.0,
+     -0.0
+    ],
+    "width_px": 95.5,
+    "depth_px": 14.0,
+    "target_width_px": 93.05,
+    "why_closed": "widest cap 92 px turns only 36/36 deg into the sides",
+    "size_px": 164.73,
+    "direction_deg": 0.0,
+    "confidence": 0.35,
+    "manual_review": true
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     132.93,
+     99.4
+    ],
+    "grip_cavity_px": 7503,
+    "grip_center": [
+     76.32,
+     113.36
+    ],
+    "grip_center_dir": [
+     -0.9981,
+     0.0615
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    236,
+    222
+   ]
+  },
+  "r4c3": {
+   "cell": "r4c3",
+   "row": 4,
+   "col": 3,
+   "bbox": [
+    629,
+    993,
+    918,
+    1176
+   ],
+   "area_px": 30305,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    624,
+    988
+   ],
+   "quality": {
+    "outline_rgb": [
+     7.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 0.9883,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 800,
+    "ring_px_with_alpha": 800,
+    "rim_px_recoloured_inside": 124,
+    "dark_px": 5878,
+    "dark_px_kept": 5878,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.25,
+     8.94
+    ],
+    "edge_band_px": 2020,
+    "stray_px_removed": 18
+   },
+   "inspection": {
+    "gesture": "palm_down",
+    "wrist_side": "top",
+    "view": "back",
+    "note": "mirror of r2c3: fingers down and to the image left, thumb pointing image-right"
+   },
+   "flags": [],
+   "wrist": {
+    "opening": "open_cut",
+    "method": "wrist_stub_cap",
+    "p0": [
+     112.0,
+     13.0
+    ],
+    "p1": [
+     207.0,
+     12.0
+    ],
+    "centre": [
+     159.5,
+     12.5
+    ],
+    "axis": [
+     0.01052573266254254,
+     0.9999446029415413
+    ],
+    "width_px": 95.00526301210897,
+    "corner_turns_deg": [
+     68.0,
+     66.2
+    ],
+    "search_direction_deg": 270.0,
+    "size_px": 176.37,
+    "direction_deg": 269.4,
+    "confidence": 1.0,
+    "manual_review": false
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     140.58,
+     98.73
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    299,
+    192
+   ]
+  },
+  "r4c4": {
+   "cell": "r4c4",
+   "row": 4,
+   "col": 4,
+   "bbox": [
+    962,
+    998,
+    1208,
+    1165
+   ],
+   "area_px": 26897,
+   "touches_sheet_edge": false,
+   "crop_origin_in_sheet": [
+    958,
+    993
+   ],
+   "quality": {
+    "outline_rgb": [
+     8.0,
+     2.0,
+     1.0
+    ],
+    "outline_coverage": 1.0,
+    "skin_on_edge_px": 0,
+    "edge_px_unmatted": 767,
+    "ring_px_with_alpha": 767,
+    "rim_px_recoloured_inside": 94,
+    "dark_px": 6144,
+    "dark_px_kept": 6144,
+    "dark_px_lost": 0,
+    "light_px_on_edge": 0,
+    "outline_width_on_edge_p50_p95_max": [
+     7.21,
+     8.49,
+     9.9
+    ],
+    "edge_band_px": 1923,
+    "stray_px_removed": 19
+   },
+   "inspection": {
+    "gesture": "cupped",
+    "wrist_side": "left",
+    "view": "side",
+    "feature": "palm_center",
+    "note": "mirror of r2c4: fingers to the image right, thumb on the far side, wrist on the image left"
+   },
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "wrist": {
+    "opening": "closed_outline",
+    "method": "chord_at_wrist_width",
+    "p0": [
+     18.000000000000004,
+     113.16536525527825
+    ],
+    "p1": [
+     17.99999999999999,
+     19.665365255278246
+    ],
+    "centre": [
+     17.999999999999996,
+     66.41536525527825
+    ],
+    "axis": [
+     1.0,
+     -1.2246467991473532e-16
+    ],
+    "width_px": 93.5,
+    "depth_px": 14.0,
+    "target_width_px": 93.05,
+    "why_closed": "widest cap 96 px turns only 36/35 deg into the sides",
+    "size_px": 166.32,
+    "direction_deg": 180.0,
+    "confidence": 0.35,
+    "manual_review": true
+   },
+   "group": 1,
+   "features": {
+    "centroid": [
+     111.54,
+     93.02
+    ],
+    "palm_center": [
+     111.54,
+     93.02
+    ],
+    "palm_center_dir": [
+     0.9619,
+     0.2735
+    ]
+   },
+   "hand": "right",
+   "sprite_px": [
+    254,
+    176
+   ]
+  }
+ },
+ "handedness": {
+  "pairs": {
+   "relaxed": {
+    "cells": [
+     "r1c1",
+     "r3c1"
+    ],
+    "silhouette_same": 0.841,
+    "silhouette_mirror": 0.97,
+    "lines_same": 0.119,
+    "lines_mirror": 0.694,
+    "mirrored": true,
+    "margin": 0.703
+   },
+   "open_palm": {
+    "cells": [
+     "r1c2",
+     "r3c2"
+    ],
+    "silhouette_same": 0.608,
+    "silhouette_mirror": 0.927,
+    "lines_same": 0.125,
+    "lines_mirror": 0.383,
+    "mirrored": true,
+    "margin": 0.576
+   },
+   "fist": {
+    "cells": [
+     "r1c3",
+     "r3c3"
+    ],
+    "silhouette_same": 0.918,
+    "silhouette_mirror": 0.977,
+    "lines_same": 0.212,
+    "lines_mirror": 0.727,
+    "mirrored": true,
+    "margin": 0.574
+   },
+   "pointing": {
+    "cells": [
+     "r1c4",
+     "r3c4"
+    ],
+    "silhouette_same": 0.835,
+    "silhouette_mirror": 0.521,
+    "lines_same": 0.439,
+    "lines_mirror": 0.207,
+    "mirrored": false,
+    "margin": 0.547
+   },
+   "thumbs_up": {
+    "cells": [
+     "r2c1",
+     "r4c1"
+    ],
+    "silhouette_same": 0.78,
+    "silhouette_mirror": 0.925,
+    "lines_same": 0.029,
+    "lines_mirror": 0.563,
+    "mirrored": true,
+    "margin": 0.679
+   },
+   "gripping": {
+    "cells": [
+     "r2c2",
+     "r4c2"
+    ],
+    "silhouette_same": 0.459,
+    "silhouette_mirror": 0.938,
+    "lines_same": 0.048,
+    "lines_mirror": 0.407,
+    "mirrored": true,
+    "margin": 0.838
+   },
+   "palm_down": {
+    "cells": [
+     "r2c3",
+     "r4c3"
+    ],
+    "silhouette_same": 0.604,
+    "silhouette_mirror": 0.947,
+    "lines_same": 0.036,
+    "lines_mirror": 0.486,
+    "mirrored": true,
+    "margin": 0.793
+   },
+   "cupped": {
+    "cells": [
+     "r2c4",
+     "r4c4"
+    ],
+    "silhouette_same": 0.56,
+    "silhouette_mirror": 0.967,
+    "lines_same": 0.085,
+    "lines_mirror": 0.612,
+    "mirrored": true,
+    "margin": 0.933
+   }
+  },
+  "groups": {
+   "0": {
+    "rows": [
+     1,
+     2
+    ],
+    "open_palm_cell": "r1c2",
+    "thumb": {
+     "thumb_vector": [
+      1.0,
+      -0.011
+     ],
+     "mass_pos_px": 3429,
+     "mass_neg_px": 5251,
+     "sigma": -1,
+     "ratio": 1.53
+    },
+    "side": "left",
+    "rule": "palm view: right hand <=> cross(fingers, thumb) > 0 (image coordinates)"
+   },
+   "1": {
+    "rows": [
+     3,
+     4
+    ],
+    "open_palm_cell": "r3c2",
+    "thumb": {
+     "thumb_vector": [
+      -0.999,
+      -0.032
+     ],
+     "mass_pos_px": 5879,
+     "mass_neg_px": 3337,
+     "sigma": 1,
+     "ratio": 1.76
+    },
+    "side": "right",
+    "rule": "palm view: right hand <=> cross(fingers, thumb) > 0 (image coordinates)"
+   }
+  },
+  "per_cell": {
+   "r1c1": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.703
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "left"
+     }
+    ]
+   },
+   "r1c2": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "open_palm_thumb_measured",
+      "result": "left"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.576
+     }
+    ]
+   },
+   "r1c3": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "thumb_rule",
+      "fingers": [
+       0.069,
+       0.998
+      ],
+      "thumb": "right",
+      "view": "palm",
+      "result": "left"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.574
+     }
+    ]
+   },
+   "r1c4": {
+    "side": "right",
+    "row_group_side": "left",
+    "agrees_with_row_label": false,
+    "evidence": [
+     {
+      "method": "thumb_rule",
+      "fingers": [
+       -0.999,
+       0.051
+      ],
+      "thumb": "top",
+      "view": "palm",
+      "result": "right"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": false,
+      "margin": 0.547
+     }
+    ]
+   },
+   "r2c1": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "thumb_rule",
+      "fingers": [
+       0.999,
+       0.035
+      ],
+      "thumb": "top",
+      "view": "palm",
+      "result": "left"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.679
+     }
+    ]
+   },
+   "r2c2": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.838
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "left"
+     }
+    ]
+   },
+   "r2c3": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.793
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "left"
+     }
+    ]
+   },
+   "r2c4": {
+    "side": "left",
+    "row_group_side": "left",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.933
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "left"
+     }
+    ]
+   },
+   "r3c1": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.703
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "right"
+     }
+    ]
+   },
+   "r3c2": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "open_palm_thumb_measured",
+      "result": "right"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.576
+     }
+    ]
+   },
+   "r3c3": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "thumb_rule",
+      "fingers": [
+       -0.067,
+       0.998
+      ],
+      "thumb": "left",
+      "view": "palm",
+      "result": "right"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.574
+     }
+    ]
+   },
+   "r3c4": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "thumb_rule",
+      "fingers": [
+       -0.991,
+       -0.133
+      ],
+      "thumb": "top",
+      "view": "palm",
+      "result": "right"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": false,
+      "margin": 0.547
+     }
+    ]
+   },
+   "r4c1": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "thumb_rule",
+      "fingers": [
+       -1.0,
+       0.0
+      ],
+      "thumb": "top",
+      "view": "palm",
+      "result": "right"
+     },
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.679
+     }
+    ]
+   },
+   "r4c2": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.838
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "right"
+     }
+    ]
+   },
+   "r4c3": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.793
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "right"
+     }
+    ]
+   },
+   "r4c4": {
+    "side": "right",
+    "row_group_side": "right",
+    "agrees_with_row_label": true,
+    "evidence": [
+     {
+      "method": "mirror_pair",
+      "mirrored": true,
+      "margin": 0.933
+     },
+     {
+      "method": "row_group (mirrored pair)",
+      "result": "right"
+     }
+    ]
+   }
+  }
+ },
+ "assets": [
+  {
+   "id": "left_relaxed",
+   "sheet_cell": "r1c1",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_open_palm",
+   "sheet_cell": "r1c2",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 0.961,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_fist",
+   "sheet_cell": "r1c3",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_pointing",
+   "sheet_cell": "r1c4",
+   "derived": "mirror_x",
+   "wrist_opening": "closed_outline",
+   "wrist_confidence": 0.35,
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+    "derived: horizontal mirror of r1c4 (drawn as a right hand); the sheet has no left pointing drawing"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "left_thumbs_up",
+   "sheet_cell": "r2c1",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_gripping",
+   "sheet_cell": "r2c2",
+   "derived": null,
+   "wrist_opening": "closed_outline",
+   "wrist_confidence": 0.35,
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "left_palm_down",
+   "sheet_cell": "r2c3",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 0.866,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_cupped",
+   "sheet_cell": "r2c4",
+   "derived": null,
+   "wrist_opening": "closed_outline",
+   "wrist_confidence": 0.35,
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "right_relaxed",
+   "sheet_cell": "r3c1",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_open_palm",
+   "sheet_cell": "r3c2",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 0.96,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_fist",
+   "sheet_cell": "r3c3",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_pointing",
+   "sheet_cell": "r3c4",
+   "derived": null,
+   "wrist_opening": "closed_outline",
+   "wrist_confidence": 0.35,
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "right_thumbs_up",
+   "sheet_cell": "r4c1",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_gripping",
+   "sheet_cell": "r4c2",
+   "derived": null,
+   "wrist_opening": "closed_outline",
+   "wrist_confidence": 0.35,
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "right_palm_down",
+   "sheet_cell": "r4c3",
+   "derived": null,
+   "wrist_opening": "open_cut",
+   "wrist_confidence": 1.0,
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_cupped",
+   "sheet_cell": "r4c4",
+   "derived": null,
+   "wrist_opening": "closed_outline",
+   "wrist_confidence": 0.35,
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  }
+ ],
+ "summary": {
+  "drawings": 16,
+  "assets": 16,
+  "open_cut": 10,
+  "closed_outline": 6,
+  "mirrored_pairs": 7,
+  "not_mirrored_pairs": [
+   "pointing"
+  ],
+  "derived_assets": [
+   "left_pointing"
+  ],
+  "manual_review": [
+   "left_pointing",
+   "left_gripping",
+   "left_cupped",
+   "right_pointing",
+   "right_gripping",
+   "right_cupped"
+  ]
+ }
+}

@@ -1,0 +1,763 @@
+{
+ "schema": "autorig.pose_space_correctives",
+ "version": "1.0.0",
+ "engine": "PoseSpaceCorrectionEngine: eased ramps per driver; normalised Gaussian RBF over sparse keys for keyed sets (two strongest drawn); exclusive groups by priority; artist overrides win; weight 0 in the neutral pose; readings beyond the keys flagged unsupported_combination",
+ "assets": [
+  {
+   "asset_id": "shoe_top_r",
+   "drivers": [
+    "ankle_r"
+   ],
+   "activation": {
+    "kind": "always"
+   },
+   "priority": 1,
+   "exclusive_group": null,
+   "keys": []
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "drivers": [
+    "elbow_r"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "elbow_r",
+    "lo": 50.0,
+    "hi": 90.0
+   },
+   "priority": 2,
+   "exclusive_group": null,
+   "keys": []
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "drivers": [
+    "knee_r"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "knee_r",
+    "lo": 20.0,
+    "hi": 60.0
+   },
+   "priority": 2,
+   "exclusive_group": null,
+   "keys": []
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "drivers": [
+    "abduction_r",
+    "clavicle_r",
+    "torso_bend"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "abduction_r",
+    "lo": 80.0,
+    "hi": 95.0
+   },
+   "priority": 1,
+   "exclusive_group": "armpit_r",
+   "keys": [
+    {
+     "key_id": "abd115",
+     "values": {
+      "abduction_r": 115.0
+     },
+     "origin": [
+      540.0,
+      596.0
+     ],
+     "gap_fill_px": 1167,
+     "curve": {
+      "T": [
+       593.0,
+       656.0
+      ],
+      "S": [
+       542.0,
+       630.0
+      ],
+      "C": [
+       567.5,
+       643.0
+      ],
+      "convex": true,
+      "chord_px": 57.2,
+      "px": 1167
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd115@v1.png"
+    },
+    {
+     "key_id": "abd130",
+     "values": {
+      "abduction_r": 130.0
+     },
+     "origin": [
+      523.0,
+      574.0
+     ],
+     "gap_fill_px": 2281,
+     "curve": {
+      "T": [
+       589.0,
+       655.0
+      ],
+      "S": [
+       525.0,
+       604.0
+      ],
+      "C": [
+       557.0,
+       629.5
+      ],
+      "convex": true,
+      "chord_px": 81.8,
+      "px": 2281
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd130@v1.png"
+    },
+    {
+     "key_id": "abd145",
+     "values": {
+      "abduction_r": 145.0
+     },
+     "origin": [
+      512.0,
+      557.0
+     ],
+     "gap_fill_px": 3521,
+     "curve": {
+      "T": [
+       588.0,
+       656.0
+      ],
+      "S": [
+       514.0,
+       577.0
+      ],
+      "C": [
+       551.0,
+       616.5
+      ],
+      "convex": true,
+      "chord_px": 108.2,
+      "px": 3521
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd145@v1.png"
+    },
+    {
+     "key_id": "abd160",
+     "values": {
+      "abduction_r": 160.0
+     },
+     "origin": [
+      507.0,
+      543.0
+     ],
+     "gap_fill_px": 4822,
+     "curve": {
+      "T": [
+       584.0,
+       655.0
+      ],
+      "S": [
+       509.0,
+       549.0
+      ],
+      "C": [
+       546.5,
+       602.0
+      ],
+      "convex": true,
+      "chord_px": 129.8,
+      "px": 4822
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd160@v1.png"
+    },
+    {
+     "key_id": "abd175",
+     "values": {
+      "abduction_r": 175.0
+     },
+     "origin": [
+      503.0,
+      530.0
+     ],
+     "gap_fill_px": 6123,
+     "curve": {
+      "T": [
+       580.0,
+       655.0
+      ],
+      "S": [
+       507.0,
+       536.0
+      ],
+      "C": [
+       543.5,
+       595.5
+      ],
+      "convex": true,
+      "chord_px": 139.6,
+      "px": 6123
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_r__abd175@v1.png"
+    }
+   ]
+  },
+  {
+   "asset_id": "shoe_top_l",
+   "drivers": [
+    "ankle_l"
+   ],
+   "activation": {
+    "kind": "always"
+   },
+   "priority": 1,
+   "exclusive_group": null,
+   "keys": []
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "drivers": [
+    "elbow_l"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "elbow_l",
+    "lo": 50.0,
+    "hi": 90.0
+   },
+   "priority": 2,
+   "exclusive_group": null,
+   "keys": []
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "drivers": [
+    "knee_l"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "knee_l",
+    "lo": 20.0,
+    "hi": 60.0
+   },
+   "priority": 2,
+   "exclusive_group": null,
+   "keys": []
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "drivers": [
+    "abduction_l",
+    "clavicle_l",
+    "torso_bend"
+   ],
+   "activation": {
+    "kind": "ramp",
+    "driver": "abduction_l",
+    "lo": 80.0,
+    "hi": 95.0
+   },
+   "priority": 1,
+   "exclusive_group": "armpit_l",
+   "keys": [
+    {
+     "key_id": "abd115",
+     "values": {
+      "abduction_l": 115.0
+     },
+     "origin": [
+      819.0,
+      599.0
+     ],
+     "gap_fill_px": 1097,
+     "curve": {
+      "T": [
+       821.0,
+       657.0
+      ],
+      "S": [
+       871.0,
+       632.0
+      ],
+      "C": [
+       846.0,
+       644.5
+      ],
+      "convex": true,
+      "chord_px": 55.9,
+      "px": 1097
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd115@v1.png"
+    },
+    {
+     "key_id": "abd130",
+     "values": {
+      "abduction_l": 130.0
+     },
+     "origin": [
+      824.0,
+      577.0
+     ],
+     "gap_fill_px": 2136,
+     "curve": {
+      "T": [
+       826.0,
+       656.0
+      ],
+      "S": [
+       888.0,
+       607.0
+      ],
+      "C": [
+       857.0,
+       631.5
+      ],
+      "convex": true,
+      "chord_px": 79.0,
+      "px": 2136
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd130@v1.png"
+    },
+    {
+     "key_id": "abd145",
+     "values": {
+      "abduction_l": 145.0
+     },
+     "origin": [
+      828.0,
+      561.0
+     ],
+     "gap_fill_px": 3308,
+     "curve": {
+      "T": [
+       830.0,
+       655.0
+      ],
+      "S": [
+       900.0,
+       578.0
+      ],
+      "C": [
+       865.0,
+       616.5
+      ],
+      "convex": true,
+      "chord_px": 104.1,
+      "px": 3308
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd145@v1.png"
+    },
+    {
+     "key_id": "abd160",
+     "values": {
+      "abduction_l": 160.0
+     },
+     "origin": [
+      831.0,
+      546.0
+     ],
+     "gap_fill_px": 4551,
+     "curve": {
+      "T": [
+       833.0,
+       655.0
+      ],
+      "S": [
+       906.0,
+       550.0
+      ],
+      "C": [
+       869.5,
+       602.5
+      ],
+      "convex": true,
+      "chord_px": 127.9,
+      "px": 4551
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd160@v1.png"
+    },
+    {
+     "key_id": "abd175",
+     "values": {
+      "abduction_l": 175.0
+     },
+     "origin": [
+      833.0,
+      520.0
+     ],
+     "gap_fill_px": 5834,
+     "curve": {
+      "T": [
+       838.0,
+       654.0
+      ],
+      "S": [
+       906.0,
+       522.0
+      ],
+      "C": [
+       872.0,
+       588.0
+      ],
+      "convex": true,
+      "chord_px": 148.5,
+      "px": 5834
+     },
+     "role": "baked preview (review + Moho bake candidate)",
+     "file": "artwork/correctives/armpits/armpit_gusset_l__abd175@v1.png"
+    }
+   ]
+  },
+  {
+   "asset_id": "edge_decontamination",
+   "drivers": [],
+   "activation": {
+    "kind": "always"
+   },
+   "priority": 2,
+   "exclusive_group": null,
+   "keys": []
+  }
+ ],
+ "samples": [
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 30.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 40.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 50.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 60.0,
+   "weight": 0.1562
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 70.0,
+   "weight": 0.5
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 80.0,
+   "weight": 0.8438
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 90.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 100.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "driver": "elbow_r",
+   "value": 110.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 0.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 10.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 20.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 30.0,
+   "weight": 0.1562
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 40.0,
+   "weight": 0.5
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 50.0,
+   "weight": 0.8438
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 60.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 70.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "driver": "knee_r",
+   "value": 80.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 60.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 66.9,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 73.8,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 80.6,
+   "weight": 0.0051
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 87.5,
+   "weight": 0.5
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 94.4,
+   "weight": 0.9949
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 101.2,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 108.1,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "driver": "abduction_r",
+   "value": 115.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 30.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 40.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 50.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 60.0,
+   "weight": 0.1562
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 70.0,
+   "weight": 0.5
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 80.0,
+   "weight": 0.8438
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 90.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 100.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "driver": "elbow_l",
+   "value": 110.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 0.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 10.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 20.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 30.0,
+   "weight": 0.1562
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 40.0,
+   "weight": 0.5
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 50.0,
+   "weight": 0.8438
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 60.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 70.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "driver": "knee_l",
+   "value": 80.0,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 60.0,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 66.9,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 73.8,
+   "weight": 0.0
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 80.6,
+   "weight": 0.0051
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 87.5,
+   "weight": 0.5
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 94.4,
+   "weight": 0.9949
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 101.2,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 108.1,
+   "weight": 1.0
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "driver": "abduction_l",
+   "value": 115.0,
+   "weight": 1.0
+  }
+ ]
+}

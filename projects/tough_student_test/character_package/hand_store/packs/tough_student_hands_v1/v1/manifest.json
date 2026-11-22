@@ -1,0 +1,970 @@
+{
+ "library_id": "tough_student_hands_v1",
+ "schema": "autorig.hand_pack",
+ "schema_version": 2,
+ "asset_count": 16,
+ "pose_names": [
+  "relaxed",
+  "open_palm",
+  "fist",
+  "point",
+  "thumbs_up",
+  "grip",
+  "palm_down",
+  "cupped"
+ ],
+ "hand_sides": [
+  "left",
+  "right"
+ ],
+ "sleeve": "none",
+ "supersedes": [],
+ "all_variants_require_review": true,
+ "source_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+ "intended_use": "sleeve-free hand switch drawings for the tough_student character (Phase 3.8 generalisation test)",
+ "sheet": {
+  "file": "hand_grid_black.jpg",
+  "sha256": "47c59800a641a86e3c54ddd8355b16082d2471e7369af17984835896e6663b88",
+  "size": [
+   1254,
+   1254
+  ]
+ },
+ "extraction": {
+  "tool": "autorig.handsheet",
+  "polarity": "dark",
+  "background": "dark sheet: drawing = coloured pixels (lum >= 28.0, not grey rim) + the dark outline band grown from them (at most 8 px, never through the rim); enclosed unreached regions >= 40 px are background gaps",
+  "unmatte": "rim pixels -> outline colour; rim ring outside the outline -> outline colour at alpha 128; no luminance unmatting (the outline is as dark as the background)",
+  "scale": 1.0,
+  "margin_px": 4
+ },
+ "assets": [
+  {
+   "id": "left_relaxed",
+   "side": "left",
+   "pose": "relaxed",
+   "file": "hands/left/relaxed.png",
+   "canvas_px": [
+    186,
+    253
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    73.0,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     27.0,
+     17.0
+    ],
+    [
+     119.0,
+     8.0
+    ]
+   ],
+   "wrist_axis": [
+    0.0974,
+    0.9952
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     86.39,
+     119.55
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r1c1",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "bdfa157ce13e42fa86bf526d0a4526d9c140c95be21217159cfbea328af8b607",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_open_palm",
+   "side": "left",
+   "pose": "open_palm",
+   "file": "hands/left/open_palm.png",
+   "canvas_px": [
+    274,
+    257
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    132.0,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     86.0,
+     13.0
+    ],
+    [
+     178.0,
+     12.0
+    ]
+   ],
+   "wrist_axis": [
+    0.0109,
+    0.9999
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 0.961,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     135.38,
+     124.57
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r1c2",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "fe3bf36703c4775394aeb7c0e6619b35b7f0fa5ad2eb11856e8ace6b1ab74dc6",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_fist",
+   "side": "left",
+   "pose": "fist",
+   "file": "hands/left/fist.png",
+   "canvas_px": [
+    193,
+    206
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    84.5,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     34.0,
+     16.0
+    ],
+    [
+     135.0,
+     9.0
+    ]
+   ],
+   "wrist_axis": [
+    0.0691,
+    0.9976
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     92.64,
+     104.55
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r1c3",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "39cbf49bd9048c0e375b5c6af72852f16c14e2edce490fbb96ca9a9c1d26037a",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_pointing",
+   "side": "left",
+   "pose": "point",
+   "file": "hands/left/pointing.png",
+   "canvas_px": [
+    254,
+    187
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    18.5,
+    64.3
+   ],
+   "wrist_edge_px": [
+    [
+     18.5,
+     17.55
+    ],
+    [
+     18.5,
+     111.05
+    ]
+   ],
+   "wrist_axis": [
+    1.0,
+    -0.0
+   ],
+   "wrist_opening": "closed_outline",
+   "wrist_method": "chord_at_wrist_width",
+   "wrist_confidence": 0.35,
+   "wrist_anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "features": {
+    "centroid": [
+     102.82,
+     83.32
+    ],
+    "index_tip": [
+     249.0,
+     76.0
+    ],
+    "index_tip_dir": [
+     0.9987,
+     0.0507
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r1c4",
+   "derived": "mirror_x",
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "right",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "9423174c20d6b3690bedb91302b0cff3d2d9c0b97d3a438253ddcc7eeb29f529",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+    "derived: horizontal mirror of r1c4 (drawn as a right hand); the sheet has no left pointing drawing"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "left_thumbs_up",
+   "side": "left",
+   "pose": "thumbs_up",
+   "file": "hands/left/thumbs_up.png",
+   "canvas_px": [
+    197,
+    258
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    12.5,
+    168.0
+   ],
+   "wrist_edge_px": [
+    [
+     11.0,
+     211.0
+    ],
+    [
+     14.0,
+     125.0
+    ]
+   ],
+   "wrist_axis": [
+    0.9994,
+    0.0349
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     101.46,
+     148.89
+    ],
+    "thumb_tip": [
+     118.0,
+     4.65
+    ],
+    "thumb_tip_dir": [
+     0.5425,
+     -0.84
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r2c1",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "1cf43f50a938150342b01462a7e3db83d1f741cda5114b8f71678eb4413b2d5d",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_gripping",
+   "side": "left",
+   "pose": "grip",
+   "file": "hands/left/gripping.png",
+   "canvas_px": [
+    232,
+    213
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    18.5,
+    105.15
+   ],
+   "wrist_edge_px": [
+    [
+     18.5,
+     151.4
+    ],
+    [
+     18.5,
+     58.9
+    ]
+   ],
+   "wrist_axis": [
+    1.0,
+    -0.0
+   ],
+   "wrist_opening": "closed_outline",
+   "wrist_method": "chord_at_wrist_width",
+   "wrist_confidence": 0.35,
+   "wrist_anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "features": {
+    "centroid": [
+     101.15,
+     97.55
+    ],
+    "grip_cavity_px": 6848,
+    "grip_center": [
+     157.45,
+     108.66
+    ],
+    "grip_center_dir": [
+     0.9997,
+     0.0253
+    ]
+   },
+   "view": "side",
+   "sheet_cell": "r2c2",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "60d6726b00fcf61635b63d6adf4e6787dd55990410c179872188a68900f6742f",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "left_palm_down",
+   "side": "left",
+   "pose": "palm_down",
+   "file": "hands/left/palm_down.png",
+   "canvas_px": [
+    296,
+    191
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    141.0,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     94.0,
+     13.0
+    ],
+    [
+     188.0,
+     12.0
+    ]
+   ],
+   "wrist_axis": [
+    0.0106,
+    0.9999
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 0.866,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     156.59,
+     97.18
+    ]
+   },
+   "view": "back",
+   "sheet_cell": "r2c3",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "f086fb5fc5f56237b8d5cc0ddb7b9d87e98e83f25835db0da441e7afb09cf322",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "left_cupped",
+   "side": "left",
+   "pose": "cupped",
+   "file": "hands/left/cupped.png",
+   "canvas_px": [
+    241,
+    169
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    220.5,
+    62.67
+   ],
+   "wrist_edge_px": [
+    [
+     220.5,
+     15.92
+    ],
+    [
+     220.5,
+     109.42
+    ]
+   ],
+   "wrist_axis": [
+    -1.0,
+    -0.0
+   ],
+   "wrist_opening": "closed_outline",
+   "wrist_method": "chord_at_wrist_width",
+   "wrist_confidence": 0.35,
+   "wrist_anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "features": {
+    "centroid": [
+     134.21,
+     89.5
+    ],
+    "palm_center": [
+     134.21,
+     89.5
+    ],
+    "palm_center_dir": [
+     -0.9549,
+     0.2968
+    ]
+   },
+   "view": "side",
+   "sheet_cell": "r2c4",
+   "derived": null,
+   "handedness": {
+    "anatomical": "left",
+    "drawn_as": "left",
+    "row_group_side": "left"
+   },
+   "sprite_sha256": "79e05d35d46c8a664c66998f4ae35e833633d196d64c32b831036a326bc628dc",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "right_relaxed",
+   "side": "right",
+   "pose": "relaxed",
+   "file": "hands/right/relaxed.png",
+   "canvas_px": [
+    187,
+    252
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    110.0,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     63.0,
+     11.0
+    ],
+    [
+     157.0,
+     14.0
+    ]
+   ],
+   "wrist_axis": [
+    -0.0319,
+    0.9995
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     99.61,
+     120.88
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r3c1",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "37f6a0e8b5b6fbdbec9b1a8ff77b8838b4dcbd1431a88b878f13371bcc8e9fa8",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_open_palm",
+   "side": "right",
+   "pose": "open_palm",
+   "file": "hands/right/open_palm.png",
+   "canvas_px": [
+    277,
+    260
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    147.5,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     101.0,
+     11.0
+    ],
+    [
+     194.0,
+     14.0
+    ]
+   ],
+   "wrist_axis": [
+    -0.0322,
+    0.9995
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 0.96,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     137.4,
+     124.37
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r3c2",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "daa904cb8043cb475e8528b58de3574dd70b743e968733d3d5402212c5382153",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_fist",
+   "side": "right",
+   "pose": "fist",
+   "file": "hands/right/fist.png",
+   "canvas_px": [
+    194,
+    208
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    109.0,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     57.0,
+     9.0
+    ],
+    [
+     161.0,
+     16.0
+    ]
+   ],
+   "wrist_axis": [
+    -0.0672,
+    0.9977
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     101.64,
+     105.21
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r3c3",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "1bf4c5449af6d344ec3b9b8b1c8e9e9f9de6e84c95cdcbde332898a99d13ffeb",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_pointing",
+   "side": "right",
+   "pose": "point",
+   "file": "hands/right/pointing.png",
+   "canvas_px": [
+    265,
+    181
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    244.5,
+    68.27
+   ],
+   "wrist_edge_px": [
+    [
+     244.5,
+     21.52
+    ],
+    [
+     244.5,
+     115.02
+    ]
+   ],
+   "wrist_axis": [
+    -1.0,
+    -0.0
+   ],
+   "wrist_opening": "closed_outline",
+   "wrist_method": "chord_at_wrist_width",
+   "wrist_confidence": 0.35,
+   "wrist_anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "features": {
+    "centroid": [
+     153.09,
+     77.13
+    ],
+    "index_tip": [
+     4.0,
+     36.0
+    ],
+    "index_tip_dir": [
+     -0.9911,
+     -0.133
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r3c4",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "dad8ef30bc8a48a46ee06c926b1369a71d346fb16c35562533d474b892d66a20",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "right_thumbs_up",
+   "side": "right",
+   "pose": "thumbs_up",
+   "file": "hands/right/thumbs_up.png",
+   "canvas_px": [
+    199,
+    263
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    185.0,
+    176.5
+   ],
+   "wrist_edge_px": [
+    [
+     185.0,
+     131.0
+    ],
+    [
+     185.0,
+     222.0
+    ]
+   ],
+   "wrist_axis": [
+    -1.0,
+    0.0
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     96.46,
+     152.79
+    ],
+    "thumb_tip": [
+     92.5,
+     4.44
+    ],
+    "thumb_tip_dir": [
+     -0.4735,
+     -0.8808
+    ]
+   },
+   "view": "palm",
+   "sheet_cell": "r4c1",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "33ba1395414717d236f98c7d3a38b738a00bb56a9071d15652b96c5b1ec287d1",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_gripping",
+   "side": "right",
+   "pose": "grip",
+   "file": "hands/right/gripping.png",
+   "canvas_px": [
+    236,
+    222
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    217.0,
+    104.68
+   ],
+   "wrist_edge_px": [
+    [
+     217.0,
+     56.93
+    ],
+    [
+     217.0,
+     152.43
+    ]
+   ],
+   "wrist_axis": [
+    -1.0,
+    -0.0
+   ],
+   "wrist_opening": "closed_outline",
+   "wrist_method": "chord_at_wrist_width",
+   "wrist_confidence": 0.35,
+   "wrist_anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "features": {
+    "centroid": [
+     132.93,
+     99.4
+    ],
+    "grip_cavity_px": 7503,
+    "grip_center": [
+     76.32,
+     113.36
+    ],
+    "grip_center_dir": [
+     -0.9981,
+     0.0615
+    ]
+   },
+   "view": "side",
+   "sheet_cell": "r4c2",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "de013aee7fd5cd44322cdde299a3d2411e1f79de303e5be84711c73657d33e39",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  },
+  {
+   "id": "right_palm_down",
+   "side": "right",
+   "pose": "palm_down",
+   "file": "hands/right/palm_down.png",
+   "canvas_px": [
+    299,
+    192
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    159.5,
+    12.5
+   ],
+   "wrist_edge_px": [
+    [
+     112.0,
+     13.0
+    ],
+    [
+     207.0,
+     12.0
+    ]
+   ],
+   "wrist_axis": [
+    0.0105,
+    0.9999
+   ],
+   "wrist_opening": "open_cut",
+   "wrist_method": "wrist_stub_cap",
+   "wrist_confidence": 1.0,
+   "wrist_anchor_status": "DETECTED",
+   "features": {
+    "centroid": [
+     140.58,
+     98.73
+    ]
+   },
+   "view": "back",
+   "sheet_cell": "r4c3",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "33e3f5feb736271cdd9ab5682821a92e32d4fc62f01fa8f2e3edac6c5bbda56f",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [],
+   "manual_review": false
+  },
+  {
+   "id": "right_cupped",
+   "side": "right",
+   "pose": "cupped",
+   "file": "hands/right/cupped.png",
+   "canvas_px": [
+    254,
+    176
+   ],
+   "base_orientation": "wrist_edge",
+   "wrist_anchor_px": [
+    18.0,
+    66.42
+   ],
+   "wrist_edge_px": [
+    [
+     18.0,
+     113.17
+    ],
+    [
+     18.0,
+     19.67
+    ]
+   ],
+   "wrist_axis": [
+    1.0,
+    -0.0
+   ],
+   "wrist_opening": "closed_outline",
+   "wrist_method": "chord_at_wrist_width",
+   "wrist_confidence": 0.35,
+   "wrist_anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "features": {
+    "centroid": [
+     111.54,
+     93.02
+    ],
+    "palm_center": [
+     111.54,
+     93.02
+    ],
+    "palm_center_dir": [
+     0.9619,
+     0.2735
+    ]
+   },
+   "view": "side",
+   "sheet_cell": "r4c4",
+   "derived": null,
+   "handedness": {
+    "anatomical": "right",
+    "drawn_as": "right",
+    "row_group_side": "right"
+   },
+   "sprite_sha256": "5676243e02c725de22983af0450bea6d81c852a0e496f13f74e23c901baa71c3",
+   "sleeve": "none",
+   "approval_status": "NEEDS_REVIEW",
+   "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+   "flags": [
+    "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+   ],
+   "manual_review": true
+  }
+ ]
+}

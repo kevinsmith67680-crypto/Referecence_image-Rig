@@ -1,0 +1,1834 @@
+{
+ "summary": {
+  "assets": 18,
+  "reassigned": [
+   "tough_student_hands_v1/right_cupped",
+   "tough_student_hands_v1/left_cupped"
+  ],
+  "label_disagrees": [],
+  "with_errors": [],
+  "approval": {
+   "APPROVED": 2,
+   "PENDING_REVIEW": 16,
+   "REJECTED": 0,
+   "MISSING": 0
+  },
+  "palm_up_capable": [
+   "tough_student_hands_v1/right_gripping",
+   "tough_student_hands_v1/right_cupped",
+   "tough_student_hands_v1/left_gripping",
+   "tough_student_hands_v1/left_cupped"
+  ]
+ },
+ "assets": {
+  "tough_student_hands_v1/right_relaxed": {
+   "key": "tough_student_hands_v1/right_relaxed",
+   "cid": "store:tough_student_hands_v1/right_relaxed",
+   "uid": "tough_student_hands_v1/right_relaxed",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "relaxed",
+   "approval_item": "handstore:tough_student_hands_v1/right_relaxed@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "relaxed",
+   "handedness": "right",
+   "handedness_confidence": "medium",
+   "handedness_cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 50.0,
+   "gesture_semantics": "a relaxed hanging hand",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       63.0,
+       11.0
+      ],
+      [
+       157.0,
+       14.0
+      ]
+     ],
+     "axis_sprite": [
+      -0.0319,
+      0.9995
+     ],
+     "side": "top",
+     "centre_px": [
+      110.0,
+      12.5
+     ],
+     "width_px": 94.05
+    },
+    "drawn_forearm_deg": 1.83,
+    "features": {},
+    "sprite_px": [
+     187,
+     252
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 91.27,
+     "scale": 0.56277,
+     "wrist_fit": 0.767
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r3c1",
+    "derived": null,
+    "sha256": "37f6a0e8b5b6fbdbec9b1a8ff77b8838b4dcbd1431a88b878f13371bcc8e9fa8",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_relaxed@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 91.27,
+   "flags": [],
+   "errors": []
+  },
+  "original:r": {
+   "key": "original:r",
+   "cid": "original",
+   "uid": null,
+   "version": null,
+   "library_id": null,
+   "store_side": "r",
+   "label_pose": "open_palm",
+   "approval_item": null,
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": null,
+   "handedness": null,
+   "handedness_confidence": null,
+   "handedness_cues": null,
+   "visible_surface": null,
+   "palm_normal_sprite": null,
+   "view_elevation": null,
+   "finger_dir_deg": null,
+   "thumb": null,
+   "rotation_tolerance_deg": null,
+   "gesture_semantics": null,
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "reference_cuff",
+     "side": null,
+     "axis_sprite": null,
+     "manual_review": false
+    },
+    "drawn_forearm_deg": 93.1,
+    "features": {},
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 0.0,
+     "scale": 1.0,
+     "wrist_fit": null
+    },
+    "sprite_px": null
+   },
+   "provenance": {
+    "origin": "ORIGINAL",
+    "source": "reference image (original pixels)",
+    "derived": null
+   },
+   "approval": {
+    "state": "APPROVED",
+    "item": null
+   },
+   "field_sources": {},
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "flags": [
+    "no palm metadata: the drawing cannot satisfy a palm requirement"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_open_palm": {
+   "key": "tough_student_hands_v1/right_open_palm",
+   "cid": "store:tough_student_hands_v1/right_open_palm",
+   "uid": "tough_student_hands_v1/right_open_palm",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "open_palm",
+   "approval_item": "handstore:tough_student_hands_v1/right_open_palm@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "open_palm",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "mirror of r1c2: palm creases, thumb to the image left -> right hand",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.96,
+     "manual_review": false,
+     "edge_px": [
+      [
+       101.0,
+       11.0
+      ],
+      [
+       194.0,
+       14.0
+      ]
+     ],
+     "axis_sprite": [
+      -0.0322,
+      0.9995
+     ],
+     "side": "top",
+     "centre_px": [
+      147.5,
+      12.5
+     ],
+     "width_px": 93.05
+    },
+    "drawn_forearm_deg": 1.85,
+    "features": {},
+    "sprite_px": [
+     277,
+     260
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 91.25,
+     "scale": 0.56277,
+     "wrist_fit": 0.759
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r3c2",
+    "derived": null,
+    "sha256": "daa904cb8043cb475e8528b58de3574dd70b743e968733d3d5402212c5382153",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_open_palm@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 91.25,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_fist": {
+   "key": "tough_student_hands_v1/right_fist",
+   "cid": "store:tough_student_hands_v1/right_fist",
+   "uid": "tough_student_hands_v1/right_fist",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "fist",
+   "approval_item": "handstore:tough_student_hands_v1/right_fist@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "fist",
+   "handedness": "right",
+   "handedness_confidence": "medium",
+   "handedness_cues": "mirror of r1c3: thumb across the curled fingers from the image left -> right hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "closed fist seen from the finger side",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       57.0,
+       9.0
+      ],
+      [
+       161.0,
+       16.0
+      ]
+     ],
+     "axis_sprite": [
+      -0.0672,
+      0.9977
+     ],
+     "side": "top",
+     "centre_px": [
+      109.0,
+      12.5
+     ],
+     "width_px": 104.24
+    },
+    "drawn_forearm_deg": 3.85,
+    "features": {},
+    "sprite_px": [
+     194,
+     208
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 89.25,
+     "scale": 0.56277,
+     "wrist_fit": 0.85
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r3c3",
+    "derived": null,
+    "sha256": "1bf4c5449af6d344ec3b9b8b1c8e9e9f9de6e84c95cdcbde332898a99d13ffeb",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_fist@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 89.25,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_pointing": {
+   "key": "tough_student_hands_v1/right_pointing",
+   "cid": "store:tough_student_hands_v1/right_pointing",
+   "uid": "tough_student_hands_v1/right_pointing",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "pointing",
+   "approval_item": "handstore:tough_student_hands_v1/right_pointing@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "pointing",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "points image-left with the thumb on top and the curled fingers toward the viewer: RIGHT hand, the same hand as r1c4 (the sheet has no left pointing hand)",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "index extended; aimed by the wrist",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       244.5,
+       21.52
+      ],
+      [
+       244.5,
+       115.02
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      -0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      244.5,
+      68.27
+     ],
+     "width_px": 93.5
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "index_tip_dir": [
+      -0.9911,
+      -0.133
+     ]
+    },
+    "sprite_px": [
+     265,
+     181
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 3.1,
+     "scale": 0.56277,
+     "wrist_fit": 0.762
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r3c4",
+    "derived": null,
+    "sha256": "dad8ef30bc8a48a46ee06c926b1369a71d346fb16c35562533d474b892d66a20",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_pointing@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 3.1,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_thumbs_up": {
+   "key": "tough_student_hands_v1/right_thumbs_up",
+   "cid": "store:tough_student_hands_v1/right_thumbs_up",
+   "uid": "tough_student_hands_v1/right_thumbs_up",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "thumbs_up",
+   "approval_item": "handstore:tough_student_hands_v1/right_thumbs_up@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "thumbs_up",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "mirror of r2c1: wrist on the image right, f = -x, n = +z, f x n = +y -> right hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 45.0,
+   "gesture_semantics": "thumbs-up: reads only while the thumb points up",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       185.0,
+       131.0
+      ],
+      [
+       185.0,
+       222.0
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      185.0,
+      176.5
+     ],
+     "width_px": 91.0
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "thumb_tip_dir": [
+      -0.4735,
+      -0.8808
+     ]
+    },
+    "sprite_px": [
+     199,
+     263
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 3.1,
+     "scale": 0.56277,
+     "wrist_fit": 0.742
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r4c1",
+    "derived": null,
+    "sha256": "33ba1395414717d236f98c7d3a38b738a00bb56a9071d15652b96c5b1ec287d1",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_thumbs_up@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 3.1,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_gripping": {
+   "key": "tough_student_hands_v1/right_gripping",
+   "cid": "store:tough_student_hands_v1/right_gripping",
+   "uid": "tough_student_hands_v1/right_gripping",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "gripping",
+   "approval_item": "handstore:tough_student_hands_v1/right_gripping@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "gripping",
+   "handedness": "right",
+   "handedness_confidence": "low",
+   "handedness_cues": "mirror of r2c2 (profile view: handedness follows the row group and the outward wrist side, low confidence)",
+   "visible_surface": "edge",
+   "palm_normal_sprite": [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 100.0,
+   "gesture_semantics": "grip around an object in front of the fingers",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       217.0,
+       56.93
+      ],
+      [
+       217.0,
+       152.43
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      -0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      217.0,
+      104.68
+     ],
+     "width_px": 95.5
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "grip_center_dir": [
+      -0.9981,
+      0.0615
+     ]
+    },
+    "sprite_px": [
+     236,
+     222
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 3.1,
+     "scale": 0.56277,
+     "wrist_fit": 0.779
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r4c2",
+    "derived": null,
+    "sha256": "de013aee7fd5cd44322cdde299a3d2411e1f79de303e5be84711c73657d33e39",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_gripping@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 3.1,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_palm_down": {
+   "key": "tough_student_hands_v1/right_palm_down",
+   "cid": "store:tough_student_hands_v1/right_palm_down",
+   "uid": "tough_student_hands_v1/right_palm_down",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "palm_down",
+   "approval_item": "handstore:tough_student_hands_v1/right_palm_down@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "palm_down",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "mirror of r2c3: back of the hand from above, fingers down-left, thumb to the image right -> right hand",
+   "visible_surface": "back",
+   "palm_normal_sprite": [
+    0.0,
+    0.74,
+    -0.67
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": 35.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 60.0,
+   "gesture_semantics": "flat hand resting palm-down on a surface below eye level",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       112.0,
+       13.0
+      ],
+      [
+       207.0,
+       12.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0105,
+      0.9999
+     ],
+     "side": "top",
+     "centre_px": [
+      159.5,
+      12.5
+     ],
+     "width_px": 95.01
+    },
+    "drawn_forearm_deg": -0.6,
+    "features": {},
+    "sprite_px": [
+     299,
+     192
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 93.7,
+     "scale": 0.56277,
+     "wrist_fit": 0.774
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r4c3",
+    "derived": null,
+    "sha256": "33e3f5feb736271cdd9ab5682821a92e32d4fc62f01fa8f2e3edac6c5bbda56f",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_palm_down@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 93.7,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/right_cupped": {
+   "key": "tough_student_hands_v1/right_cupped",
+   "cid": "store:tough_student_hands_v1/right_cupped",
+   "uid": "tough_student_hands_v1/right_cupped",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "r",
+   "label_pose": "cupped",
+   "approval_item": "handstore:tough_student_hands_v1/right_cupped@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "cupped",
+   "handedness": "left",
+   "handedness_confidence": "medium",
+   "handedness_cues": "mirror of r2c4: palm up, fingers to the image right, thumb on the far side, wrist on the image left -> LEFT hand, although it sits in the right row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    -0.8,
+    0.6
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": 90.0,
+   "thumb": "top_far",
+   "rotation_tolerance_deg": 35.0,
+   "gesture_semantics": "cupped/offering palm-up hand",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       18.0,
+       113.17
+      ],
+      [
+       18.0,
+       19.67
+      ]
+     ],
+     "axis_sprite": [
+      1.0,
+      -0.0
+     ],
+     "side": "left",
+     "centre_px": [
+      18.0,
+      66.42
+     ],
+     "width_px": 93.5
+    },
+    "drawn_forearm_deg": -90.0,
+    "features": {
+     "palm_center_dir": [
+      0.9619,
+      0.2735
+     ]
+    },
+    "sprite_px": [
+     254,
+     176
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 183.1,
+     "scale": 0.56277,
+     "wrist_fit": 0.762
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r4c4",
+    "derived": null,
+    "sha256": "5676243e02c725de22983af0450bea6d81c852a0e496f13f74e23c901baa71c3",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/right_cupped@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": true,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 183.1,
+   "flags": [
+    "drawn as a left hand but stored for the right side: offered on the left side only",
+    "at rest the drawing is placed 177 deg from how it was drawn on its stored side (it extends toward the body): handedness or side assignment is wrong",
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_relaxed": {
+   "key": "tough_student_hands_v1/left_relaxed",
+   "cid": "store:tough_student_hands_v1/left_relaxed",
+   "uid": "tough_student_hands_v1/left_relaxed",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "relaxed",
+   "approval_item": "handstore:tough_student_hands_v1/left_relaxed@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "relaxed",
+   "handedness": "left",
+   "handedness_confidence": "medium",
+   "handedness_cues": "fingers hang down from an outlined wrist at the top, thumb on the image right; no palm creases are drawn, so it could also read as the back of a right hand. Read as a camera-facing left palm, consistent with the creased open palm r1c2 of the same row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 50.0,
+   "gesture_semantics": "a relaxed hanging hand: the fingers read as hanging under gravity only within about 50 deg of hanging",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       27.0,
+       17.0
+      ],
+      [
+       119.0,
+       8.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0974,
+      0.9952
+     ],
+     "side": "top",
+     "centre_px": [
+      73.0,
+      12.5
+     ],
+     "width_px": 92.44
+    },
+    "drawn_forearm_deg": -5.59,
+    "features": {},
+    "sprite_px": [
+     186,
+     253
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -89.79,
+     "scale": 0.56772,
+     "wrist_fit": 0.817
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r1c1",
+    "derived": null,
+    "sha256": "bdfa157ce13e42fa86bf526d0a4526d9c140c95be21217159cfbea328af8b607",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_relaxed@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -89.79,
+   "flags": [],
+   "errors": []
+  },
+  "original:l": {
+   "key": "original:l",
+   "cid": "original",
+   "uid": null,
+   "version": null,
+   "library_id": null,
+   "store_side": "l",
+   "label_pose": "open_palm",
+   "approval_item": null,
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": null,
+   "handedness": null,
+   "handedness_confidence": null,
+   "handedness_cues": null,
+   "visible_surface": null,
+   "palm_normal_sprite": null,
+   "view_elevation": null,
+   "finger_dir_deg": null,
+   "thumb": null,
+   "rotation_tolerance_deg": null,
+   "gesture_semantics": null,
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "reference_cuff",
+     "side": null,
+     "axis_sprite": null,
+     "manual_review": false
+    },
+    "drawn_forearm_deg": -95.38,
+    "features": {},
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": 0.0,
+     "scale": 1.0,
+     "wrist_fit": null
+    },
+    "sprite_px": null
+   },
+   "provenance": {
+    "origin": "ORIGINAL",
+    "source": "reference image (original pixels)",
+    "derived": null
+   },
+   "approval": {
+    "state": "APPROVED",
+    "item": null
+   },
+   "field_sources": {},
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "flags": [
+    "no palm metadata: the drawing cannot satisfy a palm requirement"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_open_palm": {
+   "key": "tough_student_hands_v1/left_open_palm",
+   "cid": "store:tough_student_hands_v1/left_open_palm",
+   "uid": "tough_student_hands_v1/left_open_palm",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "open_palm",
+   "approval_item": "handstore:tough_student_hands_v1/left_open_palm@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "open_palm",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "two palm creases, thumb to the image right, fingers down: the palm of a left hand faces the viewer",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera, fingers spread",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.961,
+     "manual_review": false,
+     "edge_px": [
+      [
+       86.0,
+       13.0
+      ],
+      [
+       178.0,
+       12.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0109,
+      0.9999
+     ],
+     "side": "top",
+     "centre_px": [
+      132.0,
+      12.5
+     ],
+     "width_px": 92.01
+    },
+    "drawn_forearm_deg": -0.62,
+    "features": {},
+    "sprite_px": [
+     274,
+     257
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -94.75,
+     "scale": 0.56772,
+     "wrist_fit": 0.813
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r1c2",
+    "derived": null,
+    "sha256": "fe3bf36703c4775394aeb7c0e6619b35b7f0fa5ad2eb11856e8ace6b1ab74dc6",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_open_palm@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -94.75,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_fist": {
+   "key": "tough_student_hands_v1/left_fist",
+   "cid": "store:tough_student_hands_v1/left_fist",
+   "uid": "tough_student_hands_v1/left_fist",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "fist",
+   "approval_item": "handstore:tough_student_hands_v1/left_fist@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "fist",
+   "handedness": "left",
+   "handedness_confidence": "medium",
+   "handedness_cues": "the fronts of the curled fingers face the viewer, the thumb crosses them from the image right, wrist at the top: left hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "closed fist seen from the finger side",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       34.0,
+       16.0
+      ],
+      [
+       135.0,
+       9.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0691,
+      0.9976
+     ],
+     "side": "top",
+     "centre_px": [
+      84.5,
+      12.5
+     ],
+     "width_px": 101.24
+    },
+    "drawn_forearm_deg": -3.96,
+    "features": {},
+    "sprite_px": [
+     193,
+     206
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -91.42,
+     "scale": 0.56772,
+     "wrist_fit": 0.894
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r1c3",
+    "derived": null,
+    "sha256": "39cbf49bd9048c0e375b5c6af72852f16c14e2edce490fbb96ca9a9c1d26037a",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_fist@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -91.42,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_pointing": {
+   "key": "tough_student_hands_v1/left_pointing",
+   "cid": "store:tough_student_hands_v1/left_pointing",
+   "uid": "tough_student_hands_v1/left_pointing",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "pointing",
+   "approval_item": "handstore:tough_student_hands_v1/left_pointing@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "pointing",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "horizontal mirror of the inspected cell: index points image-left from a closed wrist on the image right, thumb on top, curled finger fronts toward the viewer: f = -x, n = +z, f x n = +y (up) -> RIGHT hand, although it sits in the left row group (same finding as the schoolboy sheet)",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "index extended, other fingers curled; aimed by the wrist",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       18.5,
+       17.55
+      ],
+      [
+       18.5,
+       111.05
+      ]
+     ],
+     "axis_sprite": [
+      1.0,
+      -0.0
+     ],
+     "side": "left",
+     "centre_px": [
+      18.5,
+      64.3
+     ],
+     "width_px": 93.5
+    },
+    "drawn_forearm_deg": -90.0,
+    "features": {
+     "index_tip_dir": [
+      0.9987,
+      0.0507
+     ]
+    },
+    "sprite_px": [
+     254,
+     187
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -5.38,
+     "scale": 0.56772,
+     "wrist_fit": 0.826
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r1c4",
+    "derived": "mirror_x",
+    "sha256": "9423174c20d6b3690bedb91302b0cff3d2d9c0b97d3a438253ddcc7eeb29f529",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "right",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_pointing@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -5.38,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review",
+    "derived copy (mirror_x) of another drawing"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_thumbs_up": {
+   "key": "tough_student_hands_v1/left_thumbs_up",
+   "cid": "store:tough_student_hands_v1/left_thumbs_up",
+   "uid": "tough_student_hands_v1/left_thumbs_up",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "thumbs_up",
+   "approval_item": "handstore:tough_student_hands_v1/left_thumbs_up@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "thumbs_up",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "wrist on the image left, curled fingers point image-right with their fronts to the viewer, thumb up: f = +x, n = +z, n x f = +y -> left hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 45.0,
+   "gesture_semantics": "thumbs-up: reads only while the thumb points up",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       11.0,
+       211.0
+      ],
+      [
+       14.0,
+       125.0
+      ]
+     ],
+     "axis_sprite": [
+      0.9994,
+      0.0349
+     ],
+     "side": "left",
+     "centre_px": [
+      12.5,
+      168.0
+     ],
+     "width_px": 86.05
+    },
+    "drawn_forearm_deg": -88.0,
+    "features": {
+     "thumb_tip_dir": [
+      0.5425,
+      -0.84
+     ]
+    },
+    "sprite_px": [
+     197,
+     258
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -7.38,
+     "scale": 0.56772,
+     "wrist_fit": 0.76
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r2c1",
+    "derived": null,
+    "sha256": "1cf43f50a938150342b01462a7e3db83d1f741cda5114b8f71678eb4413b2d5d",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_thumbs_up@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -7.38,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_gripping": {
+   "key": "tough_student_hands_v1/left_gripping",
+   "cid": "store:tough_student_hands_v1/left_gripping",
+   "uid": "tough_student_hands_v1/left_gripping",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "gripping",
+   "approval_item": "handstore:tough_student_hands_v1/left_gripping@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "gripping",
+   "handedness": "left",
+   "handedness_confidence": "low",
+   "handedness_cues": "C-shaped grip in profile, opening to the image right, wrist on the image left; a profile of a left hand and a mirrored right hand look the same, so handedness follows the row group and the outward wrist side (low confidence)",
+   "visible_surface": "edge",
+   "palm_normal_sprite": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 100.0,
+   "gesture_semantics": "grip around an object in front of the fingers (contact gesture)",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       18.5,
+       151.4
+      ],
+      [
+       18.5,
+       58.9
+      ]
+     ],
+     "axis_sprite": [
+      1.0,
+      -0.0
+     ],
+     "side": "left",
+     "centre_px": [
+      18.5,
+      105.15
+     ],
+     "width_px": 92.5
+    },
+    "drawn_forearm_deg": -90.0,
+    "features": {
+     "grip_center_dir": [
+      0.9997,
+      0.0253
+     ]
+    },
+    "sprite_px": [
+     232,
+     213
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -5.38,
+     "scale": 0.56772,
+     "wrist_fit": 0.817
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r2c2",
+    "derived": null,
+    "sha256": "60d6726b00fcf61635b63d6adf4e6787dd55990410c179872188a68900f6742f",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_gripping@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -5.38,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_palm_down": {
+   "key": "tough_student_hands_v1/left_palm_down",
+   "cid": "store:tough_student_hands_v1/left_palm_down",
+   "uid": "tough_student_hands_v1/left_palm_down",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "palm_down",
+   "approval_item": "handstore:tough_student_hands_v1/left_palm_down@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "palm_down",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "back of the hand seen from above (no creases, knuckle shading), fingers down-right, thumb to the image left: n = (0, +0.74, -0.67), n x f has a -x component -> left hand",
+   "visible_surface": "back",
+   "palm_normal_sprite": [
+    0.0,
+    0.74,
+    -0.67
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": -35.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 60.0,
+   "gesture_semantics": "flat hand resting palm-down on a surface below eye level",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.866,
+     "manual_review": false,
+     "edge_px": [
+      [
+       94.0,
+       13.0
+      ],
+      [
+       188.0,
+       12.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0106,
+      0.9999
+     ],
+     "side": "top",
+     "centre_px": [
+      141.0,
+      12.5
+     ],
+     "width_px": 94.01
+    },
+    "drawn_forearm_deg": -0.61,
+    "features": {},
+    "sprite_px": [
+     296,
+     191
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -94.77,
+     "scale": 0.56772,
+     "wrist_fit": 0.831
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r2c3",
+    "derived": null,
+    "sha256": "f086fb5fc5f56237b8d5cc0ddb7b9d87e98e83f25835db0da441e7afb09cf322",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_palm_down@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -94.77,
+   "flags": [],
+   "errors": []
+  },
+  "tough_student_hands_v1/left_cupped": {
+   "key": "tough_student_hands_v1/left_cupped",
+   "cid": "store:tough_student_hands_v1/left_cupped",
+   "uid": "tough_student_hands_v1/left_cupped",
+   "version": 1,
+   "library_id": "tough_student_hands_v1",
+   "store_side": "l",
+   "label_pose": "cupped",
+   "approval_item": "handstore:tough_student_hands_v1/left_cupped@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "cupped",
+   "handedness": "right",
+   "handedness_confidence": "medium",
+   "handedness_cues": "palm up, seen from the front and slightly above (palm creases visible), fingers to the image left curling up, the big rounded shape on top is the thumb on the far side, wrist on the image right: f = -x, n = up, f x n points away from the viewer -> thumb behind -> RIGHT hand, although it sits in the left row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    -0.8,
+    0.6
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": -90.0,
+   "thumb": "top_far",
+   "rotation_tolerance_deg": 35.0,
+   "gesture_semantics": "cupped/offering palm-up hand; turned more than about 35 deg the cup tips, turned 180 deg it is palm-down",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       220.5,
+       15.92
+      ],
+      [
+       220.5,
+       109.42
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      -0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      220.5,
+      62.67
+     ],
+     "width_px": 93.5
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "palm_center_dir": [
+      -0.9549,
+      0.2968
+     ]
+    },
+    "sprite_px": [
+     241,
+     169
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -185.38,
+     "scale": 0.56772,
+     "wrist_fit": 0.826
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "sheet_cell": "r2c4",
+    "derived": null,
+    "sha256": "79e05d35d46c8a664c66998f4ae35e833633d196d64c32b831036a326bc628dc",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:tough_student_hands_v1/left_cupped@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": true,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -185.38,
+   "flags": [
+    "drawn as a right hand but stored for the left side: offered on the right side only",
+    "at rest the drawing is placed 175 deg from how it was drawn on its stored side (it extends toward the body): handedness or side assignment is wrong",
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  }
+ }
+}

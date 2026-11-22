@@ -1,0 +1,77 @@
+{
+ "asset": "art:thigh_foreshortened",
+ "why": "seated thighs pointing at the viewer: a foreshortened thigh and knee top, not a squash",
+ "layers_to_redraw": [
+  "thigh_r",
+  "thigh_l"
+ ],
+ "bones": {
+  "thigh_r": {
+   "posed_head": [
+    484.4,
+    913.6
+   ],
+   "rest_head": [
+    480.7,
+    771.3
+   ],
+   "posed_rotation_deg": 45.81
+  },
+  "thigh_l": {
+   "posed_head": [
+    610.4,
+    919.2
+   ],
+   "rest_head": [
+    606.7,
+    776.9
+   ],
+   "posed_rotation_deg": -45.66
+  }
+ },
+ "canvas": {
+  "width": 1086,
+  "height": 1448,
+  "crop": [
+   260,
+   717,
+   821,
+   1305
+  ]
+ },
+ "style": {
+  "outline_rgb": [
+   8,
+   8,
+   8
+  ],
+  "outline_width_px": 2.0,
+  "fabric_rgb": [
+   51,
+   46,
+   45
+  ],
+  "rules": [
+   "same outline colour and width",
+   "same flat-with-soft-shade colouring",
+   "draw at the character's scale (never scaled later)",
+   "only the named region: no new full-character illustration"
+  ]
+ },
+ "alignment": {
+  "attach_bone": "thigh_r",
+  "pivot": [
+   480.7,
+   771.3
+  ],
+  "draw_order": "same as the replaced layer"
+ },
+ "provider": "none (request a drawing)",
+ "candidates": 0,
+ "files": {
+  "reference": "art_thigh_foreshortened__reference.png",
+  "mask": "art_thigh_foreshortened__mask.png",
+  "target_pose": "art_thigh_foreshortened__target_pose.png"
+ },
+ "next": "import the drawing as an alternative (Artistic Review or AlternativeArtworkStore.add); it stays pending until approved"
+}

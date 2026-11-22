@@ -1,0 +1,4685 @@
+{
+ "import": {
+  "images": [
+   "01_original_character.png"
+  ],
+  "reports": {
+   "character": {
+    "schema": "autorig.image_import_report",
+    "schema_version": 1,
+    "role": "character",
+    "file": "tpose_front.jpg",
+    "sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+    "bytes": 248086,
+    "format": "JPEG",
+    "mode": "RGB",
+    "width": 1086,
+    "height": 1448,
+    "jpeg": {
+     "progressive": false,
+     "lossy": true
+    },
+    "alpha": {
+     "has_alpha_band": false,
+     "genuine_transparency": false,
+     "transparent_px": 0,
+     "partial_px": 0,
+     "note": "nominal RGBA is not treated as transparent unless some alpha < 255"
+    },
+    "background": {
+     "border_median_rgb": [
+      253,
+      251,
+      252
+     ],
+     "border_luminance": 251.7,
+     "polarity": "light",
+     "border_max_deviation_p95": 2,
+     "uniform": true,
+     "opaque": true,
+     "border_connected_background_px": 1143287,
+     "background_ratio": 0.727,
+     "rule": "pixels within 24 of the border median and connected to the border"
+    },
+    "content_bbox_xyxy": [
+     9,
+     19,
+     1077,
+     1391
+    ],
+    "content_px": 429241,
+    "scaling": {
+     "applied": false,
+     "rule": "assets keep the source's pixel size (no resampling)"
+    },
+    "coordinate_system": {
+     "origin": "top-left",
+     "x": "right",
+     "y": "down",
+     "units": "source pixels"
+    }
+   },
+   "hand_sheet": {
+    "schema": "autorig.image_import_report",
+    "schema_version": 1,
+    "role": "hand_sheet",
+    "file": "hand_grid_black.jpg",
+    "sha256": "47c59800a641a86e3c54ddd8355b16082d2471e7369af17984835896e6663b88",
+    "bytes": 288357,
+    "format": "JPEG",
+    "mode": "RGB",
+    "width": 1254,
+    "height": 1254,
+    "jpeg": {
+     "progressive": false,
+     "lossy": true
+    },
+    "alpha": {
+     "has_alpha_band": false,
+     "genuine_transparency": false,
+     "transparent_px": 0,
+     "partial_px": 0,
+     "note": "nominal RGBA is not treated as transparent unless some alpha < 255"
+    },
+    "background": {
+     "border_median_rgb": [
+      0,
+      0,
+      0
+     ],
+     "border_luminance": 0.0,
+     "polarity": "dark",
+     "border_max_deviation_p95": 1,
+     "uniform": true,
+     "opaque": true,
+     "border_connected_background_px": 1160787,
+     "background_ratio": 0.7382,
+     "rule": "pixels within 24 of the border median and connected to the border"
+    },
+    "content_bbox_xyxy": [
+     60,
+     52,
+     1207,
+     1204
+    ],
+    "content_px": 411729,
+    "scaling": {
+     "applied": false,
+     "rule": "assets keep the source's pixel size (no resampling)"
+    },
+    "coordinate_system": {
+     "origin": "top-left",
+     "x": "right",
+     "y": "down",
+     "units": "source pixels"
+    }
+   }
+  },
+  "wall_s": 1.1
+ },
+ "background": {
+  "images": [
+   "02_background_removed.png"
+  ],
+  "qa": {
+   "schema": "autorig.background_extraction_qa",
+   "schema_version": 1,
+   "layers": [
+    "foot_r",
+    "thigh_r",
+    "shin_r",
+    "foot_l",
+    "thigh_l",
+    "shin_l",
+    "pelvis",
+    "neck",
+    "torso",
+    "upper_arm_r",
+    "forearm_r",
+    "hand_r",
+    "upper_arm_l",
+    "forearm_l",
+    "hand_l",
+    "head_base",
+    "nose",
+    "mouth",
+    "eye_r_white",
+    "eye_r_iris",
+    "eye_l_white",
+    "eye_l_iris",
+    "brow_r",
+    "brow_l",
+    "hair"
+   ],
+   "method": "neutral composite of the original layers (Phase 1 SAM 3 masks, Phase 2 store) vs the spatial character mask (everything not border-connected paper)",
+   "paper_rgb": [
+    253,
+    251,
+    252
+   ],
+   "character_px": 429241,
+   "visible_px": 429227,
+   "missing_px": 14,
+   "missing_drawn_px": 14,
+   "missing_enclosed_light_px": 0,
+   "background_included_px": 0,
+   "silhouette_px": 6502,
+   "light_fringe_px": 3018,
+   "light_fringe_ratio": 0.4642,
+   "decontaminated": {
+    "tool": "garmentrig.correctives.EdgeDecontamination (derived copy; originals untouched)",
+    "changed_px": 9720,
+    "skipped_over_other_layer_px": 0,
+    "background_rgb": [
+     249,
+     249,
+     249
+    ],
+    "width": 2,
+    "strength": 1.0,
+    "light_fringe_px": 4,
+    "light_fringe_ratio": 0.0006
+   },
+   "clipped_outline_px": 0,
+   "enclosed_light_regions": [
+    {
+     "bbox_xyxy": [
+      541,
+      499,
+      593,
+      767
+     ],
+     "px": 6938,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      250,
+      1313,
+      360,
+      1355
+     ],
+     "px": 3471,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      726,
+      1314,
+      831,
+      1355
+     ],
+     "px": 3440,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      512,
+      498,
+      539,
+      665
+     ],
+     "px": 3252,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      494,
+      691,
+      543,
+      767
+     ],
+     "px": 2103,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      705,
+      1265,
+      749,
+      1350
+     ],
+     "px": 1226,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      337,
+      1267,
+      379,
+      1345
+     ],
+     "px": 1161,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      744,
+      1300,
+      820,
+      1319
+     ],
+     "px": 1034,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      265,
+      1300,
+      341,
+      1319
+     ],
+     "px": 1027,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      682,
+      1281,
+      715,
+      1334
+     ],
+     "px": 871,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      908,
+      437,
+      928,
+      482
+     ],
+     "px": 682,
+     "covered_by_layers": 1.0
+    },
+    {
+     "bbox_xyxy": [
+      158,
+      437,
+      178,
+      485
+     ],
+     "px": 680,
+     "covered_by_layers": 1.0
+    }
+   ],
+   "alpha_values": [
+    0,
+    255
+   ],
+   "visual_inspection_required": true,
+   "images": [
+    "backgrounds.png",
+    "edge_closeups.png"
+   ]
+  },
+  "wall_s": 2.9
+ },
+ "segmentation": {
+  "images": [
+   "03_segmentation_overlay.png",
+   "04_artwork_layers.png"
+  ],
+  "garment_parts": {
+   "shoe_r": 19401,
+   "trouser_shin_r": 21337,
+   "trouser_thigh_r": 24104,
+   "knee_r": 12827,
+   "trouser_cuff_r": 9896,
+   "trouser_hip_r": 6229,
+   "blazer_hem": 28352,
+   "shoe_l": 19512,
+   "trouser_shin_l": 20991,
+   "trouser_thigh_l": 24605,
+   "knee_l": 12672,
+   "trouser_cuff_l": 9849,
+   "trouser_hip_l": 5639,
+   "button_2": 133,
+   "button_3": 140,
+   "waistband": 1114,
+   "neck": 15189,
+   "badge": 1265,
+   "button_1": 245,
+   "button_4": 257,
+   "tie": 3518,
+   "sweater": 4967,
+   "blazer_body": 32460,
+   "blazer_shoulder_r": 8296,
+   "blazer_shoulder_l": 8447,
+   "shirt_collar": 2955,
+   "lapels": 13486,
+   "head": 59284,
+   "sleeve_upper_r": 9979,
+   "sleeve_fore_r": 7131,
+   "elbow_r": 6637,
+   "sleeve_cap_r": 4308,
+   "shirt_cuff_r": 1988,
+   "hand_r": 12459,
+   "sleeve_upper_l": 9753,
+   "sleeve_fore_l": 7007,
+   "elbow_l": 6683,
+   "sleeve_cap_l": 3968,
+   "shirt_cuff_l": 2074,
+   "hand_l": 12585,
+   "hair": 35658
+  },
+  "decor": {
+   "badge": 1265,
+   "button_1": 245,
+   "button_2": 133,
+   "button_3": 140,
+   "button_4": 257,
+   "tie": 3518
+  },
+  "face_features": [
+   "brow_l",
+   "brow_r",
+   "ear_l",
+   "ear_r",
+   "eye_l",
+   "eye_r",
+   "mouth",
+   "nose",
+   "pupil_l",
+   "pupil_r"
+  ],
+  "phase1_warnings": [
+   "no accepted segmentation for body concept 'upper_clothing'",
+   "arm: 3 instances; kept the two largest",
+   "sleeve_r ignored: covers >40% of the shirt (not a sleeve)",
+   "sleeve_l ignored: covers >40% of the shirt (not a sleeve)"
+  ],
+  "phase1_fidelity": {
+   "coverage_ratio": 0.99997,
+   "overlap_pixels": 0,
+   "linework_retained_ratio": 0.99981,
+   "max_abs_error_inside_layers": 0.0
+  },
+  "phase1_steps": [
+   {
+    "step": "silhouette_refinement",
+    "method": "border_connected_paper",
+    "paper_rgb": [
+     253,
+     251,
+     252
+    ],
+    "tolerance": 24,
+    "background_pixels_removed": 452,
+    "note": "background = paper-coloured pixels connected to the border; the 2 px fringe is measured against it. Colours stay original."
+   },
+   {
+    "step": "outline_completion",
+    "opt_in": true,
+    "outline_pixels_completed": 11233,
+    "max_distance_px": 5,
+    "outline_luminance_below": 60.0,
+    "note": "dark silhouette outline clipped by a mask, given to the nearest layer"
+   },
+   {
+    "step": "fringe_absorption",
+    "pixels": 5915,
+    "max_distance_px": 2.0,
+    "note": "anti-aliased edge pixels kept opaque with original colours; no matting yet"
+   }
+  ],
+  "wall_s": 2.5
+ },
+ "skeleton": {
+  "images": [
+   "05_skeleton_overlay.png"
+  ],
+  "bones": {
+   "pelvis": {
+    "parent": null,
+    "head": [
+     543.7,
+     774.1
+    ],
+    "tail": [
+     542.8,
+     649.3
+    ],
+    "length": 124.8,
+    "axis_offset": 0.0
+   },
+   "spine": {
+    "parent": "pelvis",
+    "head": [
+     542.8,
+     649.3
+    ],
+    "tail": [
+     542.0,
+     524.6
+    ],
+    "length": 124.7,
+    "axis_offset": 0.0
+   },
+   "chest": {
+    "parent": "spine",
+    "head": [
+     542.0,
+     524.6
+    ],
+    "tail": [
+     541.1,
+     396.0
+    ],
+    "length": 128.6,
+    "axis_offset": 0.0
+   },
+   "neck": {
+    "parent": "chest",
+    "head": [
+     541.1,
+     396.0
+    ],
+    "tail": [
+     541.9,
+     309.4
+    ],
+    "length": 86.6,
+    "axis_offset": 0.0
+   },
+   "head": {
+    "parent": "neck",
+    "head": [
+     541.9,
+     309.4
+    ],
+    "tail": [
+     541.9,
+     19.0
+    ],
+    "length": 290.4,
+    "axis_offset": 0.0
+   },
+   "clavicle_r": {
+    "parent": "chest",
+    "head": [
+     503.4,
+     441.5
+    ],
+    "tail": [
+     407.1,
+     425.1
+    ],
+    "length": 97.6,
+    "axis_offset": 0.0
+   },
+   "upper_arm_r": {
+    "parent": "clavicle_r",
+    "head": [
+     407.1,
+     425.1
+    ],
+    "tail": [
+     278.2,
+     464.2
+    ],
+    "length": 134.7,
+    "axis_offset": 12.97
+   },
+   "forearm_r": {
+    "parent": "upper_arm_r",
+    "head": [
+     278.2,
+     464.2
+    ],
+    "tail": [
+     155.9,
+     464.7
+    ],
+    "length": 122.3,
+    "axis_offset": 0.0
+   },
+   "hand_r": {
+    "parent": "forearm_r",
+    "head": [
+     155.9,
+     464.7
+    ],
+    "tail": [
+     89.4,
+     461.1
+    ],
+    "length": 66.6,
+    "axis_offset": 0.0
+   },
+   "thigh_r": {
+    "parent": "pelvis",
+    "head": [
+     480.7,
+     771.3
+    ],
+    "tail": [
+     415.0,
+     1014.7
+    ],
+    "length": 252.1,
+    "axis_offset": 0.0
+   },
+   "shin_r": {
+    "parent": "thigh_r",
+    "head": [
+     415.0,
+     1014.7
+    ],
+    "tail": [
+     348.4,
+     1257.9
+    ],
+    "length": 252.2,
+    "axis_offset": 0.0
+   },
+   "foot_r": {
+    "parent": "shin_r",
+    "head": [
+     348.4,
+     1257.9
+    ],
+    "tail": [
+     329.3,
+     1326.4
+    ],
+    "length": 71.1,
+    "axis_offset": 0.0
+   },
+   "clavicle_l": {
+    "parent": "chest",
+    "head": [
+     584.2,
+     443.4
+    ],
+    "tail": [
+     680.5,
+     427.5
+    ],
+    "length": 97.6,
+    "axis_offset": 0.0
+   },
+   "upper_arm_l": {
+    "parent": "clavicle_l",
+    "head": [
+     680.5,
+     427.5
+    ],
+    "tail": [
+     808.0,
+     464.9
+    ],
+    "length": 132.9,
+    "axis_offset": -12.67
+   },
+   "forearm_l": {
+    "parent": "upper_arm_l",
+    "head": [
+     808.0,
+     464.9
+    ],
+    "tail": [
+     928.3,
+     467.6
+    ],
+    "length": 120.3,
+    "axis_offset": 0.0
+   },
+   "hand_l": {
+    "parent": "forearm_l",
+    "head": [
+     928.3,
+     467.6
+    ],
+    "tail": [
+     995.2,
+     461.3
+    ],
+    "length": 67.2,
+    "axis_offset": 0.0
+   },
+   "thigh_l": {
+    "parent": "pelvis",
+    "head": [
+     606.7,
+     776.9
+    ],
+    "tail": [
+     669.6,
+     1017.6
+    ],
+    "length": 248.8,
+    "axis_offset": 0.0
+   },
+   "shin_l": {
+    "parent": "thigh_l",
+    "head": [
+     669.6,
+     1017.6
+    ],
+    "tail": [
+     731.5,
+     1258.5
+    ],
+    "length": 248.7,
+    "axis_offset": 0.0
+   },
+   "foot_l": {
+    "parent": "shin_l",
+    "head": [
+     731.5,
+     1258.5
+    ],
+    "tail": [
+     754.0,
+     1326.3
+    ],
+    "length": 71.4,
+    "axis_offset": 0.0
+   }
+  },
+  "pivots": [
+   {
+    "joint": "shoulder_r",
+    "bone": "upper_arm_r",
+    "rest_pivot": [
+     409.2,
+     455.3
+    ],
+    "distance_to_top_contour_px": 60.0,
+    "half_thickness_px": 55.0,
+    "aligned": true,
+    "pivot": [
+     407.1,
+     425.1
+    ],
+    "lift_px": 30.3,
+    "axis_offset_deg": 12.97,
+    "reason": "pivot near the shoulder point: a lowered sleeve hangs from the top of the armhole instead of swinging its cap outward (audit R2)"
+   },
+   {
+    "joint": "shoulder_l",
+    "bone": "upper_arm_l",
+    "rest_pivot": [
+     678.6,
+     456.6
+    ],
+    "distance_to_top_contour_px": 61.0,
+    "half_thickness_px": 53.0,
+    "aligned": true,
+    "pivot": [
+     680.5,
+     427.5
+    ],
+    "lift_px": 29.2,
+    "axis_offset_deg": -12.67,
+    "reason": "pivot near the shoulder point: a lowered sleeve hangs from the top of the armhole instead of swinging its cap outward (audit R2)"
+   },
+   {
+    "joint": "upper_arm_r",
+    "bone": "upper_arm_r",
+    "pivot": [
+     407.1,
+     425.1
+    ],
+    "method": "garment-aligned: 30 px toward the top of the armhole (armpit at 40 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 25.2,
+     "cross_section_fraction": 0.65,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "forearm_r",
+    "bone": "forearm_r",
+    "pivot": [
+     278.2,
+     464.2
+    ],
+    "method": "0.52 of shoulder->wrist (straight arm)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 45.1,
+     "cross_section_fraction": 0.01,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "hand_r",
+    "bone": "hand_r",
+    "pivot": [
+     155.9,
+     464.7
+    ],
+    "method": "phase1 wrist (arm/hand boundary), re-centred",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 31.6,
+     "cross_section_fraction": 0.06,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "thigh_r",
+    "bone": "thigh_r",
+    "pivot": [
+     480.7,
+     771.3
+    ],
+    "method": "phase1 hip",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 73.1,
+     "cross_section_fraction": 0.16,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "shin_r",
+    "bone": "shin_r",
+    "pivot": [
+     415.0,
+     1014.7
+    ],
+    "method": "midpoint of hip->ankle (straight leg)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 67.7,
+     "cross_section_fraction": 0.0,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "foot_r",
+    "bone": "foot_r",
+    "pivot": [
+     348.4,
+     1257.9
+    ],
+    "method": "phase1 ankle (leg/foot contact)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 61.5,
+     "cross_section_fraction": 0.39,
+     "at_layer_bbox_centre": false
+    },
+    "status": "warning"
+   },
+   {
+    "joint": "upper_arm_l",
+    "bone": "upper_arm_l",
+    "pivot": [
+     680.5,
+     427.5
+    ],
+    "method": "garment-aligned: 29 px toward the top of the armhole (armpit at 38 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 26.2,
+     "cross_section_fraction": 0.64,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "forearm_l",
+    "bone": "forearm_l",
+    "pivot": [
+     808.0,
+     464.9
+    ],
+    "method": "0.52 of shoulder->wrist (straight arm)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 46.6,
+     "cross_section_fraction": 0.01,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "hand_l",
+    "bone": "hand_l",
+    "pivot": [
+     928.3,
+     467.6
+    ],
+    "method": "phase1 wrist (arm/hand boundary), re-centred",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 29.1,
+     "cross_section_fraction": 0.01,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "thigh_l",
+    "bone": "thigh_l",
+    "pivot": [
+     606.7,
+     776.9
+    ],
+    "method": "phase1 hip",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 69.7,
+     "cross_section_fraction": 0.15,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "shin_l",
+    "bone": "shin_l",
+    "pivot": [
+     669.6,
+     1017.6
+    ],
+    "method": "midpoint of hip->ankle (straight leg)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 66.7,
+     "cross_section_fraction": 0.0,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   },
+   {
+    "joint": "foot_l",
+    "bone": "foot_l",
+    "pivot": [
+     731.5,
+     1258.5
+    ],
+    "method": "phase1 ankle (leg/foot contact)",
+    "checks": {
+     "inside_silhouette": true,
+     "edge_distance_px": 65.5,
+     "cross_section_fraction": 0.05,
+     "at_layer_bbox_centre": false
+    },
+    "status": "ok"
+   }
+  ],
+  "phase1_joints": {
+   "pelvis": {
+    "position": [
+     543.71,
+     774.09
+    ],
+    "confidence": 0.279,
+    "reliable": false,
+    "method": "midpoint_of_hips"
+   },
+   "torso": {
+    "position": null,
+    "confidence": 0.0,
+    "reliable": false,
+    "method": "not_found"
+   },
+   "neck": {
+    "position": [
+     541.91,
+     350.6
+    ],
+    "confidence": 0.79,
+    "reliable": true,
+    "method": "contact:head/neck|clothing"
+   },
+   "head": {
+    "position": [
+     527.0,
+     191.5
+    ],
+    "confidence": 0.79,
+    "reliable": true,
+    "method": "head_and_hair_bbox_center"
+   },
+   "shoulder_r": {
+    "position": [
+     390.25,
+     466.81
+    ],
+    "confidence": 0.294,
+    "reliable": false,
+    "method": "limb_proximal_extreme_inset_by_radius"
+   },
+   "elbow_r": {
+    "position": [
+     273.94,
+     465.98
+    ],
+    "confidence": 0.168,
+    "reliable": false,
+    "method": "straight_limb_midpoint"
+   },
+   "wrist_r": {
+    "position": [
+     158.04,
+     448.38
+    ],
+    "confidence": 0.399,
+    "reliable": false,
+    "method": "contact:arm/hand"
+   },
+   "hand_r": {
+    "position": [
+     89.36,
+     461.08
+    ],
+    "confidence": 0.84,
+    "reliable": true,
+    "method": "hand_centroid"
+   },
+   "shoulder_l": {
+    "position": [
+     695.51,
+     466.84
+    ],
+    "confidence": 0.432,
+    "reliable": false,
+    "method": "limb_proximal_extreme_inset_by_radius"
+   },
+   "elbow_l": {
+    "position": [
+     812.06,
+     464.62
+    ],
+    "confidence": 0.247,
+    "reliable": false,
+    "method": "straight_limb_midpoint"
+   },
+   "wrist_l": {
+    "position": [
+     927.48,
+     456.15
+    ],
+    "confidence": 0.586,
+    "reliable": true,
+    "method": "contact:arm/hand"
+   },
+   "hand_l": {
+    "position": [
+     995.18,
+     461.28
+    ],
+    "confidence": 0.84,
+    "reliable": true,
+    "method": "hand_centroid"
+   },
+   "hip_r": {
+    "position": [
+     480.73,
+     771.26
+    ],
+    "confidence": 0.311,
+    "reliable": false,
+    "method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline"
+   },
+   "knee_r": {
+    "position": [
+     414.78,
+     1013.27
+    ],
+    "confidence": 0.248,
+    "reliable": false,
+    "method": "straight_limb_midpoint"
+   },
+   "ankle_r": {
+    "position": [
+     348.37,
+     1257.87
+    ],
+    "confidence": 0.59,
+    "reliable": true,
+    "method": "contact:leg/foot"
+   },
+   "foot_r": {
+    "position": [
+     329.3,
+     1326.37
+    ],
+    "confidence": 0.837,
+    "reliable": true,
+    "method": "foot_centroid"
+   },
+   "hip_l": {
+    "position": [
+     606.7,
+     776.92
+    ],
+    "confidence": 0.316,
+    "reliable": false,
+    "method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline"
+   },
+   "knee_l": {
+    "position": [
+     669.71,
+     1017.56
+    ],
+    "confidence": 0.253,
+    "reliable": false,
+    "method": "straight_limb_midpoint"
+   },
+   "ankle_l": {
+    "position": [
+     731.55,
+     1258.51
+    ],
+    "confidence": 0.601,
+    "reliable": true,
+    "method": "contact:leg/foot"
+   },
+   "foot_l": {
+    "position": [
+     753.95,
+     1326.29
+    ],
+    "confidence": 0.837,
+    "reliable": true,
+    "method": "foot_centroid"
+   }
+  },
+  "wall_s": 0.9
+ },
+ "_meta": {
+  "package": "projects/tough_student_test/character_package",
+  "artistic_review_required": true,
+  "note": "AutoRig renders and measurements only; pending drawings appear only in images labelled REVIEW PREVIEW / PENDING; Moho not run"
+ },
+ "hands": {
+  "images": [
+   "10_hand_library_extraction.png",
+   "11_left_hand_variants.png",
+   "12_right_hand_variants.png",
+   "13_wrist_alignment.png"
+  ],
+  "gestures": {
+   "r_relaxed": {
+    "requested": "relaxed",
+    "shown_pose": "relaxed",
+    "cid": "store:tough_student_hands_v1/right_relaxed",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_relaxed.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r3c1",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      110.0,
+      12.5
+     ],
+     "width_px": 94.05,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": -9.83
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/right_relaxed",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_relaxed.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.799
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 7.25,
+       "cuff_width_px": 76.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -9.83,
+       "tolerance_deg": 50.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 76.5,
+      "fill": 0.799,
+      "own_cloth_px": 33,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.08,
+      "cuff_center_q_px": -4.17,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 3.91
+   },
+   "r_open_palm": {
+    "requested": "open_palm",
+    "shown_pose": "open_palm",
+    "cid": "store:tough_student_hands_v1/right_open_palm",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_open_palm.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r3c2",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      147.5,
+      12.5
+     ],
+     "width_px": 93.05,
+     "confidence": 0.96,
+     "manual_review": false
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "open_palm",
+     "cid": "store:tough_student_hands_v1/right_open_palm",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": 53.15
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "open_palm",
+     "cid": "store:tough_student_hands_v1/right_open_palm",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_open_palm.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.701
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 4.25,
+       "cuff_width_px": 81.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 1
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 53.15,
+       "tolerance_deg": 180.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 81.5,
+      "fill": 0.701,
+      "own_cloth_px": 7,
+      "own_white_px": 1,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 4.58,
+      "cuff_center_q_px": 0.33,
+      "own_white_px_near_wrist": 1
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 3.68
+   },
+   "r_fist": {
+    "requested": "fist",
+    "shown_pose": "fist",
+    "cid": "store:tough_student_hands_v1/right_fist",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r3c3",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      109.0,
+      12.5
+     ],
+     "width_px": 104.24,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "fist",
+     "cid": "store:tough_student_hands_v1/right_fist",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": -26.85
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "fist",
+     "cid": "store:tough_student_hands_v1/right_fist",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.822
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 6.25,
+       "cuff_width_px": 78.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 1
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -26.85,
+       "tolerance_deg": 180.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.0,
+      "fill": 0.822,
+      "own_cloth_px": 60,
+      "own_white_px": 1,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.33,
+      "cuff_center_q_px": -2.92,
+      "own_white_px_near_wrist": 1
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.1
+   },
+   "r_pointing": {
+    "requested": "pointing",
+    "shown_pose": "pointing",
+    "cid": "store:tough_student_hands_v1/right_pointing",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_pointing.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r3c4",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "closed_outline",
+     "centre_px": [
+      244.5,
+      68.27
+     ],
+     "width_px": 93.5,
+     "confidence": 0.35,
+     "manual_review": true
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": -10.0
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/right_pointing",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_pointing.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.873
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 2.5,
+       "cuff_width_px": 78.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -10.0,
+       "tolerance_deg": 180.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.0,
+      "fill": 0.873,
+      "own_cloth_px": 10,
+      "own_white_px": 0,
+      "overhang_px": [
+       3.0,
+       0.0
+      ],
+      "hand_center_q_px": -5.42,
+      "cuff_center_q_px": -2.92,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.26
+   },
+   "r_thumbs_up": {
+    "requested": "thumbs_up",
+    "shown_pose": "thumbs_up",
+    "cid": "store:tough_student_hands_v1/right_thumbs_up",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r4c1",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      185.0,
+      176.5
+     ],
+     "width_px": 91.0,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "thumbs_up",
+     "cid": "store:tough_student_hands_v1/right_thumbs_up",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": -5.0
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "thumbs_up",
+     "cid": "store:tough_student_hands_v1/right_thumbs_up",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.785
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 5.5,
+       "cuff_width_px": 78.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -5.0,
+       "tolerance_deg": 45.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.5,
+      "fill": 0.785,
+      "own_cloth_px": 7,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 3.33,
+      "cuff_center_q_px": -2.17,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.18
+   },
+   "r_gripping": {
+    "requested": "gripping",
+    "shown_pose": "gripping",
+    "cid": "store:tough_student_hands_v1/right_gripping",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_gripping.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r4c2",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "closed_outline",
+     "centre_px": [
+      217.0,
+      104.68
+     ],
+     "width_px": 95.5,
+     "confidence": 0.35,
+     "manual_review": true
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "gripping",
+     "cid": "store:tough_student_hands_v1/right_gripping",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_UP",
+     "rotation_from_drawn_deg": 47.58
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "gripping",
+     "cid": "store:tough_student_hands_v1/right_gripping",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_gripping.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.898
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 1.0,
+       "cuff_width_px": 78.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 47.58,
+       "tolerance_deg": 100.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.0,
+      "fill": 0.898,
+      "own_cloth_px": 5,
+      "own_white_px": 0,
+      "overhang_px": [
+       1.0,
+       3.0
+      ],
+      "hand_center_q_px": -1.42,
+      "cuff_center_q_px": -2.42,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.18
+   },
+   "r_palm_down": {
+    "requested": "palm_down",
+    "shown_pose": "palm_down",
+    "cid": "store:tough_student_hands_v1/right_palm_down",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_palm_down.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "r",
+    "sheet_cell": "r4c3",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      159.5,
+      12.5
+     ],
+     "width_px": 95.01,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "palm_down",
+     "cid": "store:tough_student_hands_v1/right_palm_down",
+     "ok": true,
+     "violations": [],
+     "palm": "BACK_TO_CAMERA",
+     "rotation_from_drawn_deg": -32.4
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "palm_down",
+     "cid": "store:tough_student_hands_v1/right_palm_down",
+     "layer": "hand_r__hs.tough_student_hands_v1.right_palm_down.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.763
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 5.25,
+       "cuff_width_px": 77.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -32.4,
+       "tolerance_deg": 60.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 77.5,
+      "fill": 0.763,
+      "own_cloth_px": 49,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 2.58,
+      "cuff_center_q_px": -2.67,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 1.72
+   },
+   "r_cupped": {
+    "requested": "cupped",
+    "shown_pose": "cupped",
+    "cid": "store:tough_student_hands_v1/left_cupped",
+    "layer": "hand_r__hs.tough_student_hands_v1.left_cupped.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "r",
+    "drawn_handedness": "right",
+    "store_side": "l",
+    "sheet_cell": "r2c4",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "closed_outline",
+     "centre_px": [
+      220.5,
+      62.67
+     ],
+     "width_px": 93.5,
+     "confidence": 0.35,
+     "manual_review": true
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "cupped",
+     "cid": "store:tough_student_hands_v1/left_cupped",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_UP",
+     "rotation_from_drawn_deg": -10.0
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "r",
+     "pose": "cupped",
+     "cid": "store:tough_student_hands_v1/left_cupped",
+     "layer": "hand_r__hs.tough_student_hands_v1.left_cupped.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.7
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 22.5,
+       "cuff_width_px": 64.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -10.0,
+       "tolerance_deg": 35.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53823,
+       "side_scale": 0.53823
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 64.5,
+      "fill": 0.7,
+      "own_cloth_px": 5,
+      "own_white_px": 0,
+      "overhang_px": [
+       26.0,
+       0.0
+      ],
+      "hand_center_q_px": -10.17,
+      "cuff_center_q_px": 12.33,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.13
+   },
+   "l_relaxed": {
+    "requested": "relaxed",
+    "shown_pose": "relaxed",
+    "cid": "store:tough_student_hands_v1/left_relaxed",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r1c1",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      73.0,
+      12.5
+     ],
+     "width_px": 92.44,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": 13.59
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "relaxed",
+     "cid": "store:tough_student_hands_v1/left_relaxed",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.801
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 5.0,
+       "cuff_width_px": 75.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 13.59,
+       "tolerance_deg": 50.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 75.0,
+      "fill": 0.801,
+      "own_cloth_px": 25,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -3.14,
+      "cuff_center_q_px": 1.86,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.06
+   },
+   "l_open_palm": {
+    "requested": "open_palm",
+    "shown_pose": "open_palm",
+    "cid": "store:tough_student_hands_v1/left_open_palm",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_open_palm.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r1c2",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      132.0,
+      12.5
+     ],
+     "width_px": 92.01,
+     "confidence": 0.961,
+     "manual_review": false
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "open_palm",
+     "cid": "store:tough_student_hands_v1/left_open_palm",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": -54.38
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "open_palm",
+     "cid": "store:tough_student_hands_v1/left_open_palm",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_open_palm.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.738
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 1.5,
+       "cuff_width_px": 79.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -54.38,
+       "tolerance_deg": 180.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 79.5,
+      "fill": 0.738,
+      "own_cloth_px": 13,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -0.39,
+      "cuff_center_q_px": -1.89,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 1.85
+   },
+   "l_fist": {
+    "requested": "fist",
+    "shown_pose": "fist",
+    "cid": "store:tough_student_hands_v1/left_fist",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_fist.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r1c3",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      84.5,
+      12.5
+     ],
+     "width_px": 101.24,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "fist",
+     "cid": "store:tough_student_hands_v1/left_fist",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": 26.96
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "fist",
+     "cid": "store:tough_student_hands_v1/left_fist",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_fist.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.79
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 4.25,
+       "cuff_width_px": 78.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 26.96,
+       "tolerance_deg": 180.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.0,
+      "fill": 0.79,
+      "own_cloth_px": 59,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -3.89,
+      "cuff_center_q_px": 0.36,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.18
+   },
+   "l_pointing": {
+    "requested": "pointing",
+    "shown_pose": "pointing",
+    "cid": "store:tough_student_hands_v1/left_pointing",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_pointing.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r1c4",
+    "derived": "mirror_x",
+    "wrist_opening": {
+     "opening": "closed_outline",
+     "centre_px": [
+      18.5,
+      64.3
+     ],
+     "width_px": 93.5,
+     "confidence": 0.35,
+     "manual_review": true
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/left_pointing",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": 10.0
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "pointing",
+     "cid": "store:tough_student_hands_v1/left_pointing",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_pointing.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.834
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 11.0,
+       "cuff_width_px": 78.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 10.0,
+       "tolerance_deg": 180.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.0,
+      "fill": 0.834,
+      "own_cloth_px": 4,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       15.0
+      ],
+      "hand_center_q_px": 11.36,
+      "cuff_center_q_px": 0.36,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.0
+   },
+   "l_thumbs_up": {
+    "requested": "thumbs_up",
+    "shown_pose": "thumbs_up",
+    "cid": "store:tough_student_hands_v1/left_thumbs_up",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_thumbs_up.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r2c1",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      12.5,
+      168.0
+     ],
+     "width_px": 86.05,
+     "confidence": 1.0,
+     "manual_review": false
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "thumbs_up",
+     "cid": "store:tough_student_hands_v1/left_thumbs_up",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_TO_CAMERA",
+     "rotation_from_drawn_deg": 3.0
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "thumbs_up",
+     "cid": "store:tough_student_hands_v1/left_thumbs_up",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_thumbs_up.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.771
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 2.5,
+       "cuff_width_px": 78.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 3.0,
+       "tolerance_deg": 45.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 78.0,
+      "fill": 0.771,
+      "own_cloth_px": 3,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": -2.14,
+      "cuff_center_q_px": 0.36,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.05
+   },
+   "l_gripping": {
+    "requested": "gripping",
+    "shown_pose": "gripping",
+    "cid": "store:tough_student_hands_v1/left_gripping",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_gripping.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r2c2",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "closed_outline",
+     "centre_px": [
+      18.5,
+      105.15
+     ],
+     "width_px": 92.5,
+     "confidence": 0.35,
+     "manual_review": true
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "gripping",
+     "cid": "store:tough_student_hands_v1/left_gripping",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_UP",
+     "rotation_from_drawn_deg": -47.64
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "gripping",
+     "cid": "store:tough_student_hands_v1/left_gripping",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_gripping.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.908
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 1.5,
+       "cuff_width_px": 76.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": -47.64,
+       "tolerance_deg": 100.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 76.0,
+      "fill": 0.908,
+      "own_cloth_px": 10,
+      "own_white_px": 0,
+      "overhang_px": [
+       1.0,
+       4.0
+      ],
+      "hand_center_q_px": 2.36,
+      "cuff_center_q_px": 0.86,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.18
+   },
+   "l_palm_down": {
+    "requested": "palm_down",
+    "shown_pose": "palm_down",
+    "cid": "store:tough_student_hands_v1/left_palm_down",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_palm_down.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "l",
+    "sheet_cell": "r2c3",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "open_cut",
+     "centre_px": [
+      141.0,
+      12.5
+     ],
+     "width_px": 94.01,
+     "confidence": 0.866,
+     "manual_review": false
+    },
+    "scale": 0.56772,
+    "override_check": {
+     "pose": "palm_down",
+     "cid": "store:tough_student_hands_v1/left_palm_down",
+     "ok": true,
+     "violations": [],
+     "palm": "BACK_TO_CAMERA",
+     "rotation_from_drawn_deg": 33.61
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "palm_down",
+     "cid": "store:tough_student_hands_v1/left_palm_down",
+     "layer": "hand_l__hs.tough_student_hands_v1.left_palm_down.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.761
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 2.5,
+       "cuff_width_px": 77.0
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 33.61,
+       "tolerance_deg": 60.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 77.0,
+      "fill": 0.761,
+      "own_cloth_px": 62,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       0.0
+      ],
+      "hand_center_q_px": 2.86,
+      "cuff_center_q_px": 0.36,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.67
+   },
+   "l_cupped": {
+    "requested": "cupped",
+    "shown_pose": "cupped",
+    "cid": "store:tough_student_hands_v1/right_cupped",
+    "layer": "hand_l__hs.tough_student_hands_v1.right_cupped.v1",
+    "source": "user",
+    "pending_review": true,
+    "assigned_side": "l",
+    "drawn_handedness": "left",
+    "store_side": "r",
+    "sheet_cell": "r4c4",
+    "derived": null,
+    "wrist_opening": {
+     "opening": "closed_outline",
+     "centre_px": [
+      18.0,
+      66.42
+     ],
+     "width_px": 93.5,
+     "confidence": 0.35,
+     "manual_review": true
+    },
+    "scale": 0.56277,
+    "override_check": {
+     "pose": "cupped",
+     "cid": "store:tough_student_hands_v1/right_cupped",
+     "ok": true,
+     "violations": [],
+     "palm": "PALM_UP",
+     "rotation_from_drawn_deg": 10.0
+    },
+    "aim_applied": null,
+    "wrist_check": {
+     "side": "l",
+     "pose": "cupped",
+     "cid": "store:tough_student_hands_v1/right_cupped",
+     "layer": "hand_l__hs.tough_student_hands_v1.right_cupped.v1",
+     "approval": "PENDING_REVIEW",
+     "checks": {
+      "attached": {
+       "ok": true,
+       "fill": 0.771
+      },
+      "centred": {
+       "ok": true,
+       "offset_px": 16.25,
+       "cuff_width_px": 82.5
+      },
+      "no_duplicate_cuff": {
+       "ok": true,
+       "own_white_px": 0
+      },
+      "rotation": {
+       "ok": true,
+       "rotation_from_drawn_deg": 10.0,
+       "tolerance_deg": 35.0
+      },
+      "proportion": {
+       "ok": true,
+       "scale": 0.53765,
+       "side_scale": 0.53765
+      }
+     },
+     "seam": {
+      "status": "OK",
+      "covered": true,
+      "cuff_width_px": 82.5,
+      "fill": 0.771,
+      "own_cloth_px": 6,
+      "own_white_px": 0,
+      "overhang_px": [
+       0.0,
+       13.5
+      ],
+      "hand_center_q_px": 10.86,
+      "cuff_center_q_px": -5.39,
+      "own_white_px_near_wrist": 0
+     },
+     "status": "PASS",
+     "failed": []
+    },
+    "render_s": 2.25
+   }
+  },
+  "compatibility": {
+   "schema": "autorig.hand_compatibility_report",
+   "version": 1,
+   "character_hands": {
+    "r": {
+     "skin_median_rgb": [
+      253,
+      166,
+      97
+     ],
+     "skin_p10_p90_lum": [
+      156.3,
+      187.4
+     ],
+     "tone_clusters": 2,
+     "outline_px": 3.0,
+     "area_px": 11485,
+     "bbox_px": [
+      149,
+      120
+     ],
+     "hand_bone_px": 66.6,
+     "forearm_bone_px": 122.3
+    },
+    "l": {
+     "skin_median_rgb": [
+      253,
+      166,
+      97
+     ],
+     "skin_p10_p90_lum": [
+      153.9,
+      188.0
+     ],
+     "tone_clusters": 2,
+     "outline_px": 3.0,
+     "area_px": 11428,
+     "bbox_px": [
+      149,
+      120
+     ],
+     "hand_bone_px": 67.2,
+     "forearm_bone_px": 120.3
+    }
+   },
+   "library": {
+    "store:tough_student_hands_v1/left_cupped": {
+     "sheet_cell": "r2c4",
+     "skin_median_rgb": [
+      253,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 93.5,
+     "wrist_width_px_on_character": 53.1,
+     "area_px_on_character": 7897,
+     "view": "palm",
+     "orientation": -90.0,
+     "wrist_opening": "closed_outline",
+     "skin_delta_rgb": [
+      0,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    },
+    "store:tough_student_hands_v1/left_fist": {
+     "sheet_cell": "r1c3",
+     "skin_median_rgb": [
+      253,
+      194,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 101.24,
+     "wrist_width_px_on_character": 57.5,
+     "area_px_on_character": 9417,
+     "view": "palm_side_curled",
+     "orientation": 0.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      28,
+      51
+     ],
+     "skin_delta_e_approx": 58.2
+    },
+    "store:tough_student_hands_v1/left_gripping": {
+     "sheet_cell": "r2c2",
+     "skin_median_rgb": [
+      253,
+      194,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 92.5,
+     "wrist_width_px_on_character": 52.5,
+     "area_px_on_character": 8503,
+     "view": "edge",
+     "orientation": 90.0,
+     "wrist_opening": "closed_outline",
+     "skin_delta_rgb": [
+      0,
+      28,
+      51
+     ],
+     "skin_delta_e_approx": 58.2
+    },
+    "store:tough_student_hands_v1/left_open_palm": {
+     "sheet_cell": "r1c2",
+     "skin_median_rgb": [
+      253,
+      194,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 92.01,
+     "wrist_width_px_on_character": 52.2,
+     "area_px_on_character": 12348,
+     "view": "palm",
+     "orientation": 0.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      28,
+      51
+     ],
+     "skin_delta_e_approx": 58.2
+    },
+    "store:tough_student_hands_v1/left_palm_down": {
+     "sheet_cell": "r2c3",
+     "skin_median_rgb": [
+      253,
+      194,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 94.01,
+     "wrist_width_px_on_character": 53.4,
+     "area_px_on_character": 9654,
+     "view": "back",
+     "orientation": -35.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      28,
+      51
+     ],
+     "skin_delta_e_approx": 58.2
+    },
+    "store:tough_student_hands_v1/left_pointing": {
+     "sheet_cell": "r1c4",
+     "skin_median_rgb": [
+      253,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 93.5,
+     "wrist_width_px_on_character": 53.1,
+     "area_px_on_character": 8577,
+     "view": "palm_side_curled",
+     "orientation": 90.0,
+     "wrist_opening": "closed_outline",
+     "skin_delta_rgb": [
+      0,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    },
+    "store:tough_student_hands_v1/left_relaxed": {
+     "sheet_cell": "r1c1",
+     "skin_median_rgb": [
+      253,
+      194,
+      149
+     ],
+     "tone_clusters": 1,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 92.44,
+     "wrist_width_px_on_character": 52.5,
+     "area_px_on_character": 10140,
+     "view": "palm",
+     "orientation": 0.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      28,
+      52
+     ],
+     "skin_delta_e_approx": 59.1
+    },
+    "store:tough_student_hands_v1/left_thumbs_up": {
+     "sheet_cell": "r2c1",
+     "skin_median_rgb": [
+      253,
+      194,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.97,
+     "scale_on_character": 0.56772,
+     "wrist_width_px_sheet": 86.05,
+     "wrist_width_px_on_character": 48.9,
+     "area_px_on_character": 9470,
+     "view": "palm_side_curled",
+     "orientation": 90.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      28,
+      51
+     ],
+     "skin_delta_e_approx": 58.2
+    },
+    "store:tough_student_hands_v1/right_cupped": {
+     "sheet_cell": "r4c4",
+     "skin_median_rgb": [
+      253,
+      193,
+      147
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 93.5,
+     "wrist_width_px_on_character": 52.6,
+     "area_px_on_character": 8761,
+     "view": "palm",
+     "orientation": 90.0,
+     "wrist_opening": "closed_outline",
+     "skin_delta_rgb": [
+      0,
+      27,
+      50
+     ],
+     "skin_delta_e_approx": 56.8
+    },
+    "store:tough_student_hands_v1/right_fist": {
+     "sheet_cell": "r3c3",
+     "skin_median_rgb": [
+      253,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 104.24,
+     "wrist_width_px_on_character": 58.7,
+     "area_px_on_character": 9501,
+     "view": "palm_side_curled",
+     "orientation": 0.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    },
+    "store:tough_student_hands_v1/right_gripping": {
+     "sheet_cell": "r4c2",
+     "skin_median_rgb": [
+      253,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 95.5,
+     "wrist_width_px_on_character": 53.7,
+     "area_px_on_character": 8594,
+     "view": "edge",
+     "orientation": -90.0,
+     "wrist_opening": "closed_outline",
+     "skin_delta_rgb": [
+      0,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    },
+    "store:tough_student_hands_v1/right_open_palm": {
+     "sheet_cell": "r3c2",
+     "skin_median_rgb": [
+      253,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 93.05,
+     "wrist_width_px_on_character": 52.4,
+     "area_px_on_character": 12369,
+     "view": "palm",
+     "orientation": 0.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    },
+    "store:tough_student_hands_v1/right_palm_down": {
+     "sheet_cell": "r4c3",
+     "skin_median_rgb": [
+      254,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.25,
+     "outline_px_on_character": 4.08,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 95.01,
+     "wrist_width_px_on_character": 53.5,
+     "area_px_on_character": 9851,
+     "view": "back",
+     "orientation": 35.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      1,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    },
+    "store:tough_student_hands_v1/right_pointing": {
+     "sheet_cell": "r3c4",
+     "skin_median_rgb": [
+      253,
+      193,
+      147
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 93.5,
+     "wrist_width_px_on_character": 52.6,
+     "area_px_on_character": 8812,
+     "view": "palm_side_curled",
+     "orientation": -90.0,
+     "wrist_opening": "closed_outline",
+     "skin_delta_rgb": [
+      0,
+      27,
+      50
+     ],
+     "skin_delta_e_approx": 56.8
+    },
+    "store:tough_student_hands_v1/right_relaxed": {
+     "sheet_cell": "r3c1",
+     "skin_median_rgb": [
+      253,
+      194,
+      148
+     ],
+     "tone_clusters": 1,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 94.05,
+     "wrist_width_px_on_character": 52.9,
+     "area_px_on_character": 10021,
+     "view": "palm",
+     "orientation": 0.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      0,
+      28,
+      51
+     ],
+     "skin_delta_e_approx": 58.2
+    },
+    "store:tough_student_hands_v1/right_thumbs_up": {
+     "sheet_cell": "r4c1",
+     "skin_median_rgb": [
+      254,
+      193,
+      148
+     ],
+     "tone_clusters": 2,
+     "outline_px_sheet": 7.0,
+     "outline_px_on_character": 3.94,
+     "scale_on_character": 0.56277,
+     "wrist_width_px_sheet": 91.0,
+     "wrist_width_px_on_character": 51.2,
+     "area_px_on_character": 9634,
+     "view": "palm_side_curled",
+     "orientation": -90.0,
+     "wrist_opening": "open_cut",
+     "skin_delta_rgb": [
+      1,
+      27,
+      51
+     ],
+     "skin_delta_e_approx": 57.7
+    }
+   },
+   "candidates": {
+    "store:tough_student_hands_v1/left_cupped": {
+     "skin_matched": "candidates/left_cupped__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.655
+     ],
+     "changed_px": 17984,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_fist": {
+     "skin_matched": "candidates/left_fist__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.655
+     ],
+     "changed_px": 22173,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_gripping": {
+     "skin_matched": "candidates/left_gripping__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.655
+     ],
+     "changed_px": 19355,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_open_palm": {
+     "skin_matched": "candidates/left_open_palm__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.655
+     ],
+     "changed_px": 28809,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_palm_down": {
+     "skin_matched": "candidates/left_palm_down__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.655
+     ],
+     "changed_px": 23169,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_pointing": {
+     "skin_matched": "candidates/left_pointing__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.655
+     ],
+     "changed_px": 19178,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_relaxed": {
+     "skin_matched": "candidates/left_relaxed__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.651
+     ],
+     "changed_px": 24339,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/left_thumbs_up": {
+     "skin_matched": "candidates/left_thumbs_up__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.655
+     ],
+     "changed_px": 23083,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_cupped": {
+     "skin_matched": "candidates/right_cupped__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.66
+     ],
+     "changed_px": 20658,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_fist": {
+     "skin_matched": "candidates/right_fist__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.655
+     ],
+     "changed_px": 22858,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_gripping": {
+     "skin_matched": "candidates/right_gripping__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.655
+     ],
+     "changed_px": 19936,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_open_palm": {
+     "skin_matched": "candidates/right_open_palm__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.655
+     ],
+     "changed_px": 29371,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_palm_down": {
+     "skin_matched": "candidates/right_palm_down__skin_matched.png",
+     "gain_rgb": [
+      0.996,
+      0.86,
+      0.655
+     ],
+     "changed_px": 24303,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_pointing": {
+     "skin_matched": "candidates/right_pointing__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.86,
+      0.66
+     ],
+     "changed_px": 20297,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_relaxed": {
+     "skin_matched": "candidates/right_relaxed__skin_matched.png",
+     "gain_rgb": [
+      1.0,
+      0.856,
+      0.655
+     ],
+     "changed_px": 24588,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    },
+    "store:tough_student_hands_v1/right_thumbs_up": {
+     "skin_matched": "candidates/right_thumbs_up__skin_matched.png",
+     "gain_rgb": [
+      0.996,
+      0.86,
+      0.655
+     ],
+     "changed_px": 23966,
+     "status": "CANDIDATE_NOT_IMPORTED",
+     "approval": "none (a person must review, then import it as a new version)"
+    }
+   },
+   "findings": [
+    "skin tone differs: library median [253, 193, 148] vs character [253, 166, 97] (approx. RGB distance 57.7); the library hands read paler/pinker than the character's own hands and face",
+    "shading: library hands use two-tone cel shading (highlight + shadow); compare the tone-cluster counts above"
+   ],
+   "artistic_review_required": true,
+   "summary": {
+    "character_skin_rgb": [
+     253,
+     166,
+     97
+    ],
+    "library_skin_rgb_median": [
+     253,
+     193,
+     148
+    ],
+    "skin_delta_e_approx_median": 57.7,
+    "character_outline_px": 3.0,
+    "library_outline_px_on_character_median": 3.97,
+    "scale_on_character": [
+     0.56277,
+     0.56772
+    ],
+    "character_tone_clusters": [
+     2,
+     2
+    ],
+    "library_tone_clusters_median": 2.0
+   }
+  },
+  "extraction_summary": {
+   "drawings": 16,
+   "assets": 16,
+   "open_cut": 10,
+   "closed_outline": 6,
+   "mirrored_pairs": 7,
+   "not_mirrored_pairs": [
+    "pointing"
+   ],
+   "derived_assets": [
+    "left_pointing"
+   ],
+   "manual_review": [
+    "left_pointing",
+    "left_gripping",
+    "left_cupped",
+    "right_pointing",
+    "right_gripping",
+    "right_cupped"
+   ]
+  },
+  "extraction_background": {
+   "mode": "dark",
+   "polarity_rule": "border median luminance < 60.0",
+   "outline_band_px": 8,
+   "colour_to_rim_px_p10_p50_p90": [
+    6.4,
+    7.21,
+    8.0
+   ],
+   "rim_px": 18917,
+   "rim_px_facing_background": 12832,
+   "enclosed_gap_px": 0,
+   "enclosed_pockets_kept_px": 1575
+  },
+  "wall_s": 56.6
+ },
+ "gestures": {
+  "images": [
+   "14_pointing.png",
+   "15_shrug.png"
+  ],
+  "right_pointing_review": {
+   "action": "pointing",
+   "chosen": "pointing",
+   "shown": "pointing",
+   "cid": "store:tough_student_hands_v1/right_pointing",
+   "pending": true,
+   "needs_artwork": [],
+   "fallback": null,
+   "explanation": [
+    "r: pointing -> pointing (store:tough_student_hands_v1/right_pointing) - highest score after the hard constraints [mode: review]",
+    "  rejected palm_down (store:tough_student_hands_v1/right_palm_down): turned 122 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+    "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)"
+   ]
+  },
+  "right_pointing_production": {
+   "action": "pointing",
+   "chosen": "open_palm",
+   "shown": "open_palm",
+   "cid": "original",
+   "pending": false,
+   "needs_artwork": [
+    {
+     "pose": "pointing",
+     "status": "NEEDS_APPROVAL",
+     "reason": "pending review: production mode uses approved drawings and the original hand only",
+     "palm": null,
+     "cid": "store:tough_student_hands_v1/right_pointing"
+    }
+   ],
+   "fallback": null,
+   "explanation": [
+    "r: pointing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+    "  rejected pointing (store:tough_student_hands_v1/right_pointing): pending review: production mode uses approved drawings and the original hand only",
+    "  rejected cupped (store:tough_student_hands_v1/left_cupped): pending review: production mode uses approved drawings and the original hand only"
+   ]
+  },
+  "left_pointing_review": {
+   "action": "pointing",
+   "chosen": "pointing",
+   "shown": "pointing",
+   "cid": "store:tough_student_hands_v1/left_pointing",
+   "pending": true,
+   "needs_artwork": [],
+   "fallback": null,
+   "explanation": [
+    "l: pointing -> pointing (store:tough_student_hands_v1/left_pointing) - highest score after the hard constraints [mode: review]",
+    "  rejected palm_down (store:tough_student_hands_v1/left_palm_down): turned 120 deg from how it was drawn (tolerance 60 deg): a flat rotation does not change the drawing's perspective",
+    "  rejected palm_up (missing): no drawing (NEEDS_ARTWORK)"
+   ]
+  },
+  "left_pointing_production": {
+   "action": "pointing",
+   "chosen": "open_palm",
+   "shown": "open_palm",
+   "cid": "original",
+   "pending": false,
+   "needs_artwork": [
+    {
+     "pose": "pointing",
+     "status": "NEEDS_APPROVAL",
+     "reason": "pending review: production mode uses approved drawings and the original hand only",
+     "palm": null,
+     "cid": "store:tough_student_hands_v1/left_pointing"
+    }
+   ],
+   "fallback": null,
+   "explanation": [
+    "l: pointing -> open_palm (original) - highest score after the hard constraints [mode: production]",
+    "  rejected pointing (store:tough_student_hands_v1/left_pointing): pending review: production mode uses approved drawings and the original hand only",
+    "  rejected cupped (store:tough_student_hands_v1/right_cupped): pending review: production mode uses approved drawings and the original hand only"
+   ]
+  },
+  "shrug_subtle_production": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "pending": false
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "pending": false
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.44,
+     "hump_px": 9.34,
+     "top_y": 376.19,
+     "outer_x": 407.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 2.26,
+     "hump_px": 12.13,
+     "top_y": 374.19,
+     "outer_x": 732.0
+    }
+   },
+   "rise_vs_neutral_px": {
+    "r": 3.5,
+    "l": 1.5
+   },
+   "library_status": {
+    "status": "NEEDS_ARTWORK",
+    "missing": [
+     "hand:palm_up (r)",
+     "hand:palm_up (l)"
+    ],
+    "pending": [],
+    "production_ready": false,
+    "palm_required": "PALM_UP",
+    "palm_capable_drawings": [
+     {
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/right_gripping",
+      "status": "pending_review",
+      "side": "r"
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/left_cupped",
+      "status": "pending_review",
+      "side": "r"
+     },
+     {
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/left_gripping",
+      "status": "pending_review",
+      "side": "l"
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/right_cupped",
+      "status": "pending_review",
+      "side": "l"
+     }
+    ],
+    "alternative": "shrug_low",
+    "note": "needs approved palm-up hands: an open palm-up drawing is missing; the cupped drawings (pending, handedness corrected in Phase 3.7) are a review-only approximation. Never disguised by wrist rotation"
+   }
+  },
+  "shrug_expressive_review": {
+   "hands": {
+    "r": {
+     "pose": "cupped",
+     "cid": "store:tough_student_hands_v1/left_cupped",
+     "pending": true
+    },
+    "l": {
+     "pose": "cupped",
+     "cid": "store:tough_student_hands_v1/right_cupped",
+     "pending": true
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.59,
+     "hump_px": 11.62,
+     "top_y": 376.12,
+     "outer_x": 405.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 4.01,
+     "hump_px": 15.45,
+     "top_y": 373.12,
+     "outer_x": 734.0
+    }
+   },
+   "rise_vs_neutral_px": {
+    "r": 3.6,
+    "l": 2.6
+   },
+   "library_status": {
+    "status": "NEEDS_ARTWORK",
+    "missing": [
+     "hand:palm_up (r)",
+     "hand:palm_up (l)"
+    ],
+    "pending": [],
+    "production_ready": false,
+    "palm_required": "PALM_UP",
+    "palm_capable_drawings": [
+     {
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/right_gripping",
+      "status": "pending_review",
+      "side": "r"
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/left_cupped",
+      "status": "pending_review",
+      "side": "r"
+     },
+     {
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/left_gripping",
+      "status": "pending_review",
+      "side": "l"
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/right_cupped",
+      "status": "pending_review",
+      "side": "l"
+     }
+    ],
+    "alternative": "shrug_low",
+    "note": "needs approved palm-up hands: an open palm-up drawing is missing; the cupped drawings (pending, handedness corrected in Phase 3.7) are a review-only approximation. Never disguised by wrist rotation"
+   }
+  },
+  "shrug_expressive_production": {
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "cid": "original",
+     "pending": false
+    },
+    "l": {
+     "pose": "open_palm",
+     "cid": "original",
+     "pending": false
+    }
+   },
+   "shoulders": {
+    "r": {
+     "status": "OK",
+     "slope_deg": 1.44,
+     "hump_px": 9.34,
+     "top_y": 376.19,
+     "outer_x": 407.0
+    },
+    "l": {
+     "status": "OK",
+     "slope_deg": 2.26,
+     "hump_px": 12.13,
+     "top_y": 374.19,
+     "outer_x": 732.0
+    }
+   },
+   "rise_vs_neutral_px": {
+    "r": 3.5,
+    "l": 1.5
+   },
+   "library_status": {
+    "status": "NEEDS_ARTWORK",
+    "missing": [
+     "hand:palm_up (r)",
+     "hand:palm_up (l)"
+    ],
+    "pending": [],
+    "production_ready": false,
+    "palm_required": "PALM_UP",
+    "palm_capable_drawings": [
+     {
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/right_gripping",
+      "status": "pending_review",
+      "side": "r"
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/left_cupped",
+      "status": "pending_review",
+      "side": "r"
+     },
+     {
+      "pose": "gripping",
+      "cid": "store:tough_student_hands_v1/left_gripping",
+      "status": "pending_review",
+      "side": "l"
+     },
+     {
+      "pose": "cupped",
+      "cid": "store:tough_student_hands_v1/right_cupped",
+      "status": "pending_review",
+      "side": "l"
+     }
+    ],
+    "alternative": "shrug_low",
+    "note": "needs approved palm-up hands: an open palm-up drawing is missing; the cupped drawings (pending, handedness corrected in Phase 3.7) are a review-only approximation. Never disguised by wrist rotation"
+   }
+  },
+  "shoulder_reference_relaxed": {
+   "r": {
+    "status": "OK",
+    "slope_deg": 17.94,
+    "hump_px": 8.92,
+    "top_y": 379.72,
+    "outer_x": 417.0
+   },
+   "l": {
+    "status": "OK",
+    "slope_deg": 11.38,
+    "hump_px": 8.33,
+    "top_y": 375.72,
+    "outer_x": 743.0
+   }
+  },
+  "wall_s": 26.0
+ },
+ "arms": {
+  "images": [
+   "06_tpose.png",
+   "07_arms_30_degrees.png",
+   "08_arms_60_degrees.png",
+   "09_relaxed_standing.png",
+   "09b_one_arm_down.png"
+  ],
+  "rest_abduction": {
+   "r": 86.113,
+   "l": 86.33
+  },
+  "cases": {
+   "A_tpose": {
+    "auto": {
+     "abduction_target": {
+      "r": 86.113,
+      "l": 86.33
+     },
+     "abduction_solved": {
+      "r": 86.113,
+      "l": 86.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 8.59,
+       "hump_px": 0.45,
+       "top_y": 389.33,
+       "outer_x": 68.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 7.91,
+       "hump_px": 0.21,
+       "top_y": 389.33,
+       "outer_x": 1023.0
+      }
+     },
+     "garments": {
+      "trousers": "WARNING",
+      "blazer": "WARNING",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {},
+     "gaps": 1,
+     "seams": 0,
+     "outline_breaks": 1,
+     "correctives_shown": [],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.69
+    },
+    "all": {
+     "abduction_target": {
+      "r": 86.113,
+      "l": 86.33
+     },
+     "abduction_solved": {
+      "r": 86.113,
+      "l": 86.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 8.47,
+       "hump_px": 0.45,
+       "top_y": 390.33,
+       "outer_x": 68.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 7.78,
+       "hump_px": 0.21,
+       "top_y": 390.33,
+       "outer_x": 1023.0
+      }
+     },
+     "garments": {
+      "trousers": "WARNING",
+      "blazer": "WARNING",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {},
+     "gaps": 2,
+     "seams": 0,
+     "outline_breaks": 1,
+     "correctives_shown": [
+      "shoe_top_r",
+      "armpit_gusset_r",
+      "shoe_top_l",
+      "armpit_gusset_l",
+      "edge_decontamination"
+     ],
+     "feasibility": "SUPPORTED",
+     "render_s": 3.41
+    }
+   },
+   "B_lowered_30": {
+    "auto": {
+     "abduction_target": {
+      "r": 56.113,
+      "l": 56.33
+     },
+     "abduction_solved": {
+      "r": 56.113,
+      "l": 56.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 34.02,
+       "hump_px": 22.29,
+       "top_y": 389.35,
+       "outer_x": 320.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 34.41,
+       "hump_px": 20.23,
+       "top_y": 389.35,
+       "outer_x": 771.0
+      }
+     },
+     "garments": {
+      "trousers": "WARNING",
+      "blazer": "WARNING",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {},
+     "gaps": 2,
+     "seams": 3,
+     "outline_breaks": 3,
+     "correctives_shown": [],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.73
+    },
+    "all": {
+     "abduction_target": {
+      "r": 56.113,
+      "l": 56.33
+     },
+     "abduction_solved": {
+      "r": 56.113,
+      "l": 56.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 34.16,
+       "hump_px": 22.51,
+       "top_y": 390.35,
+       "outer_x": 321.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 34.69,
+       "hump_px": 20.0,
+       "top_y": 390.35,
+       "outer_x": 771.0
+      }
+     },
+     "garments": {
+      "trousers": "WARNING",
+      "blazer": "WARNING",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {},
+     "gaps": 2,
+     "seams": 3,
+     "outline_breaks": 3,
+     "correctives_shown": [
+      "shoe_top_r",
+      "shoe_top_l",
+      "edge_decontamination"
+     ],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.57
+    }
+   },
+   "C_lowered_60": {
+    "auto": {
+     "abduction_target": {
+      "r": 26.113,
+      "l": 26.33
+     },
+     "abduction_solved": {
+      "r": 26.113,
+      "l": 26.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 16.11,
+       "hump_px": 15.72,
+       "top_y": 389.37,
+       "outer_x": 372.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 18.47,
+       "hump_px": 20.81,
+       "top_y": 389.37,
+       "outer_x": 718.0
+      }
+     },
+     "garments": {
+      "trousers": "FAIL",
+      "blazer": "FAIL",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {
+      "trouser_shin_r": "FAIL",
+      "blazer_shoulder_l": "FAIL"
+     },
+     "gaps": 3,
+     "seams": 3,
+     "outline_breaks": 4,
+     "correctives_shown": [],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.63
+    },
+    "all": {
+     "abduction_target": {
+      "r": 26.113,
+      "l": 26.33
+     },
+     "abduction_solved": {
+      "r": 26.113,
+      "l": 26.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 16.37,
+       "hump_px": 16.31,
+       "top_y": 390.37,
+       "outer_x": 372.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 19.23,
+       "hump_px": 20.78,
+       "top_y": 390.37,
+       "outer_x": 718.0
+      }
+     },
+     "garments": {
+      "trousers": "FAIL",
+      "blazer": "FAIL",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {
+      "trouser_shin_r": "FAIL",
+      "blazer_shoulder_l": "FAIL"
+     },
+     "gaps": 3,
+     "seams": 3,
+     "outline_breaks": 4,
+     "correctives_shown": [
+      "shoe_top_r",
+      "shoe_top_l",
+      "edge_decontamination"
+     ],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.53
+    }
+   },
+   "D_resting": {
+    "auto": {
+     "abduction_target": {
+      "r": 8.0,
+      "l": 8.0
+     },
+     "abduction_solved": {
+      "r": 8.0,
+      "l": 8.0
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 15.61,
+       "hump_px": 8.34,
+       "top_y": 389.36,
+       "outer_x": 381.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 16.71,
+       "hump_px": 10.38,
+       "top_y": 389.36,
+       "outer_x": 708.0
+      }
+     },
+     "garments": {
+      "trousers": "FAIL",
+      "blazer": "FAIL",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {
+      "trouser_shin_r": "FAIL",
+      "blazer_shoulder_r": "FAIL",
+      "blazer_shoulder_l": "FAIL"
+     },
+     "gaps": 3,
+     "seams": 3,
+     "outline_breaks": 4,
+     "correctives_shown": [],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.6
+    },
+    "all": {
+     "abduction_target": {
+      "r": 8.0,
+      "l": 8.0
+     },
+     "abduction_solved": {
+      "r": 8.0,
+      "l": 8.0
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 15.56,
+       "hump_px": 9.0,
+       "top_y": 390.36,
+       "outer_x": 382.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 17.04,
+       "hump_px": 10.81,
+       "top_y": 390.36,
+       "outer_x": 707.0
+      }
+     },
+     "garments": {
+      "trousers": "FAIL",
+      "blazer": "FAIL",
+      "shoes": "WARNING",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {
+      "trouser_shin_r": "FAIL",
+      "blazer_shoulder_r": "FAIL",
+      "blazer_shoulder_l": "FAIL"
+     },
+     "gaps": 3,
+     "seams": 3,
+     "outline_breaks": 4,
+     "correctives_shown": [
+      "shoe_top_r",
+      "shoe_top_l",
+      "edge_decontamination"
+     ],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.53
+    }
+   },
+   "E_one_down": {
+    "auto": {
+     "abduction_target": {
+      "r": 8.0,
+      "l": 86.33
+     },
+     "abduction_solved": {
+      "r": 8.0,
+      "l": 86.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 15.28,
+       "hump_px": 8.54,
+       "top_y": 394.24,
+       "outer_x": 363.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 7.88,
+       "hump_px": 0.21,
+       "top_y": 394.24,
+       "outer_x": 1005.0
+      }
+     },
+     "garments": {
+      "trousers": "NEEDS_ARTWORK",
+      "blazer": "FAIL",
+      "shoes": "FAIL",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {
+      "trouser_cuff_r": "NEEDS_ARTWORK",
+      "shoe_r": "FAIL",
+      "blazer_shoulder_r": "FAIL"
+     },
+     "gaps": 16,
+     "seams": 0,
+     "outline_breaks": 16,
+     "correctives_shown": [],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.58
+    },
+    "all": {
+     "abduction_target": {
+      "r": 8.0,
+      "l": 86.33
+     },
+     "abduction_solved": {
+      "r": 8.0,
+      "l": 86.33
+     },
+     "arm_length_px": {
+      "r": 257.0,
+      "l": 253.2
+     },
+     "shoulders": {
+      "r": {
+       "status": "OK",
+       "slope_deg": 15.49,
+       "hump_px": 9.17,
+       "top_y": 395.24,
+       "outer_x": 364.0
+      },
+      "l": {
+       "status": "OK",
+       "slope_deg": 7.8,
+       "hump_px": 0.21,
+       "top_y": 395.24,
+       "outer_x": 1005.0
+      }
+     },
+     "garments": {
+      "trousers": "NEEDS_ARTWORK",
+      "blazer": "FAIL",
+      "shoes": "FAIL",
+      "body": "WARNING",
+      "tie": "PASS",
+      "sweater": "PASS",
+      "shirt": "WARNING"
+     },
+     "failing_parts": {
+      "trouser_cuff_r": "NEEDS_ARTWORK",
+      "shoe_r": "FAIL",
+      "blazer_shoulder_r": "FAIL"
+     },
+     "gaps": 16,
+     "seams": 0,
+     "outline_breaks": 16,
+     "correctives_shown": [
+      "shoe_top_r",
+      "shoe_top_l",
+      "armpit_gusset_l",
+      "knee_fold_r",
+      "edge_decontamination"
+     ],
+     "feasibility": "SUPPORTED",
+     "render_s": 2.78
+    }
+   }
+  },
+  "wall_s": 29.1
+ },
+ "poses": {
+  "images": [
+   "17_pose_contact_sheet.png"
+  ],
+  "poses": {
+   "A": {
+    "title": "T-pose",
+    "status": "SUPPORTED",
+    "review_class": "SUPPORTED",
+    "production_class": "SUPPORTED",
+    "note": "the drawn pose: original pixels, bit-exact",
+    "pending_approval": [],
+    "missing": [],
+    "wall_s": 0.2
+   },
+   "B": {
+    "title": "relaxed standing",
+    "review_class": "SUPPORTED_WITH_CORRECTIONS",
+    "production_class": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "pending_approval": [
+     "hand:relaxed (r)",
+     "hand:relaxed (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+     "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 27,
+    "hands_review": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "NEEDS_APPROVAL",
+    "wall_s": 7.6
+   },
+   "C": {
+    "title": "weight-shifted standing",
+    "review_class": "SUPPORTED_WITH_CORRECTIONS",
+    "production_class": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "pending_approval": [
+     "hand:relaxed (r)",
+     "hand:relaxed (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+     "corrections: hem_on_shoe_l, shoe_top_l, shoe_top_r"
+    ],
+    "silhouette_warnings": [],
+    "deformation_risk": 13,
+    "hands_review": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "NEEDS_APPROVAL",
+    "wall_s": 5.8
+   },
+   "D": {
+    "title": "right pointing",
+    "review_class": "SUPPORTED_WITH_CORRECTIONS",
+    "production_class": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "pending_approval": [
+     "hand:point (r)",
+     "hand:relaxed (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "pending review (previewed): hand:point (r); hand:relaxed (l)",
+     "corrections: armpit_gusset_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 28,
+    "hands_review": {
+     "r": "point",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "NEEDS_APPROVAL",
+    "wall_s": 6.2
+   },
+   "E": {
+    "title": "left pointing",
+    "review_class": "SUPPORTED_WITH_CORRECTIONS",
+    "production_class": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "pending_approval": [
+     "hand:relaxed (r)",
+     "hand:point (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "pending review (previewed): hand:relaxed (r); hand:point (l)",
+     "corrections: armpit_gusset_l, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'elbow_on_torso_contour', 'side': 'r', 'severity': 'low', 'message': 'r elbow sits on the torso outline (confusing contour)'}",
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 26,
+    "hands_review": {
+     "r": "relaxed",
+     "l": "point"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "NEEDS_APPROVAL",
+    "wall_s": 6.0
+   },
+   "F": {
+    "title": "subtle shrug",
+    "status": "SUPPORTED",
+    "review_class": "SUPPORTED",
+    "production_class": "SUPPORTED",
+    "note": "SHRUG_SUBTLE: original open palms (right open_palm / left open_palm)",
+    "pending_approval": [],
+    "missing": [],
+    "wall_s": 6.5
+   },
+   "G": {
+    "title": "expressive shrug",
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "review_class": "REVIEW_ONLY",
+    "production_class": "NEEDS_ARTWORK (palm_up)",
+    "note": "review: right cupped (PENDING) / left cupped (PENDING); production shows SHRUG_SUBTLE (right open_palm / left open_palm); library status NEEDS_ARTWORK",
+    "pending_approval": [
+     "cupped (both sides)"
+    ],
+    "missing": [
+     "palm_up open hand (both sides)"
+    ],
+    "substitution": [
+     {
+      "key": "k5",
+      "label": "shrug (expressive)",
+      "shown": "SHRUG_SUBTLE",
+      "reason": "NEEDS_ARTWORK: no approved palm-up hand drawing"
+     }
+    ],
+    "wall_s": 6.4
+   },
+   "H": {
+    "title": "hands on hips",
+    "review_class": "NEEDS_ARTWORK",
+    "production_class": "SUPPORTED",
+    "missing": [
+     "hand:relaxed"
+    ],
+    "pending_approval": [
+     "hand r: relaxed",
+     "hand l: relaxed"
+    ],
+    "note": "motion-preset feasibility (no artistic variant for this pose)",
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "wall_s": 4.7
+   },
+   "I": {
+    "title": "arm raised",
+    "review_class": "SUPPORTED_WITH_CORRECTIONS",
+    "production_class": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "pending_approval": [
+     "hand:relaxed (l)",
+     "hand l"
+    ],
+    "reasons": [
+     "pending review (previewed): hand:relaxed (l)",
+     "corrections: armpit_gusset_r, hem_on_shoe_l, shoe_top_l, shoe_top_r, shoulder_lift_collar_r, shoulder_raise_r"
+    ],
+    "silhouette_warnings": [],
+    "deformation_risk": 21,
+    "hands_review": {
+     "r": "open",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "NEEDS_APPROVAL",
+    "wall_s": 6.5
+   },
+   "J": {
+    "title": "elbow bent (deep)",
+    "review_class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "production_class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "missing": [
+     "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+     "hand:fist or thinking hand (approved)"
+    ],
+    "pending_approval": [
+     "hand:relaxed (l)",
+     "hand l"
+    ],
+    "reasons": [
+     "missing: corrective:elbow_deep_r (sleeve fold for > 125 deg); hand:fist or thinking hand (approved)",
+     "pending review (previewed): hand:relaxed (l)",
+     "corrections: elbow_deep_r, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, sleeve_crease_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 30,
+    "hands_review": {
+     "r": "open",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "wall_s": 5.8
+   },
+   "K": {
+    "title": "walking",
+    "review_class": "REQUIRES_NEW_VIEW",
+    "production_class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "missing": [
+     "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+    ],
+    "pending_approval": [
+     "hand:relaxed (r)",
+     "hand:relaxed (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+     "missing: side or 3/4 view for a readable stride (front view: in-plane motion only)",
+     "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+     "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 24,
+    "hands_review": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "wall_s": 6.6
+   },
+   "L": {
+    "title": "running",
+    "review_class": "REQUIRES_NEW_VIEW",
+    "production_class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "missing": [
+     "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+     "side or 3/4 view for a readable sprint"
+    ],
+    "pending_approval": [
+     "hand:fist (r)",
+     "hand:fist (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "the intended motion goes toward the viewer: needs SIDE_LEFT artwork (front view shows an in-plane approximation)",
+     "missing: art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer); side or 3/4 view for a readable sprint",
+     "pending review (previewed): hand:fist (r); hand:fist (l)",
+     "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, knee_fold_l, running_knee_drive, shoe_top_l, shoe_top_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'hand_inside_silhouette', 'side': 'r', 'severity': 'medium', 'message': 'r hand reads inside the body silhouette (19% of its outline on the edge)'}",
+     "{'code': 'hand_inside_silhouette', 'side': 'l', 'severity': 'high', 'message': 'l hand reads inside the body silhouette (0% of its outline on the edge)'}",
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 25,
+    "hands_review": {
+     "r": "fist",
+     "l": "fist"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "wall_s": 6.8
+   },
+   "M": {
+    "title": "sitting",
+    "review_class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "production_class": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "missing": [
+     "art:thigh_foreshortened",
+     "art:seat",
+     "corrective:trousers_seated"
+    ],
+    "pending_approval": [
+     "hand:palm_down (r)",
+     "hand:palm_down (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "missing: art:thigh_foreshortened; art:seat; corrective:trousers_seated",
+     "pending review (previewed): hand:palm_down (r); hand:palm_down (l)",
+     "corrections: hem_on_shoe_l, hem_on_shoe_r, hip_flexion_l, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, sitting_trousers, trouser_fold_l, trouser_fold_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 60,
+    "hands_review": {
+     "r": "palm_down",
+     "l": "palm_down"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "wall_s": 5.8
+   },
+   "N": {
+    "title": "squatting",
+    "review_class": "SUPPORTED_WITH_CORRECTIONS",
+    "production_class": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "pending_approval": [
+     "hand:palm_down (r)",
+     "hand:palm_down (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "pending review (previewed): hand:palm_down (r); hand:palm_down (l)",
+     "corrections: elbow_fold_l, elbow_fold_r, hem_on_shoe_l, hem_on_shoe_r, hip_flexion_l, hip_flexion_r, knee_deep_l, knee_deep_r, knee_fold_l, knee_fold_r, shoe_top_l, shoe_top_r, trouser_fold_l, trouser_fold_r"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 45,
+    "hands_review": {
+     "r": "palm_down",
+     "l": "palm_down"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "NEEDS_APPROVAL",
+    "wall_s": 6.4
+   },
+   "O": {
+    "title": "forward leaning",
+    "review_class": "REQUIRES_NEW_VIEW",
+    "production_class": "REQUIRES_NEW_VIEW",
+    "missing": [
+     "art:torso_lean_forward",
+     "corrective:torso_lean_3q"
+    ],
+    "pending_approval": [
+     "hand:relaxed (r)",
+     "hand:relaxed (l)",
+     "hand r",
+     "hand l"
+    ],
+    "reasons": [
+     "the intended motion goes toward the viewer: needs FRONT_THREE_QUARTER_LEFT artwork (front view shows an in-plane approximation)",
+     "missing: art:torso_lean_forward; corrective:torso_lean_3q",
+     "pending review (previewed): hand:relaxed (r); hand:relaxed (l)",
+     "corrections: hem_on_shoe_l, hem_on_shoe_r, shoe_top_l, shoe_top_r, torso_lean_sagittal"
+    ],
+    "silhouette_warnings": [
+     "{'code': 'hand_inside_silhouette', 'side': 'l', 'severity': 'medium', 'message': 'l hand reads inside the body silhouette (12% of its outline on the edge)'}",
+     "{'code': 'unclear_weight_leg', 'severity': 'low', 'message': 'even weight and a level pelvis: no weight-bearing leg reads'}",
+     "{'code': 'disconnected_outline', 'severity': 'high', 'message': 'silhouette has 2 separate pieces'}"
+    ],
+    "deformation_risk": 41,
+    "hands_review": {
+     "r": "relaxed",
+     "l": "relaxed"
+    },
+    "hands_production": {
+     "r": "open",
+     "l": "open"
+    },
+    "status": "REQUIRES_ALTERNATIVE_ARTWORK",
+    "wall_s": 5.6
+   }
+  },
+  "wall_s": 88.1
+ },
+ "garments": {
+  "images": [
+   "16_garment_corrections.png"
+  ],
+  "assets": [
+   {
+    "asset_id": "shoe_top_r",
+    "category": "shoes",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "elbow_cap_r",
+    "category": "elbows",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "knee_cap_r",
+    "category": "knees",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "armpit_gusset_r",
+    "category": "armpits",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "shoe_top_l",
+    "category": "shoes",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "elbow_cap_l",
+    "category": "elbows",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "knee_cap_l",
+    "category": "knees",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "armpit_gusset_l",
+    "category": "armpits",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "edge_decontamination",
+    "category": "edges",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "elbow_fold_r",
+    "category": "elbows",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "knee_fold_r",
+    "category": "knees",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "armpit_gusset_r",
+    "category": "armpits",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "elbow_fold_l",
+    "category": "elbows",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "knee_fold_l",
+    "category": "knees",
+    "provenance": "GEOMETRIC_CORRECTION"
+   },
+   {
+    "asset_id": "armpit_gusset_l",
+    "category": "armpits",
+    "provenance": "GEOMETRIC_CORRECTION"
+   }
+  ],
+  "cases": {
+   "relaxed_standing": {
+    "why": "feet: trouser cuff over the shoe (shoe-top extension)",
+    "correctives_drawn": [],
+    "gaps_off": 30,
+    "gaps_on": 27,
+    "chest_details": {
+     "lapels": {
+      "status": "WARNING",
+      "local_deviation_px": 1.332,
+      "residual_rms_px": 0.424
+     },
+     "tie": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "badge": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "shirt_collar": {
+      "status": "WARNING",
+      "local_deviation_px": 1.385,
+      "residual_rms_px": 0.516
+     }
+    }
+   },
+   "arm_raised": {
+    "why": "armpit / shoulder transition",
+    "correctives_drawn": [],
+    "gaps_off": 59,
+    "gaps_on": 21,
+    "chest_details": {
+     "lapels": {
+      "status": "NEEDS_ARTWORK",
+      "local_deviation_px": 3.363,
+      "residual_rms_px": 1.868
+     },
+     "tie": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "badge": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "shirt_collar": {
+      "status": "NEEDS_ARTWORK",
+      "local_deviation_px": 4.086,
+      "residual_rms_px": 1.34
+     }
+    }
+   },
+   "deep_elbow": {
+    "why": "deep elbow fold",
+    "correctives_drawn": [],
+    "gaps_off": 29,
+    "gaps_on": 28,
+    "chest_details": {
+     "lapels": {
+      "status": "WARNING",
+      "local_deviation_px": 1.257,
+      "residual_rms_px": 0.41
+     },
+     "tie": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "badge": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "shirt_collar": {
+      "status": "WARNING",
+      "local_deviation_px": 0.972,
+      "residual_rms_px": 0.438
+     }
+    }
+   },
+   "squat": {
+    "why": "knee bend",
+    "correctives_drawn": [],
+    "gaps_off": 82,
+    "gaps_on": 40,
+    "chest_details": {
+     "lapels": {
+      "status": "WARNING",
+      "local_deviation_px": 0.0,
+      "residual_rms_px": 0.084
+     },
+     "tie": {
+      "status": "PASS",
+      "residual_max_px": 0.0
+     },
+     "badge": {
+      "status": "WARNING",
+      "residual_max_px": 0.0
+     },
+     "shirt_collar": {
+      "status": "WARNING",
+      "local_deviation_px": 0.403,
+      "residual_rms_px": 0.156
+     }
+    }
+   }
+  },
+  "wall_s": 24.1
+ },
+ "reload": {
+  "images": [
+   "19_project_reload.png"
+  ],
+  "ops_applied": [
+   "bone.set",
+   "mask.edit",
+   "weights.paint",
+   "approval.set",
+   "approval.set",
+   "handstore.placement",
+   "handmeta.set",
+   "switch.set",
+   "correctives.mode",
+   "reference.select"
+  ],
+  "ops_refused": [],
+  "schema_version": 9,
+  "code_schema_version": 9,
+  "state_equal_after_reopen": true,
+  "render_identical_after_reopen": true,
+  "absolute_paths_in_project": [],
+  "files_present": {
+   "source": true,
+   "hand_store_index": true,
+   "corrective_index": true,
+   "hand_metadata": true,
+   "artwork_manifest": true
+  },
+  "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+  "hand_store_verify": [],
+  "saved_version": null,
+  "approvals_after_reopen": {
+   "handstore:tough_student_hands_v1/right_pointing@v1": "approved",
+   "handstore:tough_student_hands_v1/left_fist@v1": "rejected"
+  },
+  "hands_shown": {
+   "r": "pointing",
+   "l": "relaxed (pending)"
+  },
+  "note": "scratch copy only: the committed package's editor project has no edits and no approvals",
+  "wall_s": 31.2
+ },
+ "export": {
+  "images": [
+   "20_export_readiness.png"
+  ],
+  "export_dir": "projects/tough_student_test/moho_asset_package",
+  "overall": "NEEDS_REVIEW",
+  "production_ready": false,
+  "validate_errors": [],
+  "gates": [
+   {
+    "id": 1,
+    "check": "original source image preserved",
+    "level": "PASS",
+    "detail": "source/original.jpg sha256 matches the Phase 1 record"
+   },
+   {
+    "id": 2,
+    "check": "artwork layer dimensions",
+    "level": "PASS",
+    "detail": "all layers 1086x1448 (full canvas)"
+   },
+   {
+    "id": 3,
+    "check": "coordinate alignment",
+    "level": "PASS",
+    "detail": "layers full-canvas; vectors and bones in source px"
+   },
+   {
+    "id": 4,
+    "check": "no missing referenced assets",
+    "level": "PASS",
+    "detail": "60 files present"
+   },
+   {
+    "id": 5,
+    "check": "valid bone hierarchy",
+    "level": "PASS",
+    "detail": "19 bones, single root, no cycles, no zero-length bones"
+   },
+   {
+    "id": 6,
+    "check": "valid joint positions",
+    "level": "PASS",
+    "detail": "ok"
+   },
+   {
+    "id": 7,
+    "check": "valid layer bindings",
+    "level": "PASS",
+    "detail": "every visible layer is bound to an existing bone"
+   },
+   {
+    "id": 8,
+    "check": "no unexpected neutral-pose gaps",
+    "level": "PASS",
+    "detail": "neutral composite covers every character pixel"
+   },
+   {
+    "id": 9,
+    "check": "original artwork preservation verified",
+    "level": "PASS",
+    "detail": "originals hash-verified; neutral composite equals the source where covered"
+   },
+   {
+    "id": 10,
+    "check": "unresolved deformation defects reported",
+    "level": "NEEDS_REVIEW",
+    "detail": "open: ['both_hands_raised', 'casual_walk', 'conversational_gesture', 'hands_at_sides', 'hands_on_hips', 'head_tilt_compensated', 'leaning_backward', 'leaning_forward', 'natural_squat', 'one_hand_shrug', 'pointing_speaking', 'relaxed_standing', 'running', 'side_lean', 'sitting']"
+   },
+   {
+    "id": 11,
+    "check": "facial artwork completeness reported",
+    "level": "NEEDS_REVIEW",
+    "detail": "REQUIRES_NEW_ARTWORK: ['left_eye_blink', 'right_eye_blink', 'mouth_opening', 'mouth_narrowing', 'smile_frown', 'head_turn']"
+   },
+   {
+    "id": 12,
+    "check": "mandatory user approvals recorded",
+    "level": "NEEDS_REVIEW",
+    "detail": "32 pending, e.g. ['corrective:gusset__both_hands_raised__l', 'corrective:gusset__both_hands_raised__r', 'corrective:gusset__conversational_gesture__r', 'corrective:gusset__head_tilt_compensated__l', 'corrective:gusset__pointing_speaking__r', 'corrective:hand__palm_up']"
+   }
+  ],
+  "files": 62,
+  "wall_s": 15.9
+ }
+}

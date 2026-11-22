@@ -283,6 +283,11 @@ class ShoeTopRecovery:
             band = src[y_top + 2:y_top + 10, x, :3].astype(np.float32)
             bl = lum[y_top + 2:y_top + 10, x]
             fabric = band[(bl > 25) & (bl < 160)]
+            light = band[bl >= 160]
+            # Phase 3.8: the shoe's own dominant tone. A dark shoe (the schoolboy) keeps the dark rule; a light shoe
+            # (white trainers) was sampled from its laces and outline only and drawn dark grey under the hem
+            if len(light) > len(fabric):
+                fabric = light
             c = np.median(fabric, 0) if len(fabric) else np.array([35, 33, 36], np.float32)
             y0 = max(0, y_top - depth)
             hidden = trouser[y0:y_top, x]

@@ -1,0 +1,130 @@
+{
+  "package": "character_package",
+  "neutral_pose_exact": true,
+  "sequences": {
+    "squat_down": {
+      "values": [
+        0.0,
+        0.06,
+        0.12,
+        0.18,
+        0.24
+      ],
+      "max_planted_foot_drift_px": 0.0
+    },
+    "weight_shift": {
+      "values": [
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "max_planted_foot_drift_px": 0.0
+    }
+  },
+  "status_counts": {
+    "OK_PENDING_REVIEW": 4,
+    "NEEDS_REVIEW": 4,
+    "NEEDS_ARTWORK": 4
+  },
+  "presets": {
+    "relaxed_standing": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.85,
+      "defects": [
+        "342 unreviewed generated pixels visible"
+      ]
+    },
+    "hands_at_sides": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.85,
+      "defects": [
+        "319 unreviewed generated pixels visible"
+      ]
+    },
+    "pointing_speaking": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.57,
+      "defects": [
+        "170 unreviewed generated pixels visible",
+        "corrective artwork pending review: gusset__pointing_speaking__r"
+      ]
+    },
+    "one_hand_shrug": {
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.77,
+      "defects": [
+        "178 unreviewed generated pixels visible",
+        "corrective artwork pending review: hand__palm_up (for: hand_r: palm-up hand (the open hand faces the viewer))"
+      ]
+    },
+    "both_hands_raised": {
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.74,
+      "defects": [
+        "corrective artwork pending review: gusset__both_hands_raised__r",
+        "corrective artwork pending review: gusset__both_hands_raised__l"
+      ]
+    },
+    "arms_crossed": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.09,
+      "defects": [
+        "visible seam at elbow_l: 12 torn pixel pairs (10 on outlines)",
+        "visible seam at elbow_r: 11 torn pixel pairs (10 on outlines)",
+        "61 unreviewed generated pixels visible"
+      ]
+    },
+    "casual_walk": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.85,
+      "defects": [
+        "362 unreviewed generated pixels visible"
+      ]
+    },
+    "running": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.45,
+      "defects": [
+        "4 unreviewed generated pixels visible"
+      ]
+    },
+    "sitting": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.05,
+      "defects": [
+        "visible seam at hip_r: 23 torn pixel pairs (23 on outlines)",
+        "visible seam at hip_l: 23 torn pixel pairs (23 on outlines)",
+        "visible seam at knee_r: 15 torn pixel pairs (11 on outlines)",
+        "visible seam at knee_l: 12 torn pixel pairs (11 on outlines)",
+        "strong stretch: 7.9% of a layer stretched > 2.2x",
+        "17 unreviewed generated pixels visible"
+      ]
+    },
+    "natural_squat": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.85,
+      "defects": [
+        "9 unreviewed generated pixels visible"
+      ]
+    },
+    "head_tilt_compensated": {
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.77,
+      "defects": [
+        "301 unreviewed generated pixels visible",
+        "corrective artwork pending review: gusset__head_tilt_compensated__l"
+      ]
+    },
+    "conversational_gesture": {
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.77,
+      "defects": [
+        "192 unreviewed generated pixels visible",
+        "corrective artwork pending review: gusset__conversational_gesture__r"
+      ]
+    }
+  },
+  "duration_s": 72.0,
+  "evidence": "rendered by the standalone preview deformer; NOT Moho; nothing human-reviewed"
+}

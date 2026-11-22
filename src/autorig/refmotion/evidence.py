@@ -201,6 +201,20 @@ def reference_comparisons(eng, vis, pkg: Path, store: MotionReferenceStore, out:
     return res
 
 
+def _character_id(pkg: Path) -> str:
+    """The character's id from its Phase 1 project (Phase 3.8: the round trip of a new character is stored under its
+    own name). Projects made before character ids existed (id "character") keep the original name."""
+    import json  # noqa: PLC0415
+
+    try:
+        meta = json.loads((Path(pkg) / "metadata.json").read_text(encoding="utf-8"))
+        p1 = Path(pkg).parent / ((meta.get("phase1_project") or {}).get("path_name") or "character_project")
+        cid = json.loads((p1 / "metadata.json").read_text(encoding="utf-8")).get("character_id")
+    except (OSError, ValueError):
+        cid = None
+    return "schoolboy" if cid in (None, "", "character") else str(cid)
+
+
 def roundtrip(eng, vis, pkg: Path, store: MotionReferenceStore, out: Path, progress, quick: bool = False) -> dict[str, Any]:
     """AutoRig render of the schoolboy -> MP4 -> ffmpeg -> MediaPipe -> analysis -> retarget; compared with the
     known parameters."""
@@ -228,9 +242,11 @@ def roundtrip(eng, vis, pkg: Path, store: MotionReferenceStore, out: Path, progr
     sc = 720 / H
     small = [np.asarray(Image.fromarray(f).resize((int(W * sc) // 2 * 2, 720), Image.LANCZOS)) for f in frames]
     mp4 = encode_video(small, out / "roundtrip.mp4", fps)
-    meta = {"name": "schoolboy_roundtrip", "category": "gesture", "gesture": "pointing+shrug",
+    cid = _character_id(pkg)
+    rname = f"{cid}_roundtrip"
+    meta = {"name": rname, "category": "gesture", "gesture": "pointing+shrug",
             "hand_actions": {"r": "pointing"},
-            "provenance": {"kind": "autorig_render", "source": "AutoRig render of the user's schoolboy character "
+            "provenance": {"kind": "autorig_render", "source": f"AutoRig render of the user's {cid} character "
                            "(Phase 3.7 acting test, t 2.4-6.0 s)", "usage_permission": "the user's own character, "
                            "rendered by this project"}}
     t1 = time.perf_counter()
@@ -244,8 +260,8 @@ def roundtrip(eng, vis, pkg: Path, store: MotionReferenceStore, out: Path, progr
     t2 = time.perf_counter()
     an = ReferenceMotionAnalyzer().analyze(tr)
     t_an = time.perf_counter() - t2
-    if not store.versions("schoolboy_roundtrip"):
-        store.add("schoolboy_roundtrip", tr, {**meta, "quality": q}, an)
+    if not store.versions(rname):
+        store.add(rname, tr, {**meta, "quality": q}, an)
     # compare recovered changes with the known parameter changes (both relative to the first frame)
     ch = {k: np.asarray(v) for k, v in an["channels"].items()}
     n = min(len(truth), len(next(iter(ch.values()))))

@@ -1,0 +1,17 @@
+{
+ "steps": [
+  "1 view artwork: 27 layers",
+  "2 mask edit: 1866 px moved, neutral exact",
+  "3 pivot: 409.2,455.3 -> 418.55,452.18",
+  "4-5 weights: op stored; garment parts 41; crest -> badge (RIGID)",
+  "6 correctives: 13 assets, all pending",
+  "7 hands: right pointing approved (scratch copy), dx +1; left fist rejected",
+  "8 hand inspector: 18 metadata records",
+  "9-10 switch + pose preview",
+  "11-12 curve edit + playback + rendered frame",
+  "13 reference retarget: SUPPORTED · 12 keys · 2.80 sangle error rms: arm_r_abduction 2.076 · arm_r_flexi",
+  "14-16 save, restart, reopen: all edits persist; source unchanged",
+  "export: NEEDS_REVIEW, production_ready false"
+ ],
+ "export_overall": "NEEDS_REVIEW"
+}

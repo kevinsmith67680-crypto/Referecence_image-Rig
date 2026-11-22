@@ -1,0 +1,77 @@
+{
+ "asset": "corrective:raised_arm_armpit",
+ "why": "a lean raised-arm armpit (the stretched T-pose sleeve underside reads full)",
+ "layers_to_redraw": [
+  "torso",
+  "upper_arm_r"
+ ],
+ "bones": {
+  "chest": {
+   "posed_head": [
+    611.6,
+    516.6
+   ],
+   "rest_head": [
+    542.0,
+    524.6
+   ],
+   "posed_rotation_deg": 0.26
+  },
+  "upper_arm_r": {
+   "posed_head": [
+    489.6,
+    381.4
+   ],
+   "rest_head": [
+    407.1,
+    425.1
+   ],
+   "posed_rotation_deg": 40.91
+  }
+ },
+ "canvas": {
+  "width": 1086,
+  "height": 1448,
+  "crop": [
+   223,
+   21,
+   686,
+   752
+  ]
+ },
+ "style": {
+  "outline_rgb": [
+   9,
+   8,
+   9
+  ],
+  "outline_width_px": 2.0,
+  "fabric_rgb": [
+   30,
+   33,
+   48
+  ],
+  "rules": [
+   "same outline colour and width",
+   "same flat-with-soft-shade colouring",
+   "draw at the character's scale (never scaled later)",
+   "only the named region: no new full-character illustration"
+  ]
+ },
+ "alignment": {
+  "attach_bone": "chest",
+  "pivot": [
+   542.0,
+   524.6
+  ],
+  "draw_order": "same as the replaced layer"
+ },
+ "provider": "none (request a drawing)",
+ "candidates": 0,
+ "files": {
+  "reference": "corrective_raised_arm_armpit__reference.png",
+  "mask": "corrective_raised_arm_armpit__mask.png",
+  "target_pose": "corrective_raised_arm_armpit__target_pose.png"
+ },
+ "next": "import the drawing as an alternative (Artistic Review or AlternativeArtworkStore.add); it stays pending until approved"
+}

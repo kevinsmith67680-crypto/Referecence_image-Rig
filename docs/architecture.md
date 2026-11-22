@@ -395,3 +395,38 @@ See [phase3_6_expressive_animation_report.md](phase3_6_expressive_animation_repo
 - **Editor**: the Hand Inspector and Ref Motion tabs, `/api/hands/*`, `/api/reference*`, and the `reference.*` ops.
 
 See [phase3_7_completion_report.md](phase3_7_completion_report.md).
+
+## 21. Phase 3.8: a second character through the same pipeline
+
+Phase 3.8 added no new pipeline stage. It ran the existing stages on a new character (`tough_student_test`) and fixed
+the places where they assumed the schoolboy:
+
+- **Phase 1** (`phase1/compositor.py`, `project.py`):
+  - `border_paper` (paper connected to the border is background; enclosed white clothing is character);
+  - `remove_border_paper`;
+  - the 2 px fringe measured against the spatial mask;
+  - the opt-in `complete_outline` (`analyze --complete-outline PX`).
+- **Hand sheets** (`handsheet.py`):
+  - `sheet_polarity`;
+  - the dark-sheet path `background_dark` / `unmatte_dark`: the outline band grows geodesically from the coloured
+    pixels, never through the rim and never wider than the measured outline;
+  - the white path is unchanged.
+- **Hand store** (`handstore.cuff_cover`): generated pixels never set the cuff edge and are removed beyond it.
+- **Correctives**: `ShoeTopRecovery` samples the shoe's dominant tone.
+- **Garment rig**: `structure._decor` has the outline-emblem badge rule.
+- **Evidence and metadata naming**:
+  - `ik_demo` uses the active fist layer;
+  - `refmotion.evidence` names the round trip by character id;
+  - `ViewAwareRigController` cites only the character's own sheet.
+- **New modules:**
+  - `newchar.py`: the import report, with a genuine-transparency check, and the background-extraction QA on four
+    backgrounds;
+  - `newchar_evidence.py`: the numbered evidence and the HandCompatibilityReport;
+  - `editor/e2e/newchar.e2e.mjs`.
+
+Documented, not fixed:
+- the garment colour palette and part vocabulary;
+- absolute pixel thresholds.
+
+See [phase3_8_generalisation_report.md](phase3_8_generalisation_report.md) and
+[phase3_8_new_character_report.md](phase3_8_new_character_report.md).

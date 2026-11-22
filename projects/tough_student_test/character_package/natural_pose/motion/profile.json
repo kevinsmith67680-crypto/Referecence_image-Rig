@@ -1,0 +1,147 @@
+{
+ "view": "front",
+ "midline_x": 543.715,
+ "ground_y": 1390.0,
+ "hip_sep": 126.00000000000006,
+ "thigh": {
+  "r": 252.11118578912766,
+  "l": 248.78283702860216
+ },
+ "shin": {
+  "r": 252.1543178293801,
+  "l": 248.7255917673129
+ },
+ "upper_arm": {
+  "r": 134.74150251500092,
+  "l": 132.9021162359727
+ },
+ "forearm": {
+  "r": 122.30102207258939,
+  "l": 120.33029543718402
+ },
+ "shoe": {
+  "r": {
+   "medial": 73.60000000000002,
+   "lateral": 113.39999999999998,
+   "width": 187.0,
+   "sole_drop": 132.0999999999999
+  },
+  "l": {
+   "medial": 69.5,
+   "lateral": 117.5,
+   "width": 187.0,
+   "sole_drop": 131.5
+  }
+ },
+ "track_min": 149.10000000000002,
+ "stance_natural": 199.50000000000006,
+ "track_run": 180.60000000000002,
+ "track_walk": 186.90000000000003,
+ "ankle_y": {
+  "r": 1257.9,
+  "l": 1258.5
+ },
+ "hip_y": 774.1,
+ "waist_y": 711.7,
+ "waist_half": 144.0,
+ "hand_len": {
+  "r": 66.59737232053529,
+  "l": 67.19598202273714
+ },
+ "shoulder": {
+  "r": [
+   407.14957395444765,
+   425.11957168906116
+  ],
+  "l": [
+   680.4659105324207,
+   427.5097803740673
+  ]
+ },
+ "front_knee": {
+  "stance": 10.0,
+  "swing": 18.0,
+  "swing_max": 28.0,
+  "walk_swing": 12.0,
+  "squat": 75.0
+ },
+ "limits": {
+  "pelvis": {
+   "tilt": [
+    -14,
+    14
+   ]
+  },
+  "spine": {
+   "bend": [
+    -18,
+    18
+   ]
+  },
+  "chest": {
+   "bend": [
+    -14,
+    14
+   ]
+  },
+  "neck": {
+   "bend": [
+    -20,
+    20
+   ]
+  },
+  "head": {
+   "bend": [
+    -28,
+    28
+   ]
+  },
+  "clavicle": {
+   "elevation": [
+    -10,
+    32
+   ]
+  },
+  "upper_arm": {
+   "abduction": [
+    -40,
+    178
+   ]
+  },
+  "forearm": {
+   "flexion": [
+    -150,
+    150
+   ]
+  },
+  "hand": {
+   "bend": [
+    -60,
+    60
+   ]
+  },
+  "thigh": {
+   "abduction": [
+    -25,
+    75
+   ]
+  },
+  "shin": {
+   "flexion": [
+    0,
+    140
+   ],
+   "valgus_max": 8
+  },
+  "foot": {
+   "bend": [
+    -60,
+    60
+   ]
+  }
+ },
+ "notes": [
+  "track_min = medial shoe extents (74 + 70) + 6 px gap: narrower ankle spacing makes the shoes overlap (legs read as crossing)"
+ ],
+ "units": "source px; angles deg (image space, + = clockwise on screen)"
+}

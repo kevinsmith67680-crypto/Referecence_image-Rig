@@ -1,0 +1,112 @@
+{
+ "character": {
+  "schema": "autorig.image_import_report",
+  "schema_version": 1,
+  "role": "character",
+  "file": "tpose_front.jpg",
+  "sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+  "bytes": 248086,
+  "format": "JPEG",
+  "mode": "RGB",
+  "width": 1086,
+  "height": 1448,
+  "jpeg": {
+   "progressive": false,
+   "lossy": true
+  },
+  "alpha": {
+   "has_alpha_band": false,
+   "genuine_transparency": false,
+   "transparent_px": 0,
+   "partial_px": 0,
+   "note": "nominal RGBA is not treated as transparent unless some alpha < 255"
+  },
+  "background": {
+   "border_median_rgb": [
+    253,
+    251,
+    252
+   ],
+   "border_luminance": 251.7,
+   "polarity": "light",
+   "border_max_deviation_p95": 2,
+   "uniform": true,
+   "opaque": true,
+   "border_connected_background_px": 1143287,
+   "background_ratio": 0.727,
+   "rule": "pixels within 24 of the border median and connected to the border"
+  },
+  "content_bbox_xyxy": [
+   9,
+   19,
+   1077,
+   1391
+  ],
+  "content_px": 429241,
+  "scaling": {
+   "applied": false,
+   "rule": "assets keep the source's pixel size (no resampling)"
+  },
+  "coordinate_system": {
+   "origin": "top-left",
+   "x": "right",
+   "y": "down",
+   "units": "source pixels"
+  }
+ },
+ "hand_sheet": {
+  "schema": "autorig.image_import_report",
+  "schema_version": 1,
+  "role": "hand_sheet",
+  "file": "hand_grid_black.jpg",
+  "sha256": "47c59800a641a86e3c54ddd8355b16082d2471e7369af17984835896e6663b88",
+  "bytes": 288357,
+  "format": "JPEG",
+  "mode": "RGB",
+  "width": 1254,
+  "height": 1254,
+  "jpeg": {
+   "progressive": false,
+   "lossy": true
+  },
+  "alpha": {
+   "has_alpha_band": false,
+   "genuine_transparency": false,
+   "transparent_px": 0,
+   "partial_px": 0,
+   "note": "nominal RGBA is not treated as transparent unless some alpha < 255"
+  },
+  "background": {
+   "border_median_rgb": [
+    0,
+    0,
+    0
+   ],
+   "border_luminance": 0.0,
+   "polarity": "dark",
+   "border_max_deviation_p95": 1,
+   "uniform": true,
+   "opaque": true,
+   "border_connected_background_px": 1160787,
+   "background_ratio": 0.7382,
+   "rule": "pixels within 24 of the border median and connected to the border"
+  },
+  "content_bbox_xyxy": [
+   60,
+   52,
+   1207,
+   1204
+  ],
+  "content_px": 411729,
+  "scaling": {
+   "applied": false,
+   "rule": "assets keep the source's pixel size (no resampling)"
+  },
+  "coordinate_system": {
+   "origin": "top-left",
+   "x": "right",
+   "y": "down",
+   "units": "source pixels"
+  }
+ }
+}

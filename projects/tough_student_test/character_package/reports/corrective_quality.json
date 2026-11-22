@@ -1,0 +1,3273 @@
+{
+ "schema": "autorig.corrective_quality",
+ "version": "1.0.0",
+ "thresholds": {
+  "protected_violation_px": [
+   0,
+   "original (non-patch) pixels a corrective changed: must be 0"
+  ],
+  "exposed_gap_points": [
+   10.0,
+   "Phase 3.1 exposed_gap_pairs threshold, unchanged"
+  ],
+  "visible_seam_points": [
+   15.0,
+   "Phase 3.1 visible_seam_pairs threshold, unchanged"
+  ],
+  "clipped_open_px": [
+   150,
+   "stretch-clipped joint-patch pixels still open (a visible conflict)"
+  ],
+  "pop_weight_jump": [
+   0.5,
+   "a drawn asset's activation weight changing by more than 0.5 between adjacent sweep frames (about 10 deg apart or less) = pop; gap fills follow the gap and are excluded"
+  ],
+  "light_speck_increase": [
+   0,
+   "decontamination must not add light specks"
+  ]
+ },
+ "assets": [
+  {
+   "asset_id": "shoe_top_r",
+   "version": 1,
+   "category": "shoes",
+   "method": "ShoeTopRecovery",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:shoe_top_r@v1",
+   "activation": {
+    "kind": "always"
+   },
+   "params": {
+    "depth_px": 57,
+    "columns": 131,
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     7,
+     6,
+     6
+    ]
+   }
+  },
+  {
+   "asset_id": "elbow_cap_r",
+   "version": 1,
+   "category": "elbows",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:elbow_cap_r@v1",
+   "activation": {
+    "kind": "ramp",
+    "driver": "elbow_r",
+    "lo": 50.0,
+    "hi": 90.0
+   },
+   "params": {
+    "radius_px": 47.5,
+    "centre": [
+     278.2,
+     464.2
+    ],
+    "fill_rgb": [
+     29,
+     33,
+     47
+    ],
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     7,
+     6,
+     7
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   }
+  },
+  {
+   "asset_id": "knee_cap_r",
+   "version": 1,
+   "category": "knees",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:knee_cap_r@v1",
+   "activation": {
+    "kind": "ramp",
+    "driver": "knee_r",
+    "lo": 20.0,
+    "hi": 60.0
+   },
+   "params": {
+    "radius_px": 68.0,
+    "centre": [
+     415.0,
+     1014.7
+    ],
+    "fill_rgb": [
+     50,
+     45,
+     45
+    ],
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     5,
+     4,
+     4
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   }
+  },
+  {
+   "asset_id": "armpit_gusset_r",
+   "version": 1,
+   "category": "armpits",
+   "method": "ArmpitCorrectionGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:armpit_gusset_r@v1",
+   "activation": {
+    "kind": "ramp",
+    "driver": "abduction_r",
+    "lo": 80.0,
+    "hi": 95.0
+   },
+   "params": {
+    "fill_rgb": [
+     29,
+     33,
+     47
+    ],
+    "outline_rgb": [
+     9,
+     8,
+     9
+    ],
+    "outline_width_px": 2.0,
+    "shade_min": 0.72,
+    "max_bulge": 0.45,
+    "parts": [
+     "sleeve_upper_r",
+     "sleeve_cap_r"
+    ],
+    "anchor_bone": "upper_arm_r",
+    "radius_h": 4.0,
+    "procedural": true,
+    "keys_deg": [
+     115.0,
+     130.0,
+     145.0,
+     160.0,
+     175.0
+    ]
+   }
+  },
+  {
+   "asset_id": "shoe_top_l",
+   "version": 1,
+   "category": "shoes",
+   "method": "ShoeTopRecovery",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:shoe_top_l@v1",
+   "activation": {
+    "kind": "always"
+   },
+   "params": {
+    "depth_px": 57,
+    "columns": 129,
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     7,
+     6,
+     6
+    ]
+   }
+  },
+  {
+   "asset_id": "elbow_cap_l",
+   "version": 1,
+   "category": "elbows",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:elbow_cap_l@v1",
+   "activation": {
+    "kind": "ramp",
+    "driver": "elbow_l",
+    "lo": 50.0,
+    "hi": 90.0
+   },
+   "params": {
+    "radius_px": 47.5,
+    "centre": [
+     808.0,
+     464.9
+    ],
+    "fill_rgb": [
+     29,
+     33,
+     48
+    ],
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     6,
+     6,
+     7
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   }
+  },
+  {
+   "asset_id": "knee_cap_l",
+   "version": 1,
+   "category": "knees",
+   "method": "JointCapGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:knee_cap_l@v1",
+   "activation": {
+    "kind": "ramp",
+    "driver": "knee_l",
+    "lo": 20.0,
+    "hi": 60.0
+   },
+   "params": {
+    "radius_px": 68.0,
+    "centre": [
+     669.6,
+     1017.6
+    ],
+    "fill_rgb": [
+     50,
+     45,
+     45
+    ],
+    "outline_width_px": 2.0,
+    "outline_rgb": [
+     4,
+     4,
+     4
+    ],
+    "render_style": "diffused_fill_bg_outline"
+   }
+  },
+  {
+   "asset_id": "armpit_gusset_l",
+   "version": 1,
+   "category": "armpits",
+   "method": "ArmpitCorrectionGenerator",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:armpit_gusset_l@v1",
+   "activation": {
+    "kind": "ramp",
+    "driver": "abduction_l",
+    "lo": 80.0,
+    "hi": 95.0
+   },
+   "params": {
+    "fill_rgb": [
+     29,
+     32,
+     47
+    ],
+    "outline_rgb": [
+     9,
+     9,
+     10
+    ],
+    "outline_width_px": 2.0,
+    "shade_min": 0.72,
+    "max_bulge": 0.45,
+    "parts": [
+     "sleeve_upper_l",
+     "sleeve_cap_l"
+    ],
+    "anchor_bone": "upper_arm_l",
+    "radius_h": 4.0,
+    "procedural": true,
+    "keys_deg": [
+     115.0,
+     130.0,
+     145.0,
+     160.0,
+     175.0
+    ]
+   }
+  },
+  {
+   "asset_id": "edge_decontamination",
+   "version": 1,
+   "category": "edges",
+   "method": "EdgeDecontamination",
+   "provenance": "GEOMETRIC_CORRECTION",
+   "state": "pending_review",
+   "approval_key": "corrective:edge_decontamination@v1",
+   "activation": {
+    "kind": "always"
+   },
+   "params": {
+    "changed_px": 9359,
+    "skipped_over_other_layer_px": 612,
+    "background_rgb": [
+     249,
+     249,
+     249
+    ],
+    "width": 2,
+    "strength": 1.0
+   }
+  }
+ ],
+ "results": {
+  "poses": {
+   "neutral": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       24,
+       24
+      ],
+      "clipped_open_px": [
+       29,
+       29
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 23,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       10,
+       10
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2325,
+       490
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "blazer_shoulder_r": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 5,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "neutral standing",
+    "wall_s": 8.27,
+    "timing_ms": {
+     "off": 1966.1,
+     "on_with_eval": 2480.0,
+     "on_display": 3406.8
+    }
+   },
+   "arm45": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       25,
+       24
+      ],
+      "clipped_open_px": [
+       46,
+       46
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 27,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       11,
+       11
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2690,
+       543
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 7,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "right arm 45 deg",
+    "wall_s": 7.36,
+    "timing_ms": {
+     "off": 2220.3,
+     "on_with_eval": 2606.2,
+     "on_display": 2112.9
+    }
+   },
+   "arm90": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       27,
+       25
+      ],
+      "clipped_open_px": [
+       40,
+       40
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 24,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       10,
+       10
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2463,
+       538
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_shin_r": "FAIL",
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "blazer_shoulder_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "armpit_gusset_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:armpit_gusset_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 15,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "armpit_gusset_r",
+      "weight": 0.7407407407407407,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 90.0
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "right arm 90 deg",
+    "wall_s": 6.86,
+    "timing_ms": {
+     "off": 2052.0,
+     "on_with_eval": 2391.6,
+     "on_display": 2016.8
+    }
+   },
+   "arm120": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       50,
+       24
+      ],
+      "clipped_open_px": [
+       1563,
+       51
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 22,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       11,
+       11
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2752,
+       550
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "blazer_shoulder_r": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "armpit_gusset_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:armpit_gusset_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 1528,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "armpit_gusset_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 120.0
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "right arm 120 deg",
+    "wall_s": 7.26,
+    "timing_ms": {
+     "off": 2043.9,
+     "on_with_eval": 2567.8,
+     "on_display": 2217.4
+    }
+   },
+   "both_raised": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       89,
+       24
+      ],
+      "clipped_open_px": [
+       8219,
+       35
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 22,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       0,
+       0
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2532,
+       567
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "blazer_shoulder_r": "NEEDS_ARTWORK",
+       "blazer_shoulder_l": "NEEDS_ARTWORK",
+       "shirt_collar": "NEEDS_ARTWORK",
+       "lapels": "NEEDS_ARTWORK"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "armpit_gusset_r",
+       "shoe_top_l",
+       "armpit_gusset_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:armpit_gusset_r@v1",
+       "corrective:shoe_top_l@v1",
+       "corrective:armpit_gusset_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 9181,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "armpit_gusset_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 158.0
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "armpit_gusset_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 158.0
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "both arms raised",
+    "wall_s": 7.88,
+    "timing_ms": {
+     "off": 2286.9,
+     "on_with_eval": 2701.9,
+     "on_display": 2449.9
+    }
+   },
+   "elbow45": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       24,
+       24
+      ],
+      "clipped_open_px": [
+       26,
+       26
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 25,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       10,
+       10
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2341,
+       499
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "blazer_shoulder_r": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 6,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "elbow 45 deg",
+    "wall_s": 6.92,
+    "timing_ms": {
+     "off": 1920.9,
+     "on_with_eval": 2473.6,
+     "on_display": 2067.7
+    }
+   },
+   "elbow95": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       25,
+       24
+      ],
+      "clipped_open_px": [
+       571,
+       81
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 490,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 27,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       11,
+       11
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2715,
+       494
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "blazer_shoulder_r": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "elbow_cap_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:elbow_cap_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 2047,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "elbow_cap_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 95.0
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "elbow 95 deg",
+    "wall_s": 7.69,
+    "timing_ms": {
+     "off": 2201.3,
+     "on_with_eval": 2768.1,
+     "on_display": 2259.9
+    }
+   },
+   "elbow135": {
+    "status": "NEEDS_ARTWORK",
+    "review_required": true,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing": [
+     "corrective:elbow_deep_r"
+    ],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       25,
+       24
+      ],
+      "clipped_open_px": [
+       1014,
+       69
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 194,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 26,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       11,
+       11
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2751,
+       495
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "blazer_shoulder_r": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "elbow_r": "NEEDS_ARTWORK",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "elbow_cap_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:elbow_cap_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 2803,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "elbow_cap_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 135.0
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "elbow 135 deg (deep)",
+    "wall_s": 7.38,
+    "timing_ms": {
+     "off": 2173.4,
+     "on_with_eval": 2716.4,
+     "on_display": 2120.3
+    }
+   },
+   "pointing": {
+    "status": "NEEDS_ARTWORK",
+    "review_required": true,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing": [
+     "hand:point"
+    ],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       41,
+       22
+      ],
+      "clipped_open_px": [
+       926,
+       80
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 23,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       11,
+       11
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2686,
+       525
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_shin_r": "FAIL",
+       "trouser_cuff_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "blazer_shoulder_r": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "shirt_collar": "FAIL",
+       "lapels": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "armpit_gusset_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:armpit_gusset_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 824,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "armpit_gusset_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 109.7
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "pointing",
+    "wall_s": 9.16,
+    "timing_ms": {
+     "off": 2510.2,
+     "on_with_eval": 3348.4,
+     "on_display": 2927.5
+    }
+   },
+   "walk": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       24,
+       21
+      ],
+      "clipped_open_px": [
+       35,
+       35
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 22,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       14,
+       14
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2515,
+       483
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "trouser_shin_l": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 21,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "walking (phase 0.25)",
+    "wall_s": 9.89,
+    "timing_ms": {
+     "off": 2945.6,
+     "on_with_eval": 3423.1,
+     "on_display": 3104.2
+    }
+   },
+   "run": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       27,
+       24
+      ],
+      "clipped_open_px": [
+       51,
+       51
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 25,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       14,
+       14
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2587,
+       487
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 18,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "running (phase 0.25)",
+    "wall_s": 10.14,
+    "timing_ms": {
+     "off": 2872.9,
+     "on_with_eval": 3470.8,
+     "on_display": 3324.2
+    }
+   },
+   "sit": {
+    "status": "NEEDS_ARTWORK",
+    "review_required": true,
+    "feasibility": "NEEDS_ARTWORK",
+    "missing": [
+     "art:thigh_foreshortened",
+     "art:seat",
+     "corrective:trousers_seated"
+    ],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       157,
+       36
+      ],
+      "clipped_open_px": [
+       1503,
+       192
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 5420,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 39,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       28,
+       28
+      ],
+      "pass": false
+     },
+     "D_fringe": {
+      "light_specks": [
+       2496,
+       524
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_shin_r": "FAIL",
+       "trouser_thigh_r": "NEEDS_ARTWORK",
+       "knee_r": "NEEDS_ARTWORK",
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "trouser_hip_r": "NEEDS_ARTWORK",
+       "blazer_hem": "NEEDS_ARTWORK",
+       "trouser_shin_l": "FAIL",
+       "trouser_thigh_l": "NEEDS_ARTWORK",
+       "knee_l": "NEEDS_ARTWORK",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "trouser_hip_l": "NEEDS_ARTWORK",
+       "shirt_cuff_r": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "knee_cap_r",
+       "shoe_top_l",
+       "knee_cap_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:knee_cap_r@v1",
+       "corrective:shoe_top_l@v1",
+       "corrective:knee_cap_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 21149,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "knee_cap_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 89.14
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "knee_cap_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 90.0
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "sitting",
+    "wall_s": 9.09,
+    "timing_ms": {
+     "off": 2581.5,
+     "on_with_eval": 3239.8,
+     "on_display": 2771.5
+    }
+   },
+   "squat": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       82,
+       35
+      ],
+      "clipped_open_px": [
+       238,
+       191
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 6858,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 44,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       21,
+       21
+      ],
+      "pass": false
+     },
+     "D_fringe": {
+      "light_specks": [
+       2226,
+       461
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_shin_r": "FAIL",
+       "knee_r": "NEEDS_ARTWORK",
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "trouser_hip_r": "NEEDS_ARTWORK",
+       "knee_l": "NEEDS_ARTWORK",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "trouser_hip_l": "NEEDS_ARTWORK",
+       "shirt_cuff_r": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "elbow_cap_r",
+       "knee_cap_r",
+       "shoe_top_l",
+       "elbow_cap_l",
+       "knee_cap_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:elbow_cap_r@v1",
+       "corrective:knee_cap_r@v1",
+       "corrective:shoe_top_l@v1",
+       "corrective:elbow_cap_l@v1",
+       "corrective:knee_cap_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 21155,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "elbow_cap_r",
+      "weight": 0.216,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 62.0
+     },
+     {
+      "asset_id": "knee_cap_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 72.93
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "elbow_cap_l",
+      "weight": 0.216,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 62.0
+     },
+     {
+      "asset_id": "knee_cap_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": 73.36
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "squatting",
+    "wall_s": 8.87,
+    "timing_ms": {
+     "off": 2543.7,
+     "on_with_eval": 3107.6,
+     "on_display": 2849.1
+    }
+   },
+   "lean": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       67,
+       65
+      ],
+      "clipped_open_px": [
+       34,
+       34
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 24,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       3,
+       3
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2675,
+       488
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "neck": "FAIL",
+       "blazer_body": "FAIL",
+       "shirt_collar": "FAIL",
+       "lapels": "FAIL",
+       "head": "FAIL",
+       "sleeve_upper_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 14,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "torso side lean",
+    "wall_s": 9.17,
+    "timing_ms": {
+     "off": 2470.0,
+     "on_with_eval": 3313.8,
+     "on_display": 2932.4
+    }
+   },
+   "head_tilt": {
+    "status": "WARNING",
+    "review_required": true,
+    "feasibility": "SUPPORTED",
+    "missing": [],
+    "checks": {
+     "A_gaps": {
+      "exposed_gap_points": [
+       39,
+       38
+      ],
+      "clipped_open_px": [
+       21,
+       21
+      ],
+      "pass": false
+     },
+     "B_leakage": {
+      "protected_violation_px": 0,
+      "joint_patch_covered_px": 0,
+      "fold_overlay_px": 0,
+      "prevented_overlap_px": 24,
+      "pass": true
+     },
+     "C_seams": {
+      "visible_seam_points": [
+       10,
+       10
+      ],
+      "pass": true
+     },
+     "D_fringe": {
+      "light_specks": [
+       2663,
+       556
+      ],
+      "pass": true
+     },
+     "E_mesh": {
+      "parts_fail_or_needs_artwork": {
+       "trouser_cuff_r": "NEEDS_ARTWORK",
+       "shoe_r": "FAIL",
+       "trouser_cuff_l": "NEEDS_ARTWORK",
+       "shoe_l": "FAIL",
+       "neck": "FAIL",
+       "blazer_shoulder_l": "FAIL",
+       "shirt_collar": "FAIL",
+       "lapels": "FAIL",
+       "head": "FAIL",
+       "hand_l": "FAIL",
+       "shirt_cuff_l": "FAIL"
+      },
+      "pass": false
+     },
+     "G_review": {
+      "shown_correctives": [
+       "shoe_top_r",
+       "shoe_top_l"
+      ],
+      "pending_review": [
+       "corrective:shoe_top_r@v1",
+       "corrective:shoe_top_l@v1"
+      ],
+      "pass": false
+     }
+    },
+    "corrective_px": 11,
+    "activation": [
+     {
+      "asset_id": "shoe_top_r",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     },
+     {
+      "asset_id": "shoe_top_l",
+      "weight": 1.0,
+      "keys": [],
+      "flags": [],
+      "status": "pending_review",
+      "driver_value": null
+     }
+    ],
+    "note": "automatic grade only; visual quality needs a person (PASS is not a production approval)",
+    "title": "head tilt with collar",
+    "wall_s": 10.5,
+    "timing_ms": {
+     "off": 2895.4,
+     "on_with_eval": 3478.6,
+     "on_display": 3381.3
+    }
+   }
+  },
+  "sweeps": {
+   "armpit_sweep": [
+    {
+     "label": "0",
+     "gaps": [
+      24,
+      24
+     ],
+     "clipped_open_px": [
+      29,
+      29
+     ],
+     "corrective_px": 6,
+     "active": [
+      "shoe_top_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "30",
+     "gaps": [
+      25,
+      25
+     ],
+     "clipped_open_px": [
+      54,
+      54
+     ],
+     "corrective_px": 3,
+     "active": [
+      "shoe_top_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "45",
+     "gaps": [
+      25,
+      24
+     ],
+     "clipped_open_px": [
+      46,
+      46
+     ],
+     "corrective_px": 7,
+     "active": [
+      "shoe_top_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "60",
+     "gaps": [
+      25,
+      24
+     ],
+     "clipped_open_px": [
+      32,
+      32
+     ],
+     "corrective_px": 11,
+     "active": [
+      "shoe_top_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "90",
+     "gaps": [
+      27,
+      25
+     ],
+     "clipped_open_px": [
+      40,
+      40
+     ],
+     "corrective_px": 15,
+     "active": [
+      "shoe_top_r",
+      "armpit_gusset_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "120",
+     "gaps": [
+      50,
+      24
+     ],
+     "clipped_open_px": [
+      1563,
+      51
+     ],
+     "corrective_px": 1528,
+     "active": [
+      "shoe_top_r",
+      "armpit_gusset_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "135",
+     "gaps": [
+      55,
+      24
+     ],
+     "clipped_open_px": [
+      2716,
+      43
+     ],
+     "corrective_px": 2686,
+     "active": [
+      "shoe_top_r",
+      "armpit_gusset_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "150",
+     "gaps": [
+      58,
+      24
+     ],
+     "clipped_open_px": [
+      3860,
+      32
+     ],
+     "corrective_px": 3934,
+     "active": [
+      "shoe_top_r",
+      "armpit_gusset_r",
+      "shoe_top_l"
+     ]
+    }
+   ],
+   "elbow_sweep": [
+    {
+     "label": "0",
+     "gaps": [
+      24,
+      24
+     ],
+     "clipped_open_px": [
+      44,
+      44
+     ],
+     "corrective_px": 4,
+     "active": [
+      "shoe_top_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "45",
+     "gaps": [
+      24,
+      24
+     ],
+     "clipped_open_px": [
+      26,
+      26
+     ],
+     "corrective_px": 6,
+     "active": [
+      "shoe_top_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "90",
+     "gaps": [
+      25,
+      24
+     ],
+     "clipped_open_px": [
+      469,
+      84
+     ],
+     "corrective_px": 1937,
+     "active": [
+      "shoe_top_r",
+      "elbow_cap_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "95",
+     "gaps": [
+      25,
+      24
+     ],
+     "clipped_open_px": [
+      571,
+      81
+     ],
+     "corrective_px": 2047,
+     "active": [
+      "shoe_top_r",
+      "elbow_cap_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "120",
+     "gaps": [
+      25,
+      24
+     ],
+     "clipped_open_px": [
+      958,
+      79
+     ],
+     "corrective_px": 2516,
+     "active": [
+      "shoe_top_r",
+      "elbow_cap_r",
+      "shoe_top_l"
+     ]
+    },
+    {
+     "label": "135",
+     "gaps": [
+      25,
+      24
+     ],
+     "clipped_open_px": [
+      1014,
+      69
+     ],
+     "corrective_px": 2803,
+     "active": [
+      "shoe_top_r",
+      "elbow_cap_r",
+      "shoe_top_l"
+     ]
+    }
+   ]
+  },
+  "sequences": {
+   "arm_raise_elbow": {
+    "title": "arm raise + elbow flexion",
+    "frames": [
+     {
+      "frame": 0,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 51,
+      "corrective_px": 4,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": []
+     },
+     {
+      "frame": 1,
+      "gaps": 25,
+      "seams": 11,
+      "clipped_open_px": 50,
+      "corrective_px": 3,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -1
+     },
+     {
+      "frame": 2,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 47,
+      "corrective_px": 3,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 3,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 48,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 2
+     },
+     {
+      "frame": 4,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 32,
+      "corrective_px": 9,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 4
+     },
+     {
+      "frame": 5,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 27,
+      "corrective_px": 11,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 2
+     },
+     {
+      "frame": 6,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 38,
+      "corrective_px": 12,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 0.011,
+       "armpit_gusset_r": 0.259,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1
+     },
+     {
+      "frame": 7,
+      "gaps": 25,
+      "seams": 9,
+      "clipped_open_px": 61,
+      "corrective_px": 12,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 0.168,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 8,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 85,
+      "corrective_px": 601,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 0.438,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 589
+     },
+     {
+      "frame": 9,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 66,
+      "corrective_px": 2996,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 0.727,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 2395
+     },
+     {
+      "frame": 10,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 92,
+      "corrective_px": 3980,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 0.942,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 984
+     },
+     {
+      "frame": 11,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 82,
+      "corrective_px": 4993,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 1.0,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1013
+     },
+     {
+      "frame": 12,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 80,
+      "corrective_px": 6073,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "elbow_cap_r": 1.0,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1080
+     }
+    ],
+    "pops": [],
+    "median_abs_change_px": 3.0,
+    "popping": "PASS"
+   },
+   "arm_raise_lean": {
+    "title": "arm raise + torso lean",
+    "frames": [
+     {
+      "frame": 0,
+      "gaps": 65,
+      "seams": 3,
+      "clipped_open_px": 41,
+      "corrective_px": 13,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": []
+     },
+     {
+      "frame": 1,
+      "gaps": 64,
+      "seams": 3,
+      "clipped_open_px": 38,
+      "corrective_px": 8,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -5
+     },
+     {
+      "frame": 2,
+      "gaps": 65,
+      "seams": 2,
+      "clipped_open_px": 35,
+      "corrective_px": 4,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -4
+     },
+     {
+      "frame": 3,
+      "gaps": 66,
+      "seams": 3,
+      "clipped_open_px": 36,
+      "corrective_px": 4,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 4,
+      "gaps": 65,
+      "seams": 3,
+      "clipped_open_px": 114,
+      "corrective_px": 3,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "armpit_gusset_r": 0.259,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": -1
+     },
+     {
+      "frame": 5,
+      "gaps": 65,
+      "seams": 3,
+      "clipped_open_px": 42,
+      "corrective_px": 1193,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1190
+     },
+     {
+      "frame": 6,
+      "gaps": 67,
+      "seams": 3,
+      "clipped_open_px": 43,
+      "corrective_px": 2382,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1189
+     },
+     {
+      "frame": 7,
+      "gaps": 66,
+      "seams": 3,
+      "clipped_open_px": 42,
+      "corrective_px": 3720,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1338
+     },
+     {
+      "frame": 8,
+      "gaps": 62,
+      "seams": 3,
+      "clipped_open_px": 37,
+      "corrective_px": 5140,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "armpit_gusset_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [
+       "armpit_gusset_r"
+      ],
+      "flags": [],
+      "d_corrective_px": 1420
+     }
+    ],
+    "pops": [],
+    "median_abs_change_px": 597.0,
+    "popping": "PASS"
+   },
+   "walk_blazer": {
+    "title": "walking cycle + blazer",
+    "frames": [
+     {
+      "frame": 0,
+      "gaps": 24,
+      "seams": 13,
+      "clipped_open_px": 36,
+      "corrective_px": 6,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": []
+     },
+     {
+      "frame": 1,
+      "gaps": 23,
+      "seams": 11,
+      "clipped_open_px": 43,
+      "corrective_px": 11,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 5
+     },
+     {
+      "frame": 2,
+      "gaps": 21,
+      "seams": 14,
+      "clipped_open_px": 35,
+      "corrective_px": 21,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 10
+     },
+     {
+      "frame": 3,
+      "gaps": 20,
+      "seams": 14,
+      "clipped_open_px": 30,
+      "corrective_px": 20,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -1
+     },
+     {
+      "frame": 4,
+      "gaps": 24,
+      "seams": 14,
+      "clipped_open_px": 59,
+      "corrective_px": 7,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -13
+     },
+     {
+      "frame": 5,
+      "gaps": 24,
+      "seams": 5,
+      "clipped_open_px": 26,
+      "corrective_px": 9,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 2
+     },
+     {
+      "frame": 6,
+      "gaps": 22,
+      "seams": 5,
+      "clipped_open_px": 36,
+      "corrective_px": 24,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 15
+     },
+     {
+      "frame": 7,
+      "gaps": 23,
+      "seams": 12,
+      "clipped_open_px": 36,
+      "corrective_px": 23,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -1
+     }
+    ],
+    "pops": [],
+    "median_abs_change_px": 5.0,
+    "popping": "PASS"
+   },
+   "run_knee": {
+    "title": "running + knee drive",
+    "frames": [
+     {
+      "frame": 0,
+      "gaps": 24,
+      "seams": 32,
+      "clipped_open_px": 45,
+      "corrective_px": 9,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": []
+     },
+     {
+      "frame": 1,
+      "gaps": 24,
+      "seams": 25,
+      "clipped_open_px": 39,
+      "corrective_px": 29,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 20
+     },
+     {
+      "frame": 2,
+      "gaps": 24,
+      "seams": 14,
+      "clipped_open_px": 51,
+      "corrective_px": 18,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -11
+     },
+     {
+      "frame": 3,
+      "gaps": 24,
+      "seams": 23,
+      "clipped_open_px": 58,
+      "corrective_px": 0,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -18
+     },
+     {
+      "frame": 4,
+      "gaps": 24,
+      "seams": 25,
+      "clipped_open_px": 54,
+      "corrective_px": 7,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 7
+     },
+     {
+      "frame": 5,
+      "gaps": 24,
+      "seams": 28,
+      "clipped_open_px": 39,
+      "corrective_px": 28,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 21
+     },
+     {
+      "frame": 6,
+      "gaps": 24,
+      "seams": 25,
+      "clipped_open_px": 30,
+      "corrective_px": 20,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -8
+     },
+     {
+      "frame": 7,
+      "gaps": 24,
+      "seams": 31,
+      "clipped_open_px": 34,
+      "corrective_px": 1,
+      "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -19
+     }
+    ],
+    "pops": [],
+    "median_abs_change_px": 18.0,
+    "popping": "PASS"
+   },
+   "knee_flex_ik": {
+    "title": "knee flexion via leg IK (squat/sit knee range)",
+    "frames": [
+     {
+      "frame": 0,
+      "gaps": 8,
+      "seams": 11,
+      "clipped_open_px": 25,
+      "corrective_px": 102,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": []
+     },
+     {
+      "frame": 1,
+      "gaps": 8,
+      "seams": 11,
+      "clipped_open_px": 27,
+      "corrective_px": 103,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 1
+     },
+     {
+      "frame": 2,
+      "gaps": 8,
+      "seams": 11,
+      "clipped_open_px": 30,
+      "corrective_px": 108,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 5
+     },
+     {
+      "frame": 3,
+      "gaps": 8,
+      "seams": 11,
+      "clipped_open_px": 29,
+      "corrective_px": 114,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 6
+     },
+     {
+      "frame": 4,
+      "gaps": 8,
+      "seams": 11,
+      "clipped_open_px": 30,
+      "corrective_px": 57,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 0.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -57
+     },
+     {
+      "frame": 5,
+      "gaps": 14,
+      "seams": 11,
+      "clipped_open_px": 35,
+      "corrective_px": 41,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 0.261,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -16
+     },
+     {
+      "frame": 6,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 41,
+      "corrective_px": 10400,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 0.594,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 10359
+     },
+     {
+      "frame": 7,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 43,
+      "corrective_px": 10488,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 0.844,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 88
+     },
+     {
+      "frame": 8,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 37,
+      "corrective_px": 10522,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 0.979,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 34
+     },
+     {
+      "frame": 9,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 36,
+      "corrective_px": 10536,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 14
+     },
+     {
+      "frame": 10,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 40,
+      "corrective_px": 10509,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -27
+     },
+     {
+      "frame": 11,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 42,
+      "corrective_px": 10532,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 23
+     },
+     {
+      "frame": 12,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 37,
+      "corrective_px": 10542,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 10
+     },
+     {
+      "frame": 13,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 39,
+      "corrective_px": 10493,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -49
+     },
+     {
+      "frame": 14,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 43,
+      "corrective_px": 10539,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 46
+     },
+     {
+      "frame": 15,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 37,
+      "corrective_px": 10525,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -14
+     },
+     {
+      "frame": 16,
+      "gaps": 24,
+      "seams": 11,
+      "clipped_open_px": 51,
+      "corrective_px": 10524,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "knee_cap_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": -1
+     }
+    ],
+    "pops": [],
+    "median_abs_change_px": 19.5,
+    "popping": "PASS"
+   },
+   "head_collar": {
+    "title": "head tilt + collar",
+    "frames": [
+     {
+      "frame": 0,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 29,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": []
+     },
+     {
+      "frame": 1,
+      "gaps": 24,
+      "seams": 10,
+      "clipped_open_px": 28,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 2,
+      "gaps": 25,
+      "seams": 10,
+      "clipped_open_px": 27,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 3,
+      "gaps": 36,
+      "seams": 10,
+      "clipped_open_px": 27,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 4,
+      "gaps": 37,
+      "seams": 10,
+      "clipped_open_px": 25,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 5,
+      "gaps": 42,
+      "seams": 10,
+      "clipped_open_px": 23,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     },
+     {
+      "frame": 6,
+      "gaps": 45,
+      "seams": 10,
+      "clipped_open_px": 29,
+      "corrective_px": 5,
+      "feasibility": "SUPPORTED",
+      "active": {
+       "shoe_top_r": 1.0,
+       "shoe_top_l": 1.0
+      },
+      "fills": [],
+      "flags": [],
+      "d_corrective_px": 0
+     }
+    ],
+    "pops": [],
+    "median_abs_change_px": 0.0,
+    "popping": "PASS"
+   }
+  },
+  "benchmark": {
+   "hardware": {
+    "machine": "x86_64",
+    "system": "Linux",
+    "python": "3.12.3",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "note": "cloud sandbox measurements; no Apple M1 figures are claimed"
+   },
+   "B_interactive_preview_s": 2.976,
+   "C_full_evaluation_s": 3.501,
+   "A_offline_evidence_s": 745.1
+  }
+ },
+ "moho_matrix": {
+  "schema": "autorig.moho_corrective_compatibility",
+  "version": "1.0.0",
+  "classes": {
+   "direct": "imports as an ordinary image layer bound to one bone (no behaviour needed)",
+   "conversion": "needs a native construct to reproduce the activation (e.g. a Smart Bone action showing the layer)",
+   "switch_approximation": "keyed drawings in a switch layer; Moho picks one key, AutoRig blends two",
+   "baked": "AutoRig computes the shape per pose; Moho would get baked key drawings (approximation)",
+   "manual": "cannot be reproduced; an artist rebuilds it in Moho"
+  },
+  "verified": [],
+  "proposed": [
+   {
+    "asset_id": "shoe_top_r",
+    "version": 1,
+    "category": "shoes",
+    "class": "direct",
+    "class_meaning": "imports as an ordinary image layer bound to one bone (no behaviour needed)",
+    "mapping": "extra image layer bound to the foot bone, under the trouser",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "before",
+     "activation": "always"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "elbow_cap_r",
+    "version": 1,
+    "category": "elbows",
+    "class": "conversion",
+    "class_meaning": "needs a native construct to reproduce the activation (e.g. a Smart Bone action showing the layer)",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "after_patches",
+     "activation": "ramp"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "knee_cap_r",
+    "version": 1,
+    "category": "knees",
+    "class": "conversion",
+    "class_meaning": "needs a native construct to reproduce the activation (e.g. a Smart Bone action showing the layer)",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "after_patches",
+     "activation": "ramp"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "armpit_gusset_r",
+    "version": 1,
+    "category": "armpits",
+    "class": "baked",
+    "class_meaning": "AutoRig computes the shape per pose; Moho would get baked key drawings (approximation)",
+    "mapping": "bake the key previews into a switch layer bound to the chest, selected by a Smart Bone action on the shoulder angle",
+    "autorig_runtime": {
+     "procedural": true,
+     "placement": "gap_fill_beneath",
+     "activation": "ramp"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "shoe_top_l",
+    "version": 1,
+    "category": "shoes",
+    "class": "direct",
+    "class_meaning": "imports as an ordinary image layer bound to one bone (no behaviour needed)",
+    "mapping": "extra image layer bound to the foot bone, under the trouser",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "before",
+     "activation": "always"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "elbow_cap_l",
+    "version": 1,
+    "category": "elbows",
+    "class": "conversion",
+    "class_meaning": "needs a native construct to reproduce the activation (e.g. a Smart Bone action showing the layer)",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "after_patches",
+     "activation": "ramp"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "knee_cap_l",
+    "version": 1,
+    "category": "knees",
+    "class": "conversion",
+    "class_meaning": "needs a native construct to reproduce the activation (e.g. a Smart Bone action showing the layer)",
+    "mapping": "image layer bound to the parent bone, shown by a Smart Bone action on the joint angle (or always on, beneath the segments)",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "after_patches",
+     "activation": "ramp"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "armpit_gusset_l",
+    "version": 1,
+    "category": "armpits",
+    "class": "baked",
+    "class_meaning": "AutoRig computes the shape per pose; Moho would get baked key drawings (approximation)",
+    "mapping": "bake the key previews into a switch layer bound to the chest, selected by a Smart Bone action on the shoulder angle",
+    "autorig_runtime": {
+     "procedural": true,
+     "placement": "gap_fill_beneath",
+     "activation": "ramp"
+    },
+    "status": "proposed_unverified"
+   },
+   {
+    "asset_id": "edge_decontamination",
+    "version": 1,
+    "category": "edges",
+    "class": "direct",
+    "class_meaning": "imports as an ordinary image layer bound to one bone (no behaviour needed)",
+    "mapping": "export the decontaminated derived layers (alpha edges)",
+    "autorig_runtime": {
+     "procedural": false,
+     "placement": "derived_layers",
+     "activation": "always"
+    },
+    "status": "proposed_unverified"
+   }
+  ],
+  "notes": [
+   "Moho was not run in Phase 3.4: no mapping is verified.",
+   "No Moho Lua API members are used or invented; no .moho file and no exporter are produced.",
+   "Smart Bone actions and switch layers are named as the likely native constructs only."
+  ]
+ },
+ "live": {
+  "deterministic_bit_identical": true,
+  "drivers": "skeletal pose readings only (shoulder abduction, elbow, knee, ankle, clavicle, torso bend); independent of face tracking, IK target source, hand switches and gamepad inputs",
+  "cloud_inference": "none (generators are deterministic geometric constructions; no AI model is called)",
+  "flicker": "see sequences[*].popping (frame-to-frame corrective area)",
+  "showtime": {
+   "status": "proposed_unverified",
+   "live_inputs": "unassigned (no Moho input names invented)",
+   "webcam_tracking": "not implemented"
+  }
+ },
+ "visual_review_required": true,
+ "production_approved": false
+}

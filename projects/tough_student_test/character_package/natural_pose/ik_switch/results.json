@@ -1,0 +1,2607 @@
+{
+ "package": "character_package",
+ "engine_build_s": 9.28,
+ "renders": {
+  "01_standing": {
+   "name": "relaxed_standing",
+   "phase": null,
+   "status": "SUPPORTED",
+   "missing": [],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      443.96,
+      1257.9
+     ],
+     "lock": [
+      443.96500000000003,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.46,
+      1258.5
+     ],
+     "lock": [
+      643.465,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [],
+   "corrections_on": [
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 14.96,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 12.67,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 14,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 5.91,
+    "corrections": 0.25,
+    "switches": 0.13,
+    "garment_eval": 604.4,
+    "render_and_tears": 2290.3,
+    "total": 2928.0
+   }
+  },
+  "02_right_arm_ik_reach": {
+   "name": "relaxed_standing",
+   "phase": null,
+   "status": "SUPPORTED",
+   "missing": [],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 74.16,
+     "target": [
+      247.78,
+      309.45
+     ],
+     "wrist": [
+      247.78,
+      309.45
+     ]
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      443.97,
+      1257.9
+     ],
+     "lock": [
+      443.96500000000003,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.46,
+      1258.5
+     ],
+     "lock": [
+      643.465,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [],
+   "corrections_on": [
+    {
+     "id": "sleeve_crease_r",
+     "value_deg": 61.18,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 10.93,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 16.64,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 14,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 23.2,
+    "corrections": 0.25,
+    "switches": 0.16,
+    "garment_eval": 505.6,
+    "render_and_tears": 2587.1,
+    "total": 3143.4
+   }
+  },
+  "03_both_arms_raised_ik": {
+   "name": "relaxed_standing",
+   "phase": null,
+   "status": "SUPPORTED",
+   "missing": [],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 68.53,
+     "target": [
+      324.9,
+      198.92
+     ],
+     "wrist": [
+      324.9,
+      198.92
+     ]
+    },
+    "l": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 72.56,
+     "target": [
+      761.5,
+      204.67
+     ],
+     "wrist": [
+      761.5,
+      204.67
+     ]
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      443.96,
+      1257.9
+     ],
+     "lock": [
+      443.96500000000003,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.47,
+      1258.5
+     ],
+     "lock": [
+      643.465,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [],
+   "corrections_on": [
+    {
+     "id": "shoulder_raise_r",
+     "value_deg": 134.49,
+     "asset_state": "pending_review",
+     "applied": false,
+     "needs_artwork": false
+    },
+    {
+     "id": "shoulder_raise_l",
+     "value_deg": 134.92,
+     "asset_state": "pending_review",
+     "applied": false,
+     "needs_artwork": false
+    },
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 14.62,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 12.79,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 14,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 22.79,
+    "corrections": 0.21,
+    "switches": 0.12,
+    "garment_eval": 534.9,
+    "render_and_tears": 2213.6,
+    "total": 2793.9
+   }
+  },
+  "04_pointing_hand": {
+   "name": "pointing_speaking",
+   "phase": null,
+   "status": "NEEDS_ARTWORK",
+   "missing": [
+    "hand:point (pending_review)",
+    "hand:relaxed (pending_review)"
+   ],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "pointing",
+     "source": "user",
+     "pending_review": true,
+     "note": null
+    },
+    "l": {
+     "pose": "relaxed",
+     "source": "auto",
+     "pending_review": true,
+     "note": "relaxed_standing: relaxed (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 26.19,
+     "target": [
+      226.02,
+      317.11
+     ],
+     "wrist": [
+      226.02,
+      317.11
+     ]
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      443.97,
+      1257.9
+     ],
+     "lock": [
+      443.96500000000003,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.47,
+      1258.5
+     ],
+     "lock": [
+      643.465,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [],
+   "corrections_on": [
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 22.14,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 13,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 12.42,
+    "corrections": 0.19,
+    "switches": 0.24,
+    "garment_eval": 504.2,
+    "render_and_tears": 3037.6,
+    "total": 3773.1
+   }
+  },
+  "04_pointing_hand_approved_only": {
+   "name": "pointing_speaking",
+   "phase": null,
+   "status": "NEEDS_ARTWORK",
+   "missing": [
+    "hand:point (pending_review)"
+   ],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "user",
+     "pending_review": false,
+     "note": "hand_r: 'pointing' is pending review (preview it with allow_pending); showing 'open_palm'"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 26.19,
+     "target": [
+      226.02,
+      317.11
+     ],
+     "wrist": [
+      226.02,
+      317.11
+     ]
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      443.97,
+      1257.9
+     ],
+     "lock": [
+      443.96500000000003,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.47,
+      1258.5
+     ],
+     "lock": [
+      643.465,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [],
+   "corrections_on": [
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 22.14,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 14,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 11.54,
+    "corrections": 0.19,
+    "switches": 0.11,
+    "garment_eval": 544.4,
+    "render_and_tears": 2631.9,
+    "total": 3209.8
+   }
+  },
+  "05_running_approved": {
+   "name": "running",
+   "phase": 0.3,
+   "status": "SUPPORTED_WITH_CORRECTIONS",
+   "missing": [],
+   "hand_fallbacks": [
+    {
+     "side": "r",
+     "missing": [
+      "partially_closed"
+     ],
+     "shown": "open_palm"
+    },
+    {
+     "side": "l",
+     "missing": [
+      "partially_closed"
+     ],
+     "shown": "open_palm"
+    }
+   ],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "running: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "running: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "LIFTING",
+     "ankle": [
+      453.41,
+      1257.9
+     ],
+     "lock": null,
+     "lock_error_px": null,
+     "slide_px": null,
+     "lift_px": null
+    },
+    "l": {
+     "state": "SWINGING",
+     "ankle": [
+      639.53,
+      1244.5
+     ],
+     "lock": null,
+     "lock_error_px": null,
+     "slide_px": null,
+     "lift_px": null
+    }
+   },
+   "notes": [
+    "run: duty 0.30, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+    "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+   ],
+   "corrections_on": [
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 10.17,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 10.06,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "running_knee_drive",
+     "value_deg": 1.0,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 13,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 13.42,
+    "corrections": 0.21,
+    "switches": 0.11,
+    "garment_eval": 393.7,
+    "render_and_tears": 3002.0,
+    "total": 3428.3
+   }
+  },
+  "05_running_fist_preview": {
+   "name": "running",
+   "phase": 0.3,
+   "status": "NEEDS_ARTWORK",
+   "missing": [
+    "hand:fist (pending_review)"
+   ],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "fist",
+     "source": "user",
+     "pending_review": true,
+     "note": null
+    },
+    "l": {
+     "pose": "fist",
+     "source": "user",
+     "pending_review": true,
+     "note": null
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "LIFTING",
+     "ankle": [
+      453.41,
+      1257.9
+     ],
+     "lock": null,
+     "lock_error_px": null,
+     "slide_px": null,
+     "lift_px": null
+    },
+    "l": {
+     "state": "SWINGING",
+     "ankle": [
+      639.53,
+      1244.5
+     ],
+     "lock": null,
+     "lock_error_px": null,
+     "slide_px": null,
+     "lift_px": null
+    }
+   },
+   "notes": [
+    "run: duty 0.30, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+    "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+   ],
+   "corrections_on": [
+    {
+     "id": "sleeve_crease_r",
+     "value_deg": 87.44,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "sleeve_crease_l",
+     "value_deg": 94.26,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 10.17,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 10.06,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "running_knee_drive",
+     "value_deg": 1.0,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 12,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 9.03,
+    "corrections": 0.17,
+    "switches": 0.09,
+    "garment_eval": 510.1,
+    "render_and_tears": 2683.3,
+    "total": 3225.3
+   }
+  },
+  "06_walking": [
+   {
+    "name": "casual_walk",
+    "phase": 0.0,
+    "status": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     }
+    ],
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     },
+     "l": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     }
+    },
+    "arms": {
+     "r": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     },
+     "l": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     }
+    },
+    "contacts": {
+     "r": {
+      "state": "LANDING",
+      "ankle": [
+       450.41,
+       1256.34
+      ],
+      "lock": null,
+      "lock_error_px": null,
+      "slide_px": null,
+      "lift_px": null
+     },
+     "l": {
+      "state": "PLANTED",
+      "ankle": [
+       637.16,
+       1258.5
+      ],
+      "lock": [
+       637.1650000000001,
+       1258.5
+      ],
+      "lock_error_px": 0.005,
+      "slide_px": 0.005,
+      "lift_px": 0.0
+     }
+    },
+    "notes": [
+     "walk: duty 0.60, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+     "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+    ],
+    "corrections_on": [
+     {
+      "id": "hem_on_shoe_r",
+      "value_deg": 10.69,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     },
+     {
+      "id": "hem_on_shoe_l",
+      "value_deg": 14.39,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     }
+    ],
+    "quality": {
+     "passed": 14,
+     "total": 17
+    },
+    "timing_ms": {
+     "solve": 11.34,
+     "corrections": 0.17,
+     "switches": 0.12,
+     "garment_eval": 470.3,
+     "render_and_tears": 3031.1,
+     "total": 3535.5
+    }
+   },
+   {
+    "name": "casual_walk",
+    "phase": 0.16666666666666666,
+    "status": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     }
+    ],
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     },
+     "l": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     }
+    },
+    "arms": {
+     "r": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     },
+     "l": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     }
+    },
+    "contacts": {
+     "r": {
+      "state": "PLANTED",
+      "ankle": [
+       450.26,
+       1257.9
+      ],
+      "lock": [
+       450.265,
+       1257.9
+      ],
+      "lock_error_px": 0.005,
+      "slide_px": 0.005,
+      "lift_px": 0.0
+     },
+     "l": {
+      "state": "SWINGING",
+      "ankle": [
+       639.5,
+       1248.34
+      ],
+      "lock": null,
+      "lock_error_px": null,
+      "slide_px": null,
+      "lift_px": null
+     }
+    },
+    "notes": [
+     "walk: duty 0.60, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+     "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+    ],
+    "corrections_on": [
+     {
+      "id": "hem_on_shoe_r",
+      "value_deg": 17.63,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     },
+     {
+      "id": "hem_on_shoe_l",
+      "value_deg": 6.04,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     }
+    ],
+    "quality": {
+     "passed": 14,
+     "total": 17
+    },
+    "timing_ms": {
+     "solve": 2.53,
+     "corrections": 0.17,
+     "switches": 0.1,
+     "garment_eval": 479.9,
+     "render_and_tears": 3016.9,
+     "total": 3521.4
+    }
+   },
+   {
+    "name": "casual_walk",
+    "phase": 0.3333333333333333,
+    "status": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     }
+    ],
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     },
+     "l": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     }
+    },
+    "arms": {
+     "r": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     },
+     "l": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     }
+    },
+    "contacts": {
+     "r": {
+      "state": "PLANTED",
+      "ankle": [
+       450.26,
+       1257.9
+      ],
+      "lock": [
+       450.265,
+       1257.9
+      ],
+      "lock_error_px": 0.005,
+      "slide_px": 0.005,
+      "lift_px": 0.0
+     },
+     "l": {
+      "state": "SWINGING",
+      "ankle": [
+       645.88,
+       1241.65
+      ],
+      "lock": null,
+      "lock_error_px": null,
+      "slide_px": null,
+      "lift_px": null
+     }
+    },
+    "notes": [
+     "walk: duty 0.60, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+     "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+    ],
+    "corrections_on": [
+     {
+      "id": "hem_on_shoe_r",
+      "value_deg": 19.6,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     },
+     {
+      "id": "hem_on_shoe_l",
+      "value_deg": 6.03,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     }
+    ],
+    "quality": {
+     "passed": 14,
+     "total": 17
+    },
+    "timing_ms": {
+     "solve": 2.54,
+     "corrections": 0.17,
+     "switches": 0.1,
+     "garment_eval": 504.0,
+     "render_and_tears": 3215.7,
+     "total": 3743.8
+    }
+   },
+   {
+    "name": "casual_walk",
+    "phase": 0.5,
+    "status": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     }
+    ],
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     },
+     "l": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     }
+    },
+    "arms": {
+     "r": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     },
+     "l": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     }
+    },
+    "contacts": {
+     "r": {
+      "state": "PLANTED",
+      "ankle": [
+       450.26,
+       1257.9
+      ],
+      "lock": [
+       450.265,
+       1257.9
+      ],
+      "lock_error_px": 0.005,
+      "slide_px": 0.005,
+      "lift_px": 0.0
+     },
+     "l": {
+      "state": "LANDING",
+      "ankle": [
+       636.68,
+       1253.43
+      ],
+      "lock": null,
+      "lock_error_px": null,
+      "slide_px": null,
+      "lift_px": null
+     }
+    },
+    "notes": [
+     "walk: duty 0.60, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+     "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+    ],
+    "corrections_on": [
+     {
+      "id": "hem_on_shoe_r",
+      "value_deg": 15.33,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     },
+     {
+      "id": "hem_on_shoe_l",
+      "value_deg": 9.76,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     }
+    ],
+    "quality": {
+     "passed": 14,
+     "total": 17
+    },
+    "timing_ms": {
+     "solve": 2.57,
+     "corrections": 0.17,
+     "switches": 0.1,
+     "garment_eval": 478.4,
+     "render_and_tears": 3065.9,
+     "total": 3568.3
+    }
+   },
+   {
+    "name": "casual_walk",
+    "phase": 0.6666666666666666,
+    "status": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     }
+    ],
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     },
+     "l": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     }
+    },
+    "arms": {
+     "r": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     },
+     "l": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     }
+    },
+    "contacts": {
+     "r": {
+      "state": "SWINGING",
+      "ankle": [
+       447.93,
+       1251.3
+      ],
+      "lock": null,
+      "lock_error_px": null,
+      "slide_px": null,
+      "lift_px": null
+     },
+     "l": {
+      "state": "PLANTED",
+      "ankle": [
+       637.17,
+       1258.5
+      ],
+      "lock": [
+       637.1650000000001,
+       1258.5
+      ],
+      "lock_error_px": 0.005,
+      "slide_px": 0.005,
+      "lift_px": 0.0
+     }
+    },
+    "notes": [
+     "walk: duty 0.60, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+     "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+    ],
+    "corrections_on": [
+     {
+      "id": "hem_on_shoe_r",
+      "value_deg": 6.69,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     },
+     {
+      "id": "hem_on_shoe_l",
+      "value_deg": 16.71,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     }
+    ],
+    "quality": {
+     "passed": 14,
+     "total": 17
+    },
+    "timing_ms": {
+     "solve": 2.52,
+     "corrections": 0.17,
+     "switches": 0.1,
+     "garment_eval": 401.7,
+     "render_and_tears": 3021.4,
+     "total": 3443.8
+    }
+   },
+   {
+    "name": "casual_walk",
+    "phase": 0.8333333333333334,
+    "status": "SUPPORTED_WITH_CORRECTIONS",
+    "missing": [],
+    "hand_fallbacks": [
+     {
+      "side": "r",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     },
+     {
+      "side": "l",
+      "missing": [
+       "partially_closed"
+      ],
+      "shown": "open_palm"
+     }
+    ],
+    "hands": {
+     "r": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     },
+     "l": {
+      "pose": "open_palm",
+      "source": "auto",
+      "pending_review": false,
+      "note": "walking: open_palm (highest score after the hard constraints)"
+     }
+    },
+    "arms": {
+     "r": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     },
+     "l": {
+      "mode": "fk",
+      "status": null,
+      "error_px": null,
+      "flexion_deg": null,
+      "target": null,
+      "wrist": null
+     }
+    },
+    "contacts": {
+     "r": {
+      "state": "SWINGING",
+      "ankle": [
+       441.55,
+       1244.62
+      ],
+      "lock": null,
+      "lock_error_px": null,
+      "slide_px": null,
+      "lift_px": null
+     },
+     "l": {
+      "state": "PLANTED",
+      "ankle": [
+       637.17,
+       1258.5
+      ],
+      "lock": [
+       637.1650000000001,
+       1258.5
+      ],
+      "lock_error_px": 0.005,
+      "slide_px": 0.005,
+      "lift_px": 0.0
+     }
+    },
+    "notes": [
+     "walk: duty 0.60, speed 1.00, exaggeration 1.00; stride and knee drive toward the viewer are not drawn (front view)",
+     "fluid: eased timing, hand arcs, spring follow-through on forearms, hands, chest, head, hem, hair"
+    ],
+    "corrections_on": [
+     {
+      "id": "hem_on_shoe_r",
+      "value_deg": 6.7,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     },
+     {
+      "id": "hem_on_shoe_l",
+      "value_deg": 18.71,
+      "asset_state": "missing",
+      "applied": false,
+      "needs_artwork": true
+     }
+    ],
+    "quality": {
+     "passed": 14,
+     "total": 17
+    },
+    "timing_ms": {
+     "solve": 2.05,
+     "corrections": 0.18,
+     "switches": 0.09,
+     "garment_eval": 467.7,
+     "render_and_tears": 3005.0,
+     "total": 3494.0
+    }
+   }
+  ],
+  "07_sitting_foot_constraints": {
+   "name": "sitting",
+   "phase": null,
+   "status": "NEEDS_ARTWORK",
+   "missing": [
+    "art:thigh_foreshortened (missing)",
+    "art:seat (missing)",
+    "corrective:trousers_seated (missing)"
+   ],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "resting: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "resting: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      344.21,
+      1257.9
+     ],
+     "lock": [
+      344.215,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      743.22,
+      1258.5
+     ],
+     "lock": [
+      743.2150000000001,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [
+    "front-view approximation: thighs pointing at the viewer need foreshortened drawings",
+    "arm_l: knee_l and the thigh are out of reach (arm 253 px, shoulder to hip 357 px): the arm keeps its relaxed FK pose; hands on knees need a seated drawing",
+    "arm_r: knee_r and the thigh are out of reach (arm 257 px, shoulder to hip 354 px): the arm keeps its relaxed FK pose; hands on knees need a seated drawing"
+   ],
+   "corrections_on": [
+    {
+     "id": "hip_flexion_r",
+     "value_deg": 67.54,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hip_flexion_l",
+     "value_deg": 67.17,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "knee_deep_r",
+     "value_deg": 89.14,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "knee_deep_l",
+     "value_deg": 90.0,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "trouser_fold_r",
+     "value_deg": 89.14,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "trouser_fold_l",
+     "value_deg": 90.0,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 36.91,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 37.24,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "sitting_trousers",
+     "value_deg": 1.0,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 12,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 5.61,
+    "corrections": 0.3,
+    "switches": 0.19,
+    "garment_eval": 457.0,
+    "render_and_tears": 2392.7,
+    "total": 2877.4
+   }
+  },
+  "08_deep_elbow_bend": {
+   "name": "relaxed_standing",
+   "phase": null,
+   "status": "SUPPORTED",
+   "missing": [],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 133.67,
+     "target": [
+      376.3,
+      517.65
+     ],
+     "wrist": [
+      376.3,
+      517.65
+     ]
+    },
+    "l": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "PLANTED",
+     "ankle": [
+      443.97,
+      1257.9
+     ],
+     "lock": [
+      443.96500000000003,
+      1257.9
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.46,
+      1258.5
+     ],
+     "lock": [
+      643.465,
+      1258.5
+     ],
+     "lock_error_px": 0.005,
+     "slide_px": 0.005,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [],
+   "corrections_on": [
+    {
+     "id": "elbow_deep_r",
+     "value_deg": 120.7,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "sleeve_crease_r",
+     "value_deg": 120.7,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 14.04,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 12.97,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 14,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 11.55,
+    "corrections": 0.21,
+    "switches": 0.13,
+    "garment_eval": 459.5,
+    "render_and_tears": 2129.3,
+    "total": 2625.0
+   }
+  },
+  "10_ik_diagnostic": {
+   "name": "relaxed_standing",
+   "phase": null,
+   "status": "SUPPORTED",
+   "missing": [],
+   "hand_fallbacks": [],
+   "hands": {
+    "r": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    },
+    "l": {
+     "pose": "open_palm",
+     "source": "auto",
+     "pending_review": false,
+     "note": "relaxed_standing: open_palm (highest score after the hard constraints)"
+    }
+   },
+   "arms": {
+    "r": {
+     "mode": "fk",
+     "status": null,
+     "error_px": null,
+     "flexion_deg": null,
+     "target": null,
+     "wrist": null
+    },
+    "l": {
+     "mode": "ik",
+     "status": "ok",
+     "error_px": 0.0,
+     "flexion_deg": 96.13,
+     "target": [
+      857.73,
+      376.86
+     ],
+     "wrist": [
+      857.73,
+      376.86
+     ]
+    }
+   },
+   "contacts": {
+    "r": {
+     "state": "FREE",
+     "ankle": [
+      428.96,
+      1197.9
+     ],
+     "lock": null,
+     "lock_error_px": null,
+     "slide_px": null,
+     "lift_px": null
+    },
+    "l": {
+     "state": "PLANTED",
+     "ankle": [
+      643.46,
+      1258.5
+     ],
+     "lock": [
+      643.46,
+      1258.5
+     ],
+     "lock_error_px": 0.0,
+     "slide_px": 0.0,
+     "lift_px": 0.0
+    }
+   },
+   "notes": [
+    "pelvis offset +12.0, +0.0 px with feet locked"
+   ],
+   "corrections_on": [
+    {
+     "id": "sleeve_crease_l",
+     "value_deg": 83.46,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "knee_deep_r",
+     "value_deg": 55.55,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "trouser_fold_r",
+     "value_deg": 55.55,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_r",
+     "value_deg": 34.87,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    },
+    {
+     "id": "hem_on_shoe_l",
+     "value_deg": 13.56,
+     "asset_state": "missing",
+     "applied": false,
+     "needs_artwork": true
+    }
+   ],
+   "quality": {
+    "passed": 14,
+    "total": 17
+   },
+   "timing_ms": {
+    "solve": 3.59,
+    "corrections": 0.24,
+    "switches": 0.16,
+    "garment_eval": 434.3,
+    "render_and_tears": 1928.2,
+    "total": 2387.8
+   }
+  }
+ },
+ "note": "preview renders of the AutoRig deformer; Moho not run; pending drawings appear only in images labelled PREVIEW; nothing approved here",
+ "auto_align_right_fist": {
+  "offset_px": [
+   -12.0,
+   3.0
+  ],
+  "rest_error_before_px": 6.96,
+  "search_error_after_px": 1.36,
+  "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+  "note": "store drawing: placed by the WristAlignmentController; the suggested translation is reported, not re-rendered"
+ },
+ "hand_switch_table": [
+  {
+   "side": "r",
+   "pose": "relaxed",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "relaxed",
+    "cid": "store:tough_student_hands_v1/right_relaxed",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_relaxed.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.767,
+    "width_ratio": 0.767,
+    "visible_band_vs_reference_px": 5.43,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      1.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.26,
+     "error_before_px": 5.43
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_relaxed.v1",
+    "status": "OK",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 2.28,
+    "issues": []
+   }
+  },
+  {
+   "side": "l",
+   "pose": "relaxed",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "relaxed",
+    "cid": "store:tough_student_hands_v1/left_relaxed",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.817,
+    "width_ratio": 0.817,
+    "visible_band_vs_reference_px": 4.9,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      11.0,
+      -4.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.46,
+     "error_before_px": 4.9
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_relaxed.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 5.4,
+    "issues": [
+     "posed attachment drifts 5.4 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "open_palm",
+   "status": "original",
+   "rest": {
+    "side": "r",
+    "pose": "open_palm",
+    "cid": "original",
+    "layer": "hand_r",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "width_ratio": 1.0,
+    "orientation_delta_deg": 0.0,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": null
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 4.45,
+    "issues": [
+     "posed attachment drifts 4.4 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "l",
+   "pose": "open_palm",
+   "status": "original",
+   "rest": {
+    "side": "l",
+    "pose": "open_palm",
+    "cid": "original",
+    "layer": "hand_l",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "width_ratio": 1.0,
+    "orientation_delta_deg": 0.0,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": null
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 14.33,
+    "issues": [
+     "posed attachment drifts 14.3 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "fist",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "fist",
+    "cid": "store:tough_student_hands_v1/right_fist",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.85,
+    "width_ratio": 0.85,
+    "visible_band_vs_reference_px": 6.96,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      3.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 1.36,
+     "error_before_px": 6.96
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_fist.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 4.26,
+    "issues": [
+     "posed attachment drifts 4.3 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "l",
+   "pose": "fist",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "fist",
+    "cid": "store:tough_student_hands_v1/left_fist",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_fist.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.894,
+    "width_ratio": 0.894,
+    "visible_band_vs_reference_px": 5.12,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      12.0,
+      -3.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 1.63,
+     "error_before_px": 5.12
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_fist.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 6.03,
+    "issues": [
+     "posed attachment drifts 6.0 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "pointing",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "pointing",
+    "cid": "store:tough_student_hands_v1/right_pointing",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_pointing.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.762,
+    "width_ratio": 0.762,
+    "visible_band_vs_reference_px": 3.25,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      1.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 1.3,
+     "error_before_px": 3.25
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_pointing.v1",
+    "status": "OK",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 2.36,
+    "issues": []
+   }
+  },
+  {
+   "side": "l",
+   "pose": "pointing",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "pointing",
+    "cid": "store:tough_student_hands_v1/left_pointing",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_pointing.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.826,
+    "width_ratio": 0.826,
+    "visible_band_vs_reference_px": 20.39,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      9.0,
+      -10.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.72,
+     "error_before_px": 20.39
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_pointing.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 4.04,
+    "issues": [
+     "posed attachment drifts 4.0 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "thumbs_up",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "thumbs_up",
+    "cid": "store:tough_student_hands_v1/right_thumbs_up",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1",
+    "method": "cuff_edge_match",
+    "status": "MISMATCH",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.742,
+    "width_ratio": 0.742,
+    "visible_band_vs_reference_px": 7.95,
+    "side_ok": true,
+    "issues": [
+     "wrist width 0.74 x the sleeve opening (outside [0.75, 1.35])"
+    ],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      4.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 1.63,
+     "error_before_px": 7.95
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_thumbs_up.v1",
+    "status": "OK",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 3.38,
+    "issues": []
+   }
+  },
+  {
+   "side": "l",
+   "pose": "thumbs_up",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "thumbs_up",
+    "cid": "store:tough_student_hands_v1/left_thumbs_up",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_thumbs_up.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.76,
+    "width_ratio": 0.76,
+    "visible_band_vs_reference_px": 5.37,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      9.0,
+      -4.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.56,
+     "error_before_px": 5.37
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_thumbs_up.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 7.86,
+    "issues": [
+     "posed attachment drifts 7.9 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "gripping",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "gripping",
+    "cid": "store:tough_student_hands_v1/right_gripping",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_gripping.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.779,
+    "width_ratio": 0.779,
+    "visible_band_vs_reference_px": 9.02,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      2.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 1.67,
+     "error_before_px": 9.02
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_gripping.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 6.82,
+    "issues": [
+     "posed attachment drifts 6.8 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "l",
+   "pose": "gripping",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "gripping",
+    "cid": "store:tough_student_hands_v1/left_gripping",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_gripping.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.817,
+    "width_ratio": 0.817,
+    "visible_band_vs_reference_px": 4.87,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      12.0,
+      -2.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.78,
+     "error_before_px": 4.87
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_gripping.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 4.38,
+    "issues": [
+     "posed attachment drifts 4.4 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "palm_down",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "palm_down",
+    "cid": "store:tough_student_hands_v1/right_palm_down",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_palm_down.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.775,
+    "width_ratio": 0.775,
+    "visible_band_vs_reference_px": 5.77,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      2.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.4,
+     "error_before_px": 5.77
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.right_palm_down.v1",
+    "status": "OK",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 2.58,
+    "issues": []
+   }
+  },
+  {
+   "side": "l",
+   "pose": "palm_down",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "palm_down",
+    "cid": "store:tough_student_hands_v1/left_palm_down",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_palm_down.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.831,
+    "width_ratio": 0.831,
+    "visible_band_vs_reference_px": 5.9,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      9.0,
+      -6.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 1.35,
+     "error_before_px": 5.9
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.left_palm_down.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 5.16,
+    "issues": [
+     "posed attachment drifts 5.2 px from the bone-carried wrist"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "partially_closed",
+   "status": "missing",
+   "rest": {
+    "side": "r",
+    "pose": "partially_closed",
+    "status": "NEEDS_ARTWORK",
+    "issues": [
+     "drawing missing"
+    ]
+   }
+  },
+  {
+   "side": "l",
+   "pose": "partially_closed",
+   "status": "missing",
+   "rest": {
+    "side": "l",
+    "pose": "partially_closed",
+    "status": "NEEDS_ARTWORK",
+    "issues": [
+     "drawing missing"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "palm_up",
+   "status": "missing",
+   "rest": {
+    "side": "r",
+    "pose": "palm_up",
+    "status": "NEEDS_ARTWORK",
+    "issues": [
+     "drawing missing"
+    ]
+   }
+  },
+  {
+   "side": "l",
+   "pose": "palm_up",
+   "status": "missing",
+   "rest": {
+    "side": "l",
+    "pose": "palm_up",
+    "status": "NEEDS_ARTWORK",
+    "issues": [
+     "drawing missing"
+    ]
+   }
+  },
+  {
+   "side": "r",
+   "pose": "cupped",
+   "status": "pending_review",
+   "rest": {
+    "side": "r",
+    "pose": "cupped",
+    "cid": "store:tough_student_hands_v1/left_cupped",
+    "layer": "hand_r__hs.tough_student_hands_v1.left_cupped.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.762,
+    "width_ratio": 0.762,
+    "visible_band_vs_reference_px": 3.82,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      -12.0,
+      0.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.78,
+     "error_before_px": 3.82
+    }
+   },
+   "posed": {
+    "side": "r",
+    "layer": "hand_r__hs.tough_student_hands_v1.left_cupped.v1",
+    "status": "OK",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 2.16,
+    "issues": []
+   }
+  },
+  {
+   "side": "l",
+   "pose": "cupped",
+   "status": "pending_review",
+   "rest": {
+    "side": "l",
+    "pose": "cupped",
+    "cid": "store:tough_student_hands_v1/right_cupped",
+    "layer": "hand_l__hs.tough_student_hands_v1.right_cupped.v1",
+    "method": "cuff_edge_match",
+    "status": "OK",
+    "attachment_error_px": 0.0,
+    "wrist_fit": 0.826,
+    "width_ratio": 0.826,
+    "visible_band_vs_reference_px": 12.63,
+    "side_ok": true,
+    "issues": [],
+    "auto_align": {
+     "offset_px": [
+      11.0,
+      -6.0
+     ],
+     "rot_deg": 0.0,
+     "error_after_px": 0.49,
+     "error_before_px": 12.63
+    }
+   },
+   "posed": {
+    "side": "l",
+    "layer": "hand_l__hs.tough_student_hands_v1.right_cupped.v1",
+    "status": "MISMATCH",
+    "sleeve_gap_px": 0.0,
+    "posed_attachment_drift_px": 4.83,
+    "issues": [
+     "posed attachment drifts 4.8 px from the bone-carried wrist"
+    ]
+   }
+  }
+ ],
+ "ik_sequence": {
+  "frames": 20,
+  "dense_samples": 241,
+  "elbow_side_flips": 0,
+  "max_wrist_error_px": 0.0,
+  "max_joint_step_px": 3.099,
+  "mean_joint_step_px": 2.994,
+  "target_step_px": 2.986,
+  "max_step_over_target_step": 1.04
+ },
+ "performance": {
+  "machine": "x86_64 x86_64 (cloud sandbox CPU, not the user's M1)",
+  "two_bone_ik_solve_us": 22.14,
+  "skeleton_solve_ms": 3.86,
+  "skeleton_solve_with_arm_ik_ms": 12.29,
+  "switch_resolution_ms": 0.073,
+  "skeleton_only_pose_request_ms": 13.01,
+  "full_frame_ms": [
+   2586.3,
+   2932.4,
+   2710.9
+  ],
+  "deformation_and_tears_ms": [
+   1999.4,
+   2270.0,
+   2117.8
+  ],
+  "corrections_ms": [
+   0.18,
+   0.6,
+   0.31
+  ],
+  "fps_skeleton_only_capacity": 76.9,
+  "fps_full_artwork": 0.36,
+  "target": "30 fps on the M1 for interactive preview: met for skeleton-only previews in the cloud; not met for full-artwork renders (CPU deformer). Not measured on the M1."
+ },
+ "shots": {
+  "01_standing": {
+   "clean": "01_standing.jpg",
+   "diagnostic": "01_standing_diag.jpg",
+   "closeups": "closeups/01_standing.jpg"
+  },
+  "02_right_arm_ik_reach": {
+   "clean": "02_right_arm_ik_reach.jpg",
+   "diagnostic": "02_right_arm_ik_reach_diag.jpg",
+   "closeups": "closeups/02_right_arm_ik_reach.jpg"
+  },
+  "03_both_arms_raised_ik": {
+   "clean": "03_both_arms_raised_ik.jpg",
+   "diagnostic": "03_both_arms_raised_ik_diag.jpg",
+   "closeups": "closeups/03_both_arms_raised_ik.jpg"
+  },
+  "04_pointing_hand": {
+   "clean": "04_pointing_hand.jpg",
+   "diagnostic": "04_pointing_hand_diag.jpg",
+   "closeups": "closeups/04_pointing_hand.jpg"
+  },
+  "05_running_hand_switches": {
+   "clean": "05_running_hand_switches.jpg",
+   "closeups": "closeups/05_running_fists.jpg"
+  },
+  "06_walking_planted_feet": {
+   "clean": "06_walking_planted_feet.jpg"
+  },
+  "07_sitting_foot_constraints": {
+   "clean": "07_sitting_foot_constraints.jpg",
+   "diagnostic": "07_sitting_foot_constraints_diag.jpg",
+   "closeups": "closeups/07_sitting_foot_constraints.jpg"
+  },
+  "08_deep_elbow_bend": {
+   "clean": "08_deep_elbow_bend.jpg",
+   "diagnostic": "08_deep_elbow_bend_diag.jpg",
+   "closeups": "closeups/08_deep_elbow_bend.jpg"
+  },
+  "10_ik_diagnostic": {
+   "clean": "10_ik_diagnostic.jpg",
+   "diagnostic": "10_ik_diagnostic_diag.jpg",
+   "closeups": "closeups/10_ik_diagnostic.jpg"
+  },
+  "09_hand_switch_sheet": {
+   "clean": "09_hand_switch_sheet.jpg"
+  },
+  "ik_reach_animation": {
+   "gif": "ik_reach.gif"
+  }
+ },
+ "alignment_tolerances": {
+  "attachment_error_px": 6.0,
+  "width_ratio": [
+   0.75,
+   1.35
+  ],
+  "orientation_delta_deg": 35.0,
+  "sleeve_gap_px": 2.0,
+  "posed_attachment_drift_px": 4.0
+ },
+ "missing_artwork": [
+  {
+   "side": "r",
+   "pose": "partially_closed",
+   "drawing": "partial",
+   "status": "NEEDS_ARTWORK",
+   "fallback": "open_palm"
+  },
+  {
+   "side": "l",
+   "pose": "partially_closed",
+   "drawing": "partial",
+   "status": "NEEDS_ARTWORK",
+   "fallback": "open_palm"
+  }
+ ]
+}

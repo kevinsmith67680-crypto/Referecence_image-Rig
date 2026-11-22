@@ -1,0 +1,1262 @@
+{
+ "schema": "autorig.hand_store",
+ "schema_version": 1,
+ "package": "character_package",
+ "source_sha256": "4ccb022f117b67578e24454b18f994e1c0c8683d3684045d5956efad175e1000",
+ "packs": [
+  {
+   "library_id": "tough_student_hands_v1",
+   "version": 1,
+   "zip_sha256": "28c0791f985599e172be2b4eb60d72f3235ebc24200d9b8c4b0ef572c7164687",
+   "source_name": "AutoRig_Hand_Library_ToughStudent_v1.zip",
+   "imported_at": "2026-11-22T14:57:24Z",
+   "dir": "packs/tough_student_hands_v1/v1",
+   "asset_count": 16,
+   "manifest_sha256": "d44c12562a93aa4ac949c5f083866532418f8fdb10cf8d672f69c264a9b25dc5",
+   "provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+   "intended_use": "sleeve-free hand switch drawings for the tough_student character (Phase 3.8 generalisation test)",
+   "files": {
+    "README.md": "ae45fb8c4555815633494d45cccf8207ef9f7cfa7397433da5fbf3fb229dce23",
+    "hands/left/cupped.png": "79e05d35d46c8a664c66998f4ae35e833633d196d64c32b831036a326bc628dc",
+    "hands/left/fist.png": "39cbf49bd9048c0e375b5c6af72852f16c14e2edce490fbb96ca9a9c1d26037a",
+    "hands/left/gripping.png": "60d6726b00fcf61635b63d6adf4e6787dd55990410c179872188a68900f6742f",
+    "hands/left/open_palm.png": "fe3bf36703c4775394aeb7c0e6619b35b7f0fa5ad2eb11856e8ace6b1ab74dc6",
+    "hands/left/palm_down.png": "f086fb5fc5f56237b8d5cc0ddb7b9d87e98e83f25835db0da441e7afb09cf322",
+    "hands/left/pointing.png": "9423174c20d6b3690bedb91302b0cff3d2d9c0b97d3a438253ddcc7eeb29f529",
+    "hands/left/relaxed.png": "bdfa157ce13e42fa86bf526d0a4526d9c140c95be21217159cfbea328af8b607",
+    "hands/left/thumbs_up.png": "1cf43f50a938150342b01462a7e3db83d1f741cda5114b8f71678eb4413b2d5d",
+    "hands/right/cupped.png": "5676243e02c725de22983af0450bea6d81c852a0e496f13f74e23c901baa71c3",
+    "hands/right/fist.png": "1bf4c5449af6d344ec3b9b8b1c8e9e9f9de6e84c95cdcbde332898a99d13ffeb",
+    "hands/right/gripping.png": "de013aee7fd5cd44322cdde299a3d2411e1f79de303e5be84711c73657d33e39",
+    "hands/right/open_palm.png": "daa904cb8043cb475e8528b58de3574dd70b743e968733d3d5402212c5382153",
+    "hands/right/palm_down.png": "33e3f5feb736271cdd9ab5682821a92e32d4fc62f01fa8f2e3edac6c5bbda56f",
+    "hands/right/pointing.png": "dad8ef30bc8a48a46ee06c926b1369a71d346fb16c35562533d474b892d66a20",
+    "hands/right/relaxed.png": "37f6a0e8b5b6fbdbec9b1a8ff77b8838b4dcbd1431a88b878f13371bcc8e9fa8",
+    "hands/right/thumbs_up.png": "33ba1395414717d236f98c7d3a38b738a00bb56a9071d15652b96c5b1ec287d1",
+    "manifest.json": "d44c12562a93aa4ac949c5f083866532418f8fdb10cf8d672f69c264a9b25dc5"
+   },
+   "warnings": [],
+   "supersedes": [],
+   "sleeve": "none",
+   "pack_schema_version": 2
+  }
+ ],
+ "assets": {
+  "tough_student_hands_v1/left_relaxed": {
+   "uid": "tough_student_hands_v1/left_relaxed",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_relaxed",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "relaxed",
+   "pack_pose": "relaxed",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/relaxed.png",
+     "sha256": "bdfa157ce13e42fa86bf526d0a4526d9c140c95be21217159cfbea328af8b607",
+     "size": [
+      186,
+      253
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        27.0,
+        17.0
+       ],
+       [
+        119.0,
+        8.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0974,
+       0.9952
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        86.39,
+        119.55
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r1c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    73.0,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_open_palm": {
+   "uid": "tough_student_hands_v1/left_open_palm",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_open_palm",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "open_palm",
+   "pack_pose": "open_palm",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/open_palm.png",
+     "sha256": "fe3bf36703c4775394aeb7c0e6619b35b7f0fa5ad2eb11856e8ace6b1ab74dc6",
+     "size": [
+      274,
+      257
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        86.0,
+        13.0
+       ],
+       [
+        178.0,
+        12.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0109,
+       0.9999
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.961,
+      "features": {
+       "centroid": [
+        135.38,
+        124.57
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r1c2",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    132.0,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_fist": {
+   "uid": "tough_student_hands_v1/left_fist",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_fist",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "fist",
+   "pack_pose": "fist",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/fist.png",
+     "sha256": "39cbf49bd9048c0e375b5c6af72852f16c14e2edce490fbb96ca9a9c1d26037a",
+     "size": [
+      193,
+      206
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        34.0,
+        16.0
+       ],
+       [
+        135.0,
+        9.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0691,
+       0.9976
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        92.64,
+        104.55
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r1c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    84.5,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_pointing": {
+   "uid": "tough_student_hands_v1/left_pointing",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_pointing",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "pointing",
+   "pack_pose": "point",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/pointing.png",
+     "sha256": "9423174c20d6b3690bedb91302b0cff3d2d9c0b97d3a438253ddcc7eeb29f529",
+     "size": [
+      254,
+      187
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        18.5,
+        17.55
+       ],
+       [
+        18.5,
+        111.05
+       ]
+      ],
+      "wrist_axis": [
+       1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        102.82,
+        83.32
+       ],
+       "index_tip": [
+        249.0,
+        76.0
+       ],
+       "index_tip_dir": [
+        0.9987,
+        0.0507
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "right",
+       "row_group_side": "left"
+      },
+      "derived": "mirror_x",
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review",
+       "derived: horizontal mirror of r1c4 (drawn as a right hand); the sheet has no left pointing drawing"
+      ],
+      "view": "palm",
+      "sheet_cell": "r1c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    18.5,
+    64.3
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_thumbs_up": {
+   "uid": "tough_student_hands_v1/left_thumbs_up",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_thumbs_up",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "thumbs_up",
+   "pack_pose": "thumbs_up",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/thumbs_up.png",
+     "sha256": "1cf43f50a938150342b01462a7e3db83d1f741cda5114b8f71678eb4413b2d5d",
+     "size": [
+      197,
+      258
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        11.0,
+        211.0
+       ],
+       [
+        14.0,
+        125.0
+       ]
+      ],
+      "wrist_axis": [
+       0.9994,
+       0.0349
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        101.46,
+        148.89
+       ],
+       "thumb_tip": [
+        118.0,
+        4.65
+       ],
+       "thumb_tip_dir": [
+        0.5425,
+        -0.84
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r2c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    12.5,
+    168.0
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_gripping": {
+   "uid": "tough_student_hands_v1/left_gripping",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_gripping",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "gripping",
+   "pack_pose": "grip",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/gripping.png",
+     "sha256": "60d6726b00fcf61635b63d6adf4e6787dd55990410c179872188a68900f6742f",
+     "size": [
+      232,
+      213
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        18.5,
+        151.4
+       ],
+       [
+        18.5,
+        58.9
+       ]
+      ],
+      "wrist_axis": [
+       1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        101.15,
+        97.55
+       ],
+       "grip_cavity_px": 6848,
+       "grip_center": [
+        157.45,
+        108.66
+       ],
+       "grip_center_dir": [
+        0.9997,
+        0.0253
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r2c2",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    18.5,
+    105.15
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_palm_down": {
+   "uid": "tough_student_hands_v1/left_palm_down",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_palm_down",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "palm_down",
+   "pack_pose": "palm_down",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/palm_down.png",
+     "sha256": "f086fb5fc5f56237b8d5cc0ddb7b9d87e98e83f25835db0da441e7afb09cf322",
+     "size": [
+      296,
+      191
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        94.0,
+        13.0
+       ],
+       [
+        188.0,
+        12.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0106,
+       0.9999
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.866,
+      "features": {
+       "centroid": [
+        156.59,
+        97.18
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "back",
+      "sheet_cell": "r2c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    141.0,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/left_cupped": {
+   "uid": "tough_student_hands_v1/left_cupped",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "left_cupped",
+   "side": "l",
+   "pack_side": "left",
+   "pose": "cupped",
+   "pack_pose": "cupped",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/left/cupped.png",
+     "sha256": "79e05d35d46c8a664c66998f4ae35e833633d196d64c32b831036a326bc628dc",
+     "size": [
+      241,
+      169
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        220.5,
+        15.92
+       ],
+       [
+        220.5,
+        109.42
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        134.21,
+        89.5
+       ],
+       "palm_center": [
+        134.21,
+        89.5
+       ],
+       "palm_center_dir": [
+        -0.9549,
+        0.2968
+       ]
+      },
+      "handedness": {
+       "anatomical": "left",
+       "drawn_as": "left",
+       "row_group_side": "left"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r2c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    220.5,
+    62.67
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_relaxed": {
+   "uid": "tough_student_hands_v1/right_relaxed",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_relaxed",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "relaxed",
+   "pack_pose": "relaxed",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/relaxed.png",
+     "sha256": "37f6a0e8b5b6fbdbec9b1a8ff77b8838b4dcbd1431a88b878f13371bcc8e9fa8",
+     "size": [
+      187,
+      252
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        63.0,
+        11.0
+       ],
+       [
+        157.0,
+        14.0
+       ]
+      ],
+      "wrist_axis": [
+       -0.0319,
+       0.9995
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        99.61,
+        120.88
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r3c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    110.0,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_open_palm": {
+   "uid": "tough_student_hands_v1/right_open_palm",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_open_palm",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "open_palm",
+   "pack_pose": "open_palm",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/open_palm.png",
+     "sha256": "daa904cb8043cb475e8528b58de3574dd70b743e968733d3d5402212c5382153",
+     "size": [
+      277,
+      260
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        101.0,
+        11.0
+       ],
+       [
+        194.0,
+        14.0
+       ]
+      ],
+      "wrist_axis": [
+       -0.0322,
+       0.9995
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 0.96,
+      "features": {
+       "centroid": [
+        137.4,
+        124.37
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r3c2",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    147.5,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_fist": {
+   "uid": "tough_student_hands_v1/right_fist",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_fist",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "fist",
+   "pack_pose": "fist",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/fist.png",
+     "sha256": "1bf4c5449af6d344ec3b9b8b1c8e9e9f9de6e84c95cdcbde332898a99d13ffeb",
+     "size": [
+      194,
+      208
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        57.0,
+        9.0
+       ],
+       [
+        161.0,
+        16.0
+       ]
+      ],
+      "wrist_axis": [
+       -0.0672,
+       0.9977
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        101.64,
+        105.21
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r3c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    109.0,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_pointing": {
+   "uid": "tough_student_hands_v1/right_pointing",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_pointing",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "pointing",
+   "pack_pose": "point",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/pointing.png",
+     "sha256": "dad8ef30bc8a48a46ee06c926b1369a71d346fb16c35562533d474b892d66a20",
+     "size": [
+      265,
+      181
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        244.5,
+        21.52
+       ],
+       [
+        244.5,
+        115.02
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        153.09,
+        77.13
+       ],
+       "index_tip": [
+        4.0,
+        36.0
+       ],
+       "index_tip_dir": [
+        -0.9911,
+        -0.133
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "palm",
+      "sheet_cell": "r3c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    244.5,
+    68.27
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_thumbs_up": {
+   "uid": "tough_student_hands_v1/right_thumbs_up",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_thumbs_up",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "thumbs_up",
+   "pack_pose": "thumbs_up",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/thumbs_up.png",
+     "sha256": "33ba1395414717d236f98c7d3a38b738a00bb56a9071d15652b96c5b1ec287d1",
+     "size": [
+      199,
+      263
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        185.0,
+        131.0
+       ],
+       [
+        185.0,
+        222.0
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       0.0
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        96.46,
+        152.79
+       ],
+       "thumb_tip": [
+        92.5,
+        4.44
+       ],
+       "thumb_tip_dir": [
+        -0.4735,
+        -0.8808
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "palm",
+      "sheet_cell": "r4c1",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    185.0,
+    176.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_gripping": {
+   "uid": "tough_student_hands_v1/right_gripping",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_gripping",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "gripping",
+   "pack_pose": "grip",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/gripping.png",
+     "sha256": "de013aee7fd5cd44322cdde299a3d2411e1f79de303e5be84711c73657d33e39",
+     "size": [
+      236,
+      222
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        217.0,
+        56.93
+       ],
+       [
+        217.0,
+        152.43
+       ]
+      ],
+      "wrist_axis": [
+       -1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        132.93,
+        99.4
+       ],
+       "grip_cavity_px": 7503,
+       "grip_center": [
+        76.32,
+        113.36
+       ],
+       "grip_center_dir": [
+        -0.9981,
+        0.0615
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r4c2",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    217.0,
+    104.68
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_palm_down": {
+   "uid": "tough_student_hands_v1/right_palm_down",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_palm_down",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "palm_down",
+   "pack_pose": "palm_down",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/palm_down.png",
+     "sha256": "33e3f5feb736271cdd9ab5682821a92e32d4fc62f01fa8f2e3edac6c5bbda56f",
+     "size": [
+      299,
+      192
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        112.0,
+        13.0
+       ],
+       [
+        207.0,
+        12.0
+       ]
+      ],
+      "wrist_axis": [
+       0.0105,
+       0.9999
+      ],
+      "wrist_opening": "open_cut",
+      "wrist_method": "wrist_stub_cap",
+      "wrist_confidence": 1.0,
+      "features": {
+       "centroid": [
+        140.58,
+        98.73
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [],
+      "view": "back",
+      "sheet_cell": "r4c3",
+      "sleeve": "none",
+      "manual_review": false
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    159.5,
+    12.5
+   ],
+   "anchor_status": "DETECTED",
+   "base_orientation": "wrist_edge"
+  },
+  "tough_student_hands_v1/right_cupped": {
+   "uid": "tough_student_hands_v1/right_cupped",
+   "library_id": "tough_student_hands_v1",
+   "asset_id": "right_cupped",
+   "side": "r",
+   "pack_side": "right",
+   "pose": "cupped",
+   "pack_pose": "cupped",
+   "versions": [
+    {
+     "v": 1,
+     "file": "packs/tough_student_hands_v1/v1/hands/right/cupped.png",
+     "sha256": "5676243e02c725de22983af0450bea6d81c852a0e496f13f74e23c901baa71c3",
+     "size": [
+      254,
+      176
+     ],
+     "origin": "pack",
+     "pack_version": 1,
+     "imported_at": "2026-11-22T14:57:24Z",
+     "geometry": {
+      "wrist_edge_px": [
+       [
+        18.0,
+        113.17
+       ],
+       [
+        18.0,
+        19.67
+       ]
+      ],
+      "wrist_axis": [
+       1.0,
+       -0.0
+      ],
+      "wrist_opening": "closed_outline",
+      "wrist_method": "chord_at_wrist_width",
+      "wrist_confidence": 0.35,
+      "features": {
+       "centroid": [
+        111.54,
+        93.02
+       ],
+       "palm_center": [
+        111.54,
+        93.02
+       ],
+       "palm_center_dir": [
+        0.9619,
+        0.2735
+       ]
+      },
+      "handedness": {
+       "anatomical": "right",
+       "drawn_as": "right",
+       "row_group_side": "right"
+      },
+      "derived": null,
+      "flags": [
+       "wrist opening is a closed outline (chord_at_wrist_width); pivot needs manual review"
+      ],
+      "view": "side",
+      "sheet_cell": "r4c4",
+      "sleeve": "none",
+      "manual_review": true
+     }
+    }
+   ],
+   "provenance": {
+    "artwork_source": "user-supplied hand gesture grid on a black background (AI-generated concept drawings)",
+    "pack_provenance": "Generated visual concepts supplied by the user as a sheet (no sleeves); extracted by autorig handsheet, not drawn from the original reference artwork",
+    "manifest_status": "NEEDS_REVIEW",
+    "notes": null
+   },
+   "manifest_anchor": [
+    18.0,
+    66.42
+   ],
+   "anchor_status": "ESTIMATED_NEEDS_REVIEW",
+   "base_orientation": "wrist_edge"
+  }
+ },
+ "saved_at": "2026-11-22T14:57:24Z"
+}

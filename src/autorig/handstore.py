@@ -1024,8 +1024,16 @@ def cuff_cover(sk, layers: dict[str, np.ndarray], forearm: np.ndarray, side: str
     skin = c["skin"] & beyond
     dark_near = ndimage.binary_dilation(skin, iterations=3) & beyond & ~(c["navy"] | c["white"]) & (forearm[..., 3] > 0)
     remove = skin | dark_near
+    # Phase 3.8: generated extension pixels (the layer differs from the source there: Phase 2 drew them under the
+    # original hand) are not the cuff. On the tough_student the flat fill continued the white cuff as a rounded white end;
+    # counted as cuff it was kept and covered the top of every stored hand. They never set the cuff edge, and the
+    # ones beyond the measured (source) cuff edge are removed.
+    gen = np.zeros((H, Wd), bool)
+    if source is not None and source.shape[:2] == (H, Wd):
+        gen = (forearm[..., 3] > 0) & (np.abs(forearm[..., :3].astype(np.int16) - source[..., :3].astype(np.int16)).max(-1) > 0)
+        remove |= gen & beyond
     # the cuff's distal edge per 4 px strip across the sleeve (interpolated; held at the span ends)
-    wsel = c["white"] & (np.abs(t - ref["cuff_edge_t_px"]) <= 25) & (np.abs(q) < 0.9 * hb.length)
+    wsel = c["white"] & ~gen & (np.abs(t - ref["cuff_edge_t_px"]) <= 25) & (np.abs(q) < 0.9 * hb.length)
     if wsel.sum() >= 50:
         tq, qq = t[wsel], q[wsel]
         q0 = float(qq.min())

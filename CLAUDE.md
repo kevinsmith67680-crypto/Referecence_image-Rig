@@ -79,6 +79,18 @@ faithful, editable **Moho Pro 14** character rig.
   the constraint-first selection, the shrug variants, the shoulder check, the reference pipeline (MediaPipe, local),
   the critic and the editor tabs are all built. The 16 drawings are still pending, there is no palm-up drawing
   (SHRUG_EXPRESSIVE is NEEDS_ARTWORK in production), and visual quality is not approved by anyone.
+- The user explicitly started **Phase 3.8**: rig a new, previously unseen character end to end and integrate a new
+  hand library. It is implemented; verdict **PARTIAL** (`docs/phase3_8_new_character_report.md`, plus the hand library,
+  segmentation, rigging quality, generalisation and export readiness reports in `docs/phase3_8_*.md`).
+  - Inputs: `references/tough_student/`, the chat-attachment JPEGs of the user's two PNGs. The PNG bytes were not
+    available.
+  - Project: `projects/tough_student_test/`.
+  - Evidence: `docs/phase3_8/new_character_evidence/01..20` and `docs/phase3_8/screenshots/`.
+  - Generalisation defects fixed: Phase 1 spatial paper rule, black-background hand sheets, generated pixels in the
+    stored-hand cuff cover, light shoes, outline-emblem badge, `ik-demo` fist layer, character-scoped round-trip and
+    view sources.
+  - Documented, not fixed: fixed garment palette and vocabulary, absolute pixel thresholds.
+  - Nothing is approved; Moho was not run.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -319,6 +331,29 @@ faithful, editable **Moho Pro 14** character rig.
   - `autorig reference-evidence <package>`;
   - `autorig phase37-bench <package>` (timings and Moho-oriented metadata, `proposed_unverified`).
 
+## Phase 3.8 rules (new characters)
+
+- New characters use the normal workflow. Never copy another character's coordinates, masks, colours or correction
+  shapes into a package:
+  - `analyze` (optionally `--complete-outline PX`, recorded in the pipeline steps);
+  - `prepare`, `pose-refine`;
+  - `hand-sheet`, `hand-import`, `hand-audit --inspection`;
+  - the evidence commands.
+- Phase 1 on an opaque image with a uniform border: the background is paper-coloured pixels *connected to the border*.
+  Enclosed white clothing is character. The 2 px fringe is measured against that spatial mask. `--complete-outline`
+  is opt-in because it would also repair a uniformly eroded segmentation, which the default pipeline must report.
+- Hand sheets: the polarity comes from the border. Dark sheets never use a global "delete dark pixels" rule:
+  - the outline band is grown from the coloured pixels, never through the rim, and never wider than the measured
+    outline width;
+  - the white path must stay byte-identical (the committed v2 pack rebuild test).
+- A rule that depends on a character's colours or names needs a check that the schoolboy's outputs are unchanged.
+  Examples: shoe tone, emblem shape, round-trip name, view sources.
+- `autorig newchar-evidence <package> --project ... --character ... --hand-sheet ... --hand-grid ...` regenerates
+  `docs/phase3_8/new_character_evidence/` (`--sections` for a subset). Pending drawings appear only in images labelled
+  REVIEW PREVIEW / PENDING.
+- The browser test for the new character is `editor/e2e/newchar.e2e.mjs`. It runs on a scratch copy; its approvals are
+  persistence tests, never artistic approvals.
+
 ## Hand Pose Store rules
 
 - Imported hand drawings live in `<package>/hand_store/` (append-only: `index.json` with hashes and provenance, packs
@@ -464,6 +499,11 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig reference-import clip.mp4 --id my_ref --source "..." --permission "..." [--hand r=pointing]
 .venv/bin/python -m autorig reference-evidence <package_dir>        # synthetic refs, MediaPipe round trip (~5 min)
 .venv/bin/python -m autorig phase37-bench <package_dir>
+# Phase 3.8 new character (normal workflow + evidence)
+.venv/bin/python -m autorig analyze references/tough_student/tpose_front.jpg --out projects/tough_student_test/character_project --character-id tough_student --complete-outline 5
+.venv/bin/python -m autorig hand-sheet references/tough_student/hand_grid/hand_grid_black.jpg --inspection references/tough_student/hand_grid/inspection.json --out references/tough_student/hand_grid --library-id tough_student_hands_v1 --zip-name AutoRig_Hand_Library_ToughStudent_v1.zip
+.venv/bin/python -m autorig newchar-evidence projects/tough_student_test/character_package --project projects/tough_student_test/character_project --character references/tough_student/tpose_front.jpg --hand-sheet references/tough_student/hand_grid/hand_grid_black.jpg --hand-grid references/tough_student/hand_grid   # ~30 min
+cd editor && AUTORIG_PYTHON=$PWD/../.venv/bin/python NODE_PATH=$(npm root -g) node --test e2e/newchar.e2e.mjs
 .venv/bin/python -m autorig performance-bench <package_dir>      # timings on this machine (run on the M1 for M1 figures)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
@@ -515,6 +555,10 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   `editor/src/components/{HandInspectorPanel,ReferencePanel}.tsx`; `motion_references/` (library)
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
+- `src/autorig/newchar.py` — Phase 3.8 image import report + background-extraction QA; `src/autorig/newchar_evidence.py`
+  — the numbered new-character evidence; `references/tough_student/` — the new character's inputs, hand grid
+  extraction (sprites, pack zip, inspection records, skin-matched candidates); `projects/tough_student_test/` — its
+  Phase 1 project, Phase 2 package (all evidence) and export
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright
 - `projects/schoolboy_tpose/moho_asset_package/` — validated Phase 3 export of the unedited real package (not
   production-ready); `docs/phase3/screenshots/` — real-browser screenshots from the e2e test
