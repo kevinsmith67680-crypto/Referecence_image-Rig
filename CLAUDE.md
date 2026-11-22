@@ -376,7 +376,7 @@ faithful, editable **Moho Pro 14** character rig.
   the network proxy injects the real credential, so set `REPLICATE_API_TOKEN=proxy-injected` for commands.
 - Model `vufinder/sam3` pinned at `1bf97763…` (snapshot in `src/autorig/data/replicate/`); run
   `python -m autorig replicate-check` (free) before changing versions. Dense output mode only.
-- Paid inference only through `Sam3ReplicateProvider` (cache + ledger + ceiling; default $1.00 cumulative,
+- Paid inference only through `Sam3ReplicateProvider` (cache + ledger + ceiling; default $5.00 cumulative, raised from $1.00 at the user's request on 2026-11-22,
   `AUTORIG_REPLICATE_BUDGET_USD`). Check the budget before any run; never raise it silently.
 - Never substitute an unrelated illustration for the user's reference. The synthetic character
   (`autorig.synthetic`) is a GT test fixture only.
@@ -427,7 +427,7 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig build-probe --report-dir research/moho-14.5 --out build/moho/AutoRig_Probe.lua
 .venv/bin/python -m autorig moho-file diff research/moho-14.5/L0_baseline.moho research/moho-14.5/L1_camera.moho
 # Phase 1
-.venv/bin/python -m autorig analyze <image> --out <project_dir> [--provider fixture] [--budget-usd 1.00]
+.venv/bin/python -m autorig analyze <image> --out <project_dir> [--provider fixture] [--budget-usd 5.00]
 .venv/bin/python -m autorig replicate-check            # free schema drift check
 .venv/bin/python -m autorig replicate-smoke <image>    # one tiny paid prediction (budget-capped)
 .venv/bin/python -m autorig eval-synthetic <project_dir>

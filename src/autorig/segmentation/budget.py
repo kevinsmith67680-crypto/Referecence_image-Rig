@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_USD_PER_SECOND = 0.000975
-DEFAULT_CEILING_USD = 1.00
+DEFAULT_CEILING_USD = 5.00  # raised from $1.00 at the user's request (2026-11-22); cumulative over the shared ledger
 DEFAULT_MAX_SECONDS = 120.0
 
 

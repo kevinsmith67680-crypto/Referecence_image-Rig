@@ -74,7 +74,7 @@ python3.12 -m venv .venv
 
 ```bash
 export REPLICATE_API_TOKEN=...   # never commit it
-.venv/bin/python -m autorig analyze path/to/reference.png --out character_projects/name --budget-usd 1.00
+.venv/bin/python -m autorig analyze path/to/reference.png --out character_projects/name --budget-usd 5.00
 ```
 
 This writes `character_project/`: source copy, `analysis/*.json`, masks, original-pixel layers,
