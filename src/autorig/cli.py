@@ -586,6 +586,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--quick", action="store_true", help="three poses, no acting test (smoke run)")
     p.set_defaults(func=cmd_artistic_evidence)
 
+    p = sub.add_parser("performance-evidence",
+                       help="Phase 3.6: upgraded acting test, classroom contacts, secondary motion, benchmark")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", help="output directory (default <package>/natural_pose/performance)")
+    p.add_argument("--quick", action="store_true", help="every 6th frame only (smoke run)")
+    p.set_defaults(func=cmd_performance_evidence)
+
+    p = sub.add_parser("performance-bench", help="Phase 3.6: measure performance evaluation and render times here")
+    p.add_argument("package", help="Phase 2 character package")
+    p.set_defaults(func=cmd_performance_bench)
+
     p = sub.add_parser("export-assets", help="Phase 3: export the Moho-ready asset package with quality gates")
     p.add_argument("package", help="Phase 2 character package (with editor/ edits, if any)")
     p.add_argument("--out", help="output directory (default <package>/editor/exports/<timestamp>)")
@@ -744,6 +755,28 @@ def cmd_garment_evidence(args: argparse.Namespace) -> int:
     res = garment_evidence(args.package, args.out, progress=print)
     print(f"garment evidence: {len(res['tests'])} tests, mean pose {res['performance']['pose_wall_s_mean']} s; "
           "visual review required")
+    return 0
+
+
+def cmd_performance_evidence(args: argparse.Namespace) -> int:
+    from .performance.evidence import performance_evidence
+
+    rep = performance_evidence(args.package, args.out, quick=args.quick, progress=print)
+    r = rep["results"]
+    print(json.dumps({k: r[k]["motion"]["verdict"] for k in ("acting", "classroom")}, indent=1))
+    print("Human artistic review is still required; pending drawings were previewed. Moho was not run.")
+    return 0
+
+
+def cmd_performance_bench(args: argparse.Namespace) -> int:
+    from .garmentrig.correctives import CorrectiveArtworkStore, CorrectiveRuntime
+    from .motion.pipeline import engine_for_package
+    from .performance.evidence import benchmark
+
+    eng, vis = engine_for_package(args.package)
+    eng.correctives = CorrectiveRuntime(eng, CorrectiveArtworkStore(args.package))
+    print(json.dumps(benchmark(eng, vis), indent=1, default=str))
+    print("Measured on this machine only. Run it on the Apple M1 for M1 figures.")
     return 0
 
 

@@ -326,7 +326,7 @@ def test_project_ops_and_migration(tmp_path):
             _apply_correctives(st, bad)
     _apply_correctives(st, {"type": "correctives.reset", "asset": "knee_cap_r"})
     assert st["correctives"]["settings"] == {}
-    assert migrate({"schema_version": 5, "ops": []})["schema_version"] == 7  # migrates through v6 to v7
+    assert migrate({"schema_version": 5, "ops": []})["schema_version"] == 8  # migrates through v6 and v7 to v8
 
 
 @real

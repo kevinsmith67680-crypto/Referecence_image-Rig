@@ -400,6 +400,172 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
 
         return jsonable(parse_feedback(str(body.get("text", "")), str(body.get("action", ""))))
 
+    # -- Phase 3.6 Performance timeline ---------------------------------------------------------------------
+    perf_cache: dict[str, Any] = {}
+
+    def _director(st, doc=None):
+        import json as _json  # noqa: PLC0415
+
+        from ..performance.director import Performance, PerformanceDirector  # noqa: PLC0415
+
+        doc = doc if doc is not None else (st.get("performance") or {}).get("doc")
+        if doc is None:
+            raise HTTPException(400, "no performance yet: load a scenario first")
+        masks = S.masks()
+        eng = S.pose.motion_engine(st, masks, rejected_ids(st))
+        key = f"{id(eng)}:" + _json.dumps(doc, sort_keys=True, default=str)
+        d = perf_cache.get(key)
+        if d is None:
+            vis = [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+            try:
+                d = PerformanceDirector(eng, vis, Performance.from_json(doc))
+            except (ValueError, KeyError, TypeError) as exc:
+                raise HTTPException(400, f"invalid performance: {exc}")
+            perf_cache.clear()
+            perf_cache[key] = d
+        return d
+
+    @app.get("/api/performance")
+    def performance_info():
+        from ..performance.anticipation import RECIPES  # noqa: PLC0415
+        from ..performance.curves import KINDS  # noqa: PLC0415
+        from ..performance.export import compatibility, live_control_spec  # noqa: PLC0415
+        from ..performance.gestures import GesturePerformanceLibrary  # noqa: PLC0415
+        from ..performance.layers import LAYERS  # noqa: PLC0415
+        from ..performance.overlap import DEFAULT_OFFSETS, GROUPS  # noqa: PLC0415
+        from ..performance.resolver import ArtworkAndCorrectionResolver  # noqa: PLC0415
+        from ..performance.secondary import DEFAULTS  # noqa: PLC0415
+        from ..performance.styles import PROFILES  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            eng = S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+            lib = GesturePerformanceLibrary(ArtworkAndCorrectionResolver(eng))
+            P = st.get("performance") or {}
+            return jsonable({"doc": P.get("doc"), "library": sorted((P.get("library") or {}).keys()),
+                             "gestures": {n: {"title": g.title, "tone": g.tone, "duration": g.duration,
+                                              "sided": g.sided, "status": lib.status(n)}
+                                          for n, g in lib.gestures.items()},
+                             "styles": {k: v.to_json() for k, v in PROFILES.items()}, "curve_kinds": list(KINDS),
+                             "recipes": sorted(RECIPES), "layers": list(LAYERS), "groups": list(GROUPS),
+                             "default_offsets": DEFAULT_OFFSETS, "secondary_defaults": DEFAULTS,
+                             "scenarios": ["acting_upgrade", "classroom", "secondary_demo"],
+                             "live": live_control_spec(), "compatibility": compatibility(),
+                             "note": "Pending hand drawings are previewed and labelled. Performances are approved only "
+                                     "by you (approval.set on performance:<name>); nothing here is automatic."})
+
+    @app.post("/api/performance/scenario")
+    def performance_scenario(body: dict = Body(...)):
+        from ..performance import scenarios  # noqa: PLC0415
+
+        name = str(body.get("name"))
+        with S.lock:
+            st = S.project.state()
+            eng = S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+            if name == "acting_upgrade":
+                doc = scenarios.acting_upgrade()
+            elif name == "classroom":
+                doc = scenarios.classroom(eng)
+            elif name == "secondary_demo":
+                doc = scenarios.secondary_demo()
+            else:
+                raise HTTPException(400, f"unknown scenario {name!r}")
+            return jsonable({"doc": doc.to_json()})
+
+    @app.post("/api/performance/track")
+    def performance_track(body: dict = Body(default={})):
+        with S.lock:
+            st = S.project.state()
+            d = _director(st, body.get("doc"))
+            fps = float(body.get("fps") or d.perf.fps)
+            import time as _time  # noqa: PLC0415
+
+            t0 = _time.perf_counter()
+            tr = d.track(fps)
+            dt = _time.perf_counter() - t0
+            bones = [[b.name, b.parent] for b in d.eng.sk.bones]
+            frames = [{"t": f["t"], "joints": f["joints"], "tails": f["tails"], "params": f["params"],
+                       "hands": {s: {"pose": h["shown"], "status": h["status"]}
+                                 for s, h in f["performance"]["hands"].items()},
+                       "contacts": {s: c["weight"] for s, c in (f["performance"].get("contacts") or {}).items()},
+                       "secondary": f["performance"]["secondary"],
+                       "clips": [a["clip"] for a in f["performance"]["layers"]]} for f in tr]
+            feet = {s: round(max((abs(frames[i]["joints"][f"foot_{s}"][0] - frames[i - 1]["joints"][f"foot_{s}"][0])
+                                  for i in range(1, len(frames))), default=0.0), 3) for s in ("r", "l")}
+            gest = [{"id": c.id, "gesture": c.gesture, "layer": c.layer, "start": c.start, "end": round(c.end, 4),
+                     "side": c.side} for c in d.layers.clips]
+            return jsonable({"fps": fps, "duration": d.duration, "frames": frames, "bones": bones,
+                             "keys": [{"id": k.id, "t": k.t, "hold": k.hold, "label": k.label,
+                                       "curve": k.curve.to_json(), "anticipation": k.anticipation,
+                                       "overshoot": k.overshoot} for k in d.base.keys],
+                             "clips": gest, "contacts": [c.to_json() for c in d.contacts.specs],
+                             "markers": d.perf.hand_markers, "layers": d.layers.settings,
+                             "secondary": d.secondary.report(), "gesture_status": {
+                                 g["id"]: d.library.status(g["gesture"], g.get("side", "r")) for g in d.perf.gestures},
+                             "max_foot_step_px": feet, "props": d.perf.props,
+                             "timing": {"track_s_per_frame": round(dt / max(len(tr), 1), 4), **d.timing}})
+
+    @app.get("/api/performance/frame.png")
+    def performance_frame(t: float = 0.0):
+        import numpy as np  # noqa: PLC0415
+
+        from ..performance.seat import draw_props  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            d = _director(st)
+            r = d.solve(float(t), render=True)
+        img = r["image"]
+        if d.desks:
+            img = draw_props(img, r["pad"], d.desks, d.eng.profile.ground_y)
+        ys, xs = np.nonzero(img[..., 3] > 0)
+        img = img[max(0, ys.min() - 8):ys.max() + 9, max(0, xs.min() - 8):xs.max() + 9]
+        return png(img)
+
+    @app.post("/api/performance/render")
+    def performance_render(body: dict = Body(default={})):
+        import uuid  # noqa: PLC0415
+
+        from ..motion.pipeline import save_animation  # noqa: PLC0415
+        from ..performance.seat import draw_props  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            d = _director(st)
+        fps = float(body.get("fps") or d.perf.fps)
+        times = d.frames(fps)
+        if len(times) > 160:
+            raise HTTPException(400, "at most 160 frames per render job")
+        jid = uuid.uuid4().hex[:12]
+        job = {"done": False, "progress": 0, "total": len(times), "frames": [], "error": None}
+        jobs[jid] = job
+        while len(jobs) > 6:
+            jobs.pop(next(iter(jobs)))
+
+        def work():
+            try:
+                imgs = []
+                for i, t in enumerate(times):
+                    with S.lock:
+                        r = d.solve(t, render=True)
+                    img = r["image"]
+                    if d.desks:
+                        img = draw_props(img, r["pad"], d.desks, d.eng.profile.ground_y)
+                    imgs.append(img)
+                    job["frames"].append(png_bytes(img))
+                    job["progress"] = i + 1
+                out_dir = S.project.dir / "performances"
+                out_dir.mkdir(parents=True, exist_ok=True)
+                save_animation(imgs, int(1000 / fps), out_dir / f"{jid}.gif", scale=0.4)
+                job["files"] = {"gif": str(out_dir / f"{jid}.gif")}
+            except Exception as exc:  # reported to the UI
+                job["error"] = str(exc)
+            finally:
+                job["done"] = True
+
+        threading.Thread(target=work, daemon=True).start()
+        return {"id": jid, "frames": len(times)}
+
     # -- Phase 3.4 Correctives tab ------------------------------------------------------------------------
     @app.get("/api/correctives")
     def correctives_info():

@@ -31,6 +31,7 @@ const SHOTSHR = process.env.AUTORIG_SHOTS_HR || path.join(repo, "docs/hand_repla
 const SHOTS33 = process.env.AUTORIG_SHOTS_P33 || path.join(repo, "docs/phase3_3/screenshots");
 const SHOTS34 = process.env.AUTORIG_SHOTS_P34 || path.join(repo, "docs/phase3_4/screenshots");
 const SHOTS35 = process.env.AUTORIG_SHOTS_P35 || path.join(repo, "docs/phase3_5/screenshots");
+const SHOTS36 = process.env.AUTORIG_SHOTS_P36 || path.join(repo, "docs/phase3_6/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
@@ -38,6 +39,7 @@ mkdirSync(SHOTS32, { recursive: true });
 mkdirSync(SHOTS33, { recursive: true });
 mkdirSync(SHOTS34, { recursive: true });
 mkdirSync(SHOTS35, { recursive: true });
+mkdirSync(SHOTS36, { recursive: true });
 
 const sha = (f) => createHash("sha256").update(readFileSync(f)).digest("hex");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -639,6 +641,65 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.waitForSelector("[data-testid=artistic-constraints]", { timeout: 60000 });
     assert.match(await page.textContent("[data-testid=artistic-constraints]"), /constraints \(1\)/, "persists after reload");
     await page.screenshot({ path: path.join(SHOTS35, "03_artistic_after_reload.png") });
+
+    // 6i. Phase 3.6 performance timeline: load the acting test, inspect keys/curves, edit timing and style, add a
+    // gesture clip and a hand marker, mute a layer, scrub and play, render one full frame, persistence after reload
+    await page.click("[data-testid=tab-Performance]");
+    await page.waitForSelector("[data-testid=performance-panel] [data-testid=perf-scenario-acting_upgrade]", { timeout: 60000 });
+    r0 = await rev(page);
+    await page.click("[data-testid=perf-scenario-acting_upgrade]");
+    await waitRev(page, r0);
+    await page.waitForSelector("[data-testid=perf-timeline]", { timeout: 120000 });
+    assert.match(await page.textContent("[data-testid=performance-panel]"), /acting_test_upgrade/);
+    assert.match(await page.textContent("[data-testid=performance-panel]"), /feet max step 0\/0 px/, "planted feet do not slide");
+    await page.click("[data-testid=perf-key-k4]");
+    await page.waitForSelector("[data-testid=perf-key-editor]");
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(SHOTS36, "01_performance_timeline.png") });
+    r0 = await rev(page);
+    await page.selectOption("[data-testid=perf-curve-kind]", "bezier");
+    await waitRev(page, r0);
+    let sp = (await api("/api/project")).state.performance.doc;
+    assert.equal(sp.base_keys.find((k) => k.id === "k4").curve.kind, "bezier", "curve edits are project ops");
+    r0 = await rev(page);
+    await page.selectOption("[data-testid=perf-style]", "confident");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.selectOption("[data-testid=perf-gesture]", "wave");
+    await page.click("[data-testid=perf-gesture-add]");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.click("[data-testid=perf-marker-add]");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.click("[data-testid=perf-layer-SECONDARY_MOTION]");
+    await waitRev(page, r0);
+    sp = (await api("/api/project")).state.performance.doc;
+    assert.equal(sp.style, "confident");
+    assert.equal(sp.gestures.length, 1);
+    assert.equal(sp.hand_markers.length, 1);
+    assert.equal(sp.layers.SECONDARY_MOTION.mute, true);
+    await page.waitForSelector("[data-testid=perf-timeline]", { timeout: 120000 });
+    const tPerf = await page.textContent("[data-testid=perf-time]");
+    await page.click("[data-testid=perf-next]");
+    await page.click("[data-testid=perf-next]");
+    assert.notEqual(await page.textContent("[data-testid=perf-time]"), tPerf, "frame stepping");
+    await page.click("[data-testid=perf-play]");
+    await page.waitForTimeout(700);
+    await page.click("[data-testid=perf-play]");
+    await page.click("[data-testid=perf-render-frame]");
+    await page.waitForFunction(() => { const im = document.querySelector("[data-testid=perf-frame-img]"); return im && im.complete && im.naturalWidth > 0; }, null, { timeout: 120000 });
+    await page.screenshot({ path: path.join(SHOTS36, "02_performance_edits_and_frame.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=undo]");
+    await waitRev(page, r0);
+    assert.equal((await api("/api/project")).state.performance.doc.layers.SECONDARY_MOTION?.mute ?? false, false, "undo");
+    await page.reload();
+    await page.waitForSelector("[data-testid=layers-panel]");
+    await page.click("[data-testid=tab-Performance]");
+    await page.waitForSelector("[data-testid=perf-timeline]", { timeout: 120000 });
+    assert.equal((await api("/api/project")).state.performance.doc.style, "confident", "persists after reload");
+    await page.screenshot({ path: path.join(SHOTS36, "03_performance_after_reload.png") });
 
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");

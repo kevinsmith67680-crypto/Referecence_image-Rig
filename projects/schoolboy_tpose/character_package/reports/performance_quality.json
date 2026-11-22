@@ -1,0 +1,775 @@
+{
+ "schema": "autorig.performance_quality",
+ "version": "1.0.0",
+ "results": {
+  "acting": {
+   "frames": 78,
+   "fps": 12.0,
+   "baseline_render_s_per_frame": 2.82,
+   "upgrade_render_s_per_frame": 2.95,
+   "baseline_motion": {
+    "feet": {
+     "r": {
+      "max_step_px": 13.38,
+      "jumps_over_1px": [
+       3.167,
+       4.417
+      ]
+     },
+     "l": {
+      "max_step_px": 13.38,
+      "jumps_over_1px": [
+       3.333,
+       4.208
+      ]
+     }
+    },
+    "note": "Phase 3.5 ActingSequence through ArtisticPosePlanner (skeleton-only, 24 Hz)"
+   },
+   "motion": {
+    "fps": 48.0,
+    "frames": 308,
+    "continuity": {
+     "param_step_s": 0.001,
+     "jump_fraction_of_range_per_s": 0.1,
+     "velocity_jumps": [],
+     "fast_smooth_samples": 48,
+     "velocity_jump_count": 0,
+     "solver_events": [],
+     "solver_event_count": 0,
+     "solver_fps": 48.0
+    },
+    "authored_steps": [],
+    "feet": {
+     "r": {
+      "max_planted_step_px": 0.0,
+      "planted_travel_px": 0.0,
+      "swing_frames": 0
+     },
+     "l": {
+      "max_planted_step_px": 0.0,
+      "planted_travel_px": 0.0,
+      "swing_frames": 0
+     }
+    },
+    "foot_sliding_px": 0.0,
+    "foot_sliding": "PASS",
+    "contact_sliding_px": null,
+    "contact_sliding": "PASS",
+    "contact_transition_jumps": [],
+    "joint_limit_violations": [],
+    "verdict": "PASS",
+    "note": "deterministic motion checks; fast deliberate motion is not flagged"
+   },
+   "artistic": {
+    "checks": [],
+    "follow_through_settle": [
+     {
+      "key": "raise arm",
+      "residual_at_hold_end": 0.0
+     },
+     {
+      "key": "point",
+      "residual_at_hold_end": 0.0
+     },
+     {
+      "key": "shrug (hands low)",
+      "residual_at_hold_end": 0.0
+     }
+    ],
+    "secondary": {
+     "time_near_limit": {
+      "hair": 0.071,
+      "hem": 0.0
+     },
+     "dt": 0.004166666666666667,
+     "cache_key": "84e35b12a2f749ad",
+     "intensity": 1.0,
+     "parts": {
+      "hair": {
+       "enabled": true,
+       "freq_hz": 1.9,
+       "damping": 0.45,
+       "gain": 0.85,
+       "limit_deg": 5.0,
+       "driver": "head tilt + body sway",
+       "status": "IMPLEMENTED",
+       "max_abs_deg": 4.994,
+       "settled_at_end_deg": 0.004
+      },
+      "hem": {
+       "enabled": true,
+       "freq_hz": 2.4,
+       "damping": 0.4,
+       "gain": 1.3,
+       "limit_deg": 4.0,
+       "driver": "pelvis roll + torso lean",
+       "status": "IMPLEMENTED",
+       "max_abs_deg": 1.94,
+       "settled_at_end_deg": 0.002
+      },
+      "tie": {
+       "enabled": false,
+       "status": "NEEDS_ARTWORK",
+       "reason": "the tie is drawn on the torso layer and the vest behind it is not drawn: a swinging tie would open a hole (needs art:vest_behind_tie)"
+      },
+      "sleeve": {
+       "enabled": false,
+       "status": "UNSUPPORTED",
+       "reason": "sleeves are rigid segments in the Phase 3.3 garment rig; there is no loose-sleeve term"
+      }
+     },
+     "rigid": [
+      "collar",
+      "lapels",
+      "buttons",
+      "badge",
+      "pocket flaps"
+     ]
+    },
+    "hands": {
+     "pending_frames": 78,
+     "missing_frames": 0,
+     "poses": {
+      "relaxed:pending_review": 132,
+      "open_palm:original": 11,
+      "pointing:pending_review": 13
+     }
+    },
+    "weight": {
+     "com_outside_max_px": 0.0,
+     "unclear_weight_holds": []
+    },
+    "gestures": {
+     "point": {
+      "status": "NEEDS_APPROVAL",
+      "missing": [],
+      "pending": [
+       "hand:pointing (r)"
+      ],
+      "production_ready": false,
+      "alternative": null,
+      "note": ""
+     },
+     "explain": {
+      "status": "NEEDS_APPROVAL",
+      "missing": [],
+      "pending": [
+       "hand:cupped/palm_up (r)",
+       "hand:cupped/palm_up (l)"
+      ],
+      "production_ready": false,
+      "alternative": null,
+      "note": ""
+     },
+     "shrug": {
+      "status": "NEEDS_ARTWORK",
+      "missing": [
+       "hand:palm_up (r)",
+       "hand:palm_up (l)"
+      ],
+      "pending": [],
+      "production_ready": false,
+      "alternative": "shrug_low",
+      "note": "palm-up hands do not exist: NEEDS_ARTWORK. Not disguised by wrist rotation; see shrug_low"
+     },
+     "shrug_low": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "supported alternative: the shoulders carry the shrug, the hands stay relaxed at the sides"
+     },
+     "wave": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     },
+     "disagree": {
+      "status": "NEEDS_APPROVAL",
+      "missing": [],
+      "pending": [
+       "hand:palm_down (r)"
+      ],
+      "production_ready": false,
+      "alternative": null,
+      "note": "the head tilts side to side; a real head shake is a yaw and needs turned-head drawings"
+     },
+     "nod": {
+      "status": "REQUIRES_NEW_VIEW",
+      "missing": [
+       "art:head_pitch_down",
+       "art:head_pitch_up"
+      ],
+      "pending": [],
+      "production_ready": false,
+      "note": "a nod is a head pitch: the front-view head can only tilt in the picture plane (REQUIRES_NEW_VIEW); the preview is a small tilt, labelled"
+     },
+     "surprise": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     },
+     "lean_towards": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "lateral lean (front view); a lean toward the viewer needs art:torso_lean_forward (REQUIRES_NEW_VIEW)"
+     },
+     "raise_hand": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     },
+     "return_neutral": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     }
+    },
+    "artistic_review_required": true,
+    "note": "checks for a reviewer; artistic quality is approved by a person, never by these numbers"
+   },
+   "geometric": {
+    "frames": 78,
+    "exposed_gaps_max": 20,
+    "clipped_open_px_max": 98
+   },
+   "shrug": {
+    "status": "NEEDS_ARTWORK",
+    "shown": "shrug_low",
+    "review_preview": "shrug_review_preview.png (cupped, pending)"
+   },
+   "timing": {
+    "secondary_simulate_s": 0.48
+   },
+   "calibration": {
+    "pelvis_dx_at_0.5": -1.68,
+    "slope_px_per_weight": 284.08
+   }
+  },
+  "classroom": {
+   "frames": 75,
+   "render_s_per_frame": 3.11,
+   "motion": {
+    "fps": 48.0,
+    "frames": 299,
+    "continuity": {
+     "param_step_s": 0.001,
+     "jump_fraction_of_range_per_s": 0.1,
+     "velocity_jumps": [],
+     "fast_smooth_samples": 0,
+     "velocity_jump_count": 0,
+     "solver_events": [],
+     "solver_event_count": 0,
+     "solver_fps": 48.0
+    },
+    "authored_steps": [],
+    "feet": {
+     "r": {
+      "max_planted_step_px": 0.0,
+      "planted_travel_px": 0.0,
+      "swing_frames": 0
+     },
+     "l": {
+      "max_planted_step_px": 0.0,
+      "planted_travel_px": 0.0,
+      "swing_frames": 0
+     }
+    },
+    "foot_sliding_px": 0.0,
+    "foot_sliding": "PASS",
+    "contact_sliding_px": 0.066,
+    "contact_sliding": "PASS",
+    "contact_transition_jumps": [],
+    "joint_limit_violations": [],
+    "verdict": "PASS",
+    "note": "deterministic motion checks; fast deliberate motion is not flagged"
+   },
+   "artistic": {
+    "checks": [
+     {
+      "check": "key_pose_hold",
+      "key": "shift weight",
+      "hold_s": 0.2,
+      "level": "info",
+      "message": "short hold: the pose may not read (fine for a passing key)"
+     }
+    ],
+    "follow_through_settle": [],
+    "secondary": {
+     "time_near_limit": {
+      "hair": 0.0,
+      "hem": 0.0
+     },
+     "dt": 0.004166666666666667,
+     "cache_key": "75fc4d4b1702ea54",
+     "intensity": 1.0,
+     "parts": {
+      "hair": {
+       "enabled": true,
+       "freq_hz": 1.9,
+       "damping": 0.45,
+       "gain": 0.85,
+       "limit_deg": 5.0,
+       "driver": "head tilt + body sway",
+       "status": "IMPLEMENTED",
+       "max_abs_deg": 3.001,
+       "settled_at_end_deg": 0.001
+      },
+      "hem": {
+       "enabled": true,
+       "freq_hz": 2.4,
+       "damping": 0.4,
+       "gain": 1.3,
+       "limit_deg": 4.0,
+       "driver": "pelvis roll + torso lean",
+       "status": "IMPLEMENTED",
+       "max_abs_deg": 0.305,
+       "settled_at_end_deg": 0.001
+      },
+      "tie": {
+       "enabled": false,
+       "status": "NEEDS_ARTWORK",
+       "reason": "the tie is drawn on the torso layer and the vest behind it is not drawn: a swinging tie would open a hole (needs art:vest_behind_tie)"
+      },
+      "sleeve": {
+       "enabled": false,
+       "status": "UNSUPPORTED",
+       "reason": "sleeves are rigid segments in the Phase 3.3 garment rig; there is no loose-sleeve term"
+      }
+     },
+     "rigid": [
+      "collar",
+      "lapels",
+      "buttons",
+      "badge",
+      "pocket flaps"
+     ]
+    },
+    "hands": {
+     "pending_frames": 54,
+     "missing_frames": 0,
+     "poses": {
+      "relaxed:pending_review": 31,
+      "palm_down:pending_review": 40,
+      "pointing:pending_review": 15
+     }
+    },
+    "weight": {
+     "com_outside_max_px": 0.0,
+     "unclear_weight_holds": []
+    },
+    "gestures": {
+     "point": {
+      "status": "NEEDS_APPROVAL",
+      "missing": [],
+      "pending": [
+       "hand:pointing (r)"
+      ],
+      "production_ready": false,
+      "alternative": null,
+      "note": ""
+     },
+     "explain": {
+      "status": "NEEDS_APPROVAL",
+      "missing": [],
+      "pending": [
+       "hand:cupped/palm_up (r)",
+       "hand:cupped/palm_up (l)"
+      ],
+      "production_ready": false,
+      "alternative": null,
+      "note": ""
+     },
+     "shrug": {
+      "status": "NEEDS_ARTWORK",
+      "missing": [
+       "hand:palm_up (r)",
+       "hand:palm_up (l)"
+      ],
+      "pending": [],
+      "production_ready": false,
+      "alternative": "shrug_low",
+      "note": "palm-up hands do not exist: NEEDS_ARTWORK. Not disguised by wrist rotation; see shrug_low"
+     },
+     "shrug_low": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "supported alternative: the shoulders carry the shrug, the hands stay relaxed at the sides"
+     },
+     "wave": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     },
+     "disagree": {
+      "status": "NEEDS_APPROVAL",
+      "missing": [],
+      "pending": [
+       "hand:palm_down (r)"
+      ],
+      "production_ready": false,
+      "alternative": null,
+      "note": "the head tilts side to side; a real head shake is a yaw and needs turned-head drawings"
+     },
+     "nod": {
+      "status": "REQUIRES_NEW_VIEW",
+      "missing": [
+       "art:head_pitch_down",
+       "art:head_pitch_up"
+      ],
+      "pending": [],
+      "production_ready": false,
+      "note": "a nod is a head pitch: the front-view head can only tilt in the picture plane (REQUIRES_NEW_VIEW); the preview is a small tilt, labelled"
+     },
+     "surprise": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     },
+     "lean_towards": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "lateral lean (front view); a lean toward the viewer needs art:torso_lean_forward (REQUIRES_NEW_VIEW)"
+     },
+     "raise_hand": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     },
+     "return_neutral": {
+      "status": "SUPPORTED",
+      "missing": [],
+      "pending": [],
+      "production_ready": false,
+      "alternative": null,
+      "note": "uses only original artwork; still needs a person to approve the performance"
+     }
+    },
+    "artistic_review_required": true,
+    "note": "checks for a reviewer; artistic quality is approved by a person, never by these numbers"
+   },
+   "geometric": {
+    "frames": 75,
+    "exposed_gaps_max": 20,
+    "clipped_open_px_max": 45
+   },
+   "interactions": [
+    {
+     "interaction": "sit on a chair",
+     "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+     "needs": [
+      "art:thigh_foreshortened",
+      "art:seat",
+      "corrective:trousers_seated"
+     ]
+    },
+    {
+     "interaction": "rest a hand on a desk (beside him)",
+     "class": "SUPPORTED",
+     "note": "hand contact through the IK solver; palm-down hand drawing pending review (preview only)"
+    },
+    {
+     "interaction": "lean towards another character",
+     "class": "SUPPORTED",
+     "note": "lateral lean only; a forward lean is REQUIRES_NEW_VIEW (art:torso_lean_forward)"
+    },
+    {
+     "interaction": "elbows on a desk",
+     "class": "REQUIRES_NEW_VIEW",
+     "note": "standing, it needs a forward bend; seated, the seated artwork is missing"
+    },
+    {
+     "interaction": "hold an object",
+     "class": "SUPPORTED_WITH_CORRECTIONS",
+     "note": "one- or two-hand object contacts, moving targets; gripping hand pending review"
+    },
+    {
+     "interaction": "point at someone while sitting",
+     "class": "REQUIRES_ALTERNATIVE_ARTWORK",
+     "needs": [
+      "art:thigh_foreshortened",
+      "art:seat",
+      "corrective:trousers_seated"
+     ]
+    }
+   ],
+   "forward_lean": "REQUIRES_NEW_VIEW (art:torso_lean_forward): not rendered; the lean is lateral",
+   "desk": {
+    "id": "desk",
+    "x0": -23.96120719658984,
+    "x1": 336.2073554919756,
+    "top_y": 709.7550234495213,
+    "depth_px": 30.0,
+    "leg_to_y": 1401.0,
+    "note": "test prop (simple geometry, not character artwork)"
+   },
+   "contact": {
+    "id": "hand_r_desk",
+    "kind": "hand_desk",
+    "part": "hand_r",
+    "target": {
+     "point": [
+      290.8714524962121,
+      709.7550234495213
+     ]
+    },
+    "start": 1.75,
+    "end": 4.6,
+    "acquire": 0.6,
+    "release": 0.55,
+    "strength": 1.0,
+    "orientation": 0.0,
+    "attach": "fingertips",
+    "chain": "arm_r",
+    "release_behaviour": "return_to_pose",
+    "priority": 20,
+    "space": "world",
+    "forearm_dir": null
+   },
+   "gesture_status": {
+    "point_l": {
+     "status": "NEEDS_APPROVAL",
+     "missing": [],
+     "pending": [
+      "hand:pointing (l)"
+     ],
+     "production_ready": false,
+     "alternative": null,
+     "note": ""
+    }
+   }
+  },
+  "secondary": {
+   "frames": 49,
+   "render_s_per_frame": 2.85,
+   "max_changed_px": 41809,
+   "max_changed_at_s": 0.917,
+   "settled_at_end_deg": {
+    "hair": 0.0,
+    "hem": 0.0
+   },
+   "report": {
+    "dt": 0.004166666666666667,
+    "cache_key": "b21d0334f145852c",
+    "intensity": 1.0,
+    "parts": {
+     "hair": {
+      "enabled": true,
+      "freq_hz": 1.9,
+      "damping": 0.45,
+      "gain": 1.2,
+      "limit_deg": 5.0,
+      "driver": "head tilt + body sway",
+      "status": "IMPLEMENTED",
+      "max_abs_deg": 4.996,
+      "settled_at_end_deg": 0.0
+     },
+     "hem": {
+      "enabled": true,
+      "freq_hz": 2.4,
+      "damping": 0.4,
+      "gain": 1.6,
+      "limit_deg": 4.0,
+      "driver": "pelvis roll + torso lean",
+      "status": "IMPLEMENTED",
+      "max_abs_deg": 0.741,
+      "settled_at_end_deg": 0.0
+     },
+     "tie": {
+      "enabled": false,
+      "status": "NEEDS_ARTWORK",
+      "reason": "the tie is drawn on the torso layer and the vest behind it is not drawn: a swinging tie would open a hole (needs art:vest_behind_tie)"
+     },
+     "sleeve": {
+      "enabled": false,
+      "status": "UNSUPPORTED",
+      "reason": "sleeves are rigid segments in the Phase 3.3 garment rig; there is no loose-sleeve term"
+     }
+    },
+    "rigid": [
+     "collar",
+     "lapels",
+     "buttons",
+     "badge",
+     "pocket flaps"
+    ]
+   },
+   "rigid_parts": "badge, buttons, tie, lapels, collar: unchanged (test)"
+  },
+  "benchmark": {
+   "A_full_render_s": 3.1638,
+   "B_interactive_pose_eval_s": 0.0203,
+   "B_layers_eval_s": 0.0001,
+   "C_timeline_preview_track_s_per_frame": 0.0159,
+   "D_quality_motion_check_s": 9.33,
+   "secondary_simulate_s": 0.332,
+   "director_init_s": 0.391,
+   "secondary_lookup_s": 0.0,
+   "render_breakdown_ms": {
+    "solve": 21.77,
+    "corrections": 0.32,
+    "switches": 0.18,
+    "render_and_tears": 3215.7,
+    "total": 3258.7
+   },
+   "hardware": {
+    "machine": "x86_64",
+    "system": "Linux",
+    "python": "3.12.3",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "note": "cloud sandbox measurements; no Apple M1 figures are claimed"
+   },
+   "note": "cloud sandbox; skeleton-only evaluation (contacts include one extra free solve) is the interactive path; full artwork renders are offline. No Apple M1 or real-time figure is claimed: run `autorig performance-bench <package>` on the Mac.",
+   "evidence_total_s": 1060.5
+  }
+ },
+ "compatibility": {
+  "classes": [
+   "DIRECTLY_EXPORTABLE",
+   "REQUIRES_CONVERSION",
+   "REQUIRES_BAKING",
+   "REQUIRES_MANUAL_SETUP",
+   "UNSUPPORTED"
+  ],
+  "rows": [
+   {
+    "item": "skeletal keyframes (per-bone rotation relative to rest, per frame)",
+    "class": "REQUIRES_CONVERSION",
+    "native": "bone angle keyframes",
+    "note": "AutoRig: degrees, clockwise on screen, relative to rest; a native angle is the rest angle minus the rotation in radians (counter-clockwise, parent-relative). Exact at every exported frame"
+   },
+   {
+    "item": "root motion (pelvis shift)",
+    "class": "REQUIRES_CONVERSION",
+    "native": "root bone position keys",
+    "note": "pixels -> frame units (y flipped)"
+   },
+   {
+    "item": "timing curves (quintic, Bezier, monotone Hermite, overlap offsets)",
+    "class": "REQUIRES_BAKING",
+    "native": "keys on every frame",
+    "note": "native interpolation is not assumed to match: bake per frame, or key only the key poses and accept the native curve (stated as a difference)"
+   },
+   {
+    "item": "anticipation / overshoot bumps",
+    "class": "REQUIRES_BAKING",
+    "native": "keys on every frame",
+    "note": "C2 bumps are not a native curve type"
+   },
+   {
+    "item": "pose Actions (gesture key poses)",
+    "class": "REQUIRES_CONVERSION",
+    "native": "Actions",
+    "note": "one Action per gesture key pose; gestures whose hands are pending stay review-only"
+   },
+   {
+    "item": "hand switch keys",
+    "class": "REQUIRES_CONVERSION",
+    "native": "switch layer keys",
+    "note": "per side; pending drawings only in a review export"
+   },
+   {
+    "item": "IK targets / contacts (desk, hip, object)",
+    "class": "REQUIRES_BAKING",
+    "native": "bone targets, or baked arm angles",
+    "note": "AutoRig blends the wrist target with C2 weights and an elbow pole; a native target-bone set-up is possible but unverified: bake the solved arm angles by default"
+   },
+   {
+    "item": "contact events (start, end, acquire, release)",
+    "class": "REQUIRES_MANUAL_SETUP",
+    "native": "markers / notes",
+    "note": "kept as metadata for an animator"
+   },
+   {
+    "item": "weight transfer (balance, planted feet)",
+    "class": "REQUIRES_BAKING",
+    "native": "keys on every frame",
+    "note": "the static balance is an AutoRig solve"
+   },
+   {
+    "item": "motion layers (masks, weights, override/additive)",
+    "class": "REQUIRES_BAKING",
+    "native": "flattened keys (optionally Actions per clip)",
+    "note": "layer composition is AutoRig-only"
+   },
+   {
+    "item": "secondary motion (hair, hem springs)",
+    "class": "REQUIRES_BAKING",
+    "native": "baked deformation keys",
+    "note": "the garment terms are AutoRig deformations; a native equivalent would be Smart Bones or a mesh warp (unverified)"
+   },
+   {
+    "item": "garment corrections (approved correctives)",
+    "class": "REQUIRES_CONVERSION",
+    "native": "Smart Bone Actions / switch layers",
+    "note": "only approved assets; currently none is approved"
+   },
+   {
+    "item": "dynamic layer order",
+    "class": "REQUIRES_MANUAL_SETUP",
+    "native": "layer order per pose",
+    "note": "reordering is not assumed scriptable"
+   },
+   {
+    "item": "gesture identifiers and semantic events",
+    "class": "DIRECTLY_EXPORTABLE",
+    "native": "metadata",
+    "note": "plain data"
+   },
+   {
+    "item": "acting style profiles",
+    "class": "REQUIRES_BAKING",
+    "native": "baked into keys",
+    "note": "AutoRig-only"
+   },
+   {
+    "item": "facial controls (future)",
+    "class": "UNSUPPORTED",
+    "native": "-",
+    "note": "no facial artwork or rig yet; the channel is reserved and isolated"
+   }
+  ],
+  "status": "proposed_unverified",
+  "verified": [],
+  "notes": [
+   "Moho was not run: nothing here is verified natively",
+   "no Moho API names are used; no exporter is implemented in Phase 3.6"
+  ]
+ },
+ "artistic_review_required": true,
+ "artistic_approval": "not recorded",
+ "production_ready": false
+}

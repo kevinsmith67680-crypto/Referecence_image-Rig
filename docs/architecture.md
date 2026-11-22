@@ -334,3 +334,37 @@ See [phase3_4_corrective_artwork_report.md](phase3_4_corrective_artwork_report.m
 
 See [phase3_5_artistic_animation_report.md](phase3_5_artistic_animation_report.md).
 
+## 19. Phase 3.6: performance engine
+
+`src/autorig/performance/` turns key poses into performances. Every effect enters the one solver as stage-1 intent
+through `MotionEngine.pose(intent_fn=...)`; there is no second solver or deformer.
+
+- **Timing:**
+  - `curves.py` (`Curve`, `MonotoneHermite`, `soft_clamp`, C2 `ramp`): linear, ease in/out, quintic, cubic, Bezier,
+    hold, custom.
+  - `sequencer.py` (`Key`, `KeyPoseSequencer`): holds, per-channel curves, `path` keys.
+  - `overlap.py` (`MotionOverlapController`): bounded per-group offsets.
+  - `anticipation.py` (`AnticipationAndFollowThroughController`): per-gesture recipes, C2 bumps, caps.
+- **Body mechanics:**
+  - `weight.py` (`WeightTransferController`): locked feet, continuous free-leg softening, a centred balance window,
+    step events.
+  - `contacts.py` (`ContactConstraintController`): hand/elbow/foot/pelvis contacts become IK targets, blended from a
+    skeleton-only free solve.
+  - `seat.py`: desk and seat props and diagnostics.
+- **Composition:**
+  - `layers.py` (`MotionLayerController`): BODY_BASE ... FUTURE_FACIAL_CONTROLS, joint-space override and additive,
+    anchored clips, soft limits, facial isolation.
+  - `secondary.py` (`SecondaryMotionController`): fixed-step springs into the existing hem/hair garment terms.
+  - `styles.py`, `gestures.py`, `dialogue.py`: acting styles, the gesture library, semantic dialogue events.
+- **Orchestration and output:**
+  - `director.py` (`Performance`, `PerformanceDirector`), `resolver.py` (hand poses through the switch system,
+    holds).
+  - `evaluate.py` (`PerformanceQualityEvaluator`: motion / artistic / geometric).
+  - `export.py`: Moho-oriented metadata, compatibility classes, `LivePerformanceControlSpec`.
+  - `scenarios.py`, `evidence.py` (`autorig performance-evidence`).
+- **Editor:**
+  - the Performance tab (`PerformancePanel.tsx`);
+  - `/api/performance*` (track, frame, render job, scenarios);
+  - `performance.*` ops (schema v8).
+
+See [phase3_6_expressive_animation_report.md](phase3_6_expressive_animation_report.md).

@@ -66,6 +66,11 @@ faithful, editable **Moho Pro 14** character rig.
   audit in `docs/phase3_5_artistic_quality_audit.md`). Code is in `src/autorig/artistic/`; evidence in
   `natural_pose/artistic/`; the acting test is in `natural_pose/artistic/acting_test.gif`. No pose or drawing has been approved
   by a person; the previews use pending hand drawings (labelled).
+- The user explicitly started **Phase 3.6** (expressive animation, contact constraints, motion curves, secondary motion). It
+  is implemented; verdict **PARTIAL** (`docs/phase3_6_expressive_animation_report.md`, plan in
+  `docs/phase3_6_implementation_plan.md`). Code is in `src/autorig/performance/`; evidence in `natural_pose/performance/`
+  (frame-aligned acting test before/after, classroom desk contact, secondary motion). No performance, gesture or drawing has
+  been approved by a person; previews use pending hand drawings (labelled). Native Moho not run.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -233,6 +238,39 @@ faithful, editable **Moho Pro 14** character rig.
 - `autorig artistic-evidence <package>` regenerates `natural_pose/artistic/`, `reports/artistic_quality.json` and
   `analysis/{view_manifest,limb_configurations}.json` (~15 min).
 
+## Phase 3.6 rules (performance engine)
+
+- One pipeline: performances reach the one solver only through `MotionEngine.pose(intent_fn=...)` (stage 1). The
+  director composes layers -> `ArtisticPosePlanner.apply` -> `WeightTransferController` -> secondary garment terms ->
+  contacts (IK targets from a skeleton-only free solve) -> one `MotionEngine.pose`. Never add a second solver.
+- Frames are pure functions of time:
+  - feet are locked from the t = 0 intent;
+  - secondary springs are a fixed-step (1/240 s) table integrated from t = 0;
+  - the layer order is fresh per frame;
+  - hand poses are explicit switch-system user choices.
+
+  Random access == playback.
+- Planted feet move only during `StepEvent`s; free-leg softening is continuous (no 0.42 threshold). The balance window is
+  centred on the calibrated pelvis offset, so weights never saturate mid-move.
+- Curves: anticipation and overshoot are C2 bumps (capped at 15 % of the move and per-group degrees); parameters are
+  soft-clamped to anatomical ranges after composition. Authored `hold` curves are intended steps, not defects.
+- Layers compose in joint space (override/additive, masks, weights, anchored clips); contacts act after every pose layer;
+  `FUTURE_FACIAL_CONTROLS` holds facial channels only and never moves the body.
+- Gesture status comes from the real artwork:
+  - pending drawings -> NEEDS_APPROVAL; missing -> NEEDS_ARTWORK; missing views -> REQUIRES_NEW_VIEW;
+  - `production_ready` is always false in code.
+  - The palm-up shrug is NEEDS_ARTWORK (shown as `shrug_low`; review preview with pending cupped hands). Do not
+    disguise missing art with wrist rotation.
+- Secondary motion drives hair and the blazer hem only. The tie is NEEDS_ARTWORK (vest behind it not drawn), loose sleeves
+  UNSUPPORTED; badge, buttons, collar and lapels stay rigid (tested).
+- The continuity check re-measures candidates at h/8 (fast smooth motion is not a jump). Motion quality also checks foot
+  sliding, contact sliding, contact transition jumps and joint-limit violations. Artistic checks are hints;
+  `artistic_review_required` is always true.
+- Editor: project schema v8 `performance.*` ops; Moho metadata and compatibility classes are `proposed_unverified` (no Moho
+  API names, no exporter).
+- `autorig performance-evidence <package>` regenerates `natural_pose/performance/`, `reports/performance_quality.json`,
+  `analysis/performance_animation.json` and `analysis/live_performance_controls.json` (~25 min).
+
 ## Hand Pose Store rules
 
 - Imported hand drawings live in `<package>/hand_store/` (append-only: `index.json` with hashes and provenance, packs
@@ -369,6 +407,9 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig corrective-evidence <package_dir> [--regenerate] [--quick]  # assets (pending) + evidence (~10 min)
 # Phase 3.5 artistic posing
 .venv/bin/python -m autorig artistic-evidence <package_dir> [--quick]  # poses, candidates, acting test (~15 min)
+# Phase 3.6 performance engine
+.venv/bin/python -m autorig performance-evidence <package_dir> [--quick]  # acting before/after, classroom, secondary (~25 min)
+.venv/bin/python -m autorig performance-bench <package_dir>      # timings on this machine (run on the M1 for M1 figures)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -409,6 +450,9 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   candidates, joint_art (fold corrections), layer_order, alternatives (store, controller, artwork requests, views,
   limb configs), transitions (acting sequences), evaluate (ArtisticAnimationEvaluator), feedback, evidence;
   `editor/src/components/ArtisticReviewPanel.tsx`
+- `src/autorig/performance/` — Phase 3.6: curves, sequencer, overlap, anticipation, weight, contacts, seat, layers, secondary,
+  styles, gestures, dialogue, resolver, director, evaluate, export (Moho metadata, live spec), scenarios, evidence;
+  `editor/src/components/PerformancePanel.tsx`
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

@@ -9,8 +9,9 @@ import { HandLibraryPanel } from "./components/HandPanels";
 import { WeightBrush, WeightsPanel } from "./components/WeightsPanel";
 import { CorrectivesPanel } from "./components/CorrectivesPanel";
 import { ArtisticReviewPanel } from "./components/ArtisticReviewPanel";
+import { PerformancePanel } from "./components/PerformancePanel";
 
-const TABS = ["Properties", "Mask", "Joints", "Vectors", "Weights", "Correctives", "Artistic", "Pose", "IK", "Switches", "Hands", "Face", "Live", "Compare", "Export"] as const;
+const TABS = ["Properties", "Mask", "Joints", "Vectors", "Weights", "Correctives", "Artistic", "Performance", "Pose", "IK", "Switches", "Hands", "Face", "Live", "Compare", "Export"] as const;
 const POSE_TABS = ["Pose", "Correctives", "IK", "Switches", "Hands"];
 type Tab = (typeof TABS)[number];
 const TOOLS: { t: Tool; key: string; label: string }[] = [
@@ -280,6 +281,7 @@ export default function App() {
             {tab === "Weights" && <WeightsPanel payload={payload} layer={selLayer} rev={rev} brush={wbrush} setBrush={setWbrush}
               explain={wexplain} onOp={onOp} onError={setError} preset={preset} />}
             {tab === "Artistic" && <ArtisticReviewPanel payload={payload} rev={rev} onOp={onOp} onError={setError} />}
+            {tab === "Performance" && <PerformancePanel payload={payload} rev={rev} onOp={onOp} onError={setError} />}
             {tab === "Correctives" && <CorrectivesPanel payload={payload} rev={rev} preset={preset} phase={motion.phase} onOp={onOp} onError={setError}
               canvasBusy={poseBusy} canvasResult={poseRes} />}
             {tab === "Pose" && <PosePanel payload={payload} preset={preset} setPreset={setPreset} overrides={overrides} setOverrides={setOverrides}

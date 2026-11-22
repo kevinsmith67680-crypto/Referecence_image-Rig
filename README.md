@@ -145,6 +145,30 @@ the acting test:
 .venv/bin/python -m autorig artistic-evidence ../schoolboy_pkg
 ```
 
+The **Performance** tab (Phase 3.6) edits animation on a timeline:
+- **Edit:**
+  - key poses with holds and per-key timing curves (ease, Bezier, hold, Hermite pass-through keys);
+  - anticipation recipes and overshoot;
+  - gesture clips from a reusable library;
+  - hand-contact markers and hand switch markers;
+  - motion layers (mute/weight);
+  - acting styles;
+  - hair and blazer-hem secondary motion.
+- **Play back:** scrub and play the fast skeleton preview, and render single frames or whole animations with the
+  full artwork.
+- **Save:** edits are project operations, so undo/redo and reload keep them.
+
+To build the Phase 3.6 evidence:
+- the frame-aligned before/after acting test;
+- the classroom desk-contact test;
+- the secondary-motion demo;
+- a benchmark.
+
+```bash
+.venv/bin/python -m autorig performance-evidence ../schoolboy_pkg
+.venv/bin/python -m autorig performance-bench ../schoolboy_pkg   # timings on this machine (e.g. the Apple M1)
+```
+
 ![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
 
 *Real browser screenshot of the editor (headless Chromium), not a Moho render.*
@@ -192,6 +216,8 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_4_corrective_artwork_report.md](docs/phase3_4_corrective_artwork_report.md) | Phase 3.4: corrective artwork, original-pixel safety, pose-space activation, Correctives tab, before/after, verdict |
 | [docs/phase3_5_artistic_quality_audit.md](docs/phase3_5_artistic_quality_audit.md) | Phase 3.4 renders audited as character animation (causes of unnatural poses) |
 | [docs/phase3_5_artistic_animation_report.md](docs/phase3_5_artistic_animation_report.md) | Phase 3.5: artistic pose planning, silhouettes, feasibility, alternatives, layer order, acting test, verdict |
+| [docs/phase3_6_implementation_plan.md](docs/phase3_6_implementation_plan.md) | Phase 3.6 audit of the animation systems (incl. the planted-foot slide) and plan |
+| [docs/phase3_6_expressive_animation_report.md](docs/phase3_6_expressive_animation_report.md) | Phase 3.6: performance engine, contacts, curves, secondary motion, timeline editor, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

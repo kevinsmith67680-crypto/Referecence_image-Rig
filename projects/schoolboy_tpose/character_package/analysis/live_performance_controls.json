@@ -1,0 +1,61 @@
+{
+ "schema": "autorig.live_performance_controls",
+ "version": "1.0.0",
+ "status": "proposed_unverified",
+ "events": {
+  "GESTURE_POINT": {
+   "control": "gesture clip 'point' (UPPER_BODY_GESTURES)",
+   "hand_switch": "pointing",
+   "priority": 30,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  },
+  "GESTURE_SHRUG": {
+   "control": "gesture clip 'shrug_low' (palm-up shrug NEEDS_ARTWORK)",
+   "hand_switch": null,
+   "priority": 30,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  },
+  "GESTURE_WAVE": {
+   "control": "gesture clip 'wave'",
+   "hand_switch": "open_palm",
+   "priority": 30,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  },
+  "LOOK_AT_TARGET": {
+   "control": "HEAD_MOVEMENT additive tilt + small weight shift",
+   "hand_switch": null,
+   "priority": 20,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  },
+  "HAND_PLANT": {
+   "control": "hand contact (CONTACT_CONSTRAINTS), C2 acquire",
+   "hand_switch": "palm_down",
+   "priority": 40,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  },
+  "HAND_RELEASE": {
+   "control": "end the hand contact (C2 release)",
+   "hand_switch": "relaxed",
+   "priority": 40,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  },
+  "RETURN_TO_IDLE": {
+   "control": "gesture clip 'return_neutral' + idle",
+   "hand_switch": "relaxed",
+   "priority": 10,
+   "autorig_status": "IMPLEMENTED_IN_AUTORIG"
+  }
+ },
+ "rules": {
+  "channels": "body (pose layers, contacts, hand switches) and face (FUTURE_FACIAL_CONTROLS) are separate; a face tracker can never move a body channel",
+  "priority": "live input > artist keys > procedural gesture clips > idle; contacts outrank gestures on their chain",
+  "ik": "contacts are applied after every pose layer, so a live gesture cannot pull a planted hand off",
+  "secondary": "live: secondary motion is off or uses the fixed-step spring with a short reset; it never depends on playback history",
+  "neutral": "RETURN_TO_IDLE blends every layer back to the base pose with C2 ramps",
+  "smoothing": "optional critically damped smoothing of live inputs (time constant set per control)",
+  "hand_switches": "triggered switches respect the 0.25 s minimum hold",
+  "inference": "no cloud or AI inference during live animation: every control is a lookup or a closed-form solve"
+ },
+ "webcam_tracking": "not implemented (later phase)",
+ "moho_mapping": "proposed_unverified"
+}

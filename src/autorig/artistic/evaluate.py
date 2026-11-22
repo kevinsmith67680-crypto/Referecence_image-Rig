@@ -98,8 +98,9 @@ class ArtisticAnimationEvaluator:
         """Where can the motion kink? Two sources, checked separately:
 
         1. the pose-parameter curves (``params_at(t)`` -> {name: value}): sampled every ``h`` seconds; a velocity
-           change between two consecutive samples above JUMP_FRAC x the parameter's range per second is a velocity
-           jump (a smooth curve changes its velocity by only acceleration x h per step);
+           change between two consecutive samples above JUMP_FRAC x the parameter's range per second is a candidate,
+           and it is a velocity jump only if it does not shrink when re-measured at ``h / 8`` (a smooth curve changes
+           its velocity by acceleration x step, so fast smooth motion shrinks; a jump stays);
         2. the solver (``solve_at(t)`` -> solve info, skeleton only, at ``solve_factor`` x fps): a joint limit clamp
            that starts or stops while the body moves, or the static balance saturating (the pelvis hits its shift
            limit, so the centre of mass stops following the weight) -- both make the motion bend sharply.
@@ -112,9 +113,17 @@ class ArtisticAnimationEvaluator:
         V = np.array([[x[nm] for nm in names] for x in samples], float)
         rng = np.maximum(V.max(axis=0) - V.min(axis=0), 1e-9)
         dv = np.abs(np.diff(V, 2, axis=0)) / h  # velocity change per step (units/s)
-        jumps = []
+        jumps, smooth_fast = [], 0
         for k, j in zip(*np.nonzero(dv > JUMP_FRAC * rng)):
-            jumps.append({"t": round(float((k + 1) * h), 3), "param": names[j], "velocity_jump": round(float(dv[k, j]), 3),
+            # resolution test (Phase 3.6): a smooth but fast curve changes its velocity by acceleration x step, so the
+            # change shrinks at a finer step; a real velocity jump does not. Re-measure at h / 8 around the sample.
+            tk, nm, h2 = (k + 1) * h, names[j], h / 8.0
+            p0, p1, p2 = (float(params_at(tk + d)[nm]) for d in (-h2, 0.0, h2))
+            fine = abs((p2 - p1) - (p1 - p0)) / h2
+            if fine < 0.5 * float(dv[k, j]):
+                smooth_fast += 1
+                continue
+            jumps.append({"t": round(float(tk), 3), "param": nm, "velocity_jump": round(float(dv[k, j]), 3),
                           "threshold": round(float(JUMP_FRAC * rng[j]), 3)})
         events = []
         if solve_at is not None:
@@ -132,6 +141,7 @@ class ArtisticAnimationEvaluator:
                                    "stopped": sorted(prev - cl)})
                 prev = cl
         return {"param_step_s": h, "jump_fraction_of_range_per_s": JUMP_FRAC, "velocity_jumps": jumps[:30],
+                "fast_smooth_samples": smooth_fast,
                 "velocity_jump_count": len(jumps), "solver_events": events[:30], "solver_event_count": len(events),
                 "solver_fps": fps * solve_factor if solve_at is not None else None}
 

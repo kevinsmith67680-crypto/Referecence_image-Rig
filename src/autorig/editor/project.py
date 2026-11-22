@@ -27,9 +27,10 @@ from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
 from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 7  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
+VERSION = 8  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
 # hand selection settings (sleeve-free hand replacement); 5: garment weight edits (Phase 3.3); 6: corrective
-# artwork settings (Phase 3.4); 7: artistic review (Phase 3.5). Older projects migrate unchanged
+# artwork settings (Phase 3.4); 7: artistic review (Phase 3.5); 8: performance timeline (Phase 3.6). Older projects
+# migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -143,7 +144,168 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "pose": {"preset": "relaxed_standing", "overrides": {}},
             "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state(),
             "hand_selection": default_selection_state(), "garment_weights": {"ops": []},
-            "correctives": default_corrective_state(), "artistic": default_artistic_state()}
+            "correctives": default_corrective_state(), "artistic": default_artistic_state(),
+            "performance": default_performance_state()}
+
+
+def default_performance_state() -> dict[str, Any]:
+    """Phase 3.6 performance timeline: the current ``Performance`` document (``doc``, None until one is set) and
+    named saved performances (``library``). Every edit is a ``performance.*`` op, so undo/redo and reload replay
+    it."""
+    return {"doc": None, "library": {}}
+
+
+def _perf_doc(P: dict[str, Any]) -> dict[str, Any]:
+    if P.get("doc") is None:
+        raise OpError("no performance yet: use performance.set (or load a scenario) first")
+    return P["doc"]
+
+
+def _check_keys(keys: list[dict[str, Any]]) -> None:
+    from ..performance.sequencer import Key, KeyPoseSequencer  # noqa: PLC0415
+
+    try:
+        KeyPoseSequencer([Key.from_json(k) for k in keys])
+    except (ValueError, TypeError, KeyError) as exc:
+        raise OpError(f"invalid keys: {exc}") from exc
+
+
+def _apply_performance(st: dict[str, Any], op: dict[str, Any]) -> None:
+    from ..performance.contacts import ContactSpec  # noqa: PLC0415
+    from ..performance.curves import Curve  # noqa: PLC0415
+    from ..performance.director import Performance  # noqa: PLC0415
+    from ..performance.gestures import LIBRARY  # noqa: PLC0415
+    from ..performance.layers import LAYERS  # noqa: PLC0415
+    from ..performance.overlap import MotionOverlapController  # noqa: PLC0415
+    from ..performance.secondary import merged_settings  # noqa: PLC0415
+    from ..performance.styles import style as get_style  # noqa: PLC0415
+
+    P = st.setdefault("performance", default_performance_state())
+    for k, v in default_performance_state().items():
+        P.setdefault(k, v)
+    t = op["type"]
+    try:
+        if t == "performance.set":
+            doc = op.get("doc")
+            if not isinstance(doc, dict):
+                raise OpError("performance.set needs a doc (Performance JSON)")
+            perf = Performance.from_json(doc)
+            _check_keys(perf.base_keys)
+            P["doc"] = perf.to_json()
+            return
+        if t == "performance.load":
+            name = op.get("name")
+            if name not in P["library"]:
+                raise OpError(f"no saved performance {name!r}")
+            P["doc"] = json.loads(json.dumps(P["library"][name]))
+            return
+        doc = _perf_doc(P)
+        if t == "performance.save_as":
+            name = op.get("name")
+            if not isinstance(name, str) or not name.strip():
+                raise OpError("performance.save_as needs a name")
+            P["library"][name] = json.loads(json.dumps(doc))
+        elif t == "performance.key.set":
+            key = op.get("key")
+            if not isinstance(key, dict) or not key.get("id"):
+                raise OpError("performance.key.set needs a key with an id")
+            keys = [k for k in doc["base_keys"] if k.get("id") != key["id"]] + [dict(key)]
+            keys.sort(key=lambda k: float(k["t"]))
+            _check_keys(keys)
+            doc["base_keys"] = keys
+        elif t == "performance.key.remove":
+            keys = [k for k in doc["base_keys"] if k.get("id") != op.get("id")]
+            if len(keys) == len(doc["base_keys"]):
+                raise OpError(f"no key {op.get('id')!r}")
+            if not keys:
+                raise OpError("a performance keeps at least one key")
+            doc["base_keys"] = keys
+        elif t == "performance.curve.set":
+            key = next((k for k in doc["base_keys"] if k.get("id") == op.get("key_id")), None)
+            if key is None:
+                raise OpError(f"no key {op.get('key_id')!r}")
+            cur = Curve.from_json(op.get("curve")).to_json()
+            if op.get("channel"):
+                key.setdefault("curves", {})[str(op["channel"])] = cur
+            else:
+                key["curve"] = cur
+            _check_keys(doc["base_keys"])
+        elif t in ("performance.gesture.add", "performance.gesture.update"):
+            g = dict(op.get("gesture") or {}) if t.endswith("add") else None
+            if t.endswith("update"):
+                old = next((x for x in doc["gestures"] if x.get("id") == op.get("id")), None)
+                if old is None:
+                    raise OpError(f"no gesture clip {op.get('id')!r}")
+                g = {**old, **(op.get("fields") or {})}
+            if g.get("gesture") not in LIBRARY:
+                raise OpError(f"unknown gesture {g.get('gesture')!r} (known: {', '.join(LIBRARY)})")
+            if not g.get("id") or not isinstance(g.get("start"), (int, float)) or g.get("side", "r") not in ("r", "l"):
+                raise OpError("a gesture clip needs an id, a numeric start and side r|l")
+            for f in ("anticipation", "overshoot", "amplitude", "duration", "torso"):
+                if g.get(f) is not None and (not isinstance(g[f], (int, float)) or not 0 <= float(g[f]) <= 5):
+                    raise OpError(f"{f} must be a number in [0, 5]")
+            doc["gestures"] = [x for x in doc["gestures"] if x.get("id") != g["id"]] + [g]
+        elif t == "performance.gesture.remove":
+            doc["gestures"] = [x for x in doc["gestures"] if x.get("id") != op.get("id")]
+        elif t in ("performance.contact.add", "performance.contact.update"):
+            if t.endswith("add"):
+                c = dict(op.get("contact") or {})
+            else:
+                old = next((x for x in doc["contacts"] if x.get("id") == op.get("id")), None)
+                if old is None:
+                    raise OpError(f"no contact {op.get('id')!r}")
+                c = {**old, **(op.get("fields") or {})}
+            c = ContactSpec.from_json(c).to_json()
+            doc["contacts"] = [x for x in doc["contacts"] if x.get("id") != c["id"]] + [c]
+        elif t == "performance.contact.remove":
+            doc["contacts"] = [x for x in doc["contacts"] if x.get("id") != op.get("id")]
+        elif t == "performance.style":
+            get_style(op.get("style"), op.get("overrides"))
+            doc["style"], doc["style_overrides"] = op.get("style") or "neutral", dict(op.get("overrides") or {})
+        elif t == "performance.secondary":
+            part, sett = op.get("part"), op.get("settings")
+            if not isinstance(sett, dict):
+                raise OpError("performance.secondary needs a part and settings")
+            new = {**doc.get("secondary", {}), part: {**doc.get("secondary", {}).get(part, {}), **sett}}
+            merged_settings({k: v for k, v in new.items() if k not in ("overrides", "resets")})
+            doc["secondary"] = new
+        elif t == "performance.layer":
+            layer = op.get("layer")
+            if layer not in LAYERS:
+                raise OpError(f"unknown motion layer {layer!r}")
+            cur = dict(doc.get("layers", {}).get(layer, {}))
+            if "mute" in op:
+                cur["mute"] = bool(op["mute"])
+            if "weight" in op:
+                w = op["weight"]
+                if not isinstance(w, (int, float)) or not 0 <= float(w) <= 1:
+                    raise OpError("layer weight must be in [0, 1]")
+                cur["weight"] = float(w)
+            doc.setdefault("layers", {})[layer] = cur
+        elif t == "performance.offsets":
+            MotionOverlapController().set(op.get("group"), op.get("value", 0.0))
+            doc.setdefault("offsets", {})[op["group"]] = float(op["value"])
+        elif t == "performance.marker.add":
+            m = op.get("marker") or {}
+            if m.get("side") not in ("r", "l") or not isinstance(m.get("t"), (int, float)) or not m.get("action"):
+                raise OpError("a hand marker needs t, side r|l and an action")
+            doc["hand_markers"] = sorted(doc.get("hand_markers", []) + [dict(m)], key=lambda x: x["t"])
+        elif t == "performance.marker.remove":
+            i = op.get("index")
+            if not isinstance(i, int) or not 0 <= i < len(doc.get("hand_markers", [])):
+                raise OpError("marker index out of range")
+            doc["hand_markers"].pop(i)
+        elif t == "performance.fps":
+            f = op.get("fps")
+            if not isinstance(f, (int, float)) or not 4 <= float(f) <= 60:
+                raise OpError("fps must be in [4, 60]")
+            doc["fps"] = float(f)
+        else:
+            raise OpError(f"unknown operation type {t!r}")
+    except ValueError as exc:
+        if isinstance(exc, OpError):
+            raise
+        raise OpError(str(exc)) from exc
 
 
 def default_artistic_state() -> dict[str, Any]:
@@ -532,6 +694,8 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
         _apply_correctives(st, op)
     elif t.startswith("artistic."):
         _apply_artistic(st, op)
+    elif t.startswith("performance."):
+        _apply_performance(st, op)
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
     else:
@@ -664,8 +828,13 @@ def _v6_to_v7(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {6})}
 
 
+def _v7_to_v8(data: dict[str, Any]) -> dict[str, Any]:
+    """Performance timeline (Phase 3.6): the base state gains ``performance``; earlier ops replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {7})}
+
+
 MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5, 5: _v5_to_v6,
-                              6: _v6_to_v7}  # from -> fn
+                              6: _v6_to_v7, 7: _v7_to_v8}  # from -> fn
 
 
 def _apply_handselect(st: dict[str, Any], op: dict[str, Any]) -> None:
