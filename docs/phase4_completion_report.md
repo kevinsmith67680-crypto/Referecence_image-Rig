@@ -31,7 +31,7 @@ portable package and local execution harness. Then stop with verdict: BLOCKED �
 | cloud check | `tools/phase4_cloud_check.py` → `docs/phase4/cloud_checks/` | both characters BLOCKED, as designed |
 | docs | the seven `docs/phase4_*.md`; `docs/phase4/evidence/README.md` | — |
 
-Tests: `tests/test_p4_native.py`, 23 tests. The full suite results are in §5.
+Tests: `tests/test_p4_native.py`, 23 tests. Full suite: 639 passed, 2 skipped (§5).
 
 Inputs: the request asked for the actual PNGs if supplied. They were not (`/mnt/user-data/uploads` is empty), so the tough
 student still uses the JPEG re-encodes, as in Phase 3.8.
@@ -93,7 +93,11 @@ still need you at the Mac.
 
 ## 5. Regression
 
-`.venv/bin/python -m pytest` (full cloud suite, native tests skipped): see the result recorded below.
+`.venv/bin/python -m pytest` (full cloud suite) on commit 09df131: **639 passed, 2 skipped** (19 min).
+- The 2 skips are the native Moho tests (`tests/native/test_moho_native.py`, NOT EXECUTED: no Moho report).
+- No existing assertion was changed. Phase 3.8.1 ended at 616 passed; the 23 new tests are in
+  `tests/test_p4_native.py`.
+- No frontend file changed, so the editor build, vitest and e2e runs were not repeated.
 
 ## 6. What this phase does not claim
 
