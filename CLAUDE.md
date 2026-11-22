@@ -102,8 +102,38 @@ faithful, editable **Moho Pro 14** character rig.
     skin candidates in `docs/phase3_8_1/artwork_candidates.*`.
   - Production still shows the original palm-forward hand as a reported fallback until a resting drawing is
     approved. Moho not run.
-- **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
-  native verification, the reviews, and the missing artwork.
+- The user explicitly started **Phase 4** (native Moho rig generation). Verdict: **BLOCKED — NATIVE VALIDATION
+  REQUIRED** (`docs/phase4_completion_report.md`).
+  - Built and cloud-tested: Phase 4.0's portable proof package (`autorig native-poc`), the build and
+    verify-after-reopen menu scripts, the HARD GATE 4.0 checker (`autorig native-verify`) and the Mac harness
+    (`tools/macos/phase4_native_test.sh`).
+  - Moho has not run. No Mac folder is attached to the session, and `docs/phase4/evidence/native_runs/` is empty.
+  - Steps 5–23 (Phase 4.1 onwards) are **not started**. Do not start them until a native run passes the gate.
+
+## Phase 4 rules (native Moho)
+
+- HARD GATE 4.0 (`native/gate.py`) passes only on evidence from the real application:
+  - Moho-written build and verify reports;
+  - the saved `.moho`;
+  - Moho renders of frames 1, 12 and 18.
+
+  Mock reports (`moho_app_version` contains `mock`) and simulated renders are MOCK_ONLY, never PASS. Never relabel
+  them, except as clearly named test fixtures in `tests/`.
+- Evidence folders:
+  - `docs/phase4/evidence/` holds only files produced on the Mac (harness, Moho, the user's observations);
+  - cloud mock/simulation output goes to `docs/phase4/cloud_checks/` (`tools/phase4_cloud_check.py`), labelled
+    MOCK/SIMULATION.
+
+  Never create or edit Moho screenshots or renders in the cloud.
+- The proof package uses original (category A) pixels only, flattened in z order and pasted by an integer
+  translation. Bones come from `natural_pose/rig.json` by kind and side, never from character-specific numbers.
+- The build script is the Phase 0 template under another name (`render_named_build_lua`); the Phase 0 reference
+  script must stay byte-identical. The verify script calls allowlisted members only. Its file/render name listing reads
+  the metatable and calls nothing.
+- Save, close, reopen and render are manual or macOS commands (`open -a`, the command-line renderer, which is
+  secondary evidence and is logged). `FileSave`/`FileSaveAs`/`FileOpen`/`FileClose` stay out of the allowlist until
+  evidenced and mocked.
+- Steps 5–23 start only after `gate_4_0.json` from a native run says `GATE 4.0 PASSED`.
 
 ## Phase 2 rules (reconstruction)
 
@@ -537,6 +567,11 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig newchar-evidence projects/tough_student_test/character_package --project projects/tough_student_test/character_project --character references/tough_student/tpose_front.jpg --hand-sheet references/tough_student/hand_grid/hand_grid_black.jpg --hand-grid references/tough_student/hand_grid   # ~30 min
 cd editor && AUTORIG_PYTHON=$PWD/../.venv/bin/python NODE_PATH=$(npm root -g) node --test e2e/newchar.e2e.mjs
 .venv/bin/python -m autorig performance-bench <package_dir>      # timings on this machine (run on the M1 for M1 figures)
+# Phase 4.0 native proof (package in the cloud; the run itself only on the Mac)
+.venv/bin/python -m autorig native-poc <package_dir> --out <dir> [--side l|r] [--canvas 1920x1080|source] [--asset-root <abs Mac path>]
+.venv/bin/python -m autorig native-verify <dir> --evidence <evidence_dir>    # HARD GATE 4.0 (exit 0 only when passed)
+.venv/bin/python tools/phase4_cloud_check.py                                 # mock + simulation check -> docs/phase4/cloud_checks/
+tools/macos/phase4_native_test.sh --custom-content "<Moho Custom Content Folder>" [--package <pkg>] [--side l|r]   # on the Mac
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -591,6 +626,9 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   — the numbered new-character evidence; `references/tough_student/` — the new character's inputs, hand grid
   extraction (sprites, pack zip, inspection records, skin-matched candidates); `projects/tough_student_test/` — its
   Phase 1 project, Phase 2 package (all evidence) and export
+- `src/autorig/native/` — Phase 4: `poc.py` (native proof package), `gate.py` (HARD GATE 4.0 checker);
+  `data/templates/phase4_native_verify.lua`; `tools/macos/phase4_native_test.sh` (Mac harness);
+  `docs/phase4/evidence/` (native only), `docs/phase4/cloud_checks/` (mock/simulation)
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright
 - `projects/schoolboy_tpose/moho_asset_package/` — validated Phase 3 export of the unedited real package (not
   production-ready); `docs/phase3/screenshots/` — real-browser screenshots from the e2e test

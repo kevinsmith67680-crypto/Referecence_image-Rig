@@ -1,0 +1,64 @@
+[
+  {
+    "character": "schoolboy_tpose",
+    "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+    "items": {
+      "native_document": "MOCK_ONLY",
+      "bone_moves_artwork": "MOCK_ONLY",
+      "document_saved": "NOT_EXECUTED",
+      "document_reopened": "MOCK_ONLY",
+      "bone_functional_after_reopen": "MOCK_ONLY"
+    },
+    "placement": {
+      "offset_px": [
+        417,
+        0
+      ],
+      "rule": "canvas_px = source_px + offset; integer, no scaling",
+      "clipped_alpha_px": {
+        "body_back": 84557,
+        "arm": 0,
+        "body_front": 0
+      },
+      "arm_on_canvas_fraction": {
+        "moved": 0.9997,
+        "reopen_move": 0.9998
+      }
+    },
+    "split_fidelity": {
+      "max_abs_diff": 0,
+      "px_over_2": 0
+    }
+  },
+  {
+    "character": "tough_student_test",
+    "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+    "items": {
+      "native_document": "MOCK_ONLY",
+      "bone_moves_artwork": "MOCK_ONLY",
+      "document_saved": "NOT_EXECUTED",
+      "document_reopened": "MOCK_ONLY",
+      "bone_functional_after_reopen": "MOCK_ONLY"
+    },
+    "placement": {
+      "offset_px": [
+        417,
+        0
+      ],
+      "rule": "canvas_px = source_px + offset; integer, no scaling",
+      "clipped_alpha_px": {
+        "body_back": 93853,
+        "arm": 0,
+        "body_front": 0
+      },
+      "arm_on_canvas_fraction": {
+        "moved": 0.9997,
+        "reopen_move": 0.9997
+      }
+    },
+    "split_fidelity": {
+      "max_abs_diff": 0,
+      "px_over_2": 0
+    }
+  }
+]

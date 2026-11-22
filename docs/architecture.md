@@ -454,3 +454,32 @@ See [phase3_8_generalisation_report.md](phase3_8_generalisation_report.md) and
 
 See [phase3_8_1_fix_report.md](phase3_8_1_fix_report.md).
 
+
+## 23. Phase 4.0: minimal native proof and HARD GATE 4.0
+
+- **Package** (`native/poc.py`, `autorig native-poc`):
+  - the character package's original layers, flattened into the layers behind the chosen arm, the arm, and the layers
+    in front;
+  - pasted onto the Moho canvas by an integer translation, so pixels are never resampled;
+  - three bones from `natural_pose/rig.json`: `body` (pelvis → neck base), `shoulder` (clavicle), `arm` (shoulder
+    pivot → wrist);
+  - a Phase 0 rig spec, so the Phase 0 geometry, Lua template and report verifier are reused unchanged.
+- **Scripts**:
+  - the build script is the Phase 0 template under another name (`lua_codegen.render_named_build_lua`);
+  - the verify script (`data/templates/phase4_native_verify.lua`) runs on the reopened document. It finds the rig by
+    name, reads it back, keys the arm at frame 18 and lists file/render-related API names without calling them.
+  - Both run against the strict mock in the cloud suite.
+- **Gate** (`native/gate.py`, `autorig native-verify`): five items, each needing evidence from the real application:
+  - Moho-written reports;
+  - the saved `.moho`;
+  - Moho renders of frames 1, 12 and 18, compared with the simulation by silhouette and changed-region IoU.
+
+  Mock or simulated evidence is MOCK_ONLY and never passes.
+- **Mac harness** (`tools/macos/phase4_native_test.sh`, bash 3.2):
+  - finds Moho and reads its version, failing loudly without it;
+  - bakes the Mac paths into the scripts and installs them in the Custom Content Folder;
+  - guides new, build, Save As, close, reopen (`open -a`), verify, save;
+  - renders (command line, else manual export);
+  - collects everything in `docs/phase4/evidence/native_runs/<run>/` and runs the gate.
+
+See [phase4_native_rig_report.md](phase4_native_rig_report.md) and [phase4_completion_report.md](phase4_completion_report.md).

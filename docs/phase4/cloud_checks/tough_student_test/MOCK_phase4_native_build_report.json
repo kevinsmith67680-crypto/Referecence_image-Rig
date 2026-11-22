@@ -1,0 +1,160 @@
+{
+  "autorig_report_version": "0.1.0",
+  "bone_layer": {
+    "children_by_index": [
+      "body_back_art",
+      "arm_l_art",
+      "body_front_art"
+    ],
+    "name": "AutoRig_P4_Native",
+    "type": 4
+  },
+  "bones": [
+    {
+      "angle": 1.57767270611,
+      "angle_keys": [
+        [
+          0,
+          1.57767270611
+        ]
+      ],
+      "id": 0,
+      "length": 0.700201739497,
+      "name": "body",
+      "parent_id": -1,
+      "pos": [
+        0.0012962962963,
+        -0.433518518519
+      ],
+      "world_base": [
+        0.0012962962963,
+        -0.433518518519
+      ],
+      "world_tip": [
+        -0.00351851851852,
+        0.266666666667
+      ]
+    },
+    {
+      "angle": -1.71660241038,
+      "angle_keys": [
+        [
+          0,
+          -1.71660241038
+        ],
+        [
+          1,
+          -1.71660241038
+        ],
+        [
+          12,
+          -1.80386887298
+        ],
+        [
+          24,
+          -1.71660241038
+        ]
+      ],
+      "id": 1,
+      "length": 0.17651558102,
+      "name": "shoulder",
+      "parent_id": 0,
+      "pos": [
+        0.611877204363,
+        -0.0792093392779
+      ],
+      "world_base": [
+        0.0762962962963,
+        0.178888888889
+      ],
+      "world_tip": [
+        0.251111111111,
+        0.154444444444
+      ]
+    },
+    {
+      "angle": 0.0949053048243,
+      "angle_keys": [
+        [
+          0,
+          0.0949053048243
+        ],
+        [
+          1,
+          0.0949053048243
+        ],
+        [
+          12,
+          -0.690492858573
+        ],
+        [
+          24,
+          0.0949053048243
+        ]
+      ],
+      "id": 2,
+      "length": 0.462855876504,
+      "name": "arm",
+      "parent_id": 1,
+      "pos": [
+        0.17651558102,
+        0
+      ],
+      "world_base": [
+        0.251111111111,
+        0.154444444444
+      ],
+      "world_tip": [
+        0.713518518519,
+        0.134074074074
+      ]
+    }
+  ],
+  "constants": {
+    "LT_BONE": 4,
+    "LT_IMAGE": 2
+  },
+  "document": {
+    "end_frame": 24,
+    "fps": 24,
+    "height": 1080,
+    "start_frame": 1,
+    "width": 1920
+  },
+  "document_before": {
+    "height": 1080,
+    "width": 1920
+  },
+  "errors": [],
+  "generator": {
+    "name": "autorig",
+    "spec_character_id": "tough_student_test_p4",
+    "spec_sha256": "77ad275141d9f460940fe3906d607016b2d70e2f85f98015e74c411121b4058c",
+    "version": "0.0.1"
+  },
+  "layers": [
+    {
+      "name": "body_back_art",
+      "parent_bone_id": 0,
+      "source_image_set": "<poc>/art/body_back.png",
+      "type": 2
+    },
+    {
+      "name": "arm_l_art",
+      "parent_bone_id": 2,
+      "source_image_set": "<poc>/art/arm.png",
+      "type": 2
+    },
+    {
+      "name": "body_front_art",
+      "parent_bone_id": 0,
+      "source_image_set": "<poc>/art/body_front.png",
+      "type": 2
+    }
+  ],
+  "lua_version": "Lua 5.4",
+  "moho_app_version": "14.4-mock",
+  "status": "completed",
+  "warnings": [],
+  "_label": "MOCK: written by the strict mock Moho API in the cloud, not by Moho"
+}

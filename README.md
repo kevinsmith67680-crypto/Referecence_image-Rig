@@ -238,6 +238,22 @@ Artwork problems became reviewable candidates, never applied or approved. Before
 
 *Real browser screenshot of the editor (headless Chromium), not a Moho render.*
 
+## Phase 4: native Moho (blocked on the Mac run)
+
+Phase 4.0 is the smallest native proof, built from either character package. A rig with a `body`, a `shoulder` and an
+`arm` bone holds the character's own pixels, unscaled. The Mac run:
+- builds it in Moho;
+- saves it, closes it and reopens it;
+- moves the arm again;
+- renders three frames.
+
+`autorig native-verify` then checks HARD GATE 4.0 on that evidence. Moho has not run yet, so the verdict is **BLOCKED
+— NATIVE VALIDATION REQUIRED** ([docs/phase4_completion_report.md](docs/phase4_completion_report.md)). On the Mac:
+
+```bash
+tools/macos/phase4_native_test.sh --custom-content "<your Moho Custom Content Folder>"
+```
+
 ## Running it in Moho Pro 14 (Mac)
 
 Read **[docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md)**. In short:
@@ -300,6 +316,13 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |
+| [docs/phase4_native_integration_audit.md](docs/phase4_native_integration_audit.md) | Phase 4: what exists, what is evidenced, what only Moho can confirm |
+| [docs/phase4_implementation_plan.md](docs/phase4_implementation_plan.md) | Phase 4: the 4.0 proof, HARD GATE 4.0, and steps 5–23 (not started) |
+| [docs/phase4_moho_api_compatibility.md](docs/phase4_moho_api_compatibility.md) | Phase 4: the API members used, and the candidates that are not allowlisted |
+| [docs/phase4_native_rig_report.md](docs/phase4_native_rig_report.md) | Phase 4.0: the proof rig for both characters, gate thresholds, cloud (mock) results |
+| [docs/phase4_visual_parity_report.md](docs/phase4_visual_parity_report.md) | Phase 4: render comparison method (NOT EXECUTED) |
+| [docs/phase4_live_control_readiness.md](docs/phase4_live_control_readiness.md) | Phase 4: Live Mode readiness (not started, blocked) |
+| [docs/phase4_completion_report.md](docs/phase4_completion_report.md) | Phase 4: verdict BLOCKED and the exact steps to resume |
 | [CLAUDE.md](CLAUDE.md) | Rules for AI-assisted development in this repo |
 
 ## Roadmap
@@ -314,4 +337,4 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 3 | Interactive editor (layers, masks, pivots, vectors, pose preview, comparison, readiness) and Moho-ready asset package | Implemented; **PARTIAL** (reviews pending; Moho not run) |
 | 3.1 | Natural motion: planner/solver split, front-view gait cycles, garment deformation, feasibility and quality checks | Implemented; **PARTIAL** (visual review pending; Moho not run) |
 | 3.2 | IK (arms, legs, poles, FK/IK matching), foot contacts, switch groups, hand library, correction triggers, rig controls spec | Implemented; **PARTIAL** (hand variants pending review; drawings missing; Moho not run) |
-| 4 | Native Moho import and rig of the exported package | Not started (needs Phase 0 verification, reviews, missing artwork) |
+| 4 | Native Moho rig generation | 4.0 proof package, scripts, harness and gate checker built; **BLOCKED — native validation required** (Moho not run); 4.1+ not started |

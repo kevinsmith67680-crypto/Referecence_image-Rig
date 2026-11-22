@@ -626,6 +626,28 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", default="docs/phase3_8_1")
     p.set_defaults(func=cmd_visual_fix_evidence)
 
+    p = sub.add_parser("native-poc", help="Phase 4.0: build the minimal native Moho proof package (real artwork, "
+                                          "shoulder + arm bones, build and verify-after-reopen scripts)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", required=True, help="output folder for the proof package")
+    p.add_argument("--side", choices=("l", "r"), default="l", help="which arm (character's left = image right)")
+    p.add_argument("--canvas", type=_canvas_arg, default=(1920, 1080),
+                   help="Moho document size WxH (default 1920x1080), or 'source' for the package canvas")
+    p.add_argument("--asset-root", default=None,
+                   help="absolute POSIX path of --out on the Mac (bakes the paths into the scripts)")
+    p.add_argument("--character-id", default=None, help="id for the rig spec (default: the package's parent folder)")
+    p.set_defaults(func=cmd_native_poc)
+
+    p = sub.add_parser("native-verify", help="Phase 4.0: check the native Moho run's evidence against HARD GATE 4.0")
+    p.add_argument("poc", help="the proof package folder made by native-poc")
+    p.add_argument("--evidence", help="evidence folder written by tools/macos/phase4_native_test.sh")
+    p.add_argument("--build-report"); p.add_argument("--verify-report"); p.add_argument("--saved")
+    p.add_argument("--render-rest", help="Moho render of frame 1")
+    p.add_argument("--render-moved", help="Moho render of frame 12")
+    p.add_argument("--render-reopened", help="Moho render of frame 18 after the verify script and save")
+    p.add_argument("--out", help="gate JSON (default <evidence>/gate_4_0.json)")
+    p.set_defaults(func=cmd_native_verify)
+
     p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
     p.add_argument("package", help="Phase 2 character package")
     p.add_argument("--out", help="output directory (default <package>/natural_pose/garments)")
@@ -914,6 +936,50 @@ def cmd_visual_fix_evidence(args: argparse.Namespace) -> int:
         res["candidates"] = {k: rep[k] for k in ("hem", "forearm_extension", "detached_marks_current_vs_candidates")}
     print(json.dumps(res, indent=1, default=str))
     return 0
+
+
+def _canvas_arg(text: str):
+    if text == "source":
+        return None
+    try:
+        w, h = (int(v) for v in text.lower().split("x"))
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"canvas must be WxH or 'source', got {text!r}") from exc
+    return (w, h)
+
+
+def cmd_native_poc(args: argparse.Namespace) -> int:
+    from .native.poc import NativePocError, build_poc
+
+    try:
+        man = build_poc(args.package, args.out, side=args.side, canvas=args.canvas, asset_root=args.asset_root,
+                        character_id=args.character_id)
+    except NativePocError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    print(json.dumps({k: man[k] for k in ("character_id", "side", "source_canvas", "moho_canvas", "placement",
+                                         "split_fidelity", "scripts", "asset_root", "expected")}, indent=1))
+    if not man["asset_root"]:
+        print("note: reference build (no --asset-root): the Moho scripts refuse to run until regenerated on the Mac "
+              "by tools/macos/phase4_native_test.sh", file=sys.stderr)
+    return 0
+
+
+def cmd_native_verify(args: argparse.Namespace) -> int:
+    from .native.gate import evaluate_gate, format_gate
+
+    renders = {"rest": args.render_rest, "moved": args.render_moved, "reopen_move": args.render_reopened}
+    res = evaluate_gate(args.poc, args.evidence, build_report=args.build_report,
+                        verify_report_path=args.verify_report, saved=args.saved,
+                        renders={k: v for k, v in renders.items() if v})
+    out = Path(args.out) if args.out else (Path(args.evidence) / "gate_4_0.json" if args.evidence else None)
+    if out:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(res, indent=2, default=str) + "\n", encoding="utf-8")
+    print(format_gate(res))
+    if out:
+        print(f"Gate result written: {out}")
+    return 0 if res["passed"] else 1
 
 
 def cmd_hand_audit(args: argparse.Namespace) -> int:

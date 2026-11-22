@@ -1,0 +1,204 @@
+{
+  "api_surface": {
+    "ScriptInterface": {
+      "called": false,
+      "names": [],
+      "notes": []
+    }
+  },
+  "autorig_report_version": "0.1.0",
+  "bone_layer": {
+    "children_by_index": [
+      "body_back_art",
+      "arm_l_art",
+      "body_front_art"
+    ],
+    "name": "AutoRig_P4_Native",
+    "type": 4
+  },
+  "bones": [
+    {
+      "angle": 1.57577286651,
+      "angle_keys": [
+        [
+          0,
+          1.57577286651
+        ]
+      ],
+      "id": 0,
+      "length": 0.632600426051,
+      "name": "body",
+      "parent_id": -1,
+      "pos": [
+        -0.00148148148148,
+        -0.395925925926
+      ],
+      "world_base": [
+        -0.00148148148148,
+        -0.395925925926
+      ],
+      "world_tip": [
+        -0.00462962962963,
+        0.236666666667
+      ]
+    },
+    {
+      "angle": -1.70257883654,
+      "angle_keys": [
+        [
+          0,
+          -1.70257883654
+        ],
+        [
+          1,
+          -1.70257883654
+        ],
+        [
+          12,
+          -1.78984529914
+        ],
+        [
+          24,
+          -1.70257883654
+        ]
+      ],
+      "id": 1,
+      "length": 0.187430828576,
+      "name": "shoulder",
+      "parent_id": 0,
+      "pos": [
+        0.551633922813,
+        -0.0823758664782
+      ],
+      "world_base": [
+        0.0781481481481,
+        0.156111111111
+      ],
+      "world_tip": [
+        0.264074074074,
+        0.132407407407
+      ]
+    },
+    {
+      "angle": 0.100956849767,
+      "angle_keys": [
+        [
+          0,
+          0.100956849767
+        ],
+        [
+          1,
+          0.100956849767
+        ],
+        [
+          12,
+          -0.68444131363
+        ],
+        [
+          24,
+          0.100956849767
+        ]
+      ],
+      "id": 2,
+      "length": 0.444222475435,
+      "name": "arm",
+      "parent_id": 1,
+      "pos": [
+        0.187430828576,
+        0
+      ],
+      "world_base": [
+        0.264074074074,
+        0.132407407407
+      ],
+      "world_tip": [
+        0.708148148148,
+        0.120925925926
+      ]
+    }
+  ],
+  "constants": {
+    "LT_BONE": 4,
+    "LT_IMAGE": 2
+  },
+  "document": {
+    "end_frame": 24,
+    "fps": 24,
+    "height": 1080,
+    "start_frame": 1,
+    "width": 1920
+  },
+  "errors": [],
+  "generator": {
+    "name": "autorig",
+    "script": "AutoRig_P4_NativeVerify",
+    "spec_character_id": "schoolboy_tpose_p4",
+    "spec_sha256": "d053c46d4d75da2a41a8a2bbcbebe0a8e87e64206d1813a93579c338cbe8a08a",
+    "version": "0.0.1"
+  },
+  "kind": "phase4_native_verify",
+  "layers": [
+    {
+      "name": "body_back_art",
+      "parent_bone_id": 0,
+      "type": 2
+    },
+    {
+      "name": "arm_l_art",
+      "parent_bone_id": 2,
+      "type": 2
+    },
+    {
+      "name": "body_front_art",
+      "parent_bone_id": 0,
+      "type": 2
+    }
+  ],
+  "lua_version": "Lua 5.4",
+  "moho_app_version": "14.4-mock",
+  "move": {
+    "bone": "arm",
+    "bone_id": 2,
+    "frame": 18,
+    "keys_after": [
+      [
+        0,
+        0.100956849767
+      ],
+      [
+        1,
+        0.100956849767
+      ],
+      [
+        12,
+        -0.68444131363
+      ],
+      [
+        18,
+        0.624555625365
+      ],
+      [
+        24,
+        0.100956849767
+      ]
+    ],
+    "observed_after_set_cur_frame": {
+      "angle": 0.100956849767,
+      "world_base": [
+        0.264074074074,
+        0.132407407407
+      ],
+      "world_tip": [
+        0.708148148148,
+        0.120925925926
+      ]
+    },
+    "offset_deg": 30,
+    "value_before": -0.68444131363,
+    "value_read": 0.624555625365,
+    "value_set": 0.624555625365
+  },
+  "status": "completed",
+  "warnings": [],
+  "_label": "MOCK: written by the strict mock Moho API in the cloud, not by Moho"
+}

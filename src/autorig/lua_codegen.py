@@ -184,6 +184,35 @@ def render_lua(spec: RigSpec, asset_root: str | None) -> str:
                    build_lua_data(spec, asset_root))
 
 
+def render_named_build_lua(spec: RigSpec, asset_root: str | None, script_name: str, title: str,
+                           description: str) -> str:
+    """The Phase 0 builder under another menu-script name (Phase 4.0 native proof).
+
+    Same template, same logic, same allowlisted API; only the script table name and
+    the user-visible labels change, so it can be installed next to the Phase 0 script.
+    Every replaced token must be present, so a template edit cannot silently leave a
+    Phase 0 label in the renamed script.
+    """
+    if not _LUA_IDENT.match(script_name) or script_name in _LUA_KEYWORDS:
+        raise ValueError(f"invalid Lua script name {script_name!r}")
+    src = render_lua(spec, asset_root)
+    swaps = [
+        ("AutoRig Studio - Phase 0 Moho rig builder", f"AutoRig Studio - {title} (Phase 0 builder template)"),
+        ("Builds the AutoRig Studio Phase 0 test rig (bones, image layers, bindings, 36-frame animation) "
+         "and writes a verification report.", description),
+        ("AutoRig Phase 0: Build Test Rig", f"AutoRig {title}"),
+        ("tools/macos/install_phase0.sh", "tools/macos/phase4_native_test.sh"),
+        ("Phase 0 build", f"{title}:"),
+        ("AutoRig Phase 0:", f"AutoRig {title}:"),
+        (SCRIPT_NAME, script_name),
+    ]
+    for old, new in swaps:
+        if old not in src:
+            raise RuntimeError(f"template token not found: {old!r}")
+        src = src.replace(old, new)
+    return src
+
+
 def render_probe(report_dir: str | None) -> str:
     """The read-only Moho API probe. ``report_dir`` is an absolute POSIX
     directory on the Mac where Moho writes ``autorig_probe_report.json``."""

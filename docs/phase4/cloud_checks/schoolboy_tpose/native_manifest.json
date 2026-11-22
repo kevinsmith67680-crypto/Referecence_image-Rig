@@ -1,0 +1,417 @@
+{
+  "schema": "autorig.native_poc",
+  "version": "4.0.0",
+  "generator": {
+    "name": "autorig",
+    "version": "0.0.1"
+  },
+  "evidence_level": "portable package; no Moho behaviour verified (Moho has not run)",
+  "package": {
+    "path_name": "character_package",
+    "parent": "schoolboy_tpose",
+    "artwork_manifest_sha256": "862db0fba099d69c493bdfaf892931f9f4c1ef9c0b29585bed26814803a5def1",
+    "rig_sha256": "8660ea053f5ea52fd3fe1611c4fc0752216e7aa1178a6714cc6ec6ee160b4789"
+  },
+  "character_id": "schoolboy_tpose_p4",
+  "side": "l",
+  "source_canvas": [
+    1086,
+    1448
+  ],
+  "moho_canvas": [
+    1920,
+    1080
+  ],
+  "placement": {
+    "offset_px": [
+      417,
+      0
+    ],
+    "rule": "canvas_px = source_px + offset; integer, no scaling",
+    "clipped_alpha_px": {
+      "body_back": 84557,
+      "arm": 0,
+      "body_front": 0
+    },
+    "arm_on_canvas_fraction": {
+      "moved": 0.9997,
+      "reopen_move": 0.9998
+    }
+  },
+  "layers": [
+    {
+      "id": "thigh_r",
+      "image": "artwork/original/thigh_r.png",
+      "z_index": 0,
+      "bone": "thigh_r",
+      "pixel_sha256": "2228ee072272729cfbe134e978b80681ce845cec4dff99aa533df2216fd3ff91",
+      "group": "body_back"
+    },
+    {
+      "id": "shin_r",
+      "image": "artwork/original/shin_r.png",
+      "z_index": 1,
+      "bone": "shin_r",
+      "pixel_sha256": "20f3b29d51208da1d5e76d58b0379a06d91fd401d970c4bbb971d50cf5b1c9bf",
+      "group": "body_back"
+    },
+    {
+      "id": "foot_r",
+      "image": "artwork/original/foot_r.png",
+      "z_index": 2,
+      "bone": "foot_r",
+      "pixel_sha256": "8123059187c05cbb8a28300c0c2d717afea01aad5951933673d44c32c6db1ad8",
+      "group": "body_back"
+    },
+    {
+      "id": "thigh_l",
+      "image": "artwork/original/thigh_l.png",
+      "z_index": 3,
+      "bone": "thigh_l",
+      "pixel_sha256": "7536510b4cadbf676f146334ffacde4b396a92658c0b434237b7aef399cb3bb0",
+      "group": "body_back"
+    },
+    {
+      "id": "shin_l",
+      "image": "artwork/original/shin_l.png",
+      "z_index": 4,
+      "bone": "shin_l",
+      "pixel_sha256": "b72109d4b56520d6007da9a9306b177480558ca8832f3c9f3d4ba75232b25291",
+      "group": "body_back"
+    },
+    {
+      "id": "foot_l",
+      "image": "artwork/original/foot_l.png",
+      "z_index": 5,
+      "bone": "foot_l",
+      "pixel_sha256": "a732a9b93f689e893cffdb5c02f62a23e4fd2df4935367345240659cfa11158d",
+      "group": "body_back"
+    },
+    {
+      "id": "pelvis",
+      "image": "artwork/original/pelvis.png",
+      "z_index": 6,
+      "bone": "body",
+      "pixel_sha256": "d187558b008c687eac3d6f3f369a773441c6ac4f293afcb819e3d55fb7160acf",
+      "group": "body_back"
+    },
+    {
+      "id": "neck",
+      "image": "artwork/original/neck.png",
+      "z_index": 7,
+      "bone": "body",
+      "pixel_sha256": "8997aef1ed7ee153355a1fd7c7d9d6a78461a715dbcb6a88c6b089305bce793f",
+      "group": "body_back"
+    },
+    {
+      "id": "upper_arm_r",
+      "image": "artwork/original/upper_arm_r.png",
+      "z_index": 8,
+      "bone": "upper_arm_r",
+      "pixel_sha256": "17e080af5b502ec357239f544dd3ac47b05104f738e240368021bdb6adcae5e4",
+      "group": "body_back"
+    },
+    {
+      "id": "torso",
+      "image": "artwork/original/torso.png",
+      "z_index": 9,
+      "bone": "body",
+      "pixel_sha256": "dd6ab0a1b29c688dffa769d5ffa18bdf4e347b3d892b7903a03a723dd38d5a5f",
+      "group": "body_back"
+    },
+    {
+      "id": "forearm_r",
+      "image": "artwork/original/forearm_r.png",
+      "z_index": 10,
+      "bone": "forearm_r",
+      "pixel_sha256": "b0e2452ec0e1c35cc4efbd349e63207d36de9598c11e86808045ab5be69de05d",
+      "group": "body_back"
+    },
+    {
+      "id": "hand_r",
+      "image": "artwork/original/hand_r.png",
+      "z_index": 11,
+      "bone": "hand_r",
+      "pixel_sha256": "b7d052224896c2e2e0184d71add0c9716fa4a4010574b3da055e3531ba528cbc",
+      "group": "body_back"
+    },
+    {
+      "id": "upper_arm_l",
+      "image": "artwork/original/upper_arm_l.png",
+      "z_index": 12,
+      "bone": "upper_arm_l",
+      "pixel_sha256": "aa51a134487bbedf68e38705fe2bad6a9d3a63f3601315b730e8cbd9f7bdb729",
+      "group": "arm"
+    },
+    {
+      "id": "forearm_l",
+      "image": "artwork/original/forearm_l.png",
+      "z_index": 13,
+      "bone": "forearm_l",
+      "pixel_sha256": "ae53fb51a81131dfa888ee87ee91c7d0cbdd3a6e0c81bc08b2f1d9a8c4b1ebab",
+      "group": "arm"
+    },
+    {
+      "id": "hand_l",
+      "image": "artwork/original/hand_l.png",
+      "z_index": 14,
+      "bone": "hand_l",
+      "pixel_sha256": "867bea272cbb2f99ec1dec0e1ecb2d7baa1fd9fc1ed72cab2092a1bc7cf5ea8d",
+      "group": "arm"
+    },
+    {
+      "id": "head_base",
+      "image": "artwork/original/head_base.png",
+      "z_index": 15,
+      "bone": "head",
+      "pixel_sha256": "1d2407ca3be99c8281f551a4f89613e46d1c9730172a36e09202cc486355ed06",
+      "group": "body_front"
+    },
+    {
+      "id": "nose",
+      "image": "artwork/original/nose.png",
+      "z_index": 16,
+      "bone": "head",
+      "pixel_sha256": "5d87c6947b80d09ff9ef92aaff4aab8c848e3cfa8a7bbcb320f7175bccd8bd00",
+      "group": "body_front"
+    },
+    {
+      "id": "mouth",
+      "image": "artwork/original/mouth.png",
+      "z_index": 17,
+      "bone": "head",
+      "pixel_sha256": "cb2ce1f971a0c50da06da65a61aab25fac224dc08eeb48cef06b4d40d91950a5",
+      "group": "body_front"
+    },
+    {
+      "id": "eye_r_white",
+      "image": "artwork/original/eye_r_white.png",
+      "z_index": 18,
+      "bone": "head",
+      "pixel_sha256": "304df4a13a7f4320678a92d1270dcd950bc6020bdfc1f140d0f85bc39abdd9a8",
+      "group": "body_front"
+    },
+    {
+      "id": "eye_r_iris",
+      "image": "artwork/original/eye_r_iris.png",
+      "z_index": 19,
+      "bone": "head",
+      "pixel_sha256": "037af502207b857b1388919f39015f10835f12f55c1fac069a504a9f786b5f9e",
+      "group": "body_front"
+    },
+    {
+      "id": "eye_l_white",
+      "image": "artwork/original/eye_l_white.png",
+      "z_index": 20,
+      "bone": "head",
+      "pixel_sha256": "5ee506dc63718f0cfff43ab503dfd436d1e50d6bc8dc7c523e154a3865764adc",
+      "group": "body_front"
+    },
+    {
+      "id": "eye_l_iris",
+      "image": "artwork/original/eye_l_iris.png",
+      "z_index": 21,
+      "bone": "head",
+      "pixel_sha256": "9d3964e411d315346273487656e6ee998d6bdd014ca7b6c2bceff486a62c9f14",
+      "group": "body_front"
+    },
+    {
+      "id": "brow_r",
+      "image": "artwork/original/brow_r.png",
+      "z_index": 22,
+      "bone": "head",
+      "pixel_sha256": "594db65d5d16063c02a72704db0e79287f4875e04814e3262918ae17f3d66231",
+      "group": "body_front"
+    },
+    {
+      "id": "brow_l",
+      "image": "artwork/original/brow_l.png",
+      "z_index": 23,
+      "bone": "head",
+      "pixel_sha256": "080b75dc46d491eb497e3564388e210d6013302a47a8809019811216c4c48dc2",
+      "group": "body_front"
+    },
+    {
+      "id": "hair",
+      "image": "artwork/original/hair.png",
+      "z_index": 24,
+      "bone": "head",
+      "pixel_sha256": "689df4e206e51ac4b913096e7ad75e79f9f9ddbddb650e8b31d883a2c9225e30",
+      "group": "body_front"
+    }
+  ],
+  "groups": {
+    "body_back": [
+      "thigh_r",
+      "shin_r",
+      "foot_r",
+      "thigh_l",
+      "shin_l",
+      "foot_l",
+      "pelvis",
+      "neck",
+      "upper_arm_r",
+      "torso",
+      "forearm_r",
+      "hand_r"
+    ],
+    "arm": [
+      "upper_arm_l",
+      "forearm_l",
+      "hand_l"
+    ],
+    "body_front": [
+      "head_base",
+      "nose",
+      "mouth",
+      "eye_r_white",
+      "eye_r_iris",
+      "eye_l_white",
+      "eye_l_iris",
+      "brow_r",
+      "brow_l",
+      "hair"
+    ]
+  },
+  "layers_between_arm_z": [],
+  "art": {
+    "body_back": {
+      "path": "art/body_back.png",
+      "sha256": "a0b44658542ade0c024f721b5e46244c75c29995d99baf861cd6bbf24444256e",
+      "pixel_sha256": "ffd360fc5c399ff8995fbf031f5e54c71aa9b40577f5bb7a0749ae54f5ff6d93",
+      "alpha_px": 210577
+    },
+    "arm": {
+      "path": "art/arm.png",
+      "sha256": "4856223538bdb2b53f0e46d6ae1317603e712146b24eb7cfbf634f847a3fad6e",
+      "pixel_sha256": "e53acc354eed81e2b360cc0a203fc085e820e1a9398f88bab9833d34736ddb4c",
+      "alpha_px": 44068
+    },
+    "body_front": {
+      "path": "art/body_front.png",
+      "sha256": "d32127cddd9ed11047c9844e8a8fd396192c7a132f6af63b08a15ca9367c3731",
+      "pixel_sha256": "d39ec72740fc5d66b2e8c3690f735885d8dd084161a1e0d5bf44efd8a452bb81",
+      "alpha_px": 73222
+    }
+  },
+  "split_fidelity": {
+    "max_abs_diff": 0,
+    "px_over_2": 0
+  },
+  "excluded": {
+    "generated_extensions": 15,
+    "reason": "Phase 2 generated pixels are pending review; the proof uses original pixels only, so the area under the arm shows as a gap when the arm moves"
+  },
+  "bones": {
+    "body": {
+      "parent": null,
+      "base_px": [
+        959.2,
+        753.8
+      ],
+      "tip_px": [
+        957.5,
+        412.2
+      ],
+      "source": "pelvis.head -> chest.tail",
+      "moho_pos": [
+        -0.0014814814814813973,
+        -0.39592592592592585
+      ],
+      "moho_angle_rad": 1.5757728665078357,
+      "moho_length": 0.6326004260509003,
+      "moho_world_base": [
+        -0.0014814814814813973,
+        -0.39592592592592585
+      ]
+    },
+    "shoulder": {
+      "parent": "body",
+      "base_px": [
+        1002.2,
+        455.7
+      ],
+      "tip_px": [
+        1102.6,
+        468.5
+      ],
+      "source": "clavicle_l.head -> clavicle_l.tail",
+      "moho_pos": [
+        0.5516339228125302,
+        -0.08237586647824957
+      ],
+      "moho_angle_rad": -1.702578836538843,
+      "moho_length": 0.18743082857599966,
+      "moho_world_base": [
+        0.07814814814814823,
+        0.15611111111111114
+      ]
+    },
+    "arm": {
+      "parent": "shoulder",
+      "base_px": [
+        1102.6,
+        468.5
+      ],
+      "tip_px": [
+        1342.4,
+        474.7
+      ],
+      "source": "upper_arm_l.head -> forearm_l.tail",
+      "moho_pos": [
+        0.18743082857599966,
+        0.0
+      ],
+      "moho_angle_rad": 0.10095684976698616,
+      "moho_length": 0.4442224754351766,
+      "moho_world_base": [
+        0.2640740740740739,
+        0.13240740740740742
+      ]
+    }
+  },
+  "keys": {
+    "frames": {
+      "rest": 1,
+      "moved": 12,
+      "reopen_move": 18,
+      "end": 24
+    },
+    "offsets_deg": {
+      "1": {
+        "shoulder": 0.0,
+        "arm": 0.0
+      },
+      "12": {
+        "shoulder": -5.0,
+        "arm": -45.0
+      },
+      "18": {
+        "shoulder": 0.0,
+        "arm": 30.0
+      },
+      "24": {
+        "shoulder": 0.0,
+        "arm": 0.0
+      }
+    },
+    "lower_sign": -1.0
+  },
+  "scripts": {
+    "build": "moho/AutoRig_P4_NativeBuild.lua",
+    "verify": "moho/AutoRig_P4_NativeVerify.lua"
+  },
+  "asset_root": "<baked on the Mac by tools/macos/phase4_native_test.sh>",
+  "reports": {
+    "build": "phase4_native_build_report.json",
+    "verify": "phase4_native_verify_report.json"
+  },
+  "saved_document": "AutoRig_P4_Native.moho",
+  "expected": {
+    "rest": "expected/expected_rest_f01.png",
+    "moved": "expected/expected_moved_f12.png",
+    "reopen_move": "expected/expected_reopen_move_f18.png",
+    "contact_sheet": "expected/expected_contact_sheet.png"
+  },
+  "spec_sha256": "d053c46d4d75da2a41a8a2bbcbebe0a8e87e64206d1813a93579c338cbe8a08a"
+}

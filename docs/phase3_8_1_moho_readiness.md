@@ -6,6 +6,8 @@ the smallest native test needs from the user's Mac is in §2.
 
 Phase 4 (the full native exporter) was **not** started.
 
+> **Later (Phase 4.0):** a smaller, self-checking native proof on the character's own artwork replaces the procedure below as the first native step. It runs through `tools/macos/phase4_native_test.sh`; see [`phase4_completion_report.md`](phase4_completion_report.md).
+
 ## 1. What was checked in the cloud
 
 | check | result |

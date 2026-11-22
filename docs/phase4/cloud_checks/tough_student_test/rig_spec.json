@@ -1,0 +1,122 @@
+{
+  "spec_version": "0.1.0",
+  "character": {
+    "id": "tough_student_test_p4",
+    "display_name": "tough student test (Phase 4.0 native proof)",
+    "description": "Phase 4.0 native proof: tough student test (Phase 4.0 native proof), left arm on a shoulder bone, original pixels pasted unscaled."
+  },
+  "canvas": {
+    "width_px": 1920,
+    "height_px": 1080
+  },
+  "moho": {
+    "bone_layer_name": "AutoRig_P4_Native",
+    "rest_frame": 0,
+    "start_frame": 1,
+    "end_frame": 24,
+    "report_filename": "phase4_native_build_report.json"
+  },
+  "bones": [
+    {
+      "name": "body",
+      "parent": null,
+      "base_px": [
+        960.7,
+        774.1
+      ],
+      "tip_px": [
+        958.1,
+        396.0
+      ]
+    },
+    {
+      "name": "shoulder",
+      "parent": "body",
+      "base_px": [
+        1001.2,
+        443.4
+      ],
+      "tip_px": [
+        1095.6,
+        456.6
+      ]
+    },
+    {
+      "name": "arm",
+      "parent": "shoulder",
+      "base_px": [
+        1095.6,
+        456.6
+      ],
+      "tip_px": [
+        1345.3,
+        467.6
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "body_back",
+      "layer_name": "body_back_art",
+      "image": "art/body_back.png",
+      "bone": "body",
+      "z_index": 0
+    },
+    {
+      "name": "arm",
+      "layer_name": "arm_l_art",
+      "image": "art/arm.png",
+      "bone": "arm",
+      "z_index": 1
+    },
+    {
+      "name": "body_front",
+      "layer_name": "body_front_art",
+      "image": "art/body_front.png",
+      "bone": "body",
+      "z_index": 2
+    }
+  ],
+  "animation": {
+    "name": "phase4_native_proof",
+    "description": "Frame 1 rest, frame 12 arm lowered and shoulder dropped, frame 24 rest. The verify script adds frame 18 (arm raised) after the document is reopened.",
+    "tracks": [
+      {
+        "bone": "shoulder",
+        "channel": "rotation_offset_deg",
+        "keys": [
+          {
+            "frame": 1,
+            "value": 0.0
+          },
+          {
+            "frame": 12,
+            "value": -5.0
+          },
+          {
+            "frame": 24,
+            "value": 0.0
+          }
+        ]
+      },
+      {
+        "bone": "arm",
+        "channel": "rotation_offset_deg",
+        "keys": [
+          {
+            "frame": 1,
+            "value": 0.0
+          },
+          {
+            "frame": 12,
+            "value": -45.0
+          },
+          {
+            "frame": 24,
+            "value": 0.0
+          }
+        ]
+      }
+    ]
+  }
+}
