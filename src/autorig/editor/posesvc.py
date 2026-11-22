@@ -513,7 +513,11 @@ class PoseService:
                "correctives": r.get("correctives", []), "corrective_mode": cmode,
                "hand_selection": {"decisions": {s: {k: d.get(k) for k in ("action", "rule", "chosen", "cid", "score",
                                                                           "reason", "held", "ranking", "aim_applied",
-                                                                          "missing_preferred", "overridden_by")}
+                                                                          "missing_preferred", "overridden_by",
+                                                                          # Phase 3.7: constraint-first selection
+                                                                          "mode", "rejected", "needs_artwork",
+                                                                          "fallback", "explanation", "override_check",
+                                                                          "palm_required")}
                                                 for s, d in r["hand_selection"]["decisions"].items()},
                                   "grip": r["hand_selection"].get("grip")}}
         if body.get("skeleton_only"):

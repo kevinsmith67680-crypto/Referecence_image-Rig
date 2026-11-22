@@ -97,3 +97,14 @@ td, th { border-bottom: 1px solid var(--line); padding: 3px; text-align: left; v
 .chip.c-LIMITED_DEFORMATION { border: 1px solid #1c7ed6; }
 .chip.c-FLEXIBLE { border: 1px solid #2f9e44; }
 .explain { margin-top: 8px; padding: 6px; border: 1px solid #3b4252; border-radius: 4px; }
+
+/* Phase 3.7: Hand Inspector and Ref Motion panels stay inside the side panel (long explanations wrap) */
+.hand-inspector, .reference-panel { min-width: 0; max-width: 100%; overflow-x: hidden; overflow-wrap: anywhere; }
+.hand-inspector .row, .reference-panel .row { flex-wrap: wrap; gap: 6px; }
+.hand-inspector pre.explain { white-space: pre-wrap; word-break: break-word; max-width: 100%; font-size: 11px; margin: 0; }
+.hand-inspector table.kv { width: 100%; table-layout: fixed; }
+.hand-inspector table.kv th { width: 30%; text-align: left; vertical-align: top; }
+.hand-inspector ul.rejected, .reference-panel ul { padding-left: 16px; margin: 2px 0; font-size: 11px; }
+.reference-panel .ref-list button { margin-right: 4px; }
+.reference-panel img { max-width: 100%; height: auto; }
+.hand-inspector .warn, .reference-panel .warn { color: #e0a040; }

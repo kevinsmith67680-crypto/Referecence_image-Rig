@@ -720,6 +720,7 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 90
     assert.match(await page.textContent("[data-testid=hi-explanation]"), /mode: production/, "explanation names the mode");
     await page.waitForFunction(() => { const im = document.querySelector("[data-testid=hi-closeup]"); return im && im.complete && im.naturalWidth > 0; }, null, { timeout: 120000 });
     await page.screenshot({ path: path.join(SHOTS37, "01_hand_inspector_production.png") });
+    const swBefore = JSON.stringify((await api("/api/project")).state.switches.hand_r ?? null);
     r0 = await rev(page);
     await page.click("[data-testid=hi-override-fist]");
     await waitRev(page, r0);
@@ -732,6 +733,12 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 90
     await page.click("[data-testid=hi-auto]");
     await waitRev(page, r0);
     assert.equal((await api("/api/project")).state.switches.hand_r.auto, true, "back to automatic");
+    for (let k = 0; k < 2; k++) {  // undo this step's two ops: the earlier switch choice (checked after reload) comes back
+      r0 = await rev(page);
+      await page.click("[data-testid=undo]");
+      await waitRev(page, r0);
+    }
+    assert.equal(JSON.stringify((await api("/api/project")).state.switches.hand_r ?? null), swBefore, "undo restores the switch");
 
     // 6k. Phase 3.7 Reference Animation workspace: library, skeleton scrub, retarget, use as performance, critique,
     // preset, and persistence after reload

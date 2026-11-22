@@ -105,7 +105,10 @@ approved by a person.
   0 failing.
 - **Frontend:** vitest 11 passed. `tsc` clean; `editor/dist` rebuilt.
 - **Browser e2e** (Playwright, headless Chromium, real package copy, steps 6j Hand Inspector and 6k Ref Motion):
-  E2E_RESULT
+  **pass** (1 test, 9 min 3 s; screenshots in `docs/phase3_7/screenshots/`). Two e2e runs failed on the way; both were
+  fixed in code and re-run: the pose API did not expose the new decision fields, and the Hand Inspector step
+  reset a switch that a later Phase 3.2 persistence check needs (it now undoes its own ops). A layout bug (the new
+  panels overflowed the side panel) was found in the screenshots and fixed.
 - **Native Moho tests:** 2 NOT EXECUTED (Moho not available).
 
 ## 5. Benchmarks (cloud sandbox CPU, x86_64; not the user's M1)
