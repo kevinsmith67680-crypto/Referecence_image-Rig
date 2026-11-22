@@ -5,25 +5,25 @@
   "python": "3.12.3"
  },
  "hand_selection_pair": {
-  "median_ms": 0.569,
-  "p90_ms": 0.69
+  "median_ms": 0.444,
+  "p90_ms": 0.504
  },
  "skeleton_solve_with_hands": {
-  "median_ms": 7.977,
-  "p90_ms": 9.769
+  "median_ms": 5.753,
+  "p90_ms": 6.461
  },
  "analysis_synthetic_2.8s": {
-  "median_ms": 5.136,
-  "p90_ms": 5.93
+  "median_ms": 5.666,
+  "p90_ms": 6.361
  },
  "retarget": {
-  "median_ms": 0.517,
-  "p90_ms": 0.619
+  "median_ms": 0.546,
+  "p90_ms": 0.648
  },
- "full_render_s": 4.068,
+ "full_render_s": 4.486,
  "critic_rules_per_frame": {
-  "median_ms": 423.167,
-  "p90_ms": 474.91
+  "median_ms": 336.943,
+  "p90_ms": 386.039
  },
  "note": "pose estimation timing comes from the MediaPipe round trip (reference-evidence); it runs at import only, never during interactive animation. This is the cloud sandbox CPU, not the user's M1."
 }
