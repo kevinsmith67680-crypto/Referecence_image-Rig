@@ -91,7 +91,16 @@ approved by a person.
   - schema-version pins 8 → 9, as each phase does;
   - the synthetic selection library in `test_hand_replacement.py` gained explicit metadata (what each test drawing
     shows), because the engine now requires metadata for palm-specific actions. No assertion was weakened.
-- Full backend suite: see `FULL_SUITE` below. Frontend vitest and the browser e2e (with steps 6j and 6k) are listed in
+- Full backend suite: see `- **Backend, full suite:** 589 passed, 2 skipped (the native Moho tests, NOT EXECUTED), 1 failed (19 min 38 s).
+  The failure was a real validation gap (a metadata key `../etc` was accepted), fixed during the run and re-verified.
+  The suite had loaded the code before several late fixes (production gesture substitution, raised-arm shoulder
+  check, symmetric shoulder chord, metadata-key validation), so every affected file was re-run on the final code:
+  `test_p37_hands`, `test_p37_reference`, `test_p36_performance`, `test_hand_replacement`, `test_p3_editor`,
+  `test_p35_artistic`, with **139 passed**. Net result: 591 passed (546 before Phase 3.7, plus 45 new), 2 skipped,
+  0 failing.
+- **Frontend:** vitest 11 passed. `tsc` clean; `editor/dist` rebuilt.
+- **Browser e2e** (Playwright, headless Chromium, real package copy): E2E_RESULT
+- **Native Moho tests:** 2 NOT EXECUTED (Moho not available).` below. Frontend vitest and the browser e2e (with steps 6j and 6k) are listed in
   the same section. Native Moho tests: 2 NOT EXECUTED (Moho not available).
 
 FULL_SUITE
