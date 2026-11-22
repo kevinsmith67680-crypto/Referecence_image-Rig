@@ -503,7 +503,13 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 90
     assert.equal(st.hand_selection.actions.l, "thumbs_up", "gesture intention stored");
     pr = await post("/api/pose", { preset: "relaxed_standing", skeleton_only: true, allow_pending: true });
     assert.equal(pr.hand_selection.decisions.l.action, "thumbs_up");
-    assert.equal(pr.hands.l.pose, "thumbs_up", "the engine follows the gesture intention");
+    // Phase 3.7: on a hanging arm the thumbs-up drawing would stay turned ~54 deg from how it was drawn even after the
+    // maximum wrist aim (its tolerance is 45 deg: the thumb would no longer point up). The engine follows the intention
+    // but rejects that drawing with the reason instead of showing it tilted.
+    const rejTU = pr.hand_selection.decisions.l.rejected.find((x) => x.pose === "thumbs_up");
+    assert.ok(rejTU && rejTU.violations.some((v) => v.constraint === "rotation"), "a tilted thumbs-up is rejected with the reason");
+    assert.notEqual(pr.hands.l.pose, "thumbs_up", "never shown beyond its rotation tolerance");
+    assert.ok(pr.hand_selection.decisions.l.needs_artwork.some((n) => n.pose === "thumbs_up"), "reported, not hidden");
     await opClick("[data-testid=sw-hand_l-autotoggle]");   // off: the current hand becomes an explicit choice
     st = (await api("/api/project")).state;
     assert.equal(st.switches.hand_l.auto, false);
