@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autorig.local/schemas/hand_asset_metadata.schema.json",
+  "title": "AutoRig HandAssetMetadata inventory (Phase 3.7)",
+  "type": "object",
+  "required": ["schema", "schema_version", "assets"],
+  "properties": {
+    "schema": {"const": "autorig.hand_asset_metadata"},
+    "schema_version": {"const": 1},
+    "inspection": {"type": "object"},
+    "assets": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/asset"}
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": ["schema", "schema_version", "key", "cid", "store_side", "use_side", "label_pose", "handedness",
+                   "palm_normal_sprite", "rotation_tolerance_deg", "measured", "provenance", "approval",
+                   "field_sources", "flags", "errors", "reassigned", "excluded"],
+      "properties": {
+        "schema": {"const": "autorig.hand_asset_metadata"},
+        "schema_version": {"const": 1},
+        "key": {"type": "string"},
+        "cid": {"type": "string"},
+        "uid": {"type": ["string", "null"]},
+        "version": {"type": ["integer", "null"]},
+        "store_side": {"enum": ["r", "l"]},
+        "use_side": {"enum": ["r", "l"]},
+        "reassigned": {"type": "boolean"},
+        "label_pose": {"type": "string"},
+        "gesture": {"type": ["string", "null"]},
+        "label_agrees": {"type": "boolean"},
+        "handedness": {"enum": ["left", "right", null]},
+        "handedness_confidence": {"enum": ["high", "medium", "low", null]},
+        "handedness_cues": {"type": ["string", "null"]},
+        "visible_surface": {"enum": ["palm", "back", "palm_side_curled", "edge", null]},
+        "palm_normal_sprite": {
+          "oneOf": [{"type": "null"},
+                    {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3}]
+        },
+        "view_elevation": {"enum": ["level", "from_above", "from_below", null]},
+        "finger_dir_deg": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
+        "thumb": {"type": ["string", "null"]},
+        "rotation_tolerance_deg": {"type": ["number", "null"], "minimum": 0, "maximum": 180},
+        "rest_rotation_from_drawn_deg": {"type": "number"},
+        "viewing_direction": {"const": "front"},
+        "measured": {
+          "type": "object",
+          "required": ["wrist", "rest_placement"],
+          "properties": {
+            "wrist": {"type": "object"},
+            "drawn_forearm_deg": {"type": ["number", "null"]},
+            "features": {"type": "object"},
+            "sprite_px": {"type": ["array", "null"]},
+            "rest_placement": {"type": "object"}
+          }
+        },
+        "provenance": {"type": "object", "required": ["origin"],
+                       "properties": {"origin": {"enum": ["ORIGINAL", "AI_GENERATED", "PHASE2_SHEET", "ARTIST_EDITED"]}}},
+        "approval": {"type": "object", "required": ["state"],
+                     "properties": {"state": {"enum": ["APPROVED", "PENDING_REVIEW", "REJECTED", "MISSING"]},
+                                    "item": {"type": ["string", "null"]}}},
+        "field_sources": {"type": "object",
+                          "additionalProperties": {"enum": ["measured", "inspected", "user"]}},
+        "flags": {"type": "array", "items": {"type": "string"}},
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "excluded": {"type": "boolean"},
+        "note": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+ "schema": "autorig.motion_reference",
+ "version": 1,
+ "id": "schoolboy_roundtrip",
+ "v": 1,
+ "name": "schoolboy_roundtrip",
+ "tags": {
+  "gesture": "pointing+shrug",
+  "movement": "gesture",
+  "emotion": null,
+  "view": null,
+  "intensity": null,
+  "duration_s": 3.583,
+  "required_artwork": [
+   "art:forearm_foreshortened_l",
+   "art:forearm_foreshortened_r",
+   "art:upper_arm_foreshortened_l",
+   "art:upper_arm_foreshortened_r",
+   "view:leg_sagittal (knee drive / stride)"
+  ]
+ },
+ "provenance": {
+  "kind": "autorig_render",
+  "source": "AutoRig render of the user's schoolboy character (Phase 3.7 acting test, t 2.4-6.0 s)",
+  "usage_permission": "the user's own character, rendered by this project"
+ },
+ "usage_permission": "the user's own character, rendered by this project",
+ "fps": 12.0,
+ "frames": 44,
+ "size": [
+  572,
+  720
+ ],
+ "hand_actions": {
+  "r": "pointing"
+ },
+ "palm": null,
+ "category": "gesture",
+ "quality": {
+  "mean_visibility": 0.985,
+  "occluded_frac": {
+   "shoulder_r": 0.0,
+   "shoulder_l": 0.0,
+   "elbow_r": 0.0,
+   "elbow_l": 0.0,
+   "wrist_r": 0.0,
+   "wrist_l": 0.0,
+   "hip_r": 0.0,
+   "hip_l": 0.0
+  },
+  "shoulder_torso_ratio": 0.675,
+  "view": "front",
+  "subject_px": 456.0,
+  "flags": [],
+  "usable": true
+ },
+ "provider": {
+  "name": "mediapipe_pose_landmarker",
+  "local": true,
+  "model": "pose_landmarker_full",
+  "hands": true,
+  "mediapipe_version": "1.2.3",
+  "timing": {
+   "frames": 44,
+   "total_s": 2.968,
+   "per_frame_s": 0.0675
+  }
+ },
+ "sha256": {
+  "track": "e03c4e6ba9bd5a291f6565385bf5a7301c8c254a03c51fc777fbecdedc777fea",
+  "analysis": "56de5e2399346c0fc03f68f47c7c40e09192c6ea0a21e1142848851e8567f02a"
+ },
+ "created_at": "2026-11-22T12:50:42Z",
+ "character_independent": true
+}

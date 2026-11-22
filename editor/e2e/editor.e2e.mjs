@@ -32,6 +32,7 @@ const SHOTS33 = process.env.AUTORIG_SHOTS_P33 || path.join(repo, "docs/phase3_3/
 const SHOTS34 = process.env.AUTORIG_SHOTS_P34 || path.join(repo, "docs/phase3_4/screenshots");
 const SHOTS35 = process.env.AUTORIG_SHOTS_P35 || path.join(repo, "docs/phase3_5/screenshots");
 const SHOTS36 = process.env.AUTORIG_SHOTS_P36 || path.join(repo, "docs/phase3_6/screenshots");
+const SHOTS37 = process.env.AUTORIG_SHOTS_P37 || path.join(repo, "docs/phase3_7/screenshots");
 const PORT = 8790 + Math.floor(Math.random() * 100);
 const BASE = `http://127.0.0.1:${PORT}`;
 mkdirSync(SHOTS, { recursive: true });
@@ -40,6 +41,7 @@ mkdirSync(SHOTS33, { recursive: true });
 mkdirSync(SHOTS34, { recursive: true });
 mkdirSync(SHOTS35, { recursive: true });
 mkdirSync(SHOTS36, { recursive: true });
+mkdirSync(SHOTS37, { recursive: true });
 
 const sha = (f) => createHash("sha256").update(readFileSync(f)).digest("hex");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -106,7 +108,7 @@ async function waitPose(page) {
   await sleep(600);
 }
 
-test("editor: real edits persist, poses preview, package exports", { timeout: 600000 }, async () => {
+test("editor: real edits persist, poses preview, package exports", { timeout: 900000 }, async () => {
   const work = mkdtempSync(path.join(tmpdir(), "autorig-e2e-"));
   const pkg = path.join(work, "character_package");
   cpSync(PKG, pkg, { recursive: true, filter: (s) => !s.includes(`${path.sep}editor`) && !s.includes(`${path.sep}hand_store`) &&
@@ -700,6 +702,68 @@ test("editor: real edits persist, poses preview, package exports", { timeout: 60
     await page.waitForSelector("[data-testid=perf-timeline]", { timeout: 120000 });
     assert.equal((await api("/api/project")).state.performance.doc.style, "confident", "persists after reload");
     await page.screenshot({ path: path.join(SHOTS36, "03_performance_after_reload.png") });
+
+    // 6j. Phase 3.7 Hand Selection Inspector: production vs review, the explanation with rejected candidates, a
+    // manual override (switch.set) and back to automatic
+    await page.click('[data-testid="tab-Hand Inspector"]');
+    await page.waitForSelector("[data-testid=hi-active]", { timeout: 120000 });
+    await page.selectOption("[data-testid=hi-mode]", "production");
+    await page.click("[data-testid=hi-inspect]");
+    await page.waitForFunction(() => /wrist checks/.test(document.querySelector("[data-testid=hand-inspector]")?.textContent || "") &&
+      !/…/.test(document.querySelector("[data-testid=hi-inspect]")?.textContent || ""), null, { timeout: 120000 });
+    assert.match(await page.textContent("[data-testid=hi-explanation]"), /mode: production/, "explanation names the mode");
+    await page.waitForFunction(() => { const im = document.querySelector("[data-testid=hi-closeup]"); return im && im.complete && im.naturalWidth > 0; }, null, { timeout: 120000 });
+    await page.screenshot({ path: path.join(SHOTS37, "01_hand_inspector_production.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=hi-override-fist]");
+    await waitRev(page, r0);
+    let sw37 = (await api("/api/project")).state.switches.hand_r;
+    assert.equal(sw37.user, "fist", "manual override is a switch.set op");
+    assert.equal(sw37.auto, false);
+    await page.waitForSelector("[data-testid=hi-active]", { timeout: 120000 });
+    await page.screenshot({ path: path.join(SHOTS37, "02_hand_inspector_override.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=hi-auto]");
+    await waitRev(page, r0);
+    assert.equal((await api("/api/project")).state.switches.hand_r.auto, true, "back to automatic");
+
+    // 6k. Phase 3.7 Reference Animation workspace: library, skeleton scrub, retarget, use as performance, critique,
+    // preset, and persistence after reload
+    await page.click('[data-testid="tab-Ref Motion"]');
+    await page.waitForSelector("[data-testid=ref-synthetic_pointing]", { timeout: 120000 });
+    r0 = await rev(page);
+    await page.click("[data-testid=ref-synthetic_pointing]");
+    await waitRev(page, r0);
+    await page.waitForFunction(() => { const im = document.querySelector("[data-testid=ref-frame]"); return im && im.complete && im.naturalWidth > 0; }, null, { timeout: 60000 });
+    await page.click("[data-testid=ref-retarget]");
+    await page.waitForSelector("[data-testid=ref-result]", { timeout: 180000 });
+    assert.match(await page.textContent("[data-testid=ref-result]"), /SUPPORTED/, "pointing is supported on the front view");
+    await page.screenshot({ path: path.join(SHOTS37, "03_reference_pointing_retarget.png") });
+    r0 = await rev(page);
+    await page.click("[data-testid=ref-use]");
+    await waitRev(page, r0);
+    assert.match((await api("/api/project")).state.performance.doc.name, /^reference_/, "retarget becomes the performance");
+    await page.fill("input[placeholder='preset name']", "point_ref");
+    r0 = await rev(page);
+    await page.click("[data-testid=ref-preset]");
+    await waitRev(page, r0);
+    r0 = await rev(page);
+    await page.click("[data-testid=ref-synthetic_walking]");
+    await waitRev(page, r0);
+    await page.click("[data-testid=ref-retarget]");
+    await page.waitForSelector("[data-testid=ref-result]", { timeout: 180000 });
+    assert.match(await page.textContent("[data-testid=ref-result]"), /REQUIRES_NEW_VIEW/, "walking needs a side view");
+    await page.click("[data-testid=ref-critique]");
+    await page.waitForSelector("[data-testid=ref-crit]", { timeout: 180000 });
+    await page.screenshot({ path: path.join(SHOTS37, "04_reference_walking_critique.png") });
+    await page.reload();
+    await page.waitForSelector("[data-testid=layers-panel]");
+    await page.click('[data-testid="tab-Ref Motion"]');
+    await page.waitForSelector("[data-testid=ref-frame]", { timeout: 60000 });
+    const rm = (await api("/api/project")).state.reference_motion;
+    assert.equal(rm.selected, "synthetic_walking", "selection persists");
+    assert.equal(rm.presets.point_ref.ref_id, "synthetic_pointing", "preset persists");
+    await page.screenshot({ path: path.join(SHOTS37, "05_reference_after_reload.png") });
 
     // 7. facial and live readiness
     await page.click("[data-testid=tab-Face]");

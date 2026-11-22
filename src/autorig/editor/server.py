@@ -8,6 +8,7 @@ in the package is overwritten.
 from __future__ import annotations
 
 import base64
+import copy
 import re
 import threading
 from pathlib import Path
@@ -705,6 +706,274 @@ def create_app(pkg: str | Path, static_dir: str | Path | None = None) -> FastAPI
                     "overall": r["gates"]["overall"], "gates": r["gates"]["gates"],
                     "validation_errors": r["validation_errors"], "layers": len(r["manifest"]["layers"]),
                     "vectors": len(r["manifest"]["vectors"]), "bones": len(r["manifest"]["bones"])})
+
+    # -- Phase 3.7: hand inspector, hand metadata, reference motion ------------------------------------------------
+    def _vis(st) -> list[str]:
+        masks = S.masks()
+        return [L["id"] for L in st["layers"] if L["visible"] and L["kind"] == "bitmap" and L["id"] in masks]
+
+    def _hand_ctx(st, body: dict):
+        """A solved frame for the inspector: the current pose preset or a performance time."""
+        review = str(body.get("mode", "review")) == "review"
+        src = str(body.get("source", "pose"))
+        render = bool(body.get("render", False))
+        if src == "performance" and (st.get("performance") or {}).get("doc"):
+            from ..performance.director import Performance, PerformanceDirector  # noqa: PLC0415
+
+            doc = dict(st["performance"]["doc"])
+            doc["allow_pending"] = review
+            masks = S.masks()
+            eng = S.pose.motion_engine(st, masks, rejected_ids(st))
+            d = PerformanceDirector(eng, _vis(st), Performance.from_json(doc))
+            r = d.solve(float(body.get("t", 0.0)), render=render, corrective_mode="all" if review else "auto")
+            return eng, r
+        eng = S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+        preset = (st.get("pose") or {}).get("preset") or "relaxed_standing"
+        acts = {s: a for s, a in (body.get("actions") or {}).items() if a} or \
+            {s: a for s, a in ((st.get("hand_selection") or {}).get("actions") or {}).items() if a} or None
+        r = eng.pose(preset, visible=_vis(st), skeleton_only=not render, allow_pending=review, hand_actions=acts,
+                     switches=st.get("switches") or None, corrective_mode="all" if review else "auto")
+        return eng, r
+
+    @app.post("/api/hands/inspect")
+    def hands_inspect(body: dict = Body(default={})):
+        """Hand Selection Inspector: per side the active drawing, its metadata and palm analysis, the rejected
+        candidates with their reasons, the explanation, wrist checks (when rendered) and missing artwork."""
+        from ..motion.handcheck import wrist_check  # noqa: PLC0415
+        from ..motion.handselect import OVERRIDE_RULE, HandContext  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            eng, r = _hand_ctx(st, body)
+            out = {"mode": "review" if str(body.get("mode", "review")) == "review" else "production", "sides": {}}
+            perf_h = (r.get("performance") or {}).get("hands") or {}
+            for s in ("r", "l"):
+                dec = r["hand_selection"]["decisions"][s]
+                h = r["hands"][s]
+                v = eng.hand_lib.hands[s].get(h["pose"])
+                hm = ((v.meta or {}).get("hand_meta") if v is not None else None) or {}
+                ev = None
+                if v is not None:
+                    c = dec["context"]
+                    ctx = HandContext(s, c["action"], c["forearm_deg"], c["hand_deg"],
+                                      float(eng.sk.bone(f"hand_{s}").rest_angle), c["elbow_flex_deg"],
+                                      c["wrist_bend_deg"], tuple(c["wrist"]), c["view"],
+                                      tuple(c["target"]) if c["target"] else None, None, c["t"], c["beat"])
+                    ev = eng.hand_select.evaluate(v, ctx, OVERRIDE_RULE, None, True)
+                pdec = (perf_h.get(s) or {}).get("decision")
+                out["sides"][s] = {
+                    "active": {"pose": h["pose"], "cid": h["cid"], "layer": h["layer"], "source": h["source"],
+                               "pending_review": h["pending_review"], "offset": h.get("offset"),
+                               "approval": (hm.get("approval") or {}).get("state")},
+                    "metadata": {k: hm.get(k) for k in ("key", "gesture", "label_pose", "handedness",
+                                                        "handedness_confidence", "visible_surface", "palm_normal_sprite",
+                                                        "rotation_tolerance_deg", "flags", "reassigned", "use_side",
+                                                        "store_side", "field_sources", "excluded")},
+                    "palm": (ev or {}).get("palm"), "wrist_pivot": list(r["solve"]["joints_posed"][f"hand_{s}"]),
+                    "decision": pdec or {k: dec.get(k) for k in ("action", "chosen", "cid", "mode", "reason",
+                                                                  "needs_artwork", "fallback", "rejected",
+                                                                  "explanation")},
+                    "requested": perf_h.get(s), "override_check": dec.get("override_check"),
+                    "ranking": [{k: x.get(k) for k in ("pose", "cid", "status", "total", "notes")}
+                                for x in dec.get("ranking", [])],
+                    "wrist": wrist_check(r, eng, s) if "render" in r else None}
+            return jsonable(out)
+
+    @app.get("/api/hands/closeup.png")
+    def hands_closeup(side: str = "r", pose: str | None = None, mode: str = "review", source: str = "pose",
+                      t: float = 0.0):
+        """Wrist close-up of the current frame; ``pose`` forces a drawing (before/after comparison)."""
+        from ..phase2.pose_eval import on_bg  # noqa: PLC0415
+
+        if side not in ("r", "l"):
+            raise HTTPException(400, "side r|l")
+        with S.lock:
+            st = copy.deepcopy(S.project.state())
+            if pose:
+                st["switches"] = {**(st.get("switches") or {}),
+                                  f"hand_{side}": {"user": pose, "auto": False, "keys": [], "offsets": {}}}
+            if source == "performance" and pose:
+                source = "pose"
+            _, r = _hand_ctx(st, {"mode": mode, "source": source, "t": t, "render": True})
+        x, y = r["solve"]["joints_posed"][f"hand_{side}"]
+        pad = r["pad"]
+        im = on_bg(r["image"]).crop((int(x + pad - 130), int(y + pad - 110), int(x + pad + 130), int(y + pad + 170)))
+        import numpy as np  # noqa: PLC0415
+
+        return png(np.asarray(im.convert("RGBA")))
+
+    @app.get("/api/hands/metadata")
+    def hands_metadata():
+        from .. import handmeta  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            base = handmeta.load(S.pkg)
+            if base is None:
+                return jsonable({"available": False, "note": "run autorig hand-audit <package> --inspection ..."})
+            inv = handmeta.apply_corrections(base, (st.get("hand_metadata") or {}).get("corrections"))
+            return jsonable({"available": True, "summary": handmeta.summary(inv), "assets": inv["assets"],
+                             "corrections": (st.get("hand_metadata") or {}).get("corrections", {}),
+                             "correctable": sorted(handmeta.CORRECTABLE)})
+
+    def _ref_store():
+        from ..refmotion.store import MotionReferenceStore, default_root  # noqa: PLC0415
+
+        return MotionReferenceStore(default_root(S.pkg))
+
+    @app.get("/api/reference")
+    def reference_info():
+        from ..motion.handselect import ACTIONS  # noqa: PLC0415
+        from ..refmotion.pose import EVALUATED, ensure_models, mediapipe_available  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            store = _ref_store()
+            return jsonable({"library": store.list(), "root": str(store.root),
+                             "state": st.get("reference_motion"), "actions": sorted(ACTIONS),
+                             "providers": {"mediapipe": mediapipe_available() or "ok",
+                                           "models": {k: v["ok"] for k, v in ensure_models().items()},
+                                           "evaluated": EVALUATED},
+                             "note": "pose models run locally at import only (no cloud inference); retargeting "
+                                     "and critique never approve anything"})
+
+    @app.get("/api/reference/{ref_id}")
+    def reference_get(ref_id: str):
+        with S.lock:
+            try:
+                e = _ref_store().get(ref_id)
+            except (KeyError, ValueError) as exc:
+                raise HTTPException(404, f"no reference {ref_id!r}") from exc
+            an = e["analysis"]
+            return jsonable({"meta": e["meta"], "annotations": e["annotations"], "frames": e["track"].frames,
+                             "fps": e["track"].fps, "duration": e["track"].duration,
+                             "analysis": {k: an.get(k) for k in ("depth_segments", "accents", "coordination",
+                                                                  "head_lead_s", "low_confidence_frac")},
+                             "timing": {k: an["timing"].get(k) for k in ("holds", "phases", "peak_speed")},
+                             "channels": an["channels"]})
+
+    @app.get("/api/reference/{ref_id}/frame.png")
+    def reference_frame(ref_id: str, i: int = 0):
+        import numpy as np  # noqa: PLC0415
+
+        from ..refmotion.evidence import draw_skeleton  # noqa: PLC0415
+
+        with S.lock:
+            try:
+                e = _ref_store().get(ref_id)
+            except (KeyError, ValueError) as exc:
+                raise HTTPException(404, f"no reference {ref_id!r}") from exc
+        tr = e["track"]
+        i = max(0, min(int(i), tr.frames - 1))
+        im = draw_skeleton(tr, i, (300, 420), f"{ref_id} t={i / tr.fps:.2f}s",
+                           e["analysis"].get("depth_segments"))
+        return png(np.asarray(im.convert("RGBA")))
+
+    @app.post("/api/reference/import")
+    def reference_import(body: dict = Body(...)):
+        """Import reference media (base64) into the library: validated, pose-estimated locally, analysed."""
+        import tempfile  # noqa: PLC0415
+
+        from ..refmotion.analyze import ReferenceMotionAnalyzer  # noqa: PLC0415
+        from ..refmotion.importer import ImportError_, ReferenceMotionImporter  # noqa: PLC0415
+        from ..refmotion.pose import MediaPipePoseProvider  # noqa: PLC0415
+
+        rid = str(body.get("ref_id") or "")
+        name = re.sub(r"[^A-Za-z0-9._-]", "_", str(body.get("name") or "reference.mp4"))[:96]
+        meta = {"name": rid, "gesture": body.get("gesture"), "category": body.get("category") or "gesture",
+                "hand_actions": body.get("hand_actions") or None,
+                "provenance": {"kind": "user_supplied", "source": body.get("source"),
+                               "usage_permission": body.get("usage_permission")}}
+        data = _b64(body, limit=128 * 1024 * 1024)
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / name
+            f.write_bytes(data)
+            try:
+                media = ReferenceMotionImporter().load(f, meta)
+                tr = media.track if media.track is not None else MediaPipePoseProvider().estimate(media.frames, media.fps)
+            except (ImportError_, RuntimeError, ValueError) as exc:
+                return JSONResponse({"status": "rejected", "errors": [str(exc)]}, status_code=422)
+        tr.meta = {**tr.meta, **meta}
+        q = ReferenceMotionImporter.quality(tr)
+        an = ReferenceMotionAnalyzer().analyze(tr)
+        with S.lock:
+            try:
+                rec = _ref_store().add(rid, tr, {**meta, "quality": q}, an)
+            except ValueError as exc:
+                return JSONResponse({"status": "rejected", "errors": [str(exc)]}, status_code=422)
+        return jsonable({"status": "stored", "reference": rec, "quality": q})
+
+    def _retarget(st, ref_id: str, body: dict):
+        from ..refmotion.retarget import ReferenceMotionRetargeter  # noqa: PLC0415
+
+        e = _ref_store().get(ref_id)
+        s = {**((st.get("reference_motion") or {}).get("settings") or {}).get(ref_id, {}), **body}
+        meta = {**e["track"].meta, **e["meta"]}
+        seg = s.get("segment")
+        return e, ReferenceMotionRetargeter().retarget(
+            e["analysis"], meta, float(s.get("intensity", 1.0)), float(s.get("timing_scale", 1.0)),
+            segment=tuple(seg) if seg else None, hand_actions=s.get("hand_actions") or None,
+            allow_pending=str(s.get("mode", "review")) == "review")
+
+    @app.post("/api/reference/{ref_id}/retarget")
+    def reference_retarget(ref_id: str, body: dict = Body(default={})):
+        """Retarget onto this character (nothing is written: apply it with performance.set)."""
+        from ..performance.director import Performance, PerformanceDirector  # noqa: PLC0415
+        from ..refmotion.retarget import ReferenceMotionRetargeter  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            try:
+                e, rt = _retarget(st, ref_id, body)
+            except (KeyError, ValueError) as exc:
+                raise HTTPException(404, str(exc)) from exc
+            eng = S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+            d = PerformanceDirector(eng, _vis(st), Performance.from_json(rt["performance"]))
+            err = ReferenceMotionRetargeter.compare(d, rt["target_curves"], e["track"].fps,
+                                                    rt["settings"]["timing_scale"], rt["settings"]["segment"][0])
+            gest = {s: d.hand_plan()[s] for s in ("r", "l")}
+            return jsonable({"performance": rt["performance"], "feasibility": rt["feasibility"], "errors": err,
+                             "keys": rt["keys"], "settings": rt["settings"], "duration": d.duration,
+                             "hand_plan": {s: [{k: iv.get(k) for k in ("value", "t0", "t1", "kind")} |
+                                               ({"chosen": iv["decision"]["chosen"],
+                                                 "needs_artwork": iv["decision"].get("needs_artwork")}
+                                                if "decision" in iv else {}) for iv in ivs] for s, ivs in gest.items()}})
+
+    @app.post("/api/reference/{ref_id}/critique")
+    def reference_critique(ref_id: str, body: dict = Body(default={})):
+        from ..performance.director import Performance, PerformanceDirector  # noqa: PLC0415
+        from ..refmotion.critic import VisualAnimationCritic  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            e, rt = _retarget(st, ref_id, body)
+            eng = S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+            d = PerformanceDirector(eng, _vis(st), Performance.from_json(rt["performance"]))
+            t = float(body.get("t", d.duration / 2))
+            r = d.solve(t, render=True)
+            c = VisualAnimationCritic().critique({"eng": eng, "result": r, "params": d.pose_at(t)[2]["params"],
+                                                  "mode": str(body.get("mode", "review")), "interactive": True,
+                                                  "shrug": "shrug" in str(e["meta"].get("tags", {}).get("gesture"))})
+            return jsonable({"t": t, **c})
+
+    @app.post("/api/reference/{ref_id}/revise")
+    def reference_revise(ref_id: str, body: dict = Body(default={})):
+        """Controlled revision loop on a temporary candidate. The result is a proposal; apply it with
+        performance.set and record the decision with reference.revision."""
+        from ..refmotion.critic import RevisionLoop  # noqa: PLC0415
+
+        with S.lock:
+            st = S.project.state()
+            e, rt = _retarget(st, ref_id, body)
+            eng = S.pose.motion_engine(st, S.masks(), rejected_ids(st))
+            from ..performance.director import Performance, PerformanceDirector  # noqa: PLC0415
+
+            dur = PerformanceDirector(eng, _vis(st), Performance.from_json(rt["performance"])).duration
+            t = float(body.get("t", dur / 2))
+            out = RevisionLoop(eng, _vis(st), max_attempts=int(body.get("max_attempts", 3))).run(
+                rt["performance"], t, {"interactive": True})
+            return jsonable({k: out[k] for k in ("status", "attempts", "changed", "approved", "candidate")} |
+                            {"initial": out["initial"]["defects"], "final": out["final"]["defects"], "t": t})
 
     if static_dir and Path(static_dir).is_dir():
         app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="editor")

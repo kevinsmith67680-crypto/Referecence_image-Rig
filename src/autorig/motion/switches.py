@@ -215,7 +215,8 @@ class HandPoseLibrary:
                                                  approval_item=c.get("approval_item"), placement=c.get("placement"),
                                                  rank=2 if free else 3,
                                                  meta={k: c.get(k) for k in ("library_id", "sleeve", "features", "view",
-                                                                             "handedness", "derived", "flags")}))
+                                                                             "handedness", "derived", "flags",
+                                                                             "stored_side")}))
                 for v in cands:
                     rgba, cover = self._rgba_cover_v(v)
                     v.measure = self.measure(rgba, s, cover)

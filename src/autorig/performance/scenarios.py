@@ -29,33 +29,50 @@ from .director import Performance
 from .seat import SeatAndInteractionController
 from .sequencer import Key
 
-SHRUG_LOW = {"arm_r_abduction": 15.0, "arm_r_flexion": -8.0, "arm_r_wrist": 2.0, "arm_l_abduction": 14.0,
-             "arm_l_flexion": -6.0, "arm_l_wrist": 2.0, "clavicle_r": 13.0, "clavicle_l": 15.0}
+# Phase 3.7 SHRUG_SUBTLE (was SHRUG_LOW with clavicles 13/15, which raised the T-pose shoulder line into inflated
+# "pads"): modest shoulders, slightly bent elbows, forearms opening, palms toward the camera.
+SHRUG_LOW = {"arm_r_abduction": 15.0, "arm_r_flexion": -18.0, "arm_r_wrist": -4.0, "arm_l_abduction": 14.0,
+             "arm_l_flexion": -16.0, "arm_l_wrist": -4.0, "clavicle_r": 6.0, "clavicle_l": 7.0}
+SHRUG_SUBTLE = SHRUG_LOW
+# SHRUG_EXPRESSIVE: forearms open to ~60 deg so a palm-up hand is anatomically available; needs approved palm-up art
+SHRUG_EXPRESSIVE = {"arm_r_abduction": 20.0, "arm_r_flexion": -40.0, "arm_r_wrist": -8.0, "arm_l_abduction": 20.0,
+                    "arm_l_flexion": -40.0, "arm_l_wrist": -8.0, "clavicle_r": 7.0, "clavicle_l": 8.0}
 ACTING_RECIPES = {"weight shift": ("weight_shift", None, 0.0, False), "head": ("look", None, 0.0, True),
                   "raise arm": ("raise", "r", 0.06, False), "point": ("point", "r", 0.05, True),
                   "shrug": ("shrug", None, 0.05, False), "relax": (None, None, 0.0, False), "stand": (None, None, 0.0, False)}
 ACTING_HANDS = {"stand": {"r": "relaxed", "l": "relaxed"}, "weight shift": {"r": "relaxed", "l": "relaxed"},
                 "head": {"r": "relaxed", "l": "relaxed"}, "raise arm": {"r": "open_palm", "l": "relaxed"},
-                "point": {"r": "pointing", "l": "relaxed"}, "shrug": {"r": "relaxed", "l": "relaxed"},
+                "point": {"r": "pointing", "l": "relaxed"}, "shrug": {"r": "shrug_subtle", "l": "shrug_subtle"},
                 "relax": {"r": "relaxed", "l": "relaxed"}}
 
 
-def acting_upgrade(idle: float = 0.5, style: str = "neutral") -> Performance:
+def acting_upgrade(idle: float = 0.5, style: str = "neutral", shrug: str = "subtle") -> Performance:
+    """The Phase 3.5 acting test as a performance. ``shrug``: ``subtle`` (SHRUG_SUBTLE, supported) or
+    ``expressive`` (SHRUG_EXPRESSIVE: palm-up hands chosen by the selection engine; NEEDS_ARTWORK in production)."""
     keys = []
     for kp in acting_test_keys():
         p = params_of(kp.pose)
         label = kp.label
         if label == "shrug":
-            p.update(SHRUG_LOW)
+            p.update(SHRUG_LOW if shrug == "subtle" else SHRUG_EXPRESSIVE)
         recipe, side, ovs, head_lead = ACTING_RECIPES[label]
-        k = Key(kp.t, p, dict(ACTING_HANDS[label]), label if label != "shrug" else "shrug (hands low)", kp.hold,
+        hands = dict(ACTING_HANDS[label])
+        if label == "shrug" and shrug != "subtle":
+            hands = {"r": "shrugging", "l": "shrugging"}
+        pose = {"base": kp.pose.base}
+        if label == "shrug" and shrug != "subtle":
+            # production without approved palm-up hands: the director shows SHRUG_SUBTLE instead (reported)
+            pose["alternative"] = {"label": "SHRUG_SUBTLE", "params": dict(SHRUG_LOW),
+                                   "hands": {"r": "shrug_subtle", "l": "shrug_subtle"}}
+        k = Key(kp.t, p, hands, label if label != "shrug" else f"shrug ({shrug})", kp.hold,
                 anticipation=recipe, side=side, overshoot=ovs, head_lead=head_lead, id=f"k{len(keys)}",
-                pose={"base": kp.pose.base})
+                pose=pose)
         keys.append(k.to_json())
     return Performance(
         name="acting_test_upgrade", fps=12.0, style=style, base_keys=keys, idle=idle,
         notes=["same seven beats, key times and holds as the Phase 3.5 acting test (frame-aligned)",
-               "shrug: palm-up hands do not exist (NEEDS_ARTWORK); shown as shrug_low (shoulders up, hands low)",
+               "shrug: SHRUG_SUBTLE by default; SHRUG_EXPRESSIVE needs approved palm-up hands (NEEDS_ARTWORK in "
+               "production; the handedness-corrected cupped drawings are a review-only approximation)",
                "pending hand drawings (relaxed, pointing) are previewed and labelled; nothing is approved"])
 
 
@@ -76,7 +93,7 @@ def classroom(eng) -> Performance:
         name="classroom_desk", fps=12.0, base_keys=[k.to_json() for k in keys], template={"stance": 0.8},
         gestures=[{"id": "point_l", "gesture": "point", "start": 2.75, "side": "l", "duration": 1.9, "torso": 0.3}],
         contacts=[contact.to_json()], props={"desks": [desk.to_json()]},
-        hand_markers=[{"t": 1.35, "side": "r", "action": "palm_down", "until": 4.75}], idle=0.4,
+        hand_markers=[{"t": 1.35, "side": "r", "action": "hand_on_desk", "until": 4.75}], idle=0.4,
         notes=["the desk is a test prop beside the character (simple geometry, not character artwork)",
                "the lean is lateral (supported); a forward lean toward the desk is REQUIRES_NEW_VIEW "
                "(art:torso_lean_forward) and is not rendered",
@@ -98,4 +115,4 @@ def secondary_demo(mute_secondary: bool = False) -> Performance:
                               "tie: NEEDS_ARTWORK (vest behind it not drawn); buttons, badge, collar, lapels are rigid"])
 
 
-__all__ = ["acting_upgrade", "classroom", "secondary_demo", "SHRUG_LOW"]
+__all__ = ["acting_upgrade", "classroom", "secondary_demo", "SHRUG_LOW", "SHRUG_SUBTLE", "SHRUG_EXPRESSIVE"]

@@ -32,6 +32,26 @@ the drawing is still eligible; otherwise a new drawing must beat the current one
 flickering action cannot pop the hand). Explaining varies the gesture between beats. Symmetric actions (standing,
 walking, running, shrugging: coordinated arms) use the same gesture on both hands when one is available to both and
 costs each side at most SYMMETRY_TOLERANCE.
+
+Phase 3.7: hard constraints run before any score (``constraints``), so a high score never makes an unsuitable
+drawing acceptable. A candidate is rejected, with the reason recorded, when:
+- it is missing, rejected in review, excluded by the user, or pending review outside a review preview;
+- it is the wrong hand: the drawing's handedness (``HandAssetMetadata``, else the extractor's measurement) differs
+  from the side;
+- its gesture is forbidden for the action, or the action needs a target it does not have;
+- it would show the wrong palm view. The action's ``palm`` classes are checked by ``HandOrientationAnalyzer`` on the
+  drawing as placed in this pose. A flat rotation cannot turn a camera-facing palm upward, so such a drawing is
+  rejected, never rotated into a fake fit;
+- it is turned further from how it was drawn than its rotation tolerance allows (a relaxed hand turned 80 deg reads
+  as a presenting hand; a cupped hand turned 180 deg is palm-down);
+- its metadata is invalid while the action needs that metadata.
+
+When nothing passes, the decision is NEEDS_ARTWORK (the drawing to request is named). The engine then falls back to
+the action's ``fallback`` action, which is reported and never silent.
+
+``select`` explains every decision: the chosen drawing with its criteria, each rejected candidate with the
+constraint it failed, the missing drawings, the approval mode (``production``: approved drawings and the original
+hand only; ``review``: pending drawings may be previewed and are labelled) and the fallback.
 """
 
 from __future__ import annotations
@@ -42,33 +62,53 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from ..handmeta import HandOrientationAnalyzer, approval_state
 from ..phase2.skeleton import SIDE_SIGN, SIDES
 
 # The gesture rule dominates (the user's per-action rules), then anatomy, attachment and readability. Approval and
 # fidelity separate drawings of the same gesture: an approved drawing beats a pending one; when pending art is
 # previewed it still loses to the original hand unless its gesture fits the action better.
-WEIGHTS: dict[str, float] = {"gesture": 0.34, "anatomy": 0.14, "wrist": 0.12, "silhouette": 0.10, "view": 0.08,
-                             "continuity": 0.10, "fidelity": 0.04, "approval": 0.08}
+# Phase 3.7 adds "palm" (how well the shown palm matches the action's preferred palm view) and "proportion" (the
+# drawing's wrist width against the sleeve opening). Handedness moved to the hard constraints; "anatomy" now scores
+# the wrist-axis fit of the gesture's aim.
+WEIGHTS: dict[str, float] = {"gesture": 0.32, "palm": 0.08, "anatomy": 0.08, "wrist": 0.10, "silhouette": 0.08,
+                             "view": 0.08, "proportion": 0.04, "continuity": 0.10, "fidelity": 0.04, "approval": 0.08}
+CAMERA_PALMS = ["PALM_TO_CAMERA", "BACK_TO_CAMERA", "EDGE_ON"]  # what a hanging/forward hand may show
 
 # Step 6 rules. prefer: best first; forbid: never chosen automatically for the action; aim: the feature the wrist
 # turns toward the goal (within the wrist limit); max_turn: largest extra wrist rotation the action allows;
 # symmetric: both hands share the gesture when possible; vary: alternate gestures between beats.
 ACTIONS: dict[str, dict[str, Any]] = {
     "relaxed_standing": {"prefer": ["relaxed", "open_palm", "partially_closed"],
-                         "forbid": ["pointing", "thumbs_up", "gripping", "fist"], "max_turn": 0.0,
+                         "forbid": ["pointing", "thumbs_up", "gripping", "fist"], "max_turn": 0.0, "palm": CAMERA_PALMS,
                          "why": "relaxed hands, neutral wrists"},
     "walking": {"prefer": ["relaxed", "partially_closed", "open_palm"],
                 "forbid": ["pointing", "thumbs_up", "gripping", "palm_down"], "max_turn": 0.0, "symmetric": True,
+                "palm": CAMERA_PALMS,
                 "why": "relaxed or partially closed hands; no pointing or thumbs-up while walking"},
     "running": {"prefer": ["fist", "relaxed", "partially_closed"],
                 "forbid": ["pointing", "thumbs_up", "gripping", "palm_down", "cupped"], "max_turn": 0.0,
+                "palm": CAMERA_PALMS,
                 "symmetric": True, "why": "loose fists or relaxed hands, the same on both arms, no wrist twist"},
     "pointing": {"prefer": ["pointing"], "forbid": [], "aim": "index_tip", "max_turn": 45.0,
                  "why": "pointing hand, index toward the target (arm IK reaches, the wrist aims)"},
-    "shrugging": {"prefer": ["open_palm", "cupped", "palm_up"], "forbid": ["pointing", "fist", "thumbs_up", "gripping"],
-                  "max_turn": 0.0, "symmetric": True, "why": "open or cupped palms"},
+    # Phase 3.7: "shrugging" is the expressive palm-up shrug. Only drawings that show the palm up in the solved pose
+    # pass; a camera-facing hand turned sideways (the Phase 3.6 preview) is rejected. Fallback: the subtle shrug.
+    "shrugging": {"prefer": ["palm_up", "cupped"], "forbid": ["pointing", "fist", "thumbs_up", "gripping"],
+                  "palm": ["PALM_UP"], "max_turn": 0.0, "symmetric": True, "fallback": "shrug_subtle",
+                  "why": "expressive shrug: palms up (an open palm-up drawing; a cupped palm-up drawing as an "
+                         "approximation)"},
+    "shrug_expressive": {"alias": "shrugging"},
+    "shrug_subtle": {"prefer": ["open_palm", "relaxed"], "forbid": ["pointing", "fist", "thumbs_up", "gripping", "cupped"],
+                     "palm": ["PALM_TO_CAMERA", "EDGE_ON"], "max_turn": 0.0, "symmetric": True,
+                     "why": "subtle shrug: hands low, palms turned toward the camera or edge-on"},
     "explaining": {"prefer": ["open_palm", "cupped", "palm_up", "relaxed"], "forbid": ["thumbs_up", "gripping"],
-                   "max_turn": 0.0, "vary": True, "why": "open or cupped hands, varied between beats"},
+                   "palm": ["PALM_TO_CAMERA", "PALM_UP", "EDGE_ON"], "palm_strict": False, "max_turn": 0.0, "vary": True,
+                   "why": "open or cupped hands, varied between beats"},
+    "conversation": {"alias": "explaining"},
+    "hand_on_desk": {"prefer": ["palm_down", "relaxed", "open_palm"], "forbid": ["pointing", "thumbs_up", "cupped"],
+                     "palm": ["PALM_DOWN", "BACK_TO_CAMERA", "PALM_TO_CAMERA"], "max_turn": 0.0,
+                     "why": "hand resting on the desk top: palm down (seen from above) preferred"},
     "angry": {"prefer": ["fist", "pointing"], "forbid": ["thumbs_up", "cupped", "open_palm"], "max_turn": 30.0,
               "pointing_needs_target": True, "aim": "index_tip",
               "why": "fists; pointing only when the action has a target"},
@@ -82,8 +122,12 @@ ACTIONS: dict[str, dict[str, Any]] = {
     "resting": {"prefer": ["palm_down", "relaxed", "open_palm"], "forbid": ["pointing", "thumbs_up"], "max_turn": 0.0,
                 "why": "hands resting (on the knees)"},
     "raised": {"prefer": ["open_palm", "relaxed"], "forbid": ["pointing", "thumbs_up", "gripping"], "max_turn": 0.0,
+               "palm": ["PALM_TO_CAMERA", "BACK_TO_CAMERA"],
                "why": "raised open hands"},
 }
+
+# an explicit (user / keyframe) choice is checked with no gesture preference: only the action-independent constraints
+OVERRIDE_RULE: dict[str, Any] = {"prefer": [], "forbid": [], "max_turn": 0.0, "why": "explicit choice"}
 
 # preset -> action (per side where the preset uses the arms differently)
 PRESET_ACTIONS: dict[str, Any] = {
@@ -200,6 +244,7 @@ class HandSelectionState:
 class NaturalHandSelectionEngine:
     def __init__(self, weights: dict[str, float] | None = None, actions: dict[str, dict[str, Any]] | None = None):
         self.weights = {**WEIGHTS, **(weights or {})}
+        self.analyzer = HandOrientationAnalyzer()
         self.actions = {k: dict(v) for k, v in ACTIONS.items()}
         for k, v in (actions or {}).items():
             self.actions[k] = {**self.actions.get(k, {"prefer": [], "forbid": []}), **v}
@@ -266,49 +311,142 @@ class NaturalHandSelectionEngine:
                 "residual_deg": f2(_wrap(need_full - apply)),
                 "wrist_bend_after_deg": f2(ctx.wrist_bend_deg - sg * apply)}
 
+    # -- Phase 3.7 hard constraints ----------------------------------------------------------------------------
+    @staticmethod
+    def hand_meta(v) -> dict[str, Any] | None:
+        return (v.meta or {}).get("hand_meta")
+
+    def rotation_from_drawn(self, v, ctx: HandContext, turn: float = 0.0) -> float | None:
+        """In-plane rotation of the drawing away from how it was drawn, in this pose: store drawings from their rest
+        placement angle; the original hand from the rest (T-pose) hand bone it was drawn on; sheet hands (drawn
+        hanging) from straight down."""
+        a0 = self.drawing_angle(v)
+        if a0 is not None:
+            return _wrap(a0 + (ctx.hand_deg - ctx.hand_rest_deg) + turn)
+        if v.cid == "original":
+            return _wrap(ctx.hand_deg - ctx.hand_rest_deg + turn)
+        return _wrap(ctx.hand_deg + turn)
+
+    @staticmethod
+    def palm_strict(rule: dict[str, Any]) -> bool:
+        """A palm requirement narrower than 'anything a hanging or forward hand shows' needs verified metadata."""
+        need = rule.get("palm") or []
+        if not need or rule.get("palm_strict") is False:
+            return False
+        return bool(rule.get("palm_strict")) or not set(need) <= set(CAMERA_PALMS)
+
+    def constraints(self, v, ctx: HandContext, rule: dict[str, Any], allow_pending: bool,
+                    aim: dict[str, Any] | None = None) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
+        """Hard constraints of one candidate. Returns (violations, palm analysis). Any violation rejects the
+        candidate whatever its score would be."""
+        out: list[dict[str, Any]] = []
+        side_name = "right" if ctx.side == "r" else "left"
+        hm = self.hand_meta(v)
+        add = lambda c, why: out.append({"constraint": c, "reason": why})
+        if not v.available or v.status == "missing" or v.layer is None:
+            add("missing", "no drawing (NEEDS_ARTWORK)")
+            return out, None
+        if v.status == "rejected":
+            add("approval", "rejected in review: never used")
+        elif v.status == "pending_review" and not allow_pending:
+            add("approval", "pending review: production mode uses approved drawings and the original hand only")
+        if hm is not None and hm.get("excluded"):
+            add("excluded", "excluded by the user in the hand inspector")
+        if v.pose in rule.get("forbid", []):
+            add("gesture", f"{v.pose} is not used for {ctx.action}")
+        if v.pose == "pointing" and rule.get("pointing_needs_target") and ctx.target is None:
+            add("gesture", "pointing needs a target for this action")
+        # handedness: the inspected/corrected metadata, else the extractor's measurement
+        hand = (hm or {}).get("handedness")
+        src = "metadata"
+        if hand is None:
+            hand = ((v.meta or {}).get("handedness") or {}).get("anatomical")
+            src = "extractor"
+        if hand is not None and hand != side_name:
+            add("handedness", f"drawn as a {hand} hand ({src}); this is the {side_name} hand")
+        if hm is not None and hm.get("errors"):
+            add("metadata", "invalid metadata: " + "; ".join(hm["errors"]))
+            hm = {k: v for k, v in hm.items() if k not in ("palm_normal_sprite", "rotation_tolerance_deg")}
+        # palm view and rotation from the drawn orientation (as placed in this pose)
+        turn = float((aim or {}).get("applied_deg") or 0.0)
+        rot = self.rotation_from_drawn(v, ctx, turn)
+        pa = None
+        if hm is not None:
+            pa = self.analyzer.analyze(hm, rot, ctx.forearm_deg)
+            tol = hm.get("rotation_tolerance_deg")
+            if tol is not None and abs(rot) > float(tol) + 1e-9:
+                add("rotation", f"turned {abs(rot):.0f} deg from how it was drawn (tolerance {float(tol):.0f} deg): "
+                                "a flat rotation does not change the drawing's perspective")
+        need = rule.get("palm")
+        if need:
+            cls = (pa or {}).get("palm_class", "AMBIGUOUS")
+            unknown = hm is None or hm.get("palm_normal_sprite") is None
+            if unknown and not self.palm_strict(rule):
+                pass  # a generic camera-palm action: an unverified drawing passes (scored lower, flagged)
+            elif cls not in need:
+                if unknown:
+                    add("palm", f"palm view unknown (no metadata); {ctx.action} needs {' or '.join(need)}")
+                else:
+                    reach = [c for c in need if self.analyzer.reachable_by_rotation(hm, c)]
+                    why = f"shows {cls} in this pose; {ctx.action} needs {' or '.join(need)}"
+                    if not reach:
+                        why += " - no flat rotation of this drawing shows that (needs a different drawing)"
+                    add("palm", why)
+        return out, pa
+
     def score(self, v, ctx: HandContext, rule: dict[str, Any], state: HandSelectionState | None,
               allow_pending: bool) -> dict[str, Any] | None:
         """Criteria of one candidate (None: not eligible). ``v``: a HandVariant (active drawing of a pose)."""
+        r = self.evaluate(v, ctx, rule, state, allow_pending)
+        return None if r["rejected"] else r
+
+    def evaluate(self, v, ctx: HandContext, rule: dict[str, Any], state: HandSelectionState | None,
+                 allow_pending: bool) -> dict[str, Any]:
+        """Constraints, then criteria. Rejected candidates keep their violations (for the explanation)."""
         pose = v.pose
         why: list[str] = []
-        if not v.available or v.status in ("missing", "rejected"):
-            return None
-        if pose in rule.get("forbid", []):
-            return None
-        if v.status == "pending_review" and not allow_pending:
-            return None
-        if pose == "pointing" and rule.get("pointing_needs_target") and ctx.target is None:
-            return None
+        aim = self.aim(v, ctx, rule) if v.available else None
+        viol, pa = self.constraints(v, ctx, rule, allow_pending, aim)
+        base = {"pose": pose, "cid": v.cid, "status": v.status, "approval_state": approval_state(v.status),
+                "source": self._source(v), "palm": pa}
+        if viol:
+            return {**base, "rejected": True, "violations": viol, "total": None}
         prefer = rule.get("prefer", [])
         s: dict[str, float] = {}
         s["gesture"] = GESTURE_SCORE[min(prefer.index(pose), len(GESTURE_SCORE) - 1)] if pose in prefer else UNLISTED_SCORE
-        # anatomy: handedness and the wrist rotation the gesture needs
+        # palm: the action's palm preference order (first listed = 1.0)
+        need = rule.get("palm")
+        cls = (pa or {}).get("palm_class")
+        if need and cls not in (None, "AMBIGUOUS"):
+            s["palm"] = 1.0 if cls == need[0] else 0.8
+        else:  # no requirement, or a permissive one with an unverified drawing (flagged in the notes, not scored down)
+            s["palm"] = 1.0
         hd = (v.meta or {}).get("handedness") or {}
         side_name = "right" if v.side == "r" else "left"
         anat = 1.0
-        if hd:
-            if hd.get("anatomical") != side_name:
-                anat, _ = 0.2, why.append(f"drawn as a {hd.get('anatomical')} hand")
-            elif hd.get("drawn_as") and hd.get("drawn_as") != side_name:
-                anat, _ = 0.85, why.append("mirrored copy of the other hand's drawing")
-        aim = self.aim(v, ctx, rule)
+        if hd and hd.get("drawn_as") and hd.get("drawn_as") != side_name:
+            anat, _ = 0.85, why.append("mirrored copy of the other hand's drawing")
         if aim and aim.get("measured"):
             anat *= max(0.0, 1.0 - abs(aim["residual_deg"]) / 120.0) if abs(aim["needed_deg"]) > float(rule.get("max_turn", 0)) else 1.0
         s["anatomy"] = round(anat, 4)
         # wrist attachment
         pl = (v.placement or {}).get("params") or {}
         wq = 1.0
+        prop = 1.0
         if pl:
             if pl.get("manual_review"):
                 wq *= 0.7
                 why.append(f"wrist pivot estimated ({pl.get('opening', '?').replace('_', ' ')}), review")
             fit = pl.get("wrist_fit")
+            if fit is not None and not 0.7 <= fit <= 1.3:
+                prop = max(0.3, 1.0 - (abs(fit - 1.0) - 0.3) * 2.0)
+                why.append(f"wrist {fit:.2f}x the sleeve opening")
             if fit is not None and not 0.8 <= fit <= 1.2:
                 wq *= max(0.3, 1.0 - (abs(fit - 1.0) - 0.2) * 2.0)
-                why.append(f"wrist {fit:.2f}x the sleeve opening")
         elif v.cid.startswith("phase2:"):
             wq = 0.8  # sheet hands: placed by the Phase 2 offsets, attachment not re-measured
         s["wrist"] = round(wq, 4)
+        s["proportion"] = round(prop, 4)
         # silhouette: the gesture's readable feature
         sil = 1.0
         if aim is not None:
@@ -320,15 +458,18 @@ class NaturalHandSelectionEngine:
             gc = ((v.meta or {}).get("features") or {}).get("grip_center")
             sil = 1.0 if gc is not None else 0.6
         s["silhouette"] = round(sil, 4)
-        # view: how far the drawing is turned from the way it was drawn
-        a0 = self.drawing_angle(v)
+        # view: how far the drawing is turned from the way it was drawn (soft, within the hard tolerance)
         turn = (aim or {}).get("applied_deg", 0.0) or 0.0
+        a0 = self.drawing_angle(v)
         if a0 is not None:
             dev = abs(_wrap(a0 + (ctx.hand_deg - ctx.hand_rest_deg) + turn))
         else:  # reference hand / sheet hands: drawn hanging, turned with the hand bone
             dev = abs(_wrap(ctx.hand_deg + turn))
-        tol = float(rule.get("max_view_dev", UPRIGHT_TOL.get(pose, 120.0)))
-        view = 1.0 if dev <= tol / 2 else max(0.0, 1.0 - (dev - tol / 2) / (tol / 2))
+        hm = self.hand_meta(v)
+        tol = float(rule.get("max_view_dev", (hm or {}).get("rotation_tolerance_deg") or UPRIGHT_TOL.get(pose, 120.0)))
+        if hm is not None and v.cid == "original":
+            dev = abs(self.rotation_from_drawn(v, ctx, turn))
+        view = 1.0 if dev <= tol / 2 else max(0.0, 1.0 - (dev - tol / 2) / max(tol / 2, 1e-6))
         if view < 0.5:
             why.append(f"turned {dev:.0f} deg from how it was drawn")
         s["view"] = round(view, 4)
@@ -337,65 +478,127 @@ class NaturalHandSelectionEngine:
         s["fidelity"] = FIDELITY[src]
         s["approval"] = 1.0 if v.status in ("original", "approved") else PENDING_APPROVAL_SCORE
         s = {k: round(float(x), 4) for k, x in s.items()}
-        total = sum(self.weights[k] * s[k] for k in s) / max(sum(self.weights.values()), 1e-9)
-        return {"pose": pose, "cid": v.cid, "status": v.status, "source": src, "scores": s,
-                "total": round(float(total), 4), "aim": aim, "view_dev_deg": round(float(dev), 1), "notes": why}
+        wsum = sum(self.weights.get(k, 0.0) for k in s)
+        total = sum(self.weights.get(k, 0.0) * s[k] for k in s) / max(wsum, 1e-9)
+        if v.status == "pending_review":
+            why.append("pending review: preview only")
+        if need and cls in (None, "AMBIGUOUS"):
+            why.append("palm view not verified (no hand metadata)")
+        return {**base, "rejected": False, "violations": [], "scores": s, "total": round(float(total), 4), "aim": aim,
+                "view_dev_deg": round(float(dev), 1), "notes": why}
 
     # -- selection ------------------------------------------------------------------------------------------
     def rule(self, action: str) -> dict[str, Any]:
-        return self.actions.get(action) or self.actions["relaxed_standing"]
+        r = self.actions.get(action) or self.actions["relaxed_standing"]
+        own: dict[str, Any] = {}
+        seen = set()
+        while r.get("alias") and r["alias"] not in seen:  # alias actions share their target's rule
+            own = {**{k: v for k, v in r.items() if k != "alias"}, **own}
+            seen.add(r["alias"])
+            r = self.actions.get(r["alias"]) or self.actions["relaxed_standing"]
+        return {**r, **own} if own else r
 
     def rank(self, lib, ctx: HandContext, state: HandSelectionState | None, allow_pending: bool) -> list[dict[str, Any]]:
+        return [r for r in self.rank_all(lib, ctx, state, allow_pending) if not r["rejected"]]
+
+    def rank_all(self, lib, ctx: HandContext, state: HandSelectionState | None, allow_pending: bool) -> list[dict[str, Any]]:
+        """Every candidate of the side (active drawing per pose), eligible ones ranked first."""
         rule = self.rule(ctx.action)
-        out = []
-        for pose, v in lib.hands[ctx.side].items():
-            r = self.score(v, ctx, rule, state, allow_pending)
-            if r is not None:
-                out.append(r)
+        out = [self.evaluate(v, ctx, rule, state, allow_pending) for pose, v in lib.hands[ctx.side].items()]
+        ok = [r for r in out if not r["rejected"]]
+        bad = [r for r in out if r["rejected"]]
         prefer = rule.get("prefer", [])
         if rule.get("vary") and state is not None and state.beat is not None and ctx.beat is not None \
                 and ctx.beat != state.beat and state.pose is not None:
             # a new gesture beat: continuity no longer favours the last gesture, repeating it costs VARIETY_PENALTY
-            wsum = max(sum(self.weights.values()), 1e-9)
-            for r in out:
+            for r in ok:
                 r["scores"]["continuity"] = 1.0
-                r["total"] = round(sum(self.weights[k] * r["scores"][k] for k in r["scores"]) / wsum, 4)
+                wsum = max(sum(self.weights.get(k, 0.0) for k in r["scores"]), 1e-9)
+                r["total"] = round(sum(self.weights.get(k, 0.0) * r["scores"][k] for k in r["scores"]) / wsum, 4)
                 if r["pose"] == state.pose:
                     r["total"] = round(r["total"] - VARIETY_PENALTY, 4)
                     r["notes"].append("same gesture as the previous beat")
-        out.sort(key=lambda r: (-r["total"], prefer.index(r["pose"]) if r["pose"] in prefer else 99, r["pose"], r["cid"]))
+        ok.sort(key=lambda r: (-r["total"], prefer.index(r["pose"]) if r["pose"] in prefer else 99, r["pose"], r["cid"]))
+        bad.sort(key=lambda r: (prefer.index(r["pose"]) if r["pose"] in prefer else 99, r["pose"]))
+        return ok + bad
+
+    def needs_artwork(self, lib, ctx: HandContext, rule: dict[str, Any], ranked_all: list[dict[str, Any]],
+                      chosen: str | None) -> list[dict[str, Any]]:
+        """Preferred gestures (better than the chosen one) that no drawing can satisfy here, with the reason."""
+        prefer = rule.get("prefer", [])
+        upto = prefer.index(chosen) if chosen in prefer else len(prefer)
+        out = []
+        for p in prefer[:upto]:
+            r = next((x for x in ranked_all if x["pose"] == p), None)
+            if r is None or any(v["constraint"] == "missing" for v in r.get("violations", [])):
+                out.append({"pose": p, "status": "NEEDS_ARTWORK", "reason": "no drawing", "palm": rule.get("palm")})
+            elif r["rejected"]:
+                kinds = {v["constraint"] for v in r["violations"]}
+                st = "NEEDS_APPROVAL" if kinds == {"approval"} and r["status"] == "pending_review" else "NEEDS_ARTWORK"
+                out.append({"pose": p, "status": st, "reason": "; ".join(v["reason"] for v in r["violations"]),
+                            "palm": rule.get("palm"), "cid": r["cid"]})
         return out
 
     def select(self, lib, ctx: HandContext, state: HandSelectionState | None = None,
-               allow_pending: bool = False) -> dict[str, Any]:
+               allow_pending: bool = False, _depth: int = 0) -> dict[str, Any]:
         """The automatic choice for one side, with the temporal rules applied against ``state`` (updated in
-        place when given). Returns the chosen pose (None: nothing eligible -> the group default) and the ranking."""
-        ranked = self.rank(lib, ctx, state, allow_pending)
+        place when given). Returns the chosen pose (None: nothing eligible -> the group default), the ranking,
+        every rejected candidate with its reason, missing drawings and the fallback used."""
+        ranked_all = self.rank_all(lib, ctx, state, allow_pending)
+        ranked = [r for r in ranked_all if not r["rejected"]]
         rule = self.rule(ctx.action)
         best = ranked[0] if ranked else None
+        arm_ok = {c: self.analyzer.arm_allows(c, ctx.forearm_deg) for c in (rule.get("palm") or [])}
         decision = {"side": ctx.side, "action": ctx.action, "rule": rule.get("why"), "ranking": ranked[:6],
+                    "rejected": [{"pose": r["pose"], "cid": r["cid"], "status": r["status"],
+                                  "violations": r["violations"], "palm": (r.get("palm") or {}).get("palm_class")}
+                                 for r in ranked_all if r["rejected"]],
+                    "mode": "review" if allow_pending else "production",
+                    "palm_required": rule.get("palm"),
+                    "arm_palm_reachable": {c: ok for c, (ok, _) in arm_ok.items()} or None,
                     "context": ctx.to_json(), "chosen": best["pose"] if best else None,
                     "cid": best["cid"] if best else None, "score": best["total"] if best else None,
-                    "reason": "highest score" if best else "no eligible drawing: group default",
-                    "aim": best.get("aim") if best else None, "held": False}
-        if state is not None and state.pose is not None and best is not None and best["pose"] != state.pose:
+                    "reason": "highest score after the hard constraints" if best else "no eligible drawing",
+                    "aim": best.get("aim") if best else None, "held": False, "fallback": None}
+        decision["needs_artwork"] = self.needs_artwork(lib, ctx, rule, ranked_all, decision["chosen"])
+        if best is None and rule.get("fallback") and _depth < 2:
+            fb_ctx = HandContext(**{**ctx.__dict__, "action": rule["fallback"]})
+            fb = self.select(lib, fb_ctx, None, allow_pending, _depth + 1)
+            na = [n["pose"] for n in decision["needs_artwork"] if n["status"] == "NEEDS_ARTWORK"]
+            ap_ = [n["pose"] for n in decision["needs_artwork"] if n["status"] == "NEEDS_APPROVAL"]
+            what = "; ".join(x for x in (f"NEEDS_ARTWORK: {', '.join(na)}" if na else "",
+                                         f"NEEDS_APPROVAL: {', '.join(ap_)}" if ap_ else "") if x) or "-"
+            decision["fallback"] = {"action": rule["fallback"], "chosen": fb["chosen"], "cid": fb["cid"],
+                                    "reason": f"{ctx.action}: no drawing passes the hard constraints ({what}); "
+                                              f"showing the {rule['fallback']} choice"}
+            if fb["chosen"] is not None:
+                best = next((r for r in fb["ranking"] if r["pose"] == fb["chosen"]), None)
+                decision.update(chosen=fb["chosen"], cid=fb["cid"], score=fb["score"], aim=fb.get("aim"),
+                                reason=decision["fallback"]["reason"])
+        if state is not None and state.pose is not None and best is not None and decision["chosen"] != state.pose \
+                and decision["fallback"] is None:
             prev = next((r for r in ranked if r["pose"] == state.pose), None)
             held_for = None if (ctx.t is None or state.since is None) else ctx.t - state.since
             same_action = state.action == ctx.action
             new_beat = bool(rule.get("vary")) and ctx.beat is not None and ctx.beat != state.beat
-            pv = lib.hands[ctx.side].get(state.pose)
-            still_there = pv is not None and pv.available and pv.status not in ("missing", "rejected") and \
-                (pv.status != "pending_review" or allow_pending)
             keep, why = False, None
             if not same_action:
-                if held_for is not None and held_for < MIN_HOLD_ACTION_S and still_there:
+                # a flickering action: hold the previous drawing if it still passes its own action's constraints
+                pv = lib.hands[ctx.side].get(state.pose)
+                held_ok = None
+                if pv is not None and held_for is not None and held_for < MIN_HOLD_ACTION_S and state.action:
+                    pctx = HandContext(**{**ctx.__dict__, "action": state.action})
+                    held_ok = self.evaluate(pv, pctx, self.rule(state.action), None, allow_pending)
+                    held_ok = None if held_ok["rejected"] else held_ok
+                if held_ok is not None:
                     keep, why = True, f"action changed {held_for:.2f}s after the last switch (< {MIN_HOLD_ACTION_S}s)"
+                    prev = held_ok
                 else:
                     why = "action changed: switch at the action boundary"
             elif new_beat:
                 why = "new gesture beat"
             elif prev is None:
-                why = "the previous drawing is no longer eligible"
+                why = "the previous drawing is no longer eligible (it fails a hard constraint here)"
             elif state.pose in rule.get("prefer", []):
                 keep, why = True, "held gesture: the action is unchanged"
             elif best["total"] < prev["total"] + HYSTERESIS:
@@ -406,12 +609,11 @@ class NaturalHandSelectionEngine:
             else:
                 why = "clearly better drawing"
             if keep:
-                decision.update(chosen=state.pose, cid=state.cid if prev is None else prev["cid"],
-                                score=state.score if prev is None else prev["total"], reason=why,
-                                aim=None if prev is None else prev.get("aim"), held=True)
+                decision.update(chosen=state.pose, cid=prev["cid"], score=prev["total"], reason=why,
+                                aim=prev.get("aim"), held=True)
             else:
                 decision["reason"] = why
-        elif state is not None and state.pose is not None and best is not None:
+        elif state is not None and state.pose is not None and best is not None and decision["fallback"] is None:
             decision["reason"] = "unchanged"
         if state is not None and decision["chosen"] is not None:
             if decision["chosen"] != state.pose:
@@ -420,6 +622,7 @@ class NaturalHandSelectionEngine:
             state.pose, state.cid, state.score = decision["chosen"], decision["cid"], float(decision["score"] or 0.0)
             state.action = ctx.action
             state.beat = ctx.beat
+        decision["explanation"] = explain(decision)
         return decision
 
     def select_pair(self, lib, ctxs: dict[str, HandContext], states: dict[str, HandSelectionState] | None,
@@ -448,6 +651,23 @@ class NaturalHandSelectionEngine:
                                 st.history.append(p)
                             st.pose, st.cid, st.score = p, r["cid"], r["total"]
         return out
+
+
+def explain(decision: dict[str, Any]) -> list[str]:
+    """Plain-language explanation of a decision: what was chosen and why, what was rejected and why."""
+    d = decision
+    lines = []
+    if d.get("chosen"):
+        lines.append(f"{d['side']}: {d['action']} -> {d['chosen']} ({d['cid']}) - {d['reason']} [mode: {d['mode']}]")
+    else:
+        lines.append(f"{d['side']}: {d['action']} -> no drawing passes the hard constraints [mode: {d['mode']}]")
+    for r in d.get("rejected", []):
+        lines.append(f"  rejected {r['pose']} ({r['cid'] or 'missing'}): " + "; ".join(v["reason"] for v in r["violations"]))
+    for n in d.get("needs_artwork", []):
+        lines.append(f"  {n['status']}: {n['pose']} - {n['reason']}")
+    if d.get("fallback"):
+        lines.append(f"  fallback: {d['fallback']['reason']}")
+    return lines
 
 
 def context_from_pose(solver, sk, pose, it, side: str, action: str, target=None, previous_wrist=None,
@@ -482,4 +702,9 @@ def rules_json(engine: NaturalHandSelectionEngine) -> dict[str, Any]:
             "wrist_limit_deg": WRIST_LIMIT_DEG, "aim_rate_deg_s": AIM_RATE_DEG_S,
             "aim_forearm_window_deg": [AIM_FULL_DEG, AIM_NONE_DEG],
             "resolution": "explicit user choice > switch keyframe > this engine (auto mode only) > group default",
+            "hard_constraints": ["missing", "approval (production: approved + original only; review: + pending)",
+                                 "excluded", "gesture (forbidden / needs target)", "handedness", "metadata",
+                                 "palm view (HandOrientationAnalyzer, flat rotation only)",
+                                 "rotation from the drawn orientation <= the drawing's tolerance"],
+            "approval_states": ["APPROVED", "PENDING_REVIEW", "REJECTED", "MISSING"],
             "disclaimer": "scores rank the drawings the character has for an action; they do not measure visual quality"}

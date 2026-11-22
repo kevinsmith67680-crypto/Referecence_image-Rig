@@ -14,6 +14,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
 
+from .. import handmeta
 from ..phase2 import corrective as C
 from ..phase2.natural import natural_order
 from ..phase2.pose_eval import on_bg
@@ -22,7 +23,8 @@ from ..phase2.posing import PoseSolver
 from ..phase2.skeleton import SIDE_SIGN, SIDES, Skeleton, layer_class
 from ..phase2.skinning import Deformer, PoseParams
 from .feasibility import ArtInventory, PoseFeasibilityEvaluator
-from .handselect import NaturalHandSelectionEngine, action_for, context_from_pose, ease_aim, load_rules
+from .handselect import (OVERRIDE_RULE, NaturalHandSelectionEngine, action_for, context_from_pose, ease_aim,
+                         load_rules)
 from .garments import ArtworkDeformationEngine, GarmentDeformationEngine, GarmentModel, GarmentSkeleton
 from .ik import LAT, ArmIKController, FootContactController, LegIKController
 from .intent import ArmIntent, LegIntent, PoseIntent
@@ -135,6 +137,7 @@ class MotionEngine:
         # the feasibility inventory sees each pose through its active candidate (canonical drawing keys)
         self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
                                 for s in SIDES}
+        self.hand_meta = handmeta.attach(self, self.hand_store.get("hand_meta"))
         if garment_mode == "structured":
             from ..garmentrig.corrections import GarmentCorrectionController
 
@@ -172,6 +175,7 @@ class MotionEngine:
         self.inventory.hands = {s: {HAND_POSES[p]: v.status for p, v in self.hand_lib.hands[s].items() if v.available}
                                 for s in SIDES}
         self.corr_switch.approvals = approvals
+        self.hand_meta = handmeta.attach(self, hs.get("hand_meta"))
         return {"changed_layers": len(changed), "update_s": round(time.time() - t0, 3)}
 
     # -- switches ------------------------------------------------------------------------------------
@@ -229,9 +233,20 @@ class MotionEngine:
             chosen = dec[s]["chosen"]
             if chosen in rule.get("prefer", []):
                 missing = [p for p in missing if rule["prefer"].index(p) < rule["prefer"].index(chosen)]
+            # Phase 3.7: an explicit choice (user/keyframe) wins over the automatic one, but it is still checked
+            # against the hard constraints that do not depend on the action (handedness, palm metadata, rotation
+            # from the drawn orientation); violations are reported, never hidden
+            override_check = None
+            if r["source"] in ("user", "keyframe") and v is not None and v.available:
+                ev = self.hand_select.evaluate(v, ctxs[s], OVERRIDE_RULE, None, True)
+                override_check = {"pose": r["active"], "cid": v.cid, "ok": not ev["rejected"],
+                                  "violations": ev["violations"],
+                                  "palm": (ev.get("palm") or {}).get("palm_class"),
+                                  "rotation_from_drawn_deg": (ev.get("palm") or {}).get("rotation_from_drawn_deg")}
             out[s] = {**dec[s], "resolution": {k: r[k] for k in ("requested", "active", "source", "note")},
                       "aim_applied": a, "missing_preferred": missing,
-                      "overridden_by": r["source"] if r["source"] in ("user", "keyframe") else None}
+                      "overridden_by": r["source"] if r["source"] in ("user", "keyframe") else None,
+                      "override_check": override_check}
         return {"decisions": out, "auto": {s: dec[s]["chosen"] for s in SIDES}}
 
     def resolve_switches(self, it: PoseIntent, allow_pending: bool, switches: dict[str, Any] | None,
@@ -915,8 +930,10 @@ class MotionEngine:
 
 
 # -- package-level evidence (CLI: autorig motion <package>) ---------------------------------------------------
-def engine_for_package(pkg, view: str = "front", garment_mode: str = "structured") -> tuple["MotionEngine", list[str]]:
-    """MotionEngine for a Phase 2 package, built exactly as the editor builds it (edited bones, masks, approvals)."""
+def engine_for_package(pkg, view: str = "front", garment_mode: str = "structured",
+                       use_hand_metadata: bool = True) -> tuple["MotionEngine", list[str]]:
+    """MotionEngine for a Phase 2 package, built exactly as the editor builds it (edited bones, masks, approvals).
+    ``use_hand_metadata=False`` ignores the Phase 3.7 hand metadata (the audit measures the stored assignment)."""
     import json
     from pathlib import Path
 
@@ -937,7 +954,8 @@ def engine_for_package(pkg, view: str = "front", garment_mode: str = "structured
     cids = [k.split(":", 1)[1] for k in st["approvals"] if k.startswith("corrective:gusset")]
     from ..handstore import engine_input
 
-    hs = engine_input(pkg, st.get("hand_store"), sk, layers, ps.variants, st["approvals"], art.source)
+    hs = engine_input(pkg, st.get("hand_store"), sk, layers, ps.variants, st["approvals"], art.source,
+                      st.get("hand_metadata"), use_hand_metadata)
     from ..garmentrig.structure import load_config
 
     from ..garmentrig.correctives import CorrectiveArtworkStore

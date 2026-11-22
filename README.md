@@ -169,6 +169,41 @@ To build the Phase 3.6 evidence:
 .venv/bin/python -m autorig performance-bench ../schoolboy_pkg   # timings on this machine (e.g. the Apple M1)
 ```
 
+Phase 3.7 adds two tabs.
+
+The **Hand Inspector** tab shows why each hand drawing was chosen for the current pose or performance frame:
+- the drawing's handedness, palm view and rotation from how it was drawn;
+- the wrist checks and the approval state;
+- every rejected drawing with the rule it failed;
+- any missing artwork.
+
+From the same tab you can override the choice or correct a drawing's metadata. Hands are chosen by hard rules first:
+- the right hand;
+- an approved drawing in production;
+- a palm that faces the way the gesture needs;
+- no flat rotation beyond what the drawing tolerates.
+
+A camera-facing palm is never rotated into a fake "palm up": the shrug with palms up reports NEEDS_ARTWORK until a
+palm-up drawing is drawn and approved.
+
+The **Ref Motion** tab turns a reference (video, GIF, image sequence, AutoRig JSON or BVH, with a permission
+statement) into a performance for your character:
+- pose estimation runs locally (MediaPipe);
+- angles are retargeted onto the character's own proportions;
+- motion toward or away from the camera is reported as needing new artwork or a new view, never stretched.
+
+The rule-based critic lists defects as hypotheses. A bounded revision loop can propose a correction, and nothing is
+applied or approved without you.
+
+```bash
+.venv/bin/python -m autorig hand-audit ../schoolboy_pkg --inspection references/schoolboy/hand_pack_v2/semantic_inspection.json
+.venv/bin/python -m autorig hand-selection-evidence ../schoolboy_pkg
+.venv/bin/pip install -e '.[reference]' && .venv/bin/python -m autorig reference-models --download
+.venv/bin/python -m autorig reference-import clip.mp4 --id my_point --source "my own recording" --permission "mine, for animation reference" --hand r=pointing
+.venv/bin/python -m autorig reference-evidence ../schoolboy_pkg
+.venv/bin/python -m autorig phase37-bench ../schoolboy_pkg
+```
+
 ![Phase 3 editor: mask correction on the real character](docs/phase3/screenshots/03_mask_correction.png)
 
 *Real browser screenshot of the editor (headless Chromium), not a Moho render.*
@@ -218,6 +253,11 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase3_5_artistic_animation_report.md](docs/phase3_5_artistic_animation_report.md) | Phase 3.5: artistic pose planning, silhouettes, feasibility, alternatives, layer order, acting test, verdict |
 | [docs/phase3_6_implementation_plan.md](docs/phase3_6_implementation_plan.md) | Phase 3.6 audit of the animation systems (incl. the planted-foot slide) and plan |
 | [docs/phase3_6_expressive_animation_report.md](docs/phase3_6_expressive_animation_report.md) | Phase 3.6: performance engine, contacts, curves, secondary motion, timeline editor, verdict |
+| [docs/phase3_7_implementation_plan.md](docs/phase3_7_implementation_plan.md) | Phase 3.7 plan: hand selection, reference motion, critique, editor |
+| [docs/phase3_7_hand_selection_audit.md](docs/phase3_7_hand_selection_audit.md) | Phase 3.7: the shrug regression traced, every hand drawing audited, constraints, shoulders |
+| [docs/phase3_7_reference_motion_architecture.md](docs/phase3_7_reference_motion_architecture.md) | Phase 3.7: reference import, pose estimation, analysis, retargeting, store, critic |
+| [docs/phase3_7_visual_quality_report.md](docs/phase3_7_visual_quality_report.md) | Phase 3.7: shrug comparisons, wrist/shoulder close-ups, 10 hand cases, reference comparisons |
+| [docs/phase3_7_completion_report.md](docs/phase3_7_completion_report.md) | Phase 3.7: acceptance criteria, verified results, pending approvals, blockers, verdict |
 | [docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md) | Installation and run guide for macOS |
 | [docs/phase0/manual-verification.md](docs/phase0/manual-verification.md) | Native checks to perform in Moho |
 | [docs/phase0/completion-report.md](docs/phase0/completion-report.md) | Phase 0 results and verdict |

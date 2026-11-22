@@ -53,6 +53,7 @@ class GestureDef:
     curve: str = "ease_in_out"
     alternative: str | None = None
     notes: str = ""
+    palm_required: str | None = None  # Phase 3.7: palm class the hands must show (HandOrientationAnalyzer)
 
     def to_json(self) -> dict[str, Any]:
         d = copy.deepcopy(self.__dict__)
@@ -99,25 +100,33 @@ LIBRARY: dict[str, GestureDef] = {
               {"at": 1.0, "label": "return", "hands": {"r": "relaxed", "l": "relaxed"}}],
         head=[{"at": 0.0, "head": 0.0}, {"at": 0.45, "head": 2.0}, {"at": 1.0, "head": 0.0}],
         sided=False, hands_required={"both": ["cupped", "palm_up"]}),
+    # Phase 3.7: SHRUG_EXPRESSIVE. The hands are the engine action "shrugging": only drawings that show the palm up in
+    # the solved pose (HandOrientationAnalyzer) and are the right hand pass. With none approved the gesture is
+    # NEEDS_ARTWORK and the selection falls back to the subtle shrug's hands. Modest shoulders (no inflated pads),
+    # elbows bent, forearms opened to ~60 deg so a palm-up hand is anatomically available.
     "shrug": GestureDef(
-        "shrug", "Shrugging (palms up)", "uncertain: 'I don't know'", 1.8,
+        "shrug", "SHRUG_EXPRESSIVE (palms up)", "uncertain: 'I don't know'", 1.8,
         arms=[{"at": 0.0, "label": "start"},
-              {"at": 0.35, "params": {**_arm_hold("r", 18, -46, -16, 14), **_arm_hold("l", 18, -46, -16, 16)},
-               "hands": {"r": "palm_up", "l": "palm_up"}, "label": "shrug", "anticipation": "shrug", "overshoot": 0.05,
-               "hold": 0.3},
+              {"at": 0.35, "params": {**_arm_hold("r", 20, -40, -8, 7), **_arm_hold("l", 20, -40, -8, 8)},
+               "hands": {"r": "shrugging", "l": "shrugging"}, "label": "shrug", "anticipation": "shrug",
+               "overshoot": 0.04, "hold": 0.3},
               {"at": 1.0, "label": "relax", "hands": {"r": "relaxed", "l": "relaxed"}}],
-        head=[{"at": 0.0, "head": 0.0}, {"at": 0.35, "head": 6.0, "hold": 0.3}, {"at": 1.0, "head": 0.0}],
-        sided=False, hands_required={"both": ["palm_up"]}, alternative="shrug_low",
-        notes="palm-up hands do not exist: NEEDS_ARTWORK. Not disguised by wrist rotation; see shrug_low"),
-    "shrug_low": GestureDef(
-        "shrug_low", "Shrug (hands low)", "uncertain, understated", 1.6,
-        arms=[{"at": 0.0, "label": "start"},
-              {"at": 0.35, "params": {**_arm_hold("r", 15, -8, 2, 13), **_arm_hold("l", 14, -6, 2, 15)},
-               "label": "shoulders up", "anticipation": "shrug", "overshoot": 0.05, "hold": 0.3},
-              {"at": 1.0, "label": "relax"}],
         head=[{"at": 0.0, "head": 0.0}, {"at": 0.35, "head": 5.0, "hold": 0.3}, {"at": 1.0, "head": 0.0}],
+        sided=False, hands_required={"both": ["palm_up"]}, alternative="shrug_low", palm_required="PALM_UP",
+        notes="needs approved palm-up hands: an open palm-up drawing is missing; the cupped drawings (pending, "
+              "handedness corrected in Phase 3.7) are a review-only approximation. Never disguised by wrist rotation"),
+    # SHRUG_SUBTLE: shoulders up a little, elbows slightly bent, forearms opening, palms toward the camera, short hold.
+    "shrug_low": GestureDef(
+        "shrug_low", "SHRUG_SUBTLE (hands low)", "uncertain, understated", 1.6,
+        arms=[{"at": 0.0, "label": "start"},
+              {"at": 0.35, "params": {**_arm_hold("r", 15, -18, -4, 6), **_arm_hold("l", 14, -16, -4, 7)},
+               "hands": {"r": "shrug_subtle", "l": "shrug_subtle"}, "label": "shoulders up", "anticipation": "shrug",
+               "overshoot": 0.04, "hold": 0.25},
+              {"at": 1.0, "label": "relax", "hands": {"r": "relaxed", "l": "relaxed"}}],
+        head=[{"at": 0.0, "head": 0.0}, {"at": 0.35, "head": 4.0, "hold": 0.25}, {"at": 1.0, "head": 0.0}],
         sided=False, hands_required={},
-        notes="supported alternative: the shoulders carry the shrug, the hands stay relaxed at the sides"),
+        notes="supported: the shoulders and forearms carry the shrug; palms face the camera (original hand in "
+              "production)"),
     "wave": GestureDef(
         "wave", "Waving", "friendly greeting", 2.2,
         arms=[{"at": 0.0, "label": "start"},
@@ -209,7 +218,12 @@ class GesturePerformanceLibrary:
                     else:
                         missing.append(f"hand:{'/'.join(poses)} ({s})")
         cls = "NEEDS_ARTWORK" if missing else "NEEDS_APPROVAL" if pending else "SUPPORTED"
+        review = []
+        if g.palm_required and self.resolver is not None and hasattr(self.resolver, "palm_capable"):
+            for s in (["r", "l"] if not g.sided else [side]):
+                review += [{**c, "side": s} for c in self.resolver.palm_capable(s, g.palm_required)]
         return {"status": cls, "missing": missing, "pending": pending, "production_ready": False,
+                "palm_required": g.palm_required, "palm_capable_drawings": review,
                 "alternative": g.alternative if missing else None,
                 "note": g.notes or ("uses only original artwork; still needs a person to approve the performance"
                                     if cls == "SUPPORTED" else "")}

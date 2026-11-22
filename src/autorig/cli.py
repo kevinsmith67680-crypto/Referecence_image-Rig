@@ -560,6 +560,47 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", help="output directory (default <package>/hand_store/evidence_v2)")
     p.set_defaults(func=cmd_hand_replace_evidence)
 
+    p = sub.add_parser("hand-audit", help="Phase 3.7: HandAssetMetadata inventory (measured + inspected) and sheet")
+    p.add_argument("package", help="Phase 2 character package with hand drawings")
+    p.add_argument("--inspection", help="semantic inspection record (e.g. references/schoolboy/hand_pack_v2/"
+                                        "semantic_inspection.json); without it only measured fields are filled")
+    p.set_defaults(func=cmd_hand_audit)
+
+    p = sub.add_parser("hand-selection-evidence",
+                       help="Phase 3.7: shrug diagnosis, 10 hand regression cases, close-ups, invalid-metadata tests")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--quick", action="store_true", help="fewer frames (smoke run)")
+    p.set_defaults(func=cmd_hand_selection_evidence)
+
+    p = sub.add_parser("reference-models", help="Phase 3.7: check (or --download) the local pose-estimation models")
+    p.add_argument("--download", action="store_true", help="download missing models (SHA-256 checked)")
+    p.add_argument("--cache", help="model directory (default .autorig_cache/models)")
+    p.set_defaults(func=cmd_reference_models)
+
+    p = sub.add_parser("reference-import", help="Phase 3.7: import a reference (video/GIF/images/JSON/BVH) into the "
+                                                "motion reference library")
+    p.add_argument("media", help="MP4/MOV/GIF, an image directory or glob, AutoRig track JSON or BVH")
+    p.add_argument("--id", required=True, help="reference id (lowercase, digits, _ -)")
+    p.add_argument("--permission", required=True, help="usage permission statement (who owns it, why it may be used)")
+    p.add_argument("--source", required=True, help="where the reference came from")
+    p.add_argument("--gesture", help="gesture tag (pointing, shrug, walking ...)")
+    p.add_argument("--category", default="gesture", help="gesture | locomotion | other")
+    p.add_argument("--hand", action="append", default=[], metavar="SIDE=ACTION", help="hand action, e.g. r=pointing")
+    p.add_argument("--fps", type=float, help="sampling fps for video (<= source, max 30)")
+    p.add_argument("--library", help="library root (default motion_references/ or AUTORIG_MOTION_LIBRARY)")
+    p.set_defaults(func=cmd_reference_import)
+
+    p = sub.add_parser("reference-evidence",
+                       help="Phase 3.7: synthetic references retargeted, MediaPipe round trip, critic and revision loop")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--quick", action="store_true")
+    p.set_defaults(func=cmd_reference_evidence)
+
+    p = sub.add_parser("phase37-bench", help="Phase 3.7: timings on this machine + Moho-oriented hand/gesture "
+                                             "metadata (proposed_unverified)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.set_defaults(func=cmd_phase37_bench)
+
     p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
     p.add_argument("package", help="Phase 2 character package")
     p.add_argument("--out", help="output directory (default <package>/natural_pose/garments)")
@@ -823,6 +864,83 @@ def cmd_garment_weights(args: argparse.Namespace) -> int:
             json.dump(eng.structure.to_json(), f, indent=1, default=str)
         print(f"wrote {args.export}_weights.npz and {args.export}_structure.json")
     return 0 if v["ok"] else 1
+
+
+def cmd_hand_audit(args: argparse.Namespace) -> int:
+    from .handaudit import hand_audit
+
+    r = hand_audit(args.package, args.inspection, progress=lambda m: print(m, flush=True))
+    print(json.dumps(r["summary"], indent=1))
+    return 0
+
+
+def cmd_hand_selection_evidence(args: argparse.Namespace) -> int:
+    from .handselect_evidence import hand_selection_evidence
+
+    r = hand_selection_evidence(args.package, quick=args.quick, progress=lambda m: print(m, flush=True))
+    print(json.dumps(r.get("summary", {}), indent=1, default=str))
+    return 0
+
+
+def cmd_reference_models(args: argparse.Namespace) -> int:
+    from pathlib import Path as _P
+
+    from .refmotion.pose import ensure_models, mediapipe_available
+
+    st = ensure_models(cache=_P(args.cache) if args.cache else None, download=args.download)
+    print(json.dumps({"mediapipe": mediapipe_available() or "ok", "models": st}, indent=1))
+    return 0 if all(v["ok"] for v in st.values()) else 1
+
+
+def cmd_reference_import(args: argparse.Namespace) -> int:
+    from .refmotion.analyze import ReferenceMotionAnalyzer
+    from .refmotion.importer import ReferenceMotionImporter
+    from .refmotion.pose import MediaPipePoseProvider
+    from .refmotion.store import MotionReferenceStore, default_root
+
+    hands = dict(h.split("=", 1) for h in args.hand)
+    meta = {"name": args.id, "gesture": args.gesture, "category": args.category, "hand_actions": hands or None,
+            "provenance": {"kind": "user_supplied", "source": args.source, "usage_permission": args.permission}}
+    media = ReferenceMotionImporter().load(args.media, meta, args.fps)
+    tr = media.track if media.track is not None else MediaPipePoseProvider().estimate(
+        media.frames, media.fps, progress=lambda m: print(m, flush=True))
+    tr.meta = {**tr.meta, **meta}
+    q = ReferenceMotionImporter.quality(tr)
+    an = ReferenceMotionAnalyzer().analyze(tr)
+    store = MotionReferenceStore(args.library or default_root())
+    rec = store.add(args.id, tr, {**meta, "quality": q}, an)
+    print(json.dumps({"stored": rec["id"], "v": rec["v"], "quality": q, "tags": rec["tags"]}, indent=1, default=str))
+    return 0
+
+
+def cmd_reference_evidence(args: argparse.Namespace) -> int:
+    from .refmotion.evidence import reference_evidence
+
+    r = reference_evidence(args.package, quick=args.quick, progress=lambda m: print(m, flush=True))
+    print(json.dumps({k: (v.get("feasibility", {}).get("class") if isinstance(v, dict) else v)
+                      for k, v in r["references"].items()}, indent=1))
+    return 0
+
+
+def cmd_phase37_bench(args: argparse.Namespace) -> int:
+    from pathlib import Path as _P
+
+    from .editor.project import EditorProject
+    from .garmentrig.correctives import CorrectiveArtworkStore, CorrectiveRuntime
+    from .motion.pipeline import engine_for_package
+    from .refmotion.export import benchmark, phase37_metadata
+
+    eng, vis = engine_for_package(args.package)
+    eng.correctives = CorrectiveRuntime(eng, CorrectiveArtworkStore(args.package))
+    out = _P(args.package) / "natural_pose" / "hand_selection"
+    out.mkdir(parents=True, exist_ok=True)
+    b = benchmark(eng, vis)
+    (out / "benchmark.json").write_text(json.dumps(b, indent=1) + "\n", encoding="utf-8")
+    m = phase37_metadata(eng, vis, EditorProject(args.package).state().get("switches"))
+    (_P(args.package) / "analysis" / "phase37_moho_metadata.json").write_text(json.dumps(m, indent=1, default=float)
+                                                                           + "\n", encoding="utf-8")
+    print(json.dumps(b, indent=1))
+    return 0
 
 
 def cmd_hand_replace_evidence(args: argparse.Namespace) -> int:

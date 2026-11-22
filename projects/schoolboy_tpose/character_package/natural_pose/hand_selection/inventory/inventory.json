@@ -1,0 +1,1856 @@
+{
+ "summary": {
+  "assets": 18,
+  "reassigned": [
+   "schoolboy_hands_sleeveless/right_cupped",
+   "schoolboy_hands_sleeveless/left_cupped"
+  ],
+  "label_disagrees": [],
+  "with_errors": [],
+  "approval": {
+   "APPROVED": 2,
+   "PENDING_REVIEW": 16,
+   "REJECTED": 0,
+   "MISSING": 0
+  },
+  "palm_up_capable": [
+   "schoolboy_hands_sleeveless/right_gripping",
+   "schoolboy_hands_sleeveless/right_cupped",
+   "schoolboy_hands_sleeveless/left_gripping",
+   "schoolboy_hands_sleeveless/left_cupped"
+  ]
+ },
+ "assets": {
+  "schoolboy_hands_sleeveless/right_relaxed": {
+   "key": "schoolboy_hands_sleeveless/right_relaxed",
+   "cid": "store:schoolboy_hands_sleeveless/right_relaxed",
+   "uid": "schoolboy_hands_sleeveless/right_relaxed",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "relaxed",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_relaxed@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "relaxed",
+   "handedness": "right",
+   "handedness_confidence": "medium",
+   "handedness_cues": "mirror of r1c1: thumb on the image left (palm of a right hand, or the back of a left hand: no creases)",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 50.0,
+   "gesture_semantics": "a relaxed hanging hand",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       66.0,
+       10.0
+      ],
+      [
+       162.0,
+       16.0
+      ]
+     ],
+     "axis_sprite": [
+      -0.0624,
+      0.9981
+     ],
+     "side": "top",
+     "centre_px": [
+      114.0,
+      13.0
+     ],
+     "width_px": 96.19
+    },
+    "drawn_forearm_deg": 3.58,
+    "features": {},
+    "sprite_px": [
+     188,
+     254
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 88.98,
+     "scale": 0.5424,
+     "wrist_fit": 0.82
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r3c1",
+    "derived": null,
+    "sha256": "c3b387d4da7f49568e25282d525a6f95106404df93c5d137a60b159795936afc",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_relaxed@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 88.98,
+   "flags": [],
+   "errors": []
+  },
+  "original:r": {
+   "key": "original:r",
+   "cid": "original",
+   "uid": null,
+   "version": null,
+   "library_id": null,
+   "store_side": "r",
+   "label_pose": "open_palm",
+   "approval_item": null,
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "open_palm",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "the character's own right hand in the T-pose: open palm toward the viewer, fingers outward (image left), thumb up",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera (reference pixels)",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "reference_cuff",
+     "side": null,
+     "axis_sprite": null,
+     "manual_review": false
+    },
+    "drawn_forearm_deg": 92.56,
+    "features": {},
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 0.0,
+     "scale": 1.0,
+     "wrist_fit": null
+    },
+    "sprite_px": null
+   },
+   "provenance": {
+    "origin": "ORIGINAL",
+    "source": "reference image (original pixels)",
+    "derived": null
+   },
+   "approval": {
+    "state": "APPROVED",
+    "item": null
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_open_palm": {
+   "key": "schoolboy_hands_sleeveless/right_open_palm",
+   "cid": "store:schoolboy_hands_sleeveless/right_open_palm",
+   "uid": "schoolboy_hands_sleeveless/right_open_palm",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "open_palm",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_open_palm@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "open_palm",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "mirror of r1c2: palm creases, thumb to the image left",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.97,
+     "manual_review": false,
+     "edge_px": [
+      [
+       100.0,
+       11.0
+      ],
+      [
+       191.0,
+       14.0
+      ]
+     ],
+     "axis_sprite": [
+      -0.0329,
+      0.9995
+     ],
+     "side": "top",
+     "centre_px": [
+      145.5,
+      12.5
+     ],
+     "width_px": 91.05
+    },
+    "drawn_forearm_deg": 1.89,
+    "features": {},
+    "sprite_px": [
+     276,
+     262
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 90.67,
+     "scale": 0.5424,
+     "wrist_fit": 0.776
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r3c2",
+    "derived": null,
+    "sha256": "c382d7446fc11c5e60ca3926989da289948312733764d5df0aae92d868ee252d",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_open_palm@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 90.67,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_fist": {
+   "key": "schoolboy_hands_sleeveless/right_fist",
+   "cid": "store:schoolboy_hands_sleeveless/right_fist",
+   "uid": "schoolboy_hands_sleeveless/right_fist",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "fist",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_fist@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "fist",
+   "handedness": "right",
+   "handedness_confidence": "medium",
+   "handedness_cues": "mirror of r1c3: thumb across the curled fingers on the image left",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "closed fist seen from the finger side",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       56.0,
+       11.0
+      ],
+      [
+       160.0,
+       15.0
+      ]
+     ],
+     "axis_sprite": [
+      -0.0384,
+      0.9993
+     ],
+     "side": "top",
+     "centre_px": [
+      108.0,
+      13.0
+     ],
+     "width_px": 104.08
+    },
+    "drawn_forearm_deg": 2.2,
+    "features": {},
+    "sprite_px": [
+     197,
+     209
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 90.36,
+     "scale": 0.5424,
+     "wrist_fit": 0.887
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r3c3",
+    "derived": null,
+    "sha256": "c789fe50b145843467fa98a24150d20d6d6effeb561bffb222d60cb4808b0206",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_fist@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 90.36,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_pointing": {
+   "key": "schoolboy_hands_sleeveless/right_pointing",
+   "cid": "store:schoolboy_hands_sleeveless/right_pointing",
+   "uid": "schoolboy_hands_sleeveless/right_pointing",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "pointing",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_pointing@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "pointing",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "points image-left with the thumb on top and the curled fingers toward the viewer: right hand (the same hand as r1c4)",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "index extended; aimed by the wrist",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       246.5,
+       23.78
+      ],
+      [
+       246.5,
+       116.28
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      -0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      246.5,
+      70.03
+     ],
+     "width_px": 92.5
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "index_tip_dir": [
+      -0.9929,
+      -0.1194
+     ]
+    },
+    "sprite_px": [
+     268,
+     184
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 2.56,
+     "scale": 0.5424,
+     "wrist_fit": 0.788
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r3c4",
+    "derived": null,
+    "sha256": "765847bc3ce7a1da6c2753b73fc1679611f22d4ec326691c58bb41d93b385d61",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_pointing@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 2.56,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_thumbs_up": {
+   "key": "schoolboy_hands_sleeveless/right_thumbs_up",
+   "cid": "store:schoolboy_hands_sleeveless/right_thumbs_up",
+   "uid": "schoolboy_hands_sleeveless/right_thumbs_up",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "thumbs_up",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_thumbs_up@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "thumbs_up",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "mirror of r2c1: wrist cut on the image right, f = -x, n = +z, f x n = +y -> right hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 45.0,
+   "gesture_semantics": "thumbs-up: reads only while the thumb points up",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       188.0,
+       132.0
+      ],
+      [
+       188.0,
+       219.0
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      188.0,
+      175.5
+     ],
+     "width_px": 87.0
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "thumb_tip_dir": [
+      -0.4821,
+      -0.8761
+     ]
+    },
+    "sprite_px": [
+     203,
+     263
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 2.56,
+     "scale": 0.5424,
+     "wrist_fit": 0.741
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r4c1",
+    "derived": null,
+    "sha256": "0a9c048eb7eb7659daab1e6332a65c886bea8127473f15d0ab64dd3a97d4dba3",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_thumbs_up@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 2.56,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_gripping": {
+   "key": "schoolboy_hands_sleeveless/right_gripping",
+   "cid": "store:schoolboy_hands_sleeveless/right_gripping",
+   "uid": "schoolboy_hands_sleeveless/right_gripping",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "gripping",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_gripping@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "gripping",
+   "handedness": "right",
+   "handedness_confidence": "low",
+   "handedness_cues": "mirror of r2c2 (profile view: handedness follows the row group and the outward wrist side)",
+   "visible_surface": "edge",
+   "palm_normal_sprite": [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": -90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 100.0,
+   "gesture_semantics": "grip around an object in front of the fingers",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       220.5,
+       57.84
+      ],
+      [
+       220.5,
+       152.34
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      -0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      220.5,
+      105.09
+     ],
+     "width_px": 94.5
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "grip_center_dir": [
+      -0.9974,
+      0.0726
+     ]
+    },
+    "sprite_px": [
+     239,
+     223
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 2.56,
+     "scale": 0.5424,
+     "wrist_fit": 0.805
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r4c2",
+    "derived": null,
+    "sha256": "03b49a3e1084a31264fd145b331a13310103022d8a63cdfa2d5da7293cd35262",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_gripping@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 2.56,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_palm_down": {
+   "key": "schoolboy_hands_sleeveless/right_palm_down",
+   "cid": "store:schoolboy_hands_sleeveless/right_palm_down",
+   "uid": "schoolboy_hands_sleeveless/right_palm_down",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "palm_down",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_palm_down@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "palm_down",
+   "handedness": "right",
+   "handedness_confidence": "high",
+   "handedness_cues": "mirror of r2c3: back of the hand from above, fingers down-left, thumb to the image right (toward the body)",
+   "visible_surface": "back",
+   "palm_normal_sprite": [
+    0.0,
+    0.74,
+    -0.67
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": 35.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 60.0,
+   "gesture_semantics": "flat hand resting palm-down on a surface below eye level",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       113.0,
+       14.0
+      ],
+      [
+       210.0,
+       13.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0103,
+      0.9999
+     ],
+     "side": "top",
+     "centre_px": [
+      161.5,
+      13.5
+     ],
+     "width_px": 97.01
+    },
+    "drawn_forearm_deg": -0.59,
+    "features": {},
+    "sprite_px": [
+     304,
+     193
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 93.15,
+     "scale": 0.5424,
+     "wrist_fit": 0.827
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r4c3",
+    "derived": null,
+    "sha256": "bdd101ec155890b9dbf7c68cbdd180796059c76a29b2d2e1a10593295464952c",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_palm_down@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 93.15,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/right_cupped": {
+   "key": "schoolboy_hands_sleeveless/right_cupped",
+   "cid": "store:schoolboy_hands_sleeveless/right_cupped",
+   "uid": "schoolboy_hands_sleeveless/right_cupped",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "r",
+   "label_pose": "cupped",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/right_cupped@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "cupped",
+   "handedness": "left",
+   "handedness_confidence": "medium",
+   "handedness_cues": "mirror of r2c4: palm up, fingers to the image right, thumb on the far side, wrist on the image left -> left hand. Stored as right_cupped; at rest it is placed 183 deg from how it was drawn on the right arm",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    -0.8,
+    0.6
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": 90.0,
+   "thumb": "top_far",
+   "rotation_tolerance_deg": 35.0,
+   "gesture_semantics": "cupped/offering palm-up hand",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       18.5,
+       113.4
+      ],
+      [
+       18.5,
+       20.9
+      ]
+     ],
+     "axis_sprite": [
+      1.0,
+      -0.0
+     ],
+     "side": "left",
+     "centre_px": [
+      18.5,
+      67.15
+     ],
+     "width_px": 92.5
+    },
+    "drawn_forearm_deg": -90.0,
+    "features": {
+     "palm_center_dir": [
+      0.9627,
+      0.2705
+     ]
+    },
+    "sprite_px": [
+     255,
+     177
+    ],
+    "rest_placement": {
+     "side": "r",
+     "angle_deg": 182.56,
+     "scale": 0.5424,
+     "wrist_fit": 0.788
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r4c4",
+    "derived": null,
+    "sha256": "12d53df56007ff00862844dfc5131079eaba41585cb187640fe24ea658cfe384",
+    "extractor_handedness": {
+     "anatomical": "right",
+     "drawn_as": "right",
+     "row_group_side": "right"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/right_cupped@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": true,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": 182.56,
+   "flags": [
+    "drawn as a left hand but stored for the right side: offered on the left side only",
+    "at rest the drawing is placed 177 deg from how it was drawn on its stored side (it extends toward the body): handedness or side assignment is wrong",
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_relaxed": {
+   "key": "schoolboy_hands_sleeveless/left_relaxed",
+   "cid": "store:schoolboy_hands_sleeveless/left_relaxed",
+   "uid": "schoolboy_hands_sleeveless/left_relaxed",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "relaxed",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_relaxed@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "relaxed",
+   "handedness": "left",
+   "handedness_confidence": "medium",
+   "handedness_cues": "fingers hang down, thumb on the image right; no palm creases are drawn, so the drawing could also read as the back of a right hand. Kept as a camera-facing left palm, consistent with the open palm r1c2 of the same row group",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 50.0,
+   "gesture_semantics": "a relaxed hanging hand: the fingers read as hanging under gravity only within about 50 deg of hanging",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.91,
+     "manual_review": false,
+     "edge_px": [
+      [
+       21.0,
+       20.0
+      ],
+      [
+       115.0,
+       7.0
+      ]
+     ],
+     "axis_sprite": [
+      0.137,
+      0.9906
+     ],
+     "side": "top",
+     "centre_px": [
+      68.0,
+      13.5
+     ],
+     "width_px": 94.89
+    },
+    "drawn_forearm_deg": -7.87,
+    "features": {},
+    "sprite_px": [
+     186,
+     254
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -84.11,
+     "scale": 0.54323,
+     "wrist_fit": 0.819
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r1c1",
+    "derived": null,
+    "sha256": "3bcd5fbae87775b54c9a4e4492fca06fece5416e4f40679b59cd52e475e6029a",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_relaxed@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -84.11,
+   "flags": [],
+   "errors": []
+  },
+  "original:l": {
+   "key": "original:l",
+   "cid": "original",
+   "uid": null,
+   "version": null,
+   "library_id": null,
+   "store_side": "l",
+   "label_pose": "open_palm",
+   "approval_item": null,
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "open_palm",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "the character's own left hand in the T-pose: open palm toward the viewer, fingers outward (image right), thumb up",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera (reference pixels)",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "reference_cuff",
+     "side": null,
+     "axis_sprite": null,
+     "manual_review": false
+    },
+    "drawn_forearm_deg": -91.98,
+    "features": {},
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": 0.0,
+     "scale": 1.0,
+     "wrist_fit": null
+    },
+    "sprite_px": null
+   },
+   "provenance": {
+    "origin": "ORIGINAL",
+    "source": "reference image (original pixels)",
+    "derived": null
+   },
+   "approval": {
+    "state": "APPROVED",
+    "item": null
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_open_palm": {
+   "key": "schoolboy_hands_sleeveless/left_open_palm",
+   "cid": "store:schoolboy_hands_sleeveless/left_open_palm",
+   "uid": "schoolboy_hands_sleeveless/left_open_palm",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "open_palm",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_open_palm@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "open_palm",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "palm creases drawn, thumb sticks out to the image right: the palm of a left hand faces the viewer",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "open hand, palm toward the camera, fingers spread",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.888,
+     "manual_review": false,
+     "edge_px": [
+      [
+       85.0,
+       15.0
+      ],
+      [
+       176.0,
+       12.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0329,
+      0.9995
+     ],
+     "side": "top",
+     "centre_px": [
+      130.5,
+      13.5
+     ],
+     "width_px": 91.05
+    },
+    "drawn_forearm_deg": -1.89,
+    "features": {},
+    "sprite_px": [
+     275,
+     259
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -90.1,
+     "scale": 0.54323,
+     "wrist_fit": 0.786
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r1c2",
+    "derived": null,
+    "sha256": "e18b0448fc8d8e1948eb8c8d7ea74968866337a3190d9ae3a6f5f0323b1e541f",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_open_palm@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -90.1,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_fist": {
+   "key": "schoolboy_hands_sleeveless/left_fist",
+   "cid": "store:schoolboy_hands_sleeveless/left_fist",
+   "uid": "schoolboy_hands_sleeveless/left_fist",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "fist",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_fist@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "fist",
+   "handedness": "left",
+   "handedness_confidence": "medium",
+   "handedness_cues": "curled fingers face the viewer, the thumb wraps across them on the image right",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 0.0,
+   "thumb": "image_right",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "closed fist seen from the finger side",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       34.0,
+       16.0
+      ],
+      [
+       136.0,
+       9.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0685,
+      0.9977
+     ],
+     "side": "top",
+     "centre_px": [
+      85.0,
+      12.5
+     ],
+     "width_px": 102.24
+    },
+    "drawn_forearm_deg": -3.93,
+    "features": {},
+    "sprite_px": [
+     195,
+     206
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -88.06,
+     "scale": 0.54323,
+     "wrist_fit": 0.883
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r1c3",
+    "derived": null,
+    "sha256": "d3c5f53ea437ea2a68f68e7e9e38a2ca547c9cbacc89d8962778c7e8134b21e9",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_fist@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -88.06,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_pointing": {
+   "key": "schoolboy_hands_sleeveless/left_pointing",
+   "cid": "store:schoolboy_hands_sleeveless/left_pointing",
+   "uid": "schoolboy_hands_sleeveless/left_pointing",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "pointing",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_pointing@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "pointing",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "horizontal mirror of the inspected cell: the index points image-left from a wrist on the image right, the thumb is on top and the curled fingers face the viewer: f = -x, n = +z, f x n = +y (up) -> right hand (already flagged at extraction)",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    -0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 180.0,
+   "gesture_semantics": "index extended, other fingers curled; aimed by the wrist",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       19.5,
+       20.75
+      ],
+      [
+       19.5,
+       113.25
+      ]
+     ],
+     "axis_sprite": [
+      1.0,
+      -0.0
+     ],
+     "side": "left",
+     "centre_px": [
+      19.5,
+      67.0
+     ],
+     "width_px": 92.5
+    },
+    "drawn_forearm_deg": -90.0,
+    "features": {
+     "index_tip_dir": [
+      0.9992,
+      0.0388
+     ]
+    },
+    "sprite_px": [
+     257,
+     191
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -1.98,
+     "scale": 0.54323,
+     "wrist_fit": 0.799
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r1c4",
+    "derived": "mirror_x",
+    "sha256": "014fb32c1620c934da363a4d01feb8dbd5191a75d874624abe2d12de99e3a49e",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "right",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_pointing@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -1.98,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review",
+    "derived copy (mirror_x) of another drawing"
+   ],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_thumbs_up": {
+   "key": "schoolboy_hands_sleeveless/left_thumbs_up",
+   "cid": "store:schoolboy_hands_sleeveless/left_thumbs_up",
+   "uid": "schoolboy_hands_sleeveless/left_thumbs_up",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "thumbs_up",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_thumbs_up@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "thumbs_up",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "wrist cut on the image left, curled fingers point image-right and face the viewer, thumb up: f = +x, n = +z, n x f = +y -> left hand",
+   "visible_surface": "palm_side_curled",
+   "palm_normal_sprite": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 45.0,
+   "gesture_semantics": "thumbs-up: reads only while the thumb points up",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 1.0,
+     "manual_review": false,
+     "edge_px": [
+      [
+       12.0,
+       212.0
+      ],
+      [
+       15.0,
+       125.0
+      ]
+     ],
+     "axis_sprite": [
+      0.9994,
+      0.0345
+     ],
+     "side": "left",
+     "centre_px": [
+      13.5,
+      168.5
+     ],
+     "width_px": 87.05
+    },
+    "drawn_forearm_deg": -88.02,
+    "features": {
+     "thumb_tip_dir": [
+      0.5429,
+      -0.8398
+     ]
+    },
+    "sprite_px": [
+     200,
+     258
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -3.96,
+     "scale": 0.54323,
+     "wrist_fit": 0.752
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r2c1",
+    "derived": null,
+    "sha256": "df49eb994b37dea8ec17ac44cd7341e0bf5717448eaf05acf88609761f40590d",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_thumbs_up@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -3.96,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_gripping": {
+   "key": "schoolboy_hands_sleeveless/left_gripping",
+   "cid": "store:schoolboy_hands_sleeveless/left_gripping",
+   "uid": "schoolboy_hands_sleeveless/left_gripping",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "gripping",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_gripping@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "gripping",
+   "handedness": "left",
+   "handedness_confidence": "low",
+   "handedness_cues": "C-shaped grip seen in profile, opening to the image right, wrist side on the image left; a profile view of a left hand and a mirrored right hand look the same, so handedness follows the row group and the outward wrist side",
+   "visible_surface": "edge",
+   "palm_normal_sprite": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "view_elevation": "level",
+   "finger_dir_deg": 90.0,
+   "thumb": "top",
+   "rotation_tolerance_deg": 100.0,
+   "gesture_semantics": "grip around an object in front of the fingers (contact gesture)",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       17.5,
+       153.41
+      ],
+      [
+       17.5,
+       61.91
+      ]
+     ],
+     "axis_sprite": [
+      1.0,
+      -0.0
+     ],
+     "side": "left",
+     "centre_px": [
+      17.5,
+      107.66
+     ],
+     "width_px": 91.5
+    },
+    "drawn_forearm_deg": -90.0,
+    "features": {
+     "grip_center_dir": [
+      0.9995,
+      0.0301
+     ]
+    },
+    "sprite_px": [
+     233,
+     217
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -1.98,
+     "scale": 0.54323,
+     "wrist_fit": 0.79
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r2c2",
+    "derived": null,
+    "sha256": "122f2199a851344dd02763cccc80204faf73b2349c1609f9f966131c729dfdcc",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_gripping@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -1.98,
+   "flags": [
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_palm_down": {
+   "key": "schoolboy_hands_sleeveless/left_palm_down",
+   "cid": "store:schoolboy_hands_sleeveless/left_palm_down",
+   "uid": "schoolboy_hands_sleeveless/left_palm_down",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "palm_down",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_palm_down@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "palm_down",
+   "handedness": "left",
+   "handedness_confidence": "high",
+   "handedness_cues": "back of the hand seen from above, fingers down-right, thumb to the image left (toward the body): n = (0, +0.74, -0.67), f down-right, n x f has a -x component -> left hand",
+   "visible_surface": "back",
+   "palm_normal_sprite": [
+    0.0,
+    0.74,
+    -0.67
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": -35.0,
+   "thumb": "image_left",
+   "rotation_tolerance_deg": 60.0,
+   "gesture_semantics": "flat hand resting palm-down on a surface below eye level",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "open_cut",
+     "method": "wrist_stub_cap",
+     "confidence": 0.724,
+     "manual_review": false,
+     "edge_px": [
+      [
+       98.0,
+       14.0
+      ],
+      [
+       192.0,
+       13.0
+      ]
+     ],
+     "axis_sprite": [
+      0.0106,
+      0.9999
+     ],
+     "side": "top",
+     "centre_px": [
+      145.0,
+      13.5
+     ],
+     "width_px": 94.01
+    },
+    "drawn_forearm_deg": -0.61,
+    "features": {},
+    "sprite_px": [
+     300,
+     192
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -91.38,
+     "scale": 0.54323,
+     "wrist_fit": 0.812
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r2c3",
+    "derived": null,
+    "sha256": "a159bd04547f983ee2cd5776311ec80f88ed9c608d5400cbbd60f3115b4ed30d",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_palm_down@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "l",
+   "reassigned": false,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -91.38,
+   "flags": [],
+   "errors": []
+  },
+  "schoolboy_hands_sleeveless/left_cupped": {
+   "key": "schoolboy_hands_sleeveless/left_cupped",
+   "cid": "store:schoolboy_hands_sleeveless/left_cupped",
+   "uid": "schoolboy_hands_sleeveless/left_cupped",
+   "version": 1,
+   "library_id": "schoolboy_hands_sleeveless",
+   "store_side": "l",
+   "label_pose": "cupped",
+   "approval_item": "handstore:schoolboy_hands_sleeveless/left_cupped@v1",
+   "schema": "autorig.hand_asset_metadata",
+   "schema_version": 1,
+   "gesture": "cupped",
+   "handedness": "right",
+   "handedness_confidence": "medium",
+   "handedness_cues": "palm up seen from the front and slightly above (palm creases visible), fingers to the image left curling up, thumb on the far (upper) side, wrist on the image right: f = -x, n = up, f x n points away from the viewer -> the thumb is behind -> right hand. Stored as left_cupped (row group); at rest it is placed 182 deg from how it was drawn on the left arm (every other sideways drawing of the left group is within 4 deg)",
+   "visible_surface": "palm",
+   "palm_normal_sprite": [
+    0.0,
+    -0.8,
+    0.6
+   ],
+   "view_elevation": "from_above",
+   "finger_dir_deg": -90.0,
+   "thumb": "top_far",
+   "rotation_tolerance_deg": 35.0,
+   "gesture_semantics": "cupped/offering palm-up hand; turned more than about 35 deg the cup tips, turned 180 deg it is palm-down",
+   "viewing_direction": "front",
+   "measured": {
+    "wrist": {
+     "opening": "closed_outline",
+     "method": "chord_at_wrist_width",
+     "confidence": 0.35,
+     "manual_review": true,
+     "edge_px": [
+      [
+       220.5,
+       15.76
+      ],
+      [
+       220.5,
+       109.26
+      ]
+     ],
+     "axis_sprite": [
+      -1.0,
+      -0.0
+     ],
+     "side": "right",
+     "centre_px": [
+      220.5,
+      62.51
+     ],
+     "width_px": 93.5
+    },
+    "drawn_forearm_deg": 90.0,
+    "features": {
+     "palm_center_dir": [
+      -0.9494,
+      0.3142
+     ]
+    },
+    "sprite_px": [
+     241,
+     171
+    ],
+    "rest_placement": {
+     "side": "l",
+     "angle_deg": -181.98,
+     "scale": 0.54323,
+     "wrist_fit": 0.807
+    }
+   },
+   "provenance": {
+    "origin": "AI_GENERATED",
+    "source": "user-supplied sleeve-free hand sheet (AI-generated concept drawings)",
+    "sheet_cell": "r2c4",
+    "derived": null,
+    "sha256": "6c9caef3012f6698636819481159fca2283be2fdcf88995ea4073138f3a8bba9",
+    "extractor_handedness": {
+     "anatomical": "left",
+     "drawn_as": "left",
+     "row_group_side": "left"
+    }
+   },
+   "approval": {
+    "state": "PENDING_REVIEW",
+    "item": "handstore:schoolboy_hands_sleeveless/left_cupped@v1"
+   },
+   "field_sources": {
+    "handedness": "inspected",
+    "gesture": "inspected",
+    "visible_surface": "inspected",
+    "palm_normal_sprite": "inspected",
+    "rotation_tolerance_deg": "inspected",
+    "view_elevation": "inspected",
+    "thumb": "inspected",
+    "finger_dir_deg": "inspected"
+   },
+   "excluded": false,
+   "note": null,
+   "use_side": "r",
+   "reassigned": true,
+   "label_agrees": true,
+   "rest_rotation_from_drawn_deg": -181.98,
+   "flags": [
+    "drawn as a right hand but stored for the left side: offered on the right side only",
+    "at rest the drawing is placed 178 deg from how it was drawn on its stored side (it extends toward the body): handedness or side assignment is wrong",
+    "wrist opening is a closed outline: pivot needs manual review"
+   ],
+   "errors": []
+  }
+ }
+}

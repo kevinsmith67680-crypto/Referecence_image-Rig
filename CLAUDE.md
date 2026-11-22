@@ -71,6 +71,14 @@ faithful, editable **Moho Pro 14** character rig.
   `docs/phase3_6_implementation_plan.md`). Code is in `src/autorig/performance/`; evidence in `natural_pose/performance/`
   (frame-aligned acting test before/after, classroom desk contact, secondary motion). No performance, gesture or drawing has
   been approved by a person; previews use pending hand drawings (labelled). Native Moho not run.
+- The user explicitly started **Phase 3.7** (intelligent hand selection, reference-guided animation, visual gesture
+  validation). It is implemented; verdict **PARTIAL** (`docs/phase3_7_completion_report.md`; plan, hand audit, reference
+  architecture and visual report in `docs/phase3_7_*.md`). The 3.6 shrug preview was wrong for two reasons. The
+  resolver's `auto: True` dropped every performance hand request, so relaxed hands were turned ~80° under a "cupped"
+  label. And the cupped pair is stored on the wrong sides, so it would have been shown upside down. Hand metadata,
+  the constraint-first selection, the shrug variants, the shoulder check, the reference pipeline (MediaPipe, local),
+  the critic and the editor tabs are all built. The 16 drawings are still pending, there is no palm-up drawing
+  (SHRUG_EXPRESSIVE is NEEDS_ARTWORK in production), and visual quality is not approved by anyone.
 - **Do not start Phase 4** (native Moho import/rigging of the exported package) automatically. It needs the Phase 0
   native verification, the reviews, and the missing artwork.
 
@@ -271,6 +279,46 @@ faithful, editable **Moho Pro 14** character rig.
 - `autorig performance-evidence <package>` regenerates `natural_pose/performance/`, `reports/performance_quality.json`,
   `analysis/performance_animation.json` and `analysis/live_performance_controls.json` (~25 min).
 
+## Phase 3.7 rules (hand selection and reference motion)
+
+- Hand drawings carry `HandAssetMetadata` v1 (`handmeta.py`; `analysis/hand_asset_metadata.json` from
+  `autorig hand-audit --inspection ...`; schema `data/schemas/hand_asset_metadata.schema.json`):
+  - measured fields come from the pixels and the placement;
+  - inspected fields come from `semantic_inspection.json` (assistant, not a person);
+  - user corrections are `handmeta.*` ops (schema v9).
+
+  File names are never evidence. A drawing whose handedness differs from its stored side is offered on the other side
+  only (`side_map`).
+- `NaturalHandSelectionEngine` runs hard constraints before scoring: missing, approval, excluded, gesture,
+  handedness, metadata validity, palm view (`HandOrientationAnalyzer`, flat rotation only), and rotation from the drawn
+  orientation within the drawing's tolerance. A score never makes a violating drawing acceptable. Each decision
+  explains itself (chosen, rejected with reasons, NEEDS_ARTWORK/NEEDS_APPROVAL, fallback). Production uses approved
+  drawings and the original hand only; review previews pending drawings, labelled. Fallbacks are reported, never silent.
+- A camera-facing palm never becomes palm-up by rotation: report NEEDS_ARTWORK. Never change arm geometry to fit a
+  hand (`motion/handcheck.py` checks the attachment; placement stays the WristAlignmentController's).
+- Performance hands:
+  - a value that is an engine *action* (`shrugging`, `shrug_subtle`, `hand_on_desk` ...) is decided once per hand
+    interval on its middle frame and held;
+  - a *pose* is an explicit choice (`{"user": pose, "auto": False}`);
+  - never write `auto: True` with a user pose (the Phase 3.6 bug).
+- Shrugs: SHRUG_SUBTLE (`shrug_low`, supported) and SHRUG_EXPRESSIVE (`shrug`, palm-up drawings required). Shrug
+  clavicle parameters stay modest; `performance/shoulders.py` flags a rise above 8 px or a line rising outward.
+- Reference motion (`refmotion/`):
+  - importing needs a usage-permission statement;
+  - pose models run locally at import only (MediaPipe; models via `autorig reference-models --download`, SHA-256
+    pinned, in `.autorig_cache/models`); no cloud inference during interactive animation;
+  - the library (`motion_references/`) is character-independent and append-only; per-character settings live in the
+    package and the project (`reference.*` ops);
+  - retargeting moves angles only (character neutral + intensity × reference delta) and uses the one pipeline;
+  - depth motion is REQUIRES_ALTERNATIVE_ARTWORK or REQUIRES_NEW_VIEW, never stretched;
+  - synthetic references are labelled synthetic and never presented as human motion.
+- The critic returns hypotheses and never approves. The VLM provider is an untested interface (disabled). The
+  RevisionLoop changes only a temporary copy, is bounded, rolls back and ends in `PROPOSED_NEEDS_APPROVAL`.
+- Commands:
+  - `autorig hand-selection-evidence <package>` (diagnosis, 10 cases, continuity, invalid metadata);
+  - `autorig reference-evidence <package>`;
+  - `autorig phase37-bench <package>` (timings and Moho-oriented metadata, `proposed_unverified`).
+
 ## Hand Pose Store rules
 
 - Imported hand drawings live in `<package>/hand_store/` (append-only: `index.json` with hashes and provenance, packs
@@ -409,6 +457,13 @@ AUTORIG_MOHO_REPORT=examples/phase0_test_character/phase0_moho_report.json .venv
 .venv/bin/python -m autorig artistic-evidence <package_dir> [--quick]  # poses, candidates, acting test (~15 min)
 # Phase 3.6 performance engine
 .venv/bin/python -m autorig performance-evidence <package_dir> [--quick]  # acting before/after, classroom, secondary (~25 min)
+# Phase 3.7 hand selection + reference motion
+.venv/bin/python -m autorig hand-audit <package_dir> --inspection references/schoolboy/hand_pack_v2/semantic_inspection.json
+.venv/bin/python -m autorig hand-selection-evidence <package_dir>   # diagnosis, 10 cases, continuity (~8 min)
+.venv/bin/pip install -e '.[reference]' && .venv/bin/python -m autorig reference-models --download   # local pose models
+.venv/bin/python -m autorig reference-import clip.mp4 --id my_ref --source "..." --permission "..." [--hand r=pointing]
+.venv/bin/python -m autorig reference-evidence <package_dir>        # synthetic refs, MediaPipe round trip (~5 min)
+.venv/bin/python -m autorig phase37-bench <package_dir>
 .venv/bin/python -m autorig performance-bench <package_dir>      # timings on this machine (run on the M1 for M1 figures)
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
@@ -453,6 +508,11 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
 - `src/autorig/performance/` — Phase 3.6: curves, sequencer, overlap, anticipation, weight, contacts, seat, layers, secondary,
   styles, gestures, dialogue, resolver, director, evaluate, export (Moho metadata, live spec), scenarios, evidence;
   `editor/src/components/PerformancePanel.tsx`
+- `src/autorig/handmeta.py` — Phase 3.7 HandAssetMetadata + HandOrientationAnalyzer; `handaudit.py` (hand-audit);
+  `handselect_evidence.py`; `motion/handcheck.py` (wrist checks); `performance/shoulders.py` (shoulder silhouette)
+- `src/autorig/refmotion/` — Phase 3.7 reference motion: track (+ synthetic references), importer, pose (MediaPipe),
+  analyze, retarget, store, critic (+ RevisionLoop), export (Moho metadata, benchmark), evidence;
+  `editor/src/components/{HandInspectorPanel,ReferencePanel}.tsx`; `motion_references/` (library)
 - `src/autorig/handstore.py` — Hand Pose Store (import/validation, store index, cuff mask, wrist placement, derived
   layers); `src/autorig/handevidence.py` — hand evidence; `references/schoolboy/hand_pack/` — the user's hand pack
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

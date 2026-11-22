@@ -368,3 +368,30 @@ through `MotionEngine.pose(intent_fn=...)`; there is no second solver or deforme
   - `performance.*` ops (schema v8).
 
 See [phase3_6_expressive_animation_report.md](phase3_6_expressive_animation_report.md).
+
+## 20. Phase 3.7: hand selection with hard constraints, reference-guided animation, visual critique
+
+- **Hand metadata.**
+  - `handmeta.py`: `HandAssetMetadata` v1 (schema `data/schemas/hand_asset_metadata.schema.json`). Measured fields
+    (wrist opening, axis, features, rest placement) plus inspected fields (handedness, visible surface, palm normal,
+    thumb, rotation tolerance), with per-field provenance and user corrections (`handmeta.*` ops, schema v9).
+  - `handaudit.py` builds the inventory (`analysis/hand_asset_metadata.json`).
+  - `handstore.engine_input` offers a drawing only on the side its handedness gives (`side_map`).
+  - `HandOrientationAnalyzer` classifies the placed palm (camera / back / up / down / edge / ambiguous). A flat
+    rotation never changes the z component.
+- **Selection.**
+  - `motion/handselect.py` runs hard constraints first: missing, approval, excluded, gesture, handedness, metadata,
+    palm view, rotation tolerance. Scoring follows, then explanations, fallbacks and NEEDS_ARTWORK / NEEDS_APPROVAL.
+  - Explicit choices are checked (`override_check`) but win.
+  - `motion/handcheck.py` checks the posed wrist attachment.
+  - `performance/resolver.py` and `director.py`: performance hand *actions* are decided once per hand interval and
+    held; poses are explicit choices (`auto: False`, the Phase 3.6 bug fix).
+  - `performance/shoulders.py` measures the shoulder silhouette. The shrug variants are SHRUG_SUBTLE and
+    SHRUG_EXPRESSIVE.
+- **Reference motion** (`refmotion/`): importer (ffmpeg, GIF, images, JSON, BVH, mandatory permission), pose
+  (MediaPipe local CPU, pinned models), analyze, retarget (angle deltas only, depth -> REQUIRES_*), store
+  (character-independent, append-only), critic (rule-based plus an optional untested VLM interface; RevisionLoop
+  proposals only), export (Moho-oriented metadata `proposed_unverified`, benchmark), evidence.
+- **Editor**: the Hand Inspector and Ref Motion tabs, `/api/hands/*`, `/api/reference*`, and the `reference.*` ops.
+
+See [phase3_7_completion_report.md](phase3_7_completion_report.md).

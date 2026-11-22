@@ -196,8 +196,21 @@ class _Lib:
                 st = "original" if p == "open_palm" else status
                 hd = {"anatomical": "right" if s == "r" else "left", "drawn_as": "right" if s == "r" else "left"}
                 self.hands[s][p] = HandVariant(s, p, p, f"hand_{s}__{p}", st, "G", {}, (0.0, 0.0), 0.4, cid=cid,
-                                               meta={"handedness": hd, "sleeve": "none", "features": {}},
+                                               meta={"handedness": hd, "sleeve": "none", "features": {},
+                                                     "hand_meta": _meta(s, p)},
                                                placement={"final": {"angle_deg": 0.0}, "params": {"wrist_fit": 0.8}})
+
+
+# Phase 3.7: explicit test metadata (what each synthetic drawing shows), not derived from the pose names
+_NORMAL = {"palm_down": [0.0, 0.74, -0.67], "cupped": [0.0, -0.8, 0.6], "gripping": [1.0, 0.0, 0.0]}
+_TOL = {"relaxed": 50.0, "thumbs_up": 45.0, "palm_down": 60.0, "cupped": 35.0, "gripping": 100.0}
+
+
+def _meta(s, p):
+    from autorig.handmeta import SCHEMA, SCHEMA_VERSION
+    return {"schema": SCHEMA, "schema_version": SCHEMA_VERSION, "handedness": "right" if s == "r" else "left",
+            "palm_normal_sprite": _NORMAL.get(p, [0.0, 0.0, 1.0]), "rotation_tolerance_deg": _TOL.get(p, 180.0),
+            "errors": [], "excluded": False}
 
 
 def _ctx(side="r", action="relaxed_standing", t=None, **kw):
@@ -382,7 +395,7 @@ def test_gripping_lands_on_the_target_and_hands_stay_attached_under_ik(eng):
 @real
 def test_project_v4_persists_library_and_selection_ops(pkg):
     from autorig.editor.project import VERSION, EditorProject, OpError
-    assert VERSION == 8  # Phase 3.6: performance timeline (schema v8)
+    assert VERSION == 9  # Phase 3.7: hand metadata corrections and reference motion (schema v9)
     p = EditorProject(pkg)
     p.submit({"type": "handstore.library", "library": "schoolboy_hand_switches_v1", "status": "active"})
     p.submit({"type": "handstore.placement", "uid": f"{LIB}/right_cupped", "fields": {"pivot_x": 2, "overlap": 3, "rot": -5}})

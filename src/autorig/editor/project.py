@@ -27,10 +27,10 @@ from ..motion.rigctl import check_ik_fields, default_ik_state, group_variants
 from ..motion.switches import HAND_POSES
 
 SCHEMA = "autorig.editor_project"
-VERSION = 8  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
+VERSION = 9  # 2: IK and switch state (Phase 3.2); 3: Hand Pose Store decisions; 4: hand library status and
 # hand selection settings (sleeve-free hand replacement); 5: garment weight edits (Phase 3.3); 6: corrective
-# artwork settings (Phase 3.4); 7: artistic review (Phase 3.5); 8: performance timeline (Phase 3.6). Older projects
-# migrate unchanged
+# artwork settings (Phase 3.4); 7: artistic review (Phase 3.5); 8: performance timeline (Phase 3.6); 9: hand
+# metadata corrections and reference-motion settings (Phase 3.7). Older projects migrate unchanged
 EDITOR_DIR = "editor"
 
 # CHARACTER > groups (character's left = _l); leaves are layer ids
@@ -145,7 +145,99 @@ def build_base(pkg: Path) -> dict[str, Any]:
             "ik": default_ik_state(), "switches": {}, "hand_store": default_store_state(),
             "hand_selection": default_selection_state(), "garment_weights": {"ops": []},
             "correctives": default_corrective_state(), "artistic": default_artistic_state(),
-            "performance": default_performance_state()}
+            "performance": default_performance_state(), "hand_metadata": {"corrections": {}},
+            "reference_motion": default_reference_state()}
+
+
+def default_reference_state() -> dict[str, Any]:
+    """Phase 3.7 reference motion: the selected library reference, per-reference settings (intensity, timing,
+    segment, hand actions), annotations, saved presets and revision decisions. The library itself stays
+    character-independent (MotionReferenceStore); only these per-character choices live in the project."""
+    return {"selected": None, "settings": {}, "annotations": {}, "presets": {}, "revisions": []}
+
+
+REF_ID = re.compile(r"^[a-z0-9][a-z0-9_\-]{0,63}$")
+META_KEY = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_-]{0,63}/[A-Za-z0-9_][A-Za-z0-9_-]{0,63}$")
+
+
+def _apply_handmeta(st: dict[str, Any], op: dict[str, Any]) -> None:
+    """Corrections of a drawing's HandAssetMetadata (handedness, gesture, palm normal, tolerance, exclusion...).
+    ``key``: the metadata key (store uid, or ``original:<side>``)."""
+    from ..handmeta import check_correction  # noqa: PLC0415
+
+    t = op["type"]
+    C = st.setdefault("hand_metadata", {"corrections": {}})["corrections"]
+    key = op.get("key")
+    if not isinstance(key, str) or not (META_KEY.match(key) or re.match(r"^original:[rl]$", key)):
+        raise OpError("handmeta ops need a metadata key (store uid <library>/<asset> or original:r|l)")
+    if t == "handmeta.set":
+        f = op.get("field")
+        err = check_correction(f, op.get("value"))
+        if err:
+            raise OpError(err)
+        C.setdefault(key, {})[f] = op.get("value")
+    elif t == "handmeta.reset":
+        f = op.get("field")
+        if f is None:
+            C.pop(key, None)
+        else:
+            C.get(key, {}).pop(f, None)
+            if key in C and not C[key]:
+                C.pop(key)
+    else:
+        raise OpError(f"unknown operation type {t!r}")
+
+
+def _apply_reference(st: dict[str, Any], op: dict[str, Any]) -> None:
+    t = op["type"]
+    R = st.setdefault("reference_motion", default_reference_state())
+    rid = op.get("ref_id")
+    if t != "reference.preset.load" and (not isinstance(rid, str) or not REF_ID.match(rid)):
+        raise OpError("reference ops need ref_id (lowercase letters, digits, _ -)")
+    if t == "reference.select":
+        R["selected"] = rid
+    elif t == "reference.settings":
+        s = dict(R["settings"].get(rid, {}))
+        for k in ("intensity", "timing_scale"):
+            if k in op:
+                v = float(op[k])
+                lo, hi = (0.0, 2.0) if k == "intensity" else (0.25, 4.0)
+                if not lo <= v <= hi:
+                    raise OpError(f"{k} must be within [{lo}, {hi}]")
+                s[k] = v
+        if "segment" in op:
+            seg = op["segment"]
+            if seg is not None and not (isinstance(seg, list) and len(seg) == 2 and 0 <= float(seg[0]) < float(seg[1])):
+                raise OpError("segment must be [t0, t1] with 0 <= t0 < t1, or null")
+            s["segment"] = None if seg is None else [float(seg[0]), float(seg[1])]
+        if "hand_actions" in op:
+            from ..motion.handselect import ACTIONS  # noqa: PLC0415
+
+            ha = op["hand_actions"] or {}
+            if not all(k in ("r", "l") and (v is None or v in ACTIONS) for k, v in ha.items()):
+                raise OpError("hand_actions: side r|l -> a hand-selection action")
+            s["hand_actions"] = {k: v for k, v in ha.items() if v}
+        R["settings"][rid] = s
+    elif t == "reference.annotate":
+        lab, note = op.get("label"), op.get("note")
+        if not (lab or note) or len(str(lab or "")) > 60 or len(str(note or "")) > 500:
+            raise OpError("an annotation needs a label (<= 60 chars) or a note (<= 500)")
+        a = {"label": lab, "note": note}
+        if op.get("t0") is not None:
+            a["t0"], a["t1"] = float(op["t0"]), float(op.get("t1", op["t0"]))
+        R["annotations"].setdefault(rid, []).append(a)
+    elif t == "reference.preset.save":
+        name = op.get("name")
+        if not isinstance(name, str) or not 0 < len(name) <= 40:
+            raise OpError("preset name required (<= 40 chars)")
+        R["presets"][name] = {"ref_id": rid, "settings": copy.deepcopy(R["settings"].get(rid, {}))}
+    elif t == "reference.revision":
+        if op.get("decision") not in ("accept", "reject"):
+            raise OpError("reference.revision decision must be accept or reject")
+        R["revisions"].append({"ref_id": rid, "decision": op["decision"], "t": op.get("t"),
+                               "attempts": op.get("attempts", [])[:10]})
+    else:
+        raise OpError(f"unknown operation type {t!r}")
 
 
 def default_performance_state() -> dict[str, Any]:
@@ -696,6 +788,10 @@ def apply_op(st: dict[str, Any], op: dict[str, Any]) -> None:
         _apply_artistic(st, op)
     elif t.startswith("performance."):
         _apply_performance(st, op)
+    elif t.startswith("handmeta."):
+        _apply_handmeta(st, op)
+    elif t.startswith("reference."):
+        _apply_reference(st, op)
     elif t == "pose.set":
         st["pose"] = {"preset": op.get("preset"), "overrides": {k: float(v) for k, v in op.get("overrides", {}).items()}}
     else:
@@ -833,8 +929,14 @@ def _v7_to_v8(data: dict[str, Any]) -> dict[str, Any]:
     return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {7})}
 
 
+def _v8_to_v9(data: dict[str, Any]) -> dict[str, Any]:
+    """Hand metadata corrections and reference motion (Phase 3.7): the base state gains ``hand_metadata`` and
+    ``reference_motion``; earlier ops replay unchanged."""
+    return {**data, "migrated_from": sorted(set(data.get("migrated_from", [])) | {8})}
+
+
 MIGRATIONS: dict[int, Any] = {1: _v1_to_v2, 2: _v2_to_v3, 3: _v3_to_v4, 4: _v4_to_v5, 5: _v5_to_v6,
-                              6: _v6_to_v7, 7: _v7_to_v8}  # from -> fn
+                              6: _v6_to_v7, 7: _v7_to_v8, 8: _v8_to_v9}  # from -> fn
 
 
 def _apply_handselect(st: dict[str, Any], op: dict[str, Any]) -> None:

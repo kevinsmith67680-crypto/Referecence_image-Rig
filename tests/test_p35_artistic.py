@@ -417,7 +417,7 @@ def test_artistic_project_ops_and_migration():
                 {"type": "artistic.constraint.remove", "index": 9}):
         with pytest.raises(OpError):
             _apply_artistic(st, bad)
-    assert migrate({"schema_version": 6, "ops": []})["schema_version"] == 8
+    assert migrate({"schema_version": 6, "ops": []})["schema_version"] == 9
 
 
 @real

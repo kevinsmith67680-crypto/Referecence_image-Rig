@@ -1,0 +1,47 @@
+{
+ "schema": "autorig.motion_reference",
+ "version": 1,
+ "id": "synthetic_shrug",
+ "v": 1,
+ "name": "shrug",
+ "tags": {
+  "gesture": "shrug",
+  "movement": "gesture",
+  "emotion": "uncertain",
+  "view": "front",
+  "intensity": "expressive",
+  "duration_s": 2.2,
+  "required_artwork": [
+   "art:forearm_foreshortened_l",
+   "art:forearm_foreshortened_r",
+   "hand:palm_up (approved)"
+  ]
+ },
+ "provenance": {
+  "kind": "synthetic",
+  "source": "procedurally authored by AutoRig (SyntheticPerformer keys); no human motion capture, no third-party footage",
+  "usage_permission": "generated in this project; no third-party rights",
+  "note": "a stand-in for a permitted human reference, labelled synthetic"
+ },
+ "usage_permission": "generated in this project; no third-party rights",
+ "fps": 30.0,
+ "frames": 67,
+ "size": [
+  1080,
+  1080
+ ],
+ "hand_actions": {
+  "r": "shrugging",
+  "l": "shrugging"
+ },
+ "palm": "PALM_UP",
+ "category": "gesture",
+ "quality": null,
+ "provider": null,
+ "sha256": {
+  "track": "86539856c1c98430986d433c42a63ca24250cf1d3add6abd20b4dfab8a86a380",
+  "analysis": "edab7b0a337d9cff53fe4591fa8c7c76e00a1da6d9fd9e13893bee12207e14d6"
+ },
+ "created_at": "2026-11-22T12:47:56Z",
+ "character_independent": true
+}

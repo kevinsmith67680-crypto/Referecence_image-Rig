@@ -27,6 +27,12 @@ editor = [
     "fastapi>=0.110",
     "uvicorn>=0.29",
 ]
+# Phase 3.7 reference motion: local pose estimation (MediaPipe Tasks, CPU). Optional: the rest of AutoRig and the
+# skeletal-file path work without it; tests that need it skip and report NOT RUN. Video decoding uses the system
+# ffmpeg binary. Models: `autorig reference-models --download` (SHA-256 checked, .autorig_cache/models).
+reference = [
+    "mediapipe>=0.10.14",
+]
 
 [project.scripts]
 autorig = "autorig.cli:main"

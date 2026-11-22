@@ -668,3 +668,15 @@ Phase 4 was **not** started. Before it:
 - Native Moho was not run.
 
 Smooth, contact-correct motion is not professional acting until a person says so. Phase 4 was **not** started.
+
+## Erratum (Phase 3.7)
+
+Phase 3.7 found a defect in this phase's performance resolver. It wrote hand choices as `{"user": pose, "auto": True}`,
+and the switch controller honours `user` only when `auto` is False. Every performance hand request was therefore
+replaced by the automatic choice for the base preset (relaxed hands). The pointing hand (acting test), the palm-down
+desk hand (classroom) and the "cupped" shrug review preview were **not** shown as this report described. The review
+preview actually showed relaxed hands turned about 80° under a "cupped" label.
+
+The fix, the corrected renders and the regenerated evidence in `natural_pose/performance/` are in
+`phase3_7_hand_selection_audit.md` and `phase3_7_completion_report.md`. Motion results (feet, contacts, continuity,
+secondary motion) are unaffected.

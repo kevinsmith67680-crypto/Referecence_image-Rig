@@ -537,7 +537,7 @@ def test_performance_project_ops_undo_and_migration():
                                                                  "target": {"point": [0, 0]}, "start": 0, "end": 1}}):
         with pytest.raises(OpError):
             _apply_performance(st, bad)
-    assert migrate({"schema_version": 7, "ops": []})["schema_version"] == 8
+    assert migrate({"schema_version": 7, "ops": []})["schema_version"] == 9
 
 
 @real

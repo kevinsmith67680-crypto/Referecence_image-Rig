@@ -259,7 +259,9 @@ class PoseService:
         # the engine is rebuilt only when the character changes; Hand Library edits and approvals update it in place
         base_key = "motion:" + _digest([st["mask_ops"], st["bones"], st["corrections"], sorted(rejected),
                                         [(L["id"], L["visible"]) for L in st["layers"]], sorted(cids)])
-        hand_key = _digest([appr, st.get("hand_store"), store_rev])
+        mf = self.pkg / "analysis" / "hand_asset_metadata.json"
+        meta_rev = hashlib.sha256(mf.read_bytes()).hexdigest()[:12] if mf.is_file() else None
+        hand_key = _digest([appr, st.get("hand_store"), store_rev, st.get("hand_metadata"), meta_rev])
         eng = self._cache.get(base_key)
         w_ops = (st.get("garment_weights") or {}).get("ops", [])
         w_key = _digest([w_ops])
@@ -269,7 +271,8 @@ class PoseService:
             return eng
         sk = eng.sk if eng is not None else self.skeleton(st, masks, None)
         layers = eng.layers if eng is not None else {c: self.art.layer_rgba(c, masks, rejected) for c in masks}
-        hs = engine_input(self.pkg, st.get("hand_store"), sk, layers, self.variants, st["approvals"], self.art.source)
+        hs = engine_input(self.pkg, st.get("hand_store"), sk, layers, self.variants, st["approvals"], self.art.source,
+                          st.get("hand_metadata"))
         if eng is not None:
             eng.set_hand_store(hs, st["approvals"])
         else:

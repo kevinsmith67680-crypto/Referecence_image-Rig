@@ -100,12 +100,29 @@ class PerformanceDirector:
         self.resolver = ArtworkAndCorrectionResolver(eng, perf.allow_pending, (perf.corrections or {}).get("mode", "all"))
         self.library = GesturePerformanceLibrary(self.resolver)
         keys = [Key.from_json(k) for k in perf.base_keys] or [Key(0.0, {})]
+        self.substitutions = []
         for k in keys:
             k.head_lead = k.head_lead or self.style.head_lead
+            alt = (k.pose or {}).get("alternative")
+            if alt and not perf.allow_pending and self._needs_missing_palm(k.hands):
+                # production: a key pose that needs palm-up hands nobody approved is shown as its supported
+                # alternative (arms and hands), and the substitution is reported (Phase 3.7)
+                self.substitutions.append({"key": k.id, "label": k.label, "shown": alt.get("label", "alternative"),
+                                           "reason": "NEEDS_ARTWORK: no approved palm-up hand drawing"})
+                k.params = {**k.params, **alt.get("params", {})}
+                k.hands = dict(alt.get("hands", k.hands))
         self.base = KeyPoseSequencer(keys, self.overlap, self.antic)
         clips = [Clip.from_json(c) for c in perf.clips]
         for g in perf.gestures:
-            clips += self.library.build(g["gesture"], float(g["start"]), g.get("side", "r"), self.style,
+            name = g["gesture"]
+            st = self.library.status(name, g.get("side", "r"))
+            if not perf.allow_pending and st["status"] == "NEEDS_ARTWORK" and st.get("alternative"):
+                # production: a gesture whose artwork is missing is replaced as a whole (arms and hands) by its
+                # supported alternative, never shown with stand-in hands on the original arm pose (Phase 3.7)
+                self.substitutions.append({"gesture": name, "start": g["start"], "shown": st["alternative"],
+                                           "reason": f"NEEDS_ARTWORK: {', '.join(st['missing'])}"})
+                name = st["alternative"]
+            clips += self.library.build(name, float(g["start"]), g.get("side", "r"), self.style,
                                         g.get("anticipation"), g.get("overshoot"), g.get("amplitude"),
                                         g.get("duration"), g.get("id"), g.get("torso"))
         if perf.events:
@@ -248,15 +265,80 @@ class PerformanceDirector:
             return out
         return fn
 
+    def _needs_missing_palm(self, hands: dict[str, str]) -> bool:
+        """True when a hand action needs a palm view that no approved drawing on that side can show."""
+        for s, a in (hands or {}).items():
+            need = (self.eng.hand_select.rule(a).get("palm") or []) if a else []
+            if "PALM_UP" in need and len(need) == 1:
+                ok = [c for c in self.resolver.palm_capable(s, "PALM_UP") if c["status"] in ("approved", "original")]
+                if not ok:
+                    return True
+        return False
+
+    # -- hand plan (Phase 3.7) -------------------------------------------------------------------------------------
+    PLAN_STEP = 1.0 / 48.0
+
+    def hand_plan(self) -> dict[str, list[dict[str, Any]]]:
+        """Per side, the intervals of constant requested hand. An *action* interval is resolved once by the
+        NaturalHandSelectionEngine on its middle frame (the held gesture: hard constraints on the solved pose) and
+        held. Computed lazily once, so every frame stays a pure function of time."""
+        if getattr(self, "_hand_plan", None) is not None:
+            return self._hand_plan
+        from .resolver import is_action  # noqa: PLC0415
+
+        n = int(round(self.duration / self.PLAN_STEP)) + 1
+        ts = [k * self.PLAN_STEP for k in range(n)]
+        raw = [self.layers.params_at(t)[1] for t in ts]
+        plan: dict[str, list[dict[str, Any]]] = {}
+        for s in ("r", "l"):
+            ivs: list[dict[str, Any]] = []
+            for t, h in zip(ts, raw):
+                v = h.get(s)
+                if v is None:
+                    continue
+                if ivs and ivs[-1]["value"] == v and abs(ivs[-1]["t1"] - (t - self.PLAN_STEP)) < 1e-9:
+                    ivs[-1]["t1"] = t
+                else:
+                    ivs.append({"value": v, "t0": t, "t1": t, "kind": "action" if is_action(v) else "pose"})
+            plan[s] = ivs
+        self._hand_plan = plan
+        for s, ivs in plan.items():
+            for iv in ivs:
+                if iv["kind"] == "action":
+                    tm = 0.5 * (iv["t0"] + iv["t1"])
+                    r = self.solve(tm, hand_actions={s: iv["value"]}, plan_hands=False)
+                    dec = dict(r["hand_selection"]["decisions"][s])
+                    dec["decided_at"] = round(tm, 4)
+                    iv["decision"] = dec
+        return plan
+
+    def hands_at(self, t: float, hands: dict[str, str]) -> dict[str, dict[str, Any]]:
+        """The planned decision of each side's action interval containing ``t``."""
+        plan = self.hand_plan()
+        out = {}
+        for s, v in hands.items():
+            for iv in plan.get(s, []):
+                if iv["value"] == v and iv["t0"] - self.PLAN_STEP <= t <= iv["t1"] + self.PLAN_STEP and "decision" in iv:
+                    out[s] = iv["decision"]
+                    break
+        return out
+
     def solve(self, t: float, render: bool = False, corrective_mode: str | None = None, evaluate: bool = False,
-              extra: dict[str, Any] | None = None) -> dict[str, Any]:
-        """Solve (and optionally render) frame ``t``. Returns the MotionEngine result plus a ``performance`` report."""
+              extra: dict[str, Any] | None = None, hand_actions: dict[str, str] | None = None,
+              plan_hands: bool = True) -> dict[str, Any]:
+        """Solve (and optionally render) frame ``t``. Returns the MotionEngine result plus a ``performance`` report.
+        ``plan_hands=False`` (internal): no hand switches; ``hand_actions`` go to the selection engine instead."""
         t0 = time.perf_counter()
         ap, hands, info = self.pose_at(t)
         t_layers = time.perf_counter() - t0
-        sw, hand_rep = self.resolver.resolve(hands) if not self.layers.settings["HAND_SWITCHES"]["mute"] else ({}, {})
+        if not plan_hands or self.layers.settings["HAND_SWITCHES"]["mute"]:
+            sw, hand_rep = {}, {}
+        else:
+            sw, hand_rep = self.resolver.resolve(hands, self.hands_at(t, hands))
         rep: dict[str, Any] = {}
         rq = {k: v for k, v in self.planner.request(ap, self.perf.allow_pending).items() if k not in ("name", "depth")}
+        if hand_actions:
+            rq["hand_actions"] = {**(rq.get("hand_actions") or {}), **hand_actions}
         free = None
         need = self.contacts.needs_free_solve(t)
         t1 = time.perf_counter()
@@ -279,6 +361,7 @@ class PerformanceDirector:
             res = self.eng.pose(self._base_name, visible=self.vis, skeleton_only=True, **{**kw, **(extra or {})})
         t2 = time.perf_counter()
         res["performance"] = {"t": round(t, 4), "hands": hand_rep, "layers": info["active_clips"],
+                              "substitutions": self.substitutions,
                               "soft_limited": info["soft_limited"], "facial": info["facial"], **rep,
                               "secondary": {k: round(v, 3) for k, v in self.secondary.garment(t).items()},
                               "contact_sliding_px": self.contacts.sliding(t, res["solve"]),

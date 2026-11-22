@@ -809,11 +809,14 @@ def active_assets(store: HandStore, st: dict[str, Any]) -> list[dict[str, Any]]:
 
 def derive_layers(store: HandStore, st: dict[str, Any], sk, layers: dict[str, np.ndarray],
                   approvals: dict[str, Any], refine=None, cover_masks: dict[str, np.ndarray] | None = None,
-                  source: np.ndarray | None = None) -> tuple[dict[str, np.ndarray], list[dict[str, Any]]]:
+                  source: np.ndarray | None = None, side_map: dict[str, str] | None = None
+                  ) -> tuple[dict[str, np.ndarray], list[dict[str, Any]]]:
     """Rest-frame layers for every candidate drawing (not deleted, library active), plus candidate records for the
     hand library. Sleeve-attached drawings are cut at their own cuff (``cuff_mask``) and matched cuff edge to cuff
     edge; sleeve-free ones are placed by their wrist opening (``WristAlignmentController``).
-    ``refine(side, rgba) -> (dx, dy, error)`` is the visible-attachment search (HandPoseLibrary.best_translation)."""
+    ``refine(side, rgba) -> (dx, dy, error)`` is the visible-attachment search (HandPoseLibrary.best_translation).
+    ``side_map`` (Phase 3.7, from HandAssetMetadata): uid -> the side a drawing is offered on when its inspected
+    handedness differs from the side it was stored for (it is placed on that side's cuff instead)."""
     from .wristalign import WristAlignmentController  # noqa: PLC0415
 
     st = {**default_store_state(), **(st or {})}
@@ -832,7 +835,7 @@ def derive_layers(store: HandStore, st: dict[str, Any], sk, layers: dict[str, np
     from .motion.switches import _status  # noqa: PLC0415 - avoid an import cycle at module load
 
     for a in sorted(assets, key=lambda a: (-lib_order.get(a["library_id"], 0), a["uid"])):  # newest library first
-        s = a["side"]
+        s = (side_map or {}).get(a["uid"], a["side"])
         if s not in ref:
             continue
         ver = store.version(a["uid"], st["versions"].get(a["uid"]))
@@ -888,6 +891,7 @@ def derive_layers(store: HandStore, st: dict[str, Any], sk, layers: dict[str, np
         out[lid] = rgba
         geom = dict(ver.get("geometry") or {})
         cands.append({"cid": f"store:{a['uid']}", "uid": a["uid"], "v": ver["v"], "side": s, "pose": a["pose"],
+                      "stored_side": a["side"],
                       "layer": lid, "status": _status(approvals, approval_key(a["uid"], ver["v"])),
                       "approval_item": approval_key(a["uid"], ver["v"]),
                       "category": "G_ai_generated_concept", "label": st["labels"].get(a["uid"], a["asset_id"]),
@@ -905,10 +909,14 @@ def derive_layers(store: HandStore, st: dict[str, Any], sk, layers: dict[str, np
 
 
 def engine_input(pkg: str | Path, st: dict[str, Any] | None, sk, layers: dict[str, np.ndarray],
-                 variants: dict[str, np.ndarray], approvals: dict[str, Any], source: np.ndarray | None = None
-                 ) -> dict[str, Any] | None:
+                 variants: dict[str, np.ndarray], approvals: dict[str, Any], source: np.ndarray | None = None,
+                 hand_meta_state: dict[str, Any] | None = None, use_metadata: bool = True) -> dict[str, Any] | None:
     """The ``hand_store`` argument of MotionEngine for a package: derived layers, candidate records and the user's
-    active-candidate choices. None when the package has no store."""
+    active-candidate choices. None when the package has no store.
+
+    Phase 3.7: the package's HandAssetMetadata (``analysis/hand_asset_metadata.json``, from ``autorig hand-audit``)
+    plus the user's corrections (project state ``hand_metadata``) decide which side a drawing is offered on; the
+    resolved metadata is returned as ``hand_meta`` and attached to the engine's hand variants."""
     store_dir = Path(pkg) / STORE_DIR / "index.json"
     if not store_dir.is_file():
         return None
@@ -938,7 +946,12 @@ def engine_input(pkg: str | Path, st: dict[str, Any] | None, sk, layers: dict[st
     # hands shaped unlike the reference (grip, cupped, a raised thumb) it moves the drawing off the wrist. It stays
     # available as the editor's explicit Auto-align tool.
     del refine
-    lay, cands = derive_layers(store, state, sk, layers, approvals, None, covers, source)
+    from . import handmeta  # noqa: PLC0415
+
+    inv = handmeta.load(pkg) if use_metadata else None
+    if inv is not None:
+        inv = handmeta.apply_corrections(inv, (hand_meta_state or {}).get("corrections"))
+    lay, cands = derive_layers(store, state, sk, layers, approvals, None, covers, source, handmeta.side_map(inv))
     idmap = gesture_id_map(store, state, cands)
     use, remapped = dict(state["use"]), []
     for k, cid in list(use.items()):  # a choice of an archived drawing follows the map to its replacement
@@ -949,7 +962,7 @@ def engine_input(pkg: str | Path, st: dict[str, Any] | None, sk, layers: dict[st
     libs = library_status(store, state)
     return {"layers": {**extra, **lay}, "candidates": cands, "use": use, "use_remapped": remapped,
             "gesture_id_map": idmap, "libraries": libs, "revision": store.revision,
-            "phase2_active": libs[PHASE2_LIBRARY]["status"] == "active"}
+            "phase2_active": libs[PHASE2_LIBRARY]["status"] == "active", "hand_meta": inv}
 
 
 def gesture_id_map(store: HandStore, st: dict[str, Any], cands: list[dict[str, Any]]) -> list[dict[str, Any]]:

@@ -1,0 +1,48 @@
+{
+ "schema": "autorig.motion_reference",
+ "version": 1,
+ "id": "synthetic_walking",
+ "v": 1,
+ "name": "walking",
+ "tags": {
+  "gesture": "walking",
+  "movement": "locomotion",
+  "emotion": "neutral",
+  "view": "front",
+  "intensity": "medium",
+  "duration_s": 3.0,
+  "required_artwork": [
+   "art:forearm_foreshortened_l",
+   "art:forearm_foreshortened_r",
+   "view:leg_sagittal (knee drive / stride)",
+   "view:leg_sagittal (stride)"
+  ]
+ },
+ "provenance": {
+  "kind": "synthetic",
+  "source": "procedurally authored by AutoRig (SyntheticPerformer keys); no human motion capture, no third-party footage",
+  "usage_permission": "generated in this project; no third-party rights",
+  "note": "a stand-in for a permitted human reference, labelled synthetic"
+ },
+ "usage_permission": "generated in this project; no third-party rights",
+ "fps": 30.0,
+ "frames": 91,
+ "size": [
+  1080,
+  1080
+ ],
+ "hand_actions": {
+  "r": "walking",
+  "l": "walking"
+ },
+ "palm": null,
+ "category": "locomotion",
+ "quality": null,
+ "provider": null,
+ "sha256": {
+  "track": "fd85c0daf48b8b84d486fe74e6dc9b8efb7b7a329a0e2fd16e91fc8848ef10a3",
+  "analysis": "26dd1a36703987a44d0ae311e1d246043b8f84310c9249a4ed5ed024bce12b31"
+ },
+ "created_at": "2026-11-22T12:48:08Z",
+ "character_independent": true
+}

@@ -254,7 +254,7 @@ def test_hand_switch_never_moves_the_cuff(eng):
 def test_weight_edits_are_project_ops_and_survive_reload(pkg):
     from autorig.editor.project import VERSION, EditorProject, OpError
     p = EditorProject(pkg)
-    assert VERSION == 8  # Phase 3.6: performance timeline (schema v8)
+    assert VERSION == 9  # Phase 3.7: hand metadata corrections and reference motion (schema v9)
     n0 = len(p.state()["garment_weights"]["ops"])
     p.submit({"type": "weights.paint", "layer": "torso", "bone": "clavicle_r", "center": [470.0, 520.0],
               "radius": 25.0, "strength": 0.4})

@@ -5,7 +5,8 @@ Writes ``natural_pose/performance/``:
   - ``before_after.gif`` (side by side, every frame);
   - ``contact_sheet.png`` (every 6th frame);
   - ``diagnostics.png`` (feet, pelvis, weight, arm and secondary curves for both);
-  - ``shrug_review_preview.png`` (palm-up shrug with the pending cupped hands, labelled REVIEW ONLY).
+  - ``shrug_review_preview.png`` (Phase 3.7: SHRUG_SUBTLE next to SHRUG_EXPRESSIVE in review mode, labelled with the
+    drawings actually rendered).
 - ``classroom/``: desk contact performance (``classroom.gif``, ``contact_sheet.png``, ``diagnostics.png``);
 - ``secondary/``: body-only vs with secondary motion (``side_by_side.gif``, ``closeups.png``, ``diagnostics.png``);
 - ``results.json``: motion, artistic and geometric checks, timings, benchmark.
@@ -244,28 +245,30 @@ def acting(eng, vis, out: Path, progress: Callable[[str], Any], quick: bool = Fa
              "Phase 3.6 secondary motion (deg)", marks=marks),
     ]
     _stack(charts).save(out / "diagnostics.png")
-    # review-only palm-up shrug preview (pending cupped hands; palm-up drawings do not exist)
+    # Phase 3.7: SHRUG_SUBTLE (supported) next to SHRUG_EXPRESSIVE in review mode. The hands are chosen by the
+    # constrained selection engine (palm-up drawings only: the handedness-corrected cupped drawings, pending) and the
+    # labels name the drawings actually rendered. The Phase 3.6 version of this image showed relaxed hands turned
+    # ~80 deg under a "cupped" label (see natural_pose/hand_selection/diagnosis/).
     shrug_t = next(k.t for k in acting_test_keys() if k.label == "shrug") + 0.3
-    perf = scenarios.acting_upgrade()
-    for k in perf.base_keys:
-        if k["label"].startswith("shrug"):
-            k["params"].update({"arm_r_abduction": 18.0, "arm_r_flexion": -46.0, "arm_r_wrist": -16.0,
-                                "arm_l_abduction": 18.0, "arm_l_flexion": -46.0, "arm_l_wrist": -16.0})
-            k["hands"] = {"r": "cupped", "l": "cupped"}
+    perf = scenarios.acting_upgrade(shrug="expressive")
     rv = PerformanceDirector(eng, vis, perf).solve(shrug_t, render=True)
     ref = up_frames[min(len(up_frames) - 1, int(round(shrug_t * fps)) // (6 if quick else 1))]
     sb = _box([rv["image"], ref])
-    a = _tile(ref, sb, "supported: shrug_low (shoulders up, hands low)")
-    b = _tile(rv["image"], sb, "REVIEW ONLY: palm-up shrug", "cupped hands are pending; palm-up NEEDS_ARTWORK",
-              (170, 0, 0))
+    shown = lambda r: "/".join(f"{s}:{r['hands'][s]['pose']}{' (pending)' if r['hands'][s]['pending_review'] else ''}"
+                               for s in ("r", "l"))
+    sub = d.solve(shrug_t)
+    a = _tile(ref, sb, "SHRUG_SUBTLE (supported)", f"hands {shown(sub)}")
+    b = _tile(rv["image"], sb, "SHRUG_EXPRESSIVE - REVIEW ONLY", f"hands {shown(rv)}; production: NEEDS_ARTWORK "
+              "(palm_up), falls back to the subtle hands", (170, 0, 0))
     _pair(a, b).save(out / "shrug_review_preview.png")
     ev = PerformanceQualityEvaluator(d)
     return {"frames": len(frames), "fps": fps, "baseline_render_s_per_frame": round(t_base / len(frames), 2),
             "upgrade_render_s_per_frame": round(t_up / len(frames), 2),
             "baseline_motion": _baseline_motion(bt, times), "motion": ev.motion(), "artistic": ev.artistic(),
             "geometric": PerformanceQualityEvaluator.geometric(up_res),
-            "shrug": {"status": d.library.status("shrug")["status"], "shown": "shrug_low",
-                      "review_preview": "shrug_review_preview.png (cupped, pending)"},
+            "shrug": {"status": d.library.status("shrug")["status"], "shown": "SHRUG_SUBTLE (shrug_low)",
+                      "review_preview": "shrug_review_preview.png (SHRUG_EXPRESSIVE review: "
+                                        f"{shown(rv)})"},
             "timing": d.timing, "calibration": d.calibration}
 
 
