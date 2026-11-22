@@ -29,10 +29,10 @@
    },
    "generated_visible_after": 647,
    "generated_visible_before": 2577,
-   "render_ms": 2241.0,
-   "eval_ms": 439.1,
-   "wall_s": 2.704,
-   "wall_s_before": 2.584
+   "render_ms": 2095.2,
+   "eval_ms": 381.3,
+   "wall_s": 2.502,
+   "wall_s_before": 2.113
   },
   "02_left_arm_45": {
    "title": "left arm raised 45 deg",
@@ -63,10 +63,10 @@
    },
    "generated_visible_after": 682,
    "generated_visible_before": 2449,
-   "render_ms": 2466.8,
-   "eval_ms": 506.5,
-   "wall_s": 3.007,
-   "wall_s_before": 2.136
+   "render_ms": 2267.5,
+   "eval_ms": 625.9,
+   "wall_s": 2.932,
+   "wall_s_before": 2.133
   },
   "03_right_arm_90": {
    "title": "right arm raised 90 deg",
@@ -97,10 +97,10 @@
    },
    "generated_visible_after": 511,
    "generated_visible_before": 2465,
-   "render_ms": 2206.9,
-   "eval_ms": 403.6,
-   "wall_s": 2.639,
-   "wall_s_before": 2.1
+   "render_ms": 2305.2,
+   "eval_ms": 425.5,
+   "wall_s": 2.757,
+   "wall_s_before": 2.439
   },
   "04_both_raised": {
    "title": "both arms raised",
@@ -135,10 +135,10 @@
    },
    "generated_visible_after": 201,
    "generated_visible_before": 2275,
-   "render_ms": 2128.7,
-   "eval_ms": 411.8,
-   "wall_s": 2.567,
-   "wall_s_before": 1.675
+   "render_ms": 2720.9,
+   "eval_ms": 626.7,
+   "wall_s": 3.384,
+   "wall_s_before": 2.41
   },
   "05_elbows_bent": {
    "title": "elbows bent 95 deg",
@@ -171,10 +171,10 @@
    },
    "generated_visible_after": 548,
    "generated_visible_before": 1529,
-   "render_ms": 2318.0,
-   "eval_ms": 512.4,
-   "wall_s": 2.859,
-   "wall_s_before": 1.992
+   "render_ms": 2390.4,
+   "eval_ms": 371.6,
+   "wall_s": 2.798,
+   "wall_s_before": 2.209
   },
   "06_pointing": {
    "title": "pointing",
@@ -205,10 +205,10 @@
    },
    "generated_visible_after": 407,
    "generated_visible_before": 2409,
-   "render_ms": 2484.0,
-   "eval_ms": 603.1,
-   "wall_s": 3.128,
-   "wall_s_before": 3.04
+   "render_ms": 2810.1,
+   "eval_ms": 482.9,
+   "wall_s": 3.33,
+   "wall_s_before": 2.665
   },
   "07_walking": {
    "title": "walking (phase 0.25)",
@@ -239,10 +239,10 @@
    },
    "generated_visible_after": 419,
    "generated_visible_before": 2426,
-   "render_ms": 2970.6,
-   "eval_ms": 510.1,
-   "wall_s": 3.518,
-   "wall_s_before": 2.738
+   "render_ms": 3645.5,
+   "eval_ms": 505.3,
+   "wall_s": 4.182,
+   "wall_s_before": 2.954
   },
   "08_running": {
    "title": "running (phase 0.25)",
@@ -274,10 +274,10 @@
    },
    "generated_visible_after": 592,
    "generated_visible_before": 2452,
-   "render_ms": 3516.3,
-   "eval_ms": 499.0,
-   "wall_s": 4.054,
-   "wall_s_before": 3.509
+   "render_ms": 3205.9,
+   "eval_ms": 479.0,
+   "wall_s": 3.729,
+   "wall_s_before": 3.025
   },
   "09_sitting": {
    "title": "sitting",
@@ -317,10 +317,10 @@
    },
    "generated_visible_after": 731,
    "generated_visible_before": 2347,
-   "render_ms": 2497.2,
-   "eval_ms": 468.3,
-   "wall_s": 2.994,
-   "wall_s_before": 2.141
+   "render_ms": 2060.1,
+   "eval_ms": 434.4,
+   "wall_s": 2.521,
+   "wall_s_before": 1.758
   },
   "10_squatting": {
    "title": "squatting",
@@ -359,10 +359,10 @@
    },
    "generated_visible_after": 902,
    "generated_visible_before": 2347,
-   "render_ms": 2876.2,
-   "eval_ms": 562.9,
-   "wall_s": 3.473,
-   "wall_s_before": 2.681
+   "render_ms": 2653.0,
+   "eval_ms": 429.2,
+   "wall_s": 3.11,
+   "wall_s_before": 2.392
   },
   "11_lean_forward": {
    "title": "leaning forward",
@@ -395,10 +395,10 @@
    },
    "generated_visible_after": 696,
    "generated_visible_before": 2368,
-   "render_ms": 3201.4,
-   "eval_ms": 555.5,
-   "wall_s": 3.791,
-   "wall_s_before": 3.247
+   "render_ms": 2881.7,
+   "eval_ms": 508.4,
+   "wall_s": 3.419,
+   "wall_s_before": 2.963
   },
   "12_lean_backward": {
    "title": "leaning backward",
@@ -431,19 +431,19 @@
    },
    "generated_visible_after": 770,
    "generated_visible_before": 2360,
-   "render_ms": 3047.1,
-   "eval_ms": 606.1,
-   "wall_s": 3.683,
-   "wall_s_before": 2.761
+   "render_ms": 2812.6,
+   "eval_ms": 529.1,
+   "wall_s": 3.367,
+   "wall_s_before": 2.581
   }
  },
  "performance": {
-  "build_structured_s": 9.93,
-  "build_legacy_s": 5.23,
-  "pose_wall_s_mean": 3.201,
-  "pose_wall_s_max": 4.054,
-  "legacy_pose_wall_s_mean": 2.55,
-  "eval_ms_mean": 506.5,
+  "build_structured_s": 11.25,
+  "build_legacy_s": 5.81,
+  "pose_wall_s_mean": 3.169,
+  "pose_wall_s_max": 4.182,
+  "legacy_pose_wall_s_mean": 2.47,
+  "eval_ms_mean": 483.3,
   "machine": "cloud sandbox CPU (4 cores); not measured on the user's M1"
  },
  "sweeps": {

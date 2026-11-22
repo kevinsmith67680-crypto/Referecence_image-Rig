@@ -1,0 +1,281 @@
+{
+ "poses": {
+  "G": [
+   "palm_up open hand (both sides)"
+  ],
+  "J": [
+   "corrective:elbow_deep_r (sleeve fold for > 125 deg)",
+   "hand:fist or thinking hand (approved)"
+  ],
+  "K": [
+   "side or 3/4 view for a readable stride (front view: in-plane motion only)"
+  ],
+  "L": [
+   "art:thigh_knee_up / art:shin_tucked (knee drive toward the viewer)",
+   "side or 3/4 view for a readable sprint"
+  ],
+  "M": [
+   "art:thigh_foreshortened",
+   "art:seat",
+   "corrective:trousers_seated"
+  ],
+  "O": [
+   "art:torso_lean_forward",
+   "corrective:torso_lean_3q"
+  ]
+ },
+ "hands": [
+  "palm_up (r, l): no anatomically correct open palm-up drawing",
+  "partially_closed (r, l)",
+  "left pointing: only a mirrored copy of a right hand"
+ ],
+ "facial": [
+  {
+   "control": "head_yaw",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "head_base",
+    "hair",
+    "nose",
+    "mouth",
+    "brow_r",
+    "brow_l",
+    "eye_r_white",
+    "eye_r_iris",
+    "eye_l_white",
+    "eye_l_iris",
+    "head_turn_left",
+    "head_turn_right"
+   ],
+   "available_artwork": [
+    "head_base",
+    "hair",
+    "nose",
+    "mouth",
+    "brow_r",
+    "brow_l",
+    "eye_r_white",
+    "eye_r_iris",
+    "eye_l_white",
+    "eye_l_iris"
+   ],
+   "missing": [
+    "head_turn_left",
+    "head_turn_right",
+    "three-quarter view, turned left (incl. hair, ears, features)",
+    "three-quarter view, turned right"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "head_pitch",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "head_base",
+    "hair",
+    "nose",
+    "mouth",
+    "brow_r",
+    "brow_l",
+    "eye_r_white",
+    "eye_r_iris",
+    "eye_l_white",
+    "eye_l_iris",
+    "head_up",
+    "head_down"
+   ],
+   "available_artwork": [
+    "head_base",
+    "hair",
+    "nose",
+    "mouth",
+    "brow_r",
+    "brow_l",
+    "eye_r_white",
+    "eye_r_iris",
+    "eye_l_white",
+    "eye_l_iris"
+   ],
+   "missing": [
+    "head pitched down",
+    "head pitched up",
+    "head_down",
+    "head_up"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "eye_blink_left",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "eye_l_white",
+    "eye_l_iris",
+    "eye_l_closed"
+   ],
+   "available_artwork": [
+    "eye_l_white",
+    "eye_l_iris"
+   ],
+   "missing": [
+    "closed left eye drawing (eyelid down)",
+    "eye_l_closed"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "eye_blink_right",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "eye_r_white",
+    "eye_r_iris",
+    "eye_r_closed"
+   ],
+   "available_artwork": [
+    "eye_r_white",
+    "eye_r_iris"
+   ],
+   "missing": [
+    "closed right eye drawing (eyelid down)",
+    "eye_r_closed"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "jaw_open",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "mouth",
+    "head_base",
+    "mouth_open"
+   ],
+   "available_artwork": [
+    "mouth",
+    "head_base"
+   ],
+   "missing": [
+    "mouth_open",
+    "open mouth with interior, teeth and tongue"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "mouth_width",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "mouth",
+    "head_base",
+    "mouth_wide",
+    "mouth_narrow"
+   ],
+   "available_artwork": [
+    "mouth",
+    "head_base"
+   ],
+   "missing": [
+    "mouth_narrow",
+    "mouth_wide",
+    "narrowed mouth shape",
+    "widened mouth shape"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "mouth_pucker",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "mouth",
+    "head_base",
+    "mouth_pucker"
+   ],
+   "available_artwork": [
+    "mouth",
+    "head_base"
+   ],
+   "missing": [
+    "mouth_pucker",
+    "puckered/pursed lips"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "smile_left",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "mouth",
+    "head_base",
+    "mouth_smile_left"
+   ],
+   "available_artwork": [
+    "mouth",
+    "head_base"
+   ],
+   "missing": [
+    "left corner raised",
+    "mouth_smile_left"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  },
+  {
+   "control": "smile_right",
+   "readiness": "REQUIRES_NEW_ARTWORK",
+   "required_artwork": [
+    "mouth",
+    "head_base",
+    "mouth_smile_right"
+   ],
+   "available_artwork": [
+    "mouth",
+    "head_base"
+   ],
+   "missing": [
+    "mouth_smile_right",
+    "right corner raised"
+   ],
+   "proposed_control_type": "smart_bone",
+   "user_approval": "not_reviewed",
+   "moho_mapping": "proposed_unverified",
+   "live_ready": false,
+   "why_not_live_ready": "artwork missing"
+  }
+ ],
+ "garments": [
+  "arms-down shoulder / sleeve-cap drawing (sloped shoulder line)",
+  "deep elbow fold (> 125 deg)",
+  "seated thighs, seat, trousers seated",
+  "torso lean forward (3/4)",
+  "knee-drive thigh / tucked shin (running)"
+ ],
+ "note": "artwork AutoRig cannot invent from the front-view reference; requests, not failures"
+}

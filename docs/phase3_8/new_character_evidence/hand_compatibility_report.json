@@ -635,5 +635,91 @@
    2
   ],
   "library_tone_clusters_median": 2.0
+ },
+ "store_alignment": {
+  "r_relaxed": {
+   "cid": "store:tough_student_hands_v1/right_relaxed",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.73 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "r_fist": {
+   "cid": "store:tough_student_hands_v1/right_fist",
+   "status": "OK",
+   "issues": []
+  },
+  "r_pointing": {
+   "cid": "store:tough_student_hands_v1/right_pointing",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.73 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "r_thumbs_up": {
+   "cid": "store:tough_student_hands_v1/right_thumbs_up",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.71 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "r_gripping": {
+   "cid": "store:tough_student_hands_v1/right_gripping",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.74 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "r_palm_down": {
+   "cid": "store:tough_student_hands_v1/right_palm_down",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.74 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "r_cupped": {
+   "cid": "store:tough_student_hands_v1/left_cupped",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.73 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "l_relaxed": {
+   "cid": "store:tough_student_hands_v1/left_relaxed",
+   "status": "OK",
+   "issues": []
+  },
+  "l_fist": {
+   "cid": "store:tough_student_hands_v1/left_fist",
+   "status": "OK",
+   "issues": []
+  },
+  "l_pointing": {
+   "cid": "store:tough_student_hands_v1/left_pointing",
+   "status": "OK",
+   "issues": []
+  },
+  "l_thumbs_up": {
+   "cid": "store:tough_student_hands_v1/left_thumbs_up",
+   "status": "MISMATCH",
+   "issues": [
+    "wrist width 0.72 x the sleeve opening (outside [0.75, 1.35])"
+   ]
+  },
+  "l_gripping": {
+   "cid": "store:tough_student_hands_v1/left_gripping",
+   "status": "OK",
+   "issues": []
+  },
+  "l_palm_down": {
+   "cid": "store:tough_student_hands_v1/left_palm_down",
+   "status": "OK",
+   "issues": []
+  },
+  "l_cupped": {
+   "cid": "store:tough_student_hands_v1/right_cupped",
+   "status": "OK",
+   "issues": []
+  }
  }
 }

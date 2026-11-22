@@ -453,14 +453,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 19.7,
-  "corrections": 0.34,
+  "solve": 13.53,
+  "corrections": 0.29,
   "switches": 0.16,
-  "garment_eval": 603.1,
-  "render_and_tears": 2484.0,
-  "total": 3127.6
+  "garment_eval": 482.9,
+  "render_and_tears": 2810.1,
+  "total": 3329.8
  },
- "wall_s": 3.128,
+ "wall_s": 3.33,
  "visual_review_required": true,
  "before": {
   "feasibility": "NEEDS_ARTWORK",
@@ -470,7 +470,7 @@
    "outline_break": 24
   },
   "generated_visible_px": 2409,
-  "wall_s": 3.04
+  "wall_s": 2.665
  },
  "title": "pointing"
 }

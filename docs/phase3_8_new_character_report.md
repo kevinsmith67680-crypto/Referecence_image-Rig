@@ -183,7 +183,7 @@ an arms-down shoulder drawing.
 ## 16. Animation tests (step 17)
 
 `18_animation_preview.gif` and `18_animation_contact_sheet.png` are AutoRig renders labelled REVIEW PREVIEW: 91 frames
-at 12 fps, about 3.0 s per frame on the cloud CPU.
+at 12 fps, about 3.2 s per frame on the cloud CPU.
 
 The sequence is one Phase 3.6 performance. It goes through the one pipeline (`PerformanceDirector` →
 `MotionEngine.pose`): no second solver, no scaled bone. The T-pose key is the character's own rest angles.
@@ -301,7 +301,7 @@ The approvals in this test are persistence checks on a scratch copy, not artisti
 `19_project_reload.png`:
 - 10 operations were applied through `EditorProject.submit` on a scratch copy: bone, mask, weights, approve, reject,
   wrist placement, hand metadata, switch, corrective mode, reference.
-- Then undo/redo and a saved version.
+- Then undo/redo (cursor 10 → 9 → 10) and a saved version (version 1, still listed after reopening).
 - After dropping every object and reopening from disk:
   - project state identical;
   - render pixel-identical;

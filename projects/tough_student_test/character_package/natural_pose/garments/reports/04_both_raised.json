@@ -540,14 +540,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 4.56,
-  "corrections": 0.17,
-  "switches": 0.09,
-  "garment_eval": 411.8,
-  "render_and_tears": 2128.7,
-  "total": 2567.1
+  "solve": 7.73,
+  "corrections": 0.3,
+  "switches": 0.16,
+  "garment_eval": 626.7,
+  "render_and_tears": 2720.9,
+  "total": 3383.5
  },
- "wall_s": 2.567,
+ "wall_s": 3.384,
  "visual_review_required": true,
  "before": {
   "feasibility": "NEEDS_ARTWORK",
@@ -557,7 +557,7 @@
    "outline_break": 56
   },
   "generated_visible_px": 2275,
-  "wall_s": 1.675
+  "wall_s": 2.41
  },
  "title": "both arms raised"
 }

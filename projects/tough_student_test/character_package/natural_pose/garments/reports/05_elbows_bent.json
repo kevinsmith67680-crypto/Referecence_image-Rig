@@ -489,14 +489,14 @@
   }
  ],
  "timing_ms": {
-  "solve": 5.76,
-  "corrections": 0.21,
-  "switches": 0.11,
-  "garment_eval": 512.4,
-  "render_and_tears": 2318.0,
-  "total": 2858.9
+  "solve": 9.65,
+  "corrections": 0.36,
+  "switches": 0.17,
+  "garment_eval": 371.6,
+  "render_and_tears": 2390.4,
+  "total": 2797.8
  },
- "wall_s": 2.859,
+ "wall_s": 2.798,
  "visual_review_required": true,
  "before": {
   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
@@ -506,7 +506,7 @@
    "outline_break": 1
   },
   "generated_visible_px": 1529,
-  "wall_s": 1.992
+  "wall_s": 2.209
  },
  "title": "elbows bent 95 deg"
 }

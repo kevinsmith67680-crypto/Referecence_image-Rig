@@ -92,8 +92,8 @@
    ],
    "depth_segments": [],
    "timing_s": {
-    "analysis": 0.002,
-    "retarget_and_compare": 0.103
+    "analysis": 0.003,
+    "retarget_and_compare": 0.147
    },
    "accents": {
     "arm_r_abduction": {
@@ -281,8 +281,8 @@
     "forearm_r"
    ],
    "timing_s": {
-    "analysis": 0.003,
-    "retarget_and_compare": 0.118
+    "analysis": 0.002,
+    "retarget_and_compare": 0.091
    },
    "accents": {
     "arm_r_abduction": {
@@ -446,8 +446,8 @@
     "shin_r"
    ],
    "timing_s": {
-    "analysis": 0.452,
-    "retarget_and_compare": 0.116
+    "analysis": 0.002,
+    "retarget_and_compare": 0.098
    },
    "accents": {
     "arm_r_abduction": {
@@ -498,7 +498,7 @@
    6.0
   ],
   "quality": {
-   "mean_visibility": 0.983,
+   "mean_visibility": 0.982,
    "occluded_frac": {
     "shoulder_r": 0.0,
     "shoulder_l": 0.0,
@@ -509,9 +509,9 @@
     "hip_r": 0.0,
     "hip_l": 0.0
    },
-   "shoulder_torso_ratio": 0.641,
+   "shoulder_torso_ratio": 0.634,
    "view": "three_quarter",
-   "subject_px": 459.6,
+   "subject_px": 460.0,
    "flags": [
     "unsupported view: three_quarter (the rig is a front view)"
    ],
@@ -519,46 +519,46 @@
   },
   "errors_vs_known_params": {
    "arm_r_abduction": {
-    "rms_deg": 12.21,
-    "max_deg": 18.65,
+    "rms_deg": 12.6,
+    "max_deg": 19.46,
     "truth_range": 145.21,
-    "est_range": 134.51
+    "est_range": 134.82
    },
    "arm_r_flexion": {
-    "rms_deg": 15.62,
-    "max_deg": 24.88,
+    "rms_deg": 16.55,
+    "max_deg": 27.04,
     "truth_range": 32.54,
     "est_range": 20.36
    },
    "arm_l_abduction": {
-    "rms_deg": 2.61,
-    "max_deg": 6.06,
+    "rms_deg": 2.66,
+    "max_deg": 4.73,
     "truth_range": 5.0,
-    "est_range": 8.03
+    "est_range": 7.77
    },
    "clavicle_r": {
-    "rms_deg": 22.54,
-    "max_deg": 29.36,
+    "rms_deg": 23.19,
+    "max_deg": 28.43,
     "truth_range": 8.21,
-    "est_range": 29.41
+    "est_range": 29.98
    },
    "clavicle_l": {
-    "rms_deg": 9.37,
-    "max_deg": 15.55,
+    "rms_deg": 8.98,
+    "max_deg": 13.67,
     "truth_range": 10.18,
-    "est_range": 14.04
+    "est_range": 14.4
    },
    "head": {
-    "rms_deg": 6.37,
-    "max_deg": 9.37,
+    "rms_deg": 6.89,
+    "max_deg": 11.42,
     "truth_range": 11.94,
-    "est_range": 8.51
+    "est_range": 9.02
    },
    "line_of_action": {
-    "rms_deg": 5.5,
-    "max_deg": 9.21,
+    "rms_deg": 5.38,
+    "max_deg": 9.19,
     "truth_range": 9.34,
-    "est_range": 2.04
+    "est_range": 2.31
    }
   },
   "provider": {
@@ -569,15 +569,15 @@
    "mediapipe_version": "1.2.3",
    "timing": {
     "frames": 44,
-    "total_s": 2.866,
-    "per_frame_s": 0.0651
+    "total_s": 2.465,
+    "per_frame_s": 0.056
    }
   },
   "timing_s": {
-   "render_per_frame": 3.165,
-   "decode_total": 0.226,
-   "pose_per_frame": 0.0651,
-   "analysis": 0.006
+   "render_per_frame": 3.173,
+   "decode_total": 0.19,
+   "pose_per_frame": 0.056,
+   "analysis": 0.005
   },
   "note": "a cartoon render, not a human: errors show the provider/analysis chain on this character's proportions; they are not human-reference accuracy"
  },

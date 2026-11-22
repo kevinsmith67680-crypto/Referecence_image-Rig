@@ -1094,8 +1094,9 @@ def section_reload(ctx: dict[str, Any]) -> dict[str, Any]:
     from .editor.project import VERSION, EditorProject
 
     out, pkg = ctx["out"], ctx["pkg"]
+    # evidence folders only; natural_pose/corrective (the Phase 2 hand-variant manifest) is rig data and is copied
     big = {"motion", "garments", "ik_switch", "correctives", "artistic", "performance", "hand_selection",
-           "reference_motion", "closeups", "legacy", "poses", "corrective"}
+           "reference_motion", "closeups", "legacy", "poses"}
     work = Path(tempfile.mkdtemp(prefix="p38_reload_"))
     dst = work / "character_package"
     shutil.copytree(pkg, dst, ignore=lambda d, names: [n for n in names if Path(d).name == "natural_pose" and n in big]
@@ -1167,7 +1168,10 @@ def section_reload(ctx: dict[str, Any]) -> dict[str, Any]:
            "note": "scratch copy only: the committed package's editor project has no edits and no approvals"}
     a = figure(r1["image"], 420)
     b = figure(r2["image"], 420)
-    lines = [f"ops applied through EditorProject.submit: {len(applied)} ({', '.join(applied)})"[:150],
+    lines = [f"ops applied through EditorProject.submit: {len(applied)}",
+             f"  {', '.join(applied[:5])},", f"  {', '.join(applied[5:])}",
+             f"undo/redo: cursor {undo_redo['cursor']} -> {undo_redo['after_undo']} -> {undo_redo['after_redo']}; "
+             f"saved version {rec['saved_version']['n']} listed after reopen: {rec['saved_version']['listed_after_reopen']}",
              f"refused: {refused}"[:150], f"project schema v{rec['schema_version']} (code v{VERSION}); "
                                           f"state equal after reopen: {same_state}; render identical: {same_px}",
              f"absolute paths in project.json: {len(absolute)}; files present: {all(files.values())}; "
