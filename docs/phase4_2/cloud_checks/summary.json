@@ -1,0 +1,140 @@
+[
+  {
+    "character": "schoolboy_tpose",
+    "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+    "gates": {
+      "4.2-A": "MOCK_ONLY",
+      "4.2-B": "MOCK_ONLY",
+      "4.2-C": "MOCK_ONLY",
+      "4.2-D": "MOCK_ONLY",
+      "4.2-E": "MEASURED",
+      "4.2-F": "NOT_EXECUTED",
+      "4.2-G": "MOCK_ONLY",
+      "4.2-H": "MOCK_ONLY",
+      "4.2-I": "NOT_EXECUTED",
+      "4.2-J": "NOT_EXECUTED",
+      "4.2-K": "NOT_EXECUTED"
+    },
+    "moho_canvas": [
+      1146,
+      1474
+    ],
+    "layers": {
+      "derived_partition": 11,
+      "original": 25
+    },
+    "review_layers": {
+      "pending_corrective": 6,
+      "derived_partition": 11,
+      "original": 25
+    },
+    "partition_exact": true,
+    "manual_switch_assets": {
+      "native_gap_shoulder_l__both_arms_lowered": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_shoulder_l__left_arm_raised": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_shoulder_r__both_arms_lowered": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_shoulder_r__right_arm_raised": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_hip_l__left_knee_bent": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_hip_r__right_knee_bent": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ]
+    }
+  },
+  {
+    "character": "tough_student_test",
+    "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+    "gates": {
+      "4.2-A": "MOCK_ONLY",
+      "4.2-B": "MOCK_ONLY",
+      "4.2-C": "MOCK_ONLY",
+      "4.2-D": "MOCK_ONLY",
+      "4.2-E": "MEASURED",
+      "4.2-F": "NOT_EXECUTED",
+      "4.2-G": "MOCK_ONLY",
+      "4.2-H": "MOCK_ONLY",
+      "4.2-I": "NOT_EXECUTED",
+      "4.2-J": "NOT_EXECUTED",
+      "4.2-K": "NOT_EXECUTED"
+    },
+    "moho_canvas": [
+      1146,
+      1472
+    ],
+    "layers": {
+      "original": 25,
+      "derived_partition": 15
+    },
+    "review_layers": {
+      "pending_corrective": 6,
+      "original": 25,
+      "derived_partition": 15
+    },
+    "partition_exact": true,
+    "manual_switch_assets": {
+      "native_gap_shoulder_l__both_arms_lowered": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_shoulder_l__left_arm_raised": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_shoulder_r__both_arms_lowered": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_shoulder_r__right_arm_raised": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_hip_l__left_knee_bent": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ],
+      "native_gap_hip_r__right_knee_bent": [
+        "k025",
+        "k050",
+        "k075",
+        "k100"
+      ]
+    }
+  }
+]

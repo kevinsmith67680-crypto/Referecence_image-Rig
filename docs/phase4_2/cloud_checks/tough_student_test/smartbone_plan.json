@@ -1,0 +1,512 @@
+{
+  "schema": "autorig.native_smartbone_plan",
+  "version": "4.2.0",
+  "status": "proposed_unverified",
+  "note": "Smart Bone actions and Switch layers are authored by hand in Moho (manual tests MT-1, MT-2); nothing here was run in Moho, and no asset is approved by this plan",
+  "assets": [
+    {
+      "asset": "elbow_cap_l",
+      "version": 1,
+      "category": "elbows",
+      "approval_id": "corrective:elbow_cap_l@v1",
+      "approval": "pending",
+      "attach_bone": "LEFT_UPPER_ARM",
+      "native_automation": "build_script",
+      "layers": [
+        "elbow_cap_l__v1_pending"
+      ],
+      "keys": [],
+      "driver_bone": null,
+      "moho_action": null,
+      "rule": "always visible: clipped to fully opaque rest pixels and drawn beneath every layer, so it can only show through a gap the joint opens (no Smart Bone action needed)",
+      "phase34_activation": {
+        "kind": "ramp",
+        "driver": "elbow_l",
+        "lo": 50.0,
+        "hi": 90.0
+      }
+    },
+    {
+      "asset": "elbow_cap_r",
+      "version": 1,
+      "category": "elbows",
+      "approval_id": "corrective:elbow_cap_r@v1",
+      "approval": "pending",
+      "attach_bone": "RIGHT_UPPER_ARM",
+      "native_automation": "build_script",
+      "layers": [
+        "elbow_cap_r__v1_pending"
+      ],
+      "keys": [],
+      "driver_bone": null,
+      "moho_action": null,
+      "rule": "always visible: clipped to fully opaque rest pixels and drawn beneath every layer, so it can only show through a gap the joint opens (no Smart Bone action needed)",
+      "phase34_activation": {
+        "kind": "ramp",
+        "driver": "elbow_r",
+        "lo": 50.0,
+        "hi": 90.0
+      }
+    },
+    {
+      "asset": "knee_cap_l",
+      "version": 1,
+      "category": "knees",
+      "approval_id": "corrective:knee_cap_l@v1",
+      "approval": "pending",
+      "attach_bone": "LEFT_THIGH",
+      "native_automation": "build_script",
+      "layers": [
+        "knee_cap_l__v1_pending"
+      ],
+      "keys": [],
+      "driver_bone": null,
+      "moho_action": null,
+      "rule": "always visible: clipped to fully opaque rest pixels and drawn beneath every layer, so it can only show through a gap the joint opens (no Smart Bone action needed)",
+      "phase34_activation": {
+        "kind": "ramp",
+        "driver": "knee_l",
+        "lo": 20.0,
+        "hi": 60.0
+      }
+    },
+    {
+      "asset": "knee_cap_r",
+      "version": 1,
+      "category": "knees",
+      "approval_id": "corrective:knee_cap_r@v1",
+      "approval": "pending",
+      "attach_bone": "RIGHT_THIGH",
+      "native_automation": "build_script",
+      "layers": [
+        "knee_cap_r__v1_pending"
+      ],
+      "keys": [],
+      "driver_bone": null,
+      "moho_action": null,
+      "rule": "always visible: clipped to fully opaque rest pixels and drawn beneath every layer, so it can only show through a gap the joint opens (no Smart Bone action needed)",
+      "phase34_activation": {
+        "kind": "ramp",
+        "driver": "knee_r",
+        "lo": 20.0,
+        "hi": 60.0
+      }
+    },
+    {
+      "asset": "native_gap_hip_l__left_knee_bent",
+      "version": 1,
+      "category": "hips",
+      "approval_id": "corrective:native_gap_hip_l__left_knee_bent@v1",
+      "approval": "pending",
+      "attach_bone": "PELVIS",
+      "native_automation": "manual_switch",
+      "layers": [
+        "native_gap_hip_l__left_knee_bent__k025__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k050__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k075__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k100__v1_pending"
+      ],
+      "keys": [
+        {
+          "key": "k025",
+          "layer": "native_gap_hip_l__left_knee_bent__k025__v1_pending",
+          "fraction": 0.25,
+          "bone_offset_deg": 3.75
+        },
+        {
+          "key": "k050",
+          "layer": "native_gap_hip_l__left_knee_bent__k050__v1_pending",
+          "fraction": 0.5,
+          "bone_offset_deg": 7.5
+        },
+        {
+          "key": "k075",
+          "layer": "native_gap_hip_l__left_knee_bent__k075__v1_pending",
+          "fraction": 0.75,
+          "bone_offset_deg": 11.25
+        },
+        {
+          "key": "k100",
+          "layer": "native_gap_hip_l__left_knee_bent__k100__v1_pending",
+          "fraction": 1.0,
+          "bone_offset_deg": 15.0
+        }
+      ],
+      "driver_bone": "LEFT_THIGH",
+      "moho_action": "LEFT_THIGH",
+      "moho_action_note": "a Smart Bone action is named after its bone",
+      "rule": "Switch layer beneath every layer, bound to attach_bone; the Smart Bone action shows 'off' at rest and the largest key not past the bone's rotation",
+      "files": {
+        "k025": {
+          "path": "correctives/native_gap_hip_l__left_knee_bent/k025.png",
+          "sha256": "7439dfa36d46309d39084ee388e46f79cbc156772d99db3f383b132fccc5e93b"
+        },
+        "k050": {
+          "path": "correctives/native_gap_hip_l__left_knee_bent/k050.png",
+          "sha256": "ca9685ea4e9b33e1000bea33b78c74f95a04545acc751a85e922a0477f241956"
+        },
+        "k075": {
+          "path": "correctives/native_gap_hip_l__left_knee_bent/k075.png",
+          "sha256": "3ac48ee7eda4f810f10d1f8843339047fe78039359c7344e730835f8da0850f5"
+        },
+        "k100": {
+          "path": "correctives/native_gap_hip_l__left_knee_bent/k100.png",
+          "sha256": "3dd1b22007862715b702dceda3207a3f78e50c7b6c9448ec7cff2d7e6e7a0a40"
+        }
+      }
+    },
+    {
+      "asset": "native_gap_hip_r__right_knee_bent",
+      "version": 1,
+      "category": "hips",
+      "approval_id": "corrective:native_gap_hip_r__right_knee_bent@v1",
+      "approval": "pending",
+      "attach_bone": "PELVIS",
+      "native_automation": "manual_switch",
+      "layers": [
+        "native_gap_hip_r__right_knee_bent__k025__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k050__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k075__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k100__v1_pending"
+      ],
+      "keys": [
+        {
+          "key": "k025",
+          "layer": "native_gap_hip_r__right_knee_bent__k025__v1_pending",
+          "fraction": 0.25,
+          "bone_offset_deg": -3.75
+        },
+        {
+          "key": "k050",
+          "layer": "native_gap_hip_r__right_knee_bent__k050__v1_pending",
+          "fraction": 0.5,
+          "bone_offset_deg": -7.5
+        },
+        {
+          "key": "k075",
+          "layer": "native_gap_hip_r__right_knee_bent__k075__v1_pending",
+          "fraction": 0.75,
+          "bone_offset_deg": -11.25
+        },
+        {
+          "key": "k100",
+          "layer": "native_gap_hip_r__right_knee_bent__k100__v1_pending",
+          "fraction": 1.0,
+          "bone_offset_deg": -15.0
+        }
+      ],
+      "driver_bone": "RIGHT_THIGH",
+      "moho_action": "RIGHT_THIGH",
+      "moho_action_note": "a Smart Bone action is named after its bone",
+      "rule": "Switch layer beneath every layer, bound to attach_bone; the Smart Bone action shows 'off' at rest and the largest key not past the bone's rotation",
+      "files": {
+        "k025": {
+          "path": "correctives/native_gap_hip_r__right_knee_bent/k025.png",
+          "sha256": "242e1b75a22eca39bed479988e5534baf1b345a7a9fdece91a88af9d6c5fe55d"
+        },
+        "k050": {
+          "path": "correctives/native_gap_hip_r__right_knee_bent/k050.png",
+          "sha256": "3f230f7869f87e9f6e57e686bf7e6d9e34447fa4bb46af71169e5428fa4835eb"
+        },
+        "k075": {
+          "path": "correctives/native_gap_hip_r__right_knee_bent/k075.png",
+          "sha256": "e1c2fd1d4e96efdd37fba60876f126fdfcdddfbe87e6f021b6f41e8f23058af1"
+        },
+        "k100": {
+          "path": "correctives/native_gap_hip_r__right_knee_bent/k100.png",
+          "sha256": "cdd862cc79765c1ac59060bb6e4a289356ecae6bd45accc31b6d067a36809387"
+        }
+      }
+    },
+    {
+      "asset": "native_gap_shoulder_l__both_arms_lowered",
+      "version": 1,
+      "category": "shoulders",
+      "approval_id": "corrective:native_gap_shoulder_l__both_arms_lowered@v1",
+      "approval": "pending",
+      "attach_bone": "CHEST",
+      "native_automation": "manual_switch",
+      "layers": [
+        "native_gap_shoulder_l__both_arms_lowered__k025__v1_pending",
+        "native_gap_shoulder_l__both_arms_lowered__k050__v1_pending",
+        "native_gap_shoulder_l__both_arms_lowered__k075__v1_pending",
+        "native_gap_shoulder_l__both_arms_lowered__k100__v1_pending"
+      ],
+      "keys": [
+        {
+          "key": "k025",
+          "layer": "native_gap_shoulder_l__both_arms_lowered__k025__v1_pending",
+          "fraction": 0.25,
+          "bone_offset_deg": -16.25
+        },
+        {
+          "key": "k050",
+          "layer": "native_gap_shoulder_l__both_arms_lowered__k050__v1_pending",
+          "fraction": 0.5,
+          "bone_offset_deg": -32.5
+        },
+        {
+          "key": "k075",
+          "layer": "native_gap_shoulder_l__both_arms_lowered__k075__v1_pending",
+          "fraction": 0.75,
+          "bone_offset_deg": -48.75
+        },
+        {
+          "key": "k100",
+          "layer": "native_gap_shoulder_l__both_arms_lowered__k100__v1_pending",
+          "fraction": 1.0,
+          "bone_offset_deg": -65.0
+        }
+      ],
+      "driver_bone": "LEFT_UPPER_ARM",
+      "moho_action": "LEFT_UPPER_ARM",
+      "moho_action_note": "a Smart Bone action is named after its bone",
+      "rule": "Switch layer beneath every layer, bound to attach_bone; the Smart Bone action shows 'off' at rest and the largest key not past the bone's rotation",
+      "files": {
+        "k025": {
+          "path": "correctives/native_gap_shoulder_l__both_arms_lowered/k025.png",
+          "sha256": "d126effaf458f24a4c286d32f85bc17f550259a1a9b31dee0fe8c389ca5e03b8"
+        },
+        "k050": {
+          "path": "correctives/native_gap_shoulder_l__both_arms_lowered/k050.png",
+          "sha256": "7ea4abd560a8c0839498a434549b4ca0d26e7c2e5b9329e77b569eb17aa5cc21"
+        },
+        "k075": {
+          "path": "correctives/native_gap_shoulder_l__both_arms_lowered/k075.png",
+          "sha256": "925afa84e1a12a85362c34f52af5e830b44ea1a65762c33507358d45c50a3bea"
+        },
+        "k100": {
+          "path": "correctives/native_gap_shoulder_l__both_arms_lowered/k100.png",
+          "sha256": "0313777bb70355cf5c010007c0fe024b8981564e040b7a7393177bc874ddbacd"
+        }
+      }
+    },
+    {
+      "asset": "native_gap_shoulder_l__left_arm_raised",
+      "version": 1,
+      "category": "shoulders",
+      "approval_id": "corrective:native_gap_shoulder_l__left_arm_raised@v1",
+      "approval": "pending",
+      "attach_bone": "CHEST",
+      "native_automation": "manual_switch",
+      "layers": [
+        "native_gap_shoulder_l__left_arm_raised__k025__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k050__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k075__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k100__v1_pending"
+      ],
+      "keys": [
+        {
+          "key": "k025",
+          "layer": "native_gap_shoulder_l__left_arm_raised__k025__v1_pending",
+          "fraction": 0.25,
+          "bone_offset_deg": 15.0
+        },
+        {
+          "key": "k050",
+          "layer": "native_gap_shoulder_l__left_arm_raised__k050__v1_pending",
+          "fraction": 0.5,
+          "bone_offset_deg": 30.0
+        },
+        {
+          "key": "k075",
+          "layer": "native_gap_shoulder_l__left_arm_raised__k075__v1_pending",
+          "fraction": 0.75,
+          "bone_offset_deg": 45.0
+        },
+        {
+          "key": "k100",
+          "layer": "native_gap_shoulder_l__left_arm_raised__k100__v1_pending",
+          "fraction": 1.0,
+          "bone_offset_deg": 60.0
+        }
+      ],
+      "driver_bone": "LEFT_UPPER_ARM",
+      "moho_action": "LEFT_UPPER_ARM",
+      "moho_action_note": "a Smart Bone action is named after its bone",
+      "rule": "Switch layer beneath every layer, bound to attach_bone; the Smart Bone action shows 'off' at rest and the largest key not past the bone's rotation",
+      "files": {
+        "k025": {
+          "path": "correctives/native_gap_shoulder_l__left_arm_raised/k025.png",
+          "sha256": "b9a734ef14a0d54eef5b16d1f1f93de26b4aa9aab7fd917892f156bce20b2616"
+        },
+        "k050": {
+          "path": "correctives/native_gap_shoulder_l__left_arm_raised/k050.png",
+          "sha256": "98b67e21400f66e9c933f0a085e1060958112ef9487f1c90a11be284fabb80cf"
+        },
+        "k075": {
+          "path": "correctives/native_gap_shoulder_l__left_arm_raised/k075.png",
+          "sha256": "373aae6c8d147cda55bd2d3f09ec49e9b848547f742701d3b6760d6b7a848485"
+        },
+        "k100": {
+          "path": "correctives/native_gap_shoulder_l__left_arm_raised/k100.png",
+          "sha256": "33a2ee62bea5e0b2f372f52e59c30c72eb19cb03749a3bb5b725012b6594c519"
+        }
+      }
+    },
+    {
+      "asset": "native_gap_shoulder_r__both_arms_lowered",
+      "version": 1,
+      "category": "shoulders",
+      "approval_id": "corrective:native_gap_shoulder_r__both_arms_lowered@v1",
+      "approval": "pending",
+      "attach_bone": "CHEST",
+      "native_automation": "manual_switch",
+      "layers": [
+        "native_gap_shoulder_r__both_arms_lowered__k025__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k050__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k075__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k100__v1_pending"
+      ],
+      "keys": [
+        {
+          "key": "k025",
+          "layer": "native_gap_shoulder_r__both_arms_lowered__k025__v1_pending",
+          "fraction": 0.25,
+          "bone_offset_deg": 16.25
+        },
+        {
+          "key": "k050",
+          "layer": "native_gap_shoulder_r__both_arms_lowered__k050__v1_pending",
+          "fraction": 0.5,
+          "bone_offset_deg": 32.5
+        },
+        {
+          "key": "k075",
+          "layer": "native_gap_shoulder_r__both_arms_lowered__k075__v1_pending",
+          "fraction": 0.75,
+          "bone_offset_deg": 48.75
+        },
+        {
+          "key": "k100",
+          "layer": "native_gap_shoulder_r__both_arms_lowered__k100__v1_pending",
+          "fraction": 1.0,
+          "bone_offset_deg": 65.0
+        }
+      ],
+      "driver_bone": "RIGHT_UPPER_ARM",
+      "moho_action": "RIGHT_UPPER_ARM",
+      "moho_action_note": "a Smart Bone action is named after its bone",
+      "rule": "Switch layer beneath every layer, bound to attach_bone; the Smart Bone action shows 'off' at rest and the largest key not past the bone's rotation",
+      "files": {
+        "k025": {
+          "path": "correctives/native_gap_shoulder_r__both_arms_lowered/k025.png",
+          "sha256": "406d1a0229c0906ec6664b2ea772ebebc3672b5ea74fc8a35935defbb2c34785"
+        },
+        "k050": {
+          "path": "correctives/native_gap_shoulder_r__both_arms_lowered/k050.png",
+          "sha256": "1e0af1f61e12e9f8181bf734d3cdc14d8ea765344ade18f7f600fc410aa12e1e"
+        },
+        "k075": {
+          "path": "correctives/native_gap_shoulder_r__both_arms_lowered/k075.png",
+          "sha256": "9f47cc5bbe2419656d9505bc88afbf092ec51465f72b73dc070089988fb29eaa"
+        },
+        "k100": {
+          "path": "correctives/native_gap_shoulder_r__both_arms_lowered/k100.png",
+          "sha256": "ea45377216cb322ead8597f6412f438efe4e02e0329198c3dd3a468aab669478"
+        }
+      }
+    },
+    {
+      "asset": "native_gap_shoulder_r__right_arm_raised",
+      "version": 1,
+      "category": "shoulders",
+      "approval_id": "corrective:native_gap_shoulder_r__right_arm_raised@v1",
+      "approval": "pending",
+      "attach_bone": "CHEST",
+      "native_automation": "manual_switch",
+      "layers": [
+        "native_gap_shoulder_r__right_arm_raised__k025__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k050__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k075__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k100__v1_pending"
+      ],
+      "keys": [
+        {
+          "key": "k025",
+          "layer": "native_gap_shoulder_r__right_arm_raised__k025__v1_pending",
+          "fraction": 0.25,
+          "bone_offset_deg": -15.0
+        },
+        {
+          "key": "k050",
+          "layer": "native_gap_shoulder_r__right_arm_raised__k050__v1_pending",
+          "fraction": 0.5,
+          "bone_offset_deg": -30.0
+        },
+        {
+          "key": "k075",
+          "layer": "native_gap_shoulder_r__right_arm_raised__k075__v1_pending",
+          "fraction": 0.75,
+          "bone_offset_deg": -45.0
+        },
+        {
+          "key": "k100",
+          "layer": "native_gap_shoulder_r__right_arm_raised__k100__v1_pending",
+          "fraction": 1.0,
+          "bone_offset_deg": -60.0
+        }
+      ],
+      "driver_bone": "RIGHT_UPPER_ARM",
+      "moho_action": "RIGHT_UPPER_ARM",
+      "moho_action_note": "a Smart Bone action is named after its bone",
+      "rule": "Switch layer beneath every layer, bound to attach_bone; the Smart Bone action shows 'off' at rest and the largest key not past the bone's rotation",
+      "files": {
+        "k025": {
+          "path": "correctives/native_gap_shoulder_r__right_arm_raised/k025.png",
+          "sha256": "53eca30e276689e4415d3fc80129cb028d68a4a35248d5706a06a9ac1417fc85"
+        },
+        "k050": {
+          "path": "correctives/native_gap_shoulder_r__right_arm_raised/k050.png",
+          "sha256": "7ad32abff14f9d96d0c19e7f57a4adf489ea802251fe316e98ee2ac379e5bc93"
+        },
+        "k075": {
+          "path": "correctives/native_gap_shoulder_r__right_arm_raised/k075.png",
+          "sha256": "b692f392b131c631be15d500c9c39303de6e0faf3281fe284dd3c60e61423eb4"
+        },
+        "k100": {
+          "path": "correctives/native_gap_shoulder_r__right_arm_raised/k100.png",
+          "sha256": "cf19702c6d2111d61ac7bd99240fbb6e4fd91728dea827ca76dbde9fa71e2630"
+        }
+      }
+    },
+    {
+      "asset": "shoe_top_l",
+      "version": 3,
+      "category": "shoes",
+      "approval_id": "corrective:shoe_top_l@v3",
+      "approval": "pending",
+      "attach_bone": "LEFT_FOOT",
+      "native_automation": "build_script",
+      "layers": [
+        "shoe_top_l__v3_pending"
+      ],
+      "keys": [],
+      "driver_bone": null,
+      "moho_action": null,
+      "rule": "always visible: clipped to fully opaque rest pixels and drawn beneath every layer, so it can only show through a gap the joint opens (no Smart Bone action needed)",
+      "phase34_activation": {
+        "kind": "always"
+      }
+    },
+    {
+      "asset": "shoe_top_r",
+      "version": 3,
+      "category": "shoes",
+      "approval_id": "corrective:shoe_top_r@v3",
+      "approval": "pending",
+      "attach_bone": "RIGHT_FOOT",
+      "native_automation": "build_script",
+      "layers": [
+        "shoe_top_r__v3_pending"
+      ],
+      "keys": [],
+      "driver_bone": null,
+      "moho_action": null,
+      "rule": "always visible: clipped to fully opaque rest pixels and drawn beneath every layer, so it can only show through a gap the joint opens (no Smart Bone action needed)",
+      "phase34_activation": {
+        "kind": "always"
+      }
+    }
+  ]
+}

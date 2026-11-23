@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-# AutoRig Studio - Phase 4 native Moho runs on this Mac (HARD GATE 4.0, Phase 4.1 gates).
+# AutoRig Studio - Phase 4 native Moho runs on this Mac (HARD GATE 4.0, Phase 4.1 and 4.2 gates).
 #
 # Usage:
-#   tools/macos/phase4_native_test.sh [--phase 4.0|4.1] [--package DIR] [--side l|r] [--custom-content DIR]
-#                                     [--moho-app PATH] [--no-cli-render] [--with-ik] [--python PATH]
+#   tools/macos/phase4_native_test.sh [--phase 4.0|4.1|4.2] [--package DIR] [--side l|r] [--custom-content DIR]
+#                                     [--moho-app PATH] [--no-cli-render] [--with-ik] [--review] [--python PATH]
 #
 # --phase 4.0 (default): the minimal proof (shoulder + arm on real artwork).
 # --phase 4.1: the full-body rig (25 bones, every layer of the character, twelve test poses); --with-ik adds the
 #              EXPERIMENTAL IK-target / joint-limit step on a copy of the verified rig.
+# --phase 4.2: the hybrid rig (limb roots split at their pivots, arm chains above the torso, ten test poses, the
+#              torso lean keyed after reopening); --review adds the pending clipped underlays (labelled); then the
+#              optional manual Smart Bone test MT-1 on a copy, and your visual review.
 # It guides ONE native run and collects real evidence from the Moho application:
 #   1. checks that this is macOS, finds Moho and reads its version (stops if absent)
 #   2. builds the package with this checkout's absolute paths baked into the menu scripts
@@ -15,8 +18,8 @@
 #   4. walks you through: new document, build script, Save As, Close, reopen (the harness opens the saved file),
 #      verify script, Save, Quit
 #   5. renders the test frames (tries Moho's command-line renderer, else asks you to export them) and runs the
-#      gate check (`autorig native-verify` / `autorig native-fullbody-verify`)
-# Evidence goes to docs/phase4/evidence/native_runs[_4_1]/<UTC time>_<character>[_<side>]/.
+#      gate check (`autorig native-verify` / `native-fullbody-verify` / `native-hybrid-verify`)
+# Evidence goes to docs/phase4/evidence/native_runs[_4_1|_4_2]/<UTC time>_<character>[_<side>]/.
 # Exit codes: 0 gates passed, 1 gates blocked, 2 not macOS, 3 Moho not found,
 #             4 a Moho script failed, 5 bad arguments or environment.
 # It never writes inside /Applications. Compatible with the stock macOS bash 3.2.
@@ -27,6 +30,7 @@ PACKAGE="$REPO/projects/schoolboy_tpose/character_package"
 SIDE="l"
 PHASE="4.0"
 WITH_IK=0
+REVIEW=0
 CUSTOM=""
 MOHO_APP="${AUTORIG_MOHO_APP:-}"
 CLI_RENDER=1
@@ -37,7 +41,7 @@ SEARCH_DIRS="${AUTORIG_MOHO_SEARCH_DIRS:-/Applications:$HOME/Applications}"
 OS_NAME="${AUTORIG_HARNESS_OS:-$(uname -s)}"   # test hook: lets the cloud suite exercise the checks
 
 usage() {
-  sed -n '2,23p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,26p' "$0" | sed 's/^# \{0,1\}//'
 }
 
 while [ $# -gt 0 ]; do
@@ -46,6 +50,7 @@ while [ $# -gt 0 ]; do
     --side) SIDE="${2:-}"; shift 2 ;;
     --phase) PHASE="${2:-}"; shift 2 ;;
     --with-ik) WITH_IK=1; shift ;;
+    --review) REVIEW=1; shift ;;
     --custom-content) CUSTOM="${2:-}"; shift 2 ;;
     --moho-app) MOHO_APP="${2:-}"; shift 2 ;;
     --no-cli-render) CLI_RENDER=0; shift ;;
@@ -61,14 +66,19 @@ if [ "$OS_NAME" != "Darwin" ]; then
   echo "       Native validation cannot run here. In the cloud only the portable packages are built:" >&2
   echo "         python -m autorig native-poc <package> --out <dir>        (Phase 4.0)" >&2
   echo "         python -m autorig native-fullbody <package> --out <dir>   (Phase 4.1)" >&2
+  echo "         python -m autorig native-hybrid <package> --out <dir>     (Phase 4.2)" >&2
   echo "       On the Mac:  tools/macos/phase4_native_test.sh --custom-content \"<Moho Custom Content Folder>\"" >&2
   exit 2
 fi
 
 case "$SIDE" in l|r) ;; *) echo "error: --side must be l or r" >&2; exit 5 ;; esac
-case "$PHASE" in 4.0|4.1) ;; *) echo "error: --phase must be 4.0 or 4.1" >&2; exit 5 ;; esac
+case "$PHASE" in 4.0|4.1|4.2) ;; *) echo "error: --phase must be 4.0 or 4.1 or 4.2" >&2; exit 5 ;; esac
 if [ "$WITH_IK" -eq 1 ] && [ "$PHASE" != "4.1" ]; then
   echo "error: --with-ik belongs to --phase 4.1" >&2
+  exit 5
+fi
+if [ "$REVIEW" -eq 1 ] && [ "$PHASE" != "4.2" ]; then
+  echo "error: --review belongs to --phase 4.2" >&2
   exit 5
 fi
 
@@ -169,6 +179,20 @@ if [ "$PHASE" = "4.0" ]; then
   IK_MENU=""
   SCRIPTS="AutoRig_P4_NativeBuild.lua AutoRig_P4_NativeVerify.lua"
   COPY="rig_spec.json native_manifest.json $BUILD_REPORT $VERIFY_REPORT"
+elif [ "$PHASE" = "4.2" ]; then
+  TITLE="AutoRig Phase 4.2 hybrid rig"
+  WORK="$REPO/build/phase4_2_native/${CHAR}"
+  RUNS="$REPO/docs/phase4/evidence/native_runs_4_2"
+  EVID="$RUNS/${STAMP}_${CHAR}"
+  SAVED_NAME="AutoRig_P42_Hybrid.moho"
+  BUILD_REPORT="phase4_2_build_report.json"
+  VERIFY_REPORT="phase4_2_verify_report.json"
+  BUILD_MENU="AutoRig Phase 4.2 hybrid rig"
+  VERIFY_MENU="AutoRig Phase 4.2: Verify Reopened Hybrid Rig"
+  IK_MENU=""
+  SCRIPTS="AutoRig_P42_HybridBuild.lua AutoRig_P42_HybridVerify.lua"
+  COPY="rig_spec.json native_hybrid_manifest.json native_skeleton.json binding_plan.json validation_plan.json"
+  COPY="$COPY smartbone_plan.json artwork_requests.json manual_tests.json $BUILD_REPORT $VERIFY_REPORT"
 else
   TITLE="AutoRig Phase 4.1 full-body rig"
   WORK="$REPO/build/phase4_1_native/${CHAR}"
@@ -279,6 +303,15 @@ PY
   if [ "$PHASE" = "4.0" ]; then
     echo "== Checking the evidence against HARD GATE 4.0"
     "$PYTHON" -m autorig native-verify "$WORK" --evidence "$EVID"
+  elif [ "$PHASE" = "4.2" ]; then
+    echo "== Checking the evidence against the Phase 4.2 gates"
+    BEFORE="$(ls -d "$REPO"/docs/phase4/evidence/native_runs_4_1/*_"$CHAR" 2>/dev/null | sort | tail -n 1 || true)"
+    if [ -n "$BEFORE" ] && [ -d "$BEFORE/renders" ]; then
+      "$PYTHON" -m autorig native-hybrid-verify "$WORK" --evidence "$EVID" --character-package "$PACKAGE" \
+        --before "$BEFORE"
+    else
+      "$PYTHON" -m autorig native-hybrid-verify "$WORK" --evidence "$EVID" --character-package "$PACKAGE"
+    fi
   else
     echo "== Checking the evidence against the Phase 4.1 gates"
     "$PYTHON" -m autorig native-fullbody-verify "$WORK" --evidence "$EVID" --character-package "$PACKAGE"
@@ -292,12 +325,12 @@ PY
   exit "$GATE"
 }
 
-if [ "$PHASE" = "4.1" ]; then
+if [ "$PHASE" = "4.1" ] || [ "$PHASE" = "4.2" ]; then
   if ! grep -l '"passed": true' "$REPO"/docs/phase4/evidence/native_runs/*/gate_4_0.json >/dev/null 2>&1; then
     echo
     echo "NOTE: no Phase 4.0 run has passed HARD GATE 4.0 yet (docs/phase4/evidence/native_runs/*/gate_4_0.json)."
     echo "      The recommended order is: tools/macos/phase4_native_test.sh --phase 4.0 first."
-    if [ "$(ask_yn "Run the Phase 4.1 full-body test anyway (recorded as run before Phase 4.0 passed)?")" != "yes" ]; then
+    if [ "$(ask_yn "Run the Phase $PHASE test anyway (recorded as run before Phase 4.0 passed)?")" != "yes" ]; then
       echo "Stopped. Run --phase 4.0 first."
       observe phase4_0_passed_before "no"
       observe stopped "before Phase 4.0 passed"
@@ -312,12 +345,23 @@ fi
 # --- 3. package and scripts ----------------------------------------------------------------
 echo
 echo "== Building the package"
-for stale in "$BUILD_REPORT" "$VERIFY_REPORT" "$IK_REPORT"; do
+for stale in "$BUILD_REPORT" "$VERIFY_REPORT" "$IK_REPORT" phase4_2_verify_report_smartbone.json; do
   rm -f "${WORK:?}/${stale:?}"
 done
 if [ "$PHASE" = "4.0" ]; then
   "$PYTHON" -m autorig native-poc "$PACKAGE" --out "$WORK" --side "$SIDE" --canvas "${CANVAS_W}x${CANVAS_H}" \
     --asset-root "$WORK"
+elif [ "$PHASE" = "4.2" ]; then
+  T0="$(date +%s)"
+  if [ "$REVIEW" -eq 1 ]; then
+    "$PYTHON" -m autorig native-hybrid "$PACKAGE" --out "$WORK" --asset-root "$WORK" --review
+  else
+    "$PYTHON" -m autorig native-hybrid "$PACKAGE" --out "$WORK" --asset-root "$WORK"
+  fi
+  observe package_build_seconds "$(( $(date +%s) - T0 ))"
+  observe review_build "$([ "$REVIEW" -eq 1 ] && echo yes || echo no)"
+  CANVAS_W="$("$PYTHON" -c 'import json,sys; print(json.load(open(sys.argv[1]))["moho_canvas"][0])' "$WORK/native_hybrid_manifest.json")"
+  CANVAS_H="$("$PYTHON" -c 'import json,sys; print(json.load(open(sys.argv[1]))["moho_canvas"][1])' "$WORK/native_hybrid_manifest.json")"
 else
   T0="$(date +%s)"
   "$PYTHON" -m autorig native-fullbody "$PACKAGE" --out "$WORK" --asset-root "$WORK"
@@ -361,6 +405,9 @@ fi
 
 if [ "$PHASE" = "4.0" ]; then
   observe arm_moved_in_viewport_f12 "$(ask_yn "Go to frame 12 in the timeline. Is the arm artwork lowered, following the bone?")"
+elif [ "$PHASE" = "4.2" ]; then
+  observe arms_lowered_in_viewport_f10 "$(ask_yn "Go to frame 10. Are both arms lowered, their artwork following the bones?")"
+  observe left_arm_raised_in_viewport_f20 "$(ask_yn "Frame 20: is the LEFT arm (image right) raised?")"
 else
   observe left_arm_raised_in_viewport_f10 "$(ask_yn "Go to frame 10. Is the LEFT arm (image right) raised, its artwork following the bones?")"
   observe legs_move_in_viewport_f60_f70 "$(ask_yn "Frames 60 and 70: do the left leg (lifted) and the right knee (bent) move with their artwork?")"
@@ -418,6 +465,8 @@ if [ "$VERIFY_STATUS" != "completed" ]; then
 fi
 if [ "$PHASE" = "4.0" ]; then
   observe arm_raised_in_viewport_f18 "$(ask_yn "Moho is now at frame 18. Is the arm raised?")"
+elif [ "$PHASE" = "4.2" ]; then
+  observe torso_lean_in_viewport_f80 "$(ask_yn "Go to frame 80. Is the torso leaning (keys added after reopening)?")"
 else
   observe pelvis_shift_in_viewport_f80 "$(ask_yn "Go to frame 80. Is the whole character shifted sideways (pelvis key added after reopening)?")"
 fi
@@ -520,9 +569,50 @@ echo
 if [ "$PHASE" = "4.0" ]; then
   echo "== Rendering frames 1, 12 and 18"
   for f in 1 12 18; do render_frame "$f"; done
+elif [ "$PHASE" = "4.2" ]; then
+  echo "== Rendering frames 1-90 (the ten test poses)"
+  render_range "$SAVED" 1 90 renders
 else
   echo "== Rendering frames 1-110 (the twelve test poses)"
   render_range "$SAVED" 1 110 renders
+fi
+
+# --- 6a. Phase 4.2 manual Smart Bone test (MT-1) and visual review ----------------------------------
+if [ "$PHASE" = "4.2" ]; then
+  SB_SAVED="$EVID/AutoRig_P42_Hybrid_SmartBone.moho"
+  cp -f "$WORK/$VERIFY_REPORT" "$EVID/$VERIFY_REPORT" 2>/dev/null || true   # the main run's report, kept as is
+  echo
+  if [ "$(ask_yn "Run manual test MT-1 now (a Smart Bone switch for one gap fill, on a copy; about 15 minutes)?")" = "yes" ]; then
+    rm -f "${WORK:?}/${VERIFY_REPORT:?}"
+    open -a "$MOHO_APP" "$SAVED"
+    pause "Follow MT-1 in $WORK/manual_tests.json (key PNGs in $WORK/correctives/, offsets in
+      $WORK/smartbone_plan.json). Then File > Save As... $SB_SAVED, File > Close."
+    if [ -s "$SB_SAVED" ]; then
+      open -a "$MOHO_APP" "$SB_SAVED"
+      pause "Scripts > AutoRig > $VERIFY_MENU (it lists the actions it finds), then File > Save and quit Moho."
+      if wait_until_present "$WORK/$VERIFY_REPORT" "The verify report of the Smart Bone copy"; then
+        cp -f "$WORK/$VERIFY_REPORT" "$EVID/phase4_2_verify_report_smartbone.json"
+      fi
+      cp -f "$EVID/$VERIFY_REPORT" "$WORK/$VERIFY_REPORT" 2>/dev/null || true  # finish copies the main report
+      observe smart_bone_mt1_works "$(ask_yn "MT-1: did the fill appear under the joint while the bone turned, switch without popping, and vanish at rest?")"
+      render_range "$SB_SAVED" 10 30 renders_smartbone
+    else
+      observe smart_bone_mt1 "copy not saved"
+    fi
+  else
+    observe smart_bone_mt1 "not run"
+  fi
+  echo
+  echo "Visual review (MT-4): look at the renders in $EVID/renders (frames 1, 10, ..., 90)."
+  printf 'Do the shoulders, elbows, hips, knees and torso read as natural articulation? [accepted/rejected/later] '
+  read -r a || a="later"
+  case "$a" in
+    accepted|rejected) observe visual_review_verdict "$a" ;;
+    *) observe visual_review_verdict "not recorded" ;;
+  esac
+  printf 'Notes (one line, optional): '
+  read -r a || a=""
+  observe visual_review_notes "$a"
 fi
 
 # --- 6. Phase 4.1 experimental IK / joint limits ------------------------------------------------------

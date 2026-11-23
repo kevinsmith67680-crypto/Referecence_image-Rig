@@ -232,7 +232,7 @@ def corrective_evidence(pkg, out: Path | None = None, regenerate: bool = False, 
         generate_all(eng, store, vis, progress)
         store = CorrectiveArtworkStore(pkg)
     eng.correctives = CorrectiveRuntime(eng, store)
-    assets = store.latest()
+    assets = eng.correctives.assets  # Phase 3 assets (the Phase 4.2 native fills are not drawn by this renderer)
     progress(f"{len(assets)} corrective assets (latest versions); store hashes ok: {not store.verify()}")
     results: dict[str, Any] = {"poses": {}, "sweeps": {}, "sequences": {}}
     planner_in, renders = [], {}

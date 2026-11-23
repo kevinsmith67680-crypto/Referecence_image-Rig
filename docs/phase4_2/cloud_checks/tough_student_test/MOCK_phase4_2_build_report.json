@@ -1,0 +1,1345 @@
+{
+  "autorig_report_version": "0.1.0",
+  "bone_layer": {
+    "children_by_index": [
+      "foot_r",
+      "thigh_r__joint",
+      "thigh_r",
+      "thigh_r__spill",
+      "thigh_r__spill__specks_to_right_foot",
+      "shin_r",
+      "shin_r__specks_to_right_foot",
+      "foot_l",
+      "thigh_l__joint",
+      "thigh_l",
+      "thigh_l__spill",
+      "thigh_l__spill__specks_to_left_thigh",
+      "thigh_l__spill__specks_to_left_foot",
+      "shin_l",
+      "shin_l__specks_to_left_foot",
+      "pelvis",
+      "neck",
+      "torso",
+      "upper_arm_r__joint",
+      "upper_arm_r",
+      "upper_arm_r__spill",
+      "forearm_r",
+      "forearm_r__specks_to_right_hand",
+      "hand_r",
+      "upper_arm_l__joint",
+      "upper_arm_l",
+      "upper_arm_l__spill",
+      "forearm_l",
+      "forearm_l__specks_to_left_hand",
+      "hand_l",
+      "head_base",
+      "nose",
+      "mouth",
+      "eye_r_white",
+      "eye_r_iris",
+      "eye_l_white",
+      "eye_l_iris",
+      "brow_r",
+      "brow_l",
+      "hair"
+    ],
+    "name": "AutoRig_P42_Hybrid",
+    "type": 4
+  },
+  "bones": [
+    {
+      "angle": 1.57079632679,
+      "angle_keys": [
+        [
+          0,
+          1.57079632679
+        ]
+      ],
+      "id": 0,
+      "length": 0.223532608696,
+      "name": "ROOT",
+      "parent_id": -1,
+      "pos": [
+        0.0213315217391,
+        -0.921195652174
+      ],
+      "world_base": [
+        0.0213315217391,
+        -0.921195652174
+      ],
+      "world_tip": [
+        0.0213315217391,
+        -0.697663043478
+      ]
+    },
+    {
+      "angle": 0.00721141345033,
+      "angle_keys": [
+        [
+          0,
+          0.00721141345033
+        ]
+      ],
+      "id": 1,
+      "length": 0.169569626563,
+      "name": "PELVIS",
+      "parent_id": 0,
+      "pos": [
+        0.836820652174,
+        0
+      ],
+      "world_base": [
+        0.0213315217391,
+        -0.084375
+      ],
+      "world_tip": [
+        0.0201086956522,
+        0.0851902173913
+      ]
+    },
+    {
+      "angle": -0.000796104508979,
+      "angle_keys": [
+        [
+          0,
+          -0.000796104508979
+        ]
+      ],
+      "id": 2,
+      "length": 0.0847164172095,
+      "name": "SPINE_LOWER",
+      "parent_id": 1,
+      "pos": [
+        0.169569626563,
+        0
+      ],
+      "world_base": [
+        0.0201086956522,
+        0.0851902173913
+      ],
+      "world_tip": [
+        0.0195652173913,
+        0.169904891304
+      ]
+    },
+    {
+      "angle": 0,
+      "angle_keys": [
+        [
+          0,
+          0
+        ]
+      ],
+      "id": 3,
+      "length": 0.0847164172095,
+      "name": "SPINE_UPPER",
+      "parent_id": 2,
+      "pos": [
+        0.0847164172095,
+        0
+      ],
+      "world_base": [
+        0.0195652173913,
+        0.169904891304
+      ],
+      "world_tip": [
+        0.0190217391304,
+        0.254619565217
+      ]
+    },
+    {
+      "angle": 0.000583021594911,
+      "angle_keys": [
+        [
+          0,
+          0.000583021594911
+        ]
+      ],
+      "id": 4,
+      "length": 0.174732539758,
+      "name": "CHEST",
+      "parent_id": 3,
+      "pos": [
+        0.0847164172095,
+        0
+      ],
+      "world_base": [
+        0.0190217391304,
+        0.254619565217
+      ],
+      "world_tip": [
+        0.0177989130435,
+        0.429347826087
+      ]
+    },
+    {
+      "angle": -0.0162359430567,
+      "angle_keys": [
+        [
+          0,
+          -0.0162359430567
+        ]
+      ],
+      "id": 5,
+      "length": 0.117668063956,
+      "name": "NECK",
+      "parent_id": 4,
+      "pos": [
+        0.174732539758,
+        0
+      ],
+      "world_base": [
+        0.0177989130435,
+        0.429347826087
+      ],
+      "world_tip": [
+        0.0188858695652,
+        0.547010869565
+      ]
+    },
+    {
+      "angle": 0.00923761252049,
+      "angle_keys": [
+        [
+          0,
+          0.00923761252049
+        ]
+      ],
+      "id": 6,
+      "length": 0.394565217391,
+      "name": "HEAD",
+      "parent_id": 5,
+      "pos": [
+        0.117668063956,
+        0
+      ],
+      "world_base": [
+        0.0188858695652,
+        0.547010869565
+      ],
+      "world_tip": [
+        0.0188858695652,
+        0.941576086957
+      ]
+    },
+    {
+      "angle": -1.41420625134,
+      "angle_keys": [
+        [
+          0,
+          -1.41420625134
+        ]
+      ],
+      "id": 7,
+      "length": 0.132566054542,
+      "name": "LEFT_SHOULDER",
+      "parent_id": 4,
+      "pos": [
+        0.109922125569,
+        -0.0581076445629
+      ],
+      "world_base": [
+        0.0763586956522,
+        0.364945652174
+      ],
+      "world_tip": [
+        0.207154891304,
+        0.386535326087
+      ]
+    },
+    {
+      "angle": -0.448773616182,
+      "angle_keys": [
+        [
+          0,
+          -0.448773616182
+        ],
+        [
+          1,
+          -0.448773616182
+        ],
+        [
+          10,
+          -1.58323762998
+        ],
+        [
+          20,
+          0.598423935015
+        ],
+        [
+          30,
+          -0.448773616182
+        ],
+        [
+          40,
+          -0.448773616182
+        ],
+        [
+          50,
+          -0.448773616182
+        ],
+        [
+          60,
+          -0.448773616182
+        ],
+        [
+          70,
+          -0.448773616182
+        ],
+        [
+          80,
+          -0.448773616182
+        ],
+        [
+          90,
+          -0.448773616182
+        ]
+      ],
+      "id": 8,
+      "length": 0.180573326893,
+      "name": "LEFT_UPPER_ARM",
+      "parent_id": 7,
+      "pos": [
+        0.132566054542,
+        0
+      ],
+      "world_base": [
+        0.207154891304,
+        0.386535326087
+      ],
+      "world_tip": [
+        0.380434782609,
+        0.335733695652
+      ]
+    },
+    {
+      "angle": 0.262745087322,
+      "angle_keys": [
+        [
+          0,
+          0.262745087322
+        ],
+        [
+          1,
+          0.262745087322
+        ],
+        [
+          10,
+          0.262745087322
+        ],
+        [
+          20,
+          0.262745087322
+        ],
+        [
+          30,
+          0.262745087322
+        ],
+        [
+          40,
+          1.83354141412
+        ],
+        [
+          50,
+          0.262745087322
+        ],
+        [
+          60,
+          0.262745087322
+        ],
+        [
+          70,
+          0.262745087322
+        ],
+        [
+          80,
+          0.262745087322
+        ],
+        [
+          90,
+          0.262745087322
+        ]
+      ],
+      "id": 9,
+      "length": 0.163492249235,
+      "name": "LEFT_FOREARM",
+      "parent_id": 8,
+      "pos": [
+        0.180573326893,
+        0
+      ],
+      "world_base": [
+        0.380434782609,
+        0.335733695652
+      ],
+      "world_tip": [
+        0.543885869565,
+        0.332065217391
+      ]
+    },
+    {
+      "angle": 0.116333628552,
+      "angle_keys": [
+        [
+          0,
+          0.116333628552
+        ]
+      ],
+      "id": 10,
+      "length": 0.0912988886178,
+      "name": "LEFT_HAND",
+      "parent_id": 9,
+      "pos": [
+        0.163492249235,
+        0
+      ],
+      "world_base": [
+        0.543885869565,
+        0.332065217391
+      ],
+      "world_tip": [
+        0.634782608696,
+        0.340625
+      ]
+    },
+    {
+      "angle": 1.39523113319,
+      "angle_keys": [
+        [
+          0,
+          1.39523113319
+        ]
+      ],
+      "id": 11,
+      "length": 0.132654675213,
+      "name": "RIGHT_SHOULDER",
+      "parent_id": 4,
+      "pos": [
+        0.113271872803,
+        0.0516542095577
+      ],
+      "world_base": [
+        -0.0334239130435,
+        0.367527173913
+      ],
+      "world_tip": [
+        -0.164198369565,
+        0.389782608696
+      ]
+    },
+    {
+      "angle": 0.462831560651,
+      "angle_keys": [
+        [
+          0,
+          0.462831560651
+        ],
+        [
+          1,
+          0.462831560651
+        ],
+        [
+          10,
+          1.59729557445
+        ],
+        [
+          20,
+          0.462831560651
+        ],
+        [
+          30,
+          -0.584365990546
+        ],
+        [
+          40,
+          0.462831560651
+        ],
+        [
+          50,
+          0.462831560651
+        ],
+        [
+          60,
+          0.462831560651
+        ],
+        [
+          70,
+          0.462831560651
+        ],
+        [
+          80,
+          0.462831560651
+        ],
+        [
+          90,
+          0.462831560651
+        ]
+      ],
+      "id": 12,
+      "length": 0.183073078832,
+      "name": "RIGHT_UPPER_ARM",
+      "parent_id": 11,
+      "pos": [
+        0.132654675213,
+        0
+      ],
+      "world_base": [
+        -0.164198369565,
+        0.389782608696
+      ],
+      "world_tip": [
+        -0.339402173913,
+        0.336684782609
+      ]
+    },
+    {
+      "angle": -0.290176412923,
+      "angle_keys": [
+        [
+          0,
+          -0.290176412923
+        ],
+        [
+          1,
+          -0.290176412923
+        ],
+        [
+          10,
+          -0.290176412923
+        ],
+        [
+          20,
+          -0.290176412923
+        ],
+        [
+          30,
+          -0.290176412923
+        ],
+        [
+          40,
+          -0.290176412923
+        ],
+        [
+          50,
+          -1.86097273972
+        ],
+        [
+          60,
+          -0.290176412923
+        ],
+        [
+          70,
+          -0.290176412923
+        ],
+        [
+          80,
+          -0.290176412923
+        ],
+        [
+          90,
+          -0.290176412923
+        ]
+      ],
+      "id": 13,
+      "length": 0.166169866946,
+      "name": "RIGHT_FOREARM",
+      "parent_id": 12,
+      "pos": [
+        0.183073078832,
+        0
+      ],
+      "world_base": [
+        -0.339402173913,
+        0.336684782609
+      ],
+      "world_tip": [
+        -0.505570652174,
+        0.336005434783
+      ]
+    },
+    {
+      "angle": -0.058170832168,
+      "angle_keys": [
+        [
+          0,
+          -0.058170832168
+        ]
+      ],
+      "id": 14,
+      "length": 0.0904855602181,
+      "name": "RIGHT_HAND",
+      "parent_id": 13,
+      "pos": [
+        0.166169866946,
+        0
+      ],
+      "world_base": [
+        -0.505570652174,
+        0.336005434783
+      ],
+      "world_tip": [
+        -0.595923913043,
+        0.34089673913
+      ]
+    },
+    {
+      "angle": -2.89319891497,
+      "angle_keys": [
+        [
+          0,
+          -2.89319891497
+        ],
+        [
+          1,
+          -2.89319891497
+        ],
+        [
+          10,
+          -2.89319891497
+        ],
+        [
+          20,
+          -2.89319891497
+        ],
+        [
+          30,
+          -2.89319891497
+        ],
+        [
+          40,
+          -2.89319891497
+        ],
+        [
+          50,
+          -2.89319891497
+        ],
+        [
+          60,
+          -2.63139952717
+        ],
+        [
+          70,
+          -2.89319891497
+        ],
+        [
+          80,
+          -2.89319891497
+        ],
+        [
+          90,
+          -2.89319891497
+        ]
+      ],
+      "id": 15,
+      "length": 0.338020159006,
+      "name": "LEFT_THIGH",
+      "parent_id": 1,
+      "pos": [
+        -0.00442152486909,
+        -0.0855681658739
+      ],
+      "world_base": [
+        0.106929347826,
+        -0.0881793478261
+      ],
+      "world_tip": [
+        0.192391304348,
+        -0.415217391304
+      ]
+    },
+    {
+      "angle": -0.0040931835621,
+      "angle_keys": [
+        [
+          0,
+          -0.0040931835621
+        ],
+        [
+          1,
+          -0.0040931835621
+        ],
+        [
+          10,
+          -0.0040931835621
+        ],
+        [
+          20,
+          -0.0040931835621
+        ],
+        [
+          30,
+          -0.0040931835621
+        ],
+        [
+          40,
+          -0.0040931835621
+        ],
+        [
+          50,
+          -0.0040931835621
+        ],
+        [
+          60,
+          -0.52769195916
+        ],
+        [
+          70,
+          -0.0040931835621
+        ],
+        [
+          80,
+          -0.0040931835621
+        ],
+        [
+          90,
+          -0.0040931835621
+        ]
+      ],
+      "id": 16,
+      "length": 0.337942380119,
+      "name": "LEFT_SHIN",
+      "parent_id": 15,
+      "pos": [
+        0.338020159006,
+        0
+      ],
+      "world_base": [
+        0.192391304348,
+        -0.415217391304
+      ],
+      "world_tip": [
+        0.276494565217,
+        -0.742527173913
+      ]
+    },
+    {
+      "angle": 0.0689105654175,
+      "angle_keys": [
+        [
+          0,
+          0.0689105654175
+        ],
+        [
+          1,
+          0.0689105654175
+        ],
+        [
+          10,
+          0.0689105654175
+        ],
+        [
+          20,
+          0.0689105654175
+        ],
+        [
+          30,
+          0.0689105654175
+        ],
+        [
+          40,
+          0.0689105654175
+        ],
+        [
+          50,
+          0.0689105654175
+        ],
+        [
+          60,
+          0.330709953217
+        ],
+        [
+          70,
+          0.0689105654175
+        ],
+        [
+          80,
+          0.0689105654175
+        ],
+        [
+          90,
+          0.0689105654175
+        ]
+      ],
+      "id": 17,
+      "length": 0.0970596675771,
+      "name": "LEFT_FOOT",
+      "parent_id": 16,
+      "pos": [
+        0.337942380119,
+        0
+      ],
+      "world_base": [
+        0.276494565217,
+        -0.742527173913
+      ],
+      "world_tip": [
+        0.307065217391,
+        -0.83464673913
+      ]
+    },
+    {
+      "angle": 2.87073833449,
+      "angle_keys": [
+        [
+          0,
+          2.87073833449
+        ],
+        [
+          1,
+          2.87073833449
+        ],
+        [
+          10,
+          2.87073833449
+        ],
+        [
+          20,
+          2.87073833449
+        ],
+        [
+          30,
+          2.87073833449
+        ],
+        [
+          40,
+          2.87073833449
+        ],
+        [
+          50,
+          2.87073833449
+        ],
+        [
+          60,
+          2.87073833449
+        ],
+        [
+          70,
+          2.60893894669
+        ],
+        [
+          80,
+          2.87073833449
+        ],
+        [
+          90,
+          2.87073833449
+        ]
+      ],
+      "id": 18,
+      "length": 0.342542371996,
+      "name": "RIGHT_THIGH",
+      "parent_id": 1,
+      "pos": [
+        0.00442152486909,
+        0.0855681658739
+      ],
+      "world_base": [
+        -0.0642663043478,
+        -0.0805706521739
+      ],
+      "world_tip": [
+        -0.153532608696,
+        -0.411277173913
+      ]
+    },
+    {
+      "angle": -0.00365262137872,
+      "angle_keys": [
+        [
+          0,
+          -0.00365262137872
+        ],
+        [
+          1,
+          -0.00365262137872
+        ],
+        [
+          10,
+          -0.00365262137872
+        ],
+        [
+          20,
+          -0.00365262137872
+        ],
+        [
+          30,
+          -0.00365262137872
+        ],
+        [
+          40,
+          -0.00365262137872
+        ],
+        [
+          50,
+          -0.00365262137872
+        ],
+        [
+          60,
+          -0.00365262137872
+        ],
+        [
+          70,
+          0.51994615422
+        ],
+        [
+          80,
+          -0.00365262137872
+        ],
+        [
+          90,
+          -0.00365262137872
+        ]
+      ],
+      "id": 19,
+      "length": 0.342600975312,
+      "name": "RIGHT_SHIN",
+      "parent_id": 18,
+      "pos": [
+        0.342542371996,
+        0
+      ],
+      "world_base": [
+        -0.153532608696,
+        -0.411277173913
+      ],
+      "world_tip": [
+        -0.24402173913,
+        -0.741711956522
+      ]
+    },
+    {
+      "angle": -0.00462987022674,
+      "angle_keys": [
+        [
+          0,
+          -0.00462987022674
+        ],
+        [
+          1,
+          -0.00462987022674
+        ],
+        [
+          10,
+          -0.00462987022674
+        ],
+        [
+          20,
+          -0.00462987022674
+        ],
+        [
+          30,
+          -0.00462987022674
+        ],
+        [
+          40,
+          -0.00462987022674
+        ],
+        [
+          50,
+          -0.00462987022674
+        ],
+        [
+          60,
+          -0.00462987022674
+        ],
+        [
+          70,
+          -0.266429258026
+        ],
+        [
+          80,
+          -0.00462987022674
+        ],
+        [
+          90,
+          -0.00462987022674
+        ]
+      ],
+      "id": 20,
+      "length": 0.0966209356729,
+      "name": "RIGHT_FOOT",
+      "parent_id": 19,
+      "pos": [
+        0.342600975312,
+        0
+      ],
+      "world_base": [
+        -0.24402173913,
+        -0.741711956522
+      ],
+      "world_tip": [
+        -0.269972826087,
+        -0.834782608696
+      ]
+    },
+    {
+      "angle": -1.47690282112,
+      "angle_keys": [
+        [
+          0,
+          -1.47690282112
+        ]
+      ],
+      "id": 21,
+      "length": 0.0547793331707,
+      "name": "LEFT_HAND_TARGET",
+      "parent_id": 0,
+      "pos": [
+        1.25326086957,
+        -0.522554347826
+      ],
+      "world_base": [
+        0.543885869565,
+        0.332065217391
+      ],
+      "world_tip": [
+        0.598423913043,
+        0.337201086957
+      ]
+    },
+    {
+      "angle": -2.82117011966,
+      "angle_keys": [
+        [
+          0,
+          -2.82117011966
+        ]
+      ],
+      "id": 22,
+      "length": 0.0582358005463,
+      "name": "LEFT_FOOT_TARGET",
+      "parent_id": 0,
+      "pos": [
+        0.178668478261,
+        -0.255163043478
+      ],
+      "world_base": [
+        0.276494565217,
+        -0.742527173913
+      ],
+      "world_tip": [
+        0.294836956522,
+        -0.797798913043
+      ]
+    },
+    {
+      "angle": 1.51671377929,
+      "angle_keys": [
+        [
+          0,
+          1.51671377929
+        ]
+      ],
+      "id": 23,
+      "length": 0.0542913361309,
+      "name": "RIGHT_HAND_TARGET",
+      "parent_id": 0,
+      "pos": [
+        1.25720108696,
+        0.526902173913
+      ],
+      "world_base": [
+        -0.505570652174,
+        0.336005434783
+      ],
+      "world_tip": [
+        -0.559782608696,
+        0.338940217391
+      ]
+    },
+    {
+      "angle": 2.86966725633,
+      "angle_keys": [
+        [
+          0,
+          2.86966725633
+        ]
+      ],
+      "id": 24,
+      "length": 0.0579725614037,
+      "name": "RIGHT_FOOT_TARGET",
+      "parent_id": 0,
+      "pos": [
+        0.179483695652,
+        0.26535326087
+      ],
+      "world_base": [
+        -0.24402173913,
+        -0.741711956522
+      ],
+      "world_tip": [
+        -0.259592391304,
+        -0.797554347826
+      ]
+    }
+  ],
+  "constants": {
+    "LT_BONE": 4,
+    "LT_IMAGE": 2
+  },
+  "document": {
+    "end_frame": 90,
+    "fps": 24,
+    "height": 1472,
+    "start_frame": 1,
+    "width": 1146
+  },
+  "document_before": {
+    "height": 1472,
+    "width": 1146
+  },
+  "errors": [],
+  "generator": {
+    "name": "autorig",
+    "spec_character_id": "tough_student_test_p42",
+    "spec_sha256": "17ef702276c3c136eccc5fbfc05906636da15070c8dbad9b0ac49d61a12fed65",
+    "version": "0.0.1"
+  },
+  "layers": [
+    {
+      "name": "foot_r",
+      "parent_bone_id": 20,
+      "source_image_set": "<package>/art/foot_r.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_r__joint",
+      "parent_bone_id": 1,
+      "source_image_set": "<package>/art/thigh_r__joint.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_r",
+      "parent_bone_id": 18,
+      "source_image_set": "<package>/art/thigh_r.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_r__spill",
+      "parent_bone_id": 19,
+      "source_image_set": "<package>/art/thigh_r__spill.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_r__spill__specks_to_right_foot",
+      "parent_bone_id": 20,
+      "source_image_set": "<package>/art/thigh_r__spill__specks_to_right_foot.png",
+      "type": 2
+    },
+    {
+      "name": "shin_r",
+      "parent_bone_id": 19,
+      "source_image_set": "<package>/art/shin_r.png",
+      "type": 2
+    },
+    {
+      "name": "shin_r__specks_to_right_foot",
+      "parent_bone_id": 20,
+      "source_image_set": "<package>/art/shin_r__specks_to_right_foot.png",
+      "type": 2
+    },
+    {
+      "name": "foot_l",
+      "parent_bone_id": 17,
+      "source_image_set": "<package>/art/foot_l.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_l__joint",
+      "parent_bone_id": 1,
+      "source_image_set": "<package>/art/thigh_l__joint.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_l",
+      "parent_bone_id": 15,
+      "source_image_set": "<package>/art/thigh_l.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_l__spill",
+      "parent_bone_id": 16,
+      "source_image_set": "<package>/art/thigh_l__spill.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_l__spill__specks_to_left_thigh",
+      "parent_bone_id": 15,
+      "source_image_set": "<package>/art/thigh_l__spill__specks_to_left_thigh.png",
+      "type": 2
+    },
+    {
+      "name": "thigh_l__spill__specks_to_left_foot",
+      "parent_bone_id": 17,
+      "source_image_set": "<package>/art/thigh_l__spill__specks_to_left_foot.png",
+      "type": 2
+    },
+    {
+      "name": "shin_l",
+      "parent_bone_id": 16,
+      "source_image_set": "<package>/art/shin_l.png",
+      "type": 2
+    },
+    {
+      "name": "shin_l__specks_to_left_foot",
+      "parent_bone_id": 17,
+      "source_image_set": "<package>/art/shin_l__specks_to_left_foot.png",
+      "type": 2
+    },
+    {
+      "name": "pelvis",
+      "parent_bone_id": 1,
+      "source_image_set": "<package>/art/pelvis.png",
+      "type": 2
+    },
+    {
+      "name": "neck",
+      "parent_bone_id": 5,
+      "source_image_set": "<package>/art/neck.png",
+      "type": 2
+    },
+    {
+      "name": "torso",
+      "parent_bone_id": 4,
+      "source_image_set": "<package>/art/torso.png",
+      "type": 2
+    },
+    {
+      "name": "upper_arm_r__joint",
+      "parent_bone_id": 11,
+      "source_image_set": "<package>/art/upper_arm_r__joint.png",
+      "type": 2
+    },
+    {
+      "name": "upper_arm_r",
+      "parent_bone_id": 12,
+      "source_image_set": "<package>/art/upper_arm_r.png",
+      "type": 2
+    },
+    {
+      "name": "upper_arm_r__spill",
+      "parent_bone_id": 13,
+      "source_image_set": "<package>/art/upper_arm_r__spill.png",
+      "type": 2
+    },
+    {
+      "name": "forearm_r",
+      "parent_bone_id": 13,
+      "source_image_set": "<package>/art/forearm_r.png",
+      "type": 2
+    },
+    {
+      "name": "forearm_r__specks_to_right_hand",
+      "parent_bone_id": 14,
+      "source_image_set": "<package>/art/forearm_r__specks_to_right_hand.png",
+      "type": 2
+    },
+    {
+      "name": "hand_r",
+      "parent_bone_id": 14,
+      "source_image_set": "<package>/art/hand_r.png",
+      "type": 2
+    },
+    {
+      "name": "upper_arm_l__joint",
+      "parent_bone_id": 7,
+      "source_image_set": "<package>/art/upper_arm_l__joint.png",
+      "type": 2
+    },
+    {
+      "name": "upper_arm_l",
+      "parent_bone_id": 8,
+      "source_image_set": "<package>/art/upper_arm_l.png",
+      "type": 2
+    },
+    {
+      "name": "upper_arm_l__spill",
+      "parent_bone_id": 9,
+      "source_image_set": "<package>/art/upper_arm_l__spill.png",
+      "type": 2
+    },
+    {
+      "name": "forearm_l",
+      "parent_bone_id": 9,
+      "source_image_set": "<package>/art/forearm_l.png",
+      "type": 2
+    },
+    {
+      "name": "forearm_l__specks_to_left_hand",
+      "parent_bone_id": 10,
+      "source_image_set": "<package>/art/forearm_l__specks_to_left_hand.png",
+      "type": 2
+    },
+    {
+      "name": "hand_l",
+      "parent_bone_id": 10,
+      "source_image_set": "<package>/art/hand_l.png",
+      "type": 2
+    },
+    {
+      "name": "head_base",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/head_base.png",
+      "type": 2
+    },
+    {
+      "name": "nose",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/nose.png",
+      "type": 2
+    },
+    {
+      "name": "mouth",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/mouth.png",
+      "type": 2
+    },
+    {
+      "name": "eye_r_white",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/eye_r_white.png",
+      "type": 2
+    },
+    {
+      "name": "eye_r_iris",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/eye_r_iris.png",
+      "type": 2
+    },
+    {
+      "name": "eye_l_white",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/eye_l_white.png",
+      "type": 2
+    },
+    {
+      "name": "eye_l_iris",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/eye_l_iris.png",
+      "type": 2
+    },
+    {
+      "name": "brow_r",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/brow_r.png",
+      "type": 2
+    },
+    {
+      "name": "brow_l",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/brow_l.png",
+      "type": 2
+    },
+    {
+      "name": "hair",
+      "parent_bone_id": 6,
+      "source_image_set": "<package>/art/hair.png",
+      "type": 2
+    }
+  ],
+  "lua_version": "Lua 5.4",
+  "moho_app_version": "14.4-mock",
+  "status": "completed",
+  "warnings": [],
+  "_label": "MOCK: written by the strict mock Moho API in the cloud, not by Moho"
+}

@@ -1,0 +1,358 @@
+{
+  "schema": "autorig.native_artwork_requests",
+  "version": "4.2.0",
+  "requests": [
+    {
+      "id": "ART-shoulder_lowered-l",
+      "joint": "shoulder_l",
+      "category": "shoulders",
+      "need": "arms-down shoulder: the sleeve cap and shoulder line for a lowered arm (an approved drawing, or approval of the native gap fill)",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "native_gap_shoulder_l__both_arms_lowered",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "NativeJointGapFill",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 10,
+          "pose": "both_arms_lowered",
+          "causes": [
+            "LAYER_CUT",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-shoulder_lowered-r",
+      "joint": "shoulder_r",
+      "category": "shoulders",
+      "need": "arms-down shoulder: the sleeve cap and shoulder line for a lowered arm (an approved drawing, or approval of the native gap fill)",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "native_gap_shoulder_r__both_arms_lowered",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "NativeJointGapFill",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 10,
+          "pose": "both_arms_lowered",
+          "causes": [
+            "LAYER_CUT",
+            "LAYER_ORDER",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-shoulder_raised-l",
+      "joint": "shoulder_l",
+      "category": "shoulders",
+      "need": "armpit for a raised arm: the fold between the torso side and the sleeve underside (an approved drawing, or approval of the native armpit fill)",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "native_gap_shoulder_l__left_arm_raised",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "NativeJointGapFill",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [
+        {
+          "asset": "armpit_gusset_l",
+          "reason": "Phase 3.4 / 3.5 gap fills (armpit gussets) were baked on the Phase 3 garment deformer's geometry and lie where the T-pose arm is: on the rigid native rig they show as stray fabric when the arm moves away (simulation: wings at the lowered shoulders, a wider raised-arm gap); the native fills replace them"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "frame": 20,
+          "pose": "left_arm_raised",
+          "causes": [
+            "LAYER_CUT",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-shoulder_raised-r",
+      "joint": "shoulder_r",
+      "category": "shoulders",
+      "need": "armpit for a raised arm: the fold between the torso side and the sleeve underside (an approved drawing, or approval of the native armpit fill)",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "native_gap_shoulder_r__right_arm_raised",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "NativeJointGapFill",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [
+        {
+          "asset": "armpit_gusset_r",
+          "reason": "Phase 3.4 / 3.5 gap fills (armpit gussets) were baked on the Phase 3 garment deformer's geometry and lie where the T-pose arm is: on the rigid native rig they show as stray fabric when the arm moves away (simulation: wings at the lowered shoulders, a wider raised-arm gap); the native fills replace them"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "frame": 30,
+          "pose": "right_arm_raised",
+          "causes": [
+            "LAYER_CUT",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-elbow-l",
+      "joint": "elbow_l",
+      "category": "elbows",
+      "need": "elbow fold: outer cap and inner crease for 45-90 deg (pending caps exist); a deep-elbow drawing beyond 125 deg",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "elbow_cap_l",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "JointCapGenerator",
+          "review": "pending"
+        },
+        {
+          "asset": "elbow_fold_l",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "ArtDirectedJointCorrection",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 40,
+          "pose": "left_elbow_90",
+          "causes": [
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-elbow-r",
+      "joint": "elbow_r",
+      "category": "elbows",
+      "need": "elbow fold: outer cap and inner crease for 45-90 deg (pending caps exist); a deep-elbow drawing beyond 125 deg",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "elbow_cap_r",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "JointCapGenerator",
+          "review": "pending"
+        },
+        {
+          "asset": "elbow_fold_r",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "ArtDirectedJointCorrection",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 50,
+          "pose": "right_elbow_90",
+          "causes": [
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-hip-l",
+      "joint": "hip_l",
+      "category": "hips",
+      "need": "trouser top under the blazer hem, revealed when the thigh moves (an approved drawing, or approval of the native gap fill)",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "native_gap_hip_l__left_knee_bent",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "NativeJointGapFill",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 60,
+          "pose": "left_knee_bent",
+          "causes": [
+            "INADEQUATE_OVERLAP",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING",
+            "UNSUPPORTED_VIEW"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-hip-r",
+      "joint": "hip_r",
+      "category": "hips",
+      "need": "trouser top under the blazer hem, revealed when the thigh moves (an approved drawing, or approval of the native gap fill)",
+      "status": "PENDING_REVIEW",
+      "candidates": [
+        {
+          "asset": "native_gap_hip_r__right_knee_bent",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "NativeJointGapFill",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 70,
+          "pose": "right_knee_bent",
+          "causes": [
+            "INADEQUATE_OVERLAP",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING",
+            "UNSUPPORTED_VIEW"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-knee-l",
+      "joint": "knee_l",
+      "category": "knees",
+      "need": "knee in a side or 3/4 view for real flexion (front-view art: REQUIRES_NEW_VIEW); in-plane bends use the pending caps",
+      "status": "REQUIRES_NEW_VIEW",
+      "candidates": [
+        {
+          "asset": "knee_cap_l",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "JointCapGenerator",
+          "review": "pending"
+        },
+        {
+          "asset": "knee_fold_l",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "ArtDirectedJointCorrection",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 60,
+          "pose": "left_knee_bent",
+          "causes": [
+            "LAYER_CUT",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING",
+            "UNSUPPORTED_VIEW"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-knee-r",
+      "joint": "knee_r",
+      "category": "knees",
+      "need": "knee in a side or 3/4 view for real flexion (front-view art: REQUIRES_NEW_VIEW); in-plane bends use the pending caps",
+      "status": "REQUIRES_NEW_VIEW",
+      "candidates": [
+        {
+          "asset": "knee_cap_r",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "JointCapGenerator",
+          "review": "pending"
+        },
+        {
+          "asset": "knee_fold_r",
+          "version": 1,
+          "provenance": "GEOMETRIC_CORRECTION",
+          "method": "ArtDirectedJointCorrection",
+          "review": "pending"
+        }
+      ],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 70,
+          "pose": "right_knee_bent",
+          "causes": [
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING",
+            "UNSUPPORTED_VIEW"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    },
+    {
+      "id": "ART-waist",
+      "joint": "waist",
+      "category": "torso",
+      "need": "the shirt / sweater under the blazer front, revealed by a torso lean; or a flexible-binding solution verified in Moho (manual test MT-3)",
+      "status": "MISSING",
+      "candidates": [],
+      "not_used_natively": [],
+      "audit_evidence": [
+        {
+          "frame": 80,
+          "pose": "torso_leaning",
+          "causes": [
+            "INADEQUATE_OVERLAP",
+            "LAYER_CUT",
+            "MISSING_ARTWORK",
+            "MISSING_CORRECTIVE_DRAWING"
+          ]
+        }
+      ],
+      "approval": "only a person approves (autorig review / the editor); nothing is approved here"
+    }
+  ]
+}

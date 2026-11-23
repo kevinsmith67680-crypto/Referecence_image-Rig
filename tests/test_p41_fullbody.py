@@ -371,7 +371,7 @@ def _harness(*args, env_extra=None):
 
 def test_harness_phase_arguments(tmp_path):
     fake = {"AUTORIG_HARNESS_OS": "Darwin", "AUTORIG_MOHO_SEARCH_DIRS": str(tmp_path)}
-    r = _harness("--phase", "4.2", env_extra=fake)
+    r = _harness("--phase", "4.3", env_extra=fake)  # 4.2 exists since Phase 4.2; 4.3 is the unknown phase now
     assert r.returncode == 5 and "--phase must be 4.0 or 4.1" in r.stderr
     r = _harness("--with-ik", env_extra=fake)
     assert r.returncode == 5 and "--with-ik belongs to --phase 4.1" in r.stderr

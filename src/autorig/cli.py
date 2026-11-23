@@ -668,6 +668,42 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", help="gate JSON (default <evidence>/gate_4_1.json)")
     p.set_defaults(func=cmd_native_fullbody_verify)
 
+    p = sub.add_parser("deform-audit", help="Phase 4.2: joint deformation root-cause audit (SIMULATION of rigid "
+                                            "native binding, variant experiments, pivot counterfactual)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", required=True, help="output folder (joint_audit.json + SIMULATION sheets)")
+    p.add_argument("--variants", nargs="*", default=None, help="variants to measure (default: all six)")
+    p.add_argument("--no-sheets", action="store_true")
+    p.set_defaults(func=cmd_deform_audit)
+
+    p = sub.add_parser("native-fills", help="Phase 4.2: bake native-geometry gap fills into the package's corrective "
+                                            "store (append-only, pending review)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--regenerate", action="store_true", help="add new versions even when the assets exist")
+    p.set_defaults(func=cmd_native_fills)
+
+    p = sub.add_parser("native-hybrid", help="Phase 4.2: build the hybrid native rig package (split limb roots, layer "
+                                             "order, correctives, Smart Bone plan, artwork requests, Lua scripts)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", required=True, help="output folder")
+    p.add_argument("--review", action="store_true",
+                   help="review build: add the pending clipped underlays (caps, shoe tops), labelled pending")
+    p.add_argument("--include-pending-extensions", action="store_true",
+                   help="with --review: also the pending Phase 2 reconstruction beneath the originals")
+    p.add_argument("--canvas", type=_canvas_arg, default=None,
+                   help="Moho document size WxH (default: sized automatically to hold every test pose)")
+    p.add_argument("--asset-root", default=None, help="absolute POSIX path of --out on the Mac")
+    p.add_argument("--audit", default=None, help="joint_audit.json from deform-audit (evidence for the requests)")
+    p.set_defaults(func=cmd_native_hybrid)
+
+    p = sub.add_parser("native-hybrid-verify", help="Phase 4.2: check native Mac evidence (gates 4.2-A..K)")
+    p.add_argument("package_out", help="the folder made by native-hybrid")
+    p.add_argument("--evidence", help="evidence folder written by tools/macos/phase4_native_test.sh --phase 4.2")
+    p.add_argument("--character-package", default=None, help="the character package (joint sizes for gate E)")
+    p.add_argument("--before", default=None, help="a Phase 4.1 native run folder (renders/) for the comparison")
+    p.add_argument("--out", help="gate JSON (default <evidence>/gate_4_2.json)")
+    p.set_defaults(func=cmd_native_hybrid_verify)
+
     p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
     p.add_argument("package", help="Phase 2 character package")
     p.add_argument("--out", help="output directory (default <package>/natural_pose/garments)")
@@ -1036,6 +1072,61 @@ def cmd_native_fullbody_verify(args: argparse.Namespace) -> int:
     if out:
         print(f"Gate result written: {out}")
     return 0 if res["passed"] else 1
+
+
+def cmd_deform_audit(args: argparse.Namespace) -> int:
+    from .native.deform_audit import DEFAULT_VARIANTS, run_audit
+
+    r = run_audit(args.package, variants=tuple(args.variants or DEFAULT_VARIANTS), out=args.out,
+                  sheets=not args.no_sheets)
+    print(json.dumps(r["summary"], indent=1, default=str))
+    print("note: SIMULATION of rigid native binding; not Moho output", file=sys.stderr)
+    return 0
+
+
+def cmd_native_fills(args: argparse.Namespace) -> int:
+    from .native.correctives42 import generate_native_fills
+
+    r = generate_native_fills(args.package, regenerate=args.regenerate, progress=lambda m: print(m, flush=True))
+    print(json.dumps(r, indent=1))
+    print("note: the fills are pending; only a person approves them (autorig review / the editor)", file=sys.stderr)
+    return 0
+
+
+def cmd_native_hybrid(args: argparse.Namespace) -> int:
+    from .native.hybrid_build import NativeHybridError, build_hybrid
+
+    try:
+        man = build_hybrid(args.package, args.out, review=args.review, extensions=args.include_pending_extensions,
+                           canvas=args.canvas, asset_root=args.asset_root, audit=args.audit)
+    except (NativeHybridError, ValueError) as exc:
+        for pr in getattr(exc, "problems", [str(exc)]):
+            print(f"error: {pr}", file=sys.stderr)
+        return 2
+    print(json.dumps({k: man[k] for k in ("character_id", "variant", "source_canvas", "moho_canvas", "placement",
+                                         "bones", "scripts", "asset_root", "manual_switch_assets")} |
+                     {"layers": {k: man["layers"][k] for k in ("count", "by_status", "partition_exact")}}, indent=1))
+    print("note: this prepares the package; native behaviour is verified only by the Mac run "
+          "(tools/macos/phase4_native_test.sh --phase 4.2)", file=sys.stderr)
+    return 0
+
+
+def cmd_native_hybrid_verify(args: argparse.Namespace) -> int:
+    from .native.gate42 import VERDICT_PASS, comparison_sheets, evaluate_gate42, format_gate42
+
+    res = evaluate_gate42(args.package_out, args.evidence, character_package=args.character_package,
+                          before_dir=args.before)
+    out = Path(args.out) if args.out else (Path(args.evidence) / "gate_4_2.json" if args.evidence else None)
+    if args.evidence:
+        res["comparisons"] = comparison_sheets(args.package_out, args.evidence, Path(args.evidence) / "comparisons",
+                                               args.before)
+    if out:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(res, indent=2, default=str) + "\n", encoding="utf-8")
+    print(format_gate42(res))
+    if out:
+        print(f"Gate result written: {out}")
+    return 0 if res["verdict"] == VERDICT_PASS else 1
 
 
 def cmd_hand_audit(args: argparse.Namespace) -> int:

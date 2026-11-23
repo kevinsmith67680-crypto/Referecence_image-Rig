@@ -268,6 +268,20 @@ Phase 4.0 is still incomplete, so Phase 4.1 is **BLOCKED — native validation r
 tools/macos/phase4_native_test.sh --phase 4.1 --with-ik --custom-content "<your Moho Custom Content Folder>"
 ```
 
+Phase 4.2 traced the 4.1 joint defects to their causes before changing anything. It found the layer cuts, the layer
+order and missing artwork; the skeleton was right. It then builds a hybrid native rig with `autorig native-hybrid`:
+- limb roots split at their pivots, specks rebound, arm chains above the torso, all automated with the operations
+  Phase 4.0 ran;
+- pending corrective artwork baked on the native geometry, for Smart Bone switches that are set up by hand in Moho;
+- the artwork requests and a 4.2 gate checker.
+
+Nothing has run in Moho, so the verdict is **BLOCKED — native validation required**
+([docs/phase4_2_native_correctives_report.md](docs/phase4_2_native_correctives_report.md)). On the Mac:
+
+```bash
+tools/macos/phase4_native_test.sh --phase 4.2 --custom-content "<your Moho Custom Content Folder>"
+```
+
 ## Running it in Moho Pro 14 (Mac)
 
 Read **[docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md)**. In short:
@@ -344,6 +358,10 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase4_1_moho_api_compatibility.md](docs/phase4_1_moho_api_compatibility.md) | Phase 4.1: members used, native status, new allowlist entries |
 | [docs/phase4_1_artwork_binding_report.md](docs/phase4_1_artwork_binding_report.md) | Phase 4.1: artwork import, binding classes, garments, hands |
 | [docs/phase4_1_performance_report.md](docs/phase4_1_performance_report.md) | Phase 4.1: cloud tooling timings; M1 measurements not executed |
+| [docs/phase4_2_joint_deformation_audit.md](docs/phase4_2_joint_deformation_audit.md) | Phase 4.2: root cause per joint (experiments, pivot counterfactual), SIMULATION |
+| [docs/phase4_2_native_correctives_report.md](docs/phase4_2_native_correctives_report.md) | Phase 4.2: hybrid rig, native gap fills, Smart Bone plan, artwork requests, verdict |
+| [docs/phase4_2_visual_comparisons.md](docs/phase4_2_visual_comparisons.md) | Phase 4.2: rigid 4.1 vs hybrid vs correctives (SIMULATION); native comparisons not executed |
+| [docs/phase4_2_moho_validation.md](docs/phase4_2_moho_validation.md) | Phase 4.2: gates 4.2-A..K, the Mac procedure, manual Moho tests, missing capabilities |
 | [CLAUDE.md](CLAUDE.md) | Rules for AI-assisted development in this repo |
 
 ## Roadmap
@@ -359,4 +377,5 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 3.1 | Natural motion: planner/solver split, front-view gait cycles, garment deformation, feasibility and quality checks | Implemented; **PARTIAL** (visual review pending; Moho not run) |
 | 3.2 | IK (arms, legs, poles, FK/IK matching), foot contacts, switch groups, hand library, correction triggers, rig controls spec | Implemented; **PARTIAL** (hand variants pending review; drawings missing; Moho not run) |
 | 4 | Native Moho rig generation | 4.0 built; first native runs in Moho 14.5.1: build and save pass, reopen and renders pending; **PARTIAL** (2/5 gate items) |
-| 4.1 | Full-body native rig (25 bones, all layers, IK/limits experiment), 12 native gates | Built and cloud-tested for both characters; **BLOCKED — native validation required**; 4.2 not started |
+| 4.1 | Full-body native rig (25 bones, all layers, IK/limits experiment), 12 native gates | Built and cloud-tested for both characters; **BLOCKED — native validation required** |
+| 4.2 | Joint deformation audit, hybrid native rig (split, order, specks), native gap fills, Smart Bone plan, artwork requests, gates 4.2-A..K | Built and cloud-tested for both characters; correctives pending review; **BLOCKED — native validation required**; 4.3 not started |

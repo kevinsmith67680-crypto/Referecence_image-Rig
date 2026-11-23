@@ -1,0 +1,55 @@
+{
+  "version": "4.2.0",
+  "tests": [
+    {
+      "id": "MT-1",
+      "title": "Smart Bone switch for a native gap fill (left shoulder raised)",
+      "why": "Smart Bone actions and Switch layers have no Lua evidence; the hybrid rig needs them for the gap fills.",
+      "steps": [
+        "Open the saved Phase 4.2 document (after the build and the save).",
+        "In the bone layer AutoRig_P42_Hybrid, add a Switch layer named after the asset (e.g. native_gap_shoulder_l__left_arm_raised) and drag it to the bottom of the bone layer's children.",
+        "Inside the Switch layer, add an empty layer named 'off', then import each key PNG from correctives/<asset>/ (File > Import > Image) and name each image layer after its key (k025 ... k100).",
+        "Bind the Switch layer to the bone named in smartbone_plan.json (attach_bone) with the Bind Layer tool.",
+        "Select the driver bone (e.g. LEFT_UPPER_ARM) and create a Smart Bone action for it in the Actions window (Moho names a Smart Bone action after its bone).",
+        "In the action, key the Switch layer at 'off' for the rest angle, then rotate the driver bone to each key's offset (smartbone_plan.json keys[].bone_offset_deg) and key the Switch layer to that key.",
+        "Leave the action, scrub the driver bone between rest and the raised pose: record whether the fill appears under the armpit, switches without popping, and disappears at rest.",
+        "Save, close, reopen, run the Phase 4.2 verify script (it lists the actions it finds) and render frame 20."
+      ],
+      "record": "observations.json: smart_bone.MT-1 = {works: true|false, notes, screenshot names}",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "MT-2",
+      "title": "Same Smart Bone switch for the other assets",
+      "why": "every native_gap_* asset listed in smartbone_plan.json needs the same manual set-up",
+      "steps": [
+        "Repeat MT-1 for each asset in smartbone_plan.json whose native_automation is manual_switch."
+      ],
+      "record": "observations.json: smart_bone.MT-2 = {assets_done: [...], works: true|false, notes}",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "MT-3",
+      "title": "Flexible binding of the torso image layer (discovery)",
+      "why": "a torso lean tears a rigidly bound blazer at the waist; Moho's saved files carry a per-layer flexi_bone_subset key (observed in Phase 4.0), but setting it from Lua is not evidenced",
+      "steps": [
+        "In a copy of the saved document, select the torso image layer and try binding it to SPINE_LOWER, SPINE_UPPER and CHEST together (flexible binding / Bind Points or the layer's bone settings, whichever Moho 14.5 offers for image layers).",
+        "Go to frame 80 (torso lean after the verify script) and render it.",
+        "Save the copy; keep it for the file-format diff (autorig moho-file diff)."
+      ],
+      "record": "observations.json: flexi.MT-3 = {possible: true|false, how, render, saved_file}",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "MT-4",
+      "title": "Visual review of the native renders by a person",
+      "why": "numbers never approve articulation; the person decides whether the joints read as natural",
+      "steps": [
+        "Open comparisons/ (written by native-hybrid-verify) and the Moho renders of frames 1-90.",
+        "Judge shoulders, elbows, hips, knees and the torso: outlines, garment silhouettes, attachment, proportions, overlaps, distortion."
+      ],
+      "record": "observations.json: visual_review = {verdict: accepted|rejected, per_joint: {...}, notes}",
+      "status": "NOT_EXECUTED"
+    }
+  ]
+}

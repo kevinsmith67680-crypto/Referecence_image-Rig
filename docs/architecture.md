@@ -506,3 +506,34 @@ See [phase4_native_rig_report.md](phase4_native_rig_report.md) and [phase4_compl
 
 See [phase4_1_implementation_report.md](phase4_1_implementation_report.md).
 
+## 25. Phase 4.2: joint deformation audit and the hybrid native rig
+
+- **Audit** (`native/deform_audit.py`, `autorig deform-audit`): simulated rigid native binding of the ten Phase 4.2
+  poses. It measures holes, cracks, swing behind the pivot, occlusion, inward collapse and the layer cut geometry per
+  joint, over six layer variants. `diagnose` assigns causes by which experiment removes the defect. A counterfactual
+  (`pivot_experiment`) moves the pivot onto the layer cut to separate bone placement from layer cut.
+- **Hybrid layers** (`native/hybrid.py`): `assemble(variant)`:
+  - `split`: limb-root pixels behind the pivot plane go to the parent bone, pixels past the far joint to the child,
+    detached specks to the neighbouring layer;
+  - `order`: arm chains above the torso;
+  - `extensions` and `correctives`: pending pixels, review only.
+
+  Split and specks are an exact partition of the original pixels. `Simulator` renders on a padded canvas; corrective
+  visibility follows the planned Smart Bone rule (`active_correctives`).
+- **Native gap fills** (`native/correctives42.py`, `autorig native-fills`): keyed fills baked on the hybrid geometry
+  with the Phase 3.4 recipe:
+  - a curve-bounded fabric fill, or for raised arms a concave armpit;
+  - stored append-only and pending in the `CorrectiveArtworkStore`;
+  - they replace the Phase 3.4/3.5 gussets, which do not fit rigid geometry.
+- **Package** (`native/hybrid_build.py`, `autorig native-hybrid`): the hybrid layer set on an auto-sized canvas. It
+  holds:
+  - the Phase 0 build template under the 4.2 name;
+  - the 4.2 verify script, which reads back the reopened rig, lists the actions in pcall and keys the torso lean;
+  - the manual-switch key PNGs, `smartbone_plan.json`, `artwork_requests.json` and `manual_tests.json`;
+  - simulated `pose_*` / `planned_*` frames.
+- **Gates** (`native/gate42.py`, `autorig native-hybrid-verify`): 4.2-A..K. I (Smart Bone, MT-1) and J (visual
+  review) are the person's records. E (joint metrics) and K (4.1 comparison) are information only.
+- **Harness**: `tools/macos/phase4_native_test.sh --phase 4.2 [--review]` renders frames 1–90, runs the optional
+  MT-1 on a copy and records the visual review.
+
+See [phase4_2_native_correctives_report.md](phase4_2_native_correctives_report.md).

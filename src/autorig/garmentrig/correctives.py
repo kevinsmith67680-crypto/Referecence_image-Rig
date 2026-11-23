@@ -854,12 +854,18 @@ class PoseSpaceCorrectionEngine:
         return out
 
 
+def _phase3_assets(assets: list[CorrectiveAsset]) -> list[CorrectiveAsset]:
+    """The assets this (Phase 3) renderer draws. Phase 4.2 native gap fills (``placement.native``) are baked on the
+    rigid native rig's geometry and attach to native bones; they are listed for review but never drawn here."""
+    return [a for a in assets if not a.placement.get("native")]
+
+
 class CorrectiveRuntime:
     """Loads the store's latest assets for one engine and turns activation records into renderer pieces."""
 
     def __init__(self, eng, store: CorrectiveArtworkStore | None):
         self.eng, self.store = eng, store
-        self.assets = store.latest() if store is not None else []
+        self.assets = _phase3_assets(store.latest()) if store is not None else []
         self.engine = PoseSpaceCorrectionEngine()
         self._img: dict[str, np.ndarray] = {}
         self.decont_layers: dict[str, np.ndarray] | None = None
@@ -980,7 +986,7 @@ class CorrectiveRuntime:
         """Re-read the store (after generation or a replacement drawing)."""
         if self.store is not None:
             self.store = CorrectiveArtworkStore(self.store.pkg)
-            self.assets = self.store.latest()
+            self.assets = _phase3_assets(self.store.latest())
             self._img.clear()
             self.decont_layers = None
 
