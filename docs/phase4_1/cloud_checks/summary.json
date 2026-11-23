@@ -1,0 +1,78 @@
+[
+  {
+    "character": "schoolboy_tpose",
+    "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+    "gates": {
+      "4.1-A": "MOCK_ONLY",
+      "4.1-B": "NOT_EXECUTED",
+      "4.1-C": "MOCK_ONLY",
+      "4.1-D": "NOT_EXECUTED",
+      "4.1-E": "NOT_EXECUTED",
+      "4.1-F": "MOCK_ONLY",
+      "4.1-G": "MOCK_ONLY",
+      "4.1-H": "NOT_EXECUTED",
+      "4.1-I": "MOCK_ONLY",
+      "4.1-J": "MOCK_ONLY",
+      "4.1-K": "MOCK_ONLY",
+      "4.1-L": "MOCK_ONLY"
+    },
+    "moho_canvas": [
+      1270,
+      1486
+    ],
+    "placement": {
+      "offset_px": [
+        87,
+        38
+      ],
+      "scale": 1,
+      "rule": "canvas_px = source_px + offset; integer, never scaled"
+    },
+    "bones": 25,
+    "binding_counts": {
+      "FLEXIBLE": 8,
+      "RIGID": 12,
+      "LIMITED_DEFORMATION": 3,
+      "SWITCHABLE": 2
+    },
+    "layers": 25
+  },
+  {
+    "character": "tough_student_test",
+    "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+    "gates": {
+      "4.1-A": "MOCK_ONLY",
+      "4.1-B": "NOT_EXECUTED",
+      "4.1-C": "MOCK_ONLY",
+      "4.1-D": "NOT_EXECUTED",
+      "4.1-E": "NOT_EXECUTED",
+      "4.1-F": "MOCK_ONLY",
+      "4.1-G": "MOCK_ONLY",
+      "4.1-H": "NOT_EXECUTED",
+      "4.1-I": "MOCK_ONLY",
+      "4.1-J": "MOCK_ONLY",
+      "4.1-K": "MOCK_ONLY",
+      "4.1-L": "MOCK_ONLY"
+    },
+    "moho_canvas": [
+      1230,
+      1484
+    ],
+    "placement": {
+      "offset_px": [
+        76,
+        35
+      ],
+      "scale": 1,
+      "rule": "canvas_px = source_px + offset; integer, never scaled"
+    },
+    "bones": 25,
+    "binding_counts": {
+      "RIGID": 12,
+      "FLEXIBLE": 8,
+      "LIMITED_DEFORMATION": 3,
+      "SWITCHABLE": 2
+    },
+    "layers": 25
+  }
+]

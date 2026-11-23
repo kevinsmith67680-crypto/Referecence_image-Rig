@@ -1,0 +1,1656 @@
+{
+  "layers": [
+    {
+      "layer": "foot_r",
+      "bone": "RIGHT_FOOT",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "foot_r",
+      "package_class": "leg_r",
+      "home_bones": [
+        "foot_r",
+        "shin_r"
+      ],
+      "reason": "the layer's own package bone 'foot_r'",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "shoe_r",
+          "class": "RIGID",
+          "allowed_bones": [
+            "foot_r"
+          ]
+        },
+        {
+          "part": "trouser_cuff_r",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "shin_r",
+            "foot_r"
+          ]
+        }
+      ],
+      "z_index": 0,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "thigh_r",
+      "bone": "RIGHT_THIGH",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "thigh_r",
+      "package_class": "leg_r",
+      "home_bones": [
+        "foot_r",
+        "pelvis",
+        "shin_r",
+        "thigh_r"
+      ],
+      "reason": "the layer's own package bone 'thigh_r'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "trouser_shin_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "trouser_thigh_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "knee_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "trouser_hip_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_r"
+          ]
+        }
+      ],
+      "z_index": 1,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "shin_r",
+      "bone": "RIGHT_SHIN",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "shin_r",
+      "package_class": "leg_r",
+      "home_bones": [
+        "foot_r",
+        "shin_r",
+        "thigh_r"
+      ],
+      "reason": "the layer's own package bone 'shin_r'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "trouser_shin_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "trouser_thigh_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "knee_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "trouser_cuff_r",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "shin_r",
+            "foot_r"
+          ]
+        }
+      ],
+      "z_index": 2,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "foot_l",
+      "bone": "LEFT_FOOT",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "foot_l",
+      "package_class": "leg_l",
+      "home_bones": [
+        "foot_l",
+        "shin_l"
+      ],
+      "reason": "the layer's own package bone 'foot_l'",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "shoe_l",
+          "class": "RIGID",
+          "allowed_bones": [
+            "foot_l"
+          ]
+        },
+        {
+          "part": "trouser_cuff_l",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "shin_l",
+            "foot_l"
+          ]
+        }
+      ],
+      "z_index": 3,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "thigh_l",
+      "bone": "LEFT_THIGH",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "thigh_l",
+      "package_class": "leg_l",
+      "home_bones": [
+        "foot_l",
+        "pelvis",
+        "shin_l",
+        "thigh_l"
+      ],
+      "reason": "the layer's own package bone 'thigh_l'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "trouser_shin_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "trouser_thigh_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "knee_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "trouser_hip_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_l"
+          ]
+        }
+      ],
+      "z_index": 4,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "shin_l",
+      "bone": "LEFT_SHIN",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "shin_l",
+      "package_class": "leg_l",
+      "home_bones": [
+        "foot_l",
+        "shin_l",
+        "thigh_l"
+      ],
+      "reason": "the layer's own package bone 'shin_l'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "trouser_shin_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "trouser_thigh_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "knee_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "trouser_cuff_l",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "shin_l",
+            "foot_l"
+          ]
+        }
+      ],
+      "z_index": 5,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "pelvis",
+      "bone": "PELVIS",
+      "binding_class": "LIMITED_DEFORMATION",
+      "native_method": "layer_binding",
+      "package_bone": "pelvis",
+      "package_class": "pelvis",
+      "home_bones": [
+        "pelvis"
+      ],
+      "reason": "package class 'pelvis' -> PELVIS",
+      "fallback_note": "edges do not bend with the neighbouring bones (rigid fallback)",
+      "garment_parts": [
+        {
+          "part": "button_1",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_2",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_3",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_4",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "trouser_thigh_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_r",
+            "shin_r"
+          ]
+        },
+        {
+          "part": "trouser_hip_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_r"
+          ]
+        },
+        {
+          "part": "blazer_hem",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "pelvis"
+          ]
+        },
+        {
+          "part": "trouser_thigh_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_l",
+            "shin_l"
+          ]
+        },
+        {
+          "part": "trouser_hip_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "pelvis",
+            "thigh_l"
+          ]
+        },
+        {
+          "part": "sweater",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "waistband",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "pelvis"
+          ]
+        },
+        {
+          "part": "blazer_body",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest",
+            "clavicle_r",
+            "clavicle_l"
+          ]
+        }
+      ],
+      "z_index": 6,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "neck",
+      "bone": "NECK",
+      "binding_class": "LIMITED_DEFORMATION",
+      "native_method": "layer_binding",
+      "package_bone": "neck",
+      "package_class": "neck",
+      "home_bones": [
+        "chest",
+        "neck"
+      ],
+      "reason": "package class 'neck' -> NECK",
+      "fallback_note": "edges do not bend with the neighbouring bones (rigid fallback)",
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "shirt_collar",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "neck"
+          ]
+        }
+      ],
+      "z_index": 7,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "torso",
+      "bone": "CHEST",
+      "binding_class": "LIMITED_DEFORMATION",
+      "native_method": "layer_binding",
+      "package_bone": "chest",
+      "package_class": "torso",
+      "home_bones": [
+        "chest",
+        "head",
+        "neck",
+        "pelvis",
+        "spine"
+      ],
+      "reason": "package class 'torso' -> CHEST (the arms and neck hang from CHEST, so a spine bend keeps the torso with them)",
+      "fallback_note": "edges do not bend with the neighbouring bones (rigid fallback)",
+      "garment_parts": [
+        {
+          "part": "badge",
+          "class": "RIGID",
+          "allowed_bones": [
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_1",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_2",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_3",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "button_4",
+          "class": "RIGID",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "tie",
+          "class": "RIGID",
+          "allowed_bones": [
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "sweater",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest"
+          ]
+        },
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "blazer_body",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "pelvis",
+            "spine",
+            "chest",
+            "clavicle_r",
+            "clavicle_l"
+          ]
+        },
+        {
+          "part": "blazer_shoulder_r",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "clavicle_r"
+          ]
+        },
+        {
+          "part": "sleeve_upper_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "chest",
+            "clavicle_r",
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        },
+        {
+          "part": "blazer_shoulder_l",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "clavicle_l"
+          ]
+        },
+        {
+          "part": "sleeve_upper_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "chest",
+            "clavicle_l",
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        },
+        {
+          "part": "shirt_collar",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "neck"
+          ]
+        },
+        {
+          "part": "lapels",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "clavicle_r",
+            "clavicle_l"
+          ]
+        },
+        {
+          "part": "sleeve_cap_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "clavicle_r"
+          ]
+        },
+        {
+          "part": "sleeve_cap_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "spine",
+            "chest",
+            "clavicle_l"
+          ]
+        }
+      ],
+      "z_index": 8,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "upper_arm_r",
+      "bone": "RIGHT_UPPER_ARM",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "upper_arm_r",
+      "package_class": "arm_r",
+      "home_bones": [
+        "chest",
+        "forearm_r",
+        "neck",
+        "spine",
+        "upper_arm_r"
+      ],
+      "reason": "the layer's own package bone 'upper_arm_r'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "sleeve_upper_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "chest",
+            "clavicle_r",
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        },
+        {
+          "part": "sleeve_fore_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        },
+        {
+          "part": "elbow_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        }
+      ],
+      "z_index": 9,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "forearm_r",
+      "bone": "RIGHT_FOREARM",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "forearm_r",
+      "package_class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ],
+      "reason": "the layer's own package bone 'forearm_r'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "sleeve_upper_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "chest",
+            "clavicle_r",
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        },
+        {
+          "part": "sleeve_fore_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        },
+        {
+          "part": "elbow_r",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_r",
+            "forearm_r"
+          ]
+        },
+        {
+          "part": "shirt_cuff_r",
+          "class": "RIGID",
+          "allowed_bones": [
+            "forearm_r"
+          ]
+        }
+      ],
+      "z_index": 10,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "hand_r",
+      "bone": "RIGHT_HAND",
+      "binding_class": "SWITCHABLE",
+      "native_method": "layer_binding",
+      "package_bone": "hand_r",
+      "package_class": "arm_r",
+      "home_bones": [
+        "forearm_r",
+        "hand_r"
+      ],
+      "reason": "the layer's own package bone 'hand_r'",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "hand_r",
+          "class": "RIGID",
+          "allowed_bones": [
+            "hand_r"
+          ]
+        }
+      ],
+      "z_index": 11,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "upper_arm_l",
+      "bone": "LEFT_UPPER_ARM",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "upper_arm_l",
+      "package_class": "arm_l",
+      "home_bones": [
+        "chest",
+        "forearm_l",
+        "neck",
+        "spine",
+        "upper_arm_l"
+      ],
+      "reason": "the layer's own package bone 'upper_arm_l'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "sleeve_upper_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "chest",
+            "clavicle_l",
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        },
+        {
+          "part": "sleeve_fore_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        },
+        {
+          "part": "elbow_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        }
+      ],
+      "z_index": 12,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "forearm_l",
+      "bone": "LEFT_FOREARM",
+      "binding_class": "FLEXIBLE",
+      "native_method": "layer_binding",
+      "package_bone": "forearm_l",
+      "package_class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l"
+      ],
+      "reason": "the layer's own package bone 'forearm_l'",
+      "fallback_note": "the joint seam opens when the joint bends (rigid fallback); needs correctives (Phase 4.2)",
+      "garment_parts": [
+        {
+          "part": "sleeve_upper_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "chest",
+            "clavicle_l",
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        },
+        {
+          "part": "sleeve_fore_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        },
+        {
+          "part": "elbow_l",
+          "class": "FLEXIBLE",
+          "allowed_bones": [
+            "upper_arm_l",
+            "forearm_l"
+          ]
+        },
+        {
+          "part": "shirt_cuff_l",
+          "class": "RIGID",
+          "allowed_bones": [
+            "forearm_l"
+          ]
+        }
+      ],
+      "z_index": 13,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "hand_l",
+      "bone": "LEFT_HAND",
+      "binding_class": "SWITCHABLE",
+      "native_method": "layer_binding",
+      "package_bone": "hand_l",
+      "package_class": "arm_l",
+      "home_bones": [
+        "forearm_l",
+        "hand_l"
+      ],
+      "reason": "the layer's own package bone 'hand_l'",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "hand_l",
+          "class": "RIGID",
+          "allowed_bones": [
+            "hand_l"
+          ]
+        }
+      ],
+      "z_index": 14,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "head_base",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 15,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "nose",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 16,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "mouth",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 17,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "eye_r_white",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 18,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "eye_r_iris",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 19,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "eye_l_white",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 20,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "eye_l_iris",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 21,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "brow_r",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 22,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "brow_l",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 23,
+      "imported": true,
+      "status": "original"
+    },
+    {
+      "layer": "hair",
+      "bone": "HEAD",
+      "binding_class": "RIGID",
+      "native_method": "layer_binding",
+      "package_bone": "head",
+      "package_class": "head",
+      "home_bones": [
+        "head"
+      ],
+      "reason": "package class 'head' -> HEAD",
+      "fallback_note": null,
+      "garment_parts": [
+        {
+          "part": "neck",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "chest",
+            "neck",
+            "head"
+          ]
+        },
+        {
+          "part": "head",
+          "class": "RIGID",
+          "allowed_bones": [
+            "head"
+          ]
+        },
+        {
+          "part": "hair",
+          "class": "LIMITED_DEFORMATION",
+          "allowed_bones": [
+            "head"
+          ]
+        }
+      ],
+      "z_index": 24,
+      "imported": true,
+      "status": "original"
+    }
+  ],
+  "class_counts": {
+    "RIGID": 12,
+    "FLEXIBLE": 8,
+    "LIMITED_DEFORMATION": 3,
+    "SWITCHABLE": 2
+  },
+  "native_method": "layer_binding",
+  "rules": {
+    "one_bone_per_layer": true,
+    "global_flexible_binding": false,
+    "weights_imported": false,
+    "weights_note": "AutoRig weight meshes are not converted: no evidenced Lua API binds an image layer with per-vertex weights; rigid layer binding is the documented fallback"
+  },
+  "metadata_only": {
+    "SWITCHABLE": 18,
+    "CORRECTIVE": 19
+  },
+  "switchable": [
+    {
+      "id": "tough_student_hands_v1/right_relaxed",
+      "side": "r",
+      "use_side": "l",
+      "gesture": "relaxed",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_relaxed@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "original:r",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "open_palm",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": null,
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_open_palm",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "open_palm",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_open_palm@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_fist",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "fist",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_fist@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_pointing",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "pointing",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_pointing@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_thumbs_up",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "thumbs_up",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_thumbs_up@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_gripping",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "gripping",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_gripping@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_palm_down",
+      "side": "r",
+      "use_side": "r",
+      "gesture": "palm_down",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_palm_down@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/right_cupped",
+      "side": "r",
+      "use_side": "l",
+      "gesture": "cupped",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/right_cupped@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_relaxed",
+      "side": "l",
+      "use_side": "r",
+      "gesture": "relaxed",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_relaxed@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "original:l",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "open_palm",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": null,
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_open_palm",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "open_palm",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_open_palm@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_fist",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "fist",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_fist@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_pointing",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "pointing",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_pointing@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_thumbs_up",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "thumbs_up",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_thumbs_up@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_gripping",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "gripping",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_gripping@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_palm_down",
+      "side": "l",
+      "use_side": "l",
+      "gesture": "palm_down",
+      "handedness": "left",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_palm_down@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    },
+    {
+      "id": "tough_student_hands_v1/left_cupped",
+      "side": "l",
+      "use_side": "r",
+      "gesture": "cupped",
+      "handedness": "right",
+      "palm_class": null,
+      "approval_item": "handstore:tough_student_hands_v1/left_cupped@v1",
+      "approval": "pending_review",
+      "native": "metadata only; Switch Layers are Phase 4.3"
+    }
+  ],
+  "corrective": [
+    {
+      "id": "shoe_top_r",
+      "category": "shoes",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "elbow_cap_r",
+      "category": "elbows",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "knee_cap_r",
+      "category": "knees",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "armpit_gusset_r",
+      "category": "armpits",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "shoe_top_l",
+      "category": "shoes",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "elbow_cap_l",
+      "category": "elbows",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "knee_cap_l",
+      "category": "knees",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "armpit_gusset_l",
+      "category": "armpits",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "edge_decontamination",
+      "category": "edges",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "elbow_fold_r",
+      "category": "elbows",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "knee_fold_r",
+      "category": "knees",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "armpit_gusset_r",
+      "category": "armpits",
+      "version": 2,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "elbow_fold_l",
+      "category": "elbows",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "knee_fold_l",
+      "category": "knees",
+      "version": 1,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "armpit_gusset_l",
+      "category": "armpits",
+      "version": 2,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "shoe_top_r",
+      "category": "shoes",
+      "version": 2,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "shoe_top_l",
+      "category": "shoes",
+      "version": 2,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "shoe_top_r",
+      "category": "shoes",
+      "version": 3,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    },
+    {
+      "id": "shoe_top_l",
+      "category": "shoes",
+      "version": 3,
+      "provenance": "GEOMETRIC_CORRECTION",
+      "approval": "pending_review",
+      "native": "metadata only; corrective layers and Smart Bones are Phase 4.2"
+    }
+  ]
+}

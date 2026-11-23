@@ -1,0 +1,228 @@
+{
+  "poses": [
+    {
+      "frame": 1,
+      "id": "neutral",
+      "label": "Neutral standing",
+      "offsets_deg": {},
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 10,
+      "id": "left_arm_raised",
+      "label": "Left arm raised",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": 60.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 20,
+      "id": "right_arm_raised",
+      "label": "Right arm raised",
+      "offsets_deg": {
+        "RIGHT_UPPER_ARM": -60.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 30,
+      "id": "both_arms_lowered",
+      "label": "Both arms lowered",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": -65.0,
+        "RIGHT_UPPER_ARM": 65.0,
+        "LEFT_SHOULDER": -4.0,
+        "RIGHT_SHOULDER": 4.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 40,
+      "id": "left_elbow_bent",
+      "label": "Left elbow bent",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": -20.0,
+        "LEFT_FOREARM": 80.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 50,
+      "id": "right_elbow_bent",
+      "label": "Right elbow bent",
+      "offsets_deg": {
+        "RIGHT_UPPER_ARM": 20.0,
+        "RIGHT_FOREARM": -80.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 60,
+      "id": "left_leg_lifted",
+      "label": "Left leg lifted (sideways)",
+      "offsets_deg": {
+        "LEFT_THIGH": 30.0,
+        "LEFT_FOOT": -30.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 70,
+      "id": "right_knee_bent",
+      "label": "Right knee bent (in-plane mechanical test)",
+      "offsets_deg": {
+        "RIGHT_THIGH": -15.0,
+        "RIGHT_SHIN": 30.0,
+        "RIGHT_FOOT": -15.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false,
+      "note": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); this is an in-plane joint test"
+    },
+    {
+      "frame": 80,
+      "id": "pelvis_shifted",
+      "label": "Pelvis shifted (position key added after reopening)",
+      "offsets_deg": {},
+      "pos_offset_px": {
+        "PELVIS": [
+          -54.84,
+          0.0
+        ]
+      },
+      "after_reopen": true
+    },
+    {
+      "frame": 90,
+      "id": "torso_leaned",
+      "label": "Torso leaned",
+      "offsets_deg": {
+        "SPINE_LOWER": 4.0,
+        "SPINE_UPPER": 4.0,
+        "CHEST": 6.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 100,
+      "id": "head_tilted",
+      "label": "Head tilted",
+      "offsets_deg": {
+        "NECK": 8.0,
+        "HEAD": 12.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 110,
+      "id": "return_to_neutral",
+      "label": "Return to neutral",
+      "offsets_deg": {},
+      "pos_offset_px": {},
+      "after_reopen": false
+    }
+  ],
+  "render_range": [
+    1,
+    110
+  ],
+  "ik_render_range": [
+    120,
+    160
+  ],
+  "closeups": {
+    "shoulder": {
+      "bone": "LEFT_UPPER_ARM",
+      "frame": 20,
+      "box": [
+        593,
+        299,
+        919,
+        625
+      ]
+    },
+    "elbow": {
+      "bone": "LEFT_FOREARM",
+      "frame": 40,
+      "box": [
+        700,
+        378,
+        1026,
+        704
+      ]
+    },
+    "wrist": {
+      "bone": "LEFT_HAND",
+      "frame": 40,
+      "box": [
+        763,
+        275,
+        1089,
+        601
+      ]
+    },
+    "hip": {
+      "bone": "LEFT_THIGH",
+      "frame": 60,
+      "box": [
+        519,
+        648,
+        845,
+        974
+      ]
+    },
+    "knee": {
+      "bone": "RIGHT_SHIN",
+      "frame": 70,
+      "box": [
+        267,
+        861,
+        593,
+        1187
+      ]
+    },
+    "ankle": {
+      "bone": "LEFT_FOOT",
+      "frame": 60,
+      "box": [
+        868,
+        1003,
+        1194,
+        1329
+      ]
+    }
+  },
+  "pelvis_after_reopen": [
+    {
+      "bone": "PELVIS",
+      "kind": "pos",
+      "keys": [
+        {
+          "frame": 70,
+          "x": 0.8300539083557952,
+          "y": 0.0
+        },
+        {
+          "frame": 80,
+          "x": 0.8300539083557952,
+          "y": 0.07390835579514825
+        },
+        {
+          "frame": 90,
+          "x": 0.8300539083557952,
+          "y": 0.0
+        }
+      ]
+    }
+  ]
+}

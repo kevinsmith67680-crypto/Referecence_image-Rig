@@ -22,6 +22,10 @@
     "LMF": {
       "title": "Lost Marble Moho forum (read via web-search snippets)",
       "url": "https://www.lostmarble.com/forum/"
+    },
+    "NF": {
+      "title": "A Moho 14.5.1 project saved natively by the user (Phase 4.0, 2026-11-23): the field exists in the document model (key names in Project.mohoproj)",
+      "url": "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/AutoRig_P4_Native.moho"
     }
   },
   "members": [
@@ -81,6 +85,10 @@
     {"owner": "M_Bone", "name": "fAngle", "kind": "field", "signature": "number radians, relative to parent bone", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
     {"owner": "M_Bone", "name": "fAnimAngle", "kind": "field", "signature": "AnimVal angle channel (radians)", "evidence": ["SS:ss_make_bones.lua", "ST:tool/msLipSync.lua", "MCP:tools/bone.lua"]},
     {"owner": "M_Bone", "name": "fMovedMatrix", "kind": "field", "signature": "LM_Transform bone-local -> layer space", "evidence": ["SS:ss_make_bones.lua (parentBone.fMovedMatrix:Transform(vec))"]},
+    {"owner": "M_Bone", "name": "fConstraints", "kind": "field", "signature": "bool: the bone has min/max angle constraints", "evidence": ["MS:/classes/M_Bone (search snippet: fConstraints bool true if the bone has min/max angle constraints)", "NF:skeleton.bones[].constraints"], "phase": "4.1 opt-in IK/constraints script; read inside pcall by the 4.1 verify script; not yet run natively"},
+    {"owner": "M_Bone", "name": "fMinConstraint", "kind": "field", "signature": "real: minimum angle (radians)", "evidence": ["MS:/classes/M_Bone (search snippet: fMinConstraint real minimum angle, < 9.5)", "NF:skeleton.bones[].min_constraint (default -1.221731)"], "phase": "4.1 opt-in IK/constraints script; not yet run natively"},
+    {"owner": "M_Bone", "name": "fMaxConstraint", "kind": "field", "signature": "real: maximum angle (radians)", "evidence": ["MS:/classes/M_Bone (search snippet: fMaxConstraint real maximum angle, < 9.5)", "NF:skeleton.bones[].max_constraint (default 1.221731)"], "phase": "4.1 opt-in IK/constraints script; not yet run natively"},
+    {"owner": "M_Bone", "name": "fTargetBone", "kind": "field", "signature": "AnimVal: ID of the current target bone (version 10+)", "evidence": ["MS:/classes/M_Bone (search snippet: fTargetBone AnimVal ID of the current target bone, added in version 10)", "NF:skeleton.bones[].target_bone (Val channel, -1 = none)"], "phase": "4.1 opt-in IK/constraints script; not yet run natively"},
 
     {"owner": "AnimChannel", "name": "SetValue", "kind": "method", "signature": "SetValue(frame, value)", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},
     {"owner": "AnimChannel", "name": "GetValue", "kind": "method", "signature": "GetValue(frame) -> value", "evidence": ["SS:ss_make_bones.lua", "MCP:tools/bone.lua"]},

@@ -1,0 +1,641 @@
+{
+  "gate": "4.1",
+  "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+  "passed": false,
+  "gates": [
+    {
+      "id": "4.1-A",
+      "requirement": "The complete native skeleton is created",
+      "status": "MOCK_ONLY",
+      "detail": "origin mock; 25 bones; rest values, parents, world matrices and keys match",
+      "evidence": [
+        "phase4_1_build_report.json"
+      ]
+    },
+    {
+      "id": "4.1-B",
+      "requirement": "All required artwork layers import at the correct scale",
+      "status": "NOT_EXECUTED",
+      "detail": "no build report or saved document",
+      "evidence": []
+    },
+    {
+      "id": "4.1-C",
+      "requirement": "Bone bindings move the correct artwork",
+      "status": "MOCK_ONLY",
+      "detail": "bindings read back correctly; per-pose change checks: {10: 'PASS', 20: 'PASS', 30: 'PASS', 40: 'PASS', 50: 'PASS', 60: 'PASS', 70: 'PASS', 80: 'PASS', 90: 'PASS', 100: 'PASS'}",
+      "evidence": []
+    },
+    {
+      "id": "4.1-D",
+      "requirement": "Left and right arm controls function",
+      "status": "NOT_EXECUTED",
+      "detail": "FK PASS; target links accepted; IK renders PASS; drag test None",
+      "evidence": []
+    },
+    {
+      "id": "4.1-E",
+      "requirement": "Left and right leg controls function",
+      "status": "NOT_EXECUTED",
+      "detail": "FK PASS; target links accepted; IK renders PASS; drag test None",
+      "evidence": []
+    },
+    {
+      "id": "4.1-F",
+      "requirement": "Head, torso and pelvis controls function",
+      "status": "MOCK_ONLY",
+      "detail": "pelvis (80, keyed after reopening), torso (90), head (100): {80: 'PASS', 90: 'PASS', 100: 'PASS'}",
+      "evidence": []
+    },
+    {
+      "id": "4.1-G",
+      "requirement": "Native joint constraints behave correctly",
+      "status": "MOCK_ONLY",
+      "detail": "constraint writes accepted; keyed rotation past the limit renders clamped; drag test None",
+      "evidence": []
+    },
+    {
+      "id": "4.1-H",
+      "requirement": "The document saves and reopens",
+      "status": "NOT_EXECUTED",
+      "detail": "no verify report from the reopened document, or no saved document",
+      "evidence": []
+    },
+    {
+      "id": "4.1-I",
+      "requirement": "The rig remains editable after reopening",
+      "status": "MOCK_ONLY",
+      "detail": "pelvis keys read back ok; render of frame 80 PASS",
+      "evidence": []
+    },
+    {
+      "id": "4.1-J",
+      "requirement": "Actual Moho renders demonstrate the movement",
+      "status": "MOCK_ONLY",
+      "detail": "12 of 12 pose renders; frame 110 vs 1 mean diff 0.0",
+      "evidence": []
+    },
+    {
+      "id": "4.1-K",
+      "requirement": "Original artwork remains visually faithful in the neutral pose",
+      "status": "MOCK_ONLY",
+      "detail": "{\"status\": \"PASS\", \"silhouette_iou\": 0.8973, \"mean_abs_diff_on_figure\": 0.0, \"return_to_neutral_mean_diff\": 0.0, \"thresholds\": {\"mean_abs_diff_on_figure_max\": 18.0, \"return_to_neutral_max\": 6.0}}",
+      "evidence": []
+    },
+    {
+      "id": "4.1-L",
+      "requirement": "The implementation uses character-specific data",
+      "status": "MOCK_ONLY",
+      "detail": "skeleton re-derived from the package matches; Moho built this character's spec: True",
+      "evidence": []
+    }
+  ],
+  "evidence_origin": {
+    "build": "mock",
+    "verify": "mock",
+    "ik": "mock",
+    "renders": "simulation"
+  },
+  "checks": {
+    "pose_changes": {
+      "10": {
+        "frame": 10,
+        "status": "PASS",
+        "changed_iou": 1.0,
+        "changed_ratio": 1.0,
+        "changed_px": 63120,
+        "expected_changed_px": 63123
+      },
+      "20": {
+        "frame": 20,
+        "status": "PASS",
+        "changed_iou": 0.9999,
+        "changed_ratio": 0.9999,
+        "changed_px": 63279,
+        "expected_changed_px": 63287
+      },
+      "30": {
+        "frame": 30,
+        "status": "PASS",
+        "changed_iou": 1.0,
+        "changed_ratio": 1.0,
+        "changed_px": 120358,
+        "expected_changed_px": 120359
+      },
+      "40": {
+        "frame": 40,
+        "status": "PASS",
+        "changed_iou": 0.9998,
+        "changed_ratio": 0.9998,
+        "changed_px": 38808,
+        "expected_changed_px": 38814
+      },
+      "50": {
+        "frame": 50,
+        "status": "PASS",
+        "changed_iou": 0.9999,
+        "changed_ratio": 0.9999,
+        "changed_px": 37796,
+        "expected_changed_px": 37801
+      },
+      "60": {
+        "frame": 60,
+        "status": "PASS",
+        "changed_iou": 0.9999,
+        "changed_ratio": 0.9999,
+        "changed_px": 119065,
+        "expected_changed_px": 119073
+      },
+      "70": {
+        "frame": 70,
+        "status": "PASS",
+        "changed_iou": 0.9997,
+        "changed_ratio": 0.9997,
+        "changed_px": 46172,
+        "expected_changed_px": 46184
+      },
+      "80": {
+        "frame": 80,
+        "status": "PASS",
+        "changed_iou": 1.0,
+        "changed_ratio": 1.0,
+        "changed_px": 312438,
+        "expected_changed_px": 312447
+      },
+      "90": {
+        "frame": 90,
+        "status": "PASS",
+        "changed_iou": 0.9999,
+        "changed_ratio": 0.9999,
+        "changed_px": 227702,
+        "expected_changed_px": 227732
+      },
+      "100": {
+        "frame": 100,
+        "status": "PASS",
+        "changed_iou": 0.9999,
+        "changed_ratio": 0.9999,
+        "changed_px": 66570,
+        "expected_changed_px": 66578
+      }
+    },
+    "neutral": {
+      "status": "PASS",
+      "silhouette_iou": 0.8973,
+      "mean_abs_diff_on_figure": 0.0,
+      "return_to_neutral_mean_diff": 0.0,
+      "thresholds": {
+        "mean_abs_diff_on_figure_max": 18.0,
+        "return_to_neutral_max": 6.0
+      }
+    },
+    "saved": [
+      {
+        "name": "saved.exists",
+        "status": "NOT_EXECUTED",
+        "detail": "<evidence>/AutoRig_P41_FullBody.moho not found"
+      }
+    ],
+    "reopened": [
+      {
+        "name": "report.status",
+        "status": "PASS",
+        "detail": "completed"
+      },
+      {
+        "name": "report.errors",
+        "status": "PASS",
+        "detail": "none"
+      },
+      {
+        "name": "bone_layer.found",
+        "status": "PASS",
+        "detail": "'AutoRig_P41_FullBody' type 4"
+      },
+      {
+        "name": "bones.count",
+        "status": "PASS",
+        "detail": "25 of 25"
+      },
+      {
+        "name": "bone[ROOT].rest",
+        "status": "PASS",
+        "detail": "id 0, parent -1, pos [0.00633423180593, -0.920485175202], angle 1.57079632679, length 0.221725067385"
+      },
+      {
+        "name": "bone[ROOT].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[PELVIS].rest",
+        "status": "PASS",
+        "detail": "id 1, parent 0, pos [0.830053908356, 0], angle 0.00721141345033, length 0.168198443599"
+      },
+      {
+        "name": "bone[PELVIS].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[SPINE_LOWER].rest",
+        "status": "PASS",
+        "detail": "id 2, parent 1, pos [0.168198443599, 0], angle -0.000796104508979, length 0.0840313787954"
+      },
+      {
+        "name": "bone[SPINE_LOWER].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[SPINE_UPPER].rest",
+        "status": "PASS",
+        "detail": "id 3, parent 2, pos [0.0840313787954, 0], angle 0, length 0.0840313787954"
+      },
+      {
+        "name": "bone[SPINE_UPPER].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[CHEST].rest",
+        "status": "PASS",
+        "detail": "id 4, parent 3, pos [0.0840313787954, 0], angle 0.000583021594911, length 0.173319608169"
+      },
+      {
+        "name": "bone[CHEST].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[NECK].rest",
+        "status": "PASS",
+        "detail": "id 5, parent 4, pos [0.173319608169, 0], angle -0.0162359430567, length 0.116716570177"
+      },
+      {
+        "name": "bone[NECK].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[HEAD].rest",
+        "status": "PASS",
+        "detail": "id 6, parent 5, pos [0.116716570177, 0], angle 0.00923761252049, length 0.391374663073"
+      },
+      {
+        "name": "bone[HEAD].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_SHOULDER].rest",
+        "status": "PASS",
+        "detail": "id 7, parent 4, pos [0.109033267411, -0.0576377714262], angle -1.41420625134, length 0.131494091837"
+      },
+      {
+        "name": "bone[LEFT_SHOULDER].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_UPPER_ARM].rest",
+        "status": "PASS",
+        "detail": "id 8, parent 7, pos [0.131494091837, 0], angle -0.448773616182, length 0.17911316522"
+      },
+      {
+        "name": "bone[LEFT_UPPER_ARM].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_FOREARM].rest",
+        "status": "PASS",
+        "detail": "id 9, parent 8, pos [0.17911316522, 0], angle 0.262745087322, length 0.162170209484"
+      },
+      {
+        "name": "bone[LEFT_FOREARM].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_HAND].rest",
+        "status": "PASS",
+        "detail": "id 10, parent 9, pos [0.162170209484, 0], angle 0.116333628552, length 0.0905606226722"
+      },
+      {
+        "name": "bone[LEFT_HAND].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_SHOULDER].rest",
+        "status": "PASS",
+        "detail": "id 11, parent 4, pos [0.11235592774, 0.0512365205316], angle 1.39523113319, length 0.131581995899"
+      },
+      {
+        "name": "bone[RIGHT_SHOULDER].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_UPPER_ARM].rest",
+        "status": "PASS",
+        "detail": "id 12, parent 11, pos [0.131581995899, 0], angle 0.462831560651, length 0.181592703532"
+      },
+      {
+        "name": "bone[RIGHT_UPPER_ARM].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_FOREARM].rest",
+        "status": "PASS",
+        "detail": "id 13, parent 12, pos [0.181592703532, 0], angle -0.290176412923, length 0.1648261753"
+      },
+      {
+        "name": "bone[RIGHT_FOREARM].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_HAND].rest",
+        "status": "PASS",
+        "detail": "id 14, parent 13, pos [0.1648261753, 0], angle -0.058170832168, length 0.0897538710519"
+      },
+      {
+        "name": "bone[RIGHT_HAND].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_THIGH].rest",
+        "status": "PASS",
+        "detail": "id 15, parent 1, pos [-0.00438577129872, -0.0848762400043], angle -2.89319891497, length 0.335286842357"
+      },
+      {
+        "name": "bone[LEFT_THIGH].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_SHIN].rest",
+        "status": "PASS",
+        "detail": "id 16, parent 15, pos [0.335286842357, 0], angle -0.0040931835621, length 0.335209692409"
+      },
+      {
+        "name": "bone[LEFT_SHIN].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_FOOT].rest",
+        "status": "PASS",
+        "detail": "id 17, parent 16, pos [0.335209692409, 0], angle 0.0689105654175, length 0.0962748185131"
+      },
+      {
+        "name": "bone[LEFT_FOOT].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_THIGH].rest",
+        "status": "PASS",
+        "detail": "id 18, parent 1, pos [0.00438577129872, 0.0848762400043], angle 2.87073833449, length 0.339772487586"
+      },
+      {
+        "name": "bone[RIGHT_THIGH].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_SHIN].rest",
+        "status": "PASS",
+        "detail": "id 19, parent 18, pos [0.339772487586, 0], angle -0.00365262137872, length 0.339830617021"
+      },
+      {
+        "name": "bone[RIGHT_SHIN].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_FOOT].rest",
+        "status": "PASS",
+        "detail": "id 20, parent 19, pos [0.339830617021, 0], angle -0.00462987022674, length 0.0958396343063"
+      },
+      {
+        "name": "bone[RIGHT_FOOT].keys_preserved",
+        "status": "PASS",
+        "detail": "13 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_HAND_TARGET].rest",
+        "status": "PASS",
+        "detail": "id 21, parent 0, pos [1.24312668464, -0.51832884097], angle -1.47690282112, length 0.0543363736033"
+      },
+      {
+        "name": "bone[LEFT_HAND_TARGET].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[LEFT_FOOT_TARGET].rest",
+        "status": "PASS",
+        "detail": "id 22, parent 0, pos [0.177223719677, -0.253099730458], angle -2.82117011966, length 0.0577648911079"
+      },
+      {
+        "name": "bone[LEFT_FOOT_TARGET].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_HAND_TARGET].rest",
+        "status": "PASS",
+        "detail": "id 23, parent 0, pos [1.24703504043, 0.522641509434], angle 1.51671377929, length 0.0538523226312"
+      },
+      {
+        "name": "bone[RIGHT_HAND_TARGET].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[RIGHT_FOOT_TARGET].rest",
+        "status": "PASS",
+        "detail": "id 24, parent 0, pos [0.178032345013, 0.26320754717], angle 2.86966725633, length 0.0575037805838"
+      },
+      {
+        "name": "bone[RIGHT_FOOT_TARGET].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "layer[foot_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 20 (expected 20 'RIGHT_FOOT')"
+      },
+      {
+        "name": "layer[thigh_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 18 (expected 18 'RIGHT_THIGH')"
+      },
+      {
+        "name": "layer[shin_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 19 (expected 19 'RIGHT_SHIN')"
+      },
+      {
+        "name": "layer[foot_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 17 (expected 17 'LEFT_FOOT')"
+      },
+      {
+        "name": "layer[thigh_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 15 (expected 15 'LEFT_THIGH')"
+      },
+      {
+        "name": "layer[shin_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 16 (expected 16 'LEFT_SHIN')"
+      },
+      {
+        "name": "layer[pelvis].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 1 (expected 1 'PELVIS')"
+      },
+      {
+        "name": "layer[neck].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 5 (expected 5 'NECK')"
+      },
+      {
+        "name": "layer[torso].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 4 (expected 4 'CHEST')"
+      },
+      {
+        "name": "layer[upper_arm_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 12 (expected 12 'RIGHT_UPPER_ARM')"
+      },
+      {
+        "name": "layer[forearm_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 13 (expected 13 'RIGHT_FOREARM')"
+      },
+      {
+        "name": "layer[hand_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 14 (expected 14 'RIGHT_HAND')"
+      },
+      {
+        "name": "layer[upper_arm_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 8 (expected 8 'LEFT_UPPER_ARM')"
+      },
+      {
+        "name": "layer[forearm_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 9 (expected 9 'LEFT_FOREARM')"
+      },
+      {
+        "name": "layer[hand_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 10 (expected 10 'LEFT_HAND')"
+      },
+      {
+        "name": "layer[head_base].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[nose].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[mouth].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[eye_r_white].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[eye_r_iris].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[eye_l_white].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[eye_l_iris].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[brow_r].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[brow_l].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      },
+      {
+        "name": "layer[hair].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 6 (expected 6 'HEAD')"
+      }
+    ]
+  },
+  "environment": null,
+  "observations": {},
+  "api_surface": {
+    "M_Bone": {
+      "called": false,
+      "names": [],
+      "notes": []
+    },
+    "ScriptInterface": {
+      "called": false,
+      "names": [],
+      "notes": []
+    }
+  },
+  "timings": {
+    "readback_cpu": 0.00156199999999,
+    "total_cpu": 0.001643
+  },
+  "package": {
+    "dir": "<package>",
+    "character_id": "tough_student_test",
+    "spec_sha256": "4108a6d2ff5eb02e498706872e6ed0d4503b0a0d2e324aa015baf4f1283e91f7"
+  },
+  "_label": "cloud check: mock reports + simulated renders; the Phase 4.1 gates cannot pass on this evidence",
+  "mock_alerts": [
+    {
+      "button": "OK",
+      "kind": 1,
+      "line1": "AutoRig Phase 4.1 full-body rig: test rig built. Run verify-report on the JSON report.",
+      "line2": "Report: <package>/phase4_1_build_report.json"
+    },
+    {
+      "button": "OK",
+      "kind": 1,
+      "line1": "AutoRig Phase 4.1: reopened rig verified and the pelvis shift keyed. Save (Cmd+S) now.",
+      "line2": "Report: <package>/phase4_1_verify_report.json"
+    },
+    {
+      "button": "OK",
+      "kind": 1,
+      "line1": "AutoRig Phase 4.1 IK: 30 operations, 0 rejected. Try dragging the targets now.",
+      "line2": "Report: <package>/phase4_1_ik_report.json"
+    }
+  ]
+}

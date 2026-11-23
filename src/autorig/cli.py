@@ -648,6 +648,26 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--out", help="gate JSON (default <evidence>/gate_4_0.json)")
     p.set_defaults(func=cmd_native_verify)
 
+    p = sub.add_parser("native-fullbody", help="Phase 4.1: build the full-body native rig package (semantic skeleton, "
+                                               "all layers unscaled, bindings, test poses, Lua scripts)")
+    p.add_argument("package", help="Phase 2 character package")
+    p.add_argument("--out", required=True, help="output folder")
+    p.add_argument("--canvas", type=_canvas_arg, default=None,
+                   help="Moho document size WxH (default: sized automatically to hold every test pose)")
+    p.add_argument("--asset-root", default=None, help="absolute POSIX path of --out on the Mac")
+    p.add_argument("--character-id", default=None)
+    p.add_argument("--config", default=None, help="JSON with per-character native rig settings (joint ranges ...)")
+    p.add_argument("--include-pending-extensions", action="store_true",
+                   help="review build: add the pending generated pixels beneath their originals (labelled pending)")
+    p.set_defaults(func=cmd_native_fullbody)
+
+    p = sub.add_parser("native-fullbody-verify", help="Phase 4.1: check native Mac evidence against gates 4.1-A..L")
+    p.add_argument("package_out", help="the folder made by native-fullbody")
+    p.add_argument("--evidence", help="evidence folder written by tools/macos/phase4_native_test.sh --phase 4.1")
+    p.add_argument("--character-package", default=None, help="the character package (gate L re-derives the skeleton)")
+    p.add_argument("--out", help="gate JSON (default <evidence>/gate_4_1.json)")
+    p.set_defaults(func=cmd_native_fullbody_verify)
+
     p = sub.add_parser("garment-evidence", help="Phase 3.3: before/after garment renders, close-ups, sweeps, reports")
     p.add_argument("package", help="Phase 2 character package")
     p.add_argument("--out", help="output directory (default <package>/natural_pose/garments)")
@@ -977,6 +997,42 @@ def cmd_native_verify(args: argparse.Namespace) -> int:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(res, indent=2, default=str) + "\n", encoding="utf-8")
     print(format_gate(res))
+    if out:
+        print(f"Gate result written: {out}")
+    return 0 if res["passed"] else 1
+
+
+def cmd_native_fullbody(args: argparse.Namespace) -> int:
+    from .native.fullbody import NativeFullbodyError, build_fullbody
+
+    cfg = json.loads(Path(args.config).read_text(encoding="utf-8")) if args.config else None
+    try:
+        man = build_fullbody(args.package, args.out, canvas=args.canvas, asset_root=args.asset_root,
+                             character_id=args.character_id,
+                             include_pending_extensions=args.include_pending_extensions, config=cfg)
+    except (NativeFullbodyError, ValueError) as exc:
+        problems = getattr(exc, "problems", [str(exc)])
+        for pr in problems:
+            print(f"error: {pr}", file=sys.stderr)
+        return 2
+    print(json.dumps({k: man[k] for k in ("character_id", "source_canvas", "moho_canvas", "placement", "bones",
+                                         "binding_counts", "scripts", "asset_root")} |
+                     {"layers": {k: man["layers"][k] for k in ("count", "originals", "pending_extensions",
+                                                              "all_originals_unchanged")}}, indent=1))
+    print("note: this prepares the package; native behaviour is verified only by the Mac run "
+          "(tools/macos/phase4_native_test.sh --phase 4.1)", file=sys.stderr)
+    return 0
+
+
+def cmd_native_fullbody_verify(args: argparse.Namespace) -> int:
+    from .native.gate41 import evaluate_gate41, format_gate41
+
+    res = evaluate_gate41(args.package_out, args.evidence, character_package=args.character_package)
+    out = Path(args.out) if args.out else (Path(args.evidence) / "gate_4_1.json" if args.evidence else None)
+    if out:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(res, indent=2, default=str) + "\n", encoding="utf-8")
+    print(format_gate41(res))
     if out:
         print(f"Gate result written: {out}")
     return 0 if res["passed"] else 1

@@ -49,8 +49,8 @@
         "additionalProperties": false,
         "required": ["name", "parent", "base_px", "tip_px"],
         "properties": {
-          "name": {"$ref": "#/$defs/identifier"},
-          "parent": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/identifier"}]},
+          "name": {"$ref": "#/$defs/bone_name"},
+          "parent": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/bone_name"}]},
           "base_px": {"$ref": "#/$defs/point"},
           "tip_px": {"$ref": "#/$defs/point"}
         }
@@ -68,7 +68,7 @@
           "layer_name": {"type": "string", "minLength": 1, "maxLength": 128},
           "image": {"$ref": "#/$defs/relpath"},
           "vector_source": {"$ref": "#/$defs/relpath"},
-          "bone": {"$ref": "#/$defs/identifier"},
+          "bone": {"$ref": "#/$defs/bone_name"},
           "z_index": {"type": "integer", "description": "Stacking order; higher draws in front."}
         }
       }
@@ -87,7 +87,7 @@
             "additionalProperties": false,
             "required": ["bone", "channel", "keys"],
             "properties": {
-              "bone": {"$ref": "#/$defs/identifier"},
+              "bone": {"$ref": "#/$defs/bone_name"},
               "channel": {"enum": ["rotation_offset_deg"], "description": "Rotation added to the bone's rest (parent-relative) angle, degrees, counter-clockwise positive on screen."},
               "keys": {
                 "type": "array",
@@ -110,6 +110,7 @@
   },
   "$defs": {
     "identifier": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+    "bone_name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$", "description": "Moho bone name; upper case is allowed so native rigs can use semantic names such as LEFT_UPPER_ARM."},
     "point": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
     "relpath": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.)[A-Za-z0-9_./-]+$"}
   }

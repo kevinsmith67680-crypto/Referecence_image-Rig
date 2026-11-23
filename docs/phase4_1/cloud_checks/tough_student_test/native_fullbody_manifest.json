@@ -1,0 +1,359 @@
+{
+  "schema": "autorig.native_fullbody",
+  "version": "4.1.0",
+  "generator": {
+    "name": "autorig",
+    "version": "0.0.1"
+  },
+  "evidence_level": "portable package; native behaviour is verified only by a Moho run on the Mac",
+  "package": {
+    "path_name": "character_package",
+    "parent": "tough_student_test",
+    "artwork_manifest_sha256": "8578b1e4a17c99e042c3adb3d7c82b09eb4e69d311327838f7f717534f29fadb",
+    "rig_sha256": "0f52d1ed7faeeea099d7723b0ecd43cb057d2c57005d5f3de8f7f87a5bf1cee9",
+    "editor_project_sha256": "7890a06a6813354e0b13e3ebe815f158976167fe61666ec3e45cf3f6a030dbb6"
+  },
+  "character_id": "tough_student_test",
+  "spec_character_id": "tough_student_test_p41",
+  "source_canvas": [
+    1086,
+    1448
+  ],
+  "moho_canvas": [
+    1230,
+    1484
+  ],
+  "placement": {
+    "offset_px": [
+      76,
+      35
+    ],
+    "scale": 1,
+    "rule": "canvas_px = source_px + offset; integer, never scaled"
+  },
+  "layers": {
+    "count": 25,
+    "originals": 25,
+    "pending_extensions": 0,
+    "all_originals_unchanged": true,
+    "files": {
+      "foot_r": {
+        "path": "art/foot_r.png",
+        "sha256": "4cef6a6260a5554f68cb1ebb330c6442e583122bb15be734dea3b7557c6b9aa7",
+        "pixel_sha256": "87b8e7a6f2538c70c57a7c392ef29c4914746406130f82a12f87b2fc9b627d86",
+        "alpha_px": 19304,
+        "status": "original",
+        "original_pixel_sha256": "6e54cb4534f28b0cf5783d92ac63909dfe20e2bde6ff75173c4219149a1a9790",
+        "matches_original": true
+      },
+      "thigh_r": {
+        "path": "art/thigh_r.png",
+        "sha256": "c4884d5eebc2cf1229b035e348a3b50f8b3a1ccad64b4c241f9358bfabf5f7b2",
+        "pixel_sha256": "531121410b3b2842974b5d812d645c6a0866db4c23e9e8c68f7bc24cc0b6e766",
+        "alpha_px": 36588,
+        "status": "original",
+        "original_pixel_sha256": "884354532bd532a9dd36317acc335690e237352256cb38d2088b8e426d8cb6bd",
+        "matches_original": true
+      },
+      "shin_r": {
+        "path": "art/shin_r.png",
+        "sha256": "a5cdc01b165d6e8537467aabe1f633a103b76d5b1f4bf23ea1b8113b98afaedc",
+        "pixel_sha256": "5137273ff780c49490b19939c2eb2a74df2c867e7a145654c6588d2b7f58527a",
+        "alpha_px": 36441,
+        "status": "original",
+        "original_pixel_sha256": "8c22f2d4cd7598fb90d02c4631ff7bce3bd1d64d2d12f9a914f3e5ee07bc8cc3",
+        "matches_original": true
+      },
+      "foot_l": {
+        "path": "art/foot_l.png",
+        "sha256": "25402f821c20b9f5dec435b00a3c131271e4d35e8add8af233233a15b2703e61",
+        "pixel_sha256": "15e76b8a09ff6535e7c0cdbea789eab983af90513ebfc0151a5ec9f50dcfea0c",
+        "alpha_px": 19396,
+        "status": "original",
+        "original_pixel_sha256": "14fa54239ea59b82626cd2df107e8ceca2572136ae14c561b3fa777f23ea0294",
+        "matches_original": true
+      },
+      "thigh_l": {
+        "path": "art/thigh_l.png",
+        "sha256": "46d3b26f96ee2e11f6d858646268488b81efe12b9552a58ddbe8fa479fafdc8c",
+        "pixel_sha256": "e283812b122d70bd8c2a640e5d031eef71cf21e299d6fc82da411bf397662f2a",
+        "alpha_px": 36010,
+        "status": "original",
+        "original_pixel_sha256": "a106652a3aa5500ff91c6e3702c2df178cf2ca6b6999a182dfa3b540c030a160",
+        "matches_original": true
+      },
+      "shin_l": {
+        "path": "art/shin_l.png",
+        "sha256": "94a4d7e8b96254fc0c418d03d2f66bf0da67b41e9462cb9e5a46062309c40dc4",
+        "pixel_sha256": "a88575d5cd9f860eff8c4353ec5389cfee265c21def58a2450b1c14c5c87fea5",
+        "alpha_px": 35773,
+        "status": "original",
+        "original_pixel_sha256": "68128e117c27057abb1564a53a755a461902c542928ca90136e14c27144dc38c",
+        "matches_original": true
+      },
+      "pelvis": {
+        "path": "art/pelvis.png",
+        "sha256": "1965e768d6c005a997c2ee7fff81a659d05d4bfac1f8eee0b661628ad69bc478",
+        "pixel_sha256": "f9dba2790ac635dcf812bad98aef76f984db89aa2353724af0f00dd027ab0215",
+        "alpha_px": 26733,
+        "status": "original",
+        "original_pixel_sha256": "d9189e89ad6e79511c51af728f5e43e0efdd38eeb3a51a7fe2f4c764d959d663",
+        "matches_original": true
+      },
+      "neck": {
+        "path": "art/neck.png",
+        "sha256": "aa86b0569340cdb623211ef8978647e90dc6eef4173200692525f37f2388a7d0",
+        "pixel_sha256": "bcb79725503aa8c12a114ae8033eb20df8d9d73c4e16568560c9b3442304fd8d",
+        "alpha_px": 4060,
+        "status": "original",
+        "original_pixel_sha256": "daf70311aa59f5e77de524b74fbd75d29c17151e265c97e529e6fa090f831436",
+        "matches_original": true
+      },
+      "torso": {
+        "path": "art/torso.png",
+        "sha256": "a34c56123846176d133ec55ecb7423ea002d777c5d3ee882bcc169640c5123df",
+        "pixel_sha256": "72864ac712af62a60b04120942bcc166aca1b0942ebcd5af70cbf185f398dcc0",
+        "alpha_px": 56945,
+        "status": "original",
+        "original_pixel_sha256": "335af089d9b3439f8fca43babf854c2e15c45350a0548530447355a756931ceb",
+        "matches_original": true
+      },
+      "upper_arm_r": {
+        "path": "art/upper_arm_r.png",
+        "sha256": "809ca3ee24bde9e57d86394b4bff34d2c2005d750be867eec0aaeea55807399d",
+        "pixel_sha256": "eb876bc79e2b57d17a29dc7f261e02624e4e0bdf58bc161c8850764f7a939011",
+        "alpha_px": 20755,
+        "status": "original",
+        "original_pixel_sha256": "5de4418c879662b970677b04eacd104fff865591758e418f79096806cc818fdb",
+        "matches_original": true
+      },
+      "forearm_r": {
+        "path": "art/forearm_r.png",
+        "sha256": "307186f50b1673abe7d12ffac08003207bcfa073bf4cd534314af5adb3b3673c",
+        "pixel_sha256": "2f26c381eec1849fba64d9c0aa0df242a8b127ce8292528162d38308d4c061e4",
+        "alpha_px": 11116,
+        "status": "original",
+        "original_pixel_sha256": "c76c19bab727dc3a0ac898f04f74d769847e9a0570ccaa891ae8a1ef21556727",
+        "matches_original": true
+      },
+      "hand_r": {
+        "path": "art/hand_r.png",
+        "sha256": "e90ab2f7de32ee1275104bccaaaa504c434f01d0474ab36dd2739f95c568dc53",
+        "pixel_sha256": "2148eb3b90c26228335f82e51e0a35a99548316e63c9620ce699d5b0040cdc19",
+        "alpha_px": 11485,
+        "status": "original",
+        "original_pixel_sha256": "e5190226e7cbcd88db1be0f40f004e73fccd8ceacbcb157b0a189b6503253458",
+        "matches_original": true
+      },
+      "upper_arm_l": {
+        "path": "art/upper_arm_l.png",
+        "sha256": "11c2b710a67db37d30eff7a808b74888e6f0ab545dcad6b94ac89cba66bc5655",
+        "pixel_sha256": "035606ff3c58bbd5001e149f743610c09aaaa9aed114592e9b1da4bd6610add2",
+        "alpha_px": 20746,
+        "status": "original",
+        "original_pixel_sha256": "4ec474cf8be7ef77aed33d02e5eeea6c4de9cfd837b91b08b8b8de4c20773cbb",
+        "matches_original": true
+      },
+      "forearm_l": {
+        "path": "art/forearm_l.png",
+        "sha256": "684c43ec8e522183e0fe55e66ac7ab57977c949db47a9018f1daa7f80652e440",
+        "pixel_sha256": "5889719d25ebea723e6a17c1d474bfc878a83b41750d5216ad852d3f7fc978ee",
+        "alpha_px": 11078,
+        "status": "original",
+        "original_pixel_sha256": "88e05967f4a747ec4b7ef5d9bd7089f5afef86f3670eb66d61ef2fa75c79a5af",
+        "matches_original": true
+      },
+      "hand_l": {
+        "path": "art/hand_l.png",
+        "sha256": "d1311736108650f3154d637e1578e98108d98ed6bd831df374d7fa8d8f043c74",
+        "pixel_sha256": "fa5d5b6dd7854437ada625aca5f8f4178d750060a8db921d709e2b0cc0d33524",
+        "alpha_px": 11428,
+        "status": "original",
+        "original_pixel_sha256": "515ad97e7e0d75c494dc9dba11f20ecae97c313249f2a9e44fb534af975218ea",
+        "matches_original": true
+      },
+      "head_base": {
+        "path": "art/head_base.png",
+        "sha256": "1a7899c51ef7353017b0feb9670ec956fdd0ed9d88f5b8ff3137810ee13645ed",
+        "pixel_sha256": "c7ac714d980d39a55182758b8f43b969f8c62daaefcb882fcffe401a5afa7af1",
+        "alpha_px": 30735,
+        "status": "original",
+        "original_pixel_sha256": "004d064226f86e9b17a1c0c7ea71b278c94d0a7225651742be322236676e3768",
+        "matches_original": true
+      },
+      "nose": {
+        "path": "art/nose.png",
+        "sha256": "5eddf5f2e67603ba7004e85e8eb58a807c11cd88de0683f702f98cc1dd36ea83",
+        "pixel_sha256": "38068e79e039b59c4c71de19e41d9ebd3e890bde548b6d1274e4e12f6ea53fd3",
+        "alpha_px": 617,
+        "status": "original",
+        "original_pixel_sha256": "53bd925035e1d70d4bd18ff25e63b34f76d3f94ff13586aa3e6399931c8c0fef",
+        "matches_original": true
+      },
+      "mouth": {
+        "path": "art/mouth.png",
+        "sha256": "c018b2fe04f37a335aef6d9350b2f8721b04171adb81ec1b534aaf4c3ddd6d4f",
+        "pixel_sha256": "d07b6cedfb1eccba71306b3caec34a9a4669040dac4f8f36546f6f482645633c",
+        "alpha_px": 166,
+        "status": "original",
+        "original_pixel_sha256": "8a86e02da19e6930bbf772139d6824fff1f9d912dd4e4147612edf6c2d530321",
+        "matches_original": true
+      },
+      "eye_r_white": {
+        "path": "art/eye_r_white.png",
+        "sha256": "db9bb866998f9d1b097b89fb898bcffada1087e6f67f0761be153a4110f974cc",
+        "pixel_sha256": "7d5b30e70e07c62e959ccad151ddc9ec2e0521d1789615043f6bfc07d7855979",
+        "alpha_px": 663,
+        "status": "original",
+        "original_pixel_sha256": "7dc2364abdf8e8a99c2cd2b6ac60fad038d1018774929bec4354f5d610c58d52",
+        "matches_original": true
+      },
+      "eye_r_iris": {
+        "path": "art/eye_r_iris.png",
+        "sha256": "d32a6a3b6b149d549a5f0ebe0160aab511f3745e3217b8fe132cd5795842588a",
+        "pixel_sha256": "6b220fa81246bdeb00f23b85f1561b91d6ec40b184851e1bca8e632baa6b3d6b",
+        "alpha_px": 312,
+        "status": "original",
+        "original_pixel_sha256": "7dc3fbe11cfc74e435e506c2e848a93ed4d5f25f10a4edd0ecf92f5ed31823f2",
+        "matches_original": true
+      },
+      "eye_l_white": {
+        "path": "art/eye_l_white.png",
+        "sha256": "14c54bcff6d27c35858bfe5d0d5319d1d3ef2db59b863bf31249493223d93720",
+        "pixel_sha256": "0f1efebfdd401e915f2d5e537b7f71b64c5fa82501f7815ae020be0809a441b7",
+        "alpha_px": 619,
+        "status": "original",
+        "original_pixel_sha256": "f439dde3f6e9f16d0bfc05d5434b0b11306d2e299bc14b2f298d949c2653a839",
+        "matches_original": true
+      },
+      "eye_l_iris": {
+        "path": "art/eye_l_iris.png",
+        "sha256": "a504dbbce4f84aef16130c12cd44922189e53d9850d38180c36fed4a29b8c800",
+        "pixel_sha256": "d9bf8ad55fb2e6e54c09e6d0aa63f4e7f22ecd7799486409cbd4a6f79e746985",
+        "alpha_px": 320,
+        "status": "original",
+        "original_pixel_sha256": "d4dd9c0d2e1e3edd791d71edbcfcfd343aec83cb44419cd95012fd8078cddfc4",
+        "matches_original": true
+      },
+      "brow_r": {
+        "path": "art/brow_r.png",
+        "sha256": "cc3a78763b5804c729830c3d6f4aebc2c2412fa5308f71cbd464d2b46e529d8c",
+        "pixel_sha256": "cf6d1216d8bd668ac08cb15641880610f44545b4254cb44dc6f29c24ca5260e2",
+        "alpha_px": 1153,
+        "status": "original",
+        "original_pixel_sha256": "d24596eb454bc22a0fcc19f109517335d1f6c2f173e75afdace0aa2e3bd2d3ee",
+        "matches_original": true
+      },
+      "brow_l": {
+        "path": "art/brow_l.png",
+        "sha256": "730d1d8f742090fbffa4308f24d0fe01477a332062a095f782c86f9a6a24a8a3",
+        "pixel_sha256": "6b176d23b824f04f9684279b63b9a3923adb9f8a69868c9d0c7f3f1db2ff74e1",
+        "alpha_px": 1126,
+        "status": "original",
+        "original_pixel_sha256": "88b501e9070d755e7bfde6683426544200201a8247d86404e205b78cca15184a",
+        "matches_original": true
+      },
+      "hair": {
+        "path": "art/hair.png",
+        "sha256": "439be8f7ac0d9e9ab18e948e0425926a47149272b8b167d69fbeef3be305ffb2",
+        "pixel_sha256": "dac2c157496c265f5e20d49b99b32bf45f48b9057d89d00916cd3a548f34e00b",
+        "alpha_px": 35658,
+        "status": "original",
+        "original_pixel_sha256": "b98c73405add69f461bcd49226a4d0cf5db1f682e468de44af198b3cf48c109a",
+        "matches_original": true
+      }
+    }
+  },
+  "bones": 25,
+  "controls": {
+    "ROOT_CONTROL": "ROOT",
+    "PELVIS_CONTROL": "PELVIS",
+    "HEAD_CONTROL": "HEAD",
+    "LEFT_HAND_TARGET": "LEFT_HAND_TARGET",
+    "RIGHT_HAND_TARGET": "RIGHT_HAND_TARGET",
+    "LEFT_FOOT_TARGET": "LEFT_FOOT_TARGET",
+    "RIGHT_FOOT_TARGET": "RIGHT_FOOT_TARGET"
+  },
+  "binding_counts": {
+    "RIGID": 12,
+    "FLEXIBLE": 8,
+    "LIMITED_DEFORMATION": 3,
+    "SWITCHABLE": 2
+  },
+  "approvals": {
+    "pending_or_missing_reviews": 76,
+    "switchable_metadata": 18,
+    "corrective_metadata": 19,
+    "note": "nothing is approved by this command"
+  },
+  "hand_readiness": {
+    "LEFT": {
+      "bone": "LEFT_HAND",
+      "wrist_pivot_px": [
+        928.3,
+        467.6
+      ],
+      "hand_length_px": 67.2,
+      "bound_layers": [
+        "hand_l"
+      ],
+      "variants": 9,
+      "approved_variants": 0,
+      "native": "the original hand is bound to the HAND bone; Switch Layers (Phase 4.3) attach at the same pivot; variants stay pending until a person approves them"
+    },
+    "RIGHT": {
+      "bone": "RIGHT_HAND",
+      "wrist_pivot_px": [
+        155.9,
+        464.7
+      ],
+      "hand_length_px": 66.6,
+      "bound_layers": [
+        "hand_r"
+      ],
+      "variants": 9,
+      "approved_variants": 0,
+      "native": "the original hand is bound to the HAND bone; Switch Layers (Phase 4.3) attach at the same pivot; variants stay pending until a person approves them"
+    }
+  },
+  "scripts": {
+    "build": "moho/AutoRig_P41_FullBodyBuild.lua",
+    "verify": "moho/AutoRig_P41_FullBodyVerify.lua",
+    "ik": "moho/AutoRig_P41_IKConstraints.lua"
+  },
+  "asset_root": "<package>",
+  "reports": {
+    "build": "phase4_1_build_report.json",
+    "verify": "phase4_1_verify_report.json",
+    "ik": "phase4_1_ik_report.json"
+  },
+  "saved_documents": {
+    "rig": "AutoRig_P41_FullBody.moho",
+    "ik_experiment": "AutoRig_P41_FullBody_IK.moho"
+  },
+  "expected": {
+    "1": "expected/pose_f001_neutral.png",
+    "10": "expected/pose_f010_left_arm_raised.png",
+    "20": "expected/pose_f020_right_arm_raised.png",
+    "30": "expected/pose_f030_both_arms_lowered.png",
+    "40": "expected/pose_f040_left_elbow_bent.png",
+    "50": "expected/pose_f050_right_elbow_bent.png",
+    "60": "expected/pose_f060_left_leg_lifted.png",
+    "70": "expected/pose_f070_right_knee_bent.png",
+    "80": "expected/pose_f080_pelvis_shifted.png",
+    "90": "expected/pose_f090_torso_leaned.png",
+    "100": "expected/pose_f100_head_tilted.png",
+    "110": "expected/pose_f110_return_to_neutral.png",
+    "120": "expected/ik_f120_left_hand_target.png",
+    "130": "expected/ik_f130_right_hand_target.png",
+    "140": "expected/ik_f140_left_foot_target.png",
+    "150": "expected/ik_f150_right_foot_target.png",
+    "160_clamped": "expected/clamp_f160_clamped.png",
+    "160_unclamped": "expected/clamp_f160_unclamped.png",
+    "sheet": "expected/SIMULATION_pose_sheet.png"
+  },
+  "spec_sha256": "4108a6d2ff5eb02e498706872e6ed0d4503b0a0d2e324aa015baf4f1283e91f7",
+  "reference": [
+    "reference/original.jpg"
+  ]
+}

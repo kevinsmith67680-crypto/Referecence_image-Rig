@@ -1,0 +1,317 @@
+{
+  "autorig_report_version": "0.1.0",
+  "errors": [],
+  "failed_operations": 0,
+  "generator": {
+    "name": "autorig",
+    "script": "AutoRig_P41_IKConstraints",
+    "spec_character_id": "schoolboy_tpose_p41",
+    "spec_sha256": "965e8d9cbb1e83b36f0cac101d1ab46405b223165f82aacdb803522fcf41bc38",
+    "version": "0.0.1"
+  },
+  "kind": "phase4_1_ik_constraints",
+  "lua_version": "Lua 5.4",
+  "moho_app_version": "14.4-mock",
+  "operations": [
+    {
+      "name": "target:LEFT_FOREARM->LEFT_HAND_TARGET",
+      "ok": true,
+      "result": 21
+    },
+    {
+      "name": "target:RIGHT_FOREARM->RIGHT_HAND_TARGET",
+      "ok": true,
+      "result": 23
+    },
+    {
+      "name": "target:LEFT_SHIN->LEFT_FOOT_TARGET",
+      "ok": true,
+      "result": 22
+    },
+    {
+      "name": "target:RIGHT_SHIN->RIGHT_FOOT_TARGET",
+      "ok": true,
+      "result": 24
+    },
+    {
+      "name": "constraint:PELVIS",
+      "ok": true,
+      "result": [
+        1,
+        -0.2390222769,
+        0.249669913659
+      ]
+    },
+    {
+      "name": "constraint:SPINE_LOWER",
+      "ok": true,
+      "result": [
+        1,
+        -0.157966922935,
+        0.156192342424
+      ]
+    },
+    {
+      "name": "constraint:SPINE_UPPER",
+      "ok": true,
+      "result": [
+        1,
+        -0.157079632679,
+        0.157079632679
+      ]
+    },
+    {
+      "name": "constraint:CHEST",
+      "ok": true,
+      "result": [
+        1,
+        -0.243619158104,
+        0.245073032454
+      ]
+    },
+    {
+      "name": "constraint:NECK",
+      "ok": true,
+      "result": [
+        1,
+        -0.357577517472,
+        0.340554183326
+      ]
+    },
+    {
+      "name": "constraint:HEAD",
+      "ok": true,
+      "result": [
+        1,
+        -0.485343988784,
+        0.492040392332
+      ]
+    },
+    {
+      "name": "constraint:LEFT_SHOULDER",
+      "ok": true,
+      "result": [
+        1,
+        -1.59954330931,
+        -0.866505023476
+      ]
+    },
+    {
+      "name": "constraint:LEFT_UPPER_ARM",
+      "ok": true,
+      "result": [
+        1,
+        -2.41987703062,
+        1.38494073873
+      ]
+    },
+    {
+      "name": "constraint:LEFT_FOREARM",
+      "ok": true,
+      "result": [
+        1,
+        0.100107071653,
+        2.89263387484
+      ]
+    },
+    {
+      "name": "constraint:LEFT_HAND",
+      "ok": true,
+      "result": [
+        1,
+        -1.01345339625,
+        1.08094170615
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_SHOULDER",
+      "ok": true,
+      "result": [
+        1,
+        0.840571140389,
+        1.57360942623
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_UPPER_ARM",
+      "ok": true,
+      "result": [
+        1,
+        -1.36933607542,
+        2.43548169393
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_FOREARM",
+      "ok": true,
+      "result": [
+        1,
+        -2.90429547013,
+        -0.111768666935
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_HAND",
+      "ok": true,
+      "result": [
+        1,
+        -1.09353560752,
+        1.00085949488
+      ]
+    },
+    {
+      "name": "constraint:LEFT_THIGH",
+      "ok": true,
+      "result": [
+        1,
+        -3.58324913054,
+        -1.83791987854
+      ]
+    },
+    {
+      "name": "constraint:LEFT_SHIN",
+      "ok": true,
+      "result": [
+        1,
+        -0.796563124489,
+        0.0761015015084
+      ]
+    },
+    {
+      "name": "constraint:LEFT_FOOT",
+      "ok": true,
+      "result": [
+        1,
+        -0.998873963436,
+        1.09552113896
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_THIGH",
+      "ok": true,
+      "result": [
+        1,
+        1.82727948902,
+        3.57260874102
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_SHIN",
+      "ok": true,
+      "result": [
+        1,
+        -0.0470931843369,
+        0.82557144166
+      ]
+    },
+    {
+      "name": "constraint:RIGHT_FOOT",
+      "ok": true,
+      "result": [
+        1,
+        -1.1189814551,
+        0.97541364729
+      ]
+    },
+    {
+      "name": "move:LEFT_HAND_TARGET",
+      "ok": true,
+      "result": [
+        [
+          110,
+          1.2467025572,
+          -0.515746971736
+        ],
+        [
+          120,
+          1.36123432835,
+          -0.41757688218
+        ],
+        [
+          130,
+          1.2467025572,
+          -0.515746971736
+        ]
+      ]
+    },
+    {
+      "name": "move:RIGHT_HAND_TARGET",
+      "ok": true,
+      "result": [
+        [
+          120,
+          1.2469717362,
+          0.51736204576
+        ],
+        [
+          130,
+          1.36561657625,
+          0.415666468581
+        ],
+        [
+          140,
+          1.2469717362,
+          0.51736204576
+        ]
+      ]
+    },
+    {
+      "name": "move:LEFT_FOOT_TARGET",
+      "ok": true,
+      "result": [
+        [
+          130,
+          0.172947510094,
+          -0.296096904441
+        ],
+        [
+          140,
+          0.395827725437,
+          -0.296096904441
+        ],
+        [
+          150,
+          0.172947510094,
+          -0.296096904441
+        ]
+      ]
+    },
+    {
+      "name": "move:RIGHT_FOOT_TARGET",
+      "ok": true,
+      "result": [
+        [
+          140,
+          0.1733512786,
+          0.299057873486
+        ],
+        [
+          150,
+          0.396231493943,
+          0.299057873486
+        ],
+        [
+          160,
+          0.1733512786,
+          0.299057873486
+        ]
+      ]
+    },
+    {
+      "name": "clamp_test:HEAD",
+      "ok": true,
+      "result": [
+        0.00334820177404,
+        1.01563916793
+      ]
+    },
+    {
+      "name": "end_frame",
+      "ok": true,
+      "result": 160
+    }
+  ],
+  "status": "completed",
+  "warnings": [],
+  "_label": "MOCK: written by the strict mock Moho API in the cloud, not by Moho"
+}

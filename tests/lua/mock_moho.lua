@@ -197,6 +197,8 @@ local Bone = class("M_Bone", {
 }, {
 	fParent = true, fAnimParent = true, fPos = true, fAnimPos = true, fLength = true,
 	fAngle = true, fAnimAngle = true, fMovedMatrix = true,
+	-- Phase 4.1 (opt-in IK/constraints script): documented members, defaults as in a native Moho 14.5.1 file
+	fConstraints = true, fMinConstraint = true, fMaxConstraint = true, fTargetBone = true,
 })
 
 local function bone_world(skel_state, id, depth)
@@ -224,6 +226,10 @@ local Skeleton = class("M_Skeleton", {
 		f.fAngle = 0
 		f.fAnimAngle = new_channel("num", 0)
 		f.fMovedMatrix = Transform.new({ m = { 1, 0, 0, 0, 1, 0 } })
+		f.fConstraints = false
+		f.fMinConstraint = -1.221731
+		f.fMaxConstraint = 1.221731
+		f.fTargetBone = new_channel("num", -1)
 		st.bones[#st.bones + 1] = b
 		return b
 	end,
