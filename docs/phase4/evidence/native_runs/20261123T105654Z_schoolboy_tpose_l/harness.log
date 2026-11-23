@@ -1,0 +1,83 @@
+== AutoRig Phase 4.0 native proof
+   Moho:      /Applications/Moho.app (version 14.5.1, build 14.5.1)
+   macOS:     27.2 (arm64)
+   package:   /Volumes/SSD/AutoRig/Referecence_image-Rig/projects/schoolboy_tpose/character_package (side l)
+   work:      /Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l
+   evidence:  /Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l
+
+== Building the proof package
+{
+ "character_id": "schoolboy_tpose_p4",
+ "side": "l",
+ "source_canvas": [
+  1086,
+  1448
+ ],
+ "moho_canvas": [
+  1920,
+  1080
+ ],
+ "placement": {
+  "offset_px": [
+   417,
+   0
+  ],
+  "rule": "canvas_px = source_px + offset; integer, no scaling",
+  "clipped_alpha_px": {
+   "body_back": 84557,
+   "arm": 0,
+   "body_front": 0
+  },
+  "arm_on_canvas_fraction": {
+   "moved": 0.9997,
+   "reopen_move": 0.9998
+  }
+ },
+ "split_fidelity": {
+  "max_abs_diff": 0,
+  "px_over_2": 0
+ },
+ "scripts": {
+  "build": "moho/AutoRig_P4_NativeBuild.lua",
+  "verify": "moho/AutoRig_P4_NativeVerify.lua"
+ },
+ "asset_root": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l",
+ "expected": {
+  "rest": "expected/expected_rest_f01.png",
+  "moved": "expected/expected_moved_f12.png",
+  "reopen_move": "expected/expected_reopen_move_f18.png",
+  "contact_sheet": "expected/expected_contact_sheet.png"
+ }
+}
+Installed: /Users/eddiekung/Downloads/Schoolboy_Moho14_Installer/Moho Pro/Scripts/Menu/AutoRig/AutoRig_P4_NativeBuild.lua
+           /Users/eddiekung/Downloads/Schoolboy_Moho14_Installer/Moho Pro/Scripts/Menu/AutoRig/AutoRig_P4_NativeVerify.lua
+
+>>> Moho is starting. If it was already running, restart it so the new scripts load.
+    Then: File > New, File > Project Settings > Dimensions 1920 x 1080,
+    then Scripts > AutoRig > AutoRig Phase 4.0 native proof.
+    Press Enter when done. Build script status: completed
+Go to frame 12 in the timeline. Is the arm artwork lowered, following the bone? [y/n] 
+>>> File > Save As... and save the document as:
+      /Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/AutoRig_P4_Native.moho
+    (the folder path is on the clipboard: in the save dialog press Cmd+Shift+G and paste it)
+    Press Enter when done. error: /Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/AutoRig_P4_Native.moho was not found. Save it there and run the harness again.
+
+== Checking the evidence against HARD GATE 4.0
+HARD GATE 4.0 (schoolboy_tpose_p4, side l)
+  [PASS        ] A real native Moho document has been created
+                 origin native, Moho 14.5.1, Lua Lua 5.4; Phase 0 verifier: 0 FAIL
+  [NOT_EXECUTED] At least one bone genuinely moves artwork
+                 renders (moho) of frames 1 and 12: alignment None, change None
+  [NOT_EXECUTED] The document saves successfully
+                 saved.exists=NOT_EXECUTED
+  [NOT_EXECUTED] The document reopens successfully
+                 no verify report (/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/phase4_native_verify_report.json)
+  [NOT_EXECUTED] The bone remains functional after reopening
+                 new key: []; render of frame 18: None
+Evidence origin: {'build_report': 'native', 'verify_report': 'missing', 'renders': 'moho'}
+VERDICT: BLOCKED — NATIVE VALIDATION REQUIRED
+Gate result written: /Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/gate_4_0.json
+
+Evidence folder: /Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l
+Send it back by committing it on the working branch, e.g.:
+  git add "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l" && git commit -m "Add Phase 4.0 native run evidence" && git push

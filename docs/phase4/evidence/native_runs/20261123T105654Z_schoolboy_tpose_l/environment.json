@@ -1,0 +1,11 @@
+{
+  "harness": "tools/macos/phase4_native_test.sh",
+  "os": "Darwin",
+  "macos_version": "27.2",
+  "arch": "arm64",
+  "moho_app": "/Applications/Moho.app",
+  "moho_version": "14.5.1",
+  "moho_build": "14.5.1",
+  "moho_binary": "/Applications/Moho.app/Contents/MacOS/Moho",
+  "started_utc": "2026-11-23T10:56:55.039893+00:00"
+}

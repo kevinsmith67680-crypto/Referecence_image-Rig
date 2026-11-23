@@ -1,0 +1,159 @@
+{
+  "autorig_report_version": "0.1.0",
+  "bone_layer": {
+    "children_by_index": [
+      "body_back_art",
+      "arm_l_art",
+      "body_front_art"
+    ],
+    "name": "AutoRig_P4_Native",
+    "type": 4
+  },
+  "bones": [
+    {
+      "angle": 1.57577288151,
+      "angle_keys": [
+        [
+          0,
+          1.57577288151
+        ]
+      ],
+      "id": 0,
+      "length": 0.632600426674,
+      "name": "body",
+      "parent_id": -1,
+      "pos": [
+        -0.00148148147855,
+        -0.395925939083
+      ],
+      "world_base": [
+        -0.00148148147855,
+        -0.395925939083
+      ],
+      "world_tip": [
+        -0.00462963897735,
+        0.236666619778
+      ]
+    },
+    {
+      "angle": -1.70257878304,
+      "angle_keys": [
+        [
+          0,
+          -1.70257878304
+        ],
+        [
+          1,
+          -1.70257878304
+        ],
+        [
+          12,
+          -1.7898453474
+        ],
+        [
+          24,
+          -1.70257878304
+        ]
+      ],
+      "id": 1,
+      "length": 0.18743082881,
+      "name": "shoulder",
+      "parent_id": 0,
+      "pos": [
+        0.551633894444,
+        -0.0823758691549
+      ],
+      "world_base": [
+        0.0781481415033,
+        0.156111061573
+      ],
+      "world_tip": [
+        0.264074087143,
+        0.132407367229
+      ]
+    },
+    {
+      "angle": 0.100956849754,
+      "angle_keys": [
+        [
+          0,
+          0.100956849754
+        ],
+        [
+          1,
+          0.100956849754
+        ],
+        [
+          12,
+          -0.684441328049
+        ],
+        [
+          24,
+          0.100956849754
+        ]
+      ],
+      "id": 2,
+      "length": 0.444222480059,
+      "name": "arm",
+      "parent_id": 1,
+      "pos": [
+        0.18743082881,
+        0
+      ],
+      "world_base": [
+        0.264074087143,
+        0.132407367229
+      ],
+      "world_tip": [
+        0.708148181438,
+        0.120925918221
+      ]
+    }
+  ],
+  "constants": {
+    "LT_BONE": 4,
+    "LT_IMAGE": 2
+  },
+  "document": {
+    "end_frame": 24,
+    "fps": 24,
+    "height": 1080,
+    "start_frame": 1,
+    "width": 1920
+  },
+  "document_before": {
+    "height": 1080,
+    "width": 1920
+  },
+  "errors": [],
+  "generator": {
+    "name": "autorig",
+    "spec_character_id": "schoolboy_tpose_p4",
+    "spec_sha256": "d053c46d4d75da2a41a8a2bbcbebe0a8e87e64206d1813a93579c338cbe8a08a",
+    "version": "0.0.1"
+  },
+  "layers": [
+    {
+      "name": "body_back_art",
+      "parent_bone_id": 0,
+      "source_image_set": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/body_back.png",
+      "type": 2
+    },
+    {
+      "name": "arm_l_art",
+      "parent_bone_id": 2,
+      "source_image_set": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/arm.png",
+      "type": 2
+    },
+    {
+      "name": "body_front_art",
+      "parent_bone_id": 0,
+      "source_image_set": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/body_front.png",
+      "type": 2
+    }
+  ],
+  "lua_version": "Lua 5.4",
+  "moho_app_version": "14.5.1",
+  "status": "completed",
+  "warnings": []
+}

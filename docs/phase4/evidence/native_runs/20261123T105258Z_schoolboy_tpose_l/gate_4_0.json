@@ -1,0 +1,106 @@
+{
+  "gate": "4.0",
+  "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+  "passed": false,
+  "items": [
+    {
+      "id": "native_document",
+      "requirement": "A real native Moho document has been created",
+      "status": "NOT_EXECUTED",
+      "evidence": [],
+      "detail": "no build report (/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_build_report.json)"
+    },
+    {
+      "id": "bone_moves_artwork",
+      "requirement": "At least one bone genuinely moves artwork",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/renders/frame_0001.png",
+        "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/renders/frame_0012.png"
+      ],
+      "detail": "renders (moho) of frames 1 and 12: alignment None, change None"
+    },
+    {
+      "id": "document_saved",
+      "requirement": "The document saves successfully",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/AutoRig_P4_Native.moho"
+      ],
+      "detail": "saved.exists=NOT_EXECUTED"
+    },
+    {
+      "id": "document_reopened",
+      "requirement": "The document reopens successfully",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_verify_report.json"
+      ],
+      "detail": "no verify report (/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_verify_report.json)"
+    },
+    {
+      "id": "bone_functional_after_reopen",
+      "requirement": "The bone remains functional after reopening",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_verify_report.json",
+        "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/renders/frame_0018.png"
+      ],
+      "detail": "new key: []; render of frame 18: None"
+    }
+  ],
+  "checks": {
+    "phase0_build": [],
+    "reopened": [],
+    "move": [],
+    "saved": [
+      {
+        "name": "saved.exists",
+        "status": "NOT_EXECUTED",
+        "detail": "/Volumes/SSD/AutoRig/Referecence_image-Rig/docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/AutoRig_P4_Native.moho not found"
+      }
+    ],
+    "renders": {
+      "thresholds": {
+        "FG_DIFF": 40,
+        "MOVE_DIFF": 48,
+        "ALIGN_IOU_MIN": 0.85,
+        "MOVE_IOU_MIN": 0.6,
+        "MOVE_RATIO_MIN": 0.5
+      },
+      "status": "NOT_EXECUTED",
+      "detail": "no render of frame 1"
+    }
+  },
+  "evidence_origin": {
+    "build_report": "missing",
+    "verify_report": "missing",
+    "renders": "moho"
+  },
+  "environment": {
+    "harness": "tools/macos/phase4_native_test.sh",
+    "os": "Darwin",
+    "macos_version": "27.2",
+    "arch": "arm64",
+    "moho_app": "/Applications/Moho.app",
+    "moho_version": "14.5.1",
+    "moho_build": "14.5.1",
+    "moho_binary": "/Applications/Moho.app/Contents/MacOS/Moho",
+    "started_utc": "2026-11-23T10:52:58.848829+00:00"
+  },
+  "observations": {
+    "scripts_installed": "custom_content_folder",
+    "build_report": "missing",
+    "recorded_by": "the user, answering the harness prompts",
+    "finished_utc": "2026-11-23T10:55:39.286468+00:00"
+  },
+  "api_surface": null,
+  "poc": {
+    "dir": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l",
+    "character_id": "schoolboy_tpose_p4",
+    "side": "l",
+    "spec_sha256": "d053c46d4d75da2a41a8a2bbcbebe0a8e87e64206d1813a93579c338cbe8a08a",
+    "bone_layer": "AutoRig_P4_Native",
+    "manifest": "native_manifest.json"
+  }
+}
