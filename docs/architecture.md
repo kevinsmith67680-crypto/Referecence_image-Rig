@@ -483,3 +483,26 @@ See [phase3_8_1_fix_report.md](phase3_8_1_fix_report.md).
   - collects everything in `docs/phase4/evidence/native_runs/<run>/` and runs the gate.
 
 See [phase4_native_rig_report.md](phase4_native_rig_report.md) and [phase4_completion_report.md](phase4_completion_report.md).
+
+## 24. Phase 4.1: full-body native rig (preparatory)
+
+- **Skeleton** (`native/skeleton.py`): `NativeSkeletonSpec.from_package` builds 25 semantic bones (ROOT, PELVIS,
+  SPINE_LOWER/UPPER, CHEST, NECK, HEAD, shoulders, arms, hands, legs, feet, four IK targets) from the editor's skeleton
+  with the garment-aligned shoulder pivots. In-plane ranges are converted from the package limits and are configurable
+  per character. `Placement` is an integer offset; `px_to_world` and `compute_rest_pose` do the rest, so scale and
+  rotation are each applied once.
+- **Binding** (`native/binding.py`): one bone and one class per layer; rigid layer binding natively. The classes and
+  garment parts are kept for correctives (4.2) and Switch Layers (4.3).
+- **Package** (`native/fullbody.py`, `autorig native-fullbody`):
+  - original layers on an auto-sized canvas;
+  - twelve rotation test poses keyed by the unchanged Phase 0 template;
+  - the 4.1 verify script (read-back, pelvis keys after reopening, discovery of member names);
+  - the opt-in IK/limits script (`fTargetBone`, `fConstraints`, `fMin/MaxConstraint`; target and clamp test keys);
+  - simulated frames and close-up boxes.
+- **Gates** (`native/gate41.py`, `autorig native-fullbody-verify`): 4.1-A..L from native reports, the saved file
+  (structural check) and Moho renders; MOCK_ONLY for cloud evidence; comparison sheets once renders exist.
+- **Harness**: `tools/macos/phase4_native_test.sh --phase 4.1 [--with-ik]` (renders frames 1–110 and 120–160; records
+  memory, timings and drag tests).
+
+See [phase4_1_implementation_report.md](phase4_1_implementation_report.md).
+

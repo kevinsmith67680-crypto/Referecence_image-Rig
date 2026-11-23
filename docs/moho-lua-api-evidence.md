@@ -104,6 +104,22 @@ parent-local points to layer space with `parentBone.fMovedMatrix:Transform(v)`.
 report's `world_matrix` check is designed to catch it if Moho disagrees: it
 compares Moho's own `fMovedMatrix` output with the art's joint positions.
 
+## Added in Phase 4.1 (opt-in IK / constraints script only)
+
+| member | evidence | native |
+|---|---|---|
+| `M_Bone.fConstraints` (bool) | mohoscripting.com `M_Bone` (search snippet: "true if the bone has min/max angle constraints"); the key `constraints` on every bone of the native Moho 14.5.1 file (Phase 4.0) | not run |
+| `M_Bone.fMinConstraint`, `fMaxConstraint` (real) | mohoscripting.com `M_Bone` (search snippets, "< 9.5"); keys `min_constraint` / `max_constraint` (default ±1.221731) in the native file | not run |
+| `M_Bone.fTargetBone` (AnimVal) | mohoscripting.com `M_Bone` (search snippet: "ID of the current target bone. Added in version 10"); channel `target_bone` (value −1) in the native file | not run |
+
+Open questions for the native run:
+1. Are the constraint angles absolute parent-relative angles, or offsets from the rest pose? AutoRig writes absolute
+   values.
+2. Does Moho clamp keyed rotation, or only manipulation? The frame-160 render answers it.
+3. Does a target constraint drive its chain at playback? The frame-120–150 renders answer it.
+
+The verify script reads all four inside `pcall`; only the opt-in script writes them.
+
 ## Deliberately not used
 
 | Member | Reason |

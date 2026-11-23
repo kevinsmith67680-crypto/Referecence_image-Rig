@@ -560,9 +560,10 @@ def build_fullbody(package: str | Path, out: str | Path, canvas: tuple[int, int]
     exp = expected_frames(out, spec, sk, poses, ik) if render_expected else {}
     ref = out / "reference"
     ref.mkdir(exist_ok=True)
-    src = next((p for p in (pkg / "source").iterdir() if p.name.startswith("original")), None)
-    if src is not None:
-        shutil.copy2(src, ref / src.name)
+    rel_src = (manifest.get("original_bitmap") or {}).get("path")
+    src = pkg / rel_src if rel_src else next(iter(sorted((pkg / "source").glob("original*"))), None)
+    if src is not None and src.is_file():
+        shutil.copy2(src, ref / src.name)  # the user's reference, byte for byte
     hand = hand_readiness(pkg, sk, meta["SWITCHABLE"])
     closeups = closeup_boxes(spec, sk, poses)
     plan = {"poses": poses, "render_range": [1, END_FRAME], "ik_render_range": [ARM_FRAMES["LEFT"], IK_END_FRAME],

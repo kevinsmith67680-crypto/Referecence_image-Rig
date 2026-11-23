@@ -113,6 +113,13 @@ faithful, editable **Moho Pro 14** character rig.
     (`tools/macos/phase4_native_test.sh`).
   - Moho's saved-file format is now observed (`research/moho-14.5/README.md`). `native/gate.py` checks saved projects
     structurally, using only those keys.
+- The user explicitly started **Phase 4.1** (full-body native rig, IK controls, rig validation) while Phase 4.0 was
+  incomplete. Verdict: **BLOCKED — NATIVE VALIDATION REQUIRED**, with the preparatory work done
+  (`docs/phase4_1_implementation_report.md`, plus `docs/phase4_1_*.md`).
+  - Built and cloud-tested: `NativeSkeletonSpec` (25 semantic bones), `NativeBindingStrategy`,
+    `autorig native-fullbody`, `autorig native-fullbody-verify` (gates 4.1-A..L), harness `--phase 4.1 [--with-ik]`.
+  - Both characters build from their own data.
+  - No Phase 4.1 native run exists. IK and limits are experimental and opt-in. Phase 4.2 is not started.
   - Steps 5–23 (Phase 4.1 onwards) are **not started**. Do not start them until a native run passes the gate.
 
 ## Phase 4 rules (native Moho)
@@ -138,7 +145,32 @@ faithful, editable **Moho Pro 14** character rig.
 - Save, close, reopen and render are manual or macOS commands (`open -a`, the command-line renderer, which is
   secondary evidence and is logged). `FileSave`/`FileSaveAs`/`FileOpen`/`FileClose` stay out of the allowlist until
   evidenced and mocked.
-- Steps 5–23 start only after `gate_4_0.json` from a native run says `GATE 4.0 PASSED`.
+- Steps 5–23 start only after `gate_4_0.json` from a native run says `GATE 4.0 PASSED`. Phase 4.1 was started by
+  the user before that; its native steps are run only through the harness, which records whether 4.0 had passed.
+
+## Phase 4.1 rules (full-body native rig)
+
+- The skeleton comes from the package's rendering skeleton (`NativeSkeletonSpec.from_package`: editor bone edits +
+  `align_pivots`). Semantic ids are the Moho bone names; LEFT = the character's left. Never hardcode a coordinate,
+  length or range; per-character settings go in `natural_pose/native_rig.json`.
+- One Moho bone per layer, rigid layer binding (`SetLayerParentBone`). Classes (RIGID / LIMITED_DEFORMATION /
+  FLEXIBLE / SWITCHABLE / CORRECTIVE) are metadata for later phases. Weight meshes are not converted. Never use global
+  flexible binding.
+- Layers are the editor's layers without extensions: original pixels, an integer offset, no scaling. The canvas holds
+  every test pose (`pose_extent`); a `--canvas` that would crop is refused. Pending generated pixels only with
+  `--include-pending-extensions`, labelled.
+- The build script stays the Phase 0 template (natively run in Phase 4.0). Members that are not natively verified
+  (`fTargetBone`, `fConstraints`, `fMin/MaxConstraint`):
+  - live only in the opt-in IK script, pcall-guarded and read back;
+  - the verify script reads them inside pcall.
+- Test poses are rotations with signs from each bone's own direction; every pose stays inside the joint ranges
+  (tested). The pelvis shift is keyed only after reopening.
+- `gate41`:
+  - a gate passes only on native reports, the saved file and Moho renders;
+  - mock or simulation gives MOCK_ONLY;
+  - IK and constraint gates need the user's drag tests.
+
+  Never relabel cloud evidence. Cloud output goes to `docs/phase4_1/cloud_checks/` (`tools/phase4_1_cloud_check.py`).
 
 ## Phase 2 rules (reconstruction)
 
@@ -577,6 +609,11 @@ cd editor && AUTORIG_PYTHON=$PWD/../.venv/bin/python NODE_PATH=$(npm root -g) no
 .venv/bin/python -m autorig native-verify <dir> --evidence <evidence_dir>    # HARD GATE 4.0 (exit 0 only when passed)
 .venv/bin/python tools/phase4_cloud_check.py                                 # mock + simulation check -> docs/phase4/cloud_checks/
 tools/macos/phase4_native_test.sh --custom-content "<Moho Custom Content Folder>" [--package <pkg>] [--side l|r]   # on the Mac
+# Phase 4.1 full-body rig
+.venv/bin/python -m autorig native-fullbody <package_dir> --out <dir> [--canvas WxH] [--asset-root <abs Mac path>] [--config f.json] [--include-pending-extensions]
+.venv/bin/python -m autorig native-fullbody-verify <dir> --evidence <run_dir> --character-package <package_dir>   # gates 4.1-A..L
+.venv/bin/python tools/phase4_1_cloud_check.py                               # mock + simulation -> docs/phase4_1/cloud_checks/
+tools/macos/phase4_native_test.sh --phase 4.1 [--with-ik] --custom-content "<Moho Custom Content Folder>"   # on the Mac
 # Phase 3
 .venv/bin/python -m autorig editor <package_dir> [--port 8765]     # then open http://127.0.0.1:8765
 .venv/bin/python -m autorig export-assets <package_dir> --out <dir>
@@ -631,7 +668,9 @@ cd editor && AUTORIG_PYTHON=../.venv/bin/python NODE_PATH=$(npm root -g) npm run
   — the numbered new-character evidence; `references/tough_student/` — the new character's inputs, hand grid
   extraction (sprites, pack zip, inspection records, skin-matched candidates); `projects/tough_student_test/` — its
   Phase 1 project, Phase 2 package (all evidence) and export
-- `src/autorig/native/` — Phase 4: `poc.py` (native proof package), `gate.py` (HARD GATE 4.0 checker);
+- `src/autorig/native/` — Phase 4: `poc.py` (native proof package), `gate.py` (HARD GATE 4.0 checker); Phase 4.1:
+  `skeleton.py` (NativeSkeletonSpec, Placement), `binding.py` (NativeBindingStrategy), `fullbody.py` (package),
+  `gate41.py` (gates 4.1-A..L); templates `phase4_1_fullbody_verify.lua`, `phase4_1_ik_constraints.lua`;
   `data/templates/phase4_native_verify.lua`; `tools/macos/phase4_native_test.sh` (Mac harness);
   `docs/phase4/evidence/` (native only), `docs/phase4/cloud_checks/` (mock/simulation)
 - `editor/` — Phase 3 browser editor (React + TypeScript + Vite + react-konva); `dist/` is committed; `e2e/` Playwright

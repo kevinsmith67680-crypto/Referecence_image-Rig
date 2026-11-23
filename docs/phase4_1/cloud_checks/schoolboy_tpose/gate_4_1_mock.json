@@ -609,8 +609,8 @@
     }
   },
   "timings": {
-    "readback_cpu": 0.001692,
-    "total_cpu": 0.001821
+    "readback_cpu": "<varies per run>",
+    "total_cpu": "<varies per run>"
   },
   "package": {
     "dir": "<package>",

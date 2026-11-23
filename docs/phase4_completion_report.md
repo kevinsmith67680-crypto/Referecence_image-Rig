@@ -179,7 +179,8 @@ Inputs: your PNGs for the tough student have still not been supplied; the proof 
 - the committed native evidence: the build report and the saved file hold exactly this spec's rig, the gate is still
   BLOCKED, and the file alone is UNLINKED.
 
-Full cloud suite on this commit: *running; the result is recorded in the next commit*.
+Full cloud suite, run with the Phase 4.1 work (2026-11-23): **676 passed, 2 skipped**. The skips are the native
+Phase 0 hooks.
 
 ## 9. What this report does not claim
 

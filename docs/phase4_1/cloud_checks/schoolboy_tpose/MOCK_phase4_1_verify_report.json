@@ -1781,8 +1781,8 @@
   ],
   "status": "completed",
   "timings_s": {
-    "readback_cpu": 0.001692,
-    "total_cpu": 0.001821
+    "readback_cpu": "<varies per run>",
+    "total_cpu": "<varies per run>"
   },
   "warnings": [],
   "_label": "MOCK: written by the strict mock Moho API in the cloud, not by Moho"

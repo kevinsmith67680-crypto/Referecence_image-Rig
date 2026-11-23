@@ -92,9 +92,13 @@ def check(name: str, pkg: Path) -> dict:
         for f in (BUILD_REPORT, VERIFY_REPORT, IK_REPORT):
             r = json.loads((out / f).read_text())
             r["_label"] = "MOCK: written by the strict mock Moho API in the cloud, not by Moho"
+            if "timings_s" in r:  # CPU times vary from run to run; keep the committed output reproducible
+                r["timings_s"] = {k: "<varies per run>" for k in r["timings_s"]}
             (dest / f"MOCK_{f}").write_text(scrub(json.dumps(r, indent=2)) + "\n")
         res["_label"] = "cloud check: mock reports + simulated renders; the Phase 4.1 gates cannot pass on this evidence"
         res["mock_alerts"] = alerts
+        if res.get("timings"):
+            res["timings"] = {k: "<varies per run>" for k in res["timings"]}
         (dest / "gate_4_1_mock.json").write_text(scrub(json.dumps(res, indent=2, default=str)) + "\n")
         print(format_gate41(res))
         return {"character": name, "verdict": res["verdict"], "gates": {g["id"]: g["status"] for g in res["gates"]},

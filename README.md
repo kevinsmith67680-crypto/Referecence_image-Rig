@@ -255,6 +255,19 @@ saved the rig, but did not reopen or render it. Phase 4.0 is **PARTIAL**, with 2
 tools/macos/phase4_native_test.sh --custom-content "<your Moho Custom Content Folder>"
 ```
 
+Phase 4.1 builds the full-body rig with `autorig native-fullbody`, for any character package:
+- 25 semantic bones from the character's own skeleton;
+- every layer unscaled, one bone each;
+- twelve test poses;
+- an opt-in IK/limits experiment.
+
+Phase 4.0 is still incomplete, so Phase 4.1 is **BLOCKED — native validation required**; nothing has run in Moho yet
+([docs/phase4_1_implementation_report.md](docs/phase4_1_implementation_report.md)). On the Mac, after Phase 4.0:
+
+```bash
+tools/macos/phase4_native_test.sh --phase 4.1 --with-ik --custom-content "<your Moho Custom Content Folder>"
+```
+
 ## Running it in Moho Pro 14 (Mac)
 
 Read **[docs/phase0/install-macos-moho14.md](docs/phase0/install-macos-moho14.md)**. In short:
@@ -324,6 +337,13 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | [docs/phase4_visual_parity_report.md](docs/phase4_visual_parity_report.md) | Phase 4: render comparison method (NOT EXECUTED) |
 | [docs/phase4_live_control_readiness.md](docs/phase4_live_control_readiness.md) | Phase 4: Live Mode readiness (not started, blocked) |
 | [docs/phase4_completion_report.md](docs/phase4_completion_report.md) | Phase 4: verdict BLOCKED and the exact steps to resume |
+| [docs/phase4_1_architecture_plan.md](docs/phase4_1_architecture_plan.md) | Phase 4.1: package audit and the plan, written before the builder |
+| [docs/phase4_1_implementation_report.md](docs/phase4_1_implementation_report.md) | Phase 4.1: what was built, gate status, verdict |
+| [docs/phase4_1_native_validation.md](docs/phase4_1_native_validation.md) | Phase 4.1: Phase 4.0 status, gates 4.1-A..L, the Mac procedure |
+| [docs/phase4_1_rig_architecture.md](docs/phase4_1_rig_architecture.md) | Phase 4.1: skeleton, ranges, coordinates, controls |
+| [docs/phase4_1_moho_api_compatibility.md](docs/phase4_1_moho_api_compatibility.md) | Phase 4.1: members used, native status, new allowlist entries |
+| [docs/phase4_1_artwork_binding_report.md](docs/phase4_1_artwork_binding_report.md) | Phase 4.1: artwork import, binding classes, garments, hands |
+| [docs/phase4_1_performance_report.md](docs/phase4_1_performance_report.md) | Phase 4.1: cloud tooling timings; M1 measurements not executed |
 | [CLAUDE.md](CLAUDE.md) | Rules for AI-assisted development in this repo |
 
 ## Roadmap
@@ -338,4 +358,5 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 3 | Interactive editor (layers, masks, pivots, vectors, pose preview, comparison, readiness) and Moho-ready asset package | Implemented; **PARTIAL** (reviews pending; Moho not run) |
 | 3.1 | Natural motion: planner/solver split, front-view gait cycles, garment deformation, feasibility and quality checks | Implemented; **PARTIAL** (visual review pending; Moho not run) |
 | 3.2 | IK (arms, legs, poles, FK/IK matching), foot contacts, switch groups, hand library, correction triggers, rig controls spec | Implemented; **PARTIAL** (hand variants pending review; drawings missing; Moho not run) |
-| 4 | Native Moho rig generation | 4.0 built; first native runs in Moho 14.5.1: build and save pass, reopen and renders pending; **PARTIAL** (2/5 gate items); 4.1+ not started |
+| 4 | Native Moho rig generation | 4.0 built; first native runs in Moho 14.5.1: build and save pass, reopen and renders pending; **PARTIAL** (2/5 gate items) |
+| 4.1 | Full-body native rig (25 bones, all layers, IK/limits experiment), 12 native gates | Built and cloud-tested for both characters; **BLOCKED — native validation required**; 4.2 not started |
