@@ -1,8 +1,9 @@
 # Phase 4.0: native proof rig
 
-**Native status: NOT EXECUTED.** This report describes the rig the Mac run will build and what the cloud checked.
-Every number marked *mock* comes from the strict mock Moho API, and every image from the Python simulation. None of
-them is Moho behaviour.
+**Native status: PARTIAL (2026-11-23).** In Moho 14.5.1 the build script ran and the document was saved. Reopening, the
+verify script and the renders were not executed. §6 has the native results; `phase4_completion_report.md` has the full
+assessment. Every number marked *mock* below comes from the strict mock Moho API, and every image from the Python
+simulation. None of them is Moho behaviour.
 
 ## 1. Commands
 
@@ -95,3 +96,16 @@ The verify report also records:
 - whether bone fields follow `SetCurFrame` (information only);
 - the file- and render-related ScriptInterface names the installed Moho exposes. Phase 4.1 decides from these whether to
   automate save, reopen and render.
+
+## 6. Native results (schoolboy, left arm, Moho 14.5.1)
+
+| check | native result |
+|---|---|
+| package on the Mac vs the cloud | same spec sha256 (`d053c46d…`), pixel-identical art. Only the PNG compression bytes differ |
+| build script | completed; the Phase 0 verifier gives **40 PASS, 0 FAIL** on Moho's read-back (bones, `fMovedMatrix` world positions, keys, bindings, image paths, document) |
+| saved document | Moho 14.5.1 project (`version` 1045): **15 structural checks PASS**. Each image layer is 3.555556 × 2.0 units, which fills the frame |
+| artwork follows the arm bone | the user saw it at frame 12. Moho's thumbnail shows it. **No render**, so the gate item is open |
+| reopen, verify script, frame 18 | not executed: the save landed in another run's folder and the harness stopped |
+
+Evidence: `docs/phase4/evidence/native_runs/`. Cloud evaluation: `docs/phase4/native_assessment/20261123/`.
+

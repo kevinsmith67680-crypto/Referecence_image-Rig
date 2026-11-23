@@ -1,0 +1,201 @@
+{
+  "gate": "4.0",
+  "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+  "passed": false,
+  "items": [
+    {
+      "id": "native_document",
+      "requirement": "A real native Moho document has been created",
+      "status": "NOT_EXECUTED",
+      "evidence": [],
+      "detail": "no build report (docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_build_report.json)"
+    },
+    {
+      "id": "bone_moves_artwork",
+      "requirement": "At least one bone genuinely moves artwork",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/renders/frame_0001.png",
+        "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/renders/frame_0012.png"
+      ],
+      "detail": "renders (moho) of frames 1 and 12: alignment None, change None"
+    },
+    {
+      "id": "document_saved",
+      "requirement": "The document saves successfully",
+      "status": "UNLINKED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/AutoRig_P4_Native.moho"
+      ],
+      "detail": "saved.exists=PASS; saved.parsed=PASS; saved.format=PASS; saved.document=PASS; saved.bone_layer=PASS; saved.bones.count=PASS; saved.bone[body]=PASS; saved.bone[body].keys=PASS; saved.bone[shoulder]=PASS; saved.bone[shoulder].keys=PASS; saved.bone[arm]=PASS; saved.bone[arm].keys=PASS; saved.layer[body_back_art]=PASS; saved.layer[arm_l_art]=PASS; saved.layer[body_front_art]=PASS"
+    },
+    {
+      "id": "document_reopened",
+      "requirement": "The document reopens successfully",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_verify_report.json"
+      ],
+      "detail": "no verify report (docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_verify_report.json)"
+    },
+    {
+      "id": "bone_functional_after_reopen",
+      "requirement": "The bone remains functional after reopening",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/phase4_native_verify_report.json",
+        "docs/phase4/evidence/native_runs/20261123T105258Z_schoolboy_tpose_l/renders/frame_0018.png"
+      ],
+      "detail": "new key: []; render of frame 18: None"
+    }
+  ],
+  "checks": {
+    "phase0_build": [],
+    "reopened": [],
+    "move": [],
+    "saved": [
+      {
+        "name": "saved.exists",
+        "status": "PASS",
+        "detail": "AutoRig_P4_Native.moho, 145395 bytes"
+      },
+      {
+        "name": "saved.parsed",
+        "status": "PASS",
+        "detail": "members ['Project.mohoproj', 'preview.jpg']"
+      },
+      {
+        "name": "saved.format",
+        "status": "PASS",
+        "detail": "mime_type 'application/x-vnd.lm_mohodoc', version 1045"
+      },
+      {
+        "name": "saved.document",
+        "status": "PASS",
+        "detail": "1920x1080, frames 1..24"
+      },
+      {
+        "name": "saved.bone_layer",
+        "status": "PASS",
+        "detail": "BoneLayer 'AutoRig_P4_Native'"
+      },
+      {
+        "name": "saved.bones.count",
+        "status": "PASS",
+        "detail": "3 of 3"
+      },
+      {
+        "name": "saved.bone[body]",
+        "status": "PASS",
+        "detail": "name 'body', parent -1, length 0.6326, pos {'x': -0.001481, 'y': -0.395926}"
+      },
+      {
+        "name": "saved.bone[body].keys",
+        "status": "PASS",
+        "detail": "keys at [0]"
+      },
+      {
+        "name": "saved.bone[shoulder]",
+        "status": "PASS",
+        "detail": "name 'shoulder', parent 0, length 0.187431, pos {'x': 0.551634, 'y': -0.082376}"
+      },
+      {
+        "name": "saved.bone[shoulder].keys",
+        "status": "PASS",
+        "detail": "keys at [0, 1, 12, 24]"
+      },
+      {
+        "name": "saved.bone[arm]",
+        "status": "PASS",
+        "detail": "name 'arm', parent 1, length 0.444222, pos {'x': 0.187431, 'y': 0.0}"
+      },
+      {
+        "name": "saved.bone[arm].keys",
+        "status": "PASS",
+        "detail": "keys at [0, 1, 12, 24]"
+      },
+      {
+        "name": "saved.reopen_key",
+        "status": "INFO",
+        "detail": "no frame 18 key: saved before the verify script ran"
+      },
+      {
+        "name": "saved.layer[body_back_art]",
+        "status": "PASS",
+        "detail": "ImageLayer, parent_bone 0 (expected 0), image /Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/body_back.png"
+      },
+      {
+        "name": "saved.layer[body_back_art].frame_fit",
+        "status": "INFO",
+        "detail": "3.555556 x 2.0 units: the image fills the 1920x1080 frame exactly"
+      },
+      {
+        "name": "saved.layer[arm_l_art]",
+        "status": "PASS",
+        "detail": "ImageLayer, parent_bone 2 (expected 2), image /Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/arm.png"
+      },
+      {
+        "name": "saved.layer[arm_l_art].frame_fit",
+        "status": "INFO",
+        "detail": "3.555556 x 2.0 units: the image fills the 1920x1080 frame exactly"
+      },
+      {
+        "name": "saved.layer[body_front_art]",
+        "status": "PASS",
+        "detail": "ImageLayer, parent_bone 0 (expected 0), image /Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/body_front.png"
+      },
+      {
+        "name": "saved.layer[body_front_art].frame_fit",
+        "status": "INFO",
+        "detail": "3.555556 x 2.0 units: the image fills the 1920x1080 frame exactly"
+      },
+      {
+        "name": "saved.child_order",
+        "status": "INFO",
+        "detail": "bone layer children in file order: ['body_back_art', 'arm_l_art', 'body_front_art']"
+      }
+    ],
+    "renders": {
+      "thresholds": {
+        "FG_DIFF": 40,
+        "MOVE_DIFF": 48,
+        "ALIGN_IOU_MIN": 0.85,
+        "MOVE_IOU_MIN": 0.6,
+        "MOVE_RATIO_MIN": 0.5
+      },
+      "status": "NOT_EXECUTED",
+      "detail": "no render of frame 1"
+    }
+  },
+  "evidence_origin": {
+    "build_report": "missing",
+    "verify_report": "missing",
+    "renders": "moho"
+  },
+  "environment": {
+    "harness": "tools/macos/phase4_native_test.sh",
+    "os": "Darwin",
+    "macos_version": "27.2",
+    "arch": "arm64",
+    "moho_app": "/Applications/Moho.app",
+    "moho_version": "14.5.1",
+    "moho_build": "14.5.1",
+    "moho_binary": "/Applications/Moho.app/Contents/MacOS/Moho",
+    "started_utc": "2026-11-23T10:52:58.848829+00:00"
+  },
+  "observations": {
+    "scripts_installed": "custom_content_folder",
+    "build_report": "missing",
+    "recorded_by": "the user, answering the harness prompts",
+    "finished_utc": "2026-11-23T10:55:39.286468+00:00"
+  },
+  "api_surface": null,
+  "poc": {
+    "dir": "build/phase4_native/schoolboy_tpose_l",
+    "character_id": "schoolboy_tpose_p4",
+    "side": "l",
+    "spec_sha256": "d053c46d4d75da2a41a8a2bbcbebe0a8e87e64206d1813a93579c338cbe8a08a",
+    "bone_layer": "AutoRig_P4_Native",
+    "manifest": "native_manifest.json"
+  }
+}

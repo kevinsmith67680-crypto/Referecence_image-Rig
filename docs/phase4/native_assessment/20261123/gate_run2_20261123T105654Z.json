@@ -1,0 +1,331 @@
+{
+  "gate": "4.0",
+  "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+  "passed": false,
+  "items": [
+    {
+      "id": "native_document",
+      "requirement": "A real native Moho document has been created",
+      "status": "PASS",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/phase4_native_build_report.json"
+      ],
+      "detail": "origin native, Moho 14.5.1, Lua Lua 5.4; Phase 0 verifier: 0 FAIL"
+    },
+    {
+      "id": "bone_moves_artwork",
+      "requirement": "At least one bone genuinely moves artwork",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/renders/frame_0001.png",
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/renders/frame_0012.png"
+      ],
+      "detail": "renders (moho) of frames 1 and 12: alignment None, change None"
+    },
+    {
+      "id": "document_saved",
+      "requirement": "The document saves successfully",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/AutoRig_P4_Native.moho"
+      ],
+      "detail": "saved.exists=NOT_EXECUTED"
+    },
+    {
+      "id": "document_reopened",
+      "requirement": "The document reopens successfully",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/phase4_native_verify_report.json"
+      ],
+      "detail": "no verify report (docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/phase4_native_verify_report.json)"
+    },
+    {
+      "id": "bone_functional_after_reopen",
+      "requirement": "The bone remains functional after reopening",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/phase4_native_verify_report.json",
+        "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/renders/frame_0018.png"
+      ],
+      "detail": "new key: []; render of frame 18: None"
+    }
+  ],
+  "checks": {
+    "phase0_build": [
+      {
+        "name": "report.status",
+        "status": "PASS",
+        "detail": "completed"
+      },
+      {
+        "name": "report.errors",
+        "status": "PASS",
+        "detail": "none"
+      },
+      {
+        "name": "env.lua_version",
+        "status": "INFO",
+        "detail": "Lua 5.4 (Moho 14 is expected to embed Lua 5.4)"
+      },
+      {
+        "name": "env.moho_app_version",
+        "status": "INFO",
+        "detail": "14.5.1"
+      },
+      {
+        "name": "provenance.spec_sha256",
+        "status": "PASS",
+        "detail": "report was produced from this exact spec"
+      },
+      {
+        "name": "document.size",
+        "status": "PASS",
+        "detail": "1920x1080"
+      },
+      {
+        "name": "document.frame_range",
+        "status": "PASS",
+        "detail": "1..24 (24 frames)"
+      },
+      {
+        "name": "document.fps",
+        "status": "INFO",
+        "detail": "24"
+      },
+      {
+        "name": "bone_layer.name",
+        "status": "PASS",
+        "detail": "AutoRig_P4_Native"
+      },
+      {
+        "name": "bone_layer.type",
+        "status": "PASS",
+        "detail": "LayerType()=4 == MOHO.LT_BONE"
+      },
+      {
+        "name": "bones.count",
+        "status": "PASS",
+        "detail": "3"
+      },
+      {
+        "name": "bone[body].id",
+        "status": "PASS",
+        "detail": "0"
+      },
+      {
+        "name": "bone[body].parent",
+        "status": "PASS",
+        "detail": "-1"
+      },
+      {
+        "name": "bone[body].fPos",
+        "status": "PASS",
+        "detail": "[-0.00148148147855, -0.395925939083]"
+      },
+      {
+        "name": "bone[body].fAngle",
+        "status": "PASS",
+        "detail": "1.57577288151"
+      },
+      {
+        "name": "bone[body].fLength",
+        "status": "PASS",
+        "detail": "0.632600426674"
+      },
+      {
+        "name": "bone[body].world_matrix",
+        "status": "PASS",
+        "detail": "fMovedMatrix places base/tip where the art's joints are"
+      },
+      {
+        "name": "bone[body].angle_keys",
+        "status": "PASS",
+        "detail": "1 keys at frames [0]"
+      },
+      {
+        "name": "bone[shoulder].id",
+        "status": "PASS",
+        "detail": "1"
+      },
+      {
+        "name": "bone[shoulder].parent",
+        "status": "PASS",
+        "detail": "0"
+      },
+      {
+        "name": "bone[shoulder].fPos",
+        "status": "PASS",
+        "detail": "[0.551633894444, -0.0823758691549]"
+      },
+      {
+        "name": "bone[shoulder].fAngle",
+        "status": "PASS",
+        "detail": "-1.70257878304"
+      },
+      {
+        "name": "bone[shoulder].fLength",
+        "status": "PASS",
+        "detail": "0.18743082881"
+      },
+      {
+        "name": "bone[shoulder].world_matrix",
+        "status": "PASS",
+        "detail": "fMovedMatrix places base/tip where the art's joints are"
+      },
+      {
+        "name": "bone[shoulder].angle_keys",
+        "status": "PASS",
+        "detail": "4 keys at frames [0, 1, 12, 24]"
+      },
+      {
+        "name": "bone[arm].id",
+        "status": "PASS",
+        "detail": "2"
+      },
+      {
+        "name": "bone[arm].parent",
+        "status": "PASS",
+        "detail": "1"
+      },
+      {
+        "name": "bone[arm].fPos",
+        "status": "PASS",
+        "detail": "[0.18743082881, 0]"
+      },
+      {
+        "name": "bone[arm].fAngle",
+        "status": "PASS",
+        "detail": "0.100956849754"
+      },
+      {
+        "name": "bone[arm].fLength",
+        "status": "PASS",
+        "detail": "0.444222480059"
+      },
+      {
+        "name": "bone[arm].world_matrix",
+        "status": "PASS",
+        "detail": "fMovedMatrix places base/tip where the art's joints are"
+      },
+      {
+        "name": "bone[arm].angle_keys",
+        "status": "PASS",
+        "detail": "4 keys at frames [0, 1, 12, 24]"
+      },
+      {
+        "name": "layers.count",
+        "status": "PASS",
+        "detail": "3"
+      },
+      {
+        "name": "layer[body_back_art].type",
+        "status": "PASS",
+        "detail": "image layer"
+      },
+      {
+        "name": "layer[body_back_art].binding",
+        "status": "PASS",
+        "detail": "bound to bone 0 'body'"
+      },
+      {
+        "name": "layer[body_back_art].image",
+        "status": "PASS",
+        "detail": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/body_back.png"
+      },
+      {
+        "name": "layer[arm_l_art].type",
+        "status": "PASS",
+        "detail": "image layer"
+      },
+      {
+        "name": "layer[arm_l_art].binding",
+        "status": "PASS",
+        "detail": "bound to bone 2 'arm'"
+      },
+      {
+        "name": "layer[arm_l_art].image",
+        "status": "PASS",
+        "detail": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/arm.png"
+      },
+      {
+        "name": "layer[body_front_art].type",
+        "status": "PASS",
+        "detail": "image layer"
+      },
+      {
+        "name": "layer[body_front_art].binding",
+        "status": "PASS",
+        "detail": "bound to bone 0 'body'"
+      },
+      {
+        "name": "layer[body_front_art].image",
+        "status": "PASS",
+        "detail": "/Volumes/SSD/AutoRig/Referecence_image-Rig/build/phase4_native/schoolboy_tpose_l/art/body_front.png"
+      },
+      {
+        "name": "bone_layer.children",
+        "status": "PASS",
+        "detail": "contains all 3 art layers"
+      },
+      {
+        "name": "bone_layer.z_order",
+        "status": "INFO",
+        "detail": "index order ['body_back_art', 'arm_l_art', 'body_front_art']; expected 'body_front_art' frontmost - confirm visually"
+      }
+    ],
+    "reopened": [],
+    "move": [],
+    "saved": [
+      {
+        "name": "saved.exists",
+        "status": "NOT_EXECUTED",
+        "detail": "docs/phase4/evidence/native_runs/20261123T105654Z_schoolboy_tpose_l/AutoRig_P4_Native.moho not found"
+      }
+    ],
+    "renders": {
+      "thresholds": {
+        "FG_DIFF": 40,
+        "MOVE_DIFF": 48,
+        "ALIGN_IOU_MIN": 0.85,
+        "MOVE_IOU_MIN": 0.6,
+        "MOVE_RATIO_MIN": 0.5
+      },
+      "status": "NOT_EXECUTED",
+      "detail": "no render of frame 1"
+    }
+  },
+  "evidence_origin": {
+    "build_report": "native",
+    "verify_report": "missing",
+    "renders": "moho"
+  },
+  "environment": {
+    "harness": "tools/macos/phase4_native_test.sh",
+    "os": "Darwin",
+    "macos_version": "27.2",
+    "arch": "arm64",
+    "moho_app": "/Applications/Moho.app",
+    "moho_version": "14.5.1",
+    "moho_build": "14.5.1",
+    "moho_binary": "/Applications/Moho.app/Contents/MacOS/Moho",
+    "started_utc": "2026-11-23T10:56:55.039893+00:00"
+  },
+  "observations": {
+    "scripts_installed": "custom_content_folder",
+    "build_status": "completed",
+    "arm_moved_in_viewport_f12": "yes",
+    "saved": "missing",
+    "recorded_by": "the user, answering the harness prompts",
+    "finished_utc": "2026-11-23T11:29:31.712748+00:00"
+  },
+  "api_surface": null,
+  "poc": {
+    "dir": "build/phase4_native/schoolboy_tpose_l",
+    "character_id": "schoolboy_tpose_p4",
+    "side": "l",
+    "spec_sha256": "d053c46d4d75da2a41a8a2bbcbebe0a8e87e64206d1813a93579c338cbe8a08a",
+    "bone_layer": "AutoRig_P4_Native",
+    "manifest": "native_manifest.json"
+  }
+}

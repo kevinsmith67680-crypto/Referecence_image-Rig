@@ -230,16 +230,38 @@ def test_gate_never_passes_on_mock_evidence(pocs, tmp_path):
     assert res["checks"]["renders"]["status"] == "PASS"  # the comparison itself works on matching frames
 
 
+def _fixture_project(spec) -> dict:
+    """TEST FIXTURE ONLY: a saved-project dict in the layout observed in the first native
+    Moho 14.5.1 file, filled from the spec. Never evidence."""
+    from autorig.geometry import compute_rest_pose, expected_angle_keys
+
+    rest = compute_rest_pose(spec)
+    keys = expected_angle_keys(spec, rest)
+    ch = lambda pairs: {"when": [f for f, _ in pairs], "val": [v for _, v in pairs]}  # noqa: E731
+    bones = [{"name": r.name, "parent": r.parent_index, "length": round(r.length, 6),
+              "anim_pos": ch([(0, {"x": round(r.local_pos[0], 6), "y": round(r.local_pos[1], 6)})]),
+              "anim_angle": ch([(f, round(v, 6)) for f, v in keys[r.name]])} for r in rest]
+    idx = {r.name: r.index for r in rest}
+    children = [{"type": "ImageLayer", "name": p.layer_name, "parent_bone": idx[p.bone],
+                 "image_path": f"/Volumes/X/{p.image}", "width": 2.0 * spec.canvas_width / spec.canvas_height,
+                 "height": 2.0} for p in spec.parts_back_to_front()]
+    return {"mime_type": "application/x-vnd.lm_mohodoc", "version": 0,
+            "project_data": {"width": spec.canvas_width, "height": spec.canvas_height,
+                             "start_frame": spec.start_frame, "end_frame": spec.end_frame},
+            "layers": [{"type": "MeshLayer", "name": "Layer 1"},
+                       {"type": "BoneLayer", "name": spec.bone_layer_name, "skeleton": {"bones": bones},
+                        "layers": children}]}
+
+
 def _fake_native(ev: Path, spec) -> None:
-    """TEST FIXTURE ONLY: relabel mock reports as native and write a minimal saved file,
-    to exercise the verifier's acceptance path. Never evidence."""
+    """TEST FIXTURE ONLY: relabel mock reports as native and write a saved file built from the
+    spec, to exercise the verifier's acceptance path. Never evidence."""
     for f in (BUILD_REPORT, VERIFY_REPORT):
         r = json.loads((ev / f).read_text())
         r["moho_app_version"] = "test-fixture-native"
         (ev / f).write_text(json.dumps(r))
-    names = [spec.bone_layer_name] + [b.name for b in spec.bones] + [p.layer_name for p in spec.parts]
     with zipfile.ZipFile(ev / SAVED_NAME, "w") as z:
-        z.writestr("Project.mohoproj", json.dumps({"layers": [{"name": n} for n in names]}))
+        z.writestr("Project.mohoproj", json.dumps(_fixture_project(spec)))
 
 
 def test_gate_acceptance_path_with_fixture_inputs(pocs, tmp_path):
@@ -340,3 +362,58 @@ def test_harness_is_bash32_compatible():
         assert construct not in text, construct
     writes = [l for l in text.splitlines() if l.strip().startswith(("cp ", "mkdir ", "rm ", "mv "))]
     assert writes and not any("/Applications" in l or "MOHO_APP" in l for l in writes)
+
+
+# --- the saved project, and the first native evidence (2026-11-23) ------------------------------------
+
+NATIVE_RUNS = ROOT / "docs/phase4/evidence/native_runs"
+RUN1 = NATIVE_RUNS / "20261123T105258Z_schoolboy_tpose_l"
+RUN2 = NATIVE_RUNS / "20261123T105654Z_schoolboy_tpose_l"
+
+
+def test_saved_project_structure_checks_catch_changes(pocs):
+    from autorig.native.gate import saved_rig_checks
+
+    d, _ = pocs["schoolboy"]
+    spec, raw, _ = load_poc(d)
+    proj = _fixture_project(spec)
+    assert all(c["status"] in ("PASS", "INFO") for c in saved_rig_checks(spec, raw, proj))
+    broken = json.loads(json.dumps(proj))
+    broken["layers"][1]["layers"][1]["parent_bone"] = 0  # the arm art bound to the body
+    names = {c["name"] for c in saved_rig_checks(spec, raw, broken) if c["status"] == "FAIL"}
+    assert names == {"saved.layer[arm_l_art]"}
+    broken = json.loads(json.dumps(proj))
+    arm = broken["layers"][1]["skeleton"]["bones"][2]["anim_angle"]
+    arm["when"], arm["val"] = arm["when"][:2], arm["val"][:2]  # keys 12 and 24 lost
+    assert {c["name"] for c in saved_rig_checks(spec, raw, broken) if c["status"] == "FAIL"} == {"saved.bone[arm].keys"}
+
+
+def test_compare_renders_without_expected_frames_reports_instead_of_crashing(pocs, tmp_path):
+    d, man = pocs["schoolboy"]
+    pkg = tmp_path / "no_expected"
+    shutil.copytree(d, pkg, ignore=shutil.ignore_patterns("expected"))
+    assert compare_renders(pkg, {})["status"] == "NOT_EXECUTED"
+    ev = _evidence(d, man, tmp_path)
+    res = compare_renders(pkg, {"rest": ev / "renders/frame_0001.png"})
+    assert res["status"] == "FAIL" and "proof package" in res["detail"]
+
+
+@pytest.mark.skipif(not (RUN2 / BUILD_REPORT).is_file(), reason="first native run not in this checkout")
+def test_first_native_run_evidence(pocs):
+    """The committed Moho 14.5.1 evidence: the build report and the saved file are native and hold
+    exactly the rig of this spec; reopen, verify and renders were not executed."""
+    d, man = pocs["schoolboy"]
+    assert json.loads((RUN2 / "rig_spec.json").read_text()) == load_poc(d)[1]
+    build = json.loads((RUN2 / BUILD_REPORT).read_text())
+    assert origin(build) == "native" and build["moho_app_version"] == "14.5.1"
+    saved = RUN1 / SAVED_NAME  # saved into the first run's folder during the second run
+    res = evaluate_gate(d, RUN2, saved=saved)
+    status = {i["id"]: i["status"] for i in res["items"]}
+    assert status == {"native_document": "PASS", "bone_moves_artwork": "NOT_EXECUTED",
+                      "document_saved": "PASS", "document_reopened": "NOT_EXECUTED",
+                      "bone_functional_after_reopen": "NOT_EXECUTED"}
+    assert res["verdict"] == VERDICT_BLOCKED
+    fits = [c for c in res["checks"]["saved"] if c["name"].endswith("frame_fit")]
+    assert len(fits) == 3 and all("fills" in c["detail"] for c in fits)
+    alone = {i["id"]: i["status"] for i in evaluate_gate(d, RUN1)["items"]}
+    assert alone["document_saved"] == "UNLINKED" and alone["native_document"] == "NOT_EXECUTED"

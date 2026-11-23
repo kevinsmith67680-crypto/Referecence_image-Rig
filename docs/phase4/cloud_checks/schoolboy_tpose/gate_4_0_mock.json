@@ -430,15 +430,15 @@
   "mock_alerts": [
     {
       "button": "OK",
+      "kind": 1,
       "line1": "AutoRig Phase 4.0 native proof: test rig built. Run verify-report on the JSON report.",
-      "line2": "Report: <poc>/phase4_native_build_report.json",
-      "kind": 1
+      "line2": "Report: <poc>/phase4_native_build_report.json"
     },
     {
       "button": "OK",
+      "kind": 1,
       "line1": "AutoRig Phase 4.0: rig found and 'arm' keyed at frame 18. Save (Cmd+S) now.",
-      "line2": "Report: <poc>/phase4_native_verify_report.json",
-      "kind": 1
+      "line2": "Report: <poc>/phase4_native_verify_report.json"
     }
   ]
 }

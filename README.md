@@ -247,8 +247,9 @@ Phase 4.0 is the smallest native proof, built from either character package. A r
 - moves the arm again;
 - renders three frames.
 
-`autorig native-verify` then checks HARD GATE 4.0 on that evidence. Moho has not run yet, so the verdict is **BLOCKED
-— NATIVE VALIDATION REQUIRED** ([docs/phase4_completion_report.md](docs/phase4_completion_report.md)). On the Mac:
+`autorig native-verify` then checks HARD GATE 4.0 on that evidence. The first native runs (Moho 14.5.1) built and
+saved the rig, but did not reopen or render it. Phase 4.0 is **PARTIAL**, with 2 of 5 gate items passed
+([docs/phase4_completion_report.md](docs/phase4_completion_report.md)). On the Mac:
 
 ```bash
 tools/macos/phase4_native_test.sh --custom-content "<your Moho Custom Content Folder>"
@@ -337,4 +338,4 @@ Then work through [docs/phase0/manual-verification.md](docs/phase0/manual-verifi
 | 3 | Interactive editor (layers, masks, pivots, vectors, pose preview, comparison, readiness) and Moho-ready asset package | Implemented; **PARTIAL** (reviews pending; Moho not run) |
 | 3.1 | Natural motion: planner/solver split, front-view gait cycles, garment deformation, feasibility and quality checks | Implemented; **PARTIAL** (visual review pending; Moho not run) |
 | 3.2 | IK (arms, legs, poles, FK/IK matching), foot contacts, switch groups, hand library, correction triggers, rig controls spec | Implemented; **PARTIAL** (hand variants pending review; drawings missing; Moho not run) |
-| 4 | Native Moho rig generation | 4.0 proof package, scripts, harness and gate checker built; **BLOCKED — native validation required** (Moho not run); 4.1+ not started |
+| 4 | Native Moho rig generation | 4.0 built; first native runs in Moho 14.5.1: build and save pass, reopen and renders pending; **PARTIAL** (2/5 gate items); 4.1+ not started |

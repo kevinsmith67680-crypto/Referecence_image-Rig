@@ -4,8 +4,9 @@ Phase 4 turns the AutoRig character package into a native Moho rig. The request 
 nothing is built on unverified native behaviour. Phase 4.0 is the smallest native proof, and **HARD GATE 4.0** must
 pass before any of steps 5–23 starts.
 
-Current position: **Phase 4.0 is built and cloud-tested; its native run has not happened.** The gate is blocked (see
-[`phase4_completion_report.md`](phase4_completion_report.md)). Steps 5–23 below are a plan only, and none of them has
+Current position: **Phase 4.0 is PARTIAL.** The first native runs (Moho 14.5.1, 2026-11-23) passed gate items 1
+(native document) and 3 (save). Items 2, 4 and 5 were not executed: no renders and no reopen. See
+[`phase4_completion_report.md`](phase4_completion_report.md). Steps 5–23 below are a plan only, and none of them has
 started.
 
 ## Phase 4.0: minimal native proof (steps 1–4)
@@ -13,9 +14,9 @@ started.
 | step | deliverable | status |
 |---|---|---|
 | 1. audit the existing integration | [`phase4_native_integration_audit.md`](phase4_native_integration_audit.md) | done |
-| 2. verify the installed Moho 14.5 environment and API | the harness records the bundle version, `AppVersion()`, Lua version and the file-related API names on the first run | **blocked**: no Mac attached |
+| 2. verify the installed Moho 14.5 environment and API | the harness records the bundle version, `AppVersion()`, Lua version and the file-related API names on the first run | **partly done**: Moho 14.5.1, Lua 5.4, macOS 27.2 (Apple silicon); the file-related names come with the verify script (not run yet) |
 | 3. local Mac execution bridge | `tools/macos/phase4_native_test.sh` (guided run, evidence collection, gate check) | built; cloud-tested on its failure paths only |
-| 4. minimal native proof | `autorig native-poc` package + `AutoRig_P4_NativeBuild.lua` + `AutoRig_P4_NativeVerify.lua` + `autorig native-verify` | built; mock-tested; **native run NOT EXECUTED** |
+| 4. minimal native proof | `autorig native-poc` package + `AutoRig_P4_NativeBuild.lua` + `AutoRig_P4_NativeVerify.lua` + `autorig native-verify` | built; mock-tested; **native: build and save done, reopen/verify/render not executed** |
 
 The proof covers each item the request lists:
 

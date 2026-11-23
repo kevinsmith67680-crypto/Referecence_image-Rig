@@ -5,7 +5,9 @@ edited or simulated in the cloud.
 
 | item | status |
 |---|---|
-| `native_runs/` | **empty: NOT EXECUTED.** Moho has not run. The first run of `tools/macos/phase4_native_test.sh` creates `native_runs/<UTC time>_<character>_<side>/` |
+| `native_runs/20261123T105258Z_schoolboy_tpose_l/` | run 1: stopped waiting for the build report. Its `AutoRig_P4_Native.moho` was saved here *during run 2* (see `docs/phase4_completion_report.md` §2) |
+| `native_runs/20261123T105654Z_schoolboy_tpose_l/` | run 2: native build report (Moho 14.5.1). Stopped at Save As because the file went into run 1's folder |
+| next run | a fresh full run of `tools/macos/phase4_native_test.sh` creates `native_runs/<UTC time>_<character>_<side>/` |
 
 A native run folder contains:
 

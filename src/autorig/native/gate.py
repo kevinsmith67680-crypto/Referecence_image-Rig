@@ -14,14 +14,14 @@ real Moho application:
    back by the verify script, and the Moho render of that frame shows the raised arm).
 
 Reports written by the strict mock (``moho_app_version`` contains ``mock``) or renders
-from the Python simulation never pass an item: they are labelled MOCK_ONLY.
+from the Python simulation never pass an item: they are labelled MOCK_ONLY. A saved file that
+holds the rig but has no native report beside it to tie it to a Moho session is UNLINKED.
 """
 
 from __future__ import annotations
 
 import json
 import math
-import re
 from pathlib import Path
 from typing import Any
 
@@ -142,20 +142,110 @@ def check_move(spec: RigSpec, raw: dict[str, Any], report: dict[str, Any]) -> li
     return checks
 
 
-def check_saved(spec: RigSpec, path: Path | None) -> list[dict[str, Any]]:
+MOHO_DOC_MIME = "application/x-vnd.lm_mohodoc"
+SAVED_TOL = 1e-5  # the saved project stores 6 decimals
+
+
+def _find_layer(layers: Any, name: str) -> dict[str, Any] | None:
+    for layer in layers or []:
+        if isinstance(layer, dict):
+            if layer.get("name") == name:
+                return layer
+            found = _find_layer(layer.get("layers"), name)
+            if found is not None:
+                return found
+    return None
+
+
+def _channel(ch: Any) -> dict[int, Any]:
+    if not isinstance(ch, dict):
+        return {}
+    return {int(round(w)): v for w, v in zip(ch.get("when") or [], ch.get("val") or [])}
+
+
+def saved_rig_checks(spec: RigSpec, raw: dict[str, Any], data: Any) -> list[dict[str, Any]]:
+    """Structural check of a saved Moho project against the spec.
+
+    The keys used here are the ones observed in the Moho 14.5.1 file of the first native run
+    (``docs/phase4/evidence/native_runs/``; see research/moho-14.5/README.md): ``mime_type``,
+    ``project_data``, ``layers[].type/name/parent_bone/image_path/width/height/layers``,
+    ``skeleton.bones[].name/parent/length/anim_pos/anim_angle`` with ``when``/``val`` channels.
+    """
+    checks = []
+    mime = data.get("mime_type") if isinstance(data, dict) else None
+    checks.append({"name": "saved.format", "status": "PASS" if mime == MOHO_DOC_MIME else "WARN",
+                   "detail": f"mime_type {mime!r}, version {data.get('version') if isinstance(data, dict) else None}"})
+    pd = (data.get("project_data") or {}) if isinstance(data, dict) else {}
+    checks.append(_check("saved.document",
+                         (pd.get("width"), pd.get("height"), pd.get("start_frame"), pd.get("end_frame"))
+                         == (spec.canvas_width, spec.canvas_height, spec.start_frame, spec.end_frame),
+                         f"{pd.get('width')}x{pd.get('height')}, frames {pd.get('start_frame')}..{pd.get('end_frame')}"))
+    bl = _find_layer(data.get("layers") if isinstance(data, dict) else None, spec.bone_layer_name)
+    if bl is None or bl.get("type") != "BoneLayer":
+        checks.append(_check("saved.bone_layer", False, f"no BoneLayer named {spec.bone_layer_name!r}"))
+        return checks
+    checks.append(_check("saved.bone_layer", True, f"BoneLayer {spec.bone_layer_name!r}"))
+    rest = compute_rest_pose(spec)
+    keys = expected_angle_keys(spec, rest)
+    sbones = (bl.get("skeleton") or {}).get("bones") or []
+    checks.append(_check("saved.bones.count", len(sbones) == len(rest), f"{len(sbones)} of {len(rest)}"))
+    for r in rest:
+        if r.index >= len(sbones):
+            checks.append(_check(f"saved.bone[{r.name}]", False, "missing"))
+            continue
+        b = sbones[r.index]
+        pos = _channel(b.get("anim_pos")).get(0) or {}
+        ok = (b.get("name") == r.name and b.get("parent") == r.parent_index
+              and abs(float(b.get("length", math.nan)) - r.length) <= SAVED_TOL
+              and abs(float(pos.get("x", math.nan)) - r.local_pos[0]) <= SAVED_TOL
+              and abs(float(pos.get("y", math.nan)) - r.local_pos[1]) <= SAVED_TOL)
+        checks.append(_check(f"saved.bone[{r.name}]", ok, f"name {b.get('name')!r}, parent {b.get('parent')}, "
+                                                          f"length {b.get('length')}, pos {pos}"))
+        got = _channel(b.get("anim_angle"))
+        bad = [f for f, v in keys[r.name] if f not in got or abs(angle_diff(float(got[f]), v)) > SAVED_TOL]
+        checks.append(_check(f"saved.bone[{r.name}].keys", not bad,
+                             f"keys at {sorted(got)}" if not bad else f"missing or different at {bad}; saved {got}"))
+        if r.name == "arm":
+            spec2 = reopen_spec(raw)
+            v18 = dict(expected_angle_keys(spec2, compute_rest_pose(spec2))["arm"])[FRAME_REOPEN]
+            has18 = FRAME_REOPEN in got and abs(angle_diff(float(got[FRAME_REOPEN]), v18)) <= SAVED_TOL
+            checks.append({"name": "saved.reopen_key", "status": "INFO",
+                           "detail": (f"frame {FRAME_REOPEN} key present: saved after the verify script" if has18 else
+                                      f"no frame {FRAME_REOPEN} key: saved before the verify script ran")})
+    children = {c.get("name"): c for c in bl.get("layers") or [] if isinstance(c, dict)}
+    for p in spec.parts:
+        c = children.get(p.layer_name)
+        idx = next(r.index for r in rest if r.name == p.bone)
+        ok = (c is not None and c.get("type") == "ImageLayer" and c.get("parent_bone") == idx
+              and str(c.get("image_path", "")).endswith(p.image))
+        checks.append(_check(f"saved.layer[{p.layer_name}]", ok, "missing" if c is None else
+                             f"{c.get('type')}, parent_bone {c.get('parent_bone')} (expected {idx}), "
+                             f"image {c.get('image_path')}"))
+        if c is not None:
+            w, h = c.get("width"), c.get("height")
+            fills = (isinstance(w, (int, float)) and isinstance(h, (int, float))
+                     and abs(w - 2.0 * spec.canvas_width / spec.canvas_height) <= 1e-4 and abs(h - 2.0) <= 1e-4)
+            checks.append({"name": f"saved.layer[{p.layer_name}].frame_fit", "status": "INFO",
+                           "detail": (f"{w} x {h} units: the image fills the {spec.canvas_width}x{spec.canvas_height} "
+                                      "frame exactly" if fills else f"{w} x {h} units: NOT the frame size")})
+    checks.append({"name": "saved.child_order", "status": "INFO",
+                   "detail": f"bone layer children in file order: {[c.get('name') for c in bl.get('layers') or []]}"})
+    return checks
+
+
+def check_saved(spec: RigSpec, path: Path | None, raw: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     if path is None or not path.is_file():
         return [_check("saved.exists", False, f"{path} not found", "NOT_EXECUTED")]
     checks = [_check("saved.exists", path.stat().st_size > 0, f"{path.name}, {path.stat().st_size} bytes")]
     try:
-        from ..mohofile import grep, load_project
+        from ..mohofile import load_project
         proj = load_project(path)
-    except Exception as exc:  # the format is not evidenced; parsing is supporting evidence only
-        checks.append({"name": "saved.parsed", "status": "WARN", "detail": f"not parsed: {exc}"})
+    except Exception as exc:
+        checks.append(_check("saved.parsed", False, f"not parsed: {exc}"))
         return checks
-    names = [spec.bone_layer_name] + [b.name for b in spec.bones] + [p.layer_name for p in spec.parts]
-    found = {n: bool(grep(proj.data, f"^{re.escape(n)}$")) for n in names}
-    checks.append({"name": "saved.contains_rig", "status": "PASS" if all(found.values()) else "WARN",
-                   "detail": f"names found in the saved project: {found}"})
+    checks.append(_check("saved.parsed", True, f"members {[m[0] for m in proj.archive_members]}"))
+    if raw is not None:
+        checks.extend(saved_rig_checks(spec, raw, proj.data))
     return checks
 
 
@@ -193,13 +283,19 @@ def compare_renders(poc_dir: Path, renders: dict[str, Path | None]) -> dict[str,
     """Compare Moho renders of frames 1, 12 and 18 with the expected (simulated) frames."""
     spec, raw, man = load_poc(poc_dir)
     size = (spec.canvas_width, spec.canvas_height)
-    exp = {k: np.asarray(Image.open(poc_dir / man["expected"][k]).convert("RGBA")).astype(float)
-           for k in ("rest", "moved", "reopen_move")}
     out: dict[str, Any] = {"thresholds": {"FG_DIFF": FG_DIFF, "MOVE_DIFF": MOVE_DIFF, "ALIGN_IOU_MIN": ALIGN_IOU_MIN,
                                           "MOVE_IOU_MIN": MOVE_IOU_MIN, "MOVE_RATIO_MIN": MOVE_RATIO_MIN}}
     if renders.get("rest") is None or not Path(renders["rest"]).is_file():
         out["status"] = "NOT_EXECUTED"
         out["detail"] = "no render of frame 1"
+        return out
+    try:
+        exp = {k: np.asarray(Image.open(poc_dir / man["expected"][k]).convert("RGBA")).astype(float)
+               for k in ("rest", "moved", "reopen_move")}
+    except OSError as exc:
+        out["status"] = "FAIL"
+        out["detail"] = (f"expected frames missing ({exc}); pass the proof package folder made by native-poc, "
+                         "not the evidence folder")
         return out
     try:
         r_rest = _load_render(Path(renders["rest"]), size)
@@ -316,19 +412,27 @@ def evaluate_gate(poc_dir: str | Path, evidence_dir: str | Path | None = None, *
                        f"alignment {render_cmp.get('alignment')}, change {render_cmp.get('moved')}"))
 
     # 3. saved
-    saved_checks = check_saved(spec, s_path)
+    saved_checks = check_saved(spec, s_path, raw)
     exists = saved_checks[0]["status"] == "PASS"
     v_origin = origin(verify)
     reopen_checks = check_reopened(spec, raw, verify) if verify else []
     reopen_ok = bool(reopen_checks) and all(c["status"] == "PASS" for c in reopen_checks)
+    structural = [c for c in saved_checks if c["status"] in ("PASS", "FAIL")]
+    contains = exists and len(structural) > 2 and all(c["status"] == "PASS" for c in structural)
     if not exists:
         st3 = "NOT_EXECUTED"
+    elif contains and b_origin == "native":
+        st3 = "PASS"  # a native session built the rig and the saved file holds exactly that rig
+    elif reopen_ok and v_origin == "native":
+        st3 = "PASS"  # the rig was found in the reopened file by Moho itself
+    elif contains or reopen_ok:
+        # MOCK_ONLY when the session evidence is mock; UNLINKED when a file holds the rig but no native report in
+        # this evidence ties it to a Moho session
+        st3 = "MOCK_ONLY" if "mock" in (b_origin, v_origin) else "UNLINKED"
     else:
-        contains = any(c["name"] == "saved.contains_rig" and c["status"] == "PASS" for c in saved_checks)
-        st3 = "PASS" if (contains or (reopen_ok and v_origin == "native")) else "FAIL"
-        if st3 == "PASS" and v_origin == "mock" and not contains:
-            st3 = "MOCK_ONLY"
-    items.append(_item("document_saved", st3, [str(s_path)], "; ".join(f"{c['name']}={c['status']}" for c in saved_checks)))
+        st3 = "FAIL"
+    items.append(_item("document_saved", st3, [str(s_path)],
+                       "; ".join(f"{c['name']}={c['status']}" for c in saved_checks if c["status"] != "INFO")))
 
     # 4. reopened
     if verify is None:

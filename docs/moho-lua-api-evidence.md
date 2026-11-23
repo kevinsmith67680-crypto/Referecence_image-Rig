@@ -131,6 +131,16 @@ implementation and, ideally, a native experiment.
 
 ## Open questions for native verification
 
+> **Native results (Phase 4.0, Moho 14.5.1, 2026-11-23; `docs/phase4_completion_report.md`):**
+> - The child-`fPos` convention above is **confirmed**. Moho's own `fMovedMatrix` placed every bone's base and tip
+>   where `compute_rest_pose` predicts (within 2e-3 units), including a child whose base is not on its parent's tip.
+> - Question 2 is **answered yes**: `UpdateBoneMatrix` refreshed `fMovedMatrix` immediately.
+> - Question 1, **partly**: `Layer(0)` is the first layer created, and the saved file keeps that order. The arm is
+>   drawn over the body behind it. The frontmost layer is not yet confirmed visually.
+> - Question 3, **open**: keys set with `SetValue` were saved with interpolation code `im: 1`, whose name is unconfirmed.
+> - Every member called by the build script ran without error in Moho 14.5.1. The verify script's calls have not run
+>   natively yet.
+
 1. Does `PlaceLayerInGroup(..., top=true, ...)` stack each new layer on top?
    Expected: `forearm_art` is frontmost. The report records the child order;
    confirm visually.

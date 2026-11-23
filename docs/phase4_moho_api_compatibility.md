@@ -1,33 +1,39 @@
 # Phase 4: Moho API compatibility
 
-Target: Moho Pro 14 / 14.5 ("SHOWTIME"), embedded Lua 5.4. **No member below has been called in a running Moho.**
+Target: Moho Pro 14 / 14.5 ("SHOWTIME"), embedded Lua 5.4.
+
+**Native status (2026-11-23).** The build script ran to completion in **Moho 14.5.1** (Lua 5.4) on the user's Mac:
+every member in its column below was called there without error, and the read-back matched the spec. The verify
+script has **not** run natively yet: the document was not reopened.
+
 "Documentary" means it is in `src/autorig/data/moho_api_allowlist.json` with evidence: a documentation page, working
 third-party code, or a forum answer. The strict mock implements exactly the allowlist. Every Phase 4.0 script runs
 against it in the cloud suite, so a member outside the allowlist fails the tests.
 
 ## 1. Members used by the Phase 4.0 scripts
 
-| member | build script | verify script | evidence | native |
+| member | build script | verify script | evidence | native (build script only) |
 |---|---|---|---|---|
-| `ScriptInterface.document` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `ScriptInterface:CreateNewLayer(MOHO.LT_BONE / LT_IMAGE, false)` | ✓ | | documentary | NOT EXECUTED |
-| `ScriptInterface:LayerAsBone / LayerAsImage / LayerAsGroup` | ✓ | ✓ (Bone, Group) | documentary | NOT EXECUTED |
-| `ScriptInterface:PlaceLayerInGroup` | ✓ | | documentary | NOT EXECUTED |
-| `ScriptInterface:SetCurFrame` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `ScriptInterface:SetSelLayer / UpdateUI / AppVersion` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `MohoDoc:Width / Height / Fps / StartFrame / EndFrame` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `MohoDoc:SetStartFrame / SetEndFrame / SetDirty` | ✓ | ✓ (SetDirty) | documentary | NOT EXECUTED |
-| `MohoDoc:LayerByName` | ✓ (preflight) | ✓ (finds the rig) | documentary | NOT EXECUTED |
-| `MohoLayer:SetName / Name / LayerType` | ✓ | ✓ (Name, LayerType) | documentary | NOT EXECUTED |
-| `MohoLayer:SetLayerParentBone / LayerParentBone` | ✓ | ✓ (read) | documentary | NOT EXECUTED |
-| `MohoGroupLayer:CountLayers / Layer` | ✓ (read-back) | ✓ | documentary | NOT EXECUTED |
-| `MohoImageLayer:SetSourceImage` | ✓ | | documentary | NOT EXECUTED |
-| `MohoBoneLayer:Skeleton` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `M_Skeleton:AddBone / BoneID / Bone / CountBones / UpdateBoneMatrix` | ✓ | ✓ (Bone, CountBones) | documentary | NOT EXECUTED |
-| `M_Bone:SetName / Name`, fields `fParent fAnimParent fPos fAnimPos fLength fAngle fAnimAngle fMovedMatrix` | ✓ | ✓ (read; `fAnimAngle` written) | documentary | NOT EXECUTED |
-| `AnimChannel:SetValue / GetValue / CountKeys / GetKeyWhen` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `LM.Vector2:new_local`, `:Set`, `.x .y`, `LM_Transform:Transform` | ✓ | ✓ | documentary | NOT EXECUTED |
-| `MOHO.LT_BONE / LT_IMAGE / Localize`, `LM.GUI.Alert / ALERT_INFO / ALERT_WARNING` | ✓ | ✓ | documentary | NOT EXECUTED |
+| `ScriptInterface.document` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `ScriptInterface:CreateNewLayer(MOHO.LT_BONE / LT_IMAGE, false)` | ✓ | | documentary | ran in 14.5.1 |
+| `ScriptInterface:LayerAsBone / LayerAsImage / LayerAsGroup` | ✓ | ✓ (Bone, Group) | documentary | ran in 14.5.1 |
+| `ScriptInterface:PlaceLayerInGroup` | ✓ | | documentary | ran in 14.5.1 |
+| `ScriptInterface:SetCurFrame` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `ScriptInterface:SetSelLayer / UpdateUI / AppVersion` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `MohoDoc:Width / Height / Fps / StartFrame / EndFrame` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `MohoDoc:SetStartFrame / SetEndFrame / SetDirty` | ✓ | ✓ (SetDirty) | documentary | ran in 14.5.1 |
+| `MohoDoc:LayerByName` | ✓ (preflight) | ✓ (finds the rig) | documentary | ran in 14.5.1 |
+| `MohoLayer:SetName / Name / LayerType` | ✓ | ✓ (Name, LayerType) | documentary | ran in 14.5.1 |
+| `MohoLayer:SetLayerParentBone / LayerParentBone` | ✓ | ✓ (read) | documentary | ran in 14.5.1 |
+| `MohoGroupLayer:CountLayers / Layer` | ✓ (read-back) | ✓ | documentary | ran in 14.5.1 |
+| `MohoImageLayer:SetSourceImage` | ✓ | | documentary | ran in 14.5.1 |
+| `MohoBoneLayer:Skeleton` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `M_Skeleton:AddBone / BoneID / Bone / CountBones / UpdateBoneMatrix` | ✓ | ✓ (Bone, CountBones) | documentary | ran in 14.5.1 |
+| `M_Bone:SetName / Name`, fields `fParent fAnimParent fPos fAnimPos fLength fAngle fAnimAngle fMovedMatrix` | ✓ | ✓ (read; `fAnimAngle` written) | documentary | ran in 14.5.1 |
+| `AnimChannel:SetValue / GetValue / CountKeys / GetKeyWhen` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `LM.Vector2:new_local`, `:Set`, `.x .y`, `LM_Transform:Transform` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `MOHO.LT_BONE / LT_IMAGE` | ✓ | ✓ | documentary | ran in 14.5.1 |
+| `MOHO.Localize`, `LM.GUI.Alert / ALERT_INFO / ALERT_WARNING` | ✓ | ✓ | documentary | called after the report was written, so the report cannot show it; not recorded |
 
 The verify script also reads the names on the `ScriptInterface` metatable whose names contain file, save, open, close,
 new, revert, render, export or quit. This is plain Lua (`getmetatable`, `pairs`, `rawget`). Nothing it finds is called;

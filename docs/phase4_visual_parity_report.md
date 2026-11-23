@@ -1,7 +1,11 @@
 # Phase 4: visual parity report
 
-**Status: NOT EXECUTED.** Visual parity compares Moho renders with AutoRig's own renders of the same pose. No Moho render
-exists yet, because Moho has not run. Nothing below is a parity result.
+**Status: NOT EXECUTED.** Visual parity compares Moho renders with AutoRig's own renders of the same pose. Moho has now
+run (2026-11-23, build and save only), but no frame was rendered. Nothing below is a parity result.
+
+The only native image is Moho's own thumbnail inside the saved document (`preview.jpg`, 512×288). It is a capture of
+the editing viewport, with the grid, the bone overlay and Moho's own pan and zoom, so it cannot be compared pixel for
+pixel. Qualitatively, it shows the arm artwork lowered along the arm bone.
 
 ## 1. Method (ready for the Mac run)
 

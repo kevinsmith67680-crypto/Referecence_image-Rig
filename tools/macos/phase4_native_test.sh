@@ -188,27 +188,37 @@ r=json.load(open(sys.argv[1]))
 print(r.get("status"))
 for e in r.get("errors") or []: print("   ERROR:", e, file=sys.stderr)' "$1"
 }
-wait_for_report() {
+wait_for_report() {  # poll up to 60 s
   local path="$1" n=0
   while [ ! -s "$path" ]; do
     n=$((n + 1))
-    if [ "$n" -gt 120 ]; then return 1; fi
+    if [ "$n" -gt 60 ]; then return 1; fi
     sleep 1
   done
   return 0
 }
+wait_until_present() {  # path label: keeps asking until the file exists or the user types q
+  local path="$1" label="$2" a
+  while true; do
+    if wait_for_report "$path"; then return 0; fi
+    printf '\n    %s has not appeared yet:\n      %s\n    Finish the step in Moho, then press Enter to check again (or type q and Enter to stop): ' \
+      "$label" "$path"
+    read -r a || a="q"
+    case "$a" in q|Q) return 1 ;; esac
+  done
+}
 mtime() {
   "$PYTHON" -c 'import os,sys; print(int(os.path.getmtime(sys.argv[1])) if os.path.exists(sys.argv[1]) else 0)' "$1"
 }
-OBS_ARGS=""
-observe() {  # observe key value
-  OBS_ARGS="$OBS_ARGS $1=$2"
+OBS_FILE="$(mktemp -t autorig_p4_obs.XXXXXX)"
+RUN_MARK="$(mktemp -t autorig_p4_start.XXXXXX)"   # its mtime marks the start of this run
+observe() {  # observe key value (values may contain spaces)
+  printf '%s=%s\n' "$1" "$2" >> "$OBS_FILE"
 }
 finish() {
-  # shellcheck disable=SC2086
-  "$PYTHON" - "$EVID/observations.json" $OBS_ARGS <<'PY'
+  "$PYTHON" - "$EVID/observations.json" "$OBS_FILE" <<'PY'
 import datetime, json, sys
-obs = dict(a.split("=", 1) for a in sys.argv[2:])
+obs = dict(line.rstrip("\n").split("=", 1) for line in open(sys.argv[2], encoding="utf-8") if "=" in line)
 obs["recorded_by"] = "the user, answering the harness prompts"
 obs["finished_utc"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
 json.dump(obs, open(sys.argv[1], "w"), indent=2)
@@ -258,7 +268,7 @@ open -a "$MOHO_APP"
 pause "Moho is starting. If it was already running, restart it so the new scripts load.
     Then: File > New, File > Project Settings > Dimensions ${CANVAS_W} x ${CANVAS_H},
     then Scripts > AutoRig > AutoRig Phase 4.0 native proof."
-if ! wait_for_report "$WORK/phase4_native_build_report.json"; then
+if ! wait_until_present "$WORK/phase4_native_build_report.json" "The build report"; then
   echo "error: no build report appeared at $WORK/phase4_native_build_report.json" >&2
   observe build_report "missing"
   finish
@@ -276,12 +286,28 @@ observe arm_moved_in_viewport_f12 "$(ask_yn "Go to frame 12 in the timeline. Is 
 printf '%s' "$EVID" | pbcopy 2>/dev/null || true
 pause "File > Save As... and save the document as:
       $SAVED
-    (the folder path is on the clipboard: in the save dialog press Cmd+Shift+G and paste it)"
-if [ ! -s "$SAVED" ]; then
-  echo "error: $SAVED was not found. Save it there and run the harness again." >&2
-  observe saved "missing"
-  finish
-fi
+    Folder: THIS run's folder, $(basename "$EVID")
+    (older run folders sit next to it in native_runs/ - do not pick one of those).
+    The folder path is on the clipboard: in the save dialog press Cmd+Shift+G, paste it, press Enter,
+    then name the file AutoRig_P4_Native.moho"
+while [ ! -s "$SAVED" ]; do
+  CAND="$(find "$REPO/docs/phase4/evidence/native_runs" "$REPO/build/phase4_native" -maxdepth 2 \
+    -name 'AutoRig_P4_Native.moho' -newer "$RUN_MARK" 2>/dev/null | sed -n '1p' || true)"
+  if [ -n "$CAND" ] && [ "$CAND" != "$SAVED" ]; then
+    echo "The document was saved in another folder during this run:"
+    echo "      $CAND"
+    if [ "$(ask_yn "Move it into this run's folder ($(basename "$EVID"))?")" = "yes" ]; then
+      mv "$CAND" "$SAVED"
+      observe saved_relocated_from "$CAND"
+      continue
+    fi
+  fi
+  printf '\n    Not found at %s.\n    Save it there (File > Save As...), then press Enter to check again (or type q and Enter to stop): ' "$SAVED"
+  read -r a || a="q"
+  case "$a" in
+    q|Q) observe saved "missing"; finish ;;
+  esac
+done
 observe saved_bytes "$(wc -c < "$SAVED" | tr -d ' ')"
 SAVED_MTIME="$(mtime "$SAVED")"
 
@@ -293,7 +319,7 @@ open -a "$MOHO_APP" "$SAVED"
 observe reopened_with_images "$(ask_yn "Did $SAVED reopen with the character's artwork visible?")"
 
 pause "Scripts > AutoRig > AutoRig Phase 4.0: Verify Reopened Rig"
-if ! wait_for_report "$WORK/phase4_native_verify_report.json"; then
+if ! wait_until_present "$WORK/phase4_native_verify_report.json" "The verify report"; then
   echo "error: no verify report appeared at $WORK/phase4_native_verify_report.json" >&2
   observe verify_report "missing"
   finish
@@ -308,6 +334,11 @@ fi
 observe arm_raised_in_viewport_f18 "$(ask_yn "Moho is now at frame 18. Is the arm raised?")"
 
 pause "File > Save (Cmd+S), then quit Moho (Cmd+Q)."
+while [ "$(mtime "$SAVED")" -le "$SAVED_MTIME" ]; do
+  printf '\n    %s has not been saved again since the verify script ran.\n    Press Cmd+S in Moho, then press Enter to check again (or type s and Enter to skip): ' "$(basename "$SAVED")"
+  read -r a || a="s"
+  case "$a" in s|S) break ;; esac
+done
 if [ "$(mtime "$SAVED")" -le "$SAVED_MTIME" ]; then
   echo "warning: $SAVED was not re-saved after the verify script; frame 18 will render without the new key." >&2
   observe resaved_after_verify "no"

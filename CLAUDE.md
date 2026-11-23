@@ -102,12 +102,17 @@ faithful, editable **Moho Pro 14** character rig.
     skin candidates in `docs/phase3_8_1/artwork_candidates.*`.
   - Production still shows the original palm-forward hand as a reported fallback until a resting drawing is
     approved. Moho not run.
-- The user explicitly started **Phase 4** (native Moho rig generation). Verdict: **BLOCKED — NATIVE VALIDATION
-  REQUIRED** (`docs/phase4_completion_report.md`).
+- The user explicitly started **Phase 4** (native Moho rig generation). Phase 4.0 verdict: **PARTIAL**
+  (`docs/phase4_completion_report.md`). First native runs on 2026-11-23, Moho 14.5.1, evidence in
+  `docs/phase4/evidence/native_runs/`:
+  - gate items 1 (native document) and 3 (save) PASS;
+  - items 2 (renders), 4 (reopen) and 5 (move after reopening) were not executed. The save landed in the other run's
+    folder and the harness stopped; the harness now re-prompts and finds misplaced saves.
   - Built and cloud-tested: Phase 4.0's portable proof package (`autorig native-poc`), the build and
     verify-after-reopen menu scripts, the HARD GATE 4.0 checker (`autorig native-verify`) and the Mac harness
     (`tools/macos/phase4_native_test.sh`).
-  - Moho has not run. No Mac folder is attached to the session, and `docs/phase4/evidence/native_runs/` is empty.
+  - Moho's saved-file format is now observed (`research/moho-14.5/README.md`). `native/gate.py` checks saved projects
+    structurally, using only those keys.
   - Steps 5–23 (Phase 4.1 onwards) are **not started**. Do not start them until a native run passes the gate.
 
 ## Phase 4 rules (native Moho)

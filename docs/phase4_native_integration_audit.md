@@ -69,6 +69,14 @@ member may be called, and Phase 4.0 does not need them.
 
 ## 4. Assumptions only a native run can confirm
 
+> **Update after the first native runs (2026-11-23, Moho 14.5.1 on macOS 27.2, Apple silicon;
+> `phase4_completion_report.md`):**
+> - **Confirmed:** 1 (image placement), from Moho's saved file: each image layer is 3.555556 × 2.0 units;
+>   2 (bone conventions), from Moho's `fMovedMatrix` read-back; 5 (script I/O): the build report was written.
+> - **Supported but not yet measured on a render:** 3 (binding): the user's observation and Moho's thumbnail.
+> - **Persistence is half done:** the save is confirmed; reopening is not tested.
+> - **Not tested:** 6 (the reopened document's frame).
+
 1. **Image placement.** An image layer whose pixel size equals the project size fills the frame exactly (Phase 0
    architecture §3). If Moho scales or offsets it differently, every bone is misplaced relative to the art. Measured by
    the rest-frame render (silhouette IoU against the expected frame).

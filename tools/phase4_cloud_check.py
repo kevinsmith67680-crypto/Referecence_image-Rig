@@ -46,7 +46,7 @@ def run_mock(poc: Path, man: dict) -> list[dict]:
         lua.execute((poc / man["scripts"][key]).read_text(encoding="utf-8"))
         script = lua.globals()[name]
         script.Run(script, env.moho)
-    return [dict(a) for a in env.alerts.values()]
+    return [dict(sorted(dict(a).items())) for a in env.alerts.values()]  # Lua key order is not stable
 
 
 def check(name: str, pkg: Path) -> dict:
