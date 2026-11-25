@@ -1,0 +1,1529 @@
+{
+  "actions": [],
+  "api_surface": {
+    "M_Bone": {
+      "called": false,
+      "names": [],
+      "notes": []
+    },
+    "ScriptInterface": {
+      "called": false,
+      "names": [],
+      "notes": []
+    }
+  },
+  "autorig_report_version": "0.1.0",
+  "bone_layer": {
+    "children_by_index": [
+      "thigh_r__joint",
+      "thigh_r",
+      "thigh_r__spill",
+      "shin_r",
+      "foot_r",
+      "thigh_l__joint",
+      "thigh_l",
+      "shin_l",
+      "foot_l",
+      "pelvis",
+      "neck",
+      "torso",
+      "upper_arm_r__joint",
+      "upper_arm_r",
+      "upper_arm_r__specks_to_right_shoulder",
+      "forearm_r__joint",
+      "forearm_r",
+      "hand_r",
+      "upper_arm_l__joint",
+      "upper_arm_l",
+      "upper_arm_l__specks_to_left_shoulder",
+      "forearm_l",
+      "hand_l",
+      "head_base",
+      "nose",
+      "mouth",
+      "eye_r_white",
+      "eye_r_iris",
+      "eye_l_white",
+      "eye_l_iris",
+      "brow_r",
+      "brow_l",
+      "hair"
+    ],
+    "name": "AutoRig_P42_Hybrid",
+    "type": 4
+  },
+  "bones": [
+    {
+      "angle": 1.57079632679,
+      "angle_keys": [
+        [
+          0,
+          1.57079632679
+        ]
+      ],
+      "id": 0,
+      "length": 0.223615676359,
+      "name": "ROOT",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": -1,
+      "pos": [
+        0.0178255372946,
+        -0.945638432364
+      ],
+      "world_base": [
+        0.0178255372946,
+        -0.945638432364
+      ],
+      "world_tip": [
+        0.0178255372946,
+        -0.722022756005
+      ]
+    },
+    {
+      "angle": -0.00779407444052,
+      "angle_keys": [
+        [
+          0,
+          -0.00779407444052
+        ]
+      ],
+      "id": 1,
+      "length": 0.162204673903,
+      "name": "PELVIS",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 0,
+      "pos": [
+        0.721744627054,
+        0
+      ],
+      "world_base": [
+        0.0178255372946,
+        -0.22389380531
+      ],
+      "world_tip": [
+        0.0190897597977,
+        -0.0616940581542
+      ]
+    },
+    {
+      "angle": 0.000779380456331,
+      "angle_keys": [
+        [
+          0,
+          0.000779380456331
+        ]
+      ],
+      "id": 2,
+      "length": 0.0811018689161,
+      "name": "SPINE_LOWER",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 1,
+      "pos": [
+        0.162204673903,
+        0
+      ],
+      "world_base": [
+        0.0190897597977,
+        -0.0616940581542
+      ],
+      "world_tip": [
+        0.0196586599241,
+        0.0194058154235
+      ]
+    },
+    {
+      "angle": 0,
+      "angle_keys": [
+        [
+          0,
+          0
+        ]
+      ],
+      "id": 3,
+      "length": 0.0811018689161,
+      "name": "SPINE_UPPER",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 2,
+      "pos": [
+        0.0811018689161,
+        0
+      ],
+      "world_base": [
+        0.0196586599241,
+        0.0194058154235
+      ],
+      "world_tip": [
+        0.0202275600506,
+        0.100505689001
+      ]
+    },
+    {
+      "angle": -0.00129955131766,
+      "angle_keys": [
+        [
+          0,
+          -0.00129955131766
+        ]
+      ],
+      "id": 4,
+      "length": 0.167262418282,
+      "name": "CHEST",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 3,
+      "pos": [
+        0.0811018689161,
+        0
+      ],
+      "world_base": [
+        0.0202275600506,
+        0.100505689001
+      ],
+      "world_tip": [
+        0.021618204804,
+        0.267762326169
+      ]
+    },
+    {
+      "angle": 0.00468230001256,
+      "angle_keys": [
+        [
+          0,
+          0.00468230001256
+        ]
+      ],
+      "id": 5,
+      "length": 0.1044254675,
+      "name": "NECK",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 4,
+      "pos": [
+        0.167262418282,
+        0
+      ],
+      "world_base": [
+        0.021618204804,
+        0.267762326169
+      ],
+      "world_tip": [
+        0.021997471555,
+        0.37218710493
+      ]
+    },
+    {
+      "angle": 0.0036319452893,
+      "angle_keys": [
+        [
+          0,
+          0.0036319452893
+        ]
+      ],
+      "id": 6,
+      "length": 0.545638432364,
+      "name": "HEAD",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 5,
+      "pos": [
+        0.1044254675,
+        0
+      ],
+      "world_base": [
+        0.021997471555,
+        0.37218710493
+      ],
+      "world_tip": [
+        0.021997471555,
+        0.917825537295
+      ]
+    },
+    {
+      "angle": -1.48843223994,
+      "angle_keys": [
+        [
+          0,
+          -1.48843223994
+        ]
+      ],
+      "id": 7,
+      "length": 0.109569547829,
+      "name": "LEFT_SHOULDER",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 4,
+      "pos": [
+        0.083038870182,
+        -0.0428003358406
+      ],
+      "world_base": [
+        0.0637168141593,
+        0.183185840708
+      ],
+      "world_tip": [
+        0.172986093552,
+        0.191292035398
+      ]
+    },
+    {
+      "angle": -0.317481728791,
+      "angle_keys": [
+        [
+          0,
+          -0.317481728791
+        ],
+        [
+          1,
+          -0.317481728791
+        ],
+        [
+          10,
+          -1.45194574259
+        ],
+        [
+          20,
+          0.729715822406
+        ],
+        [
+          30,
+          -0.317481728791
+        ],
+        [
+          40,
+          -0.317481728791
+        ],
+        [
+          50,
+          -0.317481728791
+        ],
+        [
+          60,
+          -0.317481728791
+        ],
+        [
+          70,
+          -0.317481728791
+        ],
+        [
+          80,
+          -0.317481728791
+        ],
+        [
+          90,
+          -0.317481728791
+        ]
+      ],
+      "id": 8,
+      "length": 0.142726407001,
+      "name": "LEFT_UPPER_ARM",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 7,
+      "pos": [
+        0.109569547829,
+        0
+      ],
+      "world_base": [
+        0.172986093552,
+        0.191292035398
+      ],
+      "world_tip": [
+        0.311504424779,
+        0.156890012642
+      ]
+    },
+    {
+      "angle": 0.249217743605,
+      "angle_keys": [
+        [
+          0,
+          0.249217743605
+        ],
+        [
+          1,
+          0.249217743605
+        ],
+        [
+          10,
+          0.249217743605
+        ],
+        [
+          20,
+          0.249217743605
+        ],
+        [
+          30,
+          0.249217743605
+        ],
+        [
+          40,
+          1.8200140704
+        ],
+        [
+          50,
+          0.249217743605
+        ],
+        [
+          60,
+          0.249217743605
+        ],
+        [
+          70,
+          0.249217743605
+        ],
+        [
+          80,
+          0.249217743605
+        ],
+        [
+          90,
+          0.249217743605
+        ]
+      ],
+      "id": 9,
+      "length": 0.131102067967,
+      "name": "LEFT_FOREARM",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 8,
+      "pos": [
+        0.142726407001,
+        0
+      ],
+      "world_base": [
+        0.311504424779,
+        0.156890012642
+      ],
+      "world_tip": [
+        0.442604298357,
+        0.157648546144
+      ]
+    },
+    {
+      "angle": 0.134738380905,
+      "angle_keys": [
+        [
+          0,
+          0.134738380905
+        ]
+      ],
+      "id": 10,
+      "length": 0.0911641182003,
+      "name": "LEFT_HAND",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 9,
+      "pos": [
+        0.131102067967,
+        0
+      ],
+      "world_base": [
+        0.442604298357,
+        0.157648546144
+      ],
+      "world_tip": [
+        0.532869785082,
+        0.170417193426
+      ]
+    },
+    {
+      "angle": 1.49410668761,
+      "angle_keys": [
+        [
+          0,
+          1.49410668761
+        ]
+      ],
+      "id": 11,
+      "length": 0.0966092525443,
+      "name": "RIGHT_SHOULDER",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 4,
+      "pos": [
+        0.0871248527969,
+        0.0435830182755
+      ],
+      "world_base": [
+        -0.0226295828066,
+        0.18798988622
+      ],
+      "world_tip": [
+        -0.118890012642,
+        0.19619216182
+      ]
+    },
+    {
+      "angle": 0.325382146298,
+      "angle_keys": [
+        [
+          0,
+          0.325382146298
+        ],
+        [
+          1,
+          0.325382146298
+        ],
+        [
+          10,
+          1.45984616009
+        ],
+        [
+          20,
+          0.325382146298
+        ],
+        [
+          30,
+          -0.721815404898
+        ],
+        [
+          40,
+          0.325382146298
+        ],
+        [
+          50,
+          0.325382146298
+        ],
+        [
+          60,
+          0.325382146298
+        ],
+        [
+          70,
+          0.325382146298
+        ],
+        [
+          80,
+          0.325382146298
+        ],
+        [
+          90,
+          0.325382146298
+        ]
+      ],
+      "id": 12,
+      "length": 0.147031496339,
+      "name": "RIGHT_UPPER_ARM",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 11,
+      "pos": [
+        0.0966092525443,
+        0
+      ],
+      "world_base": [
+        -0.118890012642,
+        0.19619216182
+      ],
+      "world_tip": [
+        -0.261694058154,
+        0.161188369153
+      ]
+    },
+    {
+      "angle": -0.221636314103,
+      "angle_keys": [
+        [
+          0,
+          -0.221636314103
+        ],
+        [
+          1,
+          -0.221636314103
+        ],
+        [
+          10,
+          -0.221636314103
+        ],
+        [
+          20,
+          -0.221636314103
+        ],
+        [
+          30,
+          -0.221636314103
+        ],
+        [
+          40,
+          -0.221636314103
+        ],
+        [
+          50,
+          -1.7924326409
+        ],
+        [
+          60,
+          -0.221636314103
+        ],
+        [
+          70,
+          -0.221636314103
+        ],
+        [
+          80,
+          -0.221636314103
+        ],
+        [
+          90,
+          -0.221636314103
+        ]
+      ],
+      "id": 13,
+      "length": 0.134916235773,
+      "name": "RIGHT_FOREARM",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 12,
+      "pos": [
+        0.147031496339,
+        0
+      ],
+      "world_base": [
+        -0.261694058154,
+        0.161188369153
+      ],
+      "world_tip": [
+        -0.396586599241,
+        0.158659924147
+      ]
+    },
+    {
+      "angle": -0.151203503402,
+      "angle_keys": [
+        [
+          0,
+          -0.151203503402
+        ]
+      ],
+      "id": 14,
+      "length": 0.0928487731376,
+      "name": "RIGHT_HAND",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 13,
+      "pos": [
+        0.134916235773,
+        0
+      ],
+      "world_base": [
+        -0.396586599241,
+        0.158659924147
+      ],
+      "world_tip": [
+        -0.488621997472,
+        0.170922882427
+      ]
+    },
+    {
+      "angle": -2.88266315649,
+      "angle_keys": [
+        [
+          0,
+          -2.88266315649
+        ],
+        [
+          1,
+          -2.88266315649
+        ],
+        [
+          10,
+          -2.88266315649
+        ],
+        [
+          20,
+          -2.88266315649
+        ],
+        [
+          30,
+          -2.88266315649
+        ],
+        [
+          40,
+          -2.88266315649
+        ],
+        [
+          50,
+          -2.88266315649
+        ],
+        [
+          60,
+          -2.62086376869
+        ],
+        [
+          70,
+          -2.88266315649
+        ],
+        [
+          80,
+          -2.88266315649
+        ],
+        [
+          90,
+          -2.88266315649
+        ]
+      ],
+      "id": 15,
+      "length": 0.283873245749,
+      "name": "LEFT_THIGH",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 1,
+      "pos": [
+        0.0017338930382,
+        -0.0764742702889
+      ],
+      "world_base": [
+        0.0943109987358,
+        -0.222756005057
+      ],
+      "world_tip": [
+        0.164854614412,
+        -0.497724399494
+      ]
+    },
+    {
+      "angle": -0.00410426160865,
+      "angle_keys": [
+        [
+          0,
+          -0.00410426160865
+        ],
+        [
+          1,
+          -0.00410426160865
+        ],
+        [
+          10,
+          -0.00410426160865
+        ],
+        [
+          20,
+          -0.00410426160865
+        ],
+        [
+          30,
+          -0.00410426160865
+        ],
+        [
+          40,
+          -0.00410426160865
+        ],
+        [
+          50,
+          -0.00410426160865
+        ],
+        [
+          60,
+          -0.527703037207
+        ],
+        [
+          70,
+          -0.00410426160865
+        ],
+        [
+          80,
+          -0.00410426160865
+        ],
+        [
+          90,
+          -0.00410426160865
+        ]
+      ],
+      "id": 16,
+      "length": 0.28383780153,
+      "name": "LEFT_SHIN",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 15,
+      "pos": [
+        0.283873245749,
+        0
+      ],
+      "world_base": [
+        0.164854614412,
+        -0.497724399494
+      ],
+      "world_tip": [
+        0.234260429836,
+        -0.772945638432
+      ]
+    },
+    {
+      "angle": 0.198879948848,
+      "angle_keys": [
+        [
+          0,
+          0.198879948848
+        ],
+        [
+          1,
+          0.198879948848
+        ],
+        [
+          10,
+          0.198879948848
+        ],
+        [
+          20,
+          0.198879948848
+        ],
+        [
+          30,
+          0.198879948848
+        ],
+        [
+          40,
+          0.198879948848
+        ],
+        [
+          50,
+          0.198879948848
+        ],
+        [
+          60,
+          0.460679336647
+        ],
+        [
+          70,
+          0.198879948848
+        ],
+        [
+          80,
+          0.198879948848
+        ],
+        [
+          90,
+          0.198879948848
+        ]
+      ],
+      "id": 17,
+      "length": 0.102010144332,
+      "name": "LEFT_FOOT",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 16,
+      "pos": [
+        0.28383780153,
+        0
+      ],
+      "world_base": [
+        0.234260429836,
+        -0.772945638432
+      ],
+      "world_tip": [
+        0.278255372946,
+        -0.864981036662
+      ]
+    },
+    {
+      "angle": 2.89784647928,
+      "angle_keys": [
+        [
+          0,
+          2.89784647928
+        ],
+        [
+          1,
+          2.89784647928
+        ],
+        [
+          10,
+          2.89784647928
+        ],
+        [
+          20,
+          2.89784647928
+        ],
+        [
+          30,
+          2.89784647928
+        ],
+        [
+          40,
+          2.89784647928
+        ],
+        [
+          50,
+          2.89784647928
+        ],
+        [
+          60,
+          2.89784647928
+        ],
+        [
+          70,
+          2.63604709148
+        ],
+        [
+          80,
+          2.89784647928
+        ],
+        [
+          90,
+          2.89784647928
+        ]
+      ],
+      "id": 18,
+      "length": 0.28037844476,
+      "name": "RIGHT_THIGH",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 1,
+      "pos": [
+        -0.0017338930382,
+        0.0764742702889
+      ],
+      "world_base": [
+        -0.0586599241466,
+        -0.225031605563
+      ],
+      "world_tip": [
+        -0.128445006321,
+        -0.496586599241
+      ]
+    },
+    {
+      "angle": 0.00874952655493,
+      "angle_keys": [
+        [
+          0,
+          0.00874952655493
+        ],
+        [
+          1,
+          0.00874952655493
+        ],
+        [
+          10,
+          0.00874952655493
+        ],
+        [
+          20,
+          0.00874952655493
+        ],
+        [
+          30,
+          0.00874952655493
+        ],
+        [
+          40,
+          0.00874952655493
+        ],
+        [
+          50,
+          0.00874952655493
+        ],
+        [
+          60,
+          0.00874952655493
+        ],
+        [
+          70,
+          0.532348302153
+        ],
+        [
+          80,
+          0.00874952655493
+        ],
+        [
+          90,
+          0.00874952655493
+        ]
+      ],
+      "id": 19,
+      "length": 0.280281094184,
+      "name": "RIGHT_SHIN",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 18,
+      "pos": [
+        0.28037844476,
+        0
+      ],
+      "world_base": [
+        -0.128445006321,
+        -0.496586599241
+      ],
+      "world_tip": [
+        -0.19582806574,
+        -0.768647281922
+      ]
+    },
+    {
+      "angle": -0.174202384173,
+      "angle_keys": [
+        [
+          0,
+          -0.174202384173
+        ],
+        [
+          1,
+          -0.174202384173
+        ],
+        [
+          10,
+          -0.174202384173
+        ],
+        [
+          20,
+          -0.174202384173
+        ],
+        [
+          30,
+          -0.174202384173
+        ],
+        [
+          40,
+          -0.174202384173
+        ],
+        [
+          50,
+          -0.174202384173
+        ],
+        [
+          60,
+          -0.174202384173
+        ],
+        [
+          70,
+          -0.436001771972
+        ],
+        [
+          80,
+          -0.174202384173
+        ],
+        [
+          90,
+          -0.174202384173
+        ]
+      ],
+      "id": 20,
+      "length": 0.104255977292,
+      "name": "RIGHT_FOOT",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 19,
+      "pos": [
+        0.280281094184,
+        0
+      ],
+      "world_base": [
+        -0.19582806574,
+        -0.768647281922
+      ],
+      "world_tip": [
+        -0.238053097345,
+        -0.86396965866
+      ]
+    },
+    {
+      "angle": -1.43027208953,
+      "angle_keys": [
+        [
+          0,
+          -1.43027208953
+        ]
+      ],
+      "id": 21,
+      "length": 0.0546984709202,
+      "name": "LEFT_HAND_TARGET",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 0,
+      "pos": [
+        1.10328697851,
+        -0.424778761062
+      ],
+      "world_base": [
+        0.442604298357,
+        0.157648546144
+      ],
+      "world_tip": [
+        0.496763590392,
+        0.165309734513
+      ]
+    },
+    {
+      "angle": -2.69568154369,
+      "angle_keys": [
+        [
+          0,
+          -2.69568154369
+        ]
+      ],
+      "id": 22,
+      "length": 0.0612060865992,
+      "name": "LEFT_FOOT_TARGET",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 0,
+      "pos": [
+        0.172692793932,
+        -0.216434892541
+      ],
+      "world_base": [
+        0.234260429836,
+        -0.772945638432
+      ],
+      "world_tip": [
+        0.260657395702,
+        -0.82816687737
+      ]
+    },
+    {
+      "angle": 1.4383347711,
+      "angle_keys": [
+        [
+          0,
+          1.4383347711
+        ]
+      ],
+      "id": 23,
+      "length": 0.0557092638826,
+      "name": "RIGHT_HAND_TARGET",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 0,
+      "pos": [
+        1.10429835651,
+        0.414412136536
+      ],
+      "world_base": [
+        -0.396586599241,
+        0.158659924147
+      ],
+      "world_tip": [
+        -0.45180783818,
+        0.166017699115
+      ]
+    },
+    {
+      "angle": 2.72459954722,
+      "angle_keys": [
+        [
+          0,
+          2.72459954722
+        ]
+      ],
+      "id": 24,
+      "length": 0.0625535863753,
+      "name": "RIGHT_FOOT_TARGET",
+      "optional": {
+        "constraints": false,
+        "max_constraint": 1.221731,
+        "min_constraint": -1.221731,
+        "target_bone": -1
+      },
+      "parent_id": 0,
+      "pos": [
+        0.176991150442,
+        0.213653603034
+      ],
+      "world_base": [
+        -0.19582806574,
+        -0.768647281922
+      ],
+      "world_tip": [
+        -0.221163084703,
+        -0.825840707965
+      ]
+    }
+  ],
+  "constants": {
+    "LT_BONE": 4,
+    "LT_IMAGE": 2
+  },
+  "document": {
+    "end_frame": 90,
+    "fps": 24,
+    "height": 1582,
+    "start_frame": 1,
+    "width": 1066
+  },
+  "errors": [],
+  "generator": {
+    "name": "autorig",
+    "script": "AutoRig_P42_HybridVerify",
+    "spec_character_id": "schoolboy_v2_test_p42",
+    "spec_sha256": "7a14954acd785f86219df1135384967e2020bafaec911e86c632bde2ec10df68",
+    "version": "0.0.1"
+  },
+  "kind": "phase4_2_hybrid_verify",
+  "layers": [
+    {
+      "actions": [],
+      "name": "thigh_r__joint",
+      "parent_bone_id": 1,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "thigh_r",
+      "parent_bone_id": 18,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "thigh_r__spill",
+      "parent_bone_id": 19,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "shin_r",
+      "parent_bone_id": 19,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "foot_r",
+      "parent_bone_id": 20,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "thigh_l__joint",
+      "parent_bone_id": 1,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "thigh_l",
+      "parent_bone_id": 15,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "shin_l",
+      "parent_bone_id": 16,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "foot_l",
+      "parent_bone_id": 17,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "pelvis",
+      "parent_bone_id": 1,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "neck",
+      "parent_bone_id": 5,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "torso",
+      "parent_bone_id": 4,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "upper_arm_r__joint",
+      "parent_bone_id": 11,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "upper_arm_r",
+      "parent_bone_id": 12,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "upper_arm_r__specks_to_right_shoulder",
+      "parent_bone_id": 11,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "forearm_r__joint",
+      "parent_bone_id": 12,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "forearm_r",
+      "parent_bone_id": 13,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "hand_r",
+      "parent_bone_id": 14,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "upper_arm_l__joint",
+      "parent_bone_id": 7,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "upper_arm_l",
+      "parent_bone_id": 8,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "upper_arm_l__specks_to_left_shoulder",
+      "parent_bone_id": 7,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "forearm_l",
+      "parent_bone_id": 9,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "hand_l",
+      "parent_bone_id": 10,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "head_base",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "nose",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "mouth",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "eye_r_white",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "eye_r_iris",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "eye_l_white",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "eye_l_iris",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "brow_r",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "brow_l",
+      "parent_bone_id": 6,
+      "type": 2
+    },
+    {
+      "actions": [],
+      "name": "hair",
+      "parent_bone_id": 6,
+      "type": 2
+    }
+  ],
+  "lua_version": "Lua 5.4",
+  "moho_app_version": "14.4-mock",
+  "moves": [
+    {
+      "bone": "SPINE_LOWER",
+      "bone_id": 2,
+      "keys": [
+        {
+          "frame": 70,
+          "read": 0.000779380456331,
+          "set": 0.000779380456331
+        },
+        {
+          "frame": 80,
+          "read": 0.0705925505361,
+          "set": 0.0705925505361
+        },
+        {
+          "frame": 90,
+          "read": 0.000779380456331,
+          "set": 0.000779380456331
+        }
+      ],
+      "kind": "angle"
+    },
+    {
+      "bone": "SPINE_UPPER",
+      "bone_id": 3,
+      "keys": [
+        {
+          "frame": 70,
+          "read": 0,
+          "set": 0
+        },
+        {
+          "frame": 80,
+          "read": 0.0698131700798,
+          "set": 0.0698131700798
+        },
+        {
+          "frame": 90,
+          "read": 0,
+          "set": 0
+        }
+      ],
+      "kind": "angle"
+    },
+    {
+      "bone": "CHEST",
+      "bone_id": 4,
+      "keys": [
+        {
+          "frame": 70,
+          "read": -0.00129955131766,
+          "set": -0.00129955131766
+        },
+        {
+          "frame": 80,
+          "read": 0.103420203802,
+          "set": 0.103420203802
+        },
+        {
+          "frame": 90,
+          "read": -0.00129955131766,
+          "set": -0.00129955131766
+        }
+      ],
+      "kind": "angle"
+    }
+  ],
+  "status": "completed",
+  "timings_s": {
+    "readback_cpu": "<varies per run>",
+    "total_cpu": "<varies per run>"
+  },
+  "warnings": [],
+  "_label": "MOCK: written by the strict mock Moho API in the cloud, not by Moho"
+}

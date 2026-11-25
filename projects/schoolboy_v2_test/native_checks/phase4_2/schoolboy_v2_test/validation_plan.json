@@ -1,0 +1,301 @@
+{
+  "poses": [
+    {
+      "frame": 1,
+      "id": "neutral",
+      "label": "Neutral pose",
+      "offsets_deg": {},
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 10,
+      "id": "both_arms_lowered",
+      "label": "Both arms lowered",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": -65.0,
+        "RIGHT_UPPER_ARM": 65.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 20,
+      "id": "left_arm_raised",
+      "label": "Left arm raised",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": 60.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 30,
+      "id": "right_arm_raised",
+      "label": "Right arm raised",
+      "offsets_deg": {
+        "RIGHT_UPPER_ARM": -60.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 40,
+      "id": "left_elbow_90",
+      "label": "Left elbow at 90 deg",
+      "offsets_deg": {
+        "LEFT_FOREARM": 90.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 50,
+      "id": "right_elbow_90",
+      "label": "Right elbow at 90 deg",
+      "offsets_deg": {
+        "RIGHT_FOREARM": -90.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 60,
+      "id": "left_knee_bent",
+      "label": "Left knee bent (in-plane joint test)",
+      "offsets_deg": {
+        "LEFT_THIGH": 15.0,
+        "LEFT_SHIN": -30.0,
+        "LEFT_FOOT": 15.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false,
+      "view_note": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test"
+    },
+    {
+      "frame": 70,
+      "id": "right_knee_bent",
+      "label": "Right knee bent (in-plane joint test)",
+      "offsets_deg": {
+        "RIGHT_THIGH": -15.0,
+        "RIGHT_SHIN": 30.0,
+        "RIGHT_FOOT": -15.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false,
+      "view_note": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test"
+    },
+    {
+      "frame": 80,
+      "id": "torso_leaning",
+      "label": "Torso leaning",
+      "offsets_deg": {
+        "SPINE_LOWER": 4.0,
+        "SPINE_UPPER": 4.0,
+        "CHEST": 6.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": true
+    },
+    {
+      "frame": 90,
+      "id": "return_to_neutral",
+      "label": "Return to neutral",
+      "offsets_deg": {},
+      "pos_offset_px": {},
+      "after_reopen": false
+    }
+  ],
+  "render_range": [
+    1,
+    90
+  ],
+  "closeups": {
+    "shoulder_l_f010": {
+      "joint": "shoulder_l",
+      "bone": "LEFT_UPPER_ARM",
+      "frame": 10,
+      "box": [
+        495,
+        465,
+        843,
+        813
+      ]
+    },
+    "shoulder_l_f020": {
+      "joint": "shoulder_l",
+      "bone": "LEFT_UPPER_ARM",
+      "frame": 20,
+      "box": [
+        495,
+        465,
+        843,
+        813
+      ]
+    },
+    "shoulder_r_f010": {
+      "joint": "shoulder_r",
+      "bone": "RIGHT_UPPER_ARM",
+      "frame": 10,
+      "box": [
+        264,
+        461,
+        612,
+        809
+      ]
+    },
+    "shoulder_r_f030": {
+      "joint": "shoulder_r",
+      "bone": "RIGHT_UPPER_ARM",
+      "frame": 30,
+      "box": [
+        264,
+        461,
+        612,
+        809
+      ]
+    },
+    "elbow_l_f040": {
+      "joint": "elbow_l",
+      "bone": "LEFT_FOREARM",
+      "frame": 40,
+      "box": [
+        605,
+        492,
+        953,
+        840
+      ]
+    },
+    "elbow_r_f050": {
+      "joint": "elbow_r",
+      "bone": "RIGHT_FOREARM",
+      "frame": 50,
+      "box": [
+        151,
+        489,
+        499,
+        837
+      ]
+    },
+    "hip_l_f060": {
+      "joint": "hip_l",
+      "bone": "LEFT_THIGH",
+      "frame": 60,
+      "box": [
+        433,
+        793,
+        781,
+        1141
+      ]
+    },
+    "hip_r_f070": {
+      "joint": "hip_r",
+      "bone": "RIGHT_THIGH",
+      "frame": 70,
+      "box": [
+        312,
+        795,
+        660,
+        1143
+      ]
+    },
+    "knee_l_f060": {
+      "joint": "knee_l",
+      "bone": "LEFT_SHIN",
+      "frame": 60,
+      "box": [
+        543,
+        988,
+        891,
+        1336
+      ]
+    },
+    "knee_r_f070": {
+      "joint": "knee_r",
+      "bone": "RIGHT_SHIN",
+      "frame": 70,
+      "box": [
+        203,
+        988,
+        551,
+        1336
+      ]
+    },
+    "waist_f080": {
+      "joint": "waist",
+      "bone": "SPINE_LOWER",
+      "frame": 80,
+      "box": [
+        374,
+        665,
+        722,
+        1013
+      ]
+    }
+  },
+  "after_reopen": [
+    {
+      "bone": "SPINE_LOWER",
+      "kind": "angle",
+      "offset_deg": 4.0,
+      "keys": [
+        {
+          "frame": 70,
+          "value": 0.0007793804563309692
+        },
+        {
+          "frame": 80,
+          "value": 0.07059255053610415
+        },
+        {
+          "frame": 90,
+          "value": 0.0007793804563309692
+        }
+      ]
+    },
+    {
+      "bone": "SPINE_UPPER",
+      "kind": "angle",
+      "offset_deg": 4.0,
+      "keys": [
+        {
+          "frame": 70,
+          "value": 0.0
+        },
+        {
+          "frame": 80,
+          "value": 0.06981317007977318
+        },
+        {
+          "frame": 90,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "bone": "CHEST",
+      "kind": "angle",
+      "offset_deg": 6.0,
+      "keys": [
+        {
+          "frame": 70,
+          "value": -0.001299551317663017
+        },
+        {
+          "frame": 80,
+          "value": 0.10342020380199676
+        },
+        {
+          "frame": 90,
+          "value": -0.001299551317663017
+        }
+      ]
+    }
+  ],
+  "manual_tests": [
+    "MT-1",
+    "MT-2",
+    "MT-3",
+    "MT-4"
+  ]
+}

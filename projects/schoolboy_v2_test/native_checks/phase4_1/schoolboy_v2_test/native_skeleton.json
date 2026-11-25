@@ -1,0 +1,965 @@
+{
+  "schema": "autorig.native_skeleton",
+  "version": "4.1.0",
+  "character_id": "schoolboy_v2_test",
+  "source_canvas": [
+    1024,
+    1536
+  ],
+  "midline_x": 509.1,
+  "ground_y": 1493.0,
+  "coordinate_system": "character space = package source pixels, origin top-left, +y down; angles and limits in Moho's convention (degrees, counter-clockwise, +y up)",
+  "bones": [
+    {
+      "id": "ROOT",
+      "parent": null,
+      "base_px": [
+        509.1,
+        1493.0
+      ],
+      "tip_px": [
+        509.1,
+        1316.12
+      ],
+      "source": "midline_x at ground_y (rig.json)",
+      "role": "control",
+      "control": "ROOT_CONTROL",
+      "ik": null,
+      "limits_deg": null,
+      "limit_source": null,
+      "strength": null,
+      "bindings": [],
+      "length_px": 176.88,
+      "rest_angle_deg": 90.0
+    },
+    {
+      "id": "PELVIS",
+      "parent": "ROOT",
+      "base_px": [
+        509.1,
+        922.1
+      ],
+      "tip_px": [
+        510.1,
+        793.8
+      ],
+      "source": "pelvis",
+      "role": "structural",
+      "control": "PELVIS_CONTROL",
+      "ik": null,
+      "limits_deg": [
+        -14.0,
+        14.0
+      ],
+      "limit_source": "pelvis tilt",
+      "strength": null,
+      "bindings": [
+        "pelvis"
+      ],
+      "length_px": 128.304,
+      "rest_angle_deg": 89.5534
+    },
+    {
+      "id": "SPINE_LOWER",
+      "parent": "PELVIS",
+      "base_px": [
+        510.1,
+        793.8
+      ],
+      "tip_px": [
+        510.55,
+        729.65
+      ],
+      "source": "spine (first 0.5)",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -9.0,
+        9.0
+      ],
+      "limit_source": "spine bend x 0.5",
+      "strength": null,
+      "bindings": [],
+      "length_px": 64.152,
+      "rest_angle_deg": 89.5981
+    },
+    {
+      "id": "SPINE_UPPER",
+      "parent": "SPINE_LOWER",
+      "base_px": [
+        510.55,
+        729.65
+      ],
+      "tip_px": [
+        511.0,
+        665.5
+      ],
+      "source": "spine (rest)",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -9.0,
+        9.0
+      ],
+      "limit_source": "spine bend x 0.5",
+      "strength": null,
+      "bindings": [],
+      "length_px": 64.152,
+      "rest_angle_deg": 89.5981
+    },
+    {
+      "id": "CHEST",
+      "parent": "SPINE_UPPER",
+      "base_px": [
+        511.0,
+        665.5
+      ],
+      "tip_px": [
+        512.1,
+        533.2
+      ],
+      "source": "chest",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -14.0,
+        14.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "torso"
+      ],
+      "length_px": 132.305,
+      "rest_angle_deg": 89.5236
+    },
+    {
+      "id": "NECK",
+      "parent": "CHEST",
+      "base_px": [
+        512.1,
+        533.2
+      ],
+      "tip_px": [
+        512.4,
+        450.6
+      ],
+      "source": "neck",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -20.0,
+        20.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "neck"
+      ],
+      "length_px": 82.601,
+      "rest_angle_deg": 89.7919
+    },
+    {
+      "id": "HEAD",
+      "parent": "NECK",
+      "base_px": [
+        512.4,
+        450.6
+      ],
+      "tip_px": [
+        512.4,
+        19.0
+      ],
+      "source": "head",
+      "role": "structural",
+      "control": "HEAD_CONTROL",
+      "ik": null,
+      "limits_deg": [
+        -28.0,
+        28.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "head_base",
+        "nose",
+        "mouth",
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris",
+        "brow_r",
+        "brow_l",
+        "hair"
+      ],
+      "length_px": 431.6,
+      "rest_angle_deg": 90.0
+    },
+    {
+      "id": "LEFT_SHOULDER",
+      "parent": "CHEST",
+      "base_px": [
+        545.4,
+        600.1
+      ],
+      "tip_px": [
+        631.832,
+        593.688
+      ],
+      "source": "clavicle_l",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -10.0,
+        32.0
+      ],
+      "limit_source": "clavicle elevation (up = tip up)",
+      "strength": null,
+      "bindings": [],
+      "length_px": 86.67,
+      "rest_angle_deg": 4.2427
+    },
+    {
+      "id": "LEFT_UPPER_ARM",
+      "parent": "LEFT_SHOULDER",
+      "base_px": [
+        631.832,
+        593.688
+      ],
+      "tip_px": [
+        741.4,
+        620.9
+      ],
+      "source": "upper_arm_l",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "LEFT_ARM",
+        "role": "root",
+        "target": "LEFT_HAND_TARGET"
+      },
+      "limits_deg": [
+        -116.052,
+        101.948
+      ],
+      "limit_source": "abduction from hanging, rest 76.1 deg",
+      "strength": null,
+      "bindings": [
+        "upper_arm_l"
+      ],
+      "length_px": 112.897,
+      "rest_angle_deg": -13.9476
+    },
+    {
+      "id": "LEFT_FOREARM",
+      "parent": "LEFT_UPPER_ARM",
+      "base_px": [
+        741.4,
+        620.9
+      ],
+      "tip_px": [
+        845.1,
+        620.3
+      ],
+      "source": "forearm_l",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "LEFT_ARM",
+        "role": "effector",
+        "target": "LEFT_HAND_TARGET"
+      },
+      "limits_deg": [
+        -10.0,
+        150.0
+      ],
+      "limit_source": "elbow flexion toward the head (front view, palm-forward T-pose); hyperextension per config",
+      "strength": null,
+      "bindings": [
+        "forearm_l"
+      ],
+      "length_px": 103.702,
+      "rest_angle_deg": 0.3315
+    },
+    {
+      "id": "LEFT_HAND",
+      "parent": "LEFT_FOREARM",
+      "base_px": [
+        845.1,
+        620.3
+      ],
+      "tip_px": [
+        916.5,
+        610.2
+      ],
+      "source": "hand_l",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -60.0,
+        60.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "hand_l"
+      ],
+      "length_px": 72.111,
+      "rest_angle_deg": 8.0514
+    },
+    {
+      "id": "RIGHT_SHOULDER",
+      "parent": "CHEST",
+      "base_px": [
+        477.1,
+        596.3
+      ],
+      "tip_px": [
+        400.958,
+        589.812
+      ],
+      "source": "clavicle_r",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -32.0,
+        10.0
+      ],
+      "limit_source": "clavicle elevation (up = tip up)",
+      "strength": null,
+      "bindings": [],
+      "length_px": 76.418,
+      "rest_angle_deg": 175.1296
+    },
+    {
+      "id": "RIGHT_UPPER_ARM",
+      "parent": "RIGHT_SHOULDER",
+      "base_px": [
+        400.958,
+        589.812
+      ],
+      "tip_px": [
+        288.0,
+        617.5
+      ],
+      "source": "upper_arm_r",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "RIGHT_ARM",
+        "role": "root",
+        "target": "RIGHT_HAND_TARGET"
+      },
+      "limits_deg": [
+        -101.773,
+        116.227
+      ],
+      "limit_source": "abduction from hanging, rest 76.2 deg",
+      "strength": null,
+      "bindings": [
+        "upper_arm_r"
+      ],
+      "length_px": 116.302,
+      "rest_angle_deg": -166.2273
+    },
+    {
+      "id": "RIGHT_FOREARM",
+      "parent": "RIGHT_UPPER_ARM",
+      "base_px": [
+        288.0,
+        617.5
+      ],
+      "tip_px": [
+        181.3,
+        619.5
+      ],
+      "source": "forearm_r",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "RIGHT_ARM",
+        "role": "effector",
+        "target": "RIGHT_HAND_TARGET"
+      },
+      "limits_deg": [
+        -150.0,
+        10.0
+      ],
+      "limit_source": "elbow flexion toward the head (front view, palm-forward T-pose); hyperextension per config",
+      "strength": null,
+      "bindings": [
+        "forearm_r"
+      ],
+      "length_px": 106.719,
+      "rest_angle_deg": -178.9262
+    },
+    {
+      "id": "RIGHT_HAND",
+      "parent": "RIGHT_FOREARM",
+      "base_px": [
+        181.3,
+        619.5
+      ],
+      "tip_px": [
+        108.5,
+        609.8
+      ],
+      "source": "hand_r",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -60.0,
+        60.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "hand_r"
+      ],
+      "length_px": 73.443,
+      "rest_angle_deg": 172.4105
+    },
+    {
+      "id": "LEFT_THIGH",
+      "parent": "PELVIS",
+      "base_px": [
+        569.6,
+        921.2
+      ],
+      "tip_px": [
+        625.4,
+        1138.7
+      ],
+      "source": "thigh_l",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "LEFT_LEG",
+        "role": "root",
+        "target": "LEFT_FOOT_TARGET"
+      },
+      "limits_deg": [
+        -39.389,
+        60.611
+      ],
+      "limit_source": "abduction from vertical, rest 14.4 deg",
+      "strength": null,
+      "bindings": [
+        "thigh_l"
+      ],
+      "length_px": 224.544,
+      "rest_angle_deg": -75.611
+    },
+    {
+      "id": "LEFT_SHIN",
+      "parent": "LEFT_THIGH",
+      "base_px": [
+        625.4,
+        1138.7
+      ],
+      "tip_px": [
+        680.3,
+        1356.4
+      ],
+      "source": "shin_l",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "LEFT_LEG",
+        "role": "effector",
+        "target": "LEFT_FOOT_TARGET"
+      },
+      "limits_deg": [
+        -45.0,
+        5.0
+      ],
+      "limit_source": "front view: knee flexion is depth motion; the in-plane range is a stylised squat bend (knees out, shins in), per config",
+      "strength": null,
+      "bindings": [
+        "shin_l"
+      ],
+      "length_px": 224.516,
+      "rest_angle_deg": -75.8462
+    },
+    {
+      "id": "LEFT_FOOT",
+      "parent": "LEFT_SHIN",
+      "base_px": [
+        680.3,
+        1356.4
+      ],
+      "tip_px": [
+        715.1,
+        1429.2
+      ],
+      "source": "foot_l",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -60.0,
+        60.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "foot_l"
+      ],
+      "length_px": 80.69,
+      "rest_angle_deg": -64.4512
+    },
+    {
+      "id": "RIGHT_THIGH",
+      "parent": "PELVIS",
+      "base_px": [
+        448.6,
+        923.0
+      ],
+      "tip_px": [
+        393.4,
+        1137.8
+      ],
+      "source": "thigh_r",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "RIGHT_LEG",
+        "role": "root",
+        "target": "RIGHT_FOOT_TARGET"
+      },
+      "limits_deg": [
+        -60.588,
+        39.412
+      ],
+      "limit_source": "abduction from vertical, rest 14.4 deg",
+      "strength": null,
+      "bindings": [
+        "thigh_r"
+      ],
+      "length_px": 221.779,
+      "rest_angle_deg": -104.4122
+    },
+    {
+      "id": "RIGHT_SHIN",
+      "parent": "RIGHT_THIGH",
+      "base_px": [
+        393.4,
+        1137.8
+      ],
+      "tip_px": [
+        340.1,
+        1353.0
+      ],
+      "source": "shin_r",
+      "role": "structural",
+      "control": null,
+      "ik": {
+        "chain": "RIGHT_LEG",
+        "role": "effector",
+        "target": "RIGHT_FOOT_TARGET"
+      },
+      "limits_deg": [
+        -5.0,
+        45.0
+      ],
+      "limit_source": "front view: knee flexion is depth motion; the in-plane range is a stylised squat bend (knees out, shins in), per config",
+      "strength": null,
+      "bindings": [
+        "shin_r"
+      ],
+      "length_px": 221.702,
+      "rest_angle_deg": -103.9109
+    },
+    {
+      "id": "RIGHT_FOOT",
+      "parent": "RIGHT_SHIN",
+      "base_px": [
+        340.1,
+        1353.0
+      ],
+      "tip_px": [
+        306.7,
+        1428.4
+      ],
+      "source": "foot_r",
+      "role": "structural",
+      "control": null,
+      "ik": null,
+      "limits_deg": [
+        -60.0,
+        60.0
+      ],
+      "limit_source": "bend",
+      "strength": null,
+      "bindings": [
+        "foot_r"
+      ],
+      "length_px": 82.466,
+      "rest_angle_deg": -113.8919
+    },
+    {
+      "id": "LEFT_HAND_TARGET",
+      "parent": "ROOT",
+      "base_px": [
+        845.1,
+        620.3
+      ],
+      "tip_px": [
+        887.94,
+        614.24
+      ],
+      "source": "hand_l.head (the wrist)",
+      "role": "control",
+      "control": "LEFT_HAND_TARGET",
+      "ik": {
+        "chain": "LEFT_ARM",
+        "role": "target",
+        "effector": "LEFT_FOREARM"
+      },
+      "limits_deg": null,
+      "limit_source": null,
+      "strength": null,
+      "bindings": [],
+      "length_px": 43.266,
+      "rest_angle_deg": 8.0514
+    },
+    {
+      "id": "LEFT_FOOT_TARGET",
+      "parent": "ROOT",
+      "base_px": [
+        680.3,
+        1356.4
+      ],
+      "tip_px": [
+        701.18,
+        1400.08
+      ],
+      "source": "foot_l.head (the ankle)",
+      "role": "control",
+      "control": "LEFT_FOOT_TARGET",
+      "ik": {
+        "chain": "LEFT_LEG",
+        "role": "target",
+        "effector": "LEFT_SHIN"
+      },
+      "limits_deg": null,
+      "limit_source": null,
+      "strength": null,
+      "bindings": [],
+      "length_px": 48.414,
+      "rest_angle_deg": -64.4512
+    },
+    {
+      "id": "RIGHT_HAND_TARGET",
+      "parent": "ROOT",
+      "base_px": [
+        181.3,
+        619.5
+      ],
+      "tip_px": [
+        137.62,
+        613.68
+      ],
+      "source": "hand_r.head (the wrist)",
+      "role": "control",
+      "control": "RIGHT_HAND_TARGET",
+      "ik": {
+        "chain": "RIGHT_ARM",
+        "role": "target",
+        "effector": "RIGHT_FOREARM"
+      },
+      "limits_deg": null,
+      "limit_source": null,
+      "strength": null,
+      "bindings": [],
+      "length_px": 44.066,
+      "rest_angle_deg": 172.4105
+    },
+    {
+      "id": "RIGHT_FOOT_TARGET",
+      "parent": "ROOT",
+      "base_px": [
+        340.1,
+        1353.0
+      ],
+      "tip_px": [
+        320.06,
+        1398.24
+      ],
+      "source": "foot_r.head (the ankle)",
+      "role": "control",
+      "control": "RIGHT_FOOT_TARGET",
+      "ik": {
+        "chain": "RIGHT_LEG",
+        "role": "target",
+        "effector": "RIGHT_SHIN"
+      },
+      "limits_deg": null,
+      "limit_source": null,
+      "strength": null,
+      "bindings": [],
+      "length_px": 49.48,
+      "rest_angle_deg": -113.8919
+    }
+  ],
+  "controls": {
+    "ROOT_CONTROL": "ROOT",
+    "PELVIS_CONTROL": "PELVIS",
+    "HEAD_CONTROL": "HEAD",
+    "LEFT_HAND_TARGET": "LEFT_HAND_TARGET",
+    "RIGHT_HAND_TARGET": "RIGHT_HAND_TARGET",
+    "LEFT_FOOT_TARGET": "LEFT_FOOT_TARGET",
+    "RIGHT_FOOT_TARGET": "RIGHT_FOOT_TARGET"
+  },
+  "config": {
+    "elbow_hyperextension_deg": 10.0,
+    "knee_inward_bend_deg": 45.0,
+    "knee_outward_bend_deg": 5.0,
+    "spine_split": 0.5,
+    "root_length_frac": 0.12,
+    "target_length_frac": 0.6,
+    "limits_deg": {}
+  },
+  "provenance": {
+    "rig": "natural_pose/rig.json",
+    "skeleton": "editor project (bone edits) + garment-aligned shoulder pivots (Phase 3.3)",
+    "pivots": [
+      {
+        "joint": "shoulder_r",
+        "bone": "upper_arm_r",
+        "rest_pivot": [
+          402.6,
+          601.8
+        ],
+        "distance_to_top_contour_px": 23.0,
+        "half_thickness_px": 22.0,
+        "aligned": true,
+        "pivot": [
+          401.0,
+          589.8
+        ],
+        "lift_px": 12.1,
+        "axis_offset_deg": 5.97,
+        "reason": "pivot near the shoulder point: a lowered sleeve hangs from the top of the armhole instead of swinging its cap outward (audit R2)"
+      },
+      {
+        "joint": "shoulder_l",
+        "bone": "upper_arm_l",
+        "rest_pivot": [
+          630.2,
+          605.4
+        ],
+        "distance_to_top_contour_px": 23.0,
+        "half_thickness_px": 21.5,
+        "aligned": true,
+        "pivot": [
+          631.8,
+          593.7
+        ],
+        "lift_px": 11.8,
+        "axis_offset_deg": -6.01,
+        "reason": "pivot near the shoulder point: a lowered sleeve hangs from the top of the armhole instead of swinging its cap outward (audit R2)"
+      },
+      {
+        "joint": "upper_arm_r",
+        "bone": "upper_arm_r",
+        "pivot": [
+          401.0,
+          589.8
+        ],
+        "method": "garment-aligned: 12 px toward the top of the armhole (armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 10.4,
+          "cross_section_fraction": 0.51,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "forearm_r",
+        "bone": "forearm_r",
+        "pivot": [
+          288.0,
+          617.5
+        ],
+        "method": "0.52 of shoulder->wrist (straight arm)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 25.3,
+          "cross_section_fraction": 0.0,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "hand_r",
+        "bone": "hand_r",
+        "pivot": [
+          181.3,
+          619.5
+        ],
+        "method": "phase1 wrist (arm/hand boundary), re-centred",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 34.7,
+          "cross_section_fraction": 0.0,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "thigh_r",
+        "bone": "thigh_r",
+        "pivot": [
+          448.6,
+          923.0
+        ],
+        "method": "phase1 hip",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 34.0,
+          "cross_section_fraction": 0.0,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "shin_r",
+        "bone": "shin_r",
+        "pivot": [
+          393.4,
+          1137.8
+        ],
+        "method": "midpoint of hip->ankle (straight leg)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 30.4,
+          "cross_section_fraction": 0.02,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "foot_r",
+        "bone": "foot_r",
+        "pivot": [
+          340.1,
+          1353.0
+        ],
+        "method": "phase1 ankle (leg/foot contact)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 29.2,
+          "cross_section_fraction": 0.08,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "upper_arm_l",
+        "bone": "upper_arm_l",
+        "pivot": [
+          631.8,
+          593.7
+        ],
+        "method": "garment-aligned: 12 px toward the top of the armhole (armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 11.0,
+          "cross_section_fraction": 0.49,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "forearm_l",
+        "bone": "forearm_l",
+        "pivot": [
+          741.4,
+          620.9
+        ],
+        "method": "0.52 of shoulder->wrist (straight arm)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 25.1,
+          "cross_section_fraction": 0.02,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "hand_l",
+        "bone": "hand_l",
+        "pivot": [
+          845.1,
+          620.3
+        ],
+        "method": "phase1 wrist (arm/hand boundary), re-centred",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 34.5,
+          "cross_section_fraction": 0.04,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "thigh_l",
+        "bone": "thigh_l",
+        "pivot": [
+          569.6,
+          921.2
+        ],
+        "method": "phase1 hip",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 34.5,
+          "cross_section_fraction": 0.0,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "shin_l",
+        "bone": "shin_l",
+        "pivot": [
+          625.4,
+          1138.7
+        ],
+        "method": "midpoint of hip->ankle (straight leg)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 30.1,
+          "cross_section_fraction": 0.02,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      },
+      {
+        "joint": "foot_l",
+        "bone": "foot_l",
+        "pivot": [
+          680.3,
+          1356.4
+        ],
+        "method": "phase1 ankle (leg/foot contact)",
+        "checks": {
+          "inside_silhouette": true,
+          "edge_distance_px": 29.6,
+          "cross_section_fraction": 0.05,
+          "at_layer_bbox_centre": false
+        },
+        "status": "ok"
+      }
+    ]
+  }
+}

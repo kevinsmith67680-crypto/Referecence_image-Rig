@@ -1,0 +1,807 @@
+{
+  "schema": "autorig.character_project",
+  "schema_version": "1.0.0",
+  "autorig_version": "0.0.1",
+  "created_at": "2026-11-25T17:11:06Z",
+  "git_commit": "d224145e63260325bd115805464421daa8374fbf",
+  "character_id": "schoolboy_v2",
+  "source": {
+    "original_name": "tpose_front_v2.jpg",
+    "sha256": "63076f7c050241253b61f90768815150d216ae981d0e58020eda139703431f10",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "format": "JPEG",
+    "project_path": "source/original.jpg",
+    "png_decode_path": "source/original.png",
+    "byte_identical_copy": true
+  },
+  "source_unchanged_after_processing": true,
+  "pipeline": {
+    "steps": [
+      {
+        "step": "body_segmentation",
+        "provider": "replicate:vufinder/sam3",
+        "accepted": {
+          "arm": 4,
+          "face": 1,
+          "foot": 2,
+          "hair": 1,
+          "hand": 2,
+          "head": 1,
+          "leg": 4,
+          "lower_clothing": 1,
+          "neck": 1,
+          "person": 1,
+          "sleeve": 2,
+          "upper_clothing": 0
+        },
+        "rejected": 0
+      },
+      {
+        "step": "anatomy",
+        "estimators": [
+          "mask_geometry"
+        ],
+        "unreliable_joints": [
+          "pelvis",
+          "torso",
+          "shoulder_r",
+          "elbow_r",
+          "shoulder_l",
+          "elbow_l",
+          "hip_r",
+          "knee_r",
+          "hip_l",
+          "knee_l"
+        ],
+        "reassigned_fragments": 338
+      },
+      {
+        "step": "face",
+        "accepted_features": [
+          "brow_l",
+          "brow_r",
+          "ear_l",
+          "ear_r",
+          "eye_l",
+          "eye_r",
+          "mouth",
+          "nose",
+          "pupil_l",
+          "pupil_r"
+        ],
+        "rejected": 0
+      },
+      {
+        "step": "silhouette_refinement",
+        "method": "border_connected_paper",
+        "paper_rgb": [
+          254,
+          254,
+          254
+        ],
+        "tolerance": 24,
+        "background_pixels_removed": 617,
+        "note": "background = paper-coloured pixels connected to the border; the 2 px fringe is measured against it. Colours stay original."
+      },
+      {
+        "step": "fringe_absorption",
+        "pixels": 11866,
+        "max_distance_px": 2.0,
+        "note": "anti-aliased edge pixels kept opaque with original colours; no matting yet"
+      }
+    ],
+    "config": {
+      "min_score": 0.5,
+      "confidence_threshold": 0.5,
+      "face_upscale_target": 1024,
+      "body_prompts": [
+        [
+          "person",
+          "person"
+        ],
+        [
+          "hair",
+          "hair"
+        ],
+        [
+          "head",
+          "head"
+        ],
+        [
+          "face",
+          "face"
+        ],
+        [
+          "neck",
+          "neck"
+        ],
+        [
+          "upper_clothing",
+          "shirt"
+        ],
+        [
+          "sleeve",
+          "sleeve"
+        ],
+        [
+          "arm",
+          "arm"
+        ],
+        [
+          "hand",
+          "hand"
+        ],
+        [
+          "lower_clothing",
+          "shorts"
+        ],
+        [
+          "lower_clothing",
+          "pants"
+        ],
+        [
+          "leg",
+          "leg"
+        ],
+        [
+          "foot",
+          "shoe"
+        ]
+      ],
+      "face_prompts": [
+        [
+          "face",
+          "face"
+        ],
+        [
+          "hair",
+          "hair"
+        ],
+        [
+          "eye",
+          "eye"
+        ],
+        [
+          "eyebrow",
+          "eyebrow"
+        ],
+        [
+          "pupil",
+          "pupil"
+        ],
+        [
+          "iris",
+          "iris"
+        ],
+        [
+          "nose",
+          "nose"
+        ],
+        [
+          "mouth",
+          "mouth"
+        ],
+        [
+          "ear",
+          "ear"
+        ]
+      ],
+      "manual_landmarks": null,
+      "character_id": "schoolboy_v2",
+      "overwrite": true,
+      "complete_outline_px": 0
+    },
+    "duration_s": 8.3
+  },
+  "segmentation_runs": [
+    {
+      "provider": "replicate:vufinder/sam3",
+      "model": "vufinder/sam3",
+      "version": "1bf97763d5dfd3a1584adca913a8ef4b43c684fca97e04e39e4c50a3a5e09650",
+      "prediction_id": "1c098wtsmdrmt0d22ena6kv6cr",
+      "status": "succeeded",
+      "predict_time_s": 6.712713582,
+      "estimated_usd": 0.00654489574245,
+      "cost_basis": "assumed Nvidia L40S $0.000975/s (replicate.com/pricing); hardware not exposed by API",
+      "params": {
+        "prompts": [
+          "{\"text\": \"person\"}",
+          "{\"text\": \"hair\"}",
+          "{\"text\": \"head\"}",
+          "{\"text\": \"face\"}",
+          "{\"text\": \"neck\"}",
+          "{\"text\": \"shirt\"}",
+          "{\"text\": \"sleeve\"}",
+          "{\"text\": \"arm\"}",
+          "{\"text\": \"hand\"}",
+          "{\"text\": \"shorts\"}",
+          "{\"text\": \"pants\"}",
+          "{\"text\": \"leg\"}",
+          "{\"text\": \"shoe\"}"
+        ],
+        "confidence_threshold": 0.5,
+        "visualize": false,
+        "backbone_output": false,
+        "offset_masks": false,
+        "split_output": true,
+        "concat_input": false
+      },
+      "cache_key": "a11f3d6fab4b2c1b8797ef27a1aa1e9eb1bed2b74c5d2f416357920706746fc4",
+      "parser": "sam3-dense-v1",
+      "created_at": "2026-11-25T17:04:20.899Z",
+      "completed_at": "2026-11-25T17:04:27.664008291Z",
+      "cache_hit": true,
+      "image_sha256": "63076f7c050241253b61f90768815150d216ae981d0e58020eda139703431f10",
+      "image_size": [
+        1024,
+        1536
+      ],
+      "prompts": [
+        {
+          "label": "person",
+          "text": "person"
+        },
+        {
+          "label": "hair",
+          "text": "hair"
+        },
+        {
+          "label": "head",
+          "text": "head"
+        },
+        {
+          "label": "face",
+          "text": "face"
+        },
+        {
+          "label": "neck",
+          "text": "neck"
+        },
+        {
+          "label": "upper_clothing",
+          "text": "shirt"
+        },
+        {
+          "label": "sleeve",
+          "text": "sleeve"
+        },
+        {
+          "label": "arm",
+          "text": "arm"
+        },
+        {
+          "label": "hand",
+          "text": "hand"
+        },
+        {
+          "label": "lower_clothing",
+          "text": "shorts"
+        },
+        {
+          "label": "lower_clothing",
+          "text": "pants"
+        },
+        {
+          "label": "leg",
+          "text": "leg"
+        },
+        {
+          "label": "foot",
+          "text": "shoe"
+        }
+      ],
+      "instances_per_prompt": {
+        "person": 1,
+        "hair": 1,
+        "head": 1,
+        "face": 1,
+        "neck": 1,
+        "upper_clothing": 0,
+        "sleeve": 2,
+        "arm": 4,
+        "hand": 2,
+        "lower_clothing": 1,
+        "leg": 4,
+        "foot": 2
+      }
+    },
+    {
+      "provider": "replicate:vufinder/sam3",
+      "model": "vufinder/sam3",
+      "version": "1bf97763d5dfd3a1584adca913a8ef4b43c684fca97e04e39e4c50a3a5e09650",
+      "prediction_id": "bdb0cgctnnrmw0d22en9g8r58c",
+      "status": "succeeded",
+      "predict_time_s": 3.116707815,
+      "estimated_usd": 0.0030387901196249996,
+      "cost_basis": "assumed Nvidia L40S $0.000975/s (replicate.com/pricing); hardware not exposed by API",
+      "params": {
+        "prompts": [
+          "{\"text\": \"face\"}",
+          "{\"text\": \"hair\"}",
+          "{\"text\": \"eye\"}",
+          "{\"text\": \"eyebrow\"}",
+          "{\"text\": \"pupil\"}",
+          "{\"text\": \"iris\"}",
+          "{\"text\": \"nose\"}",
+          "{\"text\": \"mouth\"}",
+          "{\"text\": \"ear\"}"
+        ],
+        "confidence_threshold": 0.5,
+        "visualize": false,
+        "backbone_output": false,
+        "offset_masks": false,
+        "split_output": true,
+        "concat_input": false
+      },
+      "cache_key": "6f0ca78e70113e83d3384d4f10879de0172bec70c026253a8f4c675d616ff8d8",
+      "parser": "sam3-dense-v1",
+      "created_at": "2026-11-25T17:04:37.549Z",
+      "completed_at": "2026-11-25T17:04:40.746190842Z",
+      "cache_hit": true,
+      "region": {
+        "box_xyxy": [
+          180,
+          0,
+          820,
+          582
+        ],
+        "upscale": 1.6,
+        "crop_image": "analysis/face_crop.png",
+        "method": "crop_upscale_segment_downscale (masks area-resampled back to source pixels)"
+      },
+      "image_sha256": "63076f7c050241253b61f90768815150d216ae981d0e58020eda139703431f10",
+      "image_size": [
+        1024,
+        1536
+      ],
+      "prompts": [
+        {
+          "label": "face",
+          "text": "face"
+        },
+        {
+          "label": "hair",
+          "text": "hair"
+        },
+        {
+          "label": "eye",
+          "text": "eye"
+        },
+        {
+          "label": "eyebrow",
+          "text": "eyebrow"
+        },
+        {
+          "label": "pupil",
+          "text": "pupil"
+        },
+        {
+          "label": "iris",
+          "text": "iris"
+        },
+        {
+          "label": "nose",
+          "text": "nose"
+        },
+        {
+          "label": "mouth",
+          "text": "mouth"
+        },
+        {
+          "label": "ear",
+          "text": "ear"
+        }
+      ],
+      "instances_per_prompt": {
+        "face": 1,
+        "hair": 1,
+        "eye": 2,
+        "eyebrow": 2,
+        "pupil": 2,
+        "iris": 0,
+        "nose": 1,
+        "mouth": 1,
+        "ear": 2
+      }
+    }
+  ],
+  "cost": {
+    "this_run_estimated_usd": 0,
+    "ledger_total_estimated_usd": 1.584689,
+    "basis": "assumed Nvidia L40S $0.000975/s (replicate.com/pricing); hardware not exposed by API"
+  },
+  "fidelity": {
+    "foreground_pixels": 418441,
+    "layer_union_pixels": 415800,
+    "covered_foreground_pixels": 415800,
+    "coverage_ratio": 0.99369,
+    "uncovered_foreground_pixels": 2641,
+    "layer_pixels_outside_foreground": 0,
+    "overlap_pixels": 0,
+    "pixels_differing_inside_layers": 0,
+    "max_abs_error_inside_layers": 0.0,
+    "mean_abs_error_foreground": 0.9119,
+    "max_abs_error_foreground": 254.0,
+    "psnr_foreground_db": 25.731,
+    "ssim_gray_foreground_bbox": 0.9914,
+    "linework_pixels": 59289,
+    "linework_retained_ratio": 0.95721,
+    "alpha_preserved_inside_layers": null,
+    "note": "Pixels are copied, never resampled: inside the layers the error must be exactly 0. Foreground errors come from uncovered pixels. Metrics are diagnostics, not proof of quality.",
+    "foreground_estimate": {
+      "method": "border_connected_paper",
+      "background_rgb": [
+        254,
+        254,
+        254
+      ],
+      "threshold": 24,
+      "note": "heuristic; unreliable on busy or gradient backgrounds",
+      "colour_heuristic": "background_colour_heuristic",
+      "tolerance": 24
+    },
+    "unassigned_character_pixels": 0
+  },
+  "outputs": [
+    {
+      "path": "analysis/anatomy.json",
+      "sha256": "6c4ca34b7fc93fdc6b46d8d859e8bba20e3ce4e13f3827c57e0168ac6a02d7a1",
+      "bytes": 29550
+    },
+    {
+      "path": "analysis/face.json",
+      "sha256": "f01ead939a4054316e2988b1b46dc092561e67da53d4b78da8a127f1936af791",
+      "bytes": 15444
+    },
+    {
+      "path": "analysis/face_crop.png",
+      "sha256": "38bae493cca9d0a43a53548db9196f1d0adbd3805b162d3b00e23f9d36d6c2db",
+      "bytes": 665257
+    },
+    {
+      "path": "analysis/live_controls.json",
+      "sha256": "56e197f7598d6847fe7a9a3690b9315138d7e7af8ed63bc8e30a73cd6f7df4f8",
+      "bytes": 14445
+    },
+    {
+      "path": "analysis/live_readiness.json",
+      "sha256": "e59fff796b73cc0b8a2c0e466e8ad360c376b6aa1d11a572377a653d25b29990",
+      "bytes": 2937
+    },
+    {
+      "path": "analysis/live_readiness.md",
+      "sha256": "edd1d971944ab20f6327099448658862bc5a807718bcda4e65e58436d6334068",
+      "bytes": 1863
+    },
+    {
+      "path": "artwork/bitmap/brow_l.png",
+      "sha256": "023bd55e93b249d0eafe36f49c6987b3e9afcb1946d640ba8aca6be982c50a4a",
+      "bytes": 11192
+    },
+    {
+      "path": "artwork/bitmap/brow_r.png",
+      "sha256": "45781a06de1533789b8ede9574aacb34c7fb223f7e40e4c418adfdbf72d2a17a",
+      "bytes": 11201
+    },
+    {
+      "path": "artwork/bitmap/eye_l.png",
+      "sha256": "85384bf23caf85126c184197b4d724992050a0a951e71632b2afe39b32d6a4d7",
+      "bytes": 14826
+    },
+    {
+      "path": "artwork/bitmap/eye_r.png",
+      "sha256": "82066f2ec037221a832ae985df79f26e8b702f21f762611c846510c0627d6450",
+      "bytes": 14820
+    },
+    {
+      "path": "artwork/bitmap/foot_l.png",
+      "sha256": "57f6cd5107c9fe3a27b6ce4cabad3c0924a377af6810e011234e0c8b03581770",
+      "bytes": 37142
+    },
+    {
+      "path": "artwork/bitmap/foot_r.png",
+      "sha256": "65dcb4ed1f81db5b3fe01f04d640279bea3be458f351432f097511ddbc21df84",
+      "bytes": 37310
+    },
+    {
+      "path": "artwork/bitmap/forearm_l.png",
+      "sha256": "e7bf20ab365c31490ac86668d1b1de11a000ea7d1407a2d764e1bd2d7c8f5f12",
+      "bytes": 18007
+    },
+    {
+      "path": "artwork/bitmap/forearm_r.png",
+      "sha256": "8f295963f944d48ef43efa361ffdec533a640802a63bc789e121c54ee7765857",
+      "bytes": 19934
+    },
+    {
+      "path": "artwork/bitmap/hair.png",
+      "sha256": "2dbffbada481d49d870fe4f9b40ad65c232da93fb2e4916f8f2857ae6f7db2f6",
+      "bytes": 145861
+    },
+    {
+      "path": "artwork/bitmap/hand_l.png",
+      "sha256": "21aa5e4e5ea56985b3b7c363b9bbecc00fa852a9a0386003f9e303ea7e512cf6",
+      "bytes": 42792
+    },
+    {
+      "path": "artwork/bitmap/hand_r.png",
+      "sha256": "010cdd2be7a98b98b89a9b6741704950e0d68ea9d132426eea093cb9b0f8680c",
+      "bytes": 42565
+    },
+    {
+      "path": "artwork/bitmap/head_base.png",
+      "sha256": "0981a8fe8b598627978e8ba3c5e2e33966242c53301df1c6967b90a07d440374",
+      "bytes": 96244
+    },
+    {
+      "path": "artwork/bitmap/mouth.png",
+      "sha256": "836df4bbd13ef300535a318b0a9de9ae89745a04f814f6df28612877e6551ea0",
+      "bytes": 7291
+    },
+    {
+      "path": "artwork/bitmap/neck.png",
+      "sha256": "2992ca11c11eb205c489444180c5e5bae9277a2b4012d02f183c30048c1e739a",
+      "bytes": 8721
+    },
+    {
+      "path": "artwork/bitmap/nose.png",
+      "sha256": "8705bbb92187dc0479aa794baf32a6608f4ca0e63adbae177629910cccab5d1d",
+      "bytes": 8585
+    },
+    {
+      "path": "artwork/bitmap/pelvis.png",
+      "sha256": "291e0b1becff2d9fd49aa198f8b0ec27014d310100e3d49bfd4d6c0260e719e6",
+      "bytes": 40810
+    },
+    {
+      "path": "artwork/bitmap/shin_l.png",
+      "sha256": "13510544620a65cfd11b49965fd99a2fa793d087d8426650c6cfa44d46f36b94",
+      "bytes": 24367
+    },
+    {
+      "path": "artwork/bitmap/shin_r.png",
+      "sha256": "4d85faaaae450acbfa6381d9553e21edebd7233e191ced9b802bdb6cd1fe7a18",
+      "bytes": 23931
+    },
+    {
+      "path": "artwork/bitmap/thigh_l.png",
+      "sha256": "1b3eaf3e925e2c11095f60ac71d2298343c99d5731aa611ff32b6b73b4f811bf",
+      "bytes": 24435
+    },
+    {
+      "path": "artwork/bitmap/thigh_r.png",
+      "sha256": "071c98679f5420b4f0ba863b1c58eefae18a3f11dd64abcaf47e1d3aacf68d25",
+      "bytes": 24667
+    },
+    {
+      "path": "artwork/bitmap/torso.png",
+      "sha256": "7c4c95328bad8ed39421c5cd16a2d90cd14166f9c3b50c91a301e51f3b533d63",
+      "bytes": 97852
+    },
+    {
+      "path": "artwork/bitmap/upper_arm_l.png",
+      "sha256": "4bcc48fa866cd9f85e82c63167ff8f77133bfb25bd0bc8b5e90aed5f84b5f359",
+      "bytes": 24316
+    },
+    {
+      "path": "artwork/bitmap/upper_arm_r.png",
+      "sha256": "92bb21a63c77afadb2fde45108f8a94123b6499859cff62dcf35daed60aad939",
+      "bytes": 21317
+    },
+    {
+      "path": "artwork/layers.json",
+      "sha256": "1474f52ef080001783bfbd129a013eae24e9ed2190d7c3df3666ca299727214f",
+      "bytes": 31258
+    },
+    {
+      "path": "artwork/vector/README.md",
+      "sha256": "b9074bf39cf42ff008a0c757633689fb45e8f4c0ab69372b75e4028c018cf48c",
+      "bytes": 273
+    },
+    {
+      "path": "masks/body/foot_l.png",
+      "sha256": "847d82f6db23fb0103e974b52a47199d702038dbe6741fef9619ba5716abedc6",
+      "bytes": 2168
+    },
+    {
+      "path": "masks/body/foot_r.png",
+      "sha256": "5f35558fc26ac03e28f4eab5ead5c831c38bebef7616dc6094d7bd4509dc2aa1",
+      "bytes": 2125
+    },
+    {
+      "path": "masks/body/forearm_l.png",
+      "sha256": "4dbfd53953f60ea291d3b175aaef7c42948e9abb9d685ec9e3d1ff98e2dc5901",
+      "bytes": 1921
+    },
+    {
+      "path": "masks/body/forearm_r.png",
+      "sha256": "f0b98e2c6b57a63f2f158077cb875e3c7d884f1c9288840563c455f3477d0443",
+      "bytes": 1982
+    },
+    {
+      "path": "masks/body/hair.png",
+      "sha256": "537a444ab9eb9d31b81aad83f95ff282c4ce59e1e9a0a72665ea0c1f1756347d",
+      "bytes": 4145
+    },
+    {
+      "path": "masks/body/hand_l.png",
+      "sha256": "38dabc7bbea4e4463ce38a9f3a5fca66a4ffade808a101b48058bf4dfda13daf",
+      "bytes": 2402
+    },
+    {
+      "path": "masks/body/hand_r.png",
+      "sha256": "ca7b80af83127524ce71cd665efdbd8983d520a205c65f8af58d2087aa652637",
+      "bytes": 2393
+    },
+    {
+      "path": "masks/body/head.png",
+      "sha256": "8de3f58153c9b76880c9b0b66d5a694b1da939fbca85c4441617c950ed0503c1",
+      "bytes": 2749
+    },
+    {
+      "path": "masks/body/neck.png",
+      "sha256": "ee88906eff9ba324daef267861406a9dccc8730f50cfd71237e7ce141c227d61",
+      "bytes": 1762
+    },
+    {
+      "path": "masks/body/pelvis.png",
+      "sha256": "fed7c3b9c75b3335cac75cce4e8137d75d9037d07404c5f99dca6f5eb1fb077d",
+      "bytes": 2516
+    },
+    {
+      "path": "masks/body/shin_l.png",
+      "sha256": "464cdd1d9da7230f75a823dfd8925573d27c874fc0203b17cb4226c7428cbade",
+      "bytes": 2336
+    },
+    {
+      "path": "masks/body/shin_r.png",
+      "sha256": "5d3362dcb7b3e6a5b9075c8bcf74072d5da4d37e94bbcd1332c5c9a010ddfb8c",
+      "bytes": 2308
+    },
+    {
+      "path": "masks/body/thigh_l.png",
+      "sha256": "0c7a9da9371dacb596065992c81aa60dce810f4dae0fea36d768c7df143d7f48",
+      "bytes": 2231
+    },
+    {
+      "path": "masks/body/thigh_r.png",
+      "sha256": "cf8afbf25e3c24aa2baf0df8fc88a3d3db18b6bf21dee21b29844d1ad255607a",
+      "bytes": 2258
+    },
+    {
+      "path": "masks/body/torso.png",
+      "sha256": "93bec838c994dc34425e150bf3591eff9c7d67515cde4078c7957ac00bc9f8e7",
+      "bytes": 2949
+    },
+    {
+      "path": "masks/body/upper_arm_l.png",
+      "sha256": "304581beb21392701ae6fec3423d3086b8d58257a70908ada7d13835b1bc3814",
+      "bytes": 2101
+    },
+    {
+      "path": "masks/body/upper_arm_r.png",
+      "sha256": "9fa976d42eac530decef74e9a55a4dceaedf443f3339c0ec2e067c3812c17a85",
+      "bytes": 1979
+    },
+    {
+      "path": "masks/face/brow_l.png",
+      "sha256": "53131cb3e228ca69ededfcea3611b9fbbf2bcfdfe7330258b372caebdc50c251",
+      "bytes": 1897
+    },
+    {
+      "path": "masks/face/brow_r.png",
+      "sha256": "88aff101e323aa8aebdcda9c99a905b5783d7460acaa2363ded13cb4605b8f91",
+      "bytes": 1899
+    },
+    {
+      "path": "masks/face/ear_l.png",
+      "sha256": "0452da219c0aa7248fa47c8b8f080944c3a94af5b33a2397019ad662b6c25ed6",
+      "bytes": 1927
+    },
+    {
+      "path": "masks/face/ear_r.png",
+      "sha256": "077a9d8ebdc2327bc52ecc8e6da86c72c4184368440c06e488820e60dd140c3c",
+      "bytes": 1889
+    },
+    {
+      "path": "masks/face/eye_l.png",
+      "sha256": "42828f07ae6c400b402f75cdec6334ac2ab8b670641b736c88d598099912b4b4",
+      "bytes": 1849
+    },
+    {
+      "path": "masks/face/eye_r.png",
+      "sha256": "95ec212149df0e880e9386c13445dd026dd5f41c1183480672729e6c40fb6734",
+      "bytes": 1841
+    },
+    {
+      "path": "masks/face/head_base.png",
+      "sha256": "499b32ae78092f769efb28755cede6fa9b9dc270afe3c2be17eb6110a41d02d2",
+      "bytes": 3790
+    },
+    {
+      "path": "masks/face/mouth.png",
+      "sha256": "d90f9fd3a79a4a704f05febf79c492db37dba8e56b5a5e63d2316aa7f55e73c2",
+      "bytes": 1700
+    },
+    {
+      "path": "masks/face/nose.png",
+      "sha256": "1ec4f7d4baece68a458d294d1e470e252dbbef8c0e6ff16695dd35a94de8db68",
+      "bytes": 1718
+    },
+    {
+      "path": "masks/face/pupil_l.png",
+      "sha256": "37cf6b2274cb35b2fe416defa931800b42bbdacc87e3d2e5b32e27dfbff46371",
+      "bytes": 1733
+    },
+    {
+      "path": "masks/face/pupil_r.png",
+      "sha256": "f8d03baacbecc689509a9c241fd00271f363de37fe343ed4ba6607ebe1d71092",
+      "bytes": 1731
+    },
+    {
+      "path": "previews/difference.png",
+      "sha256": "612a8eac7156a9a139a7a266b21fec832c65ddef56c99e794586d8f2161fb397",
+      "bytes": 509708
+    },
+    {
+      "path": "previews/facial_segmentation.png",
+      "sha256": "1d8bc4a89a5740554a4e2fb1340416ede7da36b33bd525f13fd34b2686d37428",
+      "bytes": 566631
+    },
+    {
+      "path": "previews/layers.png",
+      "sha256": "0993a218746586558dfcf46f2b02b20dfde7e60c87544b540693c8f1d59b8d13",
+      "bytes": 339675
+    },
+    {
+      "path": "previews/original.png",
+      "sha256": "dde5a02b81b9c85ae39c980be2a0a0d186e0c475e9bc658eabc0b9ceee20f027",
+      "bytes": 934346
+    },
+    {
+      "path": "previews/reconstructed.png",
+      "sha256": "f8a8aeba5312c147e681093610bbbb02bd72fb633113afa1c80e1b18190c3344",
+      "bytes": 603658
+    },
+    {
+      "path": "previews/segmentation.png",
+      "sha256": "288ffef2b21bac3276321a7d6f2e789e7351e9ca3a531a30b58e5c4eb84445e8",
+      "bytes": 764603
+    },
+    {
+      "path": "source/original.jpg",
+      "sha256": "63076f7c050241253b61f90768815150d216ae981d0e58020eda139703431f10",
+      "bytes": 267416
+    },
+    {
+      "path": "source/original.png",
+      "sha256": "dde5a02b81b9c85ae39c980be2a0a0d186e0c475e9bc658eabc0b9ceee20f027",
+      "bytes": 934346
+    }
+  ],
+  "schema_validation": {
+    "anatomy": "ok",
+    "face": "ok",
+    "live_readiness": "ok",
+    "live_controls": "ok",
+    "hybrid_artwork": "ok",
+    "character_project": "ok"
+  },
+  "warnings": [
+    "no accepted segmentation for body concept 'upper_clothing'",
+    "arm: 4 instances; kept the two largest",
+    "leg: 4 instances; kept the two largest",
+    "sleeve_r ignored: covers >40% of the shirt (not a sleeve)",
+    "sleeve_l ignored: covers >40% of the shirt (not a sleeve)",
+    "338 detached fragments (1708 px) of bone-assigned parts given to the part they touch (anatomy.json reassigned_fragments)"
+  ],
+  "limitations": [
+    "Joint positions are approximate; unreliable ones are flagged and need manual review.",
+    "No hidden artwork was reconstructed or invented (Phase 1 scope).",
+    "Moho SHOWTIME input mappings are proposals only; none is verified.",
+    "Edge pixels are kept opaque with their original (background-blended) colours; placing a layer on a different background can show a faint halo until alpha matting is added.",
+    "Phase 0 Moho integration has not been verified inside Moho."
+  ]
+}

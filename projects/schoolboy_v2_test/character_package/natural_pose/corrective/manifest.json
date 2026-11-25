@@ -1,0 +1,199 @@
+{
+  "assets": [
+    {
+      "id": "hand__palm_up",
+      "type": "hand_variant",
+      "category": "C_approximation",
+      "source": {
+        "from": "reference hand layers",
+        "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+      },
+      "status": "pending_review"
+    },
+    {
+      "id": "gusset__both_hands_raised__r",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "both_hands_raised",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/both_hands_raised__r.svg",
+      "shoulder_abduction_deg": 156.0,
+      "side": "r",
+      "pixels": 251,
+      "torn_pairs": 10,
+      "fill_rgb": [
+        36,
+        35,
+        50
+      ],
+      "outline_rgb": [
+        1,
+        0,
+        1
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          391.0,
+          577.0
+        ],
+        [
+          407.0,
+          564.0
+        ],
+        [
+          399.0,
+          610.0
+        ],
+        [
+          398.0,
+          611.0
+        ],
+        [
+          397.0,
+          610.0
+        ],
+        [
+          396.0,
+          607.0
+        ],
+        [
+          392.0,
+          585.0
+        ],
+        [
+          391.0,
+          579.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          393.0,
+          621.4
+        ],
+        [
+          402.9,
+          603.4
+        ],
+        [
+          412.7,
+          649.0
+        ],
+        [
+          412.2,
+          650.3
+        ],
+        [
+          410.9,
+          649.8
+        ],
+        [
+          408.8,
+          647.3
+        ],
+        [
+          396.9,
+          628.4
+        ],
+        [
+          393.7,
+          623.3
+        ]
+      ]
+    },
+    {
+      "id": "gusset__both_hands_raised__l",
+      "type": "armpit_gusset",
+      "category": "C_corrective_shape",
+      "preset": "both_hands_raised",
+      "status": "pending_review",
+      "file": "natural_pose/corrective/armpit/both_hands_raised__l.svg",
+      "shoulder_abduction_deg": 156.0,
+      "side": "l",
+      "pixels": 161,
+      "torn_pairs": 7,
+      "fill_rgb": [
+        35,
+        34,
+        48
+      ],
+      "outline_rgb": [
+        4,
+        3,
+        4
+      ],
+      "outline_px": 4,
+      "polygon_posed_px": [
+        [
+          631.0,
+          568.0
+        ],
+        [
+          632.0,
+          568.0
+        ],
+        [
+          641.0,
+          577.0
+        ],
+        [
+          641.0,
+          579.0
+        ],
+        [
+          638.0,
+          601.0
+        ],
+        [
+          637.0,
+          607.0
+        ],
+        [
+          636.0,
+          609.0
+        ],
+        [
+          631.0,
+          573.0
+        ]
+      ],
+      "polygon_clavicle_rest_frame_px": [
+        [
+          631.4,
+          612.2
+        ],
+        [
+          632.4,
+          612.5
+        ],
+        [
+          637.3,
+          624.3
+        ],
+        [
+          636.6,
+          626.1
+        ],
+        [
+          625.6,
+          645.4
+        ],
+        [
+          622.4,
+          650.6
+        ],
+        [
+          620.7,
+          652.0
+        ],
+        [
+          629.6,
+          616.8
+        ]
+      ]
+    }
+  ],
+  "hand_sources": null,
+  "review": "autorig review <package> --approve corrective:<id>",
+  "rule": "generated/constructed artwork is never approved in code"
+}

@@ -130,6 +130,13 @@ faithful, editable **Moho Pro 14** character rig.
   - Built: the hybrid rig (`autorig native-hybrid`), native gap fills (pending, in both stores), the Smart Bone plan,
     artwork requests, manual Moho tests MT-1..MT-4, gates 4.2-A..K (`native-hybrid-verify`), harness `--phase 4.2`.
   - Nothing is approved; no Phase 4.2 native run exists. Phase 4.3 is not started.
+- The user asked to **test AutoRig on a new schoolboy drawing** (`references/schoolboy_v2/tpose_front_v2.jpg`). Every
+  stage ran end to end into `projects/schoolboy_v2_test/` (`docs/schoolboy_v2_test_report.md`). It found two
+  generalisation defects, both fixed:
+  - Phase 1 detached fragments (ear and blazer outlines in the arm layers), fixed by `partition.reassign_fragments`;
+  - an elbow cut behind the joint, fixed by the conditional mid-limb split in `hybrid.apply_split`.
+
+  The committed schoolboy and tough-student projects were not regenerated. Nothing is approved; Moho was not run.
 
 ## Phase 4 rules (native Moho)
 
@@ -188,6 +195,8 @@ faithful, editable **Moho Pro 14** character rig.
   output is SIMULATION and goes to `docs/phase4_2/audit/`; never present it as Moho output.
 - The hybrid steps (`hybrid.assemble`) move original pixels between layers and never change them:
   - `split`: limb-root pixels behind the pivot plane go to the parent bone, pixels past the far joint to the child;
+    a forearm or shin is split only when its measured cut lies more than `MID_CUT_FRAC` half-thicknesses behind its
+    pivot (a blanket split opened holes where the cut is at the joint);
   - specks: detached limb components go to the layer they touch;
   - `order`: arm chains above the torso.
 
@@ -560,6 +569,8 @@ faithful, editable **Moho Pro 14** character rig.
   `AUTORIG_REPLICATE_BUDGET_USD`). Check the budget before any run; never raise it silently.
 - Never substitute an unrelated illustration for the user's reference. The synthetic character
   (`autorig.synthetic`) is a GT test fixture only.
+- Partition: a detached piece of a bone-assigned part (smaller than `FRAGMENT_MAX_FRAC` of its main component) goes
+  to the part it touches (`reassign_fragments`, recorded in `anatomy.json`). Pixels only change layer.
 - Artwork layers are original pixels, full-canvas and unscaled. Never invent hidden artwork; list it as
   missing. Readiness is READY only when the artwork exists. SHOWTIME mappings stay `proposed_unverified`
   until verified in Moho.

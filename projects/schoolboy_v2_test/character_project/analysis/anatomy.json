@@ -1,0 +1,1447 @@
+{
+  "schema": "autorig.anatomy",
+  "schema_version": "1.0.0",
+  "image": {
+    "width": 1024,
+    "height": 1536,
+    "coordinate_system": "pixels; origin top-left; +x right; +y down",
+    "source_sha256": "63076f7c050241253b61f90768815150d216ae981d0e58020eda139703431f10"
+  },
+  "side_convention": "front-facing: the character's LEFT (suffix _l) appears on the IMAGE RIGHT",
+  "facing_assumption": "front",
+  "midline_x": 509.37,
+  "joints": {
+    "pelvis": {
+      "name": "pelvis",
+      "confidence": 0.251,
+      "method": "midpoint_of_hips",
+      "flags": [],
+      "sources": [
+        "hip_r",
+        "hip_l"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        509.08,
+        922.12
+      ],
+      "reliable": false,
+      "parent": null
+    },
+    "torso": {
+      "name": "torso",
+      "confidence": 0.0,
+      "method": "not_found",
+      "flags": [
+        "no estimator found it"
+      ],
+      "sources": [],
+      "occluded_by": [],
+      "visible": null,
+      "position": null,
+      "reliable": false,
+      "parent": "pelvis"
+    },
+    "neck": {
+      "name": "neck",
+      "confidence": 0.77,
+      "method": "contact:head/neck|clothing",
+      "flags": [],
+      "sources": [
+        "head",
+        "neck",
+        "upper_clothing"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        512.35,
+        510.76
+      ],
+      "reliable": true,
+      "parent": "torso"
+    },
+    "head": {
+      "name": "head",
+      "confidence": 0.77,
+      "method": "head_and_hair_bbox_center",
+      "flags": [],
+      "sources": [
+        "head",
+        "face",
+        "hair"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        500.0,
+        270.5
+      ],
+      "reliable": true,
+      "parent": "neck"
+    },
+    "shoulder_r": {
+      "name": "shoulder_r",
+      "confidence": 0.481,
+      "method": "limb_proximal_extreme_inset_by_radius",
+      "flags": [],
+      "sources": [
+        "arm"
+      ],
+      "occluded_by": [
+        "sleeve"
+      ],
+      "visible": false,
+      "position": [
+        405.91,
+        600.53
+      ],
+      "reliable": false,
+      "parent": "torso"
+    },
+    "elbow_r": {
+      "name": "elbow_r",
+      "confidence": 0.309,
+      "method": "medial_path_weak_bend",
+      "flags": [
+        "weak bend 16 deg: position uncertain; verify"
+      ],
+      "sources": [
+        "arm"
+      ],
+      "occluded_by": [
+        "sleeve"
+      ],
+      "visible": false,
+      "position": [
+        319.99,
+        616.54
+      ],
+      "reliable": false,
+      "parent": "shoulder_r"
+    },
+    "wrist_r": {
+      "name": "wrist_r",
+      "confidence": 0.653,
+      "method": "contact:arm/hand",
+      "flags": [],
+      "sources": [
+        "arm",
+        "hand"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        181.32,
+        619.54
+      ],
+      "reliable": true,
+      "parent": "elbow_r"
+    },
+    "hand_r": {
+      "name": "hand_r",
+      "confidence": 0.84,
+      "method": "hand_centroid",
+      "flags": [],
+      "sources": [
+        "hand"
+      ],
+      "occluded_by": [
+        "arm"
+      ],
+      "visible": false,
+      "position": [
+        108.51,
+        609.75
+      ],
+      "reliable": true,
+      "parent": "wrist_r"
+    },
+    "shoulder_l": {
+      "name": "shoulder_l",
+      "confidence": 0.432,
+      "method": "limb_proximal_extreme_inset_by_radius",
+      "flags": [],
+      "sources": [
+        "arm"
+      ],
+      "occluded_by": [
+        "sleeve"
+      ],
+      "visible": false,
+      "position": [
+        625.63,
+        603.11
+      ],
+      "reliable": false,
+      "parent": "torso"
+    },
+    "elbow_l": {
+      "name": "elbow_l",
+      "confidence": 0.247,
+      "method": "straight_limb_midpoint",
+      "flags": [
+        "limb is nearly straight (no bend >= 15 deg): middle joint position is ambiguous; verify or provide a manual landmark"
+      ],
+      "sources": [
+        "arm"
+      ],
+      "occluded_by": [
+        "sleeve"
+      ],
+      "visible": false,
+      "position": [
+        732.67,
+        617.6
+      ],
+      "reliable": false,
+      "parent": "shoulder_l"
+    },
+    "wrist_l": {
+      "name": "wrist_l",
+      "confidence": 0.586,
+      "method": "contact:arm/hand",
+      "flags": [],
+      "sources": [
+        "arm",
+        "hand"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        845.08,
+        618.8
+      ],
+      "reliable": true,
+      "parent": "elbow_l"
+    },
+    "hand_l": {
+      "name": "hand_l",
+      "confidence": 0.84,
+      "method": "hand_centroid",
+      "flags": [],
+      "sources": [
+        "hand"
+      ],
+      "occluded_by": [
+        "arm"
+      ],
+      "visible": false,
+      "position": [
+        916.51,
+        610.25
+      ],
+      "reliable": true,
+      "parent": "wrist_l"
+    },
+    "hip_r": {
+      "name": "hip_r",
+      "confidence": 0.279,
+      "method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
+      "flags": [
+        "hip_r hidden under lower_clothing: position extrapolated, always needs review"
+      ],
+      "sources": [
+        "leg",
+        "lower_clothing"
+      ],
+      "occluded_by": [
+        "lower_clothing"
+      ],
+      "visible": false,
+      "position": [
+        448.56,
+        923.04
+      ],
+      "reliable": false,
+      "parent": "pelvis"
+    },
+    "knee_r": {
+      "name": "knee_r",
+      "confidence": 0.223,
+      "method": "straight_limb_midpoint",
+      "flags": [
+        "limb is nearly straight (no bend >= 15 deg): middle joint position is ambiguous; verify or provide a manual landmark"
+      ],
+      "sources": [
+        "leg"
+      ],
+      "occluded_by": [
+        "lower_clothing"
+      ],
+      "visible": false,
+      "position": [
+        392.25,
+        1138.12
+      ],
+      "reliable": false,
+      "parent": "hip_r"
+    },
+    "ankle_r": {
+      "name": "ankle_r",
+      "confidence": 0.531,
+      "method": "contact:leg/foot",
+      "flags": [],
+      "sources": [
+        "leg",
+        "foot"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        340.08,
+        1352.97
+      ],
+      "reliable": true,
+      "parent": "knee_r"
+    },
+    "foot_r": {
+      "name": "foot_r",
+      "confidence": 0.837,
+      "method": "foot_centroid",
+      "flags": [],
+      "sources": [
+        "foot"
+      ],
+      "occluded_by": [
+        "leg"
+      ],
+      "visible": false,
+      "position": [
+        306.68,
+        1428.42
+      ],
+      "reliable": true,
+      "parent": "ankle_r"
+    },
+    "hip_l": {
+      "name": "hip_l",
+      "confidence": 0.279,
+      "method": "midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline",
+      "flags": [
+        "hip_l hidden under lower_clothing: position extrapolated, always needs review"
+      ],
+      "sources": [
+        "leg",
+        "lower_clothing"
+      ],
+      "occluded_by": [
+        "lower_clothing"
+      ],
+      "visible": false,
+      "position": [
+        569.6,
+        921.19
+      ],
+      "reliable": false,
+      "parent": "pelvis"
+    },
+    "knee_l": {
+      "name": "knee_l",
+      "confidence": 0.223,
+      "method": "straight_limb_midpoint",
+      "flags": [
+        "limb is nearly straight (no bend >= 15 deg): middle joint position is ambiguous; verify or provide a manual landmark"
+      ],
+      "sources": [
+        "leg"
+      ],
+      "occluded_by": [
+        "lower_clothing"
+      ],
+      "visible": false,
+      "position": [
+        624.54,
+        1138.12
+      ],
+      "reliable": false,
+      "parent": "hip_l"
+    },
+    "ankle_l": {
+      "name": "ankle_l",
+      "confidence": 0.531,
+      "method": "contact:leg/foot",
+      "flags": [],
+      "sources": [
+        "leg",
+        "foot"
+      ],
+      "occluded_by": [],
+      "visible": true,
+      "position": [
+        680.28,
+        1356.43
+      ],
+      "reliable": true,
+      "parent": "knee_l"
+    },
+    "foot_l": {
+      "name": "foot_l",
+      "confidence": 0.823,
+      "method": "foot_centroid",
+      "flags": [],
+      "sources": [
+        "foot"
+      ],
+      "occluded_by": [
+        "leg"
+      ],
+      "visible": false,
+      "position": [
+        715.11,
+        1429.23
+      ],
+      "reliable": true,
+      "parent": "ankle_l"
+    }
+  },
+  "bones": [
+    {
+      "name": "torso",
+      "from": "pelvis",
+      "to": "neck",
+      "length_px": 411.36
+    },
+    {
+      "name": "pelvis:hip_r",
+      "from": "pelvis",
+      "to": "hip_r",
+      "length_px": 60.53
+    },
+    {
+      "name": "pelvis:hip_l",
+      "from": "pelvis",
+      "to": "hip_l",
+      "length_px": 60.53
+    },
+    {
+      "name": "upper_arm_r",
+      "from": "shoulder_r",
+      "to": "elbow_r",
+      "length_px": 87.39
+    },
+    {
+      "name": "forearm_r",
+      "from": "elbow_r",
+      "to": "wrist_r",
+      "length_px": 138.7
+    },
+    {
+      "name": "upper_arm_l",
+      "from": "shoulder_l",
+      "to": "elbow_l",
+      "length_px": 108.02
+    },
+    {
+      "name": "forearm_l",
+      "from": "elbow_l",
+      "to": "wrist_l",
+      "length_px": 112.42
+    },
+    {
+      "name": "thigh_r",
+      "from": "hip_r",
+      "to": "knee_r",
+      "length_px": 222.33
+    },
+    {
+      "name": "shin_r",
+      "from": "knee_r",
+      "to": "ankle_r",
+      "length_px": 221.09
+    },
+    {
+      "name": "thigh_l",
+      "from": "hip_l",
+      "to": "knee_l",
+      "length_px": 223.77
+    },
+    {
+      "name": "shin_l",
+      "from": "knee_l",
+      "to": "ankle_l",
+      "length_px": 225.31
+    }
+  ],
+  "parts": {
+    "hair": {
+      "pixels": 95475,
+      "bbox_xyxy": [
+        240,
+        19,
+        760,
+        378
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/hair.png",
+      "pivot": {
+        "position": [
+          512.35,
+          510.76
+        ],
+        "joint": "neck",
+        "status": "proposed"
+      }
+    },
+    "head": {
+      "pixels": 79275,
+      "bbox_xyxy": [
+        316,
+        215,
+        698,
+        520
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/head.png",
+      "pivot": {
+        "position": [
+          512.35,
+          510.76
+        ],
+        "joint": "neck",
+        "status": "proposed"
+      }
+    },
+    "neck": {
+      "pixels": 1243,
+      "bbox_xyxy": [
+        497,
+        514,
+        533,
+        557
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/neck.png",
+      "pivot": {
+        "position": [
+          512.35,
+          510.76
+        ],
+        "joint": "neck",
+        "status": "proposed"
+      }
+    },
+    "torso": {
+      "pixels": 51845,
+      "bbox_xyxy": [
+        389,
+        505,
+        636,
+        882
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.251,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/torso.png",
+      "pivot": {
+        "position": [
+          509.08,
+          922.12
+        ],
+        "joint": "pelvis",
+        "status": "proposed"
+      }
+    },
+    "pelvis": {
+      "pixels": 22567,
+      "bbox_xyxy": [
+        361,
+        793,
+        663,
+        955
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.251,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {
+        "lower_clothing": 0.249
+      },
+      "mask": "masks/body/pelvis.png",
+      "pivot": {
+        "position": [
+          509.08,
+          922.12
+        ],
+        "joint": "pelvis",
+        "status": "proposed"
+      }
+    },
+    "upper_arm_r": {
+      "pixels": 7963,
+      "bbox_xyxy": [
+        318,
+        562,
+        459,
+        686
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.309,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/upper_arm_r.png",
+      "pivot": {
+        "position": [
+          405.91,
+          600.53
+        ],
+        "joint": "shoulder_r",
+        "status": "proposed"
+      }
+    },
+    "forearm_r": {
+      "pixels": 9198,
+      "bbox_xyxy": [
+        115,
+        581,
+        321,
+        678
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.309,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/forearm_r.png",
+      "pivot": {
+        "position": [
+          319.99,
+          616.54
+        ],
+        "joint": "elbow_r",
+        "status": "proposed"
+      }
+    },
+    "hand_r": {
+      "pixels": 17434,
+      "bbox_xyxy": [
+        22,
+        515,
+        187,
+        693
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/hand_r.png",
+      "pivot": {
+        "position": [
+          181.32,
+          619.54
+        ],
+        "joint": "wrist_r",
+        "status": "proposed"
+      }
+    },
+    "upper_arm_l": {
+      "pixels": 9940,
+      "bbox_xyxy": [
+        569,
+        562,
+        735,
+        705
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.247,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/upper_arm_l.png",
+      "pivot": {
+        "position": [
+          625.63,
+          603.11
+        ],
+        "joint": "shoulder_l",
+        "status": "proposed"
+      }
+    },
+    "forearm_l": {
+      "pixels": 7712,
+      "bbox_xyxy": [
+        733,
+        574,
+        869,
+        666
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.247,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/forearm_l.png",
+      "pivot": {
+        "position": [
+          732.67,
+          617.6
+        ],
+        "joint": "elbow_l",
+        "status": "proposed"
+      }
+    },
+    "hand_l": {
+      "pixels": 17367,
+      "bbox_xyxy": [
+        841,
+        515,
+        1003,
+        693
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/hand_l.png",
+      "pivot": {
+        "position": [
+          845.08,
+          618.8
+        ],
+        "joint": "wrist_l",
+        "status": "proposed"
+      }
+    },
+    "thigh_r": {
+      "pixels": 13892,
+      "bbox_xyxy": [
+        363,
+        914,
+        510,
+        1147
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.223,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {
+        "lower_clothing": 0.995
+      },
+      "mask": "masks/body/thigh_r.png",
+      "pivot": {
+        "position": [
+          448.56,
+          923.04
+        ],
+        "joint": "hip_r",
+        "status": "proposed"
+      }
+    },
+    "shin_r": {
+      "pixels": 15968,
+      "bbox_xyxy": [
+        302,
+        1132,
+        423,
+        1372
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.223,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {
+        "lower_clothing": 0.973
+      },
+      "mask": "masks/body/shin_r.png",
+      "pivot": {
+        "position": [
+          392.25,
+          1138.12
+        ],
+        "joint": "knee_r",
+        "status": "proposed"
+      }
+    },
+    "foot_r": {
+      "pixels": 17990,
+      "bbox_xyxy": [
+        213,
+        1349,
+        390,
+        1494
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/foot_r.png",
+      "pivot": {
+        "position": [
+          340.08,
+          1352.97
+        ],
+        "joint": "ankle_r",
+        "status": "proposed"
+      }
+    },
+    "thigh_l": {
+      "pixels": 14046,
+      "bbox_xyxy": [
+        510,
+        912,
+        655,
+        1146
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.223,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {
+        "lower_clothing": 0.992
+      },
+      "mask": "masks/body/thigh_l.png",
+      "pivot": {
+        "position": [
+          569.6,
+          921.19
+        ],
+        "joint": "hip_l",
+        "status": "proposed"
+      }
+    },
+    "shin_l": {
+      "pixels": 16099,
+      "bbox_xyxy": [
+        596,
+        1131,
+        718,
+        1373
+      ],
+      "empty": false,
+      "method": "nearest_bone_segment_within_region",
+      "joint_confidence": 0.223,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {
+        "lower_clothing": 0.951
+      },
+      "mask": "masks/body/shin_l.png",
+      "pivot": {
+        "position": [
+          624.54,
+          1138.12
+        ],
+        "joint": "knee_l",
+        "status": "proposed"
+      }
+    },
+    "foot_l": {
+      "pixels": 17786,
+      "bbox_xyxy": [
+        633,
+        1351,
+        809,
+        1494
+      ],
+      "empty": false,
+      "method": "direct_mask",
+      "joint_confidence": 1.0,
+      "truncated_by_image_border": false,
+      "clothing_coverage": {},
+      "mask": "masks/body/foot_l.png",
+      "pivot": {
+        "position": [
+          680.28,
+          1356.43
+        ],
+        "joint": "ankle_l",
+        "status": "proposed"
+      }
+    }
+  },
+  "clothing_regions": {
+    "lower_clothing": {
+      "pelvis": 0.089,
+      "thigh_r": 0.214,
+      "shin_r": 0.242,
+      "thigh_l": 0.216,
+      "shin_l": 0.239
+    }
+  },
+  "unassigned_pixels": 0,
+  "reassigned_fragments": [
+    {
+      "from": "forearm_l",
+      "to": "hand_l",
+      "pieces": 52,
+      "pixels": 339,
+      "largest_px": 83,
+      "largest_bbox_xyxy": [
+        955,
+        606,
+        991,
+        623
+      ]
+    },
+    {
+      "from": "forearm_r",
+      "to": "hand_r",
+      "pieces": 33,
+      "pixels": 292,
+      "largest_px": 113,
+      "largest_bbox_xyxy": [
+        44,
+        602,
+        74,
+        618
+      ]
+    },
+    {
+      "from": "torso",
+      "to": "head",
+      "pieces": 18,
+      "pixels": 182,
+      "largest_px": 93,
+      "largest_bbox_xyxy": [
+        569,
+        461,
+        627,
+        502
+      ]
+    },
+    {
+      "from": "upper_arm_l",
+      "to": "torso",
+      "pieces": 1,
+      "pixels": 174,
+      "largest_px": 174,
+      "largest_bbox_xyxy": [
+        607,
+        712,
+        619,
+        756
+      ]
+    },
+    {
+      "from": "upper_arm_r",
+      "to": "torso",
+      "pieces": 1,
+      "pixels": 134,
+      "largest_px": 134,
+      "largest_bbox_xyxy": [
+        419,
+        704,
+        430,
+        737
+      ]
+    },
+    {
+      "from": "thigh_r",
+      "to": "shin_r",
+      "pieces": 77,
+      "pixels": 117,
+      "largest_px": 5,
+      "largest_bbox_xyxy": [
+        305,
+        1334,
+        306,
+        1339
+      ]
+    },
+    {
+      "from": "thigh_l",
+      "to": "shin_l",
+      "pieces": 75,
+      "pixels": 111,
+      "largest_px": 5,
+      "largest_bbox_xyxy": [
+        640,
+        1356,
+        644,
+        1360
+      ]
+    },
+    {
+      "from": "torso",
+      "to": "pelvis",
+      "pieces": 1,
+      "pixels": 107,
+      "largest_px": 107,
+      "largest_bbox_xyxy": [
+        501,
+        889,
+        516,
+        901
+      ]
+    },
+    {
+      "from": "upper_arm_r",
+      "to": "head",
+      "pieces": 13,
+      "pixels": 90,
+      "largest_px": 37,
+      "largest_bbox_xyxy": [
+        357,
+        465,
+        386,
+        470
+      ]
+    },
+    {
+      "from": "upper_arm_l",
+      "to": "head",
+      "pieces": 14,
+      "pixels": 59,
+      "largest_px": 14,
+      "largest_bbox_xyxy": [
+        676,
+        441,
+        684,
+        451
+      ]
+    },
+    {
+      "from": "shin_r",
+      "to": "foot_r",
+      "pieces": 25,
+      "pixels": 41,
+      "largest_px": 7,
+      "largest_bbox_xyxy": [
+        285,
+        1368,
+        292,
+        1375
+      ]
+    },
+    {
+      "from": "shin_l",
+      "to": "foot_l",
+      "pieces": 12,
+      "pixels": 30,
+      "largest_px": 8,
+      "largest_bbox_xyxy": [
+        754,
+        1392,
+        762,
+        1400
+      ]
+    },
+    {
+      "from": "torso",
+      "to": "hair",
+      "pieces": 5,
+      "pixels": 15,
+      "largest_px": 7,
+      "largest_bbox_xyxy": [
+        480,
+        50,
+        482,
+        57
+      ]
+    },
+    {
+      "from": "forearm_r",
+      "to": "hair",
+      "pieces": 4,
+      "pixels": 10,
+      "largest_px": 5,
+      "largest_bbox_xyxy": [
+        278,
+        294,
+        280,
+        299
+      ]
+    },
+    {
+      "from": "upper_arm_l",
+      "to": "hair",
+      "pieces": 7,
+      "pixels": 7,
+      "largest_px": 1,
+      "largest_bbox_xyxy": [
+        727,
+        266,
+        728,
+        267
+      ]
+    }
+  ],
+  "occlusion": {
+    "joints_occluded": [
+      {
+        "joint": "shoulder_r",
+        "occluded_by": [
+          "sleeve"
+        ]
+      },
+      {
+        "joint": "elbow_r",
+        "occluded_by": [
+          "sleeve"
+        ]
+      },
+      {
+        "joint": "hand_r",
+        "occluded_by": [
+          "arm"
+        ]
+      },
+      {
+        "joint": "shoulder_l",
+        "occluded_by": [
+          "sleeve"
+        ]
+      },
+      {
+        "joint": "elbow_l",
+        "occluded_by": [
+          "sleeve"
+        ]
+      },
+      {
+        "joint": "hand_l",
+        "occluded_by": [
+          "arm"
+        ]
+      },
+      {
+        "joint": "hip_r",
+        "occluded_by": [
+          "lower_clothing"
+        ]
+      },
+      {
+        "joint": "knee_r",
+        "occluded_by": [
+          "lower_clothing"
+        ]
+      },
+      {
+        "joint": "foot_r",
+        "occluded_by": [
+          "leg"
+        ]
+      },
+      {
+        "joint": "hip_l",
+        "occluded_by": [
+          "lower_clothing"
+        ]
+      },
+      {
+        "joint": "knee_l",
+        "occluded_by": [
+          "lower_clothing"
+        ]
+      },
+      {
+        "joint": "foot_l",
+        "occluded_by": [
+          "leg"
+        ]
+      }
+    ],
+    "instance_overlaps": [
+      {
+        "a": "arm[0]",
+        "b": "arm[1]",
+        "pixels": 11026
+      },
+      {
+        "a": "arm[0]",
+        "b": "sleeve[1]",
+        "pixels": 11613
+      },
+      {
+        "a": "arm[1]",
+        "b": "hand[0]",
+        "pixels": 16312
+      },
+      {
+        "a": "arm[1]",
+        "b": "sleeve[1]",
+        "pixels": 11105
+      },
+      {
+        "a": "arm[2]",
+        "b": "arm[3]",
+        "pixels": 10963
+      },
+      {
+        "a": "arm[2]",
+        "b": "hand[1]",
+        "pixels": 16185
+      },
+      {
+        "a": "arm[2]",
+        "b": "sleeve[0]",
+        "pixels": 11132
+      },
+      {
+        "a": "arm[3]",
+        "b": "sleeve[0]",
+        "pixels": 11377
+      },
+      {
+        "a": "face[0]",
+        "b": "head[0]",
+        "pixels": 74731
+      },
+      {
+        "a": "foot[0]",
+        "b": "leg[1]",
+        "pixels": 16927
+      },
+      {
+        "a": "foot[1]",
+        "b": "leg[3]",
+        "pixels": 17201
+      },
+      {
+        "a": "hair[0]",
+        "b": "head[0]",
+        "pixels": 91619
+      },
+      {
+        "a": "head[0]",
+        "b": "neck[0]",
+        "pixels": 10
+      },
+      {
+        "a": "leg[0]",
+        "b": "leg[1]",
+        "pixels": 25673
+      },
+      {
+        "a": "leg[0]",
+        "b": "lower_clothing[0]",
+        "pixels": 25875
+      },
+      {
+        "a": "leg[1]",
+        "b": "lower_clothing[0]",
+        "pixels": 25630
+      },
+      {
+        "a": "leg[2]",
+        "b": "leg[3]",
+        "pixels": 26014
+      },
+      {
+        "a": "leg[2]",
+        "b": "lower_clothing[0]",
+        "pixels": 26157
+      },
+      {
+        "a": "leg[3]",
+        "b": "lower_clothing[0]",
+        "pixels": 26010
+      }
+    ]
+  },
+  "validation": {
+    "issues": [
+      {
+        "joint": "pelvis",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.25, midpoint_of_hips)"
+      },
+      {
+        "joint": "torso",
+        "severity": "error",
+        "issue": "missing"
+      },
+      {
+        "joint": "shoulder_r",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.48, limb_proximal_extreme_inset_by_radius)"
+      },
+      {
+        "joint": "elbow_r",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.31, medial_path_weak_bend)"
+      },
+      {
+        "joint": "shoulder_l",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.43, limb_proximal_extreme_inset_by_radius)"
+      },
+      {
+        "joint": "elbow_l",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.25, straight_limb_midpoint)"
+      },
+      {
+        "joint": "hip_r",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.28, midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline)"
+      },
+      {
+        "joint": "knee_r",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.22, straight_limb_midpoint)"
+      },
+      {
+        "joint": "hip_l",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.28, midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline)"
+      },
+      {
+        "joint": "knee_l",
+        "severity": "warning",
+        "issue": "unreliable (confidence 0.22, straight_limb_midpoint)"
+      }
+    ],
+    "unreliable_joints": [
+      "pelvis",
+      "torso",
+      "shoulder_r",
+      "elbow_r",
+      "shoulder_l",
+      "elbow_l",
+      "hip_r",
+      "knee_r",
+      "hip_l",
+      "knee_l"
+    ]
+  },
+  "segmentation": {
+    "accepted_instances": {
+      "arm": 4,
+      "face": 1,
+      "foot": 2,
+      "hair": 1,
+      "hand": 2,
+      "head": 1,
+      "leg": 4,
+      "lower_clothing": 1,
+      "neck": 1,
+      "person": 1,
+      "sleeve": 2,
+      "upper_clothing": 0
+    },
+    "rejected_instances": [],
+    "run": {
+      "model": "vufinder/sam3",
+      "version": "1bf97763d5dfd3a1584adca913a8ef4b43c684fca97e04e39e4c50a3a5e09650",
+      "prediction_id": "1c098wtsmdrmt0d22ena6kv6cr",
+      "status": "succeeded",
+      "predict_time_s": 6.712713582,
+      "estimated_usd": 0.00654489574245,
+      "cost_basis": "assumed Nvidia L40S $0.000975/s (replicate.com/pricing); hardware not exposed by API",
+      "params": {
+        "prompts": [
+          "{\"text\": \"person\"}",
+          "{\"text\": \"hair\"}",
+          "{\"text\": \"head\"}",
+          "{\"text\": \"face\"}",
+          "{\"text\": \"neck\"}",
+          "{\"text\": \"shirt\"}",
+          "{\"text\": \"sleeve\"}",
+          "{\"text\": \"arm\"}",
+          "{\"text\": \"hand\"}",
+          "{\"text\": \"shorts\"}",
+          "{\"text\": \"pants\"}",
+          "{\"text\": \"leg\"}",
+          "{\"text\": \"shoe\"}"
+        ],
+        "confidence_threshold": 0.5,
+        "visualize": false,
+        "backbone_output": false,
+        "offset_masks": false,
+        "split_output": true,
+        "concat_input": false
+      },
+      "cache_key": "a11f3d6fab4b2c1b8797ef27a1aa1e9eb1bed2b74c5d2f416357920706746fc4",
+      "parser": "sam3-dense-v1",
+      "created_at": "2026-11-25T17:04:20.899Z",
+      "completed_at": "2026-11-25T17:04:27.664008291Z",
+      "cache_hit": true,
+      "provider": "replicate:vufinder/sam3",
+      "image_sha256": "63076f7c050241253b61f90768815150d216ae981d0e58020eda139703431f10",
+      "image_size": [
+        1024,
+        1536
+      ],
+      "prompts": [
+        {
+          "label": "person",
+          "text": "person"
+        },
+        {
+          "label": "hair",
+          "text": "hair"
+        },
+        {
+          "label": "head",
+          "text": "head"
+        },
+        {
+          "label": "face",
+          "text": "face"
+        },
+        {
+          "label": "neck",
+          "text": "neck"
+        },
+        {
+          "label": "upper_clothing",
+          "text": "shirt"
+        },
+        {
+          "label": "sleeve",
+          "text": "sleeve"
+        },
+        {
+          "label": "arm",
+          "text": "arm"
+        },
+        {
+          "label": "hand",
+          "text": "hand"
+        },
+        {
+          "label": "lower_clothing",
+          "text": "shorts"
+        },
+        {
+          "label": "lower_clothing",
+          "text": "pants"
+        },
+        {
+          "label": "leg",
+          "text": "leg"
+        },
+        {
+          "label": "foot",
+          "text": "shoe"
+        }
+      ],
+      "instances_per_prompt": {
+        "person": 1,
+        "hair": 1,
+        "head": 1,
+        "face": 1,
+        "neck": 1,
+        "upper_clothing": 0,
+        "sleeve": 2,
+        "arm": 4,
+        "hand": 2,
+        "lower_clothing": 1,
+        "leg": 4,
+        "foot": 2
+      }
+    }
+  },
+  "estimators": [
+    "mask_geometry"
+  ]
+}

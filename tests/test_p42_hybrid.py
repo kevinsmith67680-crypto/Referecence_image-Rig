@@ -424,3 +424,29 @@ def test_harness_phase42_flow_names_match_the_package():
               "AutoRig_P42_Hybrid.moho", "smart_bone_mt1_works", "visual_review_verdict",
               "phase4_2_verify_report_smartbone.json", "render_range \"$SAVED\" 1 90 renders"):
         assert s in text, s
+
+
+V2_PACKAGE = ROOT / "projects/schoolboy_v2_test/character_package"
+
+
+@pytest.mark.parametrize("name", list(PACKAGES))
+def test_mid_limbs_stay_whole_where_the_cut_is_at_the_joint(chars, name):
+    pkg, sk, base = chars[name]
+    layers = assemble(pkg, sk, "hybrid", base)
+    assert not [l.name for l in layers if l.name.startswith(("forearm", "shin")) and l.name.endswith("__joint")]
+
+
+@pytest.mark.skipif(not V2_PACKAGE.is_dir(), reason="the schoolboy v2 test package is not present")
+def test_a_mid_limb_cut_behind_the_joint_is_split():
+    sk = NativeSkeletonSpec.from_package(V2_PACKAGE)
+    base = base_layers(V2_PACKAGE, sk)
+    layers = assemble(V2_PACKAGE, sk, "hybrid", base)
+    split = [l for l in layers if l.name.startswith(("forearm", "shin")) and l.name.endswith("__joint")]
+    assert [l.name for l in split] == ["forearm_r__joint"]
+    assert split[0].bone == "RIGHT_UPPER_ARM" and split[0].extra["cut_offset_px"] < -15
+    src = next(l for l in base[0] if l.name == "forearm_r")
+    pieces = [l for l in layers if l.source_layer == "forearm_r"]
+    acc = np.zeros_like(src.rgba)
+    for l in pieces:
+        acc[l.rgba[..., 3] > 0] = l.rgba[l.rgba[..., 3] > 0]
+    assert np.array_equal(acc, src.rgba)

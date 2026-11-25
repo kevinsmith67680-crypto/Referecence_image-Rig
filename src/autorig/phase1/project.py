@@ -197,7 +197,12 @@ def analyze_character(image_path: str | Path, out_dir: str | Path, provider, con
     unassigned = pinfo.pop("unassigned_mask")
     warnings += pinfo.get("flags", [])
     steps.append({"step": "anatomy", "estimators": [e.name for e in estimators],
-                  "unreliable_joints": [n for n, j in joints.items() if not j.reliable]})
+                  "unreliable_joints": [n for n, j in joints.items() if not j.reliable],
+                  "reassigned_fragments": sum(g["pieces"] for g in pinfo.get("reassigned_fragments", []))})
+    if pinfo.get("reassigned_fragments"):
+        frag = pinfo["reassigned_fragments"]
+        warnings.append(f"{sum(g['pieces'] for g in frag)} detached fragments ({sum(g['pixels'] for g in frag)} px) "
+                        "of bone-assigned parts given to the part they touch (anatomy.json reassigned_fragments)")
 
     # 3. face
     head_full = ctx.head_region | parts["hair"]
@@ -340,6 +345,7 @@ def analyze_character(image_path: str | Path, out_dir: str | Path, provider, con
                   for p, info in pinfo["parts"].items()},
         "clothing_regions": pinfo["clothing_regions"],
         "unassigned_pixels": pinfo["unassigned_pixels"],
+        "reassigned_fragments": pinfo.get("reassigned_fragments", []),
         "occlusion": {"joints_occluded": [{"joint": n, "occluded_by": j.occluded_by}
                                           for n, j in joints.items() if j.occluded_by],
                       "instance_overlaps": overlaps},

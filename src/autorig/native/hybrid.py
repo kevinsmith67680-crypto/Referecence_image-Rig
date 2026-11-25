@@ -6,7 +6,8 @@ measured before it is adopted:
 
 - ``split``: a limb root layer (upper arm, thigh) loses the pixels that lie behind its pivot plane (the sleeve cap,
   the trouser hip). They go to a derived layer bound to the parent bone (SHOULDER, PELVIS), so they no longer swing
-  with the limb. Pixels past the far joint (the elbow, the knee) go to the next bone. Detached specks of a limb layer
+  with the limb. Pixels past the far joint (the elbow, the knee) go to the next bone. A forearm or shin is split the
+  same way only when its measured cut lies well behind its pivot. Detached specks of a limb layer
   go to the neighbouring layer they touch. It is an exact partition of the original pixels: nothing is duplicated,
   lost or scaled.
 - ``order``: each arm chain is drawn above the torso, as in the original drawing's front view. The original layers
@@ -145,20 +146,67 @@ def _axis_t(sk: NativeSkeletonSpec, bone: str, shape) -> tuple[np.ndarray, float
     return ((xx - bx) * (tx - bx) + (yy - by) * (ty - by)) / L, L
 
 
-def apply_split(layers: list[HLayer], sk: NativeSkeletonSpec) -> list[HLayer]:
+MID_LIMBS = {"FOREARM": "UPPER_ARM", "SHIN": "THIGH"}
+MID_CUT_FRAC = 0.6   # split a mid limb only when its cut lies this many half-thicknesses behind its pivot
+
+
+def mid_cut_offset(l: HLayer, layers: list[HLayer], sk: NativeSkeletonSpec) -> float | None:
+    """Where a mid-limb layer (forearm, shin) meets its parent limb's layer, along its own bone axis (0 = the
+    elbow / knee pivot, negative = behind it): the median of the boundary pixels' axial positions."""
+    from scipy import ndimage
+
+    parent = f"{l.bone.split('_', 1)[0]}_{MID_LIMBS[l.bone.split('_', 1)[1]]}"
+    pm = np.zeros(l.rgba.shape[:2], bool)
+    for o in layers:
+        if o.bone == parent and o.status in ("original", "derived_partition"):
+            pm |= o.rgba[..., 3] > 0
+    cut = (l.rgba[..., 3] > 0) & ndimage.binary_dilation(pm, iterations=2)
+    if not cut.any():
+        return None
+    t, _ = _axis_t(sk, l.bone, l.rgba.shape)
+    return float(np.median(t[cut]))
+
+
+def apply_split(layers: list[HLayer], sk: NativeSkeletonSpec, rig: dict[str, Any] | None = None) -> list[HLayer]:
+    """Root limbs are always split at their pivot plane (the audit's LAYER_CUT at the shoulders and hips). A mid limb
+    (forearm, shin) is split only when its measured cut lies more than ``MID_CUT_FRAC`` half-thicknesses behind its
+    pivot: where the cut is at the joint, moving pixels across it opens a hole instead (measured on the schoolboy's
+    left elbow: 150 -> 546 px)."""
     out = []
+    half = {b.get("name"): float(b.get("half_thickness_px") or 0) for b in (rig or {}).get("bones", [])}
     for l in layers:
         suffix = l.bone.split("_", 1)[1] if "_" in l.bone else ""
+        if l.status == "original" and suffix in MID_LIMBS:
+            off = mid_cut_offset(l, layers, sk)
+            src = sk.bone(l.bone).source.split(" ")[0]
+            ht = half.get(src) or 0.0
+            if off is not None and ht > 0 and off < -MID_CUT_FRAC * ht:
+                parent = f"{l.bone.split('_', 1)[0]}_{MID_LIMBS[suffix]}"
+                t, _ = _axis_t(sk, l.bone, l.rgba.shape)
+                a = l.rgba[..., 3] > 0
+                behind = a & (t < 0)
+                for mask, name, bone, why in (
+                        (behind, f"{l.name}__joint", parent, f"pixels of {l.name} behind the {l.bone} pivot plane "
+                                                             f"stay with {parent} (cut {off:.1f} px from the pivot)"),
+                        (a & ~behind, l.name, l.bone, l.reason)):
+                    if mask.any():
+                        rgba = np.zeros_like(l.rgba)
+                        rgba[mask] = l.rgba[mask]
+                        out.append(HLayer(name, rgba, bone, l.z, l.binding_class,
+                                          "original" if name == l.name else "derived_partition", l.name, why,
+                                          {"px": int(mask.sum()), "cut_offset_px": round(off, 1)}))
+                continue
         if l.status != "original" or suffix not in ROOT_LIMBS:
             out.append(l)
             continue
         side = l.bone.split("_", 1)[0]
         parent_suffix, child_suffix = ROOT_LIMBS[suffix]
         parent = parent_suffix if parent_suffix == "PELVIS" else f"{side}_{parent_suffix}"
-        child = f"{side}_{child_suffix}"
+        child = f"{side}_{child_suffix}" if child_suffix else None
         t, L = _axis_t(sk, l.bone, l.rgba.shape)
         a = l.rgba[..., 3] > 0
-        behind, past = a & (t < 0), a & (t > L)
+        behind = a & (t < 0)
+        past = a & (t > L) if child else np.zeros_like(a)  # no child given: pixels past the tip stay
         keep = a & ~behind & ~past
         for mask, name, bone, why in ((behind, f"{l.name}__joint", parent,
                                        f"pixels of {l.name} behind the {l.bone} pivot plane stay with {parent}"),
@@ -463,7 +511,7 @@ def assemble(pkg: str | Path, sk: NativeSkeletonSpec, variant: str,
               for l in layers]
     steps = VARIANTS[variant]
     if "split" in steps:
-        layers = reassign_specks(apply_split(layers, sk))
+        layers = reassign_specks(apply_split(layers, sk, ctx.get("rig")))
     if "order" in steps:
         layers = apply_order(layers)
     if "extensions" in steps:

@@ -1,0 +1,149 @@
+{
+  "checks": {
+    "phase4_0": {
+      "character": "schoolboy_v2_test",
+      "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+      "items": {
+        "native_document": "MOCK_ONLY",
+        "bone_moves_artwork": "MOCK_ONLY",
+        "document_saved": "NOT_EXECUTED",
+        "document_reopened": "MOCK_ONLY",
+        "bone_functional_after_reopen": "MOCK_ONLY"
+      },
+      "placement": {
+        "offset_px": [
+          448,
+          0
+        ],
+        "rule": "canvas_px = source_px + offset; integer, no scaling",
+        "clipped_alpha_px": {
+          "body_back": 75063,
+          "arm": 0,
+          "body_front": 0
+        },
+        "arm_on_canvas_fraction": {
+          "moved": 0.9997,
+          "reopen_move": 0.9996
+        }
+      },
+      "split_fidelity": {
+        "max_abs_diff": 0,
+        "px_over_2": 0
+      }
+    },
+    "phase4_1": {
+      "character": "schoolboy_v2_test",
+      "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+      "gates": {
+        "4.1-A": "MOCK_ONLY",
+        "4.1-B": "NOT_EXECUTED",
+        "4.1-C": "MOCK_ONLY",
+        "4.1-D": "NOT_EXECUTED",
+        "4.1-E": "NOT_EXECUTED",
+        "4.1-F": "MOCK_ONLY",
+        "4.1-G": "MOCK_ONLY",
+        "4.1-H": "NOT_EXECUTED",
+        "4.1-I": "MOCK_ONLY",
+        "4.1-J": "MOCK_ONLY",
+        "4.1-K": "MOCK_ONLY",
+        "4.1-L": "MOCK_ONLY"
+      },
+      "moho_canvas": [
+        1098,
+        1600
+      ],
+      "placement": {
+        "offset_px": [
+          61,
+          63
+        ],
+        "scale": 1,
+        "rule": "canvas_px = source_px + offset; integer, never scaled"
+      },
+      "bones": 25,
+      "binding_counts": {
+        "FLEXIBLE": 8,
+        "RIGID": 12,
+        "LIMITED_DEFORMATION": 3,
+        "SWITCHABLE": 2
+      },
+      "layers": 25
+    },
+    "phase4_2": {
+      "character": "schoolboy_v2_test",
+      "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+      "gates": {
+        "4.2-A": "MOCK_ONLY",
+        "4.2-B": "MOCK_ONLY",
+        "4.2-C": "MOCK_ONLY",
+        "4.2-D": "MOCK_ONLY",
+        "4.2-E": "MEASURED",
+        "4.2-F": "NOT_EXECUTED",
+        "4.2-G": "MOCK_ONLY",
+        "4.2-H": "MOCK_ONLY",
+        "4.2-I": "NOT_EXECUTED",
+        "4.2-J": "NOT_EXECUTED",
+        "4.2-K": "NOT_EXECUTED"
+      },
+      "moho_canvas": [
+        1066,
+        1582
+      ],
+      "layers": {
+        "derived_partition": 8,
+        "original": 25
+      },
+      "review_layers": {
+        "pending_corrective": 6,
+        "derived_partition": 8,
+        "original": 25
+      },
+      "partition_exact": true,
+      "manual_switch_assets": {
+        "native_gap_shoulder_l__both_arms_lowered": [
+          "k025",
+          "k050",
+          "k075",
+          "k100"
+        ],
+        "native_gap_shoulder_l__left_arm_raised": [
+          "k025",
+          "k050",
+          "k075",
+          "k100"
+        ],
+        "native_gap_shoulder_r__both_arms_lowered": [
+          "k025",
+          "k050",
+          "k075",
+          "k100"
+        ],
+        "native_gap_shoulder_r__right_arm_raised": [
+          "k025",
+          "k050",
+          "k075",
+          "k100"
+        ],
+        "native_gap_hip_l__left_knee_bent": [
+          "k025",
+          "k050",
+          "k075",
+          "k100"
+        ],
+        "native_gap_hip_r__right_knee_bent": [
+          "k025",
+          "k050",
+          "k075",
+          "k100"
+        ]
+      }
+    }
+  },
+  "seconds": {
+    "native-fills": 59.2,
+    "deform-audit": 207.8,
+    "phase4_0": 7.8,
+    "phase4_1": 38.6,
+    "phase4_2": 62.5
+  }
+}

@@ -1,0 +1,1441 @@
+{
+  "schema": "autorig.occlusion",
+  "schema_version": "1.0.0",
+  "image": {
+    "width": 1024,
+    "height": 1536,
+    "coordinate_system": "source pixels, origin top-left, +y down"
+  },
+  "graph": {
+    "nodes": {
+      "foot_r": {
+        "pixels": 17990,
+        "bone": "foot_r"
+      },
+      "shin_r": {
+        "pixels": 15968,
+        "bone": "shin_r"
+      },
+      "thigh_r": {
+        "pixels": 13892,
+        "bone": "thigh_r"
+      },
+      "foot_l": {
+        "pixels": 17786,
+        "bone": "foot_l"
+      },
+      "shin_l": {
+        "pixels": 16099,
+        "bone": "shin_l"
+      },
+      "thigh_l": {
+        "pixels": 14046,
+        "bone": "thigh_l"
+      },
+      "pelvis": {
+        "pixels": 22567,
+        "bone": "body"
+      },
+      "neck": {
+        "pixels": 1243,
+        "bone": "body"
+      },
+      "torso": {
+        "pixels": 51845,
+        "bone": "body"
+      },
+      "upper_arm_r": {
+        "pixels": 7963,
+        "bone": "upper_arm_r"
+      },
+      "forearm_r": {
+        "pixels": 9198,
+        "bone": "forearm_r"
+      },
+      "hand_r": {
+        "pixels": 17434,
+        "bone": "hand_r"
+      },
+      "upper_arm_l": {
+        "pixels": 9940,
+        "bone": "upper_arm_l"
+      },
+      "forearm_l": {
+        "pixels": 7712,
+        "bone": "forearm_l"
+      },
+      "hand_l": {
+        "pixels": 17367,
+        "bone": "hand_l"
+      },
+      "head_base": {
+        "pixels": 64243,
+        "bone": "head"
+      },
+      "nose": {
+        "pixels": 907,
+        "bone": "head"
+      },
+      "mouth": {
+        "pixels": 272,
+        "bone": "head"
+      },
+      "brow_r": {
+        "pixels": 2437,
+        "bone": "head"
+      },
+      "brow_l": {
+        "pixels": 2465,
+        "bone": "head"
+      },
+      "hair": {
+        "pixels": 95475,
+        "bone": "head"
+      },
+      "eye_r_white": {
+        "pixels": 3550,
+        "bone": "head"
+      },
+      "eye_r_iris": {
+        "pixels": 941,
+        "bone": "head"
+      },
+      "eye_l_white": {
+        "pixels": 3559,
+        "bone": "head"
+      },
+      "eye_l_iris": {
+        "pixels": 901,
+        "bone": "head"
+      }
+    },
+    "edges": [
+      {
+        "front": "brow_l",
+        "back": "eye_l_iris",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 27,
+          "line_pixels": {
+            "brow_l": 15,
+            "eye_l_iris": 12
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "brow_l",
+        "back": "eye_l_white",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 271,
+          "line_pixels": {
+            "brow_l": 140,
+            "eye_l_white": 113
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "brow_l",
+        "back": "head_base",
+        "confidence": 0.98,
+        "method": "linework+prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 2730,
+          "line_pixels": {
+            "brow_l": 1184,
+            "head_base": 87
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "brow_r",
+        "back": "eye_r_iris",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 64,
+          "line_pixels": {
+            "brow_r": 32,
+            "eye_r_iris": 32
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "brow_r",
+        "back": "eye_r_white",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 247,
+          "line_pixels": {
+            "brow_r": 137,
+            "eye_r_white": 107
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "brow_r",
+        "back": "head_base",
+        "confidence": 0.98,
+        "method": "linework+prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 2873,
+          "line_pixels": {
+            "brow_r": 1256,
+            "head_base": 136
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "eye_l_iris",
+        "back": "eye_l_white",
+        "confidence": 0.98,
+        "method": "linework+prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 1122,
+          "line_pixels": {
+            "eye_l_iris": 447,
+            "eye_l_white": 151
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "eye_l_iris",
+        "back": "head_base",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 122,
+          "line_pixels": {
+            "eye_l_iris": 61,
+            "head_base": 58
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "eye_l_white",
+        "back": "head_base",
+        "confidence": 0.739,
+        "method": "linework",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 2560,
+          "line_pixels": {
+            "eye_l_white": 900,
+            "head_base": 227
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "eye_r_iris",
+        "back": "eye_r_white",
+        "confidence": 0.98,
+        "method": "linework+prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 1116,
+          "line_pixels": {
+            "eye_r_iris": 481,
+            "eye_r_white": 137
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "eye_r_iris",
+        "back": "head_base",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 175,
+          "line_pixels": {
+            "eye_r_iris": 89,
+            "head_base": 79
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "eye_r_white",
+        "back": "head_base",
+        "confidence": 0.686,
+        "method": "linework",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 2568,
+          "line_pixels": {
+            "eye_r_white": 879,
+            "head_base": 322
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "foot_l",
+        "back": "shin_l",
+        "confidence": 0.7,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "ankle_l",
+        "evidence": {
+          "contact_pixels": 892,
+          "line_pixels": {
+            "foot_l": 235,
+            "shin_l": 301
+          }
+        },
+        "consistent_with_phase1_z_order": false
+      },
+      {
+        "front": "foot_r",
+        "back": "shin_r",
+        "confidence": 0.7,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "ankle_r",
+        "evidence": {
+          "contact_pixels": 878,
+          "line_pixels": {
+            "foot_r": 352,
+            "shin_r": 381
+          }
+        },
+        "consistent_with_phase1_z_order": false
+      },
+      {
+        "front": "hand_l",
+        "back": "forearm_l",
+        "confidence": 0.6,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "wrist_l",
+        "evidence": {
+          "contact_pixels": 1083,
+          "line_pixels": {
+            "forearm_l": 480,
+            "hand_l": 261
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "forearm_l",
+        "back": "upper_arm_l",
+        "confidence": 0.55,
+        "method": "prior",
+        "ambiguous": true,
+        "joint": "elbow_l",
+        "evidence": {
+          "contact_pixels": 601,
+          "line_pixels": {
+            "forearm_l": 114,
+            "upper_arm_l": 114
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "hand_r",
+        "back": "forearm_r",
+        "confidence": 0.6,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "wrist_r",
+        "evidence": {
+          "contact_pixels": 1409,
+          "line_pixels": {
+            "forearm_r": 595,
+            "hand_r": 489
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "forearm_r",
+        "back": "upper_arm_r",
+        "confidence": 0.55,
+        "method": "prior",
+        "ambiguous": true,
+        "joint": "elbow_r",
+        "evidence": {
+          "contact_pixels": 530,
+          "line_pixels": {
+            "forearm_r": 113,
+            "upper_arm_r": 114
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "hair",
+        "back": "head_base",
+        "confidence": 0.98,
+        "method": "linework+prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 6481,
+          "line_pixels": {
+            "hair": 3215,
+            "head_base": 1141
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "mouth",
+        "back": "head_base",
+        "confidence": 0.95,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 1142,
+          "line_pixels": {
+            "head_base": 0,
+            "mouth": 0
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "head_base",
+        "back": "neck",
+        "confidence": 0.9,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "neck",
+        "evidence": {
+          "contact_pixels": 310,
+          "line_pixels": {
+            "head_base": 147,
+            "neck": 163
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "nose",
+        "back": "head_base",
+        "confidence": 0.98,
+        "method": "linework+prior",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 1228,
+          "line_pixels": {
+            "head_base": 0,
+            "nose": 24
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "head_base",
+        "back": "torso",
+        "confidence": 0.642,
+        "method": "linework",
+        "ambiguous": false,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 881,
+          "line_pixels": {
+            "head_base": 562,
+            "torso": 268
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "torso",
+        "back": "neck",
+        "confidence": 0.6,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "neck",
+        "evidence": {
+          "contact_pixels": 1093,
+          "line_pixels": {
+            "neck": 493,
+            "torso": 413
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "pelvis",
+        "back": "thigh_l",
+        "confidence": 0.7,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "hip_l",
+        "evidence": {
+          "contact_pixels": 1275,
+          "line_pixels": {
+            "pelvis": 63,
+            "thigh_l": 67
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "pelvis",
+        "back": "thigh_r",
+        "confidence": 0.7,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "hip_r",
+        "evidence": {
+          "contact_pixels": 1258,
+          "line_pixels": {
+            "pelvis": 54,
+            "thigh_r": 73
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "torso",
+        "back": "pelvis",
+        "confidence": 0.55,
+        "method": "prior",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 2977,
+          "line_pixels": {
+            "pelvis": 452,
+            "torso": 584
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "shin_l",
+        "back": "thigh_l",
+        "confidence": 0.5,
+        "method": "prior",
+        "ambiguous": true,
+        "joint": "knee_l",
+        "evidence": {
+          "contact_pixels": 708,
+          "line_pixels": {
+            "shin_l": 104,
+            "thigh_l": 105
+          }
+        },
+        "consistent_with_phase1_z_order": false
+      },
+      {
+        "front": "shin_r",
+        "back": "thigh_r",
+        "confidence": 0.5,
+        "method": "prior",
+        "ambiguous": true,
+        "joint": "knee_r",
+        "evidence": {
+          "contact_pixels": 711,
+          "line_pixels": {
+            "shin_r": 106,
+            "thigh_r": 103
+          }
+        },
+        "consistent_with_phase1_z_order": false
+      },
+      {
+        "front": "thigh_l",
+        "back": "thigh_r",
+        "confidence": 0.3,
+        "method": "phase1_z_order_fallback",
+        "ambiguous": true,
+        "joint": null,
+        "evidence": {
+          "contact_pixels": 79,
+          "line_pixels": {
+            "thigh_l": 33,
+            "thigh_r": 33
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "upper_arm_l",
+        "back": "torso",
+        "confidence": 0.75,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "shoulder_l",
+        "evidence": {
+          "contact_pixels": 1722,
+          "line_pixels": {
+            "torso": 184,
+            "upper_arm_l": 235
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      },
+      {
+        "front": "upper_arm_r",
+        "back": "torso",
+        "confidence": 0.75,
+        "method": "prior",
+        "ambiguous": false,
+        "joint": "shoulder_r",
+        "evidence": {
+          "contact_pixels": 1516,
+          "line_pixels": {
+            "torso": 148,
+            "upper_arm_r": 198
+          }
+        },
+        "consistent_with_phase1_z_order": true
+      }
+    ],
+    "z_order_back_to_front": [
+      "thigh_r",
+      "shin_r",
+      "foot_r",
+      "thigh_l",
+      "shin_l",
+      "foot_l",
+      "pelvis",
+      "neck",
+      "torso",
+      "upper_arm_r",
+      "forearm_r",
+      "hand_r",
+      "upper_arm_l",
+      "forearm_l",
+      "hand_l",
+      "head_base",
+      "nose",
+      "mouth",
+      "eye_r_white",
+      "eye_r_iris",
+      "eye_l_white",
+      "eye_l_iris",
+      "brow_r",
+      "brow_l",
+      "hair"
+    ],
+    "edges_dropped_to_break_cycles": [],
+    "z_order_changes_vs_phase1": [
+      "foot_l now in front of shin_l",
+      "foot_r now in front of shin_r",
+      "shin_l now in front of thigh_l",
+      "shin_r now in front of thigh_r"
+    ]
+  },
+  "regions": [
+    {
+      "id": "head_base__under__brow_l",
+      "owner": "head_base",
+      "occluded_by": [
+        "brow_l"
+      ],
+      "mask": "masks/reconstruction/head_base__under__brow_l.png",
+      "pixels": 2465,
+      "bbox_xyxy": [
+        528,
+        296,
+        638,
+        362
+      ],
+      "joint": null,
+      "exposed_by": [
+        "brow_raise_left",
+        "brow_raise_right",
+        "brow_frown"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "head_base__under__brow_r",
+      "owner": "head_base",
+      "occluded_by": [
+        "brow_r"
+      ],
+      "mask": "masks/reconstruction/head_base__under__brow_r.png",
+      "pixels": 2437,
+      "bbox_xyxy": [
+        382,
+        306,
+        498,
+        363
+      ],
+      "joint": null,
+      "exposed_by": [
+        "brow_raise_left",
+        "brow_raise_right",
+        "brow_frown"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "eye_l_white__under__eye_l_iris",
+      "owner": "eye_l_white",
+      "occluded_by": [
+        "eye_l_iris"
+      ],
+      "mask": "masks/reconstruction/eye_l_white__under__eye_l_iris.png",
+      "pixels": 901,
+      "bbox_xyxy": [
+        551,
+        352,
+        588,
+        383
+      ],
+      "joint": null,
+      "exposed_by": [
+        "eye_look_x",
+        "eye_look_y"
+      ],
+      "method": "whole_eye_mask",
+      "confidence": 0.85,
+      "ambiguous": false,
+      "strategy": "generative_required_no_provider",
+      "notes": []
+    },
+    {
+      "id": "head_base__under__eye_l_iris",
+      "owner": "head_base",
+      "occluded_by": [
+        "eye_l_iris"
+      ],
+      "mask": "masks/reconstruction/head_base__under__eye_l_iris.png",
+      "pixels": 901,
+      "bbox_xyxy": [
+        551,
+        352,
+        588,
+        383
+      ],
+      "joint": null,
+      "exposed_by": [
+        "eye_blink_left",
+        "eye_blink_right"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.3,
+      "ambiguous": true,
+      "strategy": "generative_required_no_provider",
+      "notes": [
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "head_base__under__eye_l_white",
+      "owner": "head_base",
+      "occluded_by": [
+        "eye_l_white"
+      ],
+      "mask": "masks/reconstruction/head_base__under__eye_l_white.png",
+      "pixels": 3559,
+      "bbox_xyxy": [
+        540,
+        341,
+        630,
+        406
+      ],
+      "joint": null,
+      "exposed_by": [
+        "eye_blink_left",
+        "eye_blink_right"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "eye_r_white__under__eye_r_iris",
+      "owner": "eye_r_white",
+      "occluded_by": [
+        "eye_r_iris"
+      ],
+      "mask": "masks/reconstruction/eye_r_white__under__eye_r_iris.png",
+      "pixels": 941,
+      "bbox_xyxy": [
+        435,
+        354,
+        474,
+        385
+      ],
+      "joint": null,
+      "exposed_by": [
+        "eye_look_x",
+        "eye_look_y"
+      ],
+      "method": "whole_eye_mask",
+      "confidence": 0.85,
+      "ambiguous": false,
+      "strategy": "generative_required_no_provider",
+      "notes": []
+    },
+    {
+      "id": "head_base__under__eye_r_iris",
+      "owner": "head_base",
+      "occluded_by": [
+        "eye_r_iris"
+      ],
+      "mask": "masks/reconstruction/head_base__under__eye_r_iris.png",
+      "pixels": 941,
+      "bbox_xyxy": [
+        435,
+        354,
+        474,
+        385
+      ],
+      "joint": null,
+      "exposed_by": [
+        "eye_blink_left",
+        "eye_blink_right"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.3,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": [
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "head_base__under__eye_r_white",
+      "owner": "head_base",
+      "occluded_by": [
+        "eye_r_white"
+      ],
+      "mask": "masks/reconstruction/head_base__under__eye_r_white.png",
+      "pixels": 3550,
+      "bbox_xyxy": [
+        392,
+        348,
+        485,
+        410
+      ],
+      "joint": null,
+      "exposed_by": [
+        "eye_blink_left",
+        "eye_blink_right"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "shin_l__under__foot_l",
+      "owner": "shin_l",
+      "occluded_by": [
+        "foot_l"
+      ],
+      "mask": "masks/reconstruction/shin_l__under__foot_l.png",
+      "pixels": 1132,
+      "bbox_xyxy": [
+        654,
+        1351,
+        708,
+        1384
+      ],
+      "joint": "ankle_l",
+      "exposed_by": [
+        "ankle_l"
+      ],
+      "method": "tapered_capsule(r=24.5->27.3)",
+      "confidence": 0.7,
+      "ambiguous": false,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "shin_r__under__foot_r",
+      "owner": "shin_r",
+      "occluded_by": [
+        "foot_r"
+      ],
+      "mask": "masks/reconstruction/shin_r__under__foot_r.png",
+      "pixels": 1179,
+      "bbox_xyxy": [
+        312,
+        1349,
+        366,
+        1381
+      ],
+      "joint": "ankle_r",
+      "exposed_by": [
+        "ankle_r"
+      ],
+      "method": "tapered_capsule(r=24.5->27.7)",
+      "confidence": 0.7,
+      "ambiguous": false,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "forearm_l__under__hand_l",
+      "owner": "forearm_l",
+      "occluded_by": [
+        "hand_l"
+      ],
+      "mask": "masks/reconstruction/forearm_l__under__hand_l.png",
+      "pixels": 1094,
+      "bbox_xyxy": [
+        841,
+        593,
+        871,
+        643
+      ],
+      "joint": "wrist_l",
+      "exposed_by": [
+        "wrist_l"
+      ],
+      "method": "tapered_capsule(r=23.5->25.0)",
+      "confidence": 0.6,
+      "ambiguous": false,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "upper_arm_l__under__forearm_l",
+      "owner": "upper_arm_l",
+      "occluded_by": [
+        "forearm_l"
+      ],
+      "mask": "masks/reconstruction/upper_arm_l__under__forearm_l.png",
+      "pixels": 502,
+      "bbox_xyxy": [
+        733,
+        599,
+        751,
+        636
+      ],
+      "joint": "elbow_l",
+      "exposed_by": [
+        "elbow_l"
+      ],
+      "method": "tapered_capsule(r=23.1->18.0)",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "generative_required_no_provider",
+      "notes": [
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "forearm_r__under__hand_r",
+      "owner": "forearm_r",
+      "occluded_by": [
+        "hand_r"
+      ],
+      "mask": "masks/reconstruction/forearm_r__under__hand_r.png",
+      "pixels": 1117,
+      "bbox_xyxy": [
+        156,
+        594,
+        187,
+        644
+      ],
+      "joint": "wrist_r",
+      "exposed_by": [
+        "wrist_r"
+      ],
+      "method": "tapered_capsule(r=21.0->25.1)",
+      "confidence": 0.6,
+      "ambiguous": false,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "upper_arm_r__under__forearm_r",
+      "owner": "upper_arm_r",
+      "occluded_by": [
+        "forearm_r"
+      ],
+      "mask": "masks/reconstruction/upper_arm_r__under__forearm_r.png",
+      "pixels": 502,
+      "bbox_xyxy": [
+        302,
+        599,
+        321,
+        634
+      ],
+      "joint": "elbow_r",
+      "exposed_by": [
+        "elbow_r"
+      ],
+      "method": "tapered_capsule(r=21.2->17.1)",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "generative_required_no_provider",
+      "notes": [
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "head_base__under__hair",
+      "owner": "head_base",
+      "occluded_by": [
+        "hair"
+      ],
+      "mask": "masks/reconstruction/head_base__under__hair.png",
+      "pixels": 78133,
+      "bbox_xyxy": [
+        278,
+        19,
+        692,
+        378
+      ],
+      "joint": null,
+      "exposed_by": [
+        "head_yaw",
+        "head_pitch",
+        "hair_secondary_motion"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "generative_required_no_provider",
+      "notes": []
+    },
+    {
+      "id": "head_base__under__mouth",
+      "owner": "head_base",
+      "occluded_by": [
+        "mouth"
+      ],
+      "mask": "masks/reconstruction/head_base__under__mouth.png",
+      "pixels": 272,
+      "bbox_xyxy": [
+        486,
+        443,
+        552,
+        459
+      ],
+      "joint": null,
+      "exposed_by": [
+        "jaw_open",
+        "mouth_width",
+        "smile_left",
+        "smile_right",
+        "mouth_pucker"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "neck__under__head_base",
+      "owner": "neck",
+      "occluded_by": [
+        "head_base"
+      ],
+      "mask": "masks/reconstruction/neck__under__head_base.png",
+      "pixels": 2503,
+      "bbox_xyxy": [
+        491,
+        438,
+        531,
+        520
+      ],
+      "joint": "neck",
+      "exposed_by": [
+        "neck"
+      ],
+      "method": "neck_capsule_from_visible_width",
+      "confidence": 0.5,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "head_base__under__nose",
+      "owner": "head_base",
+      "occluded_by": [
+        "nose"
+      ],
+      "mask": "masks/reconstruction/head_base__under__nose.png",
+      "pixels": 907,
+      "bbox_xyxy": [
+        494,
+        400,
+        538,
+        427
+      ],
+      "joint": null,
+      "exposed_by": [
+        "head_yaw"
+      ],
+      "method": "ellipse_fit_to_visible_skull_outline",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "torso__under__head_base",
+      "owner": "torso",
+      "occluded_by": [
+        "head_base"
+      ],
+      "mask": "masks/reconstruction/torso__under__head_base.png",
+      "pixels": 502,
+      "bbox_xyxy": [
+        471,
+        506,
+        554,
+        520
+      ],
+      "joint": null,
+      "exposed_by": [],
+      "method": "convex_hull",
+      "confidence": 0.642,
+      "ambiguous": false,
+      "strategy": "not_needed_for_planned_motion",
+      "notes": [
+        "not exposed by any planned joint or facial control"
+      ]
+    },
+    {
+      "id": "neck__under__torso",
+      "owner": "neck",
+      "occluded_by": [
+        "torso"
+      ],
+      "mask": "masks/reconstruction/neck__under__torso.png",
+      "pixels": 453,
+      "bbox_xyxy": [
+        495,
+        512,
+        533,
+        565
+      ],
+      "joint": "neck",
+      "exposed_by": [
+        "neck"
+      ],
+      "method": "neck_capsule_from_visible_width",
+      "confidence": 0.5,
+      "ambiguous": true,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "thigh_l__under__pelvis",
+      "owner": "thigh_l",
+      "occluded_by": [
+        "pelvis"
+      ],
+      "mask": "masks/reconstruction/thigh_l__under__pelvis.png",
+      "pixels": 883,
+      "bbox_xyxy": [
+        546,
+        898,
+        592,
+        927
+      ],
+      "joint": "hip_l",
+      "exposed_by": [
+        "hip_l"
+      ],
+      "method": "tapered_capsule(r=22.8->23.3)",
+      "confidence": 0.7,
+      "ambiguous": false,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "thigh_r__under__pelvis",
+      "owner": "thigh_r",
+      "occluded_by": [
+        "pelvis"
+      ],
+      "mask": "masks/reconstruction/thigh_r__under__pelvis.png",
+      "pixels": 867,
+      "bbox_xyxy": [
+        426,
+        900,
+        472,
+        929
+      ],
+      "joint": "hip_r",
+      "exposed_by": [
+        "hip_r"
+      ],
+      "method": "tapered_capsule(r=22.8->23.3)",
+      "confidence": 0.7,
+      "ambiguous": false,
+      "strategy": "deterministic_flat_fill",
+      "notes": []
+    },
+    {
+      "id": "pelvis__under__torso",
+      "owner": "pelvis",
+      "occluded_by": [
+        "torso"
+      ],
+      "mask": "masks/reconstruction/pelvis__under__torso.png",
+      "pixels": 11487,
+      "bbox_xyxy": [
+        392,
+        794,
+        634,
+        882
+      ],
+      "joint": null,
+      "exposed_by": [],
+      "method": "convex_hull",
+      "confidence": 0.55,
+      "ambiguous": true,
+      "strategy": "not_needed_for_planned_motion",
+      "notes": [
+        "not exposed by any planned joint or facial control",
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "thigh_l__under__shin_l",
+      "owner": "thigh_l",
+      "occluded_by": [
+        "shin_l"
+      ],
+      "mask": "masks/reconstruction/thigh_l__under__shin_l.png",
+      "pixels": 849,
+      "bbox_xyxy": [
+        602,
+        1133,
+        648,
+        1162
+      ],
+      "joint": "knee_l",
+      "exposed_by": [
+        "knee_l"
+      ],
+      "method": "tapered_capsule(r=22.8->23.3)",
+      "confidence": 0.5,
+      "ambiguous": true,
+      "strategy": "generative_required_no_provider",
+      "notes": [
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "thigh_r__under__shin_r",
+      "owner": "thigh_r",
+      "occluded_by": [
+        "shin_r"
+      ],
+      "mask": "masks/reconstruction/thigh_r__under__shin_r.png",
+      "pixels": 879,
+      "bbox_xyxy": [
+        368,
+        1133,
+        415,
+        1162
+      ],
+      "joint": "knee_r",
+      "exposed_by": [
+        "knee_r"
+      ],
+      "method": "tapered_capsule(r=22.8->23.3)",
+      "confidence": 0.5,
+      "ambiguous": true,
+      "strategy": "generative_required_no_provider",
+      "notes": [
+        "front/back relation ambiguous"
+      ]
+    },
+    {
+      "id": "torso__under__upper_arm_l",
+      "owner": "torso",
+      "occluded_by": [
+        "upper_arm_l"
+      ],
+      "mask": "masks/reconstruction/torso__under__upper_arm_l.png",
+      "pixels": 2169,
+      "bbox_xyxy": [
+        569,
+        563,
+        614,
+        705
+      ],
+      "joint": "shoulder_l",
+      "exposed_by": [
+        "shoulder_l"
+      ],
+      "method": "convex_hull",
+      "confidence": 0.7,
+      "ambiguous": false,
+      "strategy": "generative_required_no_provider",
+      "notes": []
+    },
+    {
+      "id": "torso__under__upper_arm_r",
+      "owner": "torso",
+      "occluded_by": [
+        "upper_arm_r"
+      ],
+      "mask": "masks/reconstruction/torso__under__upper_arm_r.png",
+      "pixels": 1872,
+      "bbox_xyxy": [
+        421,
+        562,
+        459,
+        686
+      ],
+      "joint": "shoulder_r",
+      "exposed_by": [
+        "shoulder_r"
+      ],
+      "method": "convex_hull",
+      "confidence": 0.7,
+      "ambiguous": false,
+      "strategy": "generative_required_no_provider",
+      "notes": []
+    }
+  ],
+  "new_artwork_required": [
+    {
+      "asset": "closed_eye_r",
+      "reason": "reference shows the eye open only",
+      "needed_for": [
+        "blinking"
+      ]
+    },
+    {
+      "asset": "closed_eye_l",
+      "reason": "reference shows the eye open only",
+      "needed_for": [
+        "blinking"
+      ]
+    },
+    {
+      "asset": "open_mouth_with_interior",
+      "reason": "reference mouth is a closed line",
+      "needed_for": [
+        "mouth_opening",
+        "lip_sync"
+      ]
+    },
+    {
+      "asset": "phoneme_mouth_set",
+      "reason": "only one (neutral) mouth shape exists",
+      "needed_for": [
+        "lip_sync"
+      ]
+    },
+    {
+      "asset": "three_quarter_and_profile_head_views",
+      "reason": "single front view only",
+      "needed_for": [
+        "head_turning"
+      ]
+    },
+    {
+      "asset": "back_of_hair_and_hidden_head_outline",
+      "reason": "hidden by the front view",
+      "needed_for": [
+        "head_turning",
+        "head_tilting"
+      ]
+    },
+    {
+      "asset": "expression_variants (brows, eyes, mouth)",
+      "reason": "only the neutral expression exists",
+      "needed_for": [
+        "facial_expressions"
+      ]
+    },
+    {
+      "asset": "teeth",
+      "reason": "a single front view does not reveal it",
+      "needed_for": [
+        "jaw_open",
+        "lip_sync"
+      ]
+    },
+    {
+      "asset": "tongue",
+      "reason": "a single front view does not reveal it",
+      "needed_for": [
+        "jaw_open",
+        "lip_sync"
+      ]
+    },
+    {
+      "asset": "upper_eyelid_r",
+      "reason": "a single front view does not reveal it",
+      "needed_for": [
+        "eye_blink_right"
+      ]
+    },
+    {
+      "asset": "upper_eyelid_l",
+      "reason": "a single front view does not reveal it",
+      "needed_for": [
+        "eye_blink_left"
+      ]
+    },
+    {
+      "asset": "lower_eyelid_r",
+      "reason": "a single front view does not reveal it",
+      "needed_for": [
+        "eye_blink_right"
+      ]
+    },
+    {
+      "asset": "lower_eyelid_l",
+      "reason": "a single front view does not reveal it",
+      "needed_for": [
+        "eye_blink_left"
+      ]
+    }
+  ],
+  "flags": [
+    "ear_r touches the hair: it may continue under the hair (cannot be inferred)"
+  ],
+  "overrides_applied": {}
+}

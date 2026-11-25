@@ -31,6 +31,8 @@ BODY_PARTS = ["hair", "head", "neck", "torso", "pelvis", "upper_arm_r", "forearm
 
 
 LIMB_PARTS = {"upper_arm_r", "forearm_r", "upper_arm_l", "forearm_l", "thigh_r", "shin_r", "thigh_l", "shin_l"}
+FRAGMENT_MAX_FRAC = 0.10   # a detached piece of a bone-assigned part below this share of its main component ...
+FRAGMENT_REACH_PX = 2      # ... goes to the part it touches most within this distance
 
 
 def _seg_dist(px: np.ndarray, py: np.ndarray, a, b) -> tuple[np.ndarray, np.ndarray]:
@@ -143,8 +145,9 @@ def partition(ctx: PoseContext, joints: dict[str, JointEstimate]) -> tuple[dict[
     else:
         unassigned = rest
 
+    fragments = reassign_fragments(parts, [p for p in names if p in PART_SEGMENTS])
     info: dict[str, Any] = {"parts": {}, "unassigned_pixels": M.area(unassigned), "clothing_regions": {},
-                            "flags": sleeve_flags}
+                            "flags": sleeve_flags, "reassigned_fragments": fragments}
     clothing = {"upper_clothing": ctx.union("upper_clothing"), "lower_clothing": ctx.union("lower_clothing")}
     for part, m in parts.items():
         a = M.area(m)
@@ -161,3 +164,54 @@ def partition(ctx: PoseContext, joints: dict[str, JointEstimate]) -> tuple[dict[
         if total:
             info["clothing_regions"][k] = {p: round(M.area(m & c) / total, 3) for p, m in parts.items() if M.area(m & c)}
     return parts, info | {"unassigned_mask": unassigned}
+
+
+def reassign_fragments(parts: dict[str, np.ndarray], segment_parts: list[str]) -> list[dict[str, Any]]:  # noqa: C901
+    """Detached pieces of a bone-assigned part go to the part they touch.
+
+    A body part drawn in one piece is connected; a small piece of it lying elsewhere is a nearest-bone assignment of
+    pixels that belong to a neighbour (an ear outline or the blazer's side edge given to an upper arm when no clothing
+    mask constrains them). Left in place, such a piece flies with the limb when it moves. Each piece smaller than
+    ``FRAGMENT_MAX_FRAC`` of its part's main component moves, whole, to the part with the most pixels next to it.
+    Pieces that touch no other part stay. Pixels only change membership: the partition stays exact. Returns one
+    record per (from, to) pair."""
+    moved: dict[tuple[str, str], dict[str, Any]] = {}
+    moves = []
+    for part in segment_parts:
+        m = parts[part]
+        lab, n = ndimage.label(m, structure=np.ones((3, 3), bool))
+        if n < 2:
+            continue
+        sizes = ndimage.sum(np.ones(m.shape), lab, range(1, n + 1))
+        main = int(np.argmax(sizes)) + 1
+        boxes = ndimage.find_objects(lab)
+        r = FRAGMENT_REACH_PX
+        for i in range(1, n + 1):
+            if i == main or sizes[i - 1] > FRAGMENT_MAX_FRAC * sizes[main - 1]:
+                continue
+            ys, xs = boxes[i - 1]
+            sl = (slice(max(0, ys.start - r), ys.stop + r), slice(max(0, xs.start - r), xs.stop + r))
+            comp = lab[sl] == i
+            ring = ndimage.binary_dilation(comp, iterations=r) & ~comp
+            best, best_n = None, 0
+            for other, om in parts.items():
+                if other == part:
+                    continue
+                k = int((ring & om[sl]).sum())
+                if k > best_n:
+                    best, best_n = other, k
+            if best is None:
+                continue
+            moves.append((part, best, sl, comp))
+            g = moved.setdefault((part, best), {"from": part, "to": best, "pieces": 0, "pixels": 0,
+                                                "largest_px": 0, "largest_bbox_xyxy": None})
+            n_px = int(comp.sum())
+            g["pieces"] += 1
+            g["pixels"] += n_px
+            if n_px > g["largest_px"]:
+                g["largest_px"], g["largest_bbox_xyxy"] = n_px, [int(xs.start), int(ys.start), int(xs.stop),
+                                                                  int(ys.stop)]
+    for part, best, sl, comp in moves:  # decided on the unmodified partition, applied once (no ping-pong)
+        parts[part][sl] &= ~comp
+        parts[best][sl] |= comp
+    return sorted(moved.values(), key=lambda g: -g["pixels"])

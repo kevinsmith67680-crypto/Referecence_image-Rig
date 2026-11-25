@@ -1,0 +1,3525 @@
+{
+  "schema": "autorig.native_deformation_audit",
+  "version": "4.2.0",
+  "character_id": "schoolboy_v2_test",
+  "label": "SIMULATION of rigid native binding (not Moho output)",
+  "thresholds": {
+    "hole_px": 150,
+    "hidden_fill_frac": 0.5,
+    "sweep_px": 300,
+    "occluded_px": 400,
+    "pivot_cut_frac": 0.6,
+    "window_frac": 1.6,
+    "closing_frac": 0.45,
+    "cut_band_frac": 0.25,
+    "seam_px": 150,
+    "crack_px": 60
+  },
+  "causes": {
+    "MISSING_HIDDEN_ARTWORK": "missing hidden artwork (a pending reconstruction exists)",
+    "MISSING_ARTWORK": "missing hidden artwork (no reconstruction covers the gap)",
+    "LAYER_CUT": "the layer cut is not at the joint: limb pixels behind the pivot swing out",
+    "LAYER_ORDER": "incorrect layer ordering for the pose",
+    "BONE_PLACEMENT": "the pivot is far from the layer cut",
+    "RIGID_BINDING_SPAN": "a rigidly bound layer spans the joint (needs flexible binding or corrective artwork)",
+    "UNSUPPORTED_VIEW": "the motion is depth motion on front-view art",
+    "MISSING_CORRECTIVE_DRAWING": "no approved corrective drawing for this joint",
+    "INADEQUATE_OVERLAP": "thin cracks at the seam: the two layers do not overlap enough",
+    "MESH_INFLUENCE": "inappropriate mesh influence (not applicable to rigid binding: no mesh is bound natively)"
+  },
+  "poses": [
+    {
+      "frame": 1,
+      "id": "neutral",
+      "label": "Neutral pose",
+      "offsets_deg": {},
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 10,
+      "id": "both_arms_lowered",
+      "label": "Both arms lowered",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": -65.0,
+        "RIGHT_UPPER_ARM": 65.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 20,
+      "id": "left_arm_raised",
+      "label": "Left arm raised",
+      "offsets_deg": {
+        "LEFT_UPPER_ARM": 60.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 30,
+      "id": "right_arm_raised",
+      "label": "Right arm raised",
+      "offsets_deg": {
+        "RIGHT_UPPER_ARM": -60.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 40,
+      "id": "left_elbow_90",
+      "label": "Left elbow at 90 deg",
+      "offsets_deg": {
+        "LEFT_FOREARM": 90.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 50,
+      "id": "right_elbow_90",
+      "label": "Right elbow at 90 deg",
+      "offsets_deg": {
+        "RIGHT_FOREARM": -90.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false
+    },
+    {
+      "frame": 60,
+      "id": "left_knee_bent",
+      "label": "Left knee bent (in-plane joint test)",
+      "offsets_deg": {
+        "LEFT_THIGH": 15.0,
+        "LEFT_SHIN": -30.0,
+        "LEFT_FOOT": 15.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false,
+      "view_note": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test"
+    },
+    {
+      "frame": 70,
+      "id": "right_knee_bent",
+      "label": "Right knee bent (in-plane joint test)",
+      "offsets_deg": {
+        "RIGHT_THIGH": -15.0,
+        "RIGHT_SHIN": 30.0,
+        "RIGHT_FOOT": -15.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": false,
+      "view_note": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test"
+    },
+    {
+      "frame": 80,
+      "id": "torso_leaning",
+      "label": "Torso leaning",
+      "offsets_deg": {
+        "SPINE_LOWER": 4.0,
+        "SPINE_UPPER": 4.0,
+        "CHEST": 6.0
+      },
+      "pos_offset_px": {},
+      "after_reopen": true
+    },
+    {
+      "frame": 90,
+      "id": "return_to_neutral",
+      "label": "Return to neutral",
+      "offsets_deg": {},
+      "pos_offset_px": {},
+      "after_reopen": false
+    }
+  ],
+  "variants": {
+    "rigid_4_1": {
+      "variant": "rigid_4_1",
+      "steps": [],
+      "joints": {
+        "shoulder_l": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 22,
+            "hole_px_originals_only": 22,
+            "hidden_fill_px": null,
+            "crack_px": 0,
+            "sweep_px": 2087,
+            "occluded_px": 0,
+            "limb_over_body_px": 1444,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_CUT",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          },
+          {
+            "frame": 20,
+            "pose": "left_arm_raised",
+            "hole_px": 102,
+            "hole_px_originals_only": 102,
+            "hidden_fill_px": null,
+            "crack_px": 2,
+            "sweep_px": 2462,
+            "occluded_px": 527,
+            "limb_over_body_px": 527,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_CUT",
+              "LAYER_ORDER",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "shoulder_r": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 16,
+            "hole_px_originals_only": 16,
+            "hidden_fill_px": null,
+            "crack_px": 4,
+            "sweep_px": 1725,
+            "occluded_px": 0,
+            "limb_over_body_px": 1126,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_CUT",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          },
+          {
+            "frame": 30,
+            "pose": "right_arm_raised",
+            "hole_px": 185,
+            "hole_px_originals_only": 185,
+            "hidden_fill_px": null,
+            "crack_px": 0,
+            "sweep_px": 1917,
+            "occluded_px": 2296,
+            "limb_over_body_px": 2296,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "LAYER_CUT",
+              "LAYER_ORDER",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_l": [
+          {
+            "frame": 40,
+            "pose": "left_elbow_90",
+            "hole_px": 130,
+            "hole_px_originals_only": 130,
+            "hidden_fill_px": null,
+            "crack_px": 29,
+            "sweep_px": 0,
+            "occluded_px": 1299,
+            "limb_over_body_px": 1932,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_r": [
+          {
+            "frame": 50,
+            "pose": "right_elbow_90",
+            "hole_px": 444,
+            "hole_px_originals_only": 444,
+            "hidden_fill_px": null,
+            "crack_px": 109,
+            "sweep_px": 142,
+            "occluded_px": 3364,
+            "limb_over_body_px": 3364,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "LAYER_ORDER",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 407,
+            "hole_px_originals_only": 407,
+            "hidden_fill_px": null,
+            "crack_px": 86,
+            "sweep_px": 0,
+            "occluded_px": 211,
+            "limb_over_body_px": 211,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 210,
+            "hole_px_originals_only": 210,
+            "hidden_fill_px": null,
+            "crack_px": 43,
+            "sweep_px": 49,
+            "occluded_px": 0,
+            "limb_over_body_px": 60,
+            "window_half_px": 60,
+            "closing_r_px": 14,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 397,
+            "hole_px_originals_only": 397,
+            "hidden_fill_px": null,
+            "crack_px": 80,
+            "sweep_px": 0,
+            "occluded_px": 188,
+            "limb_over_body_px": 188,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 206,
+            "hole_px_originals_only": 206,
+            "hidden_fill_px": null,
+            "crack_px": 42,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 76,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "waist": [
+          {
+            "frame": 80,
+            "pose": "torso_leaning",
+            "hole_px": 1818,
+            "hole_px_originals_only": 1818,
+            "hidden_fill_px": null,
+            "crack_px": 142,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1124,
+            "window_half_px": 170,
+            "closing_r_px": 22,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ]
+      },
+      "layers": 25,
+      "review_layers": [],
+      "static": {
+        "shoulder_l": {
+          "pivot_cut_px": 60.4,
+          "cut": {
+            "cut_px": 285,
+            "transverse_px": 112,
+            "cut_offset_px": -60.4,
+            "seam_along_limb_px": 173,
+            "axial_range_px": [
+              -62.3,
+              8.3
+            ]
+          },
+          "pivot_method": "armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 21.5,
+          "behind_pivot_px": 5238,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "shoulder_r": {
+          "pivot_cut_px": 54.1,
+          "cut": {
+            "cut_px": 251,
+            "transverse_px": 127,
+            "cut_offset_px": -54.1,
+            "seam_along_limb_px": 124,
+            "axial_range_px": [
+              -56.7,
+              2.2
+            ]
+          },
+          "pivot_method": "armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 22.0,
+          "behind_pivot_px": 4371,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_l": {
+          "pivot_cut_px": 7.4,
+          "cut": {
+            "cut_px": 100,
+            "transverse_px": 100,
+            "cut_offset_px": -7.4,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -8.5,
+              -5.3
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 436,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_r": {
+          "pivot_cut_px": 30.7,
+          "cut": {
+            "cut_px": 88,
+            "transverse_px": 88,
+            "cut_offset_px": -30.7,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -32.0,
+              -28.4
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 1510,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_l": {
+          "pivot_cut_px": 1.1,
+          "cut": {
+            "cut_px": 211,
+            "transverse_px": 202,
+            "cut_offset_px": 1.1,
+            "seam_along_limb_px": 9,
+            "axial_range_px": [
+              -0.1,
+              17.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.1,
+          "behind_pivot_px": 5,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_l__left_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_r": {
+          "pivot_cut_px": 1.2,
+          "cut": {
+            "cut_px": 209,
+            "transverse_px": 204,
+            "cut_offset_px": 1.2,
+            "seam_along_limb_px": 5,
+            "axial_range_px": [
+              -0.1,
+              16.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.4,
+          "behind_pivot_px": 1,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_r__right_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_l": {
+          "pivot_cut_px": 0.2,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 0.2,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.8,
+              1.2
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.5,
+          "behind_pivot_px": 52,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_r": {
+          "pivot_cut_px": 1.7,
+          "cut": {
+            "cut_px": 119,
+            "transverse_px": 119,
+            "cut_offset_px": 1.7,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.7,
+              3.6
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.0,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "waist": {
+          "pivot_cut_px": 22.8,
+          "cut": {
+            "cut_px": 495,
+            "transverse_px": 273,
+            "cut_offset_px": -22.8,
+            "seam_along_limb_px": 222,
+            "axial_range_px": [
+              -87.3,
+              2.7
+            ]
+          },
+          "pivot_method": "0.33 of pelvis->neck base",
+          "half_thickness_px": 106.3,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [],
+            "approved": 0,
+            "pending": 0
+          }
+        }
+      }
+    },
+    "order": {
+      "variant": "order",
+      "steps": [
+        "order"
+      ],
+      "joints": {
+        "shoulder_l": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 22,
+            "hole_px_originals_only": 22,
+            "hidden_fill_px": null,
+            "crack_px": 0,
+            "sweep_px": 2087,
+            "occluded_px": 0,
+            "limb_over_body_px": 1444,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_CUT",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          },
+          {
+            "frame": 20,
+            "pose": "left_arm_raised",
+            "hole_px": 102,
+            "hole_px_originals_only": 102,
+            "hidden_fill_px": null,
+            "crack_px": 2,
+            "sweep_px": 2462,
+            "occluded_px": 527,
+            "limb_over_body_px": 527,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_CUT",
+              "LAYER_ORDER",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "shoulder_r": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 16,
+            "hole_px_originals_only": 16,
+            "hidden_fill_px": null,
+            "crack_px": 4,
+            "sweep_px": 1725,
+            "occluded_px": 0,
+            "limb_over_body_px": 1126,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_CUT",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          },
+          {
+            "frame": 30,
+            "pose": "right_arm_raised",
+            "hole_px": 185,
+            "hole_px_originals_only": 185,
+            "hidden_fill_px": null,
+            "crack_px": 0,
+            "sweep_px": 1917,
+            "occluded_px": 2296,
+            "limb_over_body_px": 2296,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "LAYER_CUT",
+              "LAYER_ORDER",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_l": [
+          {
+            "frame": 40,
+            "pose": "left_elbow_90",
+            "hole_px": 130,
+            "hole_px_originals_only": 130,
+            "hidden_fill_px": null,
+            "crack_px": 29,
+            "sweep_px": 0,
+            "occluded_px": 1299,
+            "limb_over_body_px": 1932,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_r": [
+          {
+            "frame": 50,
+            "pose": "right_elbow_90",
+            "hole_px": 444,
+            "hole_px_originals_only": 444,
+            "hidden_fill_px": null,
+            "crack_px": 109,
+            "sweep_px": 142,
+            "occluded_px": 3364,
+            "limb_over_body_px": 3364,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "LAYER_ORDER",
+              "BONE_PLACEMENT",
+              "RIGID_BINDING_SPAN",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 407,
+            "hole_px_originals_only": 407,
+            "hidden_fill_px": null,
+            "crack_px": 86,
+            "sweep_px": 0,
+            "occluded_px": 211,
+            "limb_over_body_px": 211,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 210,
+            "hole_px_originals_only": 210,
+            "hidden_fill_px": null,
+            "crack_px": 43,
+            "sweep_px": 49,
+            "occluded_px": 0,
+            "limb_over_body_px": 60,
+            "window_half_px": 60,
+            "closing_r_px": 14,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 397,
+            "hole_px_originals_only": 397,
+            "hidden_fill_px": null,
+            "crack_px": 80,
+            "sweep_px": 0,
+            "occluded_px": 188,
+            "limb_over_body_px": 188,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 206,
+            "hole_px_originals_only": 206,
+            "hidden_fill_px": null,
+            "crack_px": 42,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 76,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "waist": [
+          {
+            "frame": 80,
+            "pose": "torso_leaning",
+            "hole_px": 1818,
+            "hole_px_originals_only": 1818,
+            "hidden_fill_px": null,
+            "crack_px": 142,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1124,
+            "window_half_px": 170,
+            "closing_r_px": 22,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ]
+      },
+      "layers": 25,
+      "review_layers": [],
+      "static": {
+        "shoulder_l": {
+          "pivot_cut_px": 60.4,
+          "cut": {
+            "cut_px": 285,
+            "transverse_px": 112,
+            "cut_offset_px": -60.4,
+            "seam_along_limb_px": 173,
+            "axial_range_px": [
+              -62.3,
+              8.3
+            ]
+          },
+          "pivot_method": "armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 21.5,
+          "behind_pivot_px": 5238,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "shoulder_r": {
+          "pivot_cut_px": 54.1,
+          "cut": {
+            "cut_px": 251,
+            "transverse_px": 127,
+            "cut_offset_px": -54.1,
+            "seam_along_limb_px": 124,
+            "axial_range_px": [
+              -56.7,
+              2.2
+            ]
+          },
+          "pivot_method": "armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 22.0,
+          "behind_pivot_px": 4371,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_l": {
+          "pivot_cut_px": 7.4,
+          "cut": {
+            "cut_px": 100,
+            "transverse_px": 100,
+            "cut_offset_px": -7.4,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -8.5,
+              -5.3
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 436,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_r": {
+          "pivot_cut_px": 30.7,
+          "cut": {
+            "cut_px": 88,
+            "transverse_px": 88,
+            "cut_offset_px": -30.7,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -32.0,
+              -28.4
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 1510,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_l": {
+          "pivot_cut_px": 1.1,
+          "cut": {
+            "cut_px": 211,
+            "transverse_px": 202,
+            "cut_offset_px": 1.1,
+            "seam_along_limb_px": 9,
+            "axial_range_px": [
+              -0.1,
+              17.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.1,
+          "behind_pivot_px": 5,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_l__left_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_r": {
+          "pivot_cut_px": 1.2,
+          "cut": {
+            "cut_px": 209,
+            "transverse_px": 204,
+            "cut_offset_px": 1.2,
+            "seam_along_limb_px": 5,
+            "axial_range_px": [
+              -0.1,
+              16.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.4,
+          "behind_pivot_px": 1,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_r__right_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_l": {
+          "pivot_cut_px": 0.2,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 0.2,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.8,
+              1.2
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.5,
+          "behind_pivot_px": 52,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_r": {
+          "pivot_cut_px": 1.7,
+          "cut": {
+            "cut_px": 119,
+            "transverse_px": 119,
+            "cut_offset_px": 1.7,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.7,
+              3.6
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.0,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "waist": {
+          "pivot_cut_px": 22.8,
+          "cut": {
+            "cut_px": 495,
+            "transverse_px": 273,
+            "cut_offset_px": -22.8,
+            "seam_along_limb_px": 222,
+            "axial_range_px": [
+              -87.3,
+              2.7
+            ]
+          },
+          "pivot_method": "0.33 of pelvis->neck base",
+          "half_thickness_px": 106.3,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [],
+            "approved": 0,
+            "pending": 0
+          }
+        }
+      }
+    },
+    "split": {
+      "variant": "split",
+      "steps": [
+        "split"
+      ],
+      "joints": {
+        "shoulder_l": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 15,
+            "hole_px_originals_only": 15,
+            "hidden_fill_px": null,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1093,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 20,
+            "pose": "left_arm_raised",
+            "hole_px": 84,
+            "hole_px_originals_only": 84,
+            "hidden_fill_px": null,
+            "crack_px": 8,
+            "sweep_px": 0,
+            "occluded_px": 527,
+            "limb_over_body_px": 588,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "shoulder_r": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 17,
+            "hole_px_originals_only": 17,
+            "hidden_fill_px": null,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 959,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 30,
+            "pose": "right_arm_raised",
+            "hole_px": 68,
+            "hole_px_originals_only": 68,
+            "hidden_fill_px": null,
+            "crack_px": 4,
+            "sweep_px": 0,
+            "occluded_px": 2296,
+            "limb_over_body_px": 2348,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_l": [
+          {
+            "frame": 40,
+            "pose": "left_elbow_90",
+            "hole_px": 130,
+            "hole_px_originals_only": 130,
+            "hidden_fill_px": null,
+            "crack_px": 29,
+            "sweep_px": 0,
+            "occluded_px": 1299,
+            "limb_over_body_px": 1932,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_r": [
+          {
+            "frame": 50,
+            "pose": "right_elbow_90",
+            "hole_px": 126,
+            "hole_px_originals_only": 126,
+            "hidden_fill_px": null,
+            "crack_px": 25,
+            "sweep_px": 0,
+            "occluded_px": 3364,
+            "limb_over_body_px": 4015,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 410,
+            "hole_px_originals_only": 410,
+            "hidden_fill_px": null,
+            "crack_px": 84,
+            "sweep_px": 0,
+            "occluded_px": 211,
+            "limb_over_body_px": 211,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 210,
+            "hole_px_originals_only": 210,
+            "hidden_fill_px": null,
+            "crack_px": 43,
+            "sweep_px": 49,
+            "occluded_px": 0,
+            "limb_over_body_px": 60,
+            "window_half_px": 60,
+            "closing_r_px": 14,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 397,
+            "hole_px_originals_only": 397,
+            "hidden_fill_px": null,
+            "crack_px": 80,
+            "sweep_px": 0,
+            "occluded_px": 187,
+            "limb_over_body_px": 188,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 200,
+            "hole_px_originals_only": 200,
+            "hidden_fill_px": null,
+            "crack_px": 51,
+            "sweep_px": 2,
+            "occluded_px": 0,
+            "limb_over_body_px": 69,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "waist": [
+          {
+            "frame": 80,
+            "pose": "torso_leaning",
+            "hole_px": 1818,
+            "hole_px_originals_only": 1818,
+            "hidden_fill_px": null,
+            "crack_px": 142,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1124,
+            "window_half_px": 170,
+            "closing_r_px": 22,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ]
+      },
+      "layers": 33,
+      "review_layers": [],
+      "static": {
+        "shoulder_l": {
+          "pivot_cut_px": 1.1,
+          "cut": {
+            "cut_px": 155,
+            "transverse_px": 155,
+            "cut_offset_px": 1.1,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              8.3
+            ]
+          },
+          "pivot_method": "armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 21.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "shoulder_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 84,
+            "transverse_px": 84,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              1.9
+            ]
+          },
+          "pivot_method": "armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 22.0,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_l": {
+          "pivot_cut_px": 7.4,
+          "cut": {
+            "cut_px": 100,
+            "transverse_px": 100,
+            "cut_offset_px": -7.4,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -8.5,
+              -5.3
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 436,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 104,
+            "transverse_px": 104,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              2.0
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_l": {
+          "pivot_cut_px": 1.2,
+          "cut": {
+            "cut_px": 210,
+            "transverse_px": 201,
+            "cut_offset_px": 1.2,
+            "seam_along_limb_px": 9,
+            "axial_range_px": [
+              0.0,
+              17.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.1,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_l__left_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_r": {
+          "pivot_cut_px": 1.3,
+          "cut": {
+            "cut_px": 209,
+            "transverse_px": 204,
+            "cut_offset_px": 1.3,
+            "seam_along_limb_px": 5,
+            "axial_range_px": [
+              0.0,
+              16.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.4,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_r__right_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_l": {
+          "pivot_cut_px": 0.2,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 0.2,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.8,
+              1.2
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.5,
+          "behind_pivot_px": 52,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.0,
+              2.1
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.0,
+          "behind_pivot_px": 2,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "waist": {
+          "pivot_cut_px": 22.8,
+          "cut": {
+            "cut_px": 495,
+            "transverse_px": 273,
+            "cut_offset_px": -22.8,
+            "seam_along_limb_px": 222,
+            "axial_range_px": [
+              -87.3,
+              2.7
+            ]
+          },
+          "pivot_method": "0.33 of pelvis->neck base",
+          "half_thickness_px": 106.3,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [],
+            "approved": 0,
+            "pending": 0
+          }
+        }
+      }
+    },
+    "hybrid": {
+      "variant": "hybrid",
+      "steps": [
+        "split",
+        "order",
+        "approved"
+      ],
+      "joints": {
+        "shoulder_l": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 15,
+            "hole_px_originals_only": 15,
+            "hidden_fill_px": null,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1093,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 20,
+            "pose": "left_arm_raised",
+            "hole_px": 84,
+            "hole_px_originals_only": 84,
+            "hidden_fill_px": null,
+            "crack_px": 8,
+            "sweep_px": 0,
+            "occluded_px": 527,
+            "limb_over_body_px": 588,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "shoulder_r": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 17,
+            "hole_px_originals_only": 17,
+            "hidden_fill_px": null,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 959,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 30,
+            "pose": "right_arm_raised",
+            "hole_px": 68,
+            "hole_px_originals_only": 68,
+            "hidden_fill_px": null,
+            "crack_px": 4,
+            "sweep_px": 0,
+            "occluded_px": 2296,
+            "limb_over_body_px": 2348,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_l": [
+          {
+            "frame": 40,
+            "pose": "left_elbow_90",
+            "hole_px": 130,
+            "hole_px_originals_only": 130,
+            "hidden_fill_px": null,
+            "crack_px": 29,
+            "sweep_px": 0,
+            "occluded_px": 1299,
+            "limb_over_body_px": 1932,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_r": [
+          {
+            "frame": 50,
+            "pose": "right_elbow_90",
+            "hole_px": 126,
+            "hole_px_originals_only": 126,
+            "hidden_fill_px": null,
+            "crack_px": 25,
+            "sweep_px": 0,
+            "occluded_px": 3364,
+            "limb_over_body_px": 4015,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 410,
+            "hole_px_originals_only": 410,
+            "hidden_fill_px": null,
+            "crack_px": 84,
+            "sweep_px": 0,
+            "occluded_px": 211,
+            "limb_over_body_px": 211,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 210,
+            "hole_px_originals_only": 210,
+            "hidden_fill_px": null,
+            "crack_px": 43,
+            "sweep_px": 49,
+            "occluded_px": 0,
+            "limb_over_body_px": 60,
+            "window_half_px": 60,
+            "closing_r_px": 14,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 397,
+            "hole_px_originals_only": 397,
+            "hidden_fill_px": null,
+            "crack_px": 80,
+            "sweep_px": 0,
+            "occluded_px": 187,
+            "limb_over_body_px": 188,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 200,
+            "hole_px_originals_only": 200,
+            "hidden_fill_px": null,
+            "crack_px": 51,
+            "sweep_px": 2,
+            "occluded_px": 0,
+            "limb_over_body_px": 69,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "waist": [
+          {
+            "frame": 80,
+            "pose": "torso_leaning",
+            "hole_px": 1818,
+            "hole_px_originals_only": 1818,
+            "hidden_fill_px": null,
+            "crack_px": 142,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1124,
+            "window_half_px": 170,
+            "closing_r_px": 22,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ]
+      },
+      "layers": 33,
+      "review_layers": [],
+      "static": {
+        "shoulder_l": {
+          "pivot_cut_px": 1.1,
+          "cut": {
+            "cut_px": 155,
+            "transverse_px": 155,
+            "cut_offset_px": 1.1,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              8.3
+            ]
+          },
+          "pivot_method": "armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 21.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "shoulder_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 84,
+            "transverse_px": 84,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              1.9
+            ]
+          },
+          "pivot_method": "armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 22.0,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_l": {
+          "pivot_cut_px": 7.4,
+          "cut": {
+            "cut_px": 100,
+            "transverse_px": 100,
+            "cut_offset_px": -7.4,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -8.5,
+              -5.3
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 436,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 104,
+            "transverse_px": 104,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              2.0
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_l": {
+          "pivot_cut_px": 1.2,
+          "cut": {
+            "cut_px": 210,
+            "transverse_px": 201,
+            "cut_offset_px": 1.2,
+            "seam_along_limb_px": 9,
+            "axial_range_px": [
+              0.0,
+              17.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.1,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_l__left_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_r": {
+          "pivot_cut_px": 1.3,
+          "cut": {
+            "cut_px": 209,
+            "transverse_px": 204,
+            "cut_offset_px": 1.3,
+            "seam_along_limb_px": 5,
+            "axial_range_px": [
+              0.0,
+              16.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.4,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_r__right_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_l": {
+          "pivot_cut_px": 0.2,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 0.2,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.8,
+              1.2
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.5,
+          "behind_pivot_px": 52,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.0,
+              2.1
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.0,
+          "behind_pivot_px": 2,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "waist": {
+          "pivot_cut_px": 22.8,
+          "cut": {
+            "cut_px": 495,
+            "transverse_px": 273,
+            "cut_offset_px": -22.8,
+            "seam_along_limb_px": 222,
+            "axial_range_px": [
+              -87.3,
+              2.7
+            ]
+          },
+          "pivot_method": "0.33 of pelvis->neck base",
+          "half_thickness_px": 106.3,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [],
+            "approved": 0,
+            "pending": 0
+          }
+        }
+      }
+    },
+    "hybrid_review": {
+      "variant": "hybrid_review",
+      "steps": [
+        "split",
+        "order",
+        "extensions"
+      ],
+      "joints": {
+        "shoulder_l": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 15,
+            "hole_px_originals_only": 15,
+            "hidden_fill_px": 0,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1093,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 20,
+            "pose": "left_arm_raised",
+            "hole_px": 84,
+            "hole_px_originals_only": 84,
+            "hidden_fill_px": 0,
+            "crack_px": 8,
+            "sweep_px": 0,
+            "occluded_px": 527,
+            "limb_over_body_px": 588,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "shoulder_r": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 17,
+            "hole_px_originals_only": 17,
+            "hidden_fill_px": 0,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 959,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 30,
+            "pose": "right_arm_raised",
+            "hole_px": 68,
+            "hole_px_originals_only": 68,
+            "hidden_fill_px": 0,
+            "crack_px": 4,
+            "sweep_px": 0,
+            "occluded_px": 2296,
+            "limb_over_body_px": 2348,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_l": [
+          {
+            "frame": 40,
+            "pose": "left_elbow_90",
+            "hole_px": 130,
+            "hole_px_originals_only": 130,
+            "hidden_fill_px": 0,
+            "crack_px": 29,
+            "sweep_px": 0,
+            "occluded_px": 1299,
+            "limb_over_body_px": 1932,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_r": [
+          {
+            "frame": 50,
+            "pose": "right_elbow_90",
+            "hole_px": 126,
+            "hole_px_originals_only": 126,
+            "hidden_fill_px": 0,
+            "crack_px": 25,
+            "sweep_px": 0,
+            "occluded_px": 3364,
+            "limb_over_body_px": 4015,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 338,
+            "hole_px_originals_only": 410,
+            "hidden_fill_px": 72,
+            "crack_px": 31,
+            "sweep_px": 0,
+            "occluded_px": 211,
+            "limb_over_body_px": 211,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 210,
+            "hole_px_originals_only": 210,
+            "hidden_fill_px": 0,
+            "crack_px": 43,
+            "sweep_px": 49,
+            "occluded_px": 0,
+            "limb_over_body_px": 60,
+            "window_half_px": 60,
+            "closing_r_px": 14,
+            "causes": [
+              "MISSING_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 324,
+            "hole_px_originals_only": 397,
+            "hidden_fill_px": 73,
+            "crack_px": 27,
+            "sweep_px": 0,
+            "occluded_px": 187,
+            "limb_over_body_px": 188,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 200,
+            "hole_px_originals_only": 200,
+            "hidden_fill_px": 0,
+            "crack_px": 51,
+            "sweep_px": 2,
+            "occluded_px": 0,
+            "limb_over_body_px": 69,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "waist": [
+          {
+            "frame": 80,
+            "pose": "torso_leaning",
+            "hole_px": 1818,
+            "hole_px_originals_only": 1818,
+            "hidden_fill_px": 0,
+            "crack_px": 142,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1124,
+            "window_half_px": 170,
+            "closing_r_px": 22,
+            "causes": [
+              "MISSING_ARTWORK",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ]
+      },
+      "layers": 41,
+      "review_layers": [
+        "thigh_r__ext_pending",
+        "shin_r__ext_pending",
+        "thigh_l__ext_pending",
+        "shin_l__ext_pending",
+        "neck__ext_pending",
+        "forearm_r__ext_pending",
+        "forearm_l__ext_pending",
+        "head_base__ext_pending"
+      ],
+      "static": {
+        "shoulder_l": {
+          "pivot_cut_px": 1.1,
+          "cut": {
+            "cut_px": 155,
+            "transverse_px": 155,
+            "cut_offset_px": 1.1,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              8.3
+            ]
+          },
+          "pivot_method": "armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 21.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "shoulder_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 84,
+            "transverse_px": 84,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              1.9
+            ]
+          },
+          "pivot_method": "armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 22.0,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_l": {
+          "pivot_cut_px": 7.4,
+          "cut": {
+            "cut_px": 100,
+            "transverse_px": 100,
+            "cut_offset_px": -7.4,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -8.5,
+              -5.3
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 436,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 104,
+            "transverse_px": 104,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              2.0
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_l": {
+          "pivot_cut_px": 1.2,
+          "cut": {
+            "cut_px": 210,
+            "transverse_px": 201,
+            "cut_offset_px": 1.2,
+            "seam_along_limb_px": 9,
+            "axial_range_px": [
+              0.0,
+              17.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.1,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_l__left_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_r": {
+          "pivot_cut_px": 1.3,
+          "cut": {
+            "cut_px": 209,
+            "transverse_px": 204,
+            "cut_offset_px": 1.3,
+            "seam_along_limb_px": 5,
+            "axial_range_px": [
+              0.0,
+              16.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.4,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_r__right_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_l": {
+          "pivot_cut_px": 0.2,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 0.2,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.8,
+              1.2
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.5,
+          "behind_pivot_px": 52,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.0,
+              2.1
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.0,
+          "behind_pivot_px": 2,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "waist": {
+          "pivot_cut_px": 22.8,
+          "cut": {
+            "cut_px": 495,
+            "transverse_px": 273,
+            "cut_offset_px": -22.8,
+            "seam_along_limb_px": 222,
+            "axial_range_px": [
+              -87.3,
+              2.7
+            ]
+          },
+          "pivot_method": "0.33 of pelvis->neck base",
+          "half_thickness_px": 106.3,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [],
+            "approved": 0,
+            "pending": 0
+          }
+        }
+      }
+    },
+    "hybrid_correctives": {
+      "variant": "hybrid_correctives",
+      "steps": [
+        "split",
+        "order",
+        "correctives"
+      ],
+      "joints": {
+        "shoulder_l": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 0,
+            "hole_px_originals_only": 15,
+            "hidden_fill_px": 15,
+            "crack_px": 0,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1093,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 20,
+            "pose": "left_arm_raised",
+            "hole_px": 31,
+            "hole_px_originals_only": 84,
+            "hidden_fill_px": 53,
+            "crack_px": 5,
+            "sweep_px": 0,
+            "occluded_px": 527,
+            "limb_over_body_px": 588,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "shoulder_r": [
+          {
+            "frame": 10,
+            "pose": "both_arms_lowered",
+            "hole_px": 0,
+            "hole_px_originals_only": 17,
+            "hidden_fill_px": 17,
+            "crack_px": 0,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 959,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": []
+          },
+          {
+            "frame": 30,
+            "pose": "right_arm_raised",
+            "hole_px": 22,
+            "hole_px_originals_only": 68,
+            "hidden_fill_px": 46,
+            "crack_px": 2,
+            "sweep_px": 0,
+            "occluded_px": 2296,
+            "limb_over_body_px": 2348,
+            "window_half_px": 60,
+            "closing_r_px": 9,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_l": [
+          {
+            "frame": 40,
+            "pose": "left_elbow_90",
+            "hole_px": 84,
+            "hole_px_originals_only": 130,
+            "hidden_fill_px": 46,
+            "crack_px": 20,
+            "sweep_px": 0,
+            "occluded_px": 1299,
+            "limb_over_body_px": 1932,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "elbow_r": [
+          {
+            "frame": 50,
+            "pose": "right_elbow_90",
+            "hole_px": 91,
+            "hole_px_originals_only": 126,
+            "hidden_fill_px": 35,
+            "crack_px": 22,
+            "sweep_px": 0,
+            "occluded_px": 3364,
+            "limb_over_body_px": 4015,
+            "window_half_px": 60,
+            "closing_r_px": 11,
+            "causes": [
+              "LAYER_ORDER",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 0,
+            "hole_px_originals_only": 410,
+            "hidden_fill_px": 410,
+            "crack_px": 41,
+            "sweep_px": 0,
+            "occluded_px": 211,
+            "limb_over_body_px": 211,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_l": [
+          {
+            "frame": 60,
+            "pose": "left_knee_bent",
+            "hole_px": 9,
+            "hole_px_originals_only": 210,
+            "hidden_fill_px": 201,
+            "crack_px": 7,
+            "sweep_px": 49,
+            "occluded_px": 0,
+            "limb_over_body_px": 60,
+            "window_half_px": 60,
+            "closing_r_px": 14,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "hip_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 0,
+            "hole_px_originals_only": 397,
+            "hidden_fill_px": 397,
+            "crack_px": 30,
+            "sweep_px": 0,
+            "occluded_px": 187,
+            "limb_over_body_px": 188,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "knee_r": [
+          {
+            "frame": 70,
+            "pose": "right_knee_bent",
+            "hole_px": 3,
+            "hole_px_originals_only": 200,
+            "hidden_fill_px": 197,
+            "crack_px": 17,
+            "sweep_px": 2,
+            "occluded_px": 0,
+            "limb_over_body_px": 69,
+            "window_half_px": 60,
+            "closing_r_px": 13,
+            "causes": [
+              "MISSING_HIDDEN_ARTWORK",
+              "UNSUPPORTED_VIEW",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ],
+        "waist": [
+          {
+            "frame": 80,
+            "pose": "torso_leaning",
+            "hole_px": 1818,
+            "hole_px_originals_only": 1818,
+            "hidden_fill_px": 0,
+            "crack_px": 142,
+            "sweep_px": 0,
+            "occluded_px": 0,
+            "limb_over_body_px": 1124,
+            "window_half_px": 170,
+            "closing_r_px": 22,
+            "causes": [
+              "MISSING_ARTWORK",
+              "MISSING_CORRECTIVE_DRAWING"
+            ]
+          }
+        ]
+      },
+      "layers": 63,
+      "review_layers": [
+        "native_gap_shoulder_l__both_arms_lowered__k025__v1_pending",
+        "native_gap_shoulder_l__both_arms_lowered__k050__v1_pending",
+        "native_gap_shoulder_l__both_arms_lowered__k075__v1_pending",
+        "native_gap_shoulder_l__both_arms_lowered__k100__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k025__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k050__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k075__v1_pending",
+        "native_gap_shoulder_l__left_arm_raised__k100__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k025__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k050__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k075__v1_pending",
+        "native_gap_shoulder_r__both_arms_lowered__k100__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k025__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k050__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k075__v1_pending",
+        "native_gap_shoulder_r__right_arm_raised__k100__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k025__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k050__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k075__v1_pending",
+        "native_gap_hip_l__left_knee_bent__k100__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k025__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k050__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k075__v1_pending",
+        "native_gap_hip_r__right_knee_bent__k100__v1_pending",
+        "shoe_top_r__v1_pending",
+        "elbow_cap_r__v1_pending",
+        "knee_cap_r__v1_pending",
+        "shoe_top_l__v1_pending",
+        "elbow_cap_l__v1_pending",
+        "knee_cap_l__v1_pending"
+      ],
+      "static": {
+        "shoulder_l": {
+          "pivot_cut_px": 1.1,
+          "cut": {
+            "cut_px": 155,
+            "transverse_px": 155,
+            "cut_offset_px": 1.1,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              8.3
+            ]
+          },
+          "pivot_method": "armpit at 5 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 21.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "shoulder_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 84,
+            "transverse_px": 84,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              1.9
+            ]
+          },
+          "pivot_method": "armpit at 6 px medial of phase1 point; pivot 0.45h lateral of it, on the arm axis",
+          "half_thickness_px": 22.0,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "armpit_gusset_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_l": {
+          "pivot_cut_px": 7.4,
+          "cut": {
+            "cut_px": 100,
+            "transverse_px": 100,
+            "cut_offset_px": -7.4,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -8.5,
+              -5.3
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 436,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "elbow_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 104,
+            "transverse_px": 104,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              0.0,
+              2.0
+            ]
+          },
+          "pivot_method": "0.52 of shoulder->wrist (straight arm)",
+          "half_thickness_px": 26.5,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "elbow_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_l": {
+          "pivot_cut_px": 1.2,
+          "cut": {
+            "cut_px": 210,
+            "transverse_px": 201,
+            "cut_offset_px": 1.2,
+            "seam_along_limb_px": 9,
+            "axial_range_px": [
+              0.0,
+              17.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.1,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_l__left_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "hip_r": {
+          "pivot_cut_px": 1.3,
+          "cut": {
+            "cut_px": 209,
+            "transverse_px": 204,
+            "cut_offset_px": 1.3,
+            "seam_along_limb_px": 5,
+            "axial_range_px": [
+              0.0,
+              16.9
+            ]
+          },
+          "pivot_method": "phase1 hip",
+          "half_thickness_px": 29.4,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "native_gap_hip_r__right_knee_bent",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_l": {
+          "pivot_cut_px": 0.2,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 0.2,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.8,
+              1.2
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.5,
+          "behind_pivot_px": 52,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_l",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "knee_r": {
+          "pivot_cut_px": 1.0,
+          "cut": {
+            "cut_px": 118,
+            "transverse_px": 118,
+            "cut_offset_px": 1.0,
+            "seam_along_limb_px": 0,
+            "axial_range_px": [
+              -0.0,
+              2.1
+            ]
+          },
+          "pivot_method": "midpoint of hip->ankle (straight leg)",
+          "half_thickness_px": 31.0,
+          "behind_pivot_px": 2,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [
+              {
+                "asset": "knee_cap_r",
+                "version": 1,
+                "provenance": "GEOMETRIC_CORRECTION",
+                "approved": false
+              }
+            ],
+            "approved": 0,
+            "pending": 1
+          }
+        },
+        "waist": {
+          "pivot_cut_px": 22.8,
+          "cut": {
+            "cut_px": 495,
+            "transverse_px": 273,
+            "cut_offset_px": -22.8,
+            "seam_along_limb_px": 222,
+            "axial_range_px": [
+              -87.3,
+              2.7
+            ]
+          },
+          "pivot_method": "0.33 of pelvis->neck base",
+          "half_thickness_px": 106.3,
+          "behind_pivot_px": 0,
+          "parent_past_joint_px": 0,
+          "corrective_store": {
+            "assets": [],
+            "approved": 0,
+            "pending": 0
+          }
+        }
+      }
+    }
+  },
+  "pivot_experiments": {
+    "shoulder_l": {
+      "joint": "shoulder_l",
+      "bone": "LEFT_UPPER_ARM",
+      "moved_pivot_px": [
+        573.2,
+        579.1
+      ],
+      "original_pivot_px": [
+        631.8,
+        593.7
+      ],
+      "offset_px": -60.4,
+      "frames": {
+        "10": {
+          "pivot_at_cut": {
+            "hole_px": 51,
+            "sweep_px": 0,
+            "limb_over_body_px": 13998
+          },
+          "cut_at_pivot": {
+            "hole_px": 15,
+            "sweep_px": 0,
+            "limb_over_body_px": 1093
+          }
+        },
+        "20": {
+          "pivot_at_cut": {
+            "hole_px": 71,
+            "sweep_px": 0,
+            "limb_over_body_px": 4029
+          },
+          "cut_at_pivot": {
+            "hole_px": 84,
+            "sweep_px": 0,
+            "limb_over_body_px": 588
+          }
+        }
+      },
+      "defect_px": {
+        "pivot_at_cut": 18149,
+        "cut_at_pivot": 1780
+      },
+      "supports": "LAYER_CUT",
+      "note": "defect = holes + sweep + limb pixels newly drawn over the body; the pivot that produces fewer defect pixels is supported. The renders of both are in the close-up sheet."
+    },
+    "shoulder_r": {
+      "joint": "shoulder_r",
+      "bone": "RIGHT_UPPER_ARM",
+      "moved_pivot_px": [
+        453.5,
+        576.9
+      ],
+      "original_pivot_px": [
+        401.0,
+        589.8
+      ],
+      "offset_px": -54.1,
+      "frames": {
+        "10": {
+          "pivot_at_cut": {
+            "hole_px": 37,
+            "sweep_px": 0,
+            "limb_over_body_px": 13200
+          },
+          "cut_at_pivot": {
+            "hole_px": 17,
+            "sweep_px": 0,
+            "limb_over_body_px": 959
+          }
+        },
+        "30": {
+          "pivot_at_cut": {
+            "hole_px": 92,
+            "sweep_px": 0,
+            "limb_over_body_px": 9166
+          },
+          "cut_at_pivot": {
+            "hole_px": 68,
+            "sweep_px": 0,
+            "limb_over_body_px": 2348
+          }
+        }
+      },
+      "defect_px": {
+        "pivot_at_cut": 22495,
+        "cut_at_pivot": 3392
+      },
+      "supports": "LAYER_CUT",
+      "note": "defect = holes + sweep + limb pixels newly drawn over the body; the pivot that produces fewer defect pixels is supported. The renders of both are in the close-up sheet."
+    },
+    "elbow_r": {
+      "joint": "elbow_r",
+      "bone": "RIGHT_FOREARM",
+      "moved_pivot_px": [
+        318.7,
+        616.9
+      ],
+      "original_pivot_px": [
+        288.0,
+        617.5
+      ],
+      "offset_px": -30.7,
+      "frames": {
+        "50": {
+          "pivot_at_cut": {
+            "hole_px": 95,
+            "sweep_px": 0,
+            "limb_over_body_px": 9975
+          },
+          "cut_at_pivot": {
+            "hole_px": 126,
+            "sweep_px": 0,
+            "limb_over_body_px": 4015
+          }
+        }
+      },
+      "defect_px": {
+        "pivot_at_cut": 10070,
+        "cut_at_pivot": 4141
+      },
+      "supports": "LAYER_CUT",
+      "note": "defect = holes + sweep + limb pixels newly drawn over the body; the pivot that produces fewer defect pixels is supported. The renders of both are in the close-up sheet."
+    }
+  },
+  "diagnosis": {
+    "shoulder_l": [
+      {
+        "frame": 10,
+        "pose": "both_arms_lowered",
+        "causes": {
+          "LAYER_CUT": "5238 limb px lie behind the pivot (cut -60.4 px from it); 2087 swing outside the silhouette, 0 after the split; moving the pivot onto the cut instead gives 18149 defect px vs 1780"
+        },
+        "rigid": {
+          "hole_px": 22,
+          "crack_px": 0,
+          "sweep_px": 2087,
+          "occluded_px": 0
+        },
+        "hybrid": {
+          "hole_px": 15,
+          "crack_px": 5,
+          "sweep_px": 0,
+          "occluded_px": 0
+        }
+      },
+      {
+        "frame": 20,
+        "pose": "left_arm_raised",
+        "causes": {
+          "LAYER_CUT": "5238 limb px lie behind the pivot (cut -60.4 px from it); 2462 swing outside the silhouette, 0 after the split; moving the pivot onto the cut instead gives 18149 defect px vs 1780"
+        },
+        "rigid": {
+          "hole_px": 102,
+          "crack_px": 2,
+          "sweep_px": 2462,
+          "occluded_px": 527
+        },
+        "hybrid": {
+          "hole_px": 84,
+          "crack_px": 8,
+          "sweep_px": 0,
+          "occluded_px": 527
+        }
+      }
+    ],
+    "shoulder_r": [
+      {
+        "frame": 10,
+        "pose": "both_arms_lowered",
+        "causes": {
+          "LAYER_CUT": "4371 limb px lie behind the pivot (cut -54.1 px from it); 1725 swing outside the silhouette, 0 after the split; moving the pivot onto the cut instead gives 22495 defect px vs 3392"
+        },
+        "rigid": {
+          "hole_px": 16,
+          "crack_px": 4,
+          "sweep_px": 1725,
+          "occluded_px": 0
+        },
+        "hybrid": {
+          "hole_px": 17,
+          "crack_px": 5,
+          "sweep_px": 0,
+          "occluded_px": 0
+        }
+      },
+      {
+        "frame": 30,
+        "pose": "right_arm_raised",
+        "causes": {
+          "LAYER_CUT": "4371 limb px lie behind the pivot (cut -54.1 px from it); 1917 swing outside the silhouette, 0 after the split; moving the pivot onto the cut instead gives 22495 defect px vs 3392"
+        },
+        "rigid": {
+          "hole_px": 185,
+          "crack_px": 0,
+          "sweep_px": 1917,
+          "occluded_px": 2296
+        },
+        "hybrid": {
+          "hole_px": 68,
+          "crack_px": 4,
+          "sweep_px": 0,
+          "occluded_px": 2296
+        }
+      }
+    ],
+    "elbow_l": [
+      {
+        "frame": 40,
+        "pose": "left_elbow_90",
+        "causes": {},
+        "rigid": {
+          "hole_px": 130,
+          "crack_px": 29,
+          "sweep_px": 0,
+          "occluded_px": 1299
+        },
+        "hybrid": {
+          "hole_px": 130,
+          "crack_px": 29,
+          "sweep_px": 0,
+          "occluded_px": 1299
+        }
+      }
+    ],
+    "elbow_r": [
+      {
+        "frame": 50,
+        "pose": "right_elbow_90",
+        "causes": {},
+        "rigid": {
+          "hole_px": 444,
+          "crack_px": 109,
+          "sweep_px": 142,
+          "occluded_px": 3364
+        },
+        "hybrid": {
+          "hole_px": 126,
+          "crack_px": 25,
+          "sweep_px": 0,
+          "occluded_px": 3364
+        }
+      }
+    ],
+    "hip_l": [
+      {
+        "frame": 60,
+        "pose": "left_knee_bent",
+        "causes": {
+          "INADEQUATE_OVERLAP": "84 px of thin cracks remain at the seam after the split",
+          "MISSING_ARTWORK": "410 gap px; the pending reconstruction covers 72 of 410: no hidden artwork exists for this gap",
+          "UNSUPPORTED_VIEW": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test",
+          "MISSING_CORRECTIVE_DRAWING": "1 pending, 0 approved corrective assets for this joint"
+        },
+        "rigid": {
+          "hole_px": 407,
+          "crack_px": 86,
+          "sweep_px": 0,
+          "occluded_px": 211
+        },
+        "hybrid": {
+          "hole_px": 410,
+          "crack_px": 84,
+          "sweep_px": 0,
+          "occluded_px": 211
+        }
+      }
+    ],
+    "knee_l": [
+      {
+        "frame": 60,
+        "pose": "left_knee_bent",
+        "causes": {
+          "MISSING_ARTWORK": "210 gap px; the pending reconstruction covers 0 of 210: no hidden artwork exists for this gap",
+          "UNSUPPORTED_VIEW": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test",
+          "MISSING_CORRECTIVE_DRAWING": "1 pending, 0 approved corrective assets for this joint"
+        },
+        "rigid": {
+          "hole_px": 210,
+          "crack_px": 43,
+          "sweep_px": 49,
+          "occluded_px": 0
+        },
+        "hybrid": {
+          "hole_px": 210,
+          "crack_px": 43,
+          "sweep_px": 49,
+          "occluded_px": 0
+        }
+      }
+    ],
+    "hip_r": [
+      {
+        "frame": 70,
+        "pose": "right_knee_bent",
+        "causes": {
+          "INADEQUATE_OVERLAP": "80 px of thin cracks remain at the seam after the split",
+          "MISSING_ARTWORK": "397 gap px; the pending reconstruction covers 73 of 397: no hidden artwork exists for this gap",
+          "UNSUPPORTED_VIEW": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test",
+          "MISSING_CORRECTIVE_DRAWING": "1 pending, 0 approved corrective assets for this joint"
+        },
+        "rigid": {
+          "hole_px": 397,
+          "crack_px": 80,
+          "sweep_px": 0,
+          "occluded_px": 188
+        },
+        "hybrid": {
+          "hole_px": 397,
+          "crack_px": 80,
+          "sweep_px": 0,
+          "occluded_px": 187
+        }
+      }
+    ],
+    "knee_r": [
+      {
+        "frame": 70,
+        "pose": "right_knee_bent",
+        "causes": {
+          "MISSING_ARTWORK": "200 gap px; the pending reconstruction covers 0 of 200: no hidden artwork exists for this gap",
+          "UNSUPPORTED_VIEW": "front-view art: real knee flexion is depth motion (REQUIRES_NEW_VIEW); in-plane joint test",
+          "MISSING_CORRECTIVE_DRAWING": "1 pending, 0 approved corrective assets for this joint"
+        },
+        "rigid": {
+          "hole_px": 206,
+          "crack_px": 42,
+          "sweep_px": 0,
+          "occluded_px": 0
+        },
+        "hybrid": {
+          "hole_px": 200,
+          "crack_px": 51,
+          "sweep_px": 2,
+          "occluded_px": 0
+        }
+      }
+    ],
+    "waist": [
+      {
+        "frame": 80,
+        "pose": "torso_leaning",
+        "causes": {
+          "INADEQUATE_OVERLAP": "142 px of thin cracks remain at the seam after the split",
+          "MISSING_ARTWORK": "1818 gap px; the pending reconstruction covers 0 of 1818: no hidden artwork exists for this gap",
+          "MISSING_CORRECTIVE_DRAWING": "0 pending, 0 approved corrective assets for this joint"
+        },
+        "rigid": {
+          "hole_px": 1818,
+          "crack_px": 142,
+          "sweep_px": 0,
+          "occluded_px": 0
+        },
+        "hybrid": {
+          "hole_px": 1818,
+          "crack_px": 142,
+          "sweep_px": 0,
+          "occluded_px": 0
+        }
+      }
+    ]
+  },
+  "summary": {
+    "rigid_4_1": {
+      "totals": {
+        "hole_px": 3937,
+        "crack_px": 537,
+        "sweep_px": 8382,
+        "occluded_px": 7885
+      },
+      "cause_counts": {
+        "LAYER_CUT": 4,
+        "BONE_PLACEMENT": 5,
+        "RIGID_BINDING_SPAN": 5,
+        "MISSING_CORRECTIVE_DRAWING": 11,
+        "LAYER_ORDER": 4,
+        "MISSING_HIDDEN_ARTWORK": 7,
+        "UNSUPPORTED_VIEW": 4
+      }
+    },
+    "order": {
+      "totals": {
+        "hole_px": 3937,
+        "crack_px": 537,
+        "sweep_px": 8382,
+        "occluded_px": 7885
+      },
+      "cause_counts": {
+        "LAYER_CUT": 4,
+        "BONE_PLACEMENT": 5,
+        "RIGID_BINDING_SPAN": 5,
+        "MISSING_CORRECTIVE_DRAWING": 11,
+        "LAYER_ORDER": 4,
+        "MISSING_HIDDEN_ARTWORK": 7,
+        "UNSUPPORTED_VIEW": 4
+      }
+    },
+    "split": {
+      "totals": {
+        "hole_px": 3475,
+        "crack_px": 476,
+        "sweep_px": 51,
+        "occluded_px": 7884
+      },
+      "cause_counts": {
+        "LAYER_ORDER": 4,
+        "MISSING_CORRECTIVE_DRAWING": 9,
+        "MISSING_HIDDEN_ARTWORK": 5,
+        "UNSUPPORTED_VIEW": 4
+      }
+    },
+    "hybrid": {
+      "totals": {
+        "hole_px": 3475,
+        "crack_px": 476,
+        "sweep_px": 51,
+        "occluded_px": 7884
+      },
+      "cause_counts": {
+        "LAYER_ORDER": 4,
+        "MISSING_CORRECTIVE_DRAWING": 9,
+        "MISSING_HIDDEN_ARTWORK": 5,
+        "UNSUPPORTED_VIEW": 4
+      }
+    },
+    "hybrid_review": {
+      "totals": {
+        "hole_px": 3330,
+        "crack_px": 370,
+        "sweep_px": 51,
+        "occluded_px": 7884
+      },
+      "cause_counts": {
+        "LAYER_ORDER": 4,
+        "MISSING_CORRECTIVE_DRAWING": 9,
+        "MISSING_ARTWORK": 5,
+        "UNSUPPORTED_VIEW": 4
+      }
+    },
+    "hybrid_correctives": {
+      "totals": {
+        "hole_px": 2058,
+        "crack_px": 286,
+        "sweep_px": 51,
+        "occluded_px": 7884
+      },
+      "cause_counts": {
+        "LAYER_ORDER": 4,
+        "MISSING_CORRECTIVE_DRAWING": 9,
+        "MISSING_HIDDEN_ARTWORK": 4,
+        "UNSUPPORTED_VIEW": 4,
+        "MISSING_ARTWORK": 1
+      }
+    },
+    "root_causes": {
+      "LAYER_CUT": [
+        "shoulder_l@10",
+        "shoulder_l@20",
+        "shoulder_r@10",
+        "shoulder_r@30"
+      ],
+      "INADEQUATE_OVERLAP": [
+        "hip_l@60",
+        "hip_r@70",
+        "waist@80"
+      ],
+      "MISSING_ARTWORK": [
+        "hip_l@60",
+        "knee_l@60",
+        "hip_r@70",
+        "knee_r@70",
+        "waist@80"
+      ],
+      "UNSUPPORTED_VIEW": [
+        "hip_l@60",
+        "knee_l@60",
+        "hip_r@70",
+        "knee_r@70"
+      ],
+      "MISSING_CORRECTIVE_DRAWING": [
+        "hip_l@60",
+        "knee_l@60",
+        "hip_r@70",
+        "knee_r@70",
+        "waist@80"
+      ]
+    }
+  }
+}

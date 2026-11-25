@@ -1,0 +1,656 @@
+{
+  "schema": "autorig.hand_switches",
+  "schema_version": "1.1.0",
+  "validated": {
+    "groups": [
+      {
+        "id": "hand_r",
+        "alias": "hand_right",
+        "bone": "hand_r",
+        "pivot_px": [
+          181.3,
+          619.5
+        ],
+        "pivot_moho": [
+          -0.4306,
+          0.19336
+        ],
+        "default": "open_palm",
+        "user_choice": null,
+        "auto": true,
+        "keyframes": [],
+        "variants": [
+          {
+            "pose": "open_palm",
+            "candidate": "original",
+            "label": "original",
+            "layer": "hand_r",
+            "file": "layers/hand_r.png",
+            "sha256": "010cdd2be7a98b98b89a9b6741704950e0d68ea9d132426eea093cb9b0f8680c",
+            "status": "original",
+            "approval_item": null,
+            "active_for_pose": true,
+            "category": "O_original",
+            "provenance": {
+              "from": "reference image (original pixels)"
+            },
+            "placement": null,
+            "placement_correction": null,
+            "mask": null,
+            "alignment_params": null,
+            "library": null,
+            "sleeve": null,
+            "handedness": null,
+            "flags": [],
+            "checks": {
+              "file_written": true,
+              "full_canvas": true,
+              "has_alpha": true,
+              "side_ok": true,
+              "rest_attachment_error_px": 0.0,
+              "width_ratio": 1.0
+            }
+          },
+          {
+            "pose": "palm_up",
+            "candidate": "phase2:palm_up",
+            "label": "palm_up (sheet)",
+            "layer": "hand_r__palm_up",
+            "file": "layers/hand_r__palm_up.png",
+            "sha256": "27db530df4c90172728aad074008c39869fc22405f9aca65803f03479aa51e0e",
+            "status": "pending_review",
+            "approval_item": "corrective:hand__palm_up",
+            "active_for_pose": true,
+            "category": "C_approximation",
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            },
+            "placement": null,
+            "placement_correction": null,
+            "mask": null,
+            "alignment_params": null,
+            "library": null,
+            "sleeve": null,
+            "handedness": null,
+            "flags": [],
+            "checks": {
+              "file_written": true,
+              "full_canvas": true,
+              "has_alpha": true,
+              "side_ok": true,
+              "rest_attachment_error_px": 12.85,
+              "width_ratio": 0.559
+            }
+          }
+        ]
+      },
+      {
+        "id": "hand_l",
+        "alias": "hand_left",
+        "bone": "hand_l",
+        "pivot_px": [
+          845.1,
+          620.3
+        ],
+        "pivot_moho": [
+          0.43372,
+          0.19232
+        ],
+        "default": "open_palm",
+        "user_choice": null,
+        "auto": true,
+        "keyframes": [],
+        "variants": [
+          {
+            "pose": "open_palm",
+            "candidate": "original",
+            "label": "original",
+            "layer": "hand_l",
+            "file": "layers/hand_l.png",
+            "sha256": "21aa5e4e5ea56985b3b7c363b9bbecc00fa852a9a0386003f9e303ea7e512cf6",
+            "status": "original",
+            "approval_item": null,
+            "active_for_pose": true,
+            "category": "O_original",
+            "provenance": {
+              "from": "reference image (original pixels)"
+            },
+            "placement": null,
+            "placement_correction": null,
+            "mask": null,
+            "alignment_params": null,
+            "library": null,
+            "sleeve": null,
+            "handedness": null,
+            "flags": [],
+            "checks": {
+              "file_written": true,
+              "full_canvas": true,
+              "has_alpha": true,
+              "side_ok": true,
+              "rest_attachment_error_px": 0.0,
+              "width_ratio": 1.0
+            }
+          },
+          {
+            "pose": "palm_up",
+            "candidate": "phase2:palm_up",
+            "label": "palm_up (sheet)",
+            "layer": "hand_l__palm_up",
+            "file": "layers/hand_l__palm_up.png",
+            "sha256": "6bdb462f5e81706029ade66d846766b6ab43f895bea4416955d647bc1601697c",
+            "status": "pending_review",
+            "approval_item": "corrective:hand__palm_up",
+            "active_for_pose": true,
+            "category": "C_approximation",
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            },
+            "placement": null,
+            "placement_correction": null,
+            "mask": null,
+            "alignment_params": null,
+            "library": null,
+            "sleeve": null,
+            "handedness": null,
+            "flags": [],
+            "checks": {
+              "file_written": true,
+              "full_canvas": true,
+              "has_alpha": true,
+              "side_ok": true,
+              "rest_attachment_error_px": 10.36,
+              "width_ratio": 0.561
+            }
+          }
+        ]
+      }
+    ],
+    "rules": [
+      "layers are full-canvas rest-frame RGBA, unscaled after placement (source files unchanged)",
+      "sleeve-attached drawings: their own sleeve/cuff masked and matte halo removed",
+      "sleeve-free drawings: placed by their own wrist opening (centre on the character's cuff edge, tucked under it, axis on the hand bone, one scale per side); pixels behind the tucked opening trimmed (alignment_params)",
+      "pending or rejected drawings are listed but not approved; production use requires approval"
+    ]
+  },
+  "libraries": {},
+  "gesture_id_map": [],
+  "selection": {
+    "rules": {
+      "weights": {
+        "gesture": 0.32,
+        "palm": 0.08,
+        "anatomy": 0.08,
+        "wrist": 0.1,
+        "silhouette": 0.08,
+        "view": 0.08,
+        "proportion": 0.04,
+        "continuity": 0.1,
+        "fidelity": 0.04,
+        "approval": 0.08
+      },
+      "actions": {
+        "relaxed_standing": {
+          "prefer": [
+            "relaxed",
+            "open_palm",
+            "partially_closed"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping",
+            "fist"
+          ],
+          "max_turn": 0.0,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "hanging_palm": [
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "why": "relaxed hands, neutral wrists; a hanging arm shows the back or the edge of the hand"
+        },
+        "walking": {
+          "prefer": [
+            "relaxed",
+            "partially_closed",
+            "open_palm"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping",
+            "palm_down"
+          ],
+          "max_turn": 0.0,
+          "symmetric": true,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "why": "relaxed or partially closed hands; no pointing or thumbs-up while walking"
+        },
+        "running": {
+          "prefer": [
+            "fist",
+            "relaxed",
+            "partially_closed"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping",
+            "palm_down",
+            "cupped"
+          ],
+          "max_turn": 0.0,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "symmetric": true,
+          "why": "loose fists or relaxed hands, the same on both arms, no wrist twist"
+        },
+        "pointing": {
+          "prefer": [
+            "pointing"
+          ],
+          "forbid": [],
+          "aim": "index_tip",
+          "max_turn": 45.0,
+          "why": "pointing hand, index toward the target (arm IK reaches, the wrist aims)"
+        },
+        "shrugging": {
+          "prefer": [
+            "palm_up",
+            "cupped"
+          ],
+          "forbid": [
+            "pointing",
+            "fist",
+            "thumbs_up",
+            "gripping"
+          ],
+          "palm": [
+            "PALM_UP"
+          ],
+          "max_turn": 0.0,
+          "symmetric": true,
+          "fallback": "shrug_subtle",
+          "why": "expressive shrug: palms up (an open palm-up drawing; a cupped palm-up drawing as an approximation)"
+        },
+        "shrug_expressive": {
+          "alias": "shrugging"
+        },
+        "shrug_subtle": {
+          "prefer": [
+            "open_palm",
+            "relaxed"
+          ],
+          "forbid": [
+            "pointing",
+            "fist",
+            "thumbs_up",
+            "gripping",
+            "cupped"
+          ],
+          "palm": [
+            "PALM_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "max_turn": 0.0,
+          "symmetric": true,
+          "why": "subtle shrug: hands low, palms turned toward the camera or edge-on"
+        },
+        "explaining": {
+          "prefer": [
+            "open_palm",
+            "cupped",
+            "palm_up",
+            "relaxed"
+          ],
+          "forbid": [
+            "thumbs_up",
+            "gripping"
+          ],
+          "palm": [
+            "PALM_TO_CAMERA",
+            "PALM_UP",
+            "EDGE_ON"
+          ],
+          "palm_strict": false,
+          "max_turn": 0.0,
+          "vary": true,
+          "why": "open or cupped hands, varied between beats"
+        },
+        "conversation": {
+          "alias": "explaining"
+        },
+        "hand_on_desk": {
+          "prefer": [
+            "palm_down",
+            "relaxed",
+            "open_palm"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "cupped"
+          ],
+          "palm": [
+            "PALM_DOWN",
+            "BACK_TO_CAMERA",
+            "PALM_TO_CAMERA"
+          ],
+          "max_turn": 0.0,
+          "why": "hand resting on the desk top: palm down (seen from above) preferred"
+        },
+        "angry": {
+          "prefer": [
+            "fist",
+            "pointing"
+          ],
+          "forbid": [
+            "thumbs_up",
+            "cupped",
+            "open_palm"
+          ],
+          "max_turn": 30.0,
+          "pointing_needs_target": true,
+          "aim": "index_tip",
+          "why": "fists; pointing only when the action has a target"
+        },
+        "gripping": {
+          "prefer": [
+            "gripping",
+            "fist"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "open_palm"
+          ],
+          "grip": true,
+          "max_turn": 0.0,
+          "why": "grip hand on the interaction target"
+        },
+        "thumbs_up": {
+          "prefer": [
+            "thumbs_up"
+          ],
+          "forbid": [],
+          "aim": "thumb_tip",
+          "aim_dir": [
+            0.0,
+            -1.0
+          ],
+          "max_turn": 45.0,
+          "why": "thumbs-up, thumb turned to read upward"
+        },
+        "hand_on_hip": {
+          "prefer": [
+            "relaxed",
+            "cupped",
+            "fist"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping"
+          ],
+          "max_turn": 0.0,
+          "max_view_dev": 70.0,
+          "why": "relaxed or cupped hands on the hips, no extreme rotation"
+        },
+        "resting": {
+          "prefer": [
+            "palm_down",
+            "relaxed",
+            "open_palm"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up"
+          ],
+          "max_turn": 0.0,
+          "why": "hands resting (on the knees)"
+        },
+        "raised": {
+          "prefer": [
+            "open_palm",
+            "relaxed"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping"
+          ],
+          "max_turn": 0.0,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA"
+          ],
+          "why": "raised open hands"
+        }
+      },
+      "preset_actions": {
+        "relaxed_standing": "relaxed_standing",
+        "hands_at_sides": "relaxed_standing",
+        "head_tilt_compensated": "relaxed_standing",
+        "side_lean": "relaxed_standing",
+        "leaning_forward": "relaxed_standing",
+        "leaning_backward": "relaxed_standing",
+        "hands_on_hips": "hand_on_hip",
+        "pointing_speaking": {
+          "r": "pointing",
+          "l": "relaxed_standing"
+        },
+        "conversational_gesture": {
+          "r": "explaining",
+          "l": "relaxed_standing"
+        },
+        "one_hand_shrug": "shrugging",
+        "casual_walk": "walking",
+        "running": "running",
+        "sitting": "resting",
+        "natural_squat": "resting",
+        "both_hands_raised": "raised"
+      },
+      "upright_tolerance_deg": {
+        "relaxed": 130.0,
+        "open_palm": 160.0,
+        "fist": 170.0,
+        "pointing": 180.0,
+        "thumbs_up": 60.0,
+        "gripping": 100.0,
+        "palm_down": 80.0,
+        "cupped": 70.0,
+        "palm_up": 70.0,
+        "partially_closed": 130.0
+      },
+      "gesture_scores": [
+        1.0,
+        0.8,
+        0.62,
+        0.48
+      ],
+      "unlisted_score": 0.15,
+      "fidelity": {
+        "original": 1.0,
+        "phase2": 0.8,
+        "store_sleeve_free": 0.7,
+        "store_attached": 0.5,
+        "derived_mirror": 0.6
+      },
+      "pending_approval_score": 0.6,
+      "temporal": {
+        "hysteresis": 0.12,
+        "min_hold_s": 0.4,
+        "min_hold_action_s": 0.25,
+        "variety_penalty": 0.15,
+        "symmetry_tolerance": 0.05
+      },
+      "wrist_limit_deg": 60.0,
+      "aim_rate_deg_s": 180.0,
+      "aim_forearm_window_deg": [
+        25.0,
+        70.0
+      ],
+      "resolution": "explicit user choice > switch keyframe > this engine (auto mode only) > group default",
+      "hard_constraints": [
+        "missing",
+        "approval (production: approved + original only; review: + pending)",
+        "excluded",
+        "gesture (forbidden / needs target)",
+        "handedness",
+        "metadata",
+        "palm view (HandOrientationAnalyzer, flat rotation only)",
+        "rotation from the drawn orientation <= the drawing's tolerance"
+      ],
+      "approval_states": [
+        "APPROVED",
+        "PENDING_REVIEW",
+        "REJECTED",
+        "MISSING"
+      ],
+      "disclaimer": "scores rank the drawings the character has for an action; they do not measure visual quality"
+    },
+    "state": {
+      "actions": {
+        "r": null,
+        "l": null
+      },
+      "targets": {
+        "r": null,
+        "l": null
+      },
+      "weights": {}
+    },
+    "note": "the selection algorithm runs in AutoRig; Moho would receive its results as switch keys"
+  },
+  "semantic_actions": {
+    "HAND_RIGHT_POINT": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "pointing"
+    },
+    "HAND_RIGHT_FIST": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "fist"
+    },
+    "HAND_RIGHT_OPEN": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "open_palm"
+    },
+    "HAND_RIGHT_RELAXED": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "relaxed"
+    },
+    "HAND_RIGHT_THUMBS_UP": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "thumbs_up"
+    },
+    "HAND_RIGHT_GRIP": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "gripping"
+    },
+    "HAND_RIGHT_PALM_DOWN": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "palm_down"
+    },
+    "HAND_RIGHT_CUPPED": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_r",
+      "variant": "cupped"
+    },
+    "HAND_LEFT_POINT": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "pointing"
+    },
+    "HAND_LEFT_FIST": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "fist"
+    },
+    "HAND_LEFT_OPEN": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "open_palm"
+    },
+    "HAND_LEFT_RELAXED": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "relaxed"
+    },
+    "HAND_LEFT_THUMBS_UP": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "thumbs_up"
+    },
+    "HAND_LEFT_GRIP": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "gripping"
+    },
+    "HAND_LEFT_PALM_DOWN": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "palm_down"
+    },
+    "HAND_LEFT_CUPPED": {
+      "channel": "body",
+      "kind": "switch",
+      "group": "hand_l",
+      "variant": "cupped"
+    }
+  },
+  "moho_mapping": {
+    "status": "proposed_unverified",
+    "proposal": "one Moho Switch Layer per group (child per variant image), bound to the hand bone; switch keys from 'keyframes'; live actions map to switch values later"
+  },
+  "not_implemented_in_native_moho": [
+    "creating a Switch layer and adding these images as its children: no Moho API for it is verified in the allowlist",
+    "binding switch values to Smart Bones, actions or Live Mode inputs (input identifiers not discovered)",
+    "writing a .moho/.mohoproj file: blocked until the Phase 0 importer is verified natively"
+  ],
+  "summary": {
+    "groups": 2,
+    "variants": 4,
+    "pending_or_rejected": 2,
+    "production_ready": false
+  }
+}

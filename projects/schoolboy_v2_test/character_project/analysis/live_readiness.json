@@ -1,0 +1,104 @@
+{
+  "schema": "autorig.live_readiness",
+  "schema_version": "1.0.0",
+  "capabilities": {
+    "blinking": {
+      "status": "REQUIRES_NEW_ARTWORK",
+      "reasons": [
+        "Both eyes are separable, but no closed-eye artwork exists in a single open-eyed reference."
+      ],
+      "required_artwork": [
+        "closed_eye_r",
+        "closed_eye_l"
+      ],
+      "evidence": {
+        "eyes": [
+          "eye_r",
+          "eye_l"
+        ]
+      }
+    },
+    "eyebrow_movement": {
+      "status": "REQUIRES_RECONSTRUCTION",
+      "reasons": [
+        "Brows are separable; moving them reveals skin that was never painted (must be reconstructed, not invented here)."
+      ],
+      "required_artwork": [
+        "skin_under_brow_r",
+        "skin_under_brow_l"
+      ],
+      "evidence": {}
+    },
+    "mouth_opening": {
+      "status": "REQUIRES_NEW_ARTWORK",
+      "reasons": [
+        "The reference mouth is a closed line: no lips or interior to open."
+      ],
+      "required_artwork": [
+        "open_mouth_with_interior",
+        "skin_under_mouth"
+      ],
+      "evidence": {}
+    },
+    "lip_sync": {
+      "status": "REQUIRES_NEW_ARTWORK",
+      "reasons": [
+        "Lip-sync needs a set of phoneme mouth shapes; only one exists."
+      ],
+      "required_artwork": [
+        "phoneme_mouth_set"
+      ],
+      "evidence": {}
+    },
+    "eye_direction": {
+      "status": "REQUIRES_RECONSTRUCTION",
+      "reasons": [
+        "Pupils are separable inside the eyes, but the sclera under them is hidden and must be reconstructed before pupils can move."
+      ],
+      "required_artwork": [
+        "sclera_fill_r",
+        "sclera_fill_l"
+      ],
+      "evidence": {}
+    },
+    "head_tilting": {
+      "status": "REQUIRES_RECONSTRUCTION",
+      "reasons": [
+        "Head layer and neck pivot exist; tilting exposes hidden neck/collar pixels under the chin that must be reconstructed."
+      ],
+      "required_artwork": [
+        "neck_extension_under_chin",
+        "back_of_hair_and_hidden_head_outline"
+      ],
+      "evidence": {}
+    },
+    "head_turning": {
+      "status": "REQUIRES_NEW_ARTWORK",
+      "reasons": [
+        "Turning needs three-quarter/profile views or new turn artwork; a single front view cannot provide them."
+      ],
+      "required_artwork": [
+        "three_quarter_and_profile_head_views"
+      ],
+      "evidence": {}
+    },
+    "facial_expressions": {
+      "status": "REQUIRES_NEW_ARTWORK",
+      "reasons": [
+        "Only the neutral expression exists; expressions need new brow/eye/mouth artwork."
+      ],
+      "required_artwork": [
+        "expression_variants (brows, eyes, mouth)"
+      ],
+      "evidence": {}
+    }
+  },
+  "summary": {
+    "READY": 0,
+    "REQUIRES_RECONSTRUCTION": 3,
+    "REQUIRES_NEW_ARTWORK": 5,
+    "UNSUPPORTED": 0,
+    "NEEDS_REVIEW": 0
+  },
+  "policy": "READY only when all required artwork already exists in the reference; nothing is invented."
+}

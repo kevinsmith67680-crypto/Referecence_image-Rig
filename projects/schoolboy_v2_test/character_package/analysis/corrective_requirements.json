@@ -1,0 +1,168 @@
+{
+ "schema": "autorig.corrective_requirements",
+ "version": "1.0.0",
+ "requirements": [
+  {
+   "id": "REQ-shoe_top_r",
+   "category": "shoes",
+   "garment_region": "shoe_r",
+   "triggering_poses": [
+    "neutral",
+    "arm45",
+    "arm90",
+    "arm120"
+   ],
+   "target_joint_angles": {
+    "neutral": {
+     "abduction_r": 9.0,
+     "elbow_r": 14.0,
+     "wrist_r": 6.0,
+     "hip_r": 4.5,
+     "knee_r": 4.0
+    },
+    "arm45": {
+     "abduction_r": 45.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 5.9,
+     "knee_r": 3.5
+    },
+    "arm90": {
+     "abduction_r": 90.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 5.3,
+     "knee_r": 1.6
+    },
+    "arm120": {
+     "abduction_r": 120.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 5.3,
+     "knee_r": 1.6
+    }
+   },
+   "required_hidden_area": {
+    "neutral:ankle_gap_points": 4,
+    "arm45:ankle_gap_points": 5,
+    "arm90:ankle_gap_points": 5,
+    "arm120:ankle_gap_points": 5
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the shoe's top under the hem was never drawn: extend the shoe upward under the trouser",
+   "source_artwork": [],
+   "confidence": 0.8,
+   "required_approval": "user approval",
+   "expected_moho": "direct: extra layer bound to the foot",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "shoe_top_r",
+     "version": 1,
+     "approval_key": "corrective:shoe_top_r@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-shoe_top_l",
+   "category": "shoes",
+   "garment_region": "shoe_l",
+   "triggering_poses": [
+    "neutral",
+    "arm45",
+    "arm90",
+    "arm120"
+   ],
+   "target_joint_angles": {
+    "neutral": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 5.5,
+     "knee_l": 6.7
+    },
+    "arm45": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 5.6,
+     "knee_l": 10.0
+    },
+    "arm90": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 5.3,
+     "knee_l": 10.1
+    },
+    "arm120": {
+     "abduction_l": 9.0,
+     "elbow_l": 14.0,
+     "wrist_l": 6.0,
+     "hip_l": 5.3,
+     "knee_l": 10.1
+    }
+   },
+   "required_hidden_area": {
+    "neutral:ankle_gap_points": 4,
+    "arm45:ankle_gap_points": 5,
+    "arm90:ankle_gap_points": 5,
+    "arm120:ankle_gap_points": 5
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the shoe's top under the hem was never drawn: extend the shoe upward under the trouser",
+   "source_artwork": [],
+   "confidence": 0.8,
+   "required_approval": "user approval",
+   "expected_moho": "direct: extra layer bound to the foot",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "shoe_top_l",
+     "version": 1,
+     "approval_key": "corrective:shoe_top_l@v1",
+     "state": "pending_review"
+    }
+   ]
+  },
+  {
+   "id": "REQ-armpit_r",
+   "category": "armpits",
+   "garment_region": "armpit_r",
+   "triggering_poses": [
+    "arm120"
+   ],
+   "target_joint_angles": {
+    "arm120": {
+     "abduction_r": 120.0,
+     "elbow_r": 5.0,
+     "wrist_r": 6.0,
+     "hip_r": 5.3,
+     "knee_r": 1.6
+    }
+   },
+   "required_hidden_area": {
+    "arm120:gap_px": 278
+   },
+   "correction_type": "geometric_extension",
+   "decision": "the joint patch refuses the stretch; a gusset drawn beneath torso and sleeve fills it",
+   "source_artwork": [],
+   "confidence": 0.7,
+   "required_approval": "user approval (GEOMETRIC_CORRECTION)",
+   "expected_moho": "conversion: keyed switch layer",
+   "ai_generation": "not used: geometric construction from the character's own pixels is sufficient",
+   "treated_as_original": false,
+   "assets": [
+    {
+     "asset_id": "armpit_gusset_r",
+     "version": 1,
+     "approval_key": "corrective:armpit_gusset_r@v1",
+     "state": "pending_review"
+    }
+   ]
+  }
+ ]
+}

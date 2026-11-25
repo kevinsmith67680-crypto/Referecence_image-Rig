@@ -1,0 +1,1013 @@
+{
+  "store_version": "1.0.0",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "originals": {
+    "foot_r": {
+      "path": "artwork/original/foot_r.png",
+      "pixel_sha256": "ec8e8d82ebb48a98a18377067b5fe4e86d62eb310fe0c6785780fb8d4f0931de",
+      "pixels": 17990,
+      "bbox_xyxy": [
+        213,
+        1349,
+        390,
+        1494
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/foot_r.png",
+        "phase1_file_sha256": "65dcb4ed1f81db5b3fe01f04d640279bea3be458f351432f097511ddbc21df84",
+        "split": null
+      }
+    },
+    "shin_r": {
+      "path": "artwork/original/shin_r.png",
+      "pixel_sha256": "e6b59c1152936630b31a9aad3e12f7801a3cd9f540dd4d6990d152256a856aff",
+      "pixels": 15968,
+      "bbox_xyxy": [
+        302,
+        1132,
+        423,
+        1372
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/shin_r.png",
+        "phase1_file_sha256": "4d85faaaae450acbfa6381d9553e21edebd7233e191ced9b802bdb6cd1fe7a18",
+        "split": null
+      }
+    },
+    "thigh_r": {
+      "path": "artwork/original/thigh_r.png",
+      "pixel_sha256": "47a165f36d169bb198b78e0482e76090489fd39128d707f3aa23c544e0ccb5b3",
+      "pixels": 13892,
+      "bbox_xyxy": [
+        363,
+        914,
+        510,
+        1147
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/thigh_r.png",
+        "phase1_file_sha256": "071c98679f5420b4f0ba863b1c58eefae18a3f11dd64abcaf47e1d3aacf68d25",
+        "split": null
+      }
+    },
+    "foot_l": {
+      "path": "artwork/original/foot_l.png",
+      "pixel_sha256": "62bf37ec907c84b12ec9c10fbfe8cb7bdac5742febbeae7ecd323d16ec3a94e8",
+      "pixels": 17786,
+      "bbox_xyxy": [
+        633,
+        1351,
+        809,
+        1494
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/foot_l.png",
+        "phase1_file_sha256": "57f6cd5107c9fe3a27b6ce4cabad3c0924a377af6810e011234e0c8b03581770",
+        "split": null
+      }
+    },
+    "shin_l": {
+      "path": "artwork/original/shin_l.png",
+      "pixel_sha256": "bdbb3e8b4b96d04cbf521c32144726d4947f7ea3374779eeb91e4a468c1aeece",
+      "pixels": 16099,
+      "bbox_xyxy": [
+        596,
+        1131,
+        718,
+        1373
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/shin_l.png",
+        "phase1_file_sha256": "13510544620a65cfd11b49965fd99a2fa793d087d8426650c6cfa44d46f36b94",
+        "split": null
+      }
+    },
+    "thigh_l": {
+      "path": "artwork/original/thigh_l.png",
+      "pixel_sha256": "6829c04f02bed3d2103de0ab97b9b646c9a9a64b9099b1d2ee056ef6bcc5aa07",
+      "pixels": 14046,
+      "bbox_xyxy": [
+        510,
+        912,
+        655,
+        1146
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/thigh_l.png",
+        "phase1_file_sha256": "1b3eaf3e925e2c11095f60ac71d2298343c99d5731aa611ff32b6b73b4f811bf",
+        "split": null
+      }
+    },
+    "pelvis": {
+      "path": "artwork/original/pelvis.png",
+      "pixel_sha256": "a85e2017987fd050dff6a593ff8a751b1d46040a4b7db860a2ddca8db3050163",
+      "pixels": 22567,
+      "bbox_xyxy": [
+        361,
+        793,
+        663,
+        955
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/pelvis.png",
+        "phase1_file_sha256": "291e0b1becff2d9fd49aa198f8b0ec27014d310100e3d49bfd4d6c0260e719e6",
+        "split": null
+      }
+    },
+    "neck": {
+      "path": "artwork/original/neck.png",
+      "pixel_sha256": "1732b2a9bd0f01bf1f82a1496ea2e74f5cb835821dc2aa4492d4d97dd98ad56d",
+      "pixels": 1243,
+      "bbox_xyxy": [
+        497,
+        514,
+        533,
+        557
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/neck.png",
+        "phase1_file_sha256": "2992ca11c11eb205c489444180c5e5bae9277a2b4012d02f183c30048c1e739a",
+        "split": null
+      }
+    },
+    "torso": {
+      "path": "artwork/original/torso.png",
+      "pixel_sha256": "3047f110fbd25b5926332b051de0f79f34341566722c6d248f235543727e0298",
+      "pixels": 51845,
+      "bbox_xyxy": [
+        389,
+        505,
+        636,
+        882
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/torso.png",
+        "phase1_file_sha256": "7c4c95328bad8ed39421c5cd16a2d90cd14166f9c3b50c91a301e51f3b533d63",
+        "split": null
+      }
+    },
+    "upper_arm_r": {
+      "path": "artwork/original/upper_arm_r.png",
+      "pixel_sha256": "745d8a42e1ad584cc6b54b2bedecfe8fdd863a0d4e54eac3dd3effbcdcf4b59c",
+      "pixels": 7963,
+      "bbox_xyxy": [
+        318,
+        562,
+        459,
+        686
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/upper_arm_r.png",
+        "phase1_file_sha256": "92bb21a63c77afadb2fde45108f8a94123b6499859cff62dcf35daed60aad939",
+        "split": null
+      }
+    },
+    "forearm_r": {
+      "path": "artwork/original/forearm_r.png",
+      "pixel_sha256": "3d039a03a14f54ce7b312c11a1f3faceb834d1347f61daa9a9c88ad9580b071a",
+      "pixels": 9198,
+      "bbox_xyxy": [
+        115,
+        581,
+        321,
+        678
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/forearm_r.png",
+        "phase1_file_sha256": "8f295963f944d48ef43efa361ffdec533a640802a63bc789e121c54ee7765857",
+        "split": null
+      }
+    },
+    "hand_r": {
+      "path": "artwork/original/hand_r.png",
+      "pixel_sha256": "6c53ff066961b6d352143bfb102063dc28952a4c08abf70203a262ae1b52e4c2",
+      "pixels": 17434,
+      "bbox_xyxy": [
+        22,
+        515,
+        187,
+        693
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hand_r.png",
+        "phase1_file_sha256": "010cdd2be7a98b98b89a9b6741704950e0d68ea9d132426eea093cb9b0f8680c",
+        "split": null
+      }
+    },
+    "upper_arm_l": {
+      "path": "artwork/original/upper_arm_l.png",
+      "pixel_sha256": "d207281132b46556c4f70fb71adf41a538c086631fe846f853b1303e3712b542",
+      "pixels": 9940,
+      "bbox_xyxy": [
+        569,
+        562,
+        735,
+        705
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/upper_arm_l.png",
+        "phase1_file_sha256": "4bcc48fa866cd9f85e82c63167ff8f77133bfb25bd0bc8b5e90aed5f84b5f359",
+        "split": null
+      }
+    },
+    "forearm_l": {
+      "path": "artwork/original/forearm_l.png",
+      "pixel_sha256": "cd5639047732a59d2e1620dc38a40771af59d07636fded8a337547212d88df17",
+      "pixels": 7712,
+      "bbox_xyxy": [
+        733,
+        574,
+        869,
+        666
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/forearm_l.png",
+        "phase1_file_sha256": "e7bf20ab365c31490ac86668d1b1de11a000ea7d1407a2d764e1bd2d7c8f5f12",
+        "split": null
+      }
+    },
+    "hand_l": {
+      "path": "artwork/original/hand_l.png",
+      "pixel_sha256": "c2a690c6f639fb8b85e977282b059d52ae77bd42fa146943dbb262c707d5eb84",
+      "pixels": 17367,
+      "bbox_xyxy": [
+        841,
+        515,
+        1003,
+        693
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hand_l.png",
+        "phase1_file_sha256": "21aa5e4e5ea56985b3b7c363b9bbecc00fa852a9a0386003f9e303ea7e512cf6",
+        "split": null
+      }
+    },
+    "head_base": {
+      "path": "artwork/original/head_base.png",
+      "pixel_sha256": "1efe72e75f0e8b2a2c5c9e46bd52371f43ce18a904876df56bff0cbadd7858a7",
+      "pixels": 64243,
+      "bbox_xyxy": [
+        316,
+        215,
+        698,
+        520
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/head_base.png",
+        "phase1_file_sha256": "0981a8fe8b598627978e8ba3c5e2e33966242c53301df1c6967b90a07d440374",
+        "split": null
+      }
+    },
+    "nose": {
+      "path": "artwork/original/nose.png",
+      "pixel_sha256": "8a2a776d3e0e110b61bc0a3bc4ae24f858e337e78a33cc2062ea1afea68a587e",
+      "pixels": 907,
+      "bbox_xyxy": [
+        494,
+        400,
+        538,
+        427
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/nose.png",
+        "phase1_file_sha256": "8705bbb92187dc0479aa794baf32a6608f4ca0e63adbae177629910cccab5d1d",
+        "split": null
+      }
+    },
+    "mouth": {
+      "path": "artwork/original/mouth.png",
+      "pixel_sha256": "6344396ed331560ac111b193aba43914a8a970d90a0420ac9da8f1c6c97bbe5c",
+      "pixels": 272,
+      "bbox_xyxy": [
+        486,
+        443,
+        552,
+        459
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/mouth.png",
+        "phase1_file_sha256": "836df4bbd13ef300535a318b0a9de9ae89745a04f814f6df28612877e6551ea0",
+        "split": null
+      }
+    },
+    "brow_r": {
+      "path": "artwork/original/brow_r.png",
+      "pixel_sha256": "bd7f82b7fcbaeb601829c24e49fb685a4f0e35e8a8e4ec7fe996193705d77f4c",
+      "pixels": 2437,
+      "bbox_xyxy": [
+        382,
+        306,
+        498,
+        363
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/brow_r.png",
+        "phase1_file_sha256": "45781a06de1533789b8ede9574aacb34c7fb223f7e40e4c418adfdbf72d2a17a",
+        "split": null
+      }
+    },
+    "brow_l": {
+      "path": "artwork/original/brow_l.png",
+      "pixel_sha256": "62789b86c13acc652241b72d43fd65c60ad1918d97ec2da215afa77d2fb3ce33",
+      "pixels": 2465,
+      "bbox_xyxy": [
+        528,
+        296,
+        638,
+        362
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/brow_l.png",
+        "phase1_file_sha256": "023bd55e93b249d0eafe36f49c6987b3e9afcb1946d640ba8aca6be982c50a4a",
+        "split": null
+      }
+    },
+    "hair": {
+      "path": "artwork/original/hair.png",
+      "pixel_sha256": "fd4e045b9bb734c6aed034a7a63bc34ae7920689a6c0cd5da5de0a9afd0bc04e",
+      "pixels": 95475,
+      "bbox_xyxy": [
+        240,
+        19,
+        760,
+        378
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/hair.png",
+        "phase1_file_sha256": "2dbffbada481d49d870fe4f9b40ad65c232da93fb2e4916f8f2857ae6f7db2f6",
+        "split": null
+      }
+    },
+    "eye_r_white": {
+      "path": "artwork/original/eye_r_white.png",
+      "pixel_sha256": "761ed5c154f8c066dbd768b6d144509910d65aca472cab1779934a9a712b2a94",
+      "pixels": 3550,
+      "bbox_xyxy": [
+        392,
+        348,
+        485,
+        410
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_r.png",
+        "phase1_file_sha256": "82066f2ec037221a832ae985df79f26e8b702f21f762611c846510c0627d6450",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    "eye_r_iris": {
+      "path": "artwork/original/eye_r_iris.png",
+      "pixel_sha256": "257df2b62be4920bd570a7bdc4316c1ec26aac3ebbb494860d6c733a14a7d1a8",
+      "pixels": 941,
+      "bbox_xyxy": [
+        435,
+        354,
+        474,
+        385
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_r.png",
+        "phase1_file_sha256": "82066f2ec037221a832ae985df79f26e8b702f21f762611c846510c0627d6450",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    "eye_l_white": {
+      "path": "artwork/original/eye_l_white.png",
+      "pixel_sha256": "e6012c8be9a3d24bf221232a57b0fd13403032adb7b2cef527b63cf0af74dcec",
+      "pixels": 3559,
+      "bbox_xyxy": [
+        540,
+        341,
+        630,
+        406
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_l.png",
+        "phase1_file_sha256": "85384bf23caf85126c184197b4d724992050a0a951e71632b2afe39b32d6a4d7",
+        "split": "eye white/iris split of original pixels"
+      }
+    },
+    "eye_l_iris": {
+      "path": "artwork/original/eye_l_iris.png",
+      "pixel_sha256": "efdbebdc49959740b8a55415037e33a3379f1208f09a10640146c3d0442813e6",
+      "pixels": 901,
+      "bbox_xyxy": [
+        551,
+        352,
+        588,
+        383
+      ],
+      "category": "A_original",
+      "provenance": {
+        "from_phase1_layer": "artwork/bitmap/eye_l.png",
+        "phase1_file_sha256": "85384bf23caf85126c184197b4d724992050a0a951e71632b2afe39b32d6a4d7",
+        "split": "eye white/iris split of original pixels"
+      }
+    }
+  },
+  "extensions": [
+    {
+      "id": "forearm_l__01",
+      "component": "forearm_l",
+      "image": "artwork/reconstructed/forearm_l__01.png",
+      "provenance_mask": "masks/provenance/forearm_l__01.png",
+      "region_id": "forearm_l__under__hand_l",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1094,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          3,
+          2,
+          2
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.938
+      },
+      "created_at": 1795626684.2247672
+    },
+    {
+      "id": "forearm_r__01",
+      "component": "forearm_r",
+      "image": "artwork/reconstructed/forearm_r__01.png",
+      "provenance_mask": "masks/provenance/forearm_r__01.png",
+      "region_id": "forearm_r__under__hand_r",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1117,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          3,
+          2,
+          2
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.95
+      },
+      "created_at": 1795626684.36569
+    },
+    {
+      "id": "head_base__01",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__01.png",
+      "provenance_mask": "masks/provenance/head_base__01.png",
+      "region_id": "head_base__under__brow_l",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 2465,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          243,
+          146,
+          85
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.87
+      },
+      "created_at": 1795626684.6912155
+    },
+    {
+      "id": "head_base__02",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__02.png",
+      "provenance_mask": "masks/provenance/head_base__02.png",
+      "region_id": "head_base__under__brow_r",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 2437,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          243,
+          147,
+          85
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.864
+      },
+      "created_at": 1795626685.0224016
+    },
+    {
+      "id": "head_base__03",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__03.png",
+      "provenance_mask": "masks/provenance/head_base__03.png",
+      "region_id": "head_base__under__eye_l_white",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 3559,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          243,
+          146,
+          85
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.882
+      },
+      "created_at": 1795626685.3958864
+    },
+    {
+      "id": "head_base__04",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__04.png",
+      "provenance_mask": "masks/provenance/head_base__04.png",
+      "region_id": "head_base__under__eye_r_iris",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 941,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          1,
+          1,
+          1
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.866
+      },
+      "created_at": 1795626685.7243576
+    },
+    {
+      "id": "head_base__05",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__05.png",
+      "provenance_mask": "masks/provenance/head_base__05.png",
+      "region_id": "head_base__under__eye_r_white",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 3550,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          243,
+          146,
+          84
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.865
+      },
+      "created_at": 1795626686.0529304
+    },
+    {
+      "id": "head_base__06",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__06.png",
+      "provenance_mask": "masks/provenance/head_base__06.png",
+      "region_id": "head_base__under__mouth",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 272,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          243,
+          146,
+          85
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.999
+      },
+      "created_at": 1795626686.4311657
+    },
+    {
+      "id": "head_base__07",
+      "component": "head_base",
+      "image": "artwork/reconstructed/head_base__07.png",
+      "provenance_mask": "masks/provenance/head_base__07.png",
+      "region_id": "head_base__under__nose",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 907,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          243,
+          146,
+          85
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 0,
+        "colour_share": 0.989
+      },
+      "created_at": 1795626686.74441
+    },
+    {
+      "id": "neck__01",
+      "component": "neck",
+      "image": "artwork/reconstructed/neck__01.png",
+      "provenance_mask": "masks/provenance/neck__01.png",
+      "region_id": "neck__under__head_base",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 2503,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          1,
+          0,
+          1
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 3,
+        "colour_share": 1.0
+      },
+      "created_at": 1795626687.0734348
+    },
+    {
+      "id": "neck__02",
+      "component": "neck",
+      "image": "artwork/reconstructed/neck__02.png",
+      "provenance_mask": "masks/provenance/neck__02.png",
+      "region_id": "neck__under__torso",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 453,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          2,
+          1,
+          1
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 3,
+        "colour_share": 0.809
+      },
+      "created_at": 1795626687.4142323
+    },
+    {
+      "id": "shin_l__01",
+      "component": "shin_l",
+      "image": "artwork/reconstructed/shin_l__01.png",
+      "provenance_mask": "masks/provenance/shin_l__01.png",
+      "region_id": "shin_l__under__foot_l",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1132,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          3,
+          2,
+          1
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.86
+      },
+      "created_at": 1795626687.7534122
+    },
+    {
+      "id": "shin_r__01",
+      "component": "shin_r",
+      "image": "artwork/reconstructed/shin_r__01.png",
+      "provenance_mask": "masks/provenance/shin_r__01.png",
+      "region_id": "shin_r__under__foot_r",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 1179,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          2,
+          1,
+          1
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 0.941
+      },
+      "created_at": 1795626687.9112375
+    },
+    {
+      "id": "thigh_l__01",
+      "component": "thigh_l",
+      "image": "artwork/reconstructed/thigh_l__01.png",
+      "provenance_mask": "masks/provenance/thigh_l__01.png",
+      "region_id": "thigh_l__under__pelvis",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 883,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          62,
+          52,
+          51
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      },
+      "created_at": 1795626688.2778363
+    },
+    {
+      "id": "thigh_r__01",
+      "component": "thigh_r",
+      "image": "artwork/reconstructed/thigh_r__01.png",
+      "provenance_mask": "masks/provenance/thigh_r__01.png",
+      "region_id": "thigh_r__under__pelvis",
+      "method": "deterministic_flat_fill",
+      "status": "pending_review",
+      "pixels": 867,
+      "discarded_outside_region": 0,
+      "discarded_on_original": 0,
+      "provenance": {
+        "fill_rgb": [
+          62,
+          52,
+          51
+        ],
+        "outline": null,
+        "outline_pieces_dropped_without_visible_entry": 1,
+        "colour_share": 1.0
+      },
+      "created_at": 1795626688.6608212
+    }
+  ],
+  "history": [
+    {
+      "action": "add_original",
+      "at": 1795626674.8679748,
+      "component": "foot_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626674.9235992,
+      "component": "shin_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626674.9768715,
+      "component": "thigh_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.0294662,
+      "component": "foot_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.0856125,
+      "component": "shin_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.141007,
+      "component": "thigh_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.2004933,
+      "component": "pelvis"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.2377312,
+      "component": "neck"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.3333914,
+      "component": "torso"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.3808284,
+      "component": "upper_arm_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.427784,
+      "component": "forearm_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.4856417,
+      "component": "hand_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.5351684,
+      "component": "upper_arm_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.5803049,
+      "component": "forearm_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.6374404,
+      "component": "hand_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.7463894,
+      "component": "head_base"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.7839081,
+      "component": "nose"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.8194008,
+      "component": "mouth"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.8584533,
+      "component": "brow_r"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626675.8967855,
+      "component": "brow_l"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626676.0533364,
+      "component": "hair"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626676.094819,
+      "component": "eye_r_white"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626676.140911,
+      "component": "eye_r_iris"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626676.1807728,
+      "component": "eye_l_white"
+    },
+    {
+      "action": "add_original",
+      "at": 1795626676.2176414,
+      "component": "eye_l_iris"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626684.2247758,
+      "component": "forearm_l",
+      "extension": "forearm_l__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626684.3656957,
+      "component": "forearm_r",
+      "extension": "forearm_r__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626684.6912215,
+      "component": "head_base",
+      "extension": "head_base__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626685.0224075,
+      "component": "head_base",
+      "extension": "head_base__02",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626685.395893,
+      "component": "head_base",
+      "extension": "head_base__03",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626685.7243621,
+      "component": "head_base",
+      "extension": "head_base__04",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626686.0529354,
+      "component": "head_base",
+      "extension": "head_base__05",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626686.4311714,
+      "component": "head_base",
+      "extension": "head_base__06",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626686.7444162,
+      "component": "head_base",
+      "extension": "head_base__07",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626687.0734398,
+      "component": "neck",
+      "extension": "neck__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626687.414238,
+      "component": "neck",
+      "extension": "neck__02",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626687.7534199,
+      "component": "shin_l",
+      "extension": "shin_l__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626687.911243,
+      "component": "shin_r",
+      "extension": "shin_r__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626688.2778423,
+      "component": "thigh_l",
+      "extension": "thigh_l__01",
+      "method": "deterministic_flat_fill"
+    },
+    {
+      "action": "add_extension",
+      "at": 1795626688.6608267,
+      "component": "thigh_r",
+      "extension": "thigh_r__01",
+      "method": "deterministic_flat_fill"
+    }
+  ]
+}

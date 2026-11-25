@@ -1,0 +1,4113 @@
+{
+  "schema": "autorig.rig_controls",
+  "schema_version": "1.1.0",
+  "coordinate_system": "source px, origin top-left, +y down; angles deg clockwise-on-screen from straight down",
+  "ik": {
+    "chains": [
+      {
+        "id": "arm_r",
+        "kind": "arm",
+        "side": "r",
+        "bones": [
+          "upper_arm_r",
+          "forearm_r",
+          "hand_r"
+        ],
+        "root_parent": "clavicle_r",
+        "effector": "forearm_r.tail",
+        "end_bone": "hand_r",
+        "lengths_px": [
+          116.3,
+          106.72
+        ],
+        "constraints": {
+          "min_flex_deg": 0.0,
+          "max_flex_deg": 150.0,
+          "reach_px": [
+            58.46,
+            223.02
+          ],
+          "no_axial_scaling": true
+        },
+        "pole_default": "elbow down and out",
+        "moho": {
+          "target": "bone target + IK (Moho bone constraints)",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "arm_l",
+        "kind": "arm",
+        "side": "l",
+        "bones": [
+          "upper_arm_l",
+          "forearm_l",
+          "hand_l"
+        ],
+        "root_parent": "clavicle_l",
+        "effector": "forearm_l.tail",
+        "end_bone": "hand_l",
+        "lengths_px": [
+          112.9,
+          103.7
+        ],
+        "constraints": {
+          "min_flex_deg": 0.0,
+          "max_flex_deg": 150.0,
+          "reach_px": [
+            56.76,
+            216.6
+          ],
+          "no_axial_scaling": true
+        },
+        "pole_default": "elbow down and out",
+        "moho": {
+          "target": "bone target + IK (Moho bone constraints)",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "leg_r",
+        "kind": "leg",
+        "side": "r",
+        "bones": [
+          "thigh_r",
+          "shin_r",
+          "foot_r"
+        ],
+        "root_parent": "pelvis",
+        "effector": "shin_r.tail",
+        "end_bone": "foot_r",
+        "lengths_px": [
+          221.78,
+          221.7
+        ],
+        "constraints": {
+          "min_flex_deg": 0.0,
+          "max_flex_deg": 120.0,
+          "reach_px": [
+            221.74,
+            443.48
+          ],
+          "no_axial_scaling": true
+        },
+        "pole_default": "knee lateral (front view)",
+        "moho": {
+          "target": "bone target + IK (Moho bone constraints)",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "leg_l",
+        "kind": "leg",
+        "side": "l",
+        "bones": [
+          "thigh_l",
+          "shin_l",
+          "foot_l"
+        ],
+        "root_parent": "pelvis",
+        "effector": "shin_l.tail",
+        "end_bone": "foot_l",
+        "lengths_px": [
+          224.54,
+          224.52
+        ],
+        "constraints": {
+          "min_flex_deg": 0.0,
+          "max_flex_deg": 120.0,
+          "reach_px": [
+            224.53,
+            449.06
+          ],
+          "no_axial_scaling": true
+        },
+        "pole_default": "knee lateral (front view)",
+        "moho": {
+          "target": "bone target + IK (Moho bone constraints)",
+          "status": "proposed_unverified"
+        }
+      }
+    ],
+    "state": {
+      "arm_r": {
+        "enabled": false,
+        "mode": "fk",
+        "target": null,
+        "pole": null,
+        "bend": null,
+        "lock": false,
+        "max_flex": null,
+        "torso_follow": false,
+        "fk": null,
+        "end_angle": null
+      },
+      "arm_l": {
+        "enabled": false,
+        "mode": "fk",
+        "target": null,
+        "pole": null,
+        "bend": null,
+        "lock": false,
+        "max_flex": null,
+        "torso_follow": false,
+        "fk": null,
+        "end_angle": null
+      },
+      "leg_r": {
+        "enabled": false,
+        "mode": "fk",
+        "target": null,
+        "pole": null,
+        "bend": null,
+        "lock": true,
+        "max_flex": null,
+        "torso_follow": false,
+        "fk": null,
+        "end_angle": null
+      },
+      "leg_l": {
+        "enabled": false,
+        "mode": "fk",
+        "target": null,
+        "pole": null,
+        "bend": null,
+        "lock": true,
+        "max_flex": null,
+        "torso_follow": false,
+        "fk": null,
+        "end_angle": null
+      },
+      "pelvis_offset": [
+        0.0,
+        0.0
+      ]
+    },
+    "solver": "analytic two-bone; pole target; flexion limits; reach clamped (no segment scaling); clavicle compensation for arms"
+  },
+  "foot_contacts": {
+    "states": [
+      "PLANTED",
+      "LIFTING",
+      "SWINGING",
+      "LANDING",
+      "FREE"
+    ],
+    "rule": "PLANTED feet are world-locked; LIFTING/LANDING are the first/last 15 % of a swing or an unloaded stance foot; FREE outside gaits",
+    "locks": {
+      "r": true,
+      "l": true
+    }
+  },
+  "switches": {
+    "groups": [
+      {
+        "id": "hand_r",
+        "alias": "hand_right",
+        "kind": "hand",
+        "bone": "hand_r",
+        "pivot": [
+          181.3,
+          619.5
+        ],
+        "default": "open_palm",
+        "channel": "body",
+        "replaces": "hand_r",
+        "variants": [
+          {
+            "id": "relaxed",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "relaxed",
+            "needs_artwork": true
+          },
+          {
+            "id": "open_palm",
+            "layer": "hand_r",
+            "status": "original",
+            "category": "O_original",
+            "provenance": {
+              "from": "reference image (original pixels)"
+            },
+            "label": "open palm",
+            "needs_artwork": false
+          },
+          {
+            "id": "fist",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "fist",
+            "needs_artwork": true
+          },
+          {
+            "id": "pointing",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "pointing",
+            "needs_artwork": true
+          },
+          {
+            "id": "thumbs_up",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "thumbs up",
+            "needs_artwork": true
+          },
+          {
+            "id": "gripping",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "gripping",
+            "needs_artwork": true
+          },
+          {
+            "id": "palm_down",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "palm down",
+            "needs_artwork": true
+          },
+          {
+            "id": "partially_closed",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "partially closed",
+            "needs_artwork": true
+          },
+          {
+            "id": "palm_up",
+            "layer": "hand_r__palm_up",
+            "status": "pending_review",
+            "category": "C_approximation",
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            },
+            "label": "palm up",
+            "needs_artwork": false
+          },
+          {
+            "id": "cupped",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "cupped",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "hand_l",
+        "alias": "hand_left",
+        "kind": "hand",
+        "bone": "hand_l",
+        "pivot": [
+          845.1,
+          620.3
+        ],
+        "default": "open_palm",
+        "channel": "body",
+        "replaces": "hand_l",
+        "variants": [
+          {
+            "id": "relaxed",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "relaxed",
+            "needs_artwork": true
+          },
+          {
+            "id": "open_palm",
+            "layer": "hand_l",
+            "status": "original",
+            "category": "O_original",
+            "provenance": {
+              "from": "reference image (original pixels)"
+            },
+            "label": "open palm",
+            "needs_artwork": false
+          },
+          {
+            "id": "fist",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "fist",
+            "needs_artwork": true
+          },
+          {
+            "id": "pointing",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "pointing",
+            "needs_artwork": true
+          },
+          {
+            "id": "thumbs_up",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "thumbs up",
+            "needs_artwork": true
+          },
+          {
+            "id": "gripping",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "gripping",
+            "needs_artwork": true
+          },
+          {
+            "id": "palm_down",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "palm down",
+            "needs_artwork": true
+          },
+          {
+            "id": "partially_closed",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "partially closed",
+            "needs_artwork": true
+          },
+          {
+            "id": "palm_up",
+            "layer": "hand_l__palm_up",
+            "status": "pending_review",
+            "category": "C_approximation",
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            },
+            "label": "palm up",
+            "needs_artwork": false
+          },
+          {
+            "id": "cupped",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "label": "cupped",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_shoulder_raise_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "upper_arm_r",
+        "pivot": [
+          400.96,
+          589.81
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": "gusset",
+            "status": "pending_review",
+            "category": "C_corrective_shape",
+            "provenance": {
+              "asset": "gusset"
+            },
+            "label": "shoulder raise (armpit gusset)",
+            "needs_artwork": false
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_shoulder_raise_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "upper_arm_l",
+        "pivot": [
+          631.83,
+          593.69
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": "gusset",
+            "status": "pending_review",
+            "category": "C_corrective_shape",
+            "provenance": {
+              "asset": "gusset"
+            },
+            "label": "shoulder raise (armpit gusset)",
+            "needs_artwork": false
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_elbow_deep_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "forearm_r",
+        "pivot": [
+          288.0,
+          617.5
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "elbow_deep_r"
+            },
+            "label": "deep elbow bend (inner-elbow drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_elbow_deep_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "forearm_l",
+        "pivot": [
+          741.4,
+          620.9
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "elbow_deep_l"
+            },
+            "label": "deep elbow bend (inner-elbow drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_sleeve_crease_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "forearm_r",
+        "pivot": [
+          288.0,
+          617.5
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "sleeve_crease_r"
+            },
+            "label": "sleeve creases",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_sleeve_crease_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "forearm_l",
+        "pivot": [
+          741.4,
+          620.9
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "sleeve_crease_l"
+            },
+            "label": "sleeve creases",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_wrist_rotation_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "hand_r",
+        "pivot": [
+          181.3,
+          619.5
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "wrist_turn_r"
+            },
+            "label": "wrist rotation (turned-wrist drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_wrist_rotation_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "hand_l",
+        "pivot": [
+          845.1,
+          620.3
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "wrist_turn_l"
+            },
+            "label": "wrist rotation (turned-wrist drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_hip_flexion_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "thigh_r",
+        "pivot": [
+          448.6,
+          923.0
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "hip_flex_r"
+            },
+            "label": "hip flexion (front-view thigh drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_hip_flexion_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "thigh_l",
+        "pivot": [
+          569.6,
+          921.2
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "hip_flex_l"
+            },
+            "label": "hip flexion (front-view thigh drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_knee_deep_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "shin_r",
+        "pivot": [
+          393.4,
+          1137.8
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "knee_deep_r"
+            },
+            "label": "knee flexion (bent-knee drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_knee_deep_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "shin_l",
+        "pivot": [
+          625.4,
+          1138.7
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "knee_deep_l"
+            },
+            "label": "knee flexion (bent-knee drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_trouser_fold_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "shin_r",
+        "pivot": [
+          393.4,
+          1137.8
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "trouser_fold_r"
+            },
+            "label": "trouser folds at the knee",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_trouser_fold_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "shin_l",
+        "pivot": [
+          625.4,
+          1138.7
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "trouser_fold_l"
+            },
+            "label": "trouser folds at the knee",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_shoulder_lift_collar_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "clavicle_r",
+        "pivot": [
+          477.1,
+          596.3
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "raised_shoulder_collar_r"
+            },
+            "label": "raised shoulder: collar, lapel and shoulder drawing",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_shoulder_lift_collar_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "clavicle_l",
+        "pivot": [
+          545.4,
+          600.1
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "raised_shoulder_collar_l"
+            },
+            "label": "raised shoulder: collar, lapel and shoulder drawing",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_hem_on_shoe_r",
+        "alias": null,
+        "kind": "correction",
+        "bone": "foot_r",
+        "pivot": [
+          340.1,
+          1353.0
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "foot_extension_under_hem_r"
+            },
+            "label": "trouser hem over a turned shoe (shoe top under the hem)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_hem_on_shoe_l",
+        "alias": null,
+        "kind": "correction",
+        "bone": "foot_l",
+        "pivot": [
+          680.3,
+          1356.4
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "foot_extension_under_hem_l"
+            },
+            "label": "trouser hem over a turned shoe (shoe top under the hem)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_torso_lean_sagittal",
+        "alias": null,
+        "kind": "correction",
+        "bone": "chest",
+        "pivot": [
+          511.0,
+          665.5
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "torso_lean_3q"
+            },
+            "label": "torso lean toward/away from the viewer (3/4 torso drawing)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_sitting_trousers",
+        "alias": null,
+        "kind": "correction",
+        "bone": "pelvis",
+        "pivot": [
+          509.1,
+          922.1
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "trousers_seated"
+            },
+            "label": "seated trousers (thighs toward the viewer)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "corr_running_knee_drive",
+        "alias": null,
+        "kind": "correction",
+        "bone": "pelvis",
+        "pivot": [
+          509.1,
+          922.1
+        ],
+        "default": "off",
+        "channel": "body",
+        "replaces": null,
+        "variants": [
+          {
+            "id": "off",
+            "layer": null,
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "no correction",
+            "needs_artwork": false
+          },
+          {
+            "id": "on",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {
+              "asset": "knee_drive"
+            },
+            "label": "running knee drive (foreshortened thigh)",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      },
+      {
+        "id": "face_mouth",
+        "alias": null,
+        "kind": "face",
+        "bone": "head",
+        "pivot": [
+          512.4,
+          450.6
+        ],
+        "default": "neutral",
+        "channel": "face",
+        "replaces": "mouth",
+        "variants": [
+          {
+            "id": "neutral",
+            "layer": "mouth",
+            "status": "original",
+            "category": "O_original",
+            "provenance": {},
+            "label": "neutral",
+            "needs_artwork": false
+          },
+          {
+            "id": "open",
+            "layer": null,
+            "status": "missing",
+            "category": "O_original",
+            "provenance": {},
+            "label": "open",
+            "needs_artwork": true
+          },
+          {
+            "id": "smile",
+            "layer": null,
+            "status": "missing",
+            "category": "O_original",
+            "provenance": {},
+            "label": "smile",
+            "needs_artwork": true
+          },
+          {
+            "id": "o",
+            "layer": null,
+            "status": "missing",
+            "category": "O_original",
+            "provenance": {},
+            "label": "o",
+            "needs_artwork": true
+          },
+          {
+            "id": "closed_mbp",
+            "layer": null,
+            "status": "missing",
+            "category": "O_original",
+            "provenance": {},
+            "label": "closed_mbp",
+            "needs_artwork": true
+          }
+        ],
+        "moho": {
+          "target": "Switch Layer",
+          "status": "proposed_unverified"
+        }
+      }
+    ],
+    "state": {
+      "hand_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "hand_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_shoulder_raise_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_shoulder_raise_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_elbow_deep_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_elbow_deep_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_sleeve_crease_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_sleeve_crease_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_wrist_rotation_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_wrist_rotation_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_hip_flexion_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_hip_flexion_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_knee_deep_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_knee_deep_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_trouser_fold_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_trouser_fold_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_shoulder_lift_collar_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_shoulder_lift_collar_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_hem_on_shoe_r": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_hem_on_shoe_l": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_torso_lean_sagittal": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_sitting_trousers": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "corr_running_knee_drive": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      },
+      "face_mouth": {
+        "user": null,
+        "auto": true,
+        "keys": [],
+        "offsets": {}
+      }
+    },
+    "resolution": "user > keyframe > automatic preset choice (auto mode only) > default",
+    "hand_library": {
+      "poses": [
+        "relaxed",
+        "open_palm",
+        "fist",
+        "pointing",
+        "thumbs_up",
+        "gripping",
+        "palm_down",
+        "partially_closed"
+      ],
+      "variants": {
+        "r": {
+          "relaxed": {
+            "side": "r",
+            "pose": "relaxed",
+            "drawing": "relaxed",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "relaxed",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "open_palm": {
+            "side": "r",
+            "pose": "open_palm",
+            "drawing": "open",
+            "layer": "hand_r",
+            "status": "original",
+            "category": "O_original",
+            "provenance": {
+              "from": "reference image (original pixels)"
+            },
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 1.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": [
+              22,
+              515,
+              182,
+              693
+            ],
+            "orientation_deg": -10.57,
+            "measure": {
+              "attachment": [
+                168.98,
+                605.32
+              ],
+              "wrist_width_px": 86.24,
+              "centroid": [
+                102.35,
+                608.79
+              ],
+              "orientation_deg": -10.57,
+              "area_px": 16317,
+              "hidden_px": 1117,
+              "proximal_t_px": 9.02,
+              "bbox": [
+                22,
+                515,
+                182,
+                693
+              ]
+            },
+            "view": "front",
+            "needs_artwork": false,
+            "cid": "original",
+            "label": "original",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "fist": {
+            "side": "r",
+            "pose": "fist",
+            "drawing": "fist",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "fist",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "pointing": {
+            "side": "r",
+            "pose": "pointing",
+            "drawing": "point",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "pointing",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "thumbs_up": {
+            "side": "r",
+            "pose": "thumbs_up",
+            "drawing": "thumbs_up",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "thumbs_up",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "gripping": {
+            "side": "r",
+            "pose": "gripping",
+            "drawing": "grip",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "gripping",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "palm_down": {
+            "side": "r",
+            "pose": "palm_down",
+            "drawing": "palm_down",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "palm_down",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "partially_closed": {
+            "side": "r",
+            "pose": "partially_closed",
+            "drawing": "partial",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "partially_closed",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "palm_up": {
+            "side": "r",
+            "pose": "palm_up",
+            "drawing": "palm_up",
+            "layer": "hand_r__palm_up",
+            "status": "pending_review",
+            "category": "C_approximation",
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            },
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.35,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": [
+              23,
+              562,
+              173,
+              650
+            ],
+            "orientation_deg": -5.55,
+            "measure": {
+              "attachment": [
+                157.22,
+                610.49
+              ],
+              "wrist_width_px": 48.19,
+              "centroid": [
+                99.89,
+                608.45
+              ],
+              "orientation_deg": -5.55,
+              "area_px": 7854,
+              "hidden_px": 859,
+              "proximal_t_px": 19.15,
+              "bbox": [
+                23,
+                562,
+                173,
+                650
+              ]
+            },
+            "view": "front",
+            "needs_artwork": false,
+            "cid": "phase2:palm_up",
+            "label": "palm_up (sheet)",
+            "approval_item": "corrective:hand__palm_up",
+            "placement": null,
+            "meta": {}
+          },
+          "cupped": {
+            "side": "r",
+            "pose": "cupped",
+            "drawing": "cupped",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "cupped",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          }
+        },
+        "l": {
+          "relaxed": {
+            "side": "l",
+            "pose": "relaxed",
+            "drawing": "relaxed",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "relaxed",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "open_palm": {
+            "side": "l",
+            "pose": "open_palm",
+            "drawing": "open",
+            "layer": "hand_l",
+            "status": "original",
+            "category": "O_original",
+            "provenance": {
+              "from": "reference image (original pixels)"
+            },
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 1.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": [
+              847,
+              515,
+              1003,
+              693
+            ],
+            "orientation_deg": 5.2,
+            "measure": {
+              "attachment": [
+                858.75,
+                612.98
+              ],
+              "wrist_width_px": 90.84,
+              "centroid": [
+                922.54,
+                609.8
+              ],
+              "orientation_deg": 5.2,
+              "area_px": 16273,
+              "hidden_px": 1094,
+              "proximal_t_px": 9.48,
+              "bbox": [
+                847,
+                515,
+                1003,
+                693
+              ]
+            },
+            "view": "front",
+            "needs_artwork": false,
+            "cid": "original",
+            "label": "original",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "fist": {
+            "side": "l",
+            "pose": "fist",
+            "drawing": "fist",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "fist",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "pointing": {
+            "side": "l",
+            "pose": "pointing",
+            "drawing": "point",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "pointing",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "thumbs_up": {
+            "side": "l",
+            "pose": "thumbs_up",
+            "drawing": "thumbs_up",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "thumbs_up",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "gripping": {
+            "side": "l",
+            "pose": "gripping",
+            "drawing": "grip",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "gripping",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "palm_down": {
+            "side": "l",
+            "pose": "palm_down",
+            "drawing": "palm_down",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "palm_down",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "partially_closed": {
+            "side": "l",
+            "pose": "partially_closed",
+            "drawing": "partial",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "partially_closed",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          },
+          "palm_up": {
+            "side": "l",
+            "pose": "palm_up",
+            "drawing": "palm_up",
+            "layer": "hand_l__palm_up",
+            "status": "pending_review",
+            "category": "C_approximation",
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            },
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.35,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": [
+              855,
+              562,
+              1002,
+              651
+            ],
+            "orientation_deg": 3.07,
+            "measure": {
+              "attachment": [
+                869.06,
+                613.95
+              ],
+              "wrist_width_px": 50.97,
+              "centroid": [
+                924.9,
+                609.08
+              ],
+              "orientation_deg": 3.07,
+              "area_px": 7835,
+              "hidden_px": 848,
+              "proximal_t_px": 18.79,
+              "bbox": [
+                855,
+                562,
+                1002,
+                651
+              ]
+            },
+            "view": "front",
+            "needs_artwork": false,
+            "cid": "phase2:palm_up",
+            "label": "palm_up (sheet)",
+            "approval_item": "corrective:hand__palm_up",
+            "placement": null,
+            "meta": {}
+          },
+          "cupped": {
+            "side": "l",
+            "pose": "cupped",
+            "drawing": "cupped",
+            "layer": null,
+            "status": "missing",
+            "category": "none",
+            "provenance": {},
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "confidence": 0.0,
+            "rotation_offset_deg": 0.0,
+            "offset_px": [
+              0.0,
+              0.0
+            ],
+            "bbox": null,
+            "orientation_deg": null,
+            "measure": {},
+            "view": "front",
+            "needs_artwork": true,
+            "cid": "",
+            "label": "cupped",
+            "approval_item": null,
+            "placement": null,
+            "meta": {}
+          }
+        }
+      },
+      "alignment": {
+        "r": {
+          "relaxed": {
+            "side": "r",
+            "pose": "relaxed",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "open_palm": {
+            "side": "r",
+            "pose": "open_palm",
+            "cid": "original",
+            "layer": "hand_r",
+            "status": "OK",
+            "attachment_error_px": 0.0,
+            "width_ratio": 1.0,
+            "orientation_delta_deg": 0.0,
+            "side_ok": true,
+            "issues": [],
+            "auto_align": null
+          },
+          "fist": {
+            "side": "r",
+            "pose": "fist",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "pointing": {
+            "side": "r",
+            "pose": "pointing",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "thumbs_up": {
+            "side": "r",
+            "pose": "thumbs_up",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "gripping": {
+            "side": "r",
+            "pose": "gripping",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "palm_down": {
+            "side": "r",
+            "pose": "palm_down",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "partially_closed": {
+            "side": "r",
+            "pose": "partially_closed",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "palm_up": {
+            "side": "r",
+            "pose": "palm_up",
+            "cid": "phase2:palm_up",
+            "layer": "hand_r__palm_up",
+            "status": "MISMATCH",
+            "attachment_error_px": 12.85,
+            "width_ratio": 0.559,
+            "orientation_delta_deg": 5.0,
+            "side_ok": true,
+            "issues": [
+              "wrist attachment 12.8 px from the reference hand's (> 6.0)",
+              "wrist width ratio 0.56 outside [0.75, 1.35] (scale mismatch)"
+            ],
+            "auto_align": {
+              "offset_px": [
+                12.0,
+                1.0
+              ],
+              "rot_deg": 0.0,
+              "error_after_px": 5.62,
+              "error_before_px": 12.85
+            }
+          },
+          "cupped": {
+            "side": "r",
+            "pose": "cupped",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          }
+        },
+        "l": {
+          "relaxed": {
+            "side": "l",
+            "pose": "relaxed",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "open_palm": {
+            "side": "l",
+            "pose": "open_palm",
+            "cid": "original",
+            "layer": "hand_l",
+            "status": "OK",
+            "attachment_error_px": 0.0,
+            "width_ratio": 1.0,
+            "orientation_delta_deg": 0.0,
+            "side_ok": true,
+            "issues": [],
+            "auto_align": null
+          },
+          "fist": {
+            "side": "l",
+            "pose": "fist",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "pointing": {
+            "side": "l",
+            "pose": "pointing",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "thumbs_up": {
+            "side": "l",
+            "pose": "thumbs_up",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "gripping": {
+            "side": "l",
+            "pose": "gripping",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "palm_down": {
+            "side": "l",
+            "pose": "palm_down",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "partially_closed": {
+            "side": "l",
+            "pose": "partially_closed",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          },
+          "palm_up": {
+            "side": "l",
+            "pose": "palm_up",
+            "cid": "phase2:palm_up",
+            "layer": "hand_l__palm_up",
+            "status": "MISMATCH",
+            "attachment_error_px": 10.36,
+            "width_ratio": 0.561,
+            "orientation_delta_deg": 2.1,
+            "side_ok": true,
+            "issues": [
+              "wrist attachment 10.4 px from the reference hand's (> 6.0)",
+              "wrist width ratio 0.56 outside [0.75, 1.35] (scale mismatch)"
+            ],
+            "auto_align": {
+              "offset_px": [
+                -12.0,
+                1.0
+              ],
+              "rot_deg": 0.0,
+              "error_after_px": 5.16,
+              "error_before_px": 10.36
+            }
+          },
+          "cupped": {
+            "side": "l",
+            "pose": "cupped",
+            "status": "NEEDS_ARTWORK",
+            "issues": [
+              "drawing missing"
+            ]
+          }
+        }
+      },
+      "tolerances": {
+        "attachment_error_px": 6.0,
+        "width_ratio": [
+          0.75,
+          1.35
+        ],
+        "orientation_delta_deg": 35.0,
+        "sleeve_gap_px": 2.0,
+        "posed_attachment_drift_px": 4.0
+      }
+    }
+  },
+  "corrections": {
+    "triggers": [
+      {
+        "id": "shoulder_raise_r",
+        "title": "shoulder raise (armpit gusset)",
+        "bone": "upper_arm_r",
+        "measure": "abduction_r",
+        "on": 120.0,
+        "hysteresis": 8.0,
+        "asset": "gusset",
+        "priority": 1,
+        "compatible": [
+          "elbow_deep_r",
+          "wrist_rotation_r"
+        ],
+        "binding": "clavicle_r rest frame",
+        "side": "r",
+        "pivot": [
+          400.957661603976,
+          589.8119757844361
+        ],
+        "continuous_max": 110.0,
+        "full": 140.0,
+        "method": "switch",
+        "layer_order": {
+          "above": "torso",
+          "below": "upper_arm_r"
+        },
+        "parts": [
+          "sleeve_upper_r",
+          "blazer_body",
+          "sleeve_cap_r"
+        ],
+        "region": "armpit_r",
+        "why": "the joint patch cannot stretch the sleeve into the armpit (stretch limit); the wedge needs an armpit gusset drawing",
+        "asset_state": "pending_review"
+      },
+      {
+        "id": "shoulder_raise_l",
+        "title": "shoulder raise (armpit gusset)",
+        "bone": "upper_arm_l",
+        "measure": "abduction_l",
+        "on": 120.0,
+        "hysteresis": 8.0,
+        "asset": "gusset",
+        "priority": 1,
+        "compatible": [
+          "elbow_deep_l",
+          "wrist_rotation_l"
+        ],
+        "binding": "clavicle_l rest frame",
+        "side": "l",
+        "pivot": [
+          631.8324862658053,
+          593.6882275640295
+        ],
+        "continuous_max": 110.0,
+        "full": 140.0,
+        "method": "switch",
+        "layer_order": {
+          "above": "torso",
+          "below": "upper_arm_l"
+        },
+        "parts": [
+          "sleeve_upper_l",
+          "blazer_body",
+          "sleeve_cap_l"
+        ],
+        "region": "armpit_l",
+        "why": "the joint patch cannot stretch the sleeve into the armpit (stretch limit); the wedge needs an armpit gusset drawing",
+        "asset_state": "pending_review"
+      },
+      {
+        "id": "elbow_deep_r",
+        "title": "deep elbow bend (inner-elbow drawing)",
+        "bone": "forearm_r",
+        "measure": "elbow_r",
+        "on": 100.0,
+        "hysteresis": 8.0,
+        "asset": "elbow_deep_r",
+        "priority": 2,
+        "compatible": [
+          "shoulder_raise_r",
+          "sleeve_crease_r"
+        ],
+        "binding": "forearm_r",
+        "required_above": 125.0,
+        "side": "r",
+        "pivot": [
+          288.0,
+          617.5
+        ],
+        "continuous_max": 95.0,
+        "full": 135.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "forearm_r"
+        },
+        "parts": [
+          "elbow_r"
+        ],
+        "region": "elbow_r",
+        "why": "beyond ~125 deg the outer elbow patch is clipped and the inner fold is a hard overlap",
+        "asset_state": "missing"
+      },
+      {
+        "id": "elbow_deep_l",
+        "title": "deep elbow bend (inner-elbow drawing)",
+        "bone": "forearm_l",
+        "measure": "elbow_l",
+        "on": 100.0,
+        "hysteresis": 8.0,
+        "asset": "elbow_deep_l",
+        "priority": 2,
+        "compatible": [
+          "shoulder_raise_l",
+          "sleeve_crease_l"
+        ],
+        "binding": "forearm_l",
+        "required_above": 125.0,
+        "side": "l",
+        "pivot": [
+          741.4,
+          620.9
+        ],
+        "continuous_max": 95.0,
+        "full": 135.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "forearm_l"
+        },
+        "parts": [
+          "elbow_l"
+        ],
+        "region": "elbow_l",
+        "why": "beyond ~125 deg the outer elbow patch is clipped and the inner fold is a hard overlap",
+        "asset_state": "missing"
+      },
+      {
+        "id": "sleeve_crease_r",
+        "title": "sleeve creases",
+        "bone": "forearm_r",
+        "measure": "elbow_r",
+        "on": 60.0,
+        "hysteresis": 6.0,
+        "asset": "sleeve_crease_r",
+        "priority": 3,
+        "compatible": [
+          "elbow_deep_r"
+        ],
+        "binding": "forearm_r",
+        "side": "r",
+        "pivot": [
+          288.0,
+          617.5
+        ],
+        "continuous_max": 60.0,
+        "full": 100.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "forearm_r"
+        },
+        "parts": [
+          "elbow_r"
+        ],
+        "region": "elbow_r",
+        "why": "fold lines at the inner elbow (optional)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "sleeve_crease_l",
+        "title": "sleeve creases",
+        "bone": "forearm_l",
+        "measure": "elbow_l",
+        "on": 60.0,
+        "hysteresis": 6.0,
+        "asset": "sleeve_crease_l",
+        "priority": 3,
+        "compatible": [
+          "elbow_deep_l"
+        ],
+        "binding": "forearm_l",
+        "side": "l",
+        "pivot": [
+          741.4,
+          620.9
+        ],
+        "continuous_max": 60.0,
+        "full": 100.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "forearm_l"
+        },
+        "parts": [
+          "elbow_l"
+        ],
+        "region": "elbow_l",
+        "why": "fold lines at the inner elbow (optional)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "wrist_rotation_r",
+        "title": "wrist rotation (turned-wrist drawing)",
+        "bone": "hand_r",
+        "measure": "wrist_r",
+        "on": 40.0,
+        "hysteresis": 5.0,
+        "asset": "wrist_turn_r",
+        "priority": 3,
+        "compatible": [
+          "shoulder_raise_r"
+        ],
+        "binding": "hand_r",
+        "side": "r",
+        "pivot": [
+          181.3,
+          619.5
+        ],
+        "continuous_max": 40.0,
+        "full": 70.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "hand_r"
+        },
+        "parts": [
+          "hand_r"
+        ],
+        "region": "hand_r",
+        "why": "a turned wrist needs a different hand drawing (the cuff stays on the forearm)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "wrist_rotation_l",
+        "title": "wrist rotation (turned-wrist drawing)",
+        "bone": "hand_l",
+        "measure": "wrist_l",
+        "on": 40.0,
+        "hysteresis": 5.0,
+        "asset": "wrist_turn_l",
+        "priority": 3,
+        "compatible": [
+          "shoulder_raise_l"
+        ],
+        "binding": "hand_l",
+        "side": "l",
+        "pivot": [
+          845.1,
+          620.3
+        ],
+        "continuous_max": 40.0,
+        "full": 70.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "hand_l"
+        },
+        "parts": [
+          "hand_l"
+        ],
+        "region": "hand_l",
+        "why": "a turned wrist needs a different hand drawing (the cuff stays on the forearm)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "hip_flexion_r",
+        "title": "hip flexion (front-view thigh drawing)",
+        "bone": "thigh_r",
+        "measure": "hip_r",
+        "on": 40.0,
+        "hysteresis": 5.0,
+        "asset": "hip_flex_r",
+        "priority": 2,
+        "compatible": [
+          "knee_deep_r",
+          "trouser_fold_r"
+        ],
+        "binding": "thigh_r",
+        "side": "r",
+        "pivot": [
+          448.6,
+          923.0
+        ],
+        "continuous_max": 35.0,
+        "full": 70.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "thigh_r"
+        },
+        "parts": [
+          "trouser_thigh_r",
+          "trouser_hip_r"
+        ],
+        "region": "hip_r",
+        "why": "a thigh raised toward the viewer needs a foreshortened drawing",
+        "asset_state": "missing"
+      },
+      {
+        "id": "hip_flexion_l",
+        "title": "hip flexion (front-view thigh drawing)",
+        "bone": "thigh_l",
+        "measure": "hip_l",
+        "on": 40.0,
+        "hysteresis": 5.0,
+        "asset": "hip_flex_l",
+        "priority": 2,
+        "compatible": [
+          "knee_deep_l",
+          "trouser_fold_l"
+        ],
+        "binding": "thigh_l",
+        "side": "l",
+        "pivot": [
+          569.6,
+          921.2
+        ],
+        "continuous_max": 35.0,
+        "full": 70.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "thigh_l"
+        },
+        "parts": [
+          "trouser_thigh_l",
+          "trouser_hip_l"
+        ],
+        "region": "hip_l",
+        "why": "a thigh raised toward the viewer needs a foreshortened drawing",
+        "asset_state": "missing"
+      },
+      {
+        "id": "knee_deep_r",
+        "title": "knee flexion (bent-knee drawing)",
+        "bone": "shin_r",
+        "measure": "knee_r",
+        "on": 45.0,
+        "hysteresis": 5.0,
+        "asset": "knee_deep_r",
+        "priority": 2,
+        "compatible": [
+          "hip_flexion_r",
+          "trouser_fold_r"
+        ],
+        "binding": "shin_r",
+        "side": "r",
+        "pivot": [
+          393.4,
+          1137.8
+        ],
+        "continuous_max": 40.0,
+        "full": 90.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "shin_r"
+        },
+        "parts": [
+          "knee_r"
+        ],
+        "region": "knee_r",
+        "why": "a deep knee bend folds the trousers (inner crease, outer stretch)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "knee_deep_l",
+        "title": "knee flexion (bent-knee drawing)",
+        "bone": "shin_l",
+        "measure": "knee_l",
+        "on": 45.0,
+        "hysteresis": 5.0,
+        "asset": "knee_deep_l",
+        "priority": 2,
+        "compatible": [
+          "hip_flexion_l",
+          "trouser_fold_l"
+        ],
+        "binding": "shin_l",
+        "side": "l",
+        "pivot": [
+          625.4,
+          1138.7
+        ],
+        "continuous_max": 40.0,
+        "full": 90.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "shin_l"
+        },
+        "parts": [
+          "knee_l"
+        ],
+        "region": "knee_l",
+        "why": "a deep knee bend folds the trousers (inner crease, outer stretch)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "trouser_fold_r",
+        "title": "trouser folds at the knee",
+        "bone": "shin_r",
+        "measure": "knee_r",
+        "on": 25.0,
+        "hysteresis": 4.0,
+        "asset": "trouser_fold_r",
+        "priority": 3,
+        "compatible": [
+          "knee_deep_r"
+        ],
+        "binding": "shin_r",
+        "side": "r",
+        "pivot": [
+          393.4,
+          1137.8
+        ],
+        "continuous_max": 25.0,
+        "full": 50.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "shin_r"
+        },
+        "parts": [
+          "knee_r"
+        ],
+        "region": "knee_r",
+        "why": "fold lines at the knee (optional)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "trouser_fold_l",
+        "title": "trouser folds at the knee",
+        "bone": "shin_l",
+        "measure": "knee_l",
+        "on": 25.0,
+        "hysteresis": 4.0,
+        "asset": "trouser_fold_l",
+        "priority": 3,
+        "compatible": [
+          "knee_deep_l"
+        ],
+        "binding": "shin_l",
+        "side": "l",
+        "pivot": [
+          625.4,
+          1138.7
+        ],
+        "continuous_max": 25.0,
+        "full": 50.0,
+        "method": "blend",
+        "layer_order": {
+          "above": "shin_l"
+        },
+        "parts": [
+          "knee_l"
+        ],
+        "region": "knee_l",
+        "why": "fold lines at the knee (optional)",
+        "asset_state": "missing"
+      },
+      {
+        "id": "shoulder_lift_collar_r",
+        "title": "raised shoulder: collar, lapel and shoulder drawing",
+        "bone": "clavicle_r",
+        "measure": "clavicle_r",
+        "on": 15.0,
+        "hysteresis": 2.0,
+        "asset": "raised_shoulder_collar_r",
+        "priority": 2,
+        "compatible": [
+          "shoulder_raise_r"
+        ],
+        "binding": "clavicle_r",
+        "continuous_max": 12.0,
+        "full": 30.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "torso (shoulder and lapel region)"
+        },
+        "parts": [
+          "lapels",
+          "shirt_collar",
+          "sweater",
+          "blazer_shoulder_r",
+          "sleeve_cap_r",
+          "blazer_body"
+        ],
+        "region": "collar_r",
+        "why": "a shoulder raised beyond ~15 deg (scapulohumeral rhythm of an overhead arm) compresses the lapel tip and collar wing next to the sternoclavicular pivot; the drawn shoulder line must change",
+        "side": "r",
+        "pivot": [
+          477.1,
+          596.3
+        ],
+        "asset_state": "missing"
+      },
+      {
+        "id": "shoulder_lift_collar_l",
+        "title": "raised shoulder: collar, lapel and shoulder drawing",
+        "bone": "clavicle_l",
+        "measure": "clavicle_l",
+        "on": 15.0,
+        "hysteresis": 2.0,
+        "asset": "raised_shoulder_collar_l",
+        "priority": 2,
+        "compatible": [
+          "shoulder_raise_l"
+        ],
+        "binding": "clavicle_l",
+        "continuous_max": 12.0,
+        "full": 30.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "torso (shoulder and lapel region)"
+        },
+        "parts": [
+          "lapels",
+          "shirt_collar",
+          "sweater",
+          "blazer_shoulder_l",
+          "sleeve_cap_l",
+          "blazer_body"
+        ],
+        "region": "collar_l",
+        "why": "a shoulder raised beyond ~15 deg (scapulohumeral rhythm of an overhead arm) compresses the lapel tip and collar wing next to the sternoclavicular pivot; the drawn shoulder line must change",
+        "side": "l",
+        "pivot": [
+          545.4,
+          600.1
+        ],
+        "asset_state": "missing"
+      },
+      {
+        "id": "hem_on_shoe_r",
+        "title": "trouser hem over a turned shoe (shoe top under the hem)",
+        "bone": "foot_r",
+        "measure": "ankle_r",
+        "on": 6.0,
+        "hysteresis": 1.5,
+        "asset": "foot_extension_under_hem_r",
+        "priority": 3,
+        "compatible": [],
+        "binding": "foot_r",
+        "continuous_max": 4.0,
+        "full": 15.0,
+        "method": "reconstruction",
+        "layer_order": {
+          "below": "shin_r"
+        },
+        "parts": [
+          "trouser_cuff_r"
+        ],
+        "region": "ankle_r",
+        "why": "the hem follows the shoe only partly (a full follow shears it); the corner that lifts shows background because the shoe's top under the hem was never drawn (a foot-layer extension, reviewed)",
+        "side": "r",
+        "pivot": [
+          340.1,
+          1353.0
+        ],
+        "asset_state": "missing"
+      },
+      {
+        "id": "hem_on_shoe_l",
+        "title": "trouser hem over a turned shoe (shoe top under the hem)",
+        "bone": "foot_l",
+        "measure": "ankle_l",
+        "on": 6.0,
+        "hysteresis": 1.5,
+        "asset": "foot_extension_under_hem_l",
+        "priority": 3,
+        "compatible": [],
+        "binding": "foot_l",
+        "continuous_max": 4.0,
+        "full": 15.0,
+        "method": "reconstruction",
+        "layer_order": {
+          "below": "shin_l"
+        },
+        "parts": [
+          "trouser_cuff_l"
+        ],
+        "region": "ankle_l",
+        "why": "the hem follows the shoe only partly (a full follow shears it); the corner that lifts shows background because the shoe's top under the hem was never drawn (a foot-layer extension, reviewed)",
+        "side": "l",
+        "pivot": [
+          680.3,
+          1356.4
+        ],
+        "asset_state": "missing"
+      },
+      {
+        "id": "torso_lean_sagittal",
+        "title": "torso lean toward/away from the viewer (3/4 torso drawing)",
+        "bone": "chest",
+        "measure": "torso_lean_sagittal",
+        "on": 0.5,
+        "hysteresis": 0.0,
+        "asset": "torso_lean_3q",
+        "priority": 1,
+        "compatible": [],
+        "binding": "chest",
+        "required_above": 0.5,
+        "continuous_max": 0.0,
+        "full": 1.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "torso"
+        },
+        "parts": [
+          "blazer_body",
+          "lapels",
+          "sweater",
+          "shirt_collar"
+        ],
+        "region": "torso",
+        "why": "a front-view torso cannot lean toward or away from the viewer without a 3/4 drawing",
+        "side": null,
+        "pivot": [
+          511.0,
+          665.5
+        ],
+        "asset_state": "missing"
+      },
+      {
+        "id": "sitting_trousers",
+        "title": "seated trousers (thighs toward the viewer)",
+        "bone": "pelvis",
+        "measure": "sitting",
+        "on": 0.5,
+        "hysteresis": 0.0,
+        "asset": "trousers_seated",
+        "priority": 1,
+        "compatible": [],
+        "binding": "pelvis",
+        "required_above": 0.5,
+        "continuous_max": 0.0,
+        "full": 1.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "thigh_r,thigh_l"
+        },
+        "parts": [
+          "trouser_thigh_r",
+          "trouser_thigh_l",
+          "blazer_hem"
+        ],
+        "region": "lap",
+        "why": "seated thighs point at the viewer; the standing trouser drawing cannot be bent into them",
+        "side": null,
+        "pivot": [
+          509.1,
+          922.1
+        ],
+        "asset_state": "missing"
+      },
+      {
+        "id": "running_knee_drive",
+        "title": "running knee drive (foreshortened thigh)",
+        "bone": "pelvis",
+        "measure": "running",
+        "on": 0.5,
+        "hysteresis": 0.0,
+        "asset": "knee_drive",
+        "priority": 3,
+        "compatible": [],
+        "binding": "thigh",
+        "continuous_max": 0.0,
+        "full": 1.0,
+        "method": "switch",
+        "layer_order": {
+          "replaces": "thigh_{swing}"
+        },
+        "parts": [
+          "trouser_thigh_r",
+          "trouser_thigh_l"
+        ],
+        "region": "thighs",
+        "why": "a strong knee drive is a depth motion (optional; the front-view gait is shown)",
+        "side": null,
+        "pivot": [
+          509.1,
+          922.1
+        ],
+        "asset_state": "missing"
+      }
+    ],
+    "continuous": "rotation-dependent blend bands (motion/garments.py BAND_RULES)",
+    "moho": {
+      "target": "Smart Bone actions",
+      "status": "proposed_unverified"
+    }
+  },
+  "missing_artwork": [
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "relaxed",
+      "drawing": "relaxed",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "fist",
+      "drawing": "fist",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "pointing",
+      "drawing": "point",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "thumbs_up",
+      "drawing": "thumbs_up",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "gripping",
+      "drawing": "grip",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "palm_down",
+      "drawing": "palm_down",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "r",
+      "pose": "partially_closed",
+      "drawing": "partial",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "relaxed",
+      "drawing": "relaxed",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "fist",
+      "drawing": "fist",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "pointing",
+      "drawing": "point",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "thumbs_up",
+      "drawing": "thumbs_up",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "gripping",
+      "drawing": "grip",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "palm_down",
+      "drawing": "palm_down",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "hand",
+      "side": "l",
+      "pose": "partially_closed",
+      "drawing": "partial",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "open_palm"
+    },
+    {
+      "kind": "correction",
+      "id": "elbow_deep_r",
+      "asset": "elbow_deep_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "elbow_deep_l",
+      "asset": "elbow_deep_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "sleeve_crease_r",
+      "asset": "sleeve_crease_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "sleeve_crease_l",
+      "asset": "sleeve_crease_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "wrist_rotation_r",
+      "asset": "wrist_turn_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "wrist_rotation_l",
+      "asset": "wrist_turn_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "hip_flexion_r",
+      "asset": "hip_flex_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "hip_flexion_l",
+      "asset": "hip_flex_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "knee_deep_r",
+      "asset": "knee_deep_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "knee_deep_l",
+      "asset": "knee_deep_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "trouser_fold_r",
+      "asset": "trouser_fold_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "trouser_fold_l",
+      "asset": "trouser_fold_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "shoulder_lift_collar_r",
+      "asset": "raised_shoulder_collar_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "shoulder_lift_collar_l",
+      "asset": "raised_shoulder_collar_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "hem_on_shoe_r",
+      "asset": "foot_extension_under_hem_r",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "hem_on_shoe_l",
+      "asset": "foot_extension_under_hem_l",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "torso_lean_sagittal",
+      "asset": "torso_lean_3q",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "sitting_trousers",
+      "asset": "trousers_seated",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "correction",
+      "id": "running_knee_drive",
+      "asset": "knee_drive",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "rotation-dependent band deformation"
+    },
+    {
+      "kind": "face",
+      "group": "face_mouth",
+      "variant": "open",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "neutral"
+    },
+    {
+      "kind": "face",
+      "group": "face_mouth",
+      "variant": "smile",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "neutral"
+    },
+    {
+      "kind": "face",
+      "group": "face_mouth",
+      "variant": "o",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "neutral"
+    },
+    {
+      "kind": "face",
+      "group": "face_mouth",
+      "variant": "closed_mbp",
+      "status": "NEEDS_ARTWORK",
+      "fallback": "neutral"
+    }
+  ],
+  "live": {
+    "actions": {
+      "HAND_RIGHT_POINT": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "pointing"
+      },
+      "HAND_RIGHT_FIST": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "fist"
+      },
+      "HAND_RIGHT_OPEN": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "open_palm"
+      },
+      "HAND_RIGHT_RELAXED": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "relaxed"
+      },
+      "HAND_RIGHT_THUMBS_UP": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "thumbs_up"
+      },
+      "HAND_RIGHT_GRIP": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "gripping"
+      },
+      "HAND_RIGHT_PALM_DOWN": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "palm_down"
+      },
+      "HAND_RIGHT_CUPPED": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_r",
+        "variant": "cupped"
+      },
+      "HAND_LEFT_POINT": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "pointing"
+      },
+      "HAND_LEFT_FIST": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "fist"
+      },
+      "HAND_LEFT_OPEN": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "open_palm"
+      },
+      "HAND_LEFT_RELAXED": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "relaxed"
+      },
+      "HAND_LEFT_THUMBS_UP": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "thumbs_up"
+      },
+      "HAND_LEFT_GRIP": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "gripping"
+      },
+      "HAND_LEFT_PALM_DOWN": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "palm_down"
+      },
+      "HAND_LEFT_CUPPED": {
+        "channel": "body",
+        "kind": "switch",
+        "group": "hand_l",
+        "variant": "cupped"
+      },
+      "HAND_RIGHT_AUTO": {
+        "channel": "body",
+        "kind": "switch_auto",
+        "group": "hand_r"
+      },
+      "HAND_LEFT_AUTO": {
+        "channel": "body",
+        "kind": "switch_auto",
+        "group": "hand_l"
+      },
+      "ARM_RIGHT_REACH": {
+        "channel": "body",
+        "kind": "ik_reach",
+        "limb": "arm_r",
+        "reach": [
+          0.55,
+          0.55
+        ],
+        "note": "value 0..1 blends from the hanging wrist to the reach target"
+      },
+      "ARM_LEFT_REACH": {
+        "channel": "body",
+        "kind": "ik_reach",
+        "limb": "arm_l",
+        "reach": [
+          0.55,
+          0.55
+        ]
+      },
+      "ARM_RIGHT_RELEASE": {
+        "channel": "body",
+        "kind": "ik_off",
+        "limb": "arm_r"
+      },
+      "ARM_LEFT_RELEASE": {
+        "channel": "body",
+        "kind": "ik_off",
+        "limb": "arm_l"
+      },
+      "FOOT_LEFT_PLANT": {
+        "channel": "body",
+        "kind": "contact",
+        "limb": "leg_l",
+        "lock": true
+      },
+      "FOOT_RIGHT_PLANT": {
+        "channel": "body",
+        "kind": "contact",
+        "limb": "leg_r",
+        "lock": true
+      },
+      "FOOT_LEFT_LIFT": {
+        "channel": "body",
+        "kind": "contact",
+        "limb": "leg_l",
+        "lock": false,
+        "lift_px": 40.0
+      },
+      "FOOT_RIGHT_LIFT": {
+        "channel": "body",
+        "kind": "contact",
+        "limb": "leg_r",
+        "lock": false,
+        "lift_px": 40.0
+      },
+      "GESTURE_SHRUG": {
+        "channel": "body",
+        "kind": "preset",
+        "preset": "one_hand_shrug"
+      },
+      "GESTURE_POINT": {
+        "channel": "body",
+        "kind": "preset",
+        "preset": "pointing_speaking"
+      },
+      "GESTURE_WAVE": {
+        "channel": "body",
+        "kind": "ik_oscillation",
+        "limb": "arm_r",
+        "reach": [
+          0.45,
+          0.8
+        ],
+        "amplitude": [
+          0.14,
+          0.03
+        ],
+        "period_s": 0.8,
+        "hand": "open_palm",
+        "note": "the wrist target swings sideways about a raised hand; the elbow bend side is held"
+      },
+      "GESTURE_IDLE": {
+        "channel": "body",
+        "kind": "preset",
+        "preset": "relaxed_standing"
+      },
+      "GESTURE_GRASP": {
+        "channel": "body",
+        "kind": "ik_reach",
+        "limb": "arm_r",
+        "reach": [
+          0.45,
+          -0.35
+        ],
+        "hand": "gripping",
+        "note": "no grasping pose preset exists: the right wrist reaches out at hip height and the right hand switches to the grip drawing (shown only once approved or previewed)"
+      },
+      "HEAD_TILT": {
+        "channel": "face",
+        "kind": "head",
+        "param": "tilt",
+        "range_deg": [
+          -20.0,
+          20.0
+        ]
+      },
+      "MOUTH_OPEN": {
+        "channel": "face",
+        "kind": "switch",
+        "group": "face_mouth",
+        "variant": "open"
+      },
+      "MOUTH_NEUTRAL": {
+        "channel": "face",
+        "kind": "switch",
+        "group": "face_mouth",
+        "variant": "neutral"
+      }
+    },
+    "channels": [
+      "body",
+      "face"
+    ],
+    "inputs": {
+      "status": "unassigned",
+      "reason": "Moho 14.5 Live Mode input identifiers have not been discovered yet (docs/live-models.md); no names are invented"
+    },
+    "moho": {
+      "status": "proposed_unverified"
+    }
+  },
+  "hand_selection": {
+    "engine": "NaturalHandSelectionEngine",
+    "runs_in": "AutoRig (Python); not in Moho",
+    "rules": {
+      "weights": {
+        "gesture": 0.32,
+        "palm": 0.08,
+        "anatomy": 0.08,
+        "wrist": 0.1,
+        "silhouette": 0.08,
+        "view": 0.08,
+        "proportion": 0.04,
+        "continuity": 0.1,
+        "fidelity": 0.04,
+        "approval": 0.08
+      },
+      "actions": {
+        "relaxed_standing": {
+          "prefer": [
+            "relaxed",
+            "open_palm",
+            "partially_closed"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping",
+            "fist"
+          ],
+          "max_turn": 0.0,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "hanging_palm": [
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "why": "relaxed hands, neutral wrists; a hanging arm shows the back or the edge of the hand"
+        },
+        "walking": {
+          "prefer": [
+            "relaxed",
+            "partially_closed",
+            "open_palm"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping",
+            "palm_down"
+          ],
+          "max_turn": 0.0,
+          "symmetric": true,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "why": "relaxed or partially closed hands; no pointing or thumbs-up while walking"
+        },
+        "running": {
+          "prefer": [
+            "fist",
+            "relaxed",
+            "partially_closed"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping",
+            "palm_down",
+            "cupped"
+          ],
+          "max_turn": 0.0,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "symmetric": true,
+          "why": "loose fists or relaxed hands, the same on both arms, no wrist twist"
+        },
+        "pointing": {
+          "prefer": [
+            "pointing"
+          ],
+          "forbid": [],
+          "aim": "index_tip",
+          "max_turn": 45.0,
+          "why": "pointing hand, index toward the target (arm IK reaches, the wrist aims)"
+        },
+        "shrugging": {
+          "prefer": [
+            "palm_up",
+            "cupped"
+          ],
+          "forbid": [
+            "pointing",
+            "fist",
+            "thumbs_up",
+            "gripping"
+          ],
+          "palm": [
+            "PALM_UP"
+          ],
+          "max_turn": 0.0,
+          "symmetric": true,
+          "fallback": "shrug_subtle",
+          "why": "expressive shrug: palms up (an open palm-up drawing; a cupped palm-up drawing as an approximation)"
+        },
+        "shrug_expressive": {
+          "alias": "shrugging"
+        },
+        "shrug_subtle": {
+          "prefer": [
+            "open_palm",
+            "relaxed"
+          ],
+          "forbid": [
+            "pointing",
+            "fist",
+            "thumbs_up",
+            "gripping",
+            "cupped"
+          ],
+          "palm": [
+            "PALM_TO_CAMERA",
+            "EDGE_ON"
+          ],
+          "max_turn": 0.0,
+          "symmetric": true,
+          "why": "subtle shrug: hands low, palms turned toward the camera or edge-on"
+        },
+        "explaining": {
+          "prefer": [
+            "open_palm",
+            "cupped",
+            "palm_up",
+            "relaxed"
+          ],
+          "forbid": [
+            "thumbs_up",
+            "gripping"
+          ],
+          "palm": [
+            "PALM_TO_CAMERA",
+            "PALM_UP",
+            "EDGE_ON"
+          ],
+          "palm_strict": false,
+          "max_turn": 0.0,
+          "vary": true,
+          "why": "open or cupped hands, varied between beats"
+        },
+        "conversation": {
+          "alias": "explaining"
+        },
+        "hand_on_desk": {
+          "prefer": [
+            "palm_down",
+            "relaxed",
+            "open_palm"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "cupped"
+          ],
+          "palm": [
+            "PALM_DOWN",
+            "BACK_TO_CAMERA",
+            "PALM_TO_CAMERA"
+          ],
+          "max_turn": 0.0,
+          "why": "hand resting on the desk top: palm down (seen from above) preferred"
+        },
+        "angry": {
+          "prefer": [
+            "fist",
+            "pointing"
+          ],
+          "forbid": [
+            "thumbs_up",
+            "cupped",
+            "open_palm"
+          ],
+          "max_turn": 30.0,
+          "pointing_needs_target": true,
+          "aim": "index_tip",
+          "why": "fists; pointing only when the action has a target"
+        },
+        "gripping": {
+          "prefer": [
+            "gripping",
+            "fist"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "open_palm"
+          ],
+          "grip": true,
+          "max_turn": 0.0,
+          "why": "grip hand on the interaction target"
+        },
+        "thumbs_up": {
+          "prefer": [
+            "thumbs_up"
+          ],
+          "forbid": [],
+          "aim": "thumb_tip",
+          "aim_dir": [
+            0.0,
+            -1.0
+          ],
+          "max_turn": 45.0,
+          "why": "thumbs-up, thumb turned to read upward"
+        },
+        "hand_on_hip": {
+          "prefer": [
+            "relaxed",
+            "cupped",
+            "fist"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping"
+          ],
+          "max_turn": 0.0,
+          "max_view_dev": 70.0,
+          "why": "relaxed or cupped hands on the hips, no extreme rotation"
+        },
+        "resting": {
+          "prefer": [
+            "palm_down",
+            "relaxed",
+            "open_palm"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up"
+          ],
+          "max_turn": 0.0,
+          "why": "hands resting (on the knees)"
+        },
+        "raised": {
+          "prefer": [
+            "open_palm",
+            "relaxed"
+          ],
+          "forbid": [
+            "pointing",
+            "thumbs_up",
+            "gripping"
+          ],
+          "max_turn": 0.0,
+          "palm": [
+            "PALM_TO_CAMERA",
+            "BACK_TO_CAMERA"
+          ],
+          "why": "raised open hands"
+        }
+      },
+      "preset_actions": {
+        "relaxed_standing": "relaxed_standing",
+        "hands_at_sides": "relaxed_standing",
+        "head_tilt_compensated": "relaxed_standing",
+        "side_lean": "relaxed_standing",
+        "leaning_forward": "relaxed_standing",
+        "leaning_backward": "relaxed_standing",
+        "hands_on_hips": "hand_on_hip",
+        "pointing_speaking": {
+          "r": "pointing",
+          "l": "relaxed_standing"
+        },
+        "conversational_gesture": {
+          "r": "explaining",
+          "l": "relaxed_standing"
+        },
+        "one_hand_shrug": "shrugging",
+        "casual_walk": "walking",
+        "running": "running",
+        "sitting": "resting",
+        "natural_squat": "resting",
+        "both_hands_raised": "raised"
+      },
+      "upright_tolerance_deg": {
+        "relaxed": 130.0,
+        "open_palm": 160.0,
+        "fist": 170.0,
+        "pointing": 180.0,
+        "thumbs_up": 60.0,
+        "gripping": 100.0,
+        "palm_down": 80.0,
+        "cupped": 70.0,
+        "palm_up": 70.0,
+        "partially_closed": 130.0
+      },
+      "gesture_scores": [
+        1.0,
+        0.8,
+        0.62,
+        0.48
+      ],
+      "unlisted_score": 0.15,
+      "fidelity": {
+        "original": 1.0,
+        "phase2": 0.8,
+        "store_sleeve_free": 0.7,
+        "store_attached": 0.5,
+        "derived_mirror": 0.6
+      },
+      "pending_approval_score": 0.6,
+      "temporal": {
+        "hysteresis": 0.12,
+        "min_hold_s": 0.4,
+        "min_hold_action_s": 0.25,
+        "variety_penalty": 0.15,
+        "symmetry_tolerance": 0.05
+      },
+      "wrist_limit_deg": 60.0,
+      "aim_rate_deg_s": 180.0,
+      "aim_forearm_window_deg": [
+        25.0,
+        70.0
+      ],
+      "resolution": "explicit user choice > switch keyframe > this engine (auto mode only) > group default",
+      "hard_constraints": [
+        "missing",
+        "approval (production: approved + original only; review: + pending)",
+        "excluded",
+        "gesture (forbidden / needs target)",
+        "handedness",
+        "metadata",
+        "palm view (HandOrientationAnalyzer, flat rotation only)",
+        "rotation from the drawn orientation <= the drawing's tolerance"
+      ],
+      "approval_states": [
+        "APPROVED",
+        "PENDING_REVIEW",
+        "REJECTED",
+        "MISSING"
+      ],
+      "disclaimer": "scores rank the drawings the character has for an action; they do not measure visual quality"
+    },
+    "state": {
+      "actions": {
+        "r": null,
+        "l": null
+      },
+      "targets": {
+        "r": null,
+        "l": null
+      },
+      "weights": {}
+    },
+    "groups": {
+      "hand_right": {
+        "group": "hand_r",
+        "bone": "hand_r",
+        "pivot": [
+          181.3,
+          619.5
+        ],
+        "default": "open_palm",
+        "variants": [
+          {
+            "pose": "open_palm",
+            "cid": "original",
+            "layer": "hand_r",
+            "status": "original",
+            "approval_item": null,
+            "library": null,
+            "sleeve": "drawn with the character",
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "attachment_bone": "hand_r",
+            "placement": null,
+            "features": {},
+            "handedness": null,
+            "provenance": {
+              "from": "reference image (original pixels)"
+            }
+          },
+          {
+            "pose": "palm_up",
+            "cid": "phase2:palm_up",
+            "layer": "hand_r__palm_up",
+            "status": "pending_review",
+            "approval_item": "corrective:hand__palm_up",
+            "library": null,
+            "sleeve": "attached",
+            "wrist_pivot": [
+              181.3,
+              619.5
+            ],
+            "attachment_bone": "hand_r",
+            "placement": null,
+            "features": {},
+            "handedness": null,
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            }
+          }
+        ],
+        "override": {
+          "user": null,
+          "auto": true
+        },
+        "timeline_keys": []
+      },
+      "hand_left": {
+        "group": "hand_l",
+        "bone": "hand_l",
+        "pivot": [
+          845.1,
+          620.3
+        ],
+        "default": "open_palm",
+        "variants": [
+          {
+            "pose": "open_palm",
+            "cid": "original",
+            "layer": "hand_l",
+            "status": "original",
+            "approval_item": null,
+            "library": null,
+            "sleeve": "drawn with the character",
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "attachment_bone": "hand_l",
+            "placement": null,
+            "features": {},
+            "handedness": null,
+            "provenance": {
+              "from": "reference image (original pixels)"
+            }
+          },
+          {
+            "pose": "palm_up",
+            "cid": "phase2:palm_up",
+            "layer": "hand_l__palm_up",
+            "status": "pending_review",
+            "approval_item": "corrective:hand__palm_up",
+            "library": null,
+            "sleeve": "attached",
+            "wrist_pivot": [
+              845.1,
+              620.3
+            ],
+            "attachment_bone": "hand_l",
+            "placement": null,
+            "features": {},
+            "handedness": null,
+            "provenance": {
+              "source": {
+                "from": "reference hand layers",
+                "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+              }
+            }
+          }
+        ],
+        "override": {
+          "user": null,
+          "auto": true
+        },
+        "timeline_keys": []
+      }
+    },
+    "libraries": {},
+    "gesture_id_map": [],
+    "moho_translation": [
+      {
+        "rule": "explicit user choice and switch keyframes",
+        "moho": "Switch Layer keyframes on the hand switch layer"
+      },
+      {
+        "rule": "automatic per-action choice (incl. hysteresis, minimum hold, symmetry)",
+        "moho": "baked into Switch Layer keyframes when exporting an animation; no runtime equivalent assumed"
+      },
+      {
+        "rule": "wrist aim (index toward the target, thumb up)",
+        "moho": "hand bone rotation keys"
+      },
+      {
+        "rule": "per-variant pivot, rotation offset, overlap and scale",
+        "moho": "the variant layer's own transform inside the switch layer (origin at the wrist pivot)"
+      },
+      {
+        "rule": "gesture actions for live puppeteering",
+        "moho": "Actions on Live Mode inputs (input names not discovered)"
+      },
+      {
+        "rule": "gripping target",
+        "moho": "arm IK target (bone target) offset by the grip centre"
+      }
+    ],
+    "moho": {
+      "status": "proposed_unverified"
+    }
+  },
+  "moho": {
+    "status": "proposed_unverified",
+    "note": "no .moho is written in Phase 3.2"
+  }
+}

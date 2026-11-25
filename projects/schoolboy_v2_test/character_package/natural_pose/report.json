@@ -1,0 +1,101 @@
+{
+  "package": "character_package",
+  "neutral_pose_exact": true,
+  "sequences": {
+    "squat_down": {
+      "values": [
+        0.0,
+        0.06,
+        0.12,
+        0.18,
+        0.24
+      ],
+      "max_planted_foot_drift_px": 0.0
+    },
+    "weight_shift": {
+      "values": [
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "max_planted_foot_drift_px": 0.0
+    }
+  },
+  "status_counts": {
+    "OK_PENDING_REVIEW": 6,
+    "NEEDS_REVIEW": 2,
+    "NEEDS_ARTWORK": 4
+  },
+  "presets": {
+    "relaxed_standing": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.9,
+      "defects": []
+    },
+    "hands_at_sides": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.9,
+      "defects": []
+    },
+    "pointing_speaking": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.7,
+      "defects": []
+    },
+    "one_hand_shrug": {
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.82,
+      "defects": [
+        "corrective artwork pending review: hand__palm_up (for: hand_r: palm-up hand (the open hand faces the viewer))"
+      ]
+    },
+    "both_hands_raised": {
+      "status": "NEEDS_REVIEW",
+      "confidence": 0.74,
+      "defects": [
+        "corrective artwork pending review: gusset__both_hands_raised__r",
+        "corrective artwork pending review: gusset__both_hands_raised__l"
+      ]
+    },
+    "arms_crossed": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.7,
+      "defects": []
+    },
+    "casual_walk": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.9,
+      "defects": []
+    },
+    "running": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.5,
+      "defects": []
+    },
+    "sitting": {
+      "status": "NEEDS_ARTWORK",
+      "confidence": 0.22,
+      "defects": [
+        "visible seam at hip_l: 14 torn pixel pairs (14 on outlines)"
+      ]
+    },
+    "natural_squat": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.9,
+      "defects": []
+    },
+    "head_tilt_compensated": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.9,
+      "defects": []
+    },
+    "conversational_gesture": {
+      "status": "OK_PENDING_REVIEW",
+      "confidence": 0.9,
+      "defects": []
+    }
+  },
+  "duration_s": 59.0,
+  "evidence": "rendered by the standalone preview deformer; NOT Moho; nothing human-reviewed"
+}

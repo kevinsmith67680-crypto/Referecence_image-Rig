@@ -1,0 +1,628 @@
+{
+  "schema": "autorig.live_artwork_manifest",
+  "schema_version": "1.0.0",
+  "controls": {
+    "head_yaw": {
+      "required_image_layers": [
+        "head_base",
+        "hair",
+        "nose",
+        "mouth",
+        "brow_r",
+        "brow_l",
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "head_turn_left",
+        "head_turn_right"
+      ],
+      "pivot_or_deformation_region": {
+        "pivot": [
+          512.35,
+          510.76
+        ],
+        "joint": "neck"
+      },
+      "safe_range": {
+        "degrees": 0,
+        "note": "needs turn views"
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "three-quarter view, turned left (incl. hair, ears, features)",
+        "three-quarter view, turned right"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "head_pitch": {
+      "required_image_layers": [
+        "head_base",
+        "hair",
+        "nose",
+        "mouth",
+        "brow_r",
+        "brow_l",
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "head_up",
+        "head_down"
+      ],
+      "pivot_or_deformation_region": {
+        "pivot": [
+          512.35,
+          510.76
+        ],
+        "joint": "neck"
+      },
+      "safe_range": {
+        "degrees": 0,
+        "note": "needs turn views"
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "head pitched up",
+        "head pitched down"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "head_roll": {
+      "required_image_layers": [
+        "head_base",
+        "hair",
+        "nose",
+        "mouth",
+        "brow_r",
+        "brow_l",
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris",
+        "neck"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [],
+      "pivot_or_deformation_region": {
+        "pivot": [
+          512.35,
+          510.76
+        ],
+        "joint": "neck"
+      },
+      "safe_range": {
+        "degrees": 0,
+        "basis": "pose sweep gap test"
+      },
+      "artwork_readiness": "NEEDS_REVIEW",
+      "missing_assets": [],
+      "user_approval_status": "not_reviewed"
+    },
+    "eye_blink_left": {
+      "required_image_layers": [
+        "eye_l_white",
+        "eye_l_iris"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [
+        "eyelid_guide_l"
+      ],
+      "required_switch_drawings": [
+        "eye_l_closed"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          540,
+          341,
+          630,
+          406
+        ]
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "closed left eye drawing (eyelid down)"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "eye_blink_right": {
+      "required_image_layers": [
+        "eye_r_white",
+        "eye_r_iris"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [
+        "eyelid_guide_r"
+      ],
+      "required_switch_drawings": [
+        "eye_r_closed"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          392,
+          348,
+          485,
+          410
+        ]
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "closed right eye drawing (eyelid down)"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "eye_look_x": {
+      "required_image_layers": [
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [],
+      "pivot_or_deformation_region": {
+        "pupil_centers": {
+          "r": [
+            453.62,
+            368.93
+          ],
+          "l": [
+            569.19,
+            366.58
+          ]
+        }
+      },
+      "safe_range": {
+        "pixels": {
+          "r": {
+            "left": 0,
+            "right": 0
+          },
+          "l": {
+            "left": 0,
+            "right": 0
+          }
+        },
+        "basis": "iris translation that stays inside the eye (4 px margin)"
+      },
+      "artwork_readiness": "REQUIRES_RECONSTRUCTION",
+      "missing_assets": [],
+      "user_approval_status": "not_reviewed"
+    },
+    "eye_look_y": {
+      "required_image_layers": [
+        "eye_r_white",
+        "eye_r_iris",
+        "eye_l_white",
+        "eye_l_iris"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [],
+      "pivot_or_deformation_region": {
+        "pupil_centers": {
+          "r": [
+            453.62,
+            368.93
+          ],
+          "l": [
+            569.19,
+            366.58
+          ]
+        }
+      },
+      "safe_range": {
+        "pixels": {
+          "r": {
+            "up": 0,
+            "down": 0
+          },
+          "l": {
+            "up": 0,
+            "down": 0
+          }
+        },
+        "basis": "iris translation that stays inside the eye (4 px margin)"
+      },
+      "artwork_readiness": "REQUIRES_RECONSTRUCTION",
+      "missing_assets": [],
+      "user_approval_status": "not_reviewed"
+    },
+    "brow_raise_left": {
+      "required_image_layers": [
+        "brow_l",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          528,
+          296,
+          638,
+          362
+        ]
+      },
+      "safe_range": {
+        "pixels_up_before_hair": 47
+      },
+      "artwork_readiness": "NEEDS_REVIEW",
+      "missing_assets": [
+        "skin under the brow (reconstructed, pending review)"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "brow_raise_right": {
+      "required_image_layers": [
+        "brow_r",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          382,
+          306,
+          498,
+          363
+        ]
+      },
+      "safe_range": {
+        "pixels_up_before_hair": 44
+      },
+      "artwork_readiness": "NEEDS_REVIEW",
+      "missing_assets": [
+        "skin under the brow (reconstructed, pending review)"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "brow_frown": {
+      "required_image_layers": [
+        "brow_r",
+        "brow_l",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [],
+      "pivot_or_deformation_region": {
+        "note": "inner brow ends move down/in"
+      },
+      "safe_range": {
+        "note": "translation/rotation of brow layers"
+      },
+      "artwork_readiness": "NEEDS_REVIEW",
+      "missing_assets": [
+        "skin under both brows (reconstructed, pending review)"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "jaw_open": {
+      "required_image_layers": [
+        "mouth",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "mouth_open"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          486,
+          443,
+          552,
+          459
+        ],
+        "jaw_pivot": {
+          "position": [
+            509.37449302063743,
+            422.89153320654293
+          ],
+          "method": "ear_line_at_midline",
+          "status": "approximate"
+        }
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "open mouth with interior, teeth and tongue"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "mouth_width": {
+      "required_image_layers": [
+        "mouth",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "mouth_wide",
+        "mouth_narrow"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          486,
+          443,
+          552,
+          459
+        ],
+        "jaw_pivot": {
+          "position": [
+            509.37449302063743,
+            422.89153320654293
+          ],
+          "method": "ear_line_at_midline",
+          "status": "approximate"
+        }
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "widened mouth shape",
+        "narrowed mouth shape"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "mouth_pucker": {
+      "required_image_layers": [
+        "mouth",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "mouth_pucker"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          486,
+          443,
+          552,
+          459
+        ],
+        "jaw_pivot": {
+          "position": [
+            509.37449302063743,
+            422.89153320654293
+          ],
+          "method": "ear_line_at_midline",
+          "status": "approximate"
+        }
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "puckered/pursed lips"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "smile_left": {
+      "required_image_layers": [
+        "mouth",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "mouth_smile_left"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          486,
+          443,
+          552,
+          459
+        ],
+        "jaw_pivot": {
+          "position": [
+            509.37449302063743,
+            422.89153320654293
+          ],
+          "method": "ear_line_at_midline",
+          "status": "approximate"
+        }
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "left corner raised"
+      ],
+      "user_approval_status": "not_reviewed"
+    },
+    "smile_right": {
+      "required_image_layers": [
+        "mouth",
+        "head_base"
+      ],
+      "missing_layers": [],
+      "optional_vector_layers": [],
+      "required_switch_drawings": [
+        "mouth_smile_right"
+      ],
+      "pivot_or_deformation_region": {
+        "region_bbox": [
+          486,
+          443,
+          552,
+          459
+        ],
+        "jaw_pivot": {
+          "position": [
+            509.37449302063743,
+            422.89153320654293
+          ],
+          "method": "ear_line_at_midline",
+          "status": "approximate"
+        }
+      },
+      "safe_range": {
+        "value": [
+          0,
+          1
+        ]
+      },
+      "artwork_readiness": "REQUIRES_NEW_ARTWORK",
+      "missing_assets": [
+        "right corner raised"
+      ],
+      "user_approval_status": "not_reviewed"
+    }
+  },
+  "switch_drawing_slots": [
+    {
+      "id": "eye_r_closed",
+      "control": "eye_blink_right",
+      "description": "closed right eye drawing (eyelid down)",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "eye_l_closed",
+      "control": "eye_blink_left",
+      "description": "closed left eye drawing (eyelid down)",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "mouth_open",
+      "control": "jaw_open",
+      "description": "open mouth with interior, teeth and tongue",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "mouth_wide",
+      "control": "mouth_width",
+      "description": "widened mouth shape",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "mouth_narrow",
+      "control": "mouth_width",
+      "description": "narrowed mouth shape",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "mouth_pucker",
+      "control": "mouth_pucker",
+      "description": "puckered/pursed lips",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "mouth_smile_left",
+      "control": "smile_left",
+      "description": "left corner raised",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "mouth_smile_right",
+      "control": "smile_right",
+      "description": "right corner raised",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "head_turn_left",
+      "control": "head_yaw",
+      "description": "three-quarter view, turned left (incl. hair, ears, features)",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "head_turn_right",
+      "control": "head_yaw",
+      "description": "three-quarter view, turned right",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "head_up",
+      "control": "head_pitch",
+      "description": "head pitched up",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    },
+    {
+      "id": "head_down",
+      "control": "head_pitch",
+      "description": "head pitched down",
+      "status": "missing",
+      "source": null,
+      "approval": "not_reviewed",
+      "rule": "generated drawings must be labelled generated and approved; never 'original'"
+    }
+  ],
+  "software_mappings": "kept separate: see analysis/live_controls.json -> moho_showtime (proposed only)"
+}

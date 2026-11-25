@@ -1,0 +1,226 @@
+{
+ "regions": {
+  "blazer_body": {
+   "pixels": 23999,
+   "anchors": [
+    "chest"
+   ]
+  },
+  "lapel_trim": {
+   "pixels": 6549,
+   "anchors": [
+    "chest"
+   ]
+  },
+  "shirt_collar": {
+   "pixels": 2017,
+   "anchors": [
+    "chest",
+    "neck"
+   ]
+  },
+  "tie_badge": {
+   "pixels": 2655,
+   "anchors": []
+  },
+  "sweater": {
+   "pixels": 19363,
+   "anchors": [
+    "chest",
+    "spine",
+    "pelvis"
+   ]
+  },
+  "blazer_hem": {
+   "pixels": 17729,
+   "anchors": [
+    "pelvis (thigh influence removed)"
+   ]
+  },
+  "shoulder_seam_r": {
+   "pixels": 984,
+   "anchors": [
+    "clavicle",
+    "upper_arm"
+   ]
+  },
+  "shoulder_seam_l": {
+   "pixels": 987,
+   "anchors": [
+    "clavicle",
+    "upper_arm"
+   ]
+  },
+  "sleeve_upper_r": {
+   "pixels": 6979,
+   "anchors": [
+    "upper_arm"
+   ]
+  },
+  "sleeve_upper_l": {
+   "pixels": 8953,
+   "anchors": [
+    "upper_arm"
+   ]
+  },
+  "sleeve_fore_r": {
+   "pixels": 8224,
+   "anchors": [
+    "forearm"
+   ]
+  },
+  "sleeve_fore_l": {
+   "pixels": 6684,
+   "anchors": [
+    "forearm"
+   ]
+  },
+  "shirt_cuff_r": {
+   "pixels": 974,
+   "anchors": [
+    "forearm"
+   ]
+  },
+  "shirt_cuff_l": {
+   "pixels": 1028,
+   "anchors": [
+    "forearm"
+   ]
+  },
+  "hand_r": {
+   "pixels": 17434,
+   "anchors": []
+  },
+  "hand_l": {
+   "pixels": 17367,
+   "anchors": []
+  },
+  "trouser_thigh_r": {
+   "pixels": 13136,
+   "anchors": [
+    "thigh"
+   ]
+  },
+  "trouser_thigh_l": {
+   "pixels": 13402,
+   "anchors": [
+    "thigh"
+   ]
+  },
+  "trouser_knee_r": {
+   "pixels": 3011,
+   "anchors": [
+    "thigh",
+    "shin"
+   ]
+  },
+  "trouser_knee_l": {
+   "pixels": 3096,
+   "anchors": [
+    "thigh",
+    "shin"
+   ]
+  },
+  "trouser_shin_r": {
+   "pixels": 9319,
+   "anchors": [
+    "shin"
+   ]
+  },
+  "trouser_shin_l": {
+   "pixels": 9400,
+   "anchors": [
+    "shin"
+   ]
+  },
+  "trouser_cuff_r": {
+   "pixels": 5187,
+   "anchors": [
+    "shin"
+   ]
+  },
+  "trouser_cuff_l": {
+   "pixels": 5101,
+   "anchors": [
+    "shin"
+   ]
+  },
+  "shoe_r": {
+   "pixels": 17990,
+   "anchors": [
+    "foot"
+   ]
+  },
+  "shoe_l": {
+   "pixels": 17786,
+   "anchors": [
+    "foot"
+   ]
+  },
+  "neck": {
+   "pixels": 1696,
+   "anchors": []
+  },
+  "head": {
+   "pixels": 79275,
+   "anchors": []
+  },
+  "hair": {
+   "pixels": 95475,
+   "anchors": {
+    "top_y": 19.0,
+    "hairline_y": 215.0,
+    "pivot_x": 509.08000000000004,
+    "pivot_y": 234.8
+   }
+  }
+ },
+ "hem": {
+  "pivot_x": 509.08000000000004,
+  "pivot_y": 793.8,
+  "top_y": 793.8,
+  "bottom_y": 954.0
+ },
+ "hem_pixels_in_thigh_layers": 103,
+ "band_rules": {
+  "upper_arm": {
+   "gain": 0.5,
+   "full_range_deg": 90.0,
+   "region": "shoulder seam (sleeve side)"
+  },
+  "forearm": {
+   "gain": 0.6,
+   "full_range_deg": 120.0,
+   "region": "elbow / sleeve crease"
+  },
+  "thigh": {
+   "gain": 0.4,
+   "full_range_deg": 45.0,
+   "region": "hip / trouser top"
+  },
+  "shin": {
+   "gain": 0.7,
+   "full_range_deg": 60.0,
+   "region": "knee / trouser fold"
+  },
+  "neck": {
+   "gain": 0.5,
+   "full_range_deg": 25.0,
+   "region": "neck attachment"
+  },
+  "head": {
+   "gain": 0.5,
+   "full_range_deg": 25.0,
+   "region": "neck attachment"
+  }
+ },
+ "layering": [
+  "foot before shin (trouser cuff over the shoe)",
+  "hand before forearm (sleeve over wrist)",
+  "legs before pelvis/torso (blazer hem over the trousers)"
+ ],
+ "notes": [
+  "regions are estimated from skeleton geometry, layer masks and colour; check them in the garment diagnostics overlay",
+  "103 blazer-hem pixels were cut into the thigh layers; they now hang from the pelvis instead of following the thighs"
+ ]
+}

@@ -1,0 +1,627 @@
+{
+  "schema": "autorig.approvals",
+  "schema_version": "1.0.0",
+  "items": [
+    {
+      "id": "forearm_l__01",
+      "type": "generated_extension",
+      "component": "forearm_l",
+      "method": "deterministic_flat_fill",
+      "region": "forearm_l__under__hand_l",
+      "pixels": 1094,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/forearm_l__01.png",
+        "provenance_mask": "masks/provenance/forearm_l__01.png",
+        "change_map": "reports/change_maps/forearm_l.png"
+      }
+    },
+    {
+      "id": "forearm_r__01",
+      "type": "generated_extension",
+      "component": "forearm_r",
+      "method": "deterministic_flat_fill",
+      "region": "forearm_r__under__hand_r",
+      "pixels": 1117,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/forearm_r__01.png",
+        "provenance_mask": "masks/provenance/forearm_r__01.png",
+        "change_map": "reports/change_maps/forearm_r.png"
+      }
+    },
+    {
+      "id": "head_base__01",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__brow_l",
+      "pixels": 2465,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__01.png",
+        "provenance_mask": "masks/provenance/head_base__01.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "head_base__02",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__brow_r",
+      "pixels": 2437,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__02.png",
+        "provenance_mask": "masks/provenance/head_base__02.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "head_base__03",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__eye_l_white",
+      "pixels": 3559,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__03.png",
+        "provenance_mask": "masks/provenance/head_base__03.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "head_base__04",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__eye_r_iris",
+      "pixels": 941,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__04.png",
+        "provenance_mask": "masks/provenance/head_base__04.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "head_base__05",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__eye_r_white",
+      "pixels": 3550,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__05.png",
+        "provenance_mask": "masks/provenance/head_base__05.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "head_base__06",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__mouth",
+      "pixels": 272,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__06.png",
+        "provenance_mask": "masks/provenance/head_base__06.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "head_base__07",
+      "type": "generated_extension",
+      "component": "head_base",
+      "method": "deterministic_flat_fill",
+      "region": "head_base__under__nose",
+      "pixels": 907,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/head_base__07.png",
+        "provenance_mask": "masks/provenance/head_base__07.png",
+        "change_map": "reports/change_maps/head_base.png"
+      }
+    },
+    {
+      "id": "neck__01",
+      "type": "generated_extension",
+      "component": "neck",
+      "method": "deterministic_flat_fill",
+      "region": "neck__under__head_base",
+      "pixels": 2503,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/neck__01.png",
+        "provenance_mask": "masks/provenance/neck__01.png",
+        "change_map": "reports/change_maps/neck.png"
+      }
+    },
+    {
+      "id": "neck__02",
+      "type": "generated_extension",
+      "component": "neck",
+      "method": "deterministic_flat_fill",
+      "region": "neck__under__torso",
+      "pixels": 453,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/neck__02.png",
+        "provenance_mask": "masks/provenance/neck__02.png",
+        "change_map": "reports/change_maps/neck.png"
+      }
+    },
+    {
+      "id": "shin_l__01",
+      "type": "generated_extension",
+      "component": "shin_l",
+      "method": "deterministic_flat_fill",
+      "region": "shin_l__under__foot_l",
+      "pixels": 1132,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/shin_l__01.png",
+        "provenance_mask": "masks/provenance/shin_l__01.png",
+        "change_map": "reports/change_maps/shin_l.png"
+      }
+    },
+    {
+      "id": "shin_r__01",
+      "type": "generated_extension",
+      "component": "shin_r",
+      "method": "deterministic_flat_fill",
+      "region": "shin_r__under__foot_r",
+      "pixels": 1179,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/shin_r__01.png",
+        "provenance_mask": "masks/provenance/shin_r__01.png",
+        "change_map": "reports/change_maps/shin_r.png"
+      }
+    },
+    {
+      "id": "thigh_l__01",
+      "type": "generated_extension",
+      "component": "thigh_l",
+      "method": "deterministic_flat_fill",
+      "region": "thigh_l__under__pelvis",
+      "pixels": 883,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/thigh_l__01.png",
+        "provenance_mask": "masks/provenance/thigh_l__01.png",
+        "change_map": "reports/change_maps/thigh_l.png"
+      }
+    },
+    {
+      "id": "thigh_r__01",
+      "type": "generated_extension",
+      "component": "thigh_r",
+      "method": "deterministic_flat_fill",
+      "region": "thigh_r__under__pelvis",
+      "pixels": 867,
+      "status": "pending_review",
+      "images": {
+        "extension": "artwork/reconstructed/thigh_r__01.png",
+        "provenance_mask": "masks/provenance/thigh_r__01.png",
+        "change_map": "reports/change_maps/thigh_r.png"
+      }
+    },
+    {
+      "id": "joint_cap_wrist_r",
+      "type": "vector_correction",
+      "component": "forearm_r",
+      "path": "artwork/vector/joint_cap_wrist_r.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_knee_r",
+      "type": "vector_correction",
+      "component": "thigh_r",
+      "path": "artwork/vector/joint_cap_knee_r.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_ankle_r",
+      "type": "vector_correction",
+      "component": "shin_r",
+      "path": "artwork/vector/joint_cap_ankle_r.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_wrist_l",
+      "type": "vector_correction",
+      "component": "forearm_l",
+      "path": "artwork/vector/joint_cap_wrist_l.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_knee_l",
+      "type": "vector_correction",
+      "component": "thigh_l",
+      "path": "artwork/vector/joint_cap_knee_l.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "joint_cap_ankle_l",
+      "type": "vector_correction",
+      "component": "shin_l",
+      "path": "artwork/vector/joint_cap_ankle_l.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "eyelid_guide_r",
+      "type": "facial_control_guide",
+      "component": "eye_r",
+      "path": "artwork/vector/eyelid_guide_r.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "eyelid_guide_l",
+      "type": "facial_control_guide",
+      "component": "eye_l",
+      "path": "artwork/vector/eyelid_guide_l.svg",
+      "status": "pending_review"
+    },
+    {
+      "id": "pivot:neck",
+      "type": "joint_pivot",
+      "pivot": [
+        512.35,
+        510.76
+      ],
+      "status": "pending_review",
+      "issues": [
+        "gaps up to 1094 px remain within \u00b120 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:shoulder_r",
+      "type": "joint_pivot",
+      "pivot": [
+        405.91,
+        600.53
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (limb_proximal_extreme_inset_by_radius): verify before binding"
+      ]
+    },
+    {
+      "id": "pivot:elbow_r",
+      "type": "joint_pivot",
+      "pivot": [
+        319.99,
+        616.54
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (medial_path_weak_bend): verify before binding",
+        "gaps up to 361 px remain within \u00b190 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:wrist_r",
+      "type": "joint_pivot",
+      "pivot": [
+        181.32,
+        619.54
+      ],
+      "status": "pending_review",
+      "issues": [
+        "gaps up to 42 px remain within \u00b130 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:hip_r",
+      "type": "joint_pivot",
+      "pivot": [
+        448.56,
+        923.04
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 184 px remain within \u00b145 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:knee_r",
+      "type": "joint_pivot",
+      "pivot": [
+        392.25,
+        1138.12
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding",
+        "gaps up to 334 px remain within \u00b160 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:ankle_r",
+      "type": "joint_pivot",
+      "pivot": [
+        340.08,
+        1352.97
+      ],
+      "status": "pending_review",
+      "issues": [
+        "gaps up to 91 px remain within \u00b130 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:shoulder_l",
+      "type": "joint_pivot",
+      "pivot": [
+        625.63,
+        603.11
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (limb_proximal_extreme_inset_by_radius): verify before binding",
+        "gaps up to 113 px remain within \u00b190 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:elbow_l",
+      "type": "joint_pivot",
+      "pivot": [
+        732.67,
+        617.6
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding",
+        "gaps up to 467 px remain within \u00b190 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:wrist_l",
+      "type": "joint_pivot",
+      "pivot": [
+        845.08,
+        618.8
+      ],
+      "status": "pending_review",
+      "issues": [
+        "gaps up to 35 px remain within \u00b130 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:hip_l",
+      "type": "joint_pivot",
+      "pivot": [
+        569.6,
+        921.19
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (midpoint_of_lower_clothing_span_along_limb_axis+x_from_leg_midline): verify before binding",
+        "gaps up to 202 px remain within \u00b145 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:knee_l",
+      "type": "joint_pivot",
+      "pivot": [
+        624.54,
+        1138.12
+      ],
+      "status": "needs_review",
+      "issues": [
+        "pivot unreliable in Phase 1 (straight_limb_midpoint): verify before binding",
+        "gaps up to 335 px remain within \u00b160 deg even with extensions"
+      ]
+    },
+    {
+      "id": "pivot:ankle_l",
+      "type": "joint_pivot",
+      "pivot": [
+        680.28,
+        1356.43
+      ],
+      "status": "pending_review",
+      "issues": [
+        "gaps up to 64 px remain within \u00b130 deg even with extensions"
+      ]
+    },
+    {
+      "id": "edge:brow_l>eye_l_iris",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "edge:brow_l>eye_l_white",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "edge:brow_r>eye_r_iris",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "edge:brow_r>eye_r_white",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "edge:eye_l_iris>head_base",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "edge:eye_r_iris>head_base",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "edge:forearm_l>upper_arm_l",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.55,
+      "method": "prior"
+    },
+    {
+      "id": "edge:forearm_r>upper_arm_r",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.55,
+      "method": "prior"
+    },
+    {
+      "id": "edge:torso>pelvis",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.55,
+      "method": "prior"
+    },
+    {
+      "id": "edge:shin_l>thigh_l",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.5,
+      "method": "prior"
+    },
+    {
+      "id": "edge:shin_r>thigh_r",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.5,
+      "method": "prior"
+    },
+    {
+      "id": "edge:thigh_l>thigh_r",
+      "type": "occlusion_edge",
+      "status": "needs_review",
+      "confidence": 0.3,
+      "method": "phase1_z_order_fallback"
+    },
+    {
+      "id": "switch:eye_r_closed",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "closed right eye drawing (eyelid down)"
+    },
+    {
+      "id": "switch:eye_l_closed",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "closed left eye drawing (eyelid down)"
+    },
+    {
+      "id": "switch:mouth_open",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "open mouth with interior, teeth and tongue"
+    },
+    {
+      "id": "switch:mouth_wide",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "widened mouth shape"
+    },
+    {
+      "id": "switch:mouth_narrow",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "narrowed mouth shape"
+    },
+    {
+      "id": "switch:mouth_pucker",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "puckered/pursed lips"
+    },
+    {
+      "id": "switch:mouth_smile_left",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "left corner raised"
+    },
+    {
+      "id": "switch:mouth_smile_right",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "right corner raised"
+    },
+    {
+      "id": "switch:head_turn_left",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "three-quarter view, turned left (incl. hair, ears, features)"
+    },
+    {
+      "id": "switch:head_turn_right",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "three-quarter view, turned right"
+    },
+    {
+      "id": "switch:head_up",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "head pitched up"
+    },
+    {
+      "id": "switch:head_down",
+      "type": "missing_switch_drawing",
+      "status": "missing",
+      "description": "head pitched down"
+    },
+    {
+      "id": "corrective:hand__palm_up",
+      "type": "corrective_artwork",
+      "category": "C_approximation",
+      "status": "pending_review",
+      "fingerprint": "b95da4be6e3cfaca45e5b0b9f73dcd02454bdebc0e75b05fa6eac26dba7850ab",
+      "preset": null,
+      "detail": {
+        "from": "reference hand layers",
+        "construction": "foreshortened to 50% across the hand axis (palm seen edge-on)"
+      }
+    },
+    {
+      "id": "corrective:gusset__both_hands_raised__r",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "4340d8e07743d3bb7c78307a8be12cc8a41e28bd70a46516c6145d46b5160948",
+      "preset": "both_hands_raised",
+      "detail": null
+    },
+    {
+      "id": "corrective:gusset__both_hands_raised__l",
+      "type": "corrective_artwork",
+      "category": "C_corrective_shape",
+      "status": "pending_review",
+      "fingerprint": "d747aa661eab19297d94d05311c404e4dba6a20b680cf1ba87184b87ffd65451",
+      "preset": "both_hands_raised",
+      "detail": null
+    }
+  ],
+  "decisions": [],
+  "phase_approval": {
+    "approved_for_next_phase": false,
+    "approved_at": null,
+    "rule": "requires every generated item approved or rejected and no needs_review left"
+  }
+}

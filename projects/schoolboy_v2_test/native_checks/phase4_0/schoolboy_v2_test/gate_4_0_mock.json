@@ -1,0 +1,444 @@
+{
+  "gate": "4.0",
+  "verdict": "BLOCKED \u2014 NATIVE VALIDATION REQUIRED",
+  "passed": false,
+  "items": [
+    {
+      "id": "native_document",
+      "requirement": "A real native Moho document has been created",
+      "status": "MOCK_ONLY",
+      "evidence": [
+        "<evidence>/phase4_native_build_report.json"
+      ],
+      "detail": "origin mock, Moho 14.4-mock, Lua Lua 5.4; Phase 0 verifier: 0 FAIL"
+    },
+    {
+      "id": "bone_moves_artwork",
+      "requirement": "At least one bone genuinely moves artwork",
+      "status": "MOCK_ONLY",
+      "evidence": [
+        "<evidence>/renders/frame_0001.png",
+        "<evidence>/renders/frame_0012.png"
+      ],
+      "detail": "renders (simulation) of frames 1 and 12: alignment {'status': 'PASS', 'silhouette_iou': 0.9685, 'background': [236.0, 236.0, 236.0]}, change {'status': 'PASS', 'changed_iou': 1.0, 'changed_ratio': 1.0, 'changed_px': 61220, 'expected_changed_px': 61222}"
+    },
+    {
+      "id": "document_saved",
+      "requirement": "The document saves successfully",
+      "status": "NOT_EXECUTED",
+      "evidence": [
+        "<evidence>/AutoRig_P4_Native.moho"
+      ],
+      "detail": "saved.exists=NOT_EXECUTED"
+    },
+    {
+      "id": "document_reopened",
+      "requirement": "The document reopens successfully",
+      "status": "MOCK_ONLY",
+      "evidence": [
+        "<evidence>/phase4_native_verify_report.json"
+      ],
+      "detail": "origin mock; rig, bindings and keys preserved"
+    },
+    {
+      "id": "bone_functional_after_reopen",
+      "requirement": "The bone remains functional after reopening",
+      "status": "MOCK_ONLY",
+      "evidence": [
+        "<evidence>/phase4_native_verify_report.json",
+        "<evidence>/renders/frame_0018.png"
+      ],
+      "detail": "new key: [('move.frame', 'PASS'), ('move.value_read', 'PASS'), ('move.key_listed', 'PASS'), ('move.fields_follow_frame', 'INFO')]; render of frame 18: {'status': 'PASS', 'changed_iou': 1.0, 'changed_ratio': 1.0, 'changed_px': 57020, 'expected_changed_px': 57022}"
+    }
+  ],
+  "checks": {
+    "phase0_build": [
+      {
+        "name": "report.status",
+        "status": "PASS",
+        "detail": "completed"
+      },
+      {
+        "name": "report.errors",
+        "status": "PASS",
+        "detail": "none"
+      },
+      {
+        "name": "env.lua_version",
+        "status": "INFO",
+        "detail": "Lua 5.4 (Moho 14 is expected to embed Lua 5.4)"
+      },
+      {
+        "name": "env.moho_app_version",
+        "status": "INFO",
+        "detail": "14.4-mock"
+      },
+      {
+        "name": "provenance.spec_sha256",
+        "status": "PASS",
+        "detail": "report was produced from this exact spec"
+      },
+      {
+        "name": "document.size",
+        "status": "PASS",
+        "detail": "1920x1080"
+      },
+      {
+        "name": "document.frame_range",
+        "status": "PASS",
+        "detail": "1..24 (24 frames)"
+      },
+      {
+        "name": "document.fps",
+        "status": "INFO",
+        "detail": "24"
+      },
+      {
+        "name": "bone_layer.name",
+        "status": "PASS",
+        "detail": "AutoRig_P4_Native"
+      },
+      {
+        "name": "bone_layer.type",
+        "status": "PASS",
+        "detail": "LayerType()=4 == MOHO.LT_BONE"
+      },
+      {
+        "name": "bones.count",
+        "status": "PASS",
+        "detail": "3"
+      },
+      {
+        "name": "bone[body].id",
+        "status": "PASS",
+        "detail": "0"
+      },
+      {
+        "name": "bone[body].parent",
+        "status": "PASS",
+        "detail": "-1"
+      },
+      {
+        "name": "bone[body].fPos",
+        "status": "PASS",
+        "detail": "[-0.00537037037037, -0.707592592593]"
+      },
+      {
+        "name": "bone[body].fAngle",
+        "status": "PASS",
+        "detail": "1.56308241449"
+      },
+      {
+        "name": "bone[body].fLength",
+        "status": "PASS",
+        "detail": "0.720206612826"
+      },
+      {
+        "name": "bone[body].world_matrix",
+        "status": "PASS",
+        "detail": "fMovedMatrix places base/tip where the art's joints are"
+      },
+      {
+        "name": "bone[body].angle_keys",
+        "status": "PASS",
+        "detail": "1 keys at frames [0]"
+      },
+      {
+        "name": "bone[shoulder].id",
+        "status": "PASS",
+        "detail": "1"
+      },
+      {
+        "name": "bone[shoulder].parent",
+        "status": "PASS",
+        "detail": "0"
+      },
+      {
+        "name": "bone[shoulder].fPos",
+        "status": "PASS",
+        "detail": "[0.596797096429, -0.0626204905021]"
+      },
+      {
+        "name": "bone[shoulder].fAngle",
+        "status": "PASS",
+        "detail": "-1.62550122449"
+      },
+      {
+        "name": "bone[shoulder].fLength",
+        "status": "PASS",
+        "detail": "0.157343451059"
+      },
+      {
+        "name": "bone[shoulder].world_matrix",
+        "status": "PASS",
+        "detail": "fMovedMatrix places base/tip where the art's joints are"
+      },
+      {
+        "name": "bone[shoulder].angle_keys",
+        "status": "PASS",
+        "detail": "4 keys at frames [0, 1, 12, 24]"
+      },
+      {
+        "name": "bone[arm].id",
+        "status": "PASS",
+        "detail": "2"
+      },
+      {
+        "name": "bone[arm].parent",
+        "status": "PASS",
+        "detail": "1"
+      },
+      {
+        "name": "bone[arm].fPos",
+        "status": "PASS",
+        "detail": "[0.157343451059, 0]"
+      },
+      {
+        "name": "bone[arm].fAngle",
+        "status": "PASS",
+        "detail": "-0.00680497994811"
+      },
+      {
+        "name": "bone[arm].fLength",
+        "status": "PASS",
+        "detail": "0.398918376433"
+      },
+      {
+        "name": "bone[arm].world_matrix",
+        "status": "PASS",
+        "detail": "fMovedMatrix places base/tip where the art's joints are"
+      },
+      {
+        "name": "bone[arm].angle_keys",
+        "status": "PASS",
+        "detail": "4 keys at frames [0, 1, 12, 24]"
+      },
+      {
+        "name": "layers.count",
+        "status": "PASS",
+        "detail": "3"
+      },
+      {
+        "name": "layer[body_back_art].type",
+        "status": "PASS",
+        "detail": "image layer"
+      },
+      {
+        "name": "layer[body_back_art].binding",
+        "status": "PASS",
+        "detail": "bound to bone 0 'body'"
+      },
+      {
+        "name": "layer[body_back_art].image",
+        "status": "PASS",
+        "detail": "<poc>/art/body_back.png"
+      },
+      {
+        "name": "layer[arm_l_art].type",
+        "status": "PASS",
+        "detail": "image layer"
+      },
+      {
+        "name": "layer[arm_l_art].binding",
+        "status": "PASS",
+        "detail": "bound to bone 2 'arm'"
+      },
+      {
+        "name": "layer[arm_l_art].image",
+        "status": "PASS",
+        "detail": "<poc>/art/arm.png"
+      },
+      {
+        "name": "layer[body_front_art].type",
+        "status": "PASS",
+        "detail": "image layer"
+      },
+      {
+        "name": "layer[body_front_art].binding",
+        "status": "PASS",
+        "detail": "bound to bone 0 'body'"
+      },
+      {
+        "name": "layer[body_front_art].image",
+        "status": "PASS",
+        "detail": "<poc>/art/body_front.png"
+      },
+      {
+        "name": "bone_layer.children",
+        "status": "PASS",
+        "detail": "contains all 3 art layers"
+      },
+      {
+        "name": "bone_layer.z_order",
+        "status": "INFO",
+        "detail": "index order ['body_back_art', 'arm_l_art', 'body_front_art']; expected 'body_front_art' frontmost - confirm visually"
+      }
+    ],
+    "reopened": [
+      {
+        "name": "report.status",
+        "status": "PASS",
+        "detail": "completed"
+      },
+      {
+        "name": "report.errors",
+        "status": "PASS",
+        "detail": "none"
+      },
+      {
+        "name": "bone_layer.found",
+        "status": "PASS",
+        "detail": "'AutoRig_P4_Native' type 4"
+      },
+      {
+        "name": "bones.count",
+        "status": "PASS",
+        "detail": "3 of 3"
+      },
+      {
+        "name": "bone[body].rest",
+        "status": "PASS",
+        "detail": "id 0, parent -1, pos [-0.00537037037037, -0.707592592593], angle 1.56308241449, length 0.720206612826"
+      },
+      {
+        "name": "bone[body].keys_preserved",
+        "status": "PASS",
+        "detail": "1 build keys preserved"
+      },
+      {
+        "name": "bone[shoulder].rest",
+        "status": "PASS",
+        "detail": "id 1, parent 0, pos [0.596797096429, -0.0626204905021], angle -1.62550122449, length 0.157343451059"
+      },
+      {
+        "name": "bone[shoulder].keys_preserved",
+        "status": "PASS",
+        "detail": "4 build keys preserved"
+      },
+      {
+        "name": "bone[arm].rest",
+        "status": "PASS",
+        "detail": "id 2, parent 1, pos [0.157343451059, 0], angle -0.00680497994811, length 0.398918376433"
+      },
+      {
+        "name": "bone[arm].keys_preserved",
+        "status": "PASS",
+        "detail": "4 build keys preserved"
+      },
+      {
+        "name": "layer[body_back_art].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 0 (expected 0 'body')"
+      },
+      {
+        "name": "layer[arm_l_art].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 2 (expected 2 'arm')"
+      },
+      {
+        "name": "layer[body_front_art].binding",
+        "status": "PASS",
+        "detail": "type 2, bound to bone 0 (expected 0 'body')"
+      }
+    ],
+    "move": [
+      {
+        "name": "move.frame",
+        "status": "PASS",
+        "detail": "18"
+      },
+      {
+        "name": "move.value_read",
+        "status": "PASS",
+        "detail": "read 0.51679379565 rad, expected 0.5167937956501844 rad"
+      },
+      {
+        "name": "move.key_listed",
+        "status": "PASS",
+        "detail": "keys after: [0, 1, 12, 18, 24]"
+      },
+      {
+        "name": "move.fields_follow_frame",
+        "status": "INFO",
+        "detail": "fAngle after SetCurFrame = -0.00680497994811 (rest -0.006804979948114465); not evidence either way"
+      }
+    ],
+    "saved": [
+      {
+        "name": "saved.exists",
+        "status": "NOT_EXECUTED",
+        "detail": "<evidence>/AutoRig_P4_Native.moho not found"
+      }
+    ],
+    "renders": {
+      "thresholds": {
+        "FG_DIFF": 40,
+        "MOVE_DIFF": 48,
+        "ALIGN_IOU_MIN": 0.85,
+        "MOVE_IOU_MIN": 0.6,
+        "MOVE_RATIO_MIN": 0.5
+      },
+      "alignment": {
+        "status": "PASS",
+        "silhouette_iou": 0.9685,
+        "background": [
+          236.0,
+          236.0,
+          236.0
+        ]
+      },
+      "moved": {
+        "status": "PASS",
+        "changed_iou": 1.0,
+        "changed_ratio": 1.0,
+        "changed_px": 61220,
+        "expected_changed_px": 61222
+      },
+      "reopen_move": {
+        "status": "PASS",
+        "changed_iou": 1.0,
+        "changed_ratio": 1.0,
+        "changed_px": 57020,
+        "expected_changed_px": 57022
+      },
+      "status": "PASS"
+    }
+  },
+  "evidence_origin": {
+    "build_report": "mock",
+    "verify_report": "mock",
+    "renders": "simulation"
+  },
+  "environment": null,
+  "observations": null,
+  "api_surface": {
+    "ScriptInterface": {
+      "called": false,
+      "names": [],
+      "notes": []
+    }
+  },
+  "poc": {
+    "dir": "<temporary>",
+    "character_id": "schoolboy_v2_test_p4",
+    "side": "l",
+    "spec_sha256": "9c5304ccbea0fa97e1949682f471d10ea37b8be734791183720d1dd42a12debd",
+    "bone_layer": "AutoRig_P4_Native",
+    "manifest": "native_manifest.json"
+  },
+  "_label": "cloud check: mock reports + simulated renders; HARD GATE 4.0 cannot pass on this evidence by design",
+  "mock_alerts": [
+    {
+      "button": "OK",
+      "kind": 1,
+      "line1": "AutoRig Phase 4.0 native proof: test rig built. Run verify-report on the JSON report.",
+      "line2": "Report: <poc>/phase4_native_build_report.json"
+    },
+    {
+      "button": "OK",
+      "kind": 1,
+      "line1": "AutoRig Phase 4.0: rig found and 'arm' keyed at frame 18. Save (Cmd+S) now.",
+      "line2": "Report: <poc>/phase4_native_verify_report.json"
+    }
+  ]
+}

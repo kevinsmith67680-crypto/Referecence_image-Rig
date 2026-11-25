@@ -1,0 +1,640 @@
+{
+ "tests": {
+  "01_neutral": {
+   "title": "neutral standing",
+   "feasibility": "SUPPORTED",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 23,
+    "visible_seam": 26,
+    "outline_break": 47,
+    "bridged": 17
+   },
+   "tears_before": {
+    "exposed_gap": 13,
+    "visible_seam": 2,
+    "outline_break": 15
+   },
+   "generated_visible_after": 166,
+   "generated_visible_before": 4584,
+   "render_ms": 1353.6,
+   "eval_ms": 347.1,
+   "wall_s": 1.733,
+   "wall_s_before": 1.128
+  },
+  "02_left_arm_45": {
+   "title": "left arm raised 45 deg",
+   "feasibility": "SUPPORTED",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 22,
+    "visible_seam": 18,
+    "outline_break": 40,
+    "bridged": 21
+   },
+   "tears_before": {
+    "exposed_gap": 7,
+    "visible_seam": 0,
+    "outline_break": 7
+   },
+   "generated_visible_after": 166,
+   "generated_visible_before": 4585,
+   "render_ms": 1286.8,
+   "eval_ms": 339.6,
+   "wall_s": 1.653,
+   "wall_s_before": 1.17
+  },
+  "03_right_arm_90": {
+   "title": "right arm raised 90 deg",
+   "feasibility": "SUPPORTED",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 25,
+    "visible_seam": 22,
+    "outline_break": 46,
+    "bridged": 16
+   },
+   "tears_before": {
+    "exposed_gap": 7,
+    "visible_seam": 2,
+    "outline_break": 9
+   },
+   "generated_visible_after": 176,
+   "generated_visible_before": 4579,
+   "render_ms": 1626.9,
+   "eval_ms": 407.4,
+   "wall_s": 2.065,
+   "wall_s_before": 1.371
+  },
+  "04_both_raised": {
+   "title": "both arms raised",
+   "feasibility": "NEEDS_ARTWORK",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "NEEDS_ARTWORK",
+    "body": "WARNING",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "NEEDS_ARTWORK"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:gusset",
+    "corrective:gusset (pending review)",
+    "corrective:raised_shoulder_collar_l",
+    "corrective:raised_shoulder_collar_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 30,
+    "visible_seam": 0,
+    "outline_break": 30,
+    "bridged": 62
+   },
+   "tears_before": {
+    "exposed_gap": 10,
+    "visible_seam": 13,
+    "outline_break": 23
+   },
+   "generated_visible_after": 53,
+   "generated_visible_before": 2738,
+   "render_ms": 1332.2,
+   "eval_ms": 411.2,
+   "wall_s": 1.767,
+   "wall_s_before": 1.287
+  },
+  "05_elbows_bent": {
+   "title": "elbows bent 95 deg",
+   "feasibility": "SUPPORTED",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "NEEDS_ARTWORK",
+    "body": "WARNING",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:sleeve_crease_l",
+    "corrective:sleeve_crease_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 4,
+    "visible_seam": 9,
+    "outline_break": 13,
+    "bridged": 14
+   },
+   "tears_before": {
+    "exposed_gap": 6,
+    "visible_seam": 2,
+    "outline_break": 8
+   },
+   "generated_visible_after": 112,
+   "generated_visible_before": 3463,
+   "render_ms": 1403.4,
+   "eval_ms": 373.9,
+   "wall_s": 1.802,
+   "wall_s_before": 1.284
+  },
+  "06_pointing": {
+   "title": "pointing",
+   "feasibility": "NEEDS_ARTWORK",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "hand:point"
+   ],
+   "tears_after": {
+    "exposed_gap": 25,
+    "visible_seam": 9,
+    "outline_break": 32,
+    "bridged": 13
+   },
+   "tears_before": {
+    "exposed_gap": 14,
+    "visible_seam": 5,
+    "outline_break": 19
+   },
+   "generated_visible_after": 127,
+   "generated_visible_before": 4582,
+   "render_ms": 1951.2,
+   "eval_ms": 390.1,
+   "wall_s": 2.371,
+   "wall_s_before": 1.707
+  },
+  "07_walking": {
+   "title": "walking (phase 0.25)",
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 12,
+    "visible_seam": 20,
+    "outline_break": 32,
+    "bridged": 16
+   },
+   "tears_before": {
+    "exposed_gap": 3,
+    "visible_seam": 0,
+    "outline_break": 3
+   },
+   "generated_visible_after": 157,
+   "generated_visible_before": 4580,
+   "render_ms": 2130.1,
+   "eval_ms": 363.4,
+   "wall_s": 2.521,
+   "wall_s_before": 1.945
+  },
+  "08_running": {
+   "title": "running (phase 0.25)",
+   "feasibility": "SUPPORTED_WITH_CORRECTIONS",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:knee_drive"
+   ],
+   "tears_after": {
+    "exposed_gap": 11,
+    "visible_seam": 25,
+    "outline_break": 34,
+    "bridged": 21
+   },
+   "tears_before": {
+    "exposed_gap": 1,
+    "visible_seam": 0,
+    "outline_break": 1
+   },
+   "generated_visible_after": 240,
+   "generated_visible_before": 4581,
+   "render_ms": 2191.8,
+   "eval_ms": 373.1,
+   "wall_s": 2.594,
+   "wall_s_before": 1.846
+  },
+  "09_sitting": {
+   "title": "sitting",
+   "feasibility": "NEEDS_ARTWORK",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "NEEDS_ARTWORK",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "art:seat",
+    "art:thigh_foreshortened",
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:hip_flex_l",
+    "corrective:hip_flex_r",
+    "corrective:knee_deep_l",
+    "corrective:knee_deep_r",
+    "corrective:trouser_fold_l",
+    "corrective:trouser_fold_r",
+    "corrective:trousers_seated"
+   ],
+   "tears_after": {
+    "exposed_gap": 28,
+    "visible_seam": 25,
+    "outline_break": 47,
+    "bridged": 38
+   },
+   "tears_before": {
+    "exposed_gap": 2,
+    "visible_seam": 0,
+    "outline_break": 2
+   },
+   "generated_visible_after": 348,
+   "generated_visible_before": 4688,
+   "render_ms": 1296.3,
+   "eval_ms": 301.5,
+   "wall_s": 1.622,
+   "wall_s_before": 1.303
+  },
+  "10_squatting": {
+   "title": "squatting",
+   "feasibility": "SUPPORTED",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "FAIL",
+    "blazer": "FAIL",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "PASS",
+    "shirt": "FAIL"
+   },
+   "missing": [
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:hip_flex_l",
+    "corrective:hip_flex_r",
+    "corrective:knee_deep_l",
+    "corrective:knee_deep_r",
+    "corrective:sleeve_crease_l",
+    "corrective:sleeve_crease_r",
+    "corrective:trouser_fold_l",
+    "corrective:trouser_fold_r"
+   ],
+   "tears_after": {
+    "exposed_gap": 16,
+    "visible_seam": 26,
+    "outline_break": 38,
+    "bridged": 39
+   },
+   "tears_before": {
+    "exposed_gap": 0,
+    "visible_seam": 0,
+    "outline_break": 0
+   },
+   "generated_visible_after": 352,
+   "generated_visible_before": 4703,
+   "render_ms": 1436.6,
+   "eval_ms": 330.4,
+   "wall_s": 1.791,
+   "wall_s_before": 1.133
+  },
+  "11_lean_forward": {
+   "title": "leaning forward",
+   "feasibility": "NEEDS_ARTWORK",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "NEEDS_ARTWORK",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "NEEDS_ARTWORK",
+    "shirt": "NEEDS_ARTWORK"
+   },
+   "missing": [
+    "art:torso_lean_forward",
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:torso_lean_3q"
+   ],
+   "tears_after": {
+    "exposed_gap": 47,
+    "visible_seam": 21,
+    "outline_break": 55,
+    "bridged": 76
+   },
+   "tears_before": {
+    "exposed_gap": 21,
+    "visible_seam": 2,
+    "outline_break": 23
+   },
+   "generated_visible_after": 194,
+   "generated_visible_before": 4584,
+   "render_ms": 2064.4,
+   "eval_ms": 451.7,
+   "wall_s": 2.54,
+   "wall_s_before": 1.906
+  },
+  "12_lean_backward": {
+   "title": "leaning backward",
+   "feasibility": "NEEDS_ARTWORK",
+   "garments": {
+    "trousers": "NEEDS_ARTWORK",
+    "shoes": "WARNING",
+    "blazer": "NEEDS_ARTWORK",
+    "body": "FAIL",
+    "tie": "PASS",
+    "sweater": "NEEDS_ARTWORK",
+    "shirt": "NEEDS_ARTWORK"
+   },
+   "missing": [
+    "art:torso_lean_back",
+    "corrective:foot_extension_under_hem_l",
+    "corrective:foot_extension_under_hem_r",
+    "corrective:torso_lean_3q"
+   ],
+   "tears_after": {
+    "exposed_gap": 60,
+    "visible_seam": 18,
+    "outline_break": 61,
+    "bridged": 75
+   },
+   "tears_before": {
+    "exposed_gap": 21,
+    "visible_seam": 4,
+    "outline_break": 25
+   },
+   "generated_visible_after": 168,
+   "generated_visible_before": 4590,
+   "render_ms": 2075.8,
+   "eval_ms": 426.3,
+   "wall_s": 2.526,
+   "wall_s_before": 1.922
+  }
+ },
+ "performance": {
+  "build_structured_s": 7.05,
+  "build_legacy_s": 4.5,
+  "pose_wall_s_mean": 2.082,
+  "pose_wall_s_max": 2.594,
+  "legacy_pose_wall_s_mean": 1.5,
+  "eval_ms_mean": 376.3,
+  "machine": "cloud sandbox CPU (4 cores); not measured on the user's M1"
+ },
+ "sweeps": {
+  "shoulder": [
+   {
+    "angle_deg": 0.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "FAIL",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "PASS",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 15,
+    "gaps_before": 12,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r"
+    ]
+   },
+   {
+    "angle_deg": 30.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "FAIL",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "PASS",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 24,
+    "gaps_before": 7,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r"
+    ]
+   },
+   {
+    "angle_deg": 60.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "PASS",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "WARNING",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "PASS",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 25,
+    "gaps_before": 7,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r"
+    ]
+   },
+   {
+    "angle_deg": 90.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "PASS",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "WARNING",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "PASS",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 25,
+    "gaps_before": 7,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r"
+    ]
+   },
+   {
+    "angle_deg": 120.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "NEEDS_ARTWORK",
+     "sleeve_cap_r": "NEEDS_ARTWORK",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "PASS",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 34,
+    "gaps_before": 11,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r",
+     "corrective:gusset (pending review)"
+    ]
+   }
+  ],
+  "elbow": [
+   {
+    "angle_deg": 0.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "FAIL",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "PASS",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 24,
+    "gaps_before": 8,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r"
+    ]
+   },
+   {
+    "angle_deg": 45.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "WARNING",
+     "sleeve_cap_r": "FAIL",
+     "sleeve_fore_r": "WARNING",
+     "elbow_r": "WARNING",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 15,
+    "gaps_before": 10,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r"
+    ]
+   },
+   {
+    "angle_deg": 90.0,
+    "feasibility": "SUPPORTED",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "FAIL",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "NEEDS_ARTWORK",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 14,
+    "gaps_before": 11,
+    "missing": [
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r",
+     "corrective:sleeve_crease_r"
+    ]
+   },
+   {
+    "angle_deg": 135.0,
+    "feasibility": "NEEDS_ARTWORK",
+    "sleeve_parts": {
+     "blazer_shoulder_r": "WARNING",
+     "sleeve_upper_r": "PASS",
+     "sleeve_cap_r": "FAIL",
+     "sleeve_fore_r": "PASS",
+     "elbow_r": "NEEDS_ARTWORK",
+     "shirt_cuff_r": "FAIL"
+    },
+    "gaps_after": 14,
+    "gaps_before": 8,
+    "missing": [
+     "corrective:elbow_deep_r",
+     "corrective:foot_extension_under_hem_l",
+     "corrective:foot_extension_under_hem_r",
+     "corrective:sleeve_crease_r"
+    ]
+   }
+  ]
+ },
+ "structure": {
+  "parts": 39,
+  "classes": {
+   "RIGID": 11,
+   "LIMITED_DEFORMATION": 12,
+   "FLEXIBLE": 16
+  },
+  "weights": {
+   "ok": true,
+   "issues": [],
+   "n_issues": 0,
+   "meshes": 29,
+   "vertices": 18587,
+   "op_errors": []
+  }
+ },
+ "visual_review_required": true,
+ "note": "grades are measurements of the drawn mapping; visual quality is judged by a person on the renders (before/, after/, closeups/, sweeps/, contact sheets)"
+}
